@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2 on Dr. Zhijian He</title>
+    <link>/publication_types/2/</link>
+    <description>Recent content in 2 on Dr. Zhijian He</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sat, 01 Sep 2018 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="/publication_types/2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quasi-Monte Carlo for Discontinuous Integrands with Singularities along the Boundary of the Unit Cube</title>
+      <link>/publication/qmcrate/</link>
+      <pubDate>Sat, 01 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/qmcrate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Asymptotic Normality of Extensible Grid Sampling</title>
+      <link>/publication/2018hilbert/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/2018hilbert/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An Auto-Realignment Method in Quasi-Monte Carlo for Pricing Financial Derivatives with Jump Structures</title>
+      <link>/publication/2016siam/</link>
+      <pubDate>Sat, 01 Jul 2017 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/2016siam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An Auto-Realignment Method in Quasi-Monte Carlo for Pricing Financial Derivatives with Jump Structures</title>
+      <link>/publication/2016ejor/</link>
+      <pubDate>Mon, 01 Aug 2016 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/2016ejor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extensible Grids: Uniform Sampling on a Space-Filling Curve</title>
+      <link>/publication/hilbert/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/hilbert/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On the Convergence Rate of Randomized Quasi-Monte Carlo for Discontinuous Functions</title>
+      <link>/publication/2015siam2/</link>
+      <pubDate>Wed, 01 Jul 2015 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/2015siam2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Good Path Generation Methods in Quasi-Monte Carlo for Pricing Financial Derivatives</title>
+      <link>/publication/2015siam/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0800</pubDate>
+      
+      <guid>/publication/2015siam/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

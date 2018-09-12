@@ -1,0 +1,112 @@
+---
+title: "《数理统计》课程简介"
+date: "2018-09-10"
+categories: ["课件"]
+math: TRUE
+Summary: "《数理统计》课程介绍"
+tags: ["课件", "数理统计"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## 教师简介
+
+姓名|何志坚|
+-|-|
+职称|数学学院副教授|
+研究兴趣|统计模拟与计算、随机算法、金融工程|
+办公地址|五山校区四号楼4301|
+个人主页|[主页链接](http://www2.scut.edu.cn/math/2018/0118/c14638a254123/page.htm)
+邮箱|hezhijian@scut.edu.cn|
+
+## 教材
+
+### 主要教材
+
+- 数理统计学讲义（第3版），陈家鼎、孙山泽、李东风、刘力平编著，高等教育出版社。
+
+
+### 参考教材
+
+- 数理统计学（第2版），茆诗松、吕晓玲编著，中国人民大学出版社。
+- 高等数理统计学，陈希孺编著，中国科技大学出版社。
+- Introduction to Mathematical Statistics (Fifth Edition), R. V. Hogg, A. T. Craig. （高等教育出版社，影印版）
+- Mathematical Statistics (Second Edition), Jun Shao. （世界图书出版公司，影印版）
+
+## 教学安排
+
+### 上课时间
+- 1-16周，周一第三、四节，周三第一、二节，共64学时
+
+### 上课地点
+- 博学101
+
+### 教学内容
+
+- 《数理统计学讲义》第1-5章
+- 《数理统计学》第1章
+
+## 教学日历
+内容|学时|要求|
+-|-|-|
+第一章 绪论| 6 |了解统计学的发展以及基本概念|
+第二章 估计| 12 |熟练掌握各种估计方法|
+第三章 假设检验| 16 |熟练掌握各种假设检验方法|
+第四章 回归分析| 16 |熟练掌握线性模型的建立与分析的技巧|
+第五章 方差分析| 12 |掌握方差分析的技巧|
+复习| 2 |考试重点复习|
+
+## 统计软件
+
+### 本课程使用
+
+- `R软件`: [https://www.r-project.org/](https://www.r-project.org/)
+	
+- `RStudio编辑器`: [https://www.rstudio.com/](https://www.rstudio.com/)
+
+### R软件参考资料
+
+- [Rudy Angeles' R tutorial](http://statweb.stanford.edu/~owen/courses/305-1415/RLabAutumn2011.pdf)
+- R语言实用教程，薛毅、陈立萍编著，清华大学出版社。
+
+### 其它选择
+- Matlab
+- SAS
+- Python
+- C/C++
+- Stata
+ 
+## 数据科学中常用软件的比较
+ ![](software_compare.png)
+ 
+## 考核方式
+
+```
+最终成绩 = 平时成绩（30%）+期末成绩（70%）
+```
+### 平时成绩
+- 作业（20%），其中2-3次大作业（案例分析）
+- 课堂表现（5%）
+- 考勤（5%）
+
+### 期末考试
+- 闭卷
+- 百分制
+
+
+## 课程管理
+
+### 雨课堂APP管理平台
+
+- 发布课程通知（课件、参考资料、作业等）
+- 课堂互动（课堂小测、提问）
+- 收集作业（**只接受电子版作业**：手写拍照/word/Rmarkdown/Latex）
+
+具体功能介绍见雨课堂网址：[http://ykt.io/](http://ykt.io/)
+
+推荐使用Rmarkdown写作：[https://rmarkdown.rstudio.com/](https://rmarkdown.rstudio.com/)
+
+
+ 

@@ -1,0 +1,1087 @@
+---
+title: "第一章：绪论"
+date: "2018-09-10"
+categories: ["课件"]
+math: TRUE
+Summary: "第一章：绪论"
+tags: ["课件", "数理统计"]
+---
+
+
+
+<div class="section level2">
+<h2>目录</h2>
+<div class="section level3">
+<h3>1.1 数理统计是一门什么样的学科？</h3>
+</div>
+<div class="section level3">
+<h3>1.2 统计学的发展简史</h3>
+</div>
+<div class="section level3">
+<h3>1.3 基本概念</h3>
+</div>
+<div class="section level3">
+<h3>1.4 抽样分布</h3>
+</div>
+<div class="section level3">
+<h3>1.5 充分统计量</h3>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>1.1 数理统计是一门什么样的学科？</h2>
+<p>它使用概率论和其它数学方法，研究怎样收集（通过试验和观察）带有随机误差的数据，并在设定的模型（称为统计模型）之下，对这种数据进行分析（称为统计分析），以对所研究的问题作出推断（称为统计推断）。
+由于所收集的统计数据（资料）只能反映事物的局部特征，数理统计的任务就在于从统计资料所反映的局部特征以概率论作为理论基础去推断事物的整体特征。</p>
+<div class="section level3">
+<h3>本质：由局部（有限样本）推断整体（总体）</h3>
+<ul>
+<li>数据</li>
+<li>模型</li>
+<li>推断</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>数据是什么？</h2>
+<p><img src="data.png" /></p>
+</div>
+<div class="section level2">
+<h2>模型是什么？</h2>
+<ul>
+<li>刻画实际问题</li>
+<li>能够进行统计分析</li>
+</ul>
+<div id="essentially-all-models-are-wrong-but-some-are-useful.-george-box" class="section level3">
+<h3>Essentially, all models are wrong, but some are useful. —— <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">George Box</a></h3>
+</div>
+</div>
+<div class="section level2">
+<h2>什么样的推断？</h2>
+<p>由样本到总体的推理称为<strong>统计推断</strong>，有两种基本形式：</p>
+<div class="section level3">
+<h3>参数估计</h3>
+<ul>
+<li>模型中未知参数</li>
+<li>与“业务相关”的未知量</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>假设检验</h3>
+<ul>
+<li>判断命题的真假</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>案例</h2>
+<p><img src="zhihu.jpg" /></p>
+</div>
+<div id="-1" class="section level2">
+<h2>案例</h2>
+<p>问题1：OPPO手机充电五分钟通话时间为多少？（参数估计）</p>
+<p>问题2：“OPPO手机充电五分钟通话2小时”是否可信？（假设检验）</p>
+<div class="section level3">
+<h3>一般步骤</h3>
+<ul>
+<li>数据收集：用<span class="math inline">\(n\)</span>部手机进行测试，记录通话时间<span class="math inline">\(X_1,\dots,X_n\)</span></li>
+<li>模型假定：假设通话时间<span class="math inline">\(X\)</span>服从正态分布<span class="math inline">\(N(\mu,\sigma^2)\)</span></li>
+<li>数据分析：通过观测数据<span class="math inline">\(x_1,\dots,x_n\)</span>作出统计推断</li>
+</ul>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>1.2 统计学的发展简史</h2>
+<div class="section level3">
+<h3>第一个时期（萌芽阶段）</h3>
+<ul>
+<li>20世纪以前，描述性统计</li>
+<li>代表性人物：高斯(C. F. Gauss, 1777-1855), 皮尔逊(K. Pearson, 1857-1936)等</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>第二个时期（蓬勃发展阶段）</h3>
+<ul>
+<li>20世纪初至第二次世界大战</li>
+<li>代表性人物：费希尔(R. A. Fisher, 1890-1962), 奈曼(J. Neyman, 1894-1981), 小皮尔逊(E. S. Pearson, 1895-1980), 许宝騄(1910-1970)等</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>第三个时期（理论与应用高速发展）</h3>
+<ul>
+<li>二战后至今，得益于计算机的发展，统计方法渗透许多学科</li>
+<li>贝叶斯学派的兴起</li>
+<li>大数据时代与人工智能的发展</li>
+<li>现代统计依赖强大的计算能力</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>频率学派与贝叶斯学派</h2>
+<div class="section level3">
+<h3>频率学派（传统学派）</h3>
+<ul>
+<li><p>频率学派认为样本信息来自总体，仅通过研究<strong>样本信息</strong>可以对<strong>总体信息</strong>做出合理的推断和估计，并且样本越多，就越准确。</p></li>
+<li><p>代表性人物：费希尔 (R. A. Fisher, 1890-1962)</p></li>
+</ul>
+</div>
+<div class="section level3">
+<h3>贝叶斯学派</h3>
+<ul>
+<li>起源于英国学者贝叶斯(T. Bayes, 1702-1761)在1763年发表的著名论文《论有关机遇问题的求解》</li>
+<li>最基本观点：任何一个未知量都可以看作是随机的，应该用一个概率分布去描述未知参数，而不是频率派认为的固定值。这种信息称为<strong>先验信息</strong>，是主观信息。</li>
+</ul>
+<p>Good (1973)评价道：</p>
+<blockquote>
+<p>“主观主义者直抒他们的判断，而客观主义者以假设来掩盖其判断，并以此享受科学客观性的荣耀。”</p>
+</blockquote>
+</div>
+</div>
+<div class="section level2">
+<h2>贝叶斯公式</h2>
+<p><img src="bigbang_bayes.png" /></p>
+</div>
+<div class="section level2">
+<h2>贝叶斯统计的发展</h2>
+<div class="section level3">
+<h3>应用领域</h3>
+<ul>
+<li>自然语言处理：计算机翻译语言、识别语音、认识文字和海量文献的检索</li>
+</ul>
+<blockquote>
+<p><strong>南京市长江大桥欢迎您!</strong></p>
+</blockquote>
+<ul>
+<li>人工智能、无人驾驶</li>
+<li>垃圾短信、垃圾邮件识别</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>贝叶斯决策</h3>
+<ul>
+<li>如何在一个陌生的地方找餐馆吃饭？</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>贝叶斯统计课程(研究生课程)</h2>
+<p>本课程不涉及贝叶斯统计内容，欢迎对贝叶斯统计感兴趣的同学参加以下课程。</p>
+<div class="section level3">
+<h3>教材</h3>
+<ul>
+<li><strong>贝叶斯数据分析（第三版）</strong>, A. Gelman等，机械工业出版社
+<a href="https://item.jd.com/11886268.html" class="uri">https://item.jd.com/11886268.html</a></li>
+</ul>
+</div>
+<div class="section level3">
+<h3>上课时间</h3>
+<ul>
+<li>1-12周，周一下午第5—8节，共48学时</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>上课地点</h3>
+<ul>
+<li>四号楼4135</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>统计学专业</h2>
+<p>统计学的应用涉及金融、经济、社会学、工程学、环境等多个领域，从而形成的相应的研究分支。其特点是多学科交叉、实用为主。</p>
+<div class="section level3">
+<h3>统计学专业包含理论统计和应用统计两方面</h3>
+<ul>
+<li><p>理论统计：模型选择，非参统计方法，贝叶斯统计，时间序列与生存分析，高维数据分析与机器学习，数据挖掘等等。</p></li>
+<li><p>应用统计：目前发展最为突出的是生物统计，金融统计等等。</p></li>
+</ul>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>统计学专业</h2>
+<p>统计学经过漫长的发展，尤其是计算机的大量应用，目前包括但不限于下面这些分支（或者交叉领域）：</p>
+<ul>
+<li>理论研究：概率论（比如Stochastic Process），计算统计理论（比如Asymptotic Theory，在CS系的Computational Theory下面）等</li>
+<li>统计模型（在前人基础上继续发展各种Regression Model，Stratification，Clustering，Blocking，classification等等）、各种Test的发展（比如Time Series，Likelihood Ratio Test, Wald test, Permutation test 等）</li>
+<li>计算统计方法的发展（比如Monte Carlo Simulation，Bootstrap）</li>
+<li>数据采集（Census，Survey和Clinical Trial等）</li>
+<li>生物统计（比如Longitudinal Analysis，Spatial Analysis）</li>
+<li>Machine Learning
+Data Mining</li>
+</ul>
+<p>目前最火热的学科都是跟计算机结合比较紧密的。</p>
+</div>
+<div id="statistician-salaries-in-the-united-states" class="section level2">
+<h2>Statistician Salaries in the United States</h2>
+<p><img src="salary.png" /></p>
+</div>
+<div id="-1" class="section level2">
+<h2>1.3 基本概念</h2>
+<div class="section level3">
+<h3>(1) 总体</h3>
+</div>
+<div class="section level3">
+<h3>(2) 样本</h3>
+</div>
+<div class="section level3">
+<h3>(3) 分布族</h3>
+</div>
+<div class="section level3">
+<h3>(4) 统计量与估计量</h3>
+</div>
+<div class="section level3">
+<h3>(5) 经验分布函数</h3>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>总体</h2>
+<p>我们把研究对象的全体（包括有形的和潜在的）称作<strong>总体</strong>，其中每个成员称为<strong>个体</strong>。常用随机变量<span class="math inline">\(X\)</span>来刻画一个总体（或者总体的特征值）。</p>
+<div class="section level3">
+<h3>例</h3>
+<ul>
+<li>网上购物居民占全市居民的比例</li>
+<li>过去一年内网购居民的购物次数</li>
+<li>某品牌灯泡的寿命</li>
+</ul>
+<p><strong>注</strong>：总体<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>未知或者部分未知，统计学的核心任务就是要对总体进行观测，并对所得数据推断总体的分布信息。</p>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>样本</h2>
+<p>研究总体可分为<strong>普查</strong>和<strong>抽样</strong>这两种方法。</p>
+<div class="section level3">
+<h3>普查（全数检查）</h3>
+<ul>
+<li>对总体中的每个个体进行观察，如我国每十年一次的人口普查</li>
+<li>缺点：费用高、时间长、不适合破坏性试验</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>抽样</h3>
+<ul>
+<li>从总体中抽取若干个体进行观察，用所获得数据对总体进行统计推断</li>
+<li>优点：费用低、时间短</li>
+<li>抽取的部分组成的集合<span class="math inline">\((X_1,\dots,X_n)\)</span>称为<strong>样本</strong>，<span class="math inline">\(X_i\)</span>称为<strong>样品</strong></li>
+<li>样品个数<span class="math inline">\(n\)</span>称为<strong>样本量或者样本容量</strong></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>简单随机抽样</h2>
+<p>简单随机抽样满足以下两个特征：</p>
+<ul>
+<li>随机性：每个个体都有相同的机会选中（有放回随机抽取/独立重复观测），即<span class="math inline">\(X_i\)</span>与<span class="math inline">\(X\)</span>同分布</li>
+<li>独立性：每个样本的选取是独立的</li>
+</ul>
+<p>这种方式得到的样本称为<strong>简单随机样本（简称样本）</strong></p>
+<ul>
+<li><span class="math inline">\(X_1,\dots,X_n\)</span>独立同分布(independent and identically distributed, iid)</li>
+<li>本课程所研究的均为简单随机样本</li>
+</ul>
+<div class="section level3">
+<h3>样本具有两重性</h3>
+<ul>
+<li>抽取之前无法预知它们的数值，故<span class="math inline">\((X_1,\dots,X_n)\)</span>为<span class="math inline">\(n\)</span>维随机向量</li>
+<li>抽取后样本为具体的数，用小写字母<span class="math inline">\((x_1,\dots,x_n)\)</span>表示，称为<strong>样本观测值</strong></li>
+</ul>
+<p>注：所有的统计分析都是基于随机变量，统计推断结论基于样本观测值（数据）。</p>
+</div>
+</div>
+<div id="-2" class="section level2">
+<h2>案例：</h2>
+<p>“二战”期间，为了加强对战机的防护，英美军方调查了作战后幸存飞机上弹痕的分布，决定哪里弹痕多就加强哪里，你支持这种做法吗？</p>
+<p><img src="plane.jpg" /></p>
+</div>
+<div id="2018ii" class="section level2">
+<h2>案例：2018年高考全国II卷作文</h2>
+<p>2018年高考全国II卷（适用地区: 内蒙古、黑龙江、辽宁、吉林、重庆、陕西、甘肃、宁夏、青海、新疆、西藏、海南）作文题目如下:</p>
+<p>“二战”期间，为了加强对战机的防护，英美军方调查了作战后幸存飞机上弹痕的分布，决定哪里弹痕多就加强哪里，然而统计学家瓦尔德(Abrahom Wald, 1902–1950)力排众议，指出更应该注意弹痕少的部位，因为这些部位受到重创的战机，很难有机会返航，而这部分数据被忽略了。事实证明沃德是正确的。</p>
+<p>要求: 综合材料内容及含义，选好角度，确定立意，明确文体，自拟标题; 不要套作，不得抄袭; 不少于800字。</p>
+<div class="section level3">
+<h3>这就是所谓的“幸存者偏见”</h3>
+</div>
+</div>
+<div class="section level2">
+<h2>概率分布族</h2>
+<p><strong>模型假定</strong>：总体<span class="math inline">\(X\)</span>分布<span class="math inline">\(F(x)\)</span>属于某个分布族<span class="math inline">\(\mathcal{F}\)</span>. 分为以下三类：</p>
+<div class="section level3">
+<h3>参数族</h3>
+<ul>
+<li><span class="math inline">\(\mathcal{F}\)</span>中的分布的一般数学形式已知，但包含若干未知参数<span class="math inline">\(\theta=(\theta_1,\dots,\theta_m)\)</span></li>
+<li><span class="math inline">\(\mathcal{F}:=\{F_\theta,\theta\in\Theta\}\)</span>, 其中<span class="math inline">\(\Theta\subset \mathbb{R}^m\)</span>称为参数空间。</li>
+<li>该模型为<strong>参数统计问题</strong>，<span class="math inline">\(m\)</span>为模型的维数</li>
+<li><span class="math inline">\(m=1\)</span>为单参数统计问题，<span class="math inline">\(m&gt;1\)</span>为多参数统计问题</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>非参数族</h3>
+<ul>
+<li>当<span class="math inline">\(\mathcal{F}\)</span>中的分布不能通过有限个未知参数来刻画</li>
+<li>该模型为<strong>非参数统计问题</strong></li>
+</ul>
+</div>
+<div class="section level3">
+<h3>半参数族</h3>
+<ul>
+<li><span class="math inline">\(\mathcal{F}\)</span>中的分布有一部分可以用参数刻画，一部分则不可以。</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>常用的参数族</h2>
+<div class="section level3">
+<h3>离散型</h3>
+<ul>
+<li>二项分布族<span class="math inline">\(\{b(n,p);0&lt;p&lt;1\}\)</span></li>
+<li>几何分布族<span class="math inline">\(\{Ge(p);0&lt;p&lt;1\}\)</span></li>
+<li>泊松分布族<span class="math inline">\(\{P(\lambda);\lambda&gt;0\}\)</span></li>
+</ul>
+</div>
+<div class="section level3">
+<h3>连续型</h3>
+<ul>
+<li>正态分布族<span class="math inline">\(\{N(\mu,\sigma^2);-\infty&lt;\mu&lt;\infty,\sigma&gt;0\}\)</span></li>
+<li>均匀分布族<span class="math inline">\(\{U(a,b);-\infty&lt;a&lt;b&lt;\infty\}\)</span></li>
+<li>指数分布族<span class="math inline">\(\{Exp(\lambda);\lambda&gt;0\}\)</span></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>伽玛分布族</h2>
+<p>伽玛分布族<span class="math inline">\(\{Ga(\alpha,\lambda),\alpha&gt;0,\lambda&gt;0\}\)</span>，<span class="math inline">\(\alpha\)</span>为形状参数，<span class="math inline">\(1/\lambda\)</span>为尺度参数</p>
+<div class="section level3">
+<h3>密度函数</h3>
+<p><span class="math display">\[f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}1\{x\ge 0\}\]</span></p>
+<p>其中<span class="math inline">\(\Gamma(\alpha)=\int_0^{+\infty} x^{\alpha-1}e^{-x}dx\)</span></p>
+<ul>
+<li><span class="math inline">\(\Gamma(1)=1,\Gamma(1/2)=\sqrt{\pi}\)</span></li>
+<li><span class="math inline">\(\Gamma(\alpha+1)=\alpha\Gamma(\alpha)\)</span></li>
+<li>当<span class="math inline">\(\alpha\)</span>为整数<span class="math inline">\(n\)</span>时，<span class="math inline">\(\Gamma(n+1)=n!\)</span></li>
+</ul>
+</div>
+<div id="frac-alpha-lambdafrac-alpha-lambda2" class="section level3">
+<h3>期望：<span class="math inline">\(\frac \alpha \lambda\)</span>；方差：<span class="math inline">\(\frac \alpha {\lambda^2}\)</span></h3>
+</div>
+<div class="section level3">
+<h3>两个特例</h3>
+<ul>
+<li><span class="math inline">\(\alpha=1\)</span>时伽玛分布为指数分布，即<span class="math inline">\(Ga(\alpha,\lambda)=Exp(\lambda)\)</span></li>
+<li><span class="math inline">\(\alpha=n/2,\lambda=1/2\)</span>时伽玛分布为自由度为<span class="math inline">\(n\)</span>的卡方分布，即<span class="math inline">\(Ga(n/2,1/2)=\chi^2(n)\)</span></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>伽玛密度函数</h2>
+<p><img src="/post/chap01_files/figure-html/gammaplot-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>伽玛分布的性质</h2>
+<p><strong>性质1（可加性）</strong>：设<span class="math inline">\(X_1\sim Ga(\alpha_1,\lambda),\ X_2\sim Ga(\alpha_2,\lambda)\)</span>。如果<span class="math inline">\(X_1\)</span>与<span class="math inline">\(X_2\)</span>独立，则
+<span class="math display">\[X_1+X_2\sim Ga(\alpha_1+\alpha_2,\lambda).\]</span></p>
+<p><strong>性质2</strong>：设<span class="math inline">\(X\sim Ga(\alpha,\lambda)\)</span>,则<span class="math inline">\(kX\sim Ga(\alpha,\lambda/k)\)</span>, 其中<span class="math inline">\(k&gt;0\)</span>.</p>
+<p>提示：<span class="math inline">\(Ga(\alpha,\lambda)\)</span>分布的特征函数为</p>
+<p><span class="math display">\[\phi(t)=E[e^{itX}]=\left(1-\frac{it}\lambda\right)^{-\alpha}\]</span></p>
+</div>
+<div class="section level2">
+<h2>贝塔分布族</h2>
+<p>贝塔分布族<span class="math inline">\(\{Beta(\alpha,\beta),\alpha&gt;0,\beta&gt;0\}\)</span>，<span class="math inline">\(\alpha,\beta\)</span>为形状参数</p>
+<div id="-1" class="section level3">
+<h3>密度函数</h3>
+<p><span class="math display">\[f(x) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}1\{0&lt;x&lt;1\}\]</span></p>
+</div>
+<div id="fracalphaalphabetafracalpha-betaalphabeta2alphabeta1" class="section level3">
+<h3>期望：<span class="math inline">\(\frac{\alpha}{\alpha+\beta}\)</span>；方差：<span class="math inline">\(\frac{\alpha \beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span></h3>
+</div>
+<div id="alphabeta1beta11u01" class="section level3">
+<h3>特例：当<span class="math inline">\(\alpha=\beta=1\)</span>时，<span class="math inline">\(Beta(1,1)=U(0,1)\)</span></h3>
+</div>
+<div class="section level3">
+<h3>适用场合</h3>
+<ul>
+<li>不合格率</li>
+<li>市场占有率</li>
+<li>命中率</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>贝塔密度函数</h2>
+<p><img src="beta.png" /></p>
+</div>
+<div class="section level2">
+<h2>指数型分布族</h2>
+<p><strong>定义</strong>：指数型分布族<span class="math inline">\(\mathcal{F}=\{f_\theta(x);\theta\in\Theta\}\)</span>中的分布（分布列或者密度函数）都可以表示成如下形式：</p>
+<p><span class="math display">\[f_\theta(x)=c(\theta)\exp\{\sum_{j=1}^kc_j(\theta)T_j(x)\}h(x)\]</span></p>
+<p>其中，</p>
+<ul>
+<li><span class="math inline">\(k\)</span>为正整数</li>
+<li>分布的支撑与参数<span class="math inline">\(\theta\)</span>无关</li>
+<li><span class="math inline">\(c(\theta),c_j(\theta)\)</span>为参数空间<span class="math inline">\(\Theta\)</span>上的函数</li>
+<li><span class="math inline">\(h(x)&gt;0\)</span>, <span class="math inline">\(T_1(x),\dots,T_k(x)\)</span>线性无关</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>常见的指数型分布族</h2>
+<div class="section level3">
+<h3>正态分布族是指数型分布族</h3>
+<p><span class="math display">\[f(x,\mu,\sigma)=\frac 1{\sqrt{2\pi}\sigma}e^{-\mu^2/(2\sigma^2)}\exp\{\frac{\mu}{\sigma^2}x-\frac{1}{2\sigma^2}x^2\}\]</span></p>
+</div>
+<div class="section level3">
+<h3>二项分布族是指数型分布族</h3>
+<p><span class="math display">\[P(X=x) = C_n^x p^x(1-p)^{n-x}=(1-p)^n\exp\{\ln[p/(1-p)]x \}C_n^x\]</span></p>
+</div>
+<div class="section level3">
+<h3>伽玛/贝塔分布族是指数型分布族</h3>
+</div>
+<div class="section level3">
+<h3>均匀分布族不是指数型分布族</h3>
+</div>
+</div>
+<div class="section level2">
+<h2>指数型分布族的优点</h2>
+<p><strong>性质</strong>：如果<span class="math inline">\(X_1,\dots,X_n\)</span>是来自某指数型分布族中某分布的样本，则样本的联合分布还是指数型分布。</p>
+<p><span class="math inline">\(f_\theta(x_1,\dots,x_n)=\prod_{i=1}^np_\theta(x_i)=c(\theta)^n\exp\{\sum_{j=1}^kc_j(\theta)\sum_{i=1}^nT_j(x_i)\}\prod_{i=1}^nh(x_i)\)</span></p>
+</div>
+<div id="-1" class="section level2">
+<h2>统计量与估计量</h2>
+<p>样本是总体的反映，但样本所含信息不能直接用于解决我们所要研究的问题，而需要把样本所含的信息进行数学上的加工使其浓缩起来，从而解决我们的问题。为此，数理统计学往往构造一个合适的<strong>依赖于样本的函数</strong>，我们称之为<strong>统计量</strong>。</p>
+<p><strong>定义</strong>：如果<span class="math inline">\((X_1,\dots,X_n)\)</span>为来自总体的样本，若样本函数<span class="math display">\[T=T(X_1,\dots,X_n)\]</span>中<strong>不含有任何未知参数</strong>，则称<span class="math inline">\(T\)</span>为统计量。统计量的分布称为<strong>抽样分布</strong>。</p>
+<p><strong>定义</strong>：用于估计未知参数的统计量称为<strong>点估计量</strong>，或者简称<strong>估计量</strong>。</p>
+<p>注：这里的未知参数常指以下几种：</p>
+<ul>
+<li>分布中所含的未知参数</li>
+<li>分布的数字特征：期望、方差、标准差、分位数等</li>
+<li>某事件的概率</li>
+</ul>
+</div>
+<div id="-1" class="section level2">
+<h2>例</h2>
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为来自<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>的样本, 若<span class="math inline">\(\mu\)</span>已知，<span class="math inline">\(\sigma\)</span>未知，判断<span class="math inline">\(T_1,T_2\)</span>是否为统计量。</p>
+<p><span class="math display">\[T_1 = \frac{\sqrt{n}(\sum_{i=1}^n X_i-\mu)}{\sigma}\]</span></p>
+<p><span class="math display">\[T_2 = \min(X_1,\dots,X_n)\]</span></p>
+</div>
+<div class="section level2">
+<h2>常见的统计量</h2>
+<div class="section level3">
+<h3>样本均值</h3>
+<p><span class="math display">\[\bar{X}=\bar X_n=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+</div>
+<div class="section level3">
+<h3>样本方差</h3>
+<p><span class="math display">\[S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+</div>
+<div class="section level3">
+<h3>修正样本方差</h3>
+<p><span class="math display">\[S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2=\frac{n}{n-1}S_n^2\]</span></p>
+</div>
+<div class="section level3">
+<h3>样本标准差</h3>
+<p><span class="math display">\[S_n=\sqrt{S_n^2}\]</span></p>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>常见的统计量</h2>
+<div id="k" class="section level3">
+<h3>样本<span class="math inline">\(k\)</span>阶原点矩</h3>
+<p><span class="math display">\[\overline{X^k}=\frac{1}{n}\sum_{i=1}^n X_i^k\]</span></p>
+</div>
+<div id="k" class="section level3">
+<h3>样本<span class="math inline">\(k\)</span>阶中心矩</h3>
+<p><span class="math display">\[\frac{1}{n}\sum_{i=1}^n (X_i-\bar X)^k\]</span></p>
+</div>
+<div class="section level3">
+<h3>顺序统计量</h3>
+<p><span class="math display">\[X_{(1)}\le X_{(2)}\le \dots\le X_{(n)}\]</span></p>
+<p>其中<span class="math inline">\(X_{(1)}=\min\{X_1,\dots,X_n\}\)</span>, <span class="math inline">\(X_{(n)}=\max\{X_1,\dots,X_n\}\)</span>, <span class="math inline">\(X_{(k)}\)</span>为<span class="math inline">\({X_1,\dots,X_n}\)</span>的递增排序的第<span class="math inline">\(k\)</span>位。<span class="math inline">\(X_{(n)}-X_{(1)}\)</span>样本极差。</p>
+</div>
+<div class="section level3">
+<h3>样本中位数</h3>
+<p><span class="math display">\[
+\tilde{X}=
+        \begin{cases}
+        X_{(\frac{n+1}{2})},\ &amp;\text{$n$为奇数}\\
+        (X_{(\frac{n}{2})}+X_{(\frac{n}{2}+1)})/2,\ &amp;\text{$n$为偶数}
+        \end{cases}
+\]</span></p>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>经验分布函数</h2>
+<p>通过样本的观测值构造一种函数来近似总体的分布函数</p>
+<p><strong>定义</strong>：设总体<span class="math inline">\(X\)</span>的样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的一次观测值<span class="math inline">\((x_1,\dots,x_n)\)</span>, 并将它们由小到大排列<span class="math inline">\(x_{(1)}\le x_{(2)}\le \dots\le x_{(n)}\)</span>, 经验分布函数(或称样本分布函数)定义为</p>
+<p><span class="math display">\[
+F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
+0,&amp;\ x&lt;x_{(1)}\\
+1/n,&amp;\ x_{(1)}\le x&lt;x_{(2)}\\
+2/n,&amp;\ x_{(2)}\le x&lt;x_{(3)}\\
+&amp;\vdots\\
+k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
+&amp;\vdots\\
+1,&amp;\ x&gt;x_{(n)}\\
+\end{cases}.
+\]</span></p>
+</div>
+<div class="section level2">
+<h2>经验分布函数示意图</h2>
+<p><img src="/post/chap01_files/figure-html/ecdf-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>经验分布函数的性质</h2>
+<p>固定的<span class="math inline">\(x\)</span>和<span class="math inline">\(n\)</span>，<span class="math inline">\(F_n(x)\)</span>表示事件<span class="math inline">\(\{X\le x\}\)</span>的频率，由强大数定律知，
+<span class="math display">\[F_n(x)\to P(X\le x)=F(x),\]</span>
+即
+<span class="math display">\[P\left(\lim_{n\to\infty}F_n(x)=F(x)\right)=1.\]</span></p>
+<p><strong>格里汶科定理</strong>(定理4.1, p48)给出更强的结果（几乎处处一致收敛）:</p>
+<p><span class="math display">\[P\left(\lim_{n\to\infty}\sup_{x\in \mathbb{R}}|F_n(x)-F(x)|=0\right)=1.\]</span></p>
+<p><strong>注</strong>：由此可见，当<span class="math inline">\(n\)</span>相当大时，经验分布函数<span class="math inline">\(F_n(x)\)</span>是母体分布函数<span class="math inline">\(F(x)\)</span>的一个良好近似。数理统计学中一切都以样本为依据，其理由就在于此。</p>
+</div>
+<div id="-1" class="section level2">
+<h2>1.4 抽样分布</h2>
+<div class="section level3">
+<h3>(1) 样本均值的分布</h3>
+</div>
+<div class="section level3">
+<h3>(2) 正态总体的抽样分布</h3>
+</div>
+<div class="section level3">
+<h3>(3) 顺序统计量的分布</h3>
+</div>
+<div class="section level3">
+<h3>(4) 样本分位数的分布</h3>
+</div>
+</div>
+<div id="-2" class="section level2">
+<h2>抽样分布</h2>
+<p><strong>定义</strong>：统计量的概率分布称为抽样分布，分为如下三类：</p>
+<div class="section level3">
+<h3>精确抽样分布</h3>
+<ul>
+<li>当总体<span class="math inline">\(X\)</span>的分布已知时，如果对任意自然数<span class="math inline">\(n\)</span>都能导出统计量<span class="math inline">\(T(X_1,\dots,X_n)\)</span>的分布的显示表达式</li>
+<li>对样本量<span class="math inline">\(n\)</span>较小的统计推断问题（小样本问题）特别有用</li>
+<li>精确抽样分布多数是在正态总体下得到</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>渐近抽样分布</h3>
+<ul>
+<li>寻求在样本量<span class="math inline">\(n\)</span>无限大时统计量<span class="math inline">\(T(X_1,\dots,X_n)\)</span>的极限分布</li>
+<li>适用于对样本量<span class="math inline">\(n\)</span>较大的统计推断问题（大样本问题）</li>
+<li>常用的方法是中心极限定理</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>近似抽样分布</h3>
+<ul>
+<li>寻找一种分布来近似统计量<span class="math inline">\(T(X_1,\dots,X_n)\)</span>的分布</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>样本均值的抽样分布</h2>
+<p><strong>定理</strong>：设<span class="math inline">\(X_1,\dots,X_n\)</span>为来自总体<span class="math inline">\(X\)</span>的样本，<span class="math inline">\(\bar X\)</span>为其样本均值。</p>
+<ul>
+<li>如果<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，则<span class="math inline">\(\bar X\)</span>的精确分布为<span class="math inline">\(N(\mu,\sigma^2/n)\)</span>.</li>
+<li>如果总体不是正态分布，但<span class="math inline">\(E[X]=\mu,Var[X]=\sigma^2\)</span>存在，则<span class="math inline">\(\bar X\)</span>的渐近分布为
+<span class="math inline">\(N(\mu,\sigma^2/n)\)</span>，记为<span class="math inline">\(\bar X\stackrel{\cdot}\sim N(\mu,\sigma^2/n)\)</span>.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>不同总体均值的分布</h2>
+<p><img src="CLT.jpg" /></p>
+</div>
+<div class="section level2">
+<h2>卡方分布</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X_i\stackrel{iid}\sim N(0,1),i=1,\dots,n\)</span>，则称随机变量
+<span class="math display">\[X = X_1^2+\dots+X_n^2\]</span>
+服从自由度为<span class="math inline">\(n\)</span>的卡方分布，记为<span class="math inline">\(X\sim \chi^2(n)\)</span>.</p>
+<p><strong>密度函数</strong>：<span class="math inline">\(f(x)=\frac{1}{2^{\frac n2}\Gamma(n/2)}x^{\frac n2-1}e^{-\frac x2} 1\{x&gt;0\}\)</span></p>
+<div id="exn-varx2n." class="section level3">
+<h3>期望和方差：<span class="math inline">\(E[X]=n,\ Var[X]=2n\)</span>.</h3>
+<p><strong>可加性</strong>：如果<span class="math inline">\(X\sim \chi^2(n)\)</span>, <span class="math inline">\(Y\sim \chi^2(m)\)</span>且它们独立，则
+<span class="math display">\[X+Y\sim \chi^2(n+m).\]</span></p>
+<p>中心极限定理：
+<span class="math display">\[\frac{X-n}{\sqrt{2n}}\stackrel{d}\to N(0,1).\]</span></p>
+</div>
+</div>
+<div class="section level2">
+<h2>卡方分布的密度函数曲线</h2>
+<p><img src="Chi-square_pdf.png" /></p>
+</div>
+<div class="section level2">
+<h2>样本方差的抽样分布（正态总体）</h2>
+<p><strong>定理（定理3.3, p38）</strong>：设<span class="math inline">\((X_1,\dots,X_n)\)</span>为来自总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>的样本，则</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\sim N(\mu,\sigma^2/n)\)</span></li>
+<li><p><span class="math display">\[\frac{nS_n^2}{\sigma^2}=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}\sim \chi^2(n-1)\]</span></p></li>
+<li><p>样本均值<span class="math inline">\(\bar{X}\)</span>与样本方差<span class="math inline">\(S_n^2\)</span>相互独立</p></li>
+</ul>
+<p>详细证明见书P39.</p>
+<p>研究发现，只有正态总体才有“样本均值与方差独立”这一性质。</p>
+</div>
+<div id="t" class="section level2">
+<h2>t分布</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X\sim N(0,1), Y\sim \chi^2(n)\)</span>, 且它们独立，则称随机变量</p>
+<p><span class="math display">\[T = \frac{X}{\sqrt{Y/n}}\]</span>
+服从自由度为<span class="math inline">\(n\)</span>的学生氏t分布（简称<span class="math inline">\(t\)</span>分布），记为<span class="math inline">\(T\sim t(n)\)</span>.</p>
+<div id="-2" class="section level3">
+<h3>密度函数</h3>
+<p><span class="math display">\[
+f(x)=
+\frac{\Gamma\left(\frac{n+1}2\right)}{\sqrt{n\pi }\Gamma\left(\frac n2\right)}\left(1+\frac{x^2}n\right)^{-\frac{n+1}{2}}
+\]</span></p>
+</div>
+<div class="section level3">
+<h3>两种特例</h3>
+<ul>
+<li>当<span class="math inline">\(n=1\)</span>时，t分布成为柯西分布.</li>
+<li>可以证明：<span class="math inline">\(\lim_{n\to\infty}f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\)</span>.
+当<span class="math inline">\(n\ge 25\)</span>时,可以认为t分布与<span class="math inline">\(N(0,1)\)</span>接近。</li>
+</ul>
+</div>
+</div>
+<div id="t" class="section level2">
+<h2>t分布的密度函数曲线</h2>
+<p><img src="tpdf.png" /></p>
+</div>
+<div id="t" class="section level2">
+<h2>t分布的起源</h2>
+<p><img src="tinfo.jpg" /></p>
+</div>
+<div class="section level2">
+<h2>样本均值与标准差之比的抽样分布</h2>
+<p><strong>定理</strong>：设<span class="math inline">\((X_1,\dots,X_n)\)</span>为来自总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>的样本，则</p>
+<p><span class="math display">\[\frac{\sqrt{n-1}(\bar{X}-\mu)}{S_n}=\frac{\sqrt{n}(\bar{X}-\mu)}{S_n^*}\sim t(n-1)\]</span></p>
+<p>比较：</p>
+<p><span class="math display">\[\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}\sim N(0,1)\]</span></p>
+</div>
+<div id="pxc" class="section level2">
+<h2>尾部概率P(|X|&gt;c)的比较</h2>
+<table>
+<thead>
+<tr class="header">
+<th>分布</th>
+<th>c=2</th>
+<th>c=2.5</th>
+<th>c=3</th>
+<th>c=3.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X~N(0,1)</td>
+<td>0.0455</td>
+<td>0.0124</td>
+<td>0.0027</td>
+<td>0.000465</td>
+</tr>
+<tr class="even">
+<td>X~t(4)</td>
+<td>0.1161</td>
+<td>0.0668</td>
+<td>0.0399</td>
+<td>0.0249</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="f" class="section level2">
+<h2>F分布</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X\sim \chi^2(m), Y\sim \chi^2(n)\)</span>, 且<span class="math inline">\(X,Y\)</span>相互独立，则随机变量</p>
+<p><span class="math display">\[Z=\frac{X/m}{Y/n}\]</span>
+称为服从第一自由度为<span class="math inline">\(m\)</span>、第二自由度为<span class="math inline">\(n\)</span>的F分布，记<span class="math inline">\(Z\sim F(m,n)\)</span>. 其密度函数为</p>
+<p><span class="math display">\[f(x)=
+\frac{\Gamma((m+n)/2)}{\Gamma(m/2)\Gamma(n/2)}\left(\frac{m}{n}\right)^{m/2}x^{\frac m2-1}(1+mx/n)^{-(m+n)/2} 1\{x&gt;0\}
+\]</span></p>
+<div id="f" class="section level3">
+<h3>F分布的性质</h3>
+<ul>
+<li><span class="math inline">\(Z\sim F(m,n)\)</span>, 则<span class="math inline">\(1/Z\sim F(n,m)\)</span>.</li>
+<li>如果<span class="math inline">\(T\sim t(n)\)</span>, 则<span class="math inline">\(T^2\sim F(1,n)\)</span>.</li>
+</ul>
+</div>
+</div>
+<div id="f" class="section level2">
+<h2>F分布的密度函数曲线</h2>
+<p><img src="fpdf.png" /></p>
+</div>
+<div class="section level2">
+<h2>两个独立正态总体的抽样分布</h2>
+<p><strong>定理</strong>：设两独立总体<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>,<span class="math inline">\(Y\sim N(\mu_2,\sigma_2^2)\)</span>的样本分别为<span class="math inline">\((X_1,\dots,X_m),(Y_1,\dots,Y_n)\)</span>. 样本方差分别为<span class="math inline">\(S_{1m}^2,S_{2n}^2\)</span>. 则</p>
+<p><span class="math display">\[\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\sim N(0,1).\]</span></p>
+<p><span class="math display">\[\frac{mS_{1m}^2/\sigma_1^2/(m-1)}{nS_{2n}^2/\sigma_2^2/(n-1)}=\frac{S_{1m}^{*2}\sigma_2^2}{S_{2n}^{*2}\sigma_1^2}\sim F(m-1,n-1).
+\]</span></p>
+<p>如果<span class="math inline">\(\sigma_1=\sigma_2=\sigma\)</span>,</p>
+<p><span class="math display">\[\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2),\]</span></p>
+<p>其中<span class="math inline">\(S_w =\sqrt{(mS_{1m}^2+nS_{2n}^2)/(m+n-2)}\)</span>.</p>
+</div>
+<div id="-1" class="section level2">
+<h2>顺序统计量</h2>
+<p><strong>定理</strong>：若<span class="math inline">\(X_1,\dots,X_n\)</span>独立同分布，分布函数和密度函数分别为<span class="math inline">\(F(x),f(x)\)</span>. 则<span class="math inline">\(X_{(1)}=\min(X_1,\dots,X_n)\)</span>的分布函数和密度函数分别</p>
+<p><span class="math display">\[\begin{cases}
+F_{X_{(1)}}(x) = 1-(1-F(x))^n\\
+f_{X_{(1)}}(x) = n(1-F(x))^{n-1}f(x).
+\end{cases}
+\]</span>
+<span class="math inline">\(X_{(n)}=\max(X_1,\dots,X_n)\)</span>的分布函数和密度函数分别</p>
+<p><span class="math display">\[\begin{cases}
+F_{X_{(n)}}(x) = F(x)^n\\
+f_{X_{(n)}}(x) = nF(x)^{n-1}f(x).
+\end{cases}
+\]</span>
+更一般地，</p>
+<p><span class="math display">\[f_{X_{(k)}}(x) = \frac{n!}{(n-k)!(k-1)!}F(x)^{k-1}(1-F(x))^{n-k}f(x),k=1,\dots,n.
+\]</span></p>
+</div>
+<div class="section level2">
+<h2>顺序统计量的联合分布</h2>
+<p><strong>定理</strong>：顺序统计量<span class="math inline">\((X_{(i)},X_{(j)})(i&lt;j)\)</span>的联合密度函数为</p>
+<p><span class="math display">\[
+\begin{align}
+f_{X_{(i)},X_{(j)}}(x,y) = &amp;\frac{n!}{(i-1)!(j-i-1)!(n-j)!}F(x)^{i-1}\\
+&amp;[F(y)-F(x)]^{j-i-1}[1-F(y)]^{n-j}f(x)f(y) 1\{x\le y\}.
+\end{align}
+\]</span></p>
+<p><strong>定理</strong>：顺序统计量<span class="math inline">\((X_{(1)},\dots,X_{(n)})\)</span>的联合密度函数为</p>
+<p><span class="math display">\[
+f(y_1,\dots,y_n)=
+\begin{cases}
+n!\prod_{i=1}^nf(y_i),&amp;y_1&lt;y_2&lt;\dots&lt;y_n\\
+0,&amp;else
+\end{cases}
+\]</span></p>
+</div>
+<div class="section level2">
+<h2>分位数</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X\)</span>的分布函数为<span class="math inline">\(F(x)\)</span>. 对于任意<span class="math inline">\(\alpha\in(0,1)\)</span>, <span class="math inline">\(\alpha\)</span>分位数<span class="math inline">\(x_\alpha\)</span>满足<span class="math inline">\(F(x_\alpha)=\alpha\)</span>.</p>
+<ul>
+<li>标准正态分布分位数记为<span class="math inline">\(u_{\alpha}\)</span></li>
+<li><span class="math inline">\(t\)</span>分布分位数记为<span class="math inline">\(t_{\alpha}(n)\)</span></li>
+<li><span class="math inline">\(\chi^2\)</span>分布分位数记为<span class="math inline">\(\chi^2_{\alpha}(n)\)</span></li>
+<li><span class="math inline">\(F\)</span>分布分位数记为<span class="math inline">\(F_{\alpha}(m,n)\)</span></li>
+</ul>
+<div class="section level3">
+<h3>一些说明</h3>
+<ul>
+<li>在分位点表中对于标准正态分布、<span class="math inline">\(t\)</span>分布和F分布只能查到<span class="math inline">\(\alpha&gt;1/2\)</span>的分位数，需利用以下对称性间接查<span class="math inline">\(\alpha&lt;1/2\)</span>的分位数：</li>
+</ul>
+<p><span class="math display">\[u_\alpha=-u_{1-\alpha},\  t_\alpha(n)=-t_{1-\alpha}(n),\ F_{\alpha}(m,n)=\frac{1}{F_{1-\alpha}(n,m)}\]</span></p>
+<ul>
+<li><p>对于<span class="math inline">\(t(n)\)</span>分布，由于当<span class="math inline">\(n\to \infty\)</span>时，其极限分布为<span class="math inline">\(N(0,1)\)</span>, 所以自由度<span class="math inline">\(n\)</span>比较大时，<span class="math inline">\(t_{\alpha}(n)\approx u_{\alpha}\)</span>.</p></li>
+<li><p>若<span class="math inline">\(X\sim \chi^2(n)\)</span>分布，由于当<span class="math inline">\(n\to \infty\)</span>时，<span class="math inline">\((X-n)/\sqrt{2n}\stackrel{d}\to N(0,1)\)</span>, 所以自由度<span class="math inline">\(n\)</span>比较大时，<span class="math inline">\(\chi^2_{\alpha}(n)\approx u_{\alpha}\sqrt{2n}+n\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>分位数示意图</h2>
+<p><img src="quantile.png" /></p>
+</div>
+<div class="section level2">
+<h2>样本分位数</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X_1,\dots,X_n\)</span>为样本，其顺序统计量为<span class="math inline">\(X_{(1)},\dots,X_{(n)}\)</span>.
+对给定的<span class="math inline">\(0&lt;\alpha&lt;1\)</span>, 该样本的<span class="math inline">\(\alpha\)</span>分位数定义为：</p>
+<p><span class="math display">\[
+m_\alpha = \begin{cases}
+\frac{1}2[X_{([n\alpha])}+X_{([n\alpha]+1)}],&amp;np\text{是整数}\\
+X_{([n\alpha]+1)},&amp;np\text{不是整数}
+\end{cases}
+\]</span></p>
+<p>其中<span class="math inline">\([a]\)</span>表示<span class="math inline">\(a\)</span>的整数部分。</p>
+<div class="section level3">
+<h3>样本分位数的渐近分布</h3>
+<p><strong>定理</strong>：设总体的密度为<span class="math inline">\(f(x)\)</span>,<span class="math inline">\(x_\alpha\)</span>为其<span class="math inline">\(\alpha\)</span>分位数，如果<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_\alpha\)</span>处连续，且<span class="math inline">\(f(x_\alpha)&gt;0\)</span>, 则当<span class="math inline">\(n\to \infty\)</span>时，样本的分位数<span class="math inline">\(m_\alpha\)</span>的渐近分布为：</p>
+<p><span class="math display">\[
+m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\alpha)}\right).
+\]</span></p>
+</div>
+</div>
+<div class="section level2">
+<h2>6种杀虫剂的数据</h2>
+<table>
+<caption><span id="tab:insectsprays">Table 1: </span></caption>
+<thead>
+<tr class="header">
+<th align="left">spray</th>
+<th align="right">count</th>
+<th align="left">spray</th>
+<th align="right">count</th>
+<th align="left">spray</th>
+<th align="right">count</th>
+<th align="left">spray</th>
+<th align="right">count</th>
+<th align="left">spray</th>
+<th align="right">count</th>
+<th align="left">spray</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">10</td>
+<td align="left">B</td>
+<td align="right">11</td>
+<td align="left">C</td>
+<td align="right">0</td>
+<td align="left">D</td>
+<td align="right">3</td>
+<td align="left">E</td>
+<td align="right">3</td>
+<td align="left">F</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">7</td>
+<td align="left">B</td>
+<td align="right">17</td>
+<td align="left">C</td>
+<td align="right">1</td>
+<td align="left">D</td>
+<td align="right">5</td>
+<td align="left">E</td>
+<td align="right">5</td>
+<td align="left">F</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">20</td>
+<td align="left">B</td>
+<td align="right">21</td>
+<td align="left">C</td>
+<td align="right">7</td>
+<td align="left">D</td>
+<td align="right">12</td>
+<td align="left">E</td>
+<td align="right">3</td>
+<td align="left">F</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">14</td>
+<td align="left">B</td>
+<td align="right">11</td>
+<td align="left">C</td>
+<td align="right">2</td>
+<td align="left">D</td>
+<td align="right">6</td>
+<td align="left">E</td>
+<td align="right">5</td>
+<td align="left">F</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">14</td>
+<td align="left">B</td>
+<td align="right">16</td>
+<td align="left">C</td>
+<td align="right">3</td>
+<td align="left">D</td>
+<td align="right">4</td>
+<td align="left">E</td>
+<td align="right">3</td>
+<td align="left">F</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">12</td>
+<td align="left">B</td>
+<td align="right">14</td>
+<td align="left">C</td>
+<td align="right">1</td>
+<td align="left">D</td>
+<td align="right">3</td>
+<td align="left">E</td>
+<td align="right">6</td>
+<td align="left">F</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">10</td>
+<td align="left">B</td>
+<td align="right">17</td>
+<td align="left">C</td>
+<td align="right">2</td>
+<td align="left">D</td>
+<td align="right">5</td>
+<td align="left">E</td>
+<td align="right">1</td>
+<td align="left">F</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">23</td>
+<td align="left">B</td>
+<td align="right">17</td>
+<td align="left">C</td>
+<td align="right">1</td>
+<td align="left">D</td>
+<td align="right">5</td>
+<td align="left">E</td>
+<td align="right">1</td>
+<td align="left">F</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">17</td>
+<td align="left">B</td>
+<td align="right">19</td>
+<td align="left">C</td>
+<td align="right">3</td>
+<td align="left">D</td>
+<td align="right">5</td>
+<td align="left">E</td>
+<td align="right">3</td>
+<td align="left">F</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">20</td>
+<td align="left">B</td>
+<td align="right">21</td>
+<td align="left">C</td>
+<td align="right">0</td>
+<td align="left">D</td>
+<td align="right">5</td>
+<td align="left">E</td>
+<td align="right">2</td>
+<td align="left">F</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">14</td>
+<td align="left">B</td>
+<td align="right">7</td>
+<td align="left">C</td>
+<td align="right">1</td>
+<td align="left">D</td>
+<td align="right">2</td>
+<td align="left">E</td>
+<td align="right">6</td>
+<td align="left">F</td>
+<td align="right">24</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">13</td>
+<td align="left">B</td>
+<td align="right">13</td>
+<td align="left">C</td>
+<td align="right">4</td>
+<td align="left">D</td>
+<td align="right">4</td>
+<td align="left">E</td>
+<td align="right">4</td>
+<td align="left">F</td>
+<td align="right">13</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level2">
+<h2>箱线图</h2>
+<p><img src="/post/chap01_files/figure-html/boxplot-1.png" width="672" /></p>
+</div>
+<div id="-1" class="section level2">
+<h2>1.5 充分统计量</h2>
+<div class="section level3">
+<h3>(1) 充分统计量的定义</h3>
+</div>
+<div class="section level3">
+<h3>(2) 因子分解定理</h3>
+</div>
+</div>
+<div id="-2" class="section level2">
+<h2>充分统计量</h2>
+<p>目标</p>
+<ul>
+<li>简化数据</li>
+<li>不损失重要信息</li>
+</ul>
+<p><strong>定义</strong>：设有一个分布族<span class="math inline">\(\mathcal{F}\)</span>, <span class="math inline">\(X_1,\dots,X_n\)</span>是从某分布<span class="math inline">\(F\in\mathcal{F}\)</span>中抽取的一个样本。<span class="math inline">\(T=T(X_1,\dots,X_n)\)</span>是一个（向量）统计量。若在给定<span class="math inline">\(T=t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布与总体分布<span class="math inline">\(F\)</span>无关，则称<span class="math inline">\(T\)</span>为此分布族<span class="math inline">\(\mathcal{F}\)</span>的充分统计量。如果<span class="math inline">\(\mathcal{F}=\{F_\theta;\theta\in\Theta\}\)</span>是参数分布族，在给定<span class="math inline">\(T=t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布与参数<span class="math inline">\(\theta\)</span>无关，则称<span class="math inline">\(T\)</span>为参数<span class="math inline">\(\theta\)</span>的充分统计量。</p>
+</div>
+<div id="1" class="section level2">
+<h2>例1：两点分布</h2>
+<p><strong>例</strong>：总体<span class="math inline">\(X\sim b(1,p),0&lt;p&lt;1\)</span>. 判断以下两个统计量是否是充分统计量</p>
+<ul>
+<li><span class="math inline">\(T_1=\sum_{i=1}^nX_i\)</span></li>
+<li><span class="math inline">\(T_2=X_1+X_2\)</span></li>
+</ul>
+</div>
+<div id="2" class="section level2">
+<h2>例2：几何分布</h2>
+<p><strong>例</strong>：总体<span class="math inline">\(X\sim Ge(p),0&lt;p&lt;1\)</span>, 证明<span class="math inline">\(T=\sum_{i=1}^nX_i\)</span>是参数<span class="math inline">\(p\)</span>的充分统计量。</p>
+</div>
+<div id="3" class="section level2">
+<h2>例3：正态分布</h2>
+<p><strong>例</strong>：总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，其中<span class="math inline">\(\sigma\)</span>已知。证明<span class="math inline">\(T=\sum_{i=1}^nX_i\)</span>是参数<span class="math inline">\(\mu\)</span>的充分统计量。</p>
+<div class="section level3">
+<h3>引理</h3>
+<p>设总体的密度为<span class="math inline">\(f_\theta(x)\)</span>. 则在给定<span class="math inline">\(T=t\)</span>下，样本的条件密度函数为</p>
+<p><span class="math display">\[
+f_\theta(x_1,\dots,x_n|T=t)=\frac{\prod_{i=1}^nf_\theta(x_i) 1\{T(x_1,\dots,x_n)=t\}}{f^T_\theta(t)},
+\]</span></p>
+<p>其中<span class="math inline">\(f^T_\theta(t)\)</span>为<span class="math inline">\(T\)</span>的密度函数。</p>
+</div>
+</div>
+<div class="section level2">
+<h2>思考题</h2>
+<p>顺序统计量<span class="math inline">\(X_{(1)},\dots,X_{(n)}\)</span>是否充分统计量？</p>
+<ul>
+<li>连续分布族</li>
+<li>离散分布族</li>
+</ul>
+</div>
+<div id="-1" class="section level2">
+<h2>因子分解定理</h2>
+<ul>
+<li>J. Neyman和P. R. Halmos在20世纪40年代提出</li>
+<li>判断充分统计量的法则</li>
+</ul>
+<p><strong>定理</strong>：设样本的分布为<span class="math inline">\(f_\theta(x_1,\dots,x_n)\)</span>（在离散总体情况下表示样本的分布列，在连续总体情况下表示样本的密度函数）。则在统计量<span class="math inline">\(T\)</span>是充分的当且仅当存在两个函数满足</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(h(x_1,\dots,x_n)\)</span>非负</li>
+<li>在统计量<span class="math inline">\(T\)</span>取值空间上的函数<span class="math inline">\(g_\theta(t)\)</span>, 使得</li>
+</ol>
+<p><span class="math display">\[
+f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\theta\in\Theta, \forall x_i
+\]</span></p>
+</div>
+<div class="section level2">
+<h2>因子分解定理的应用</h2>
+<p><strong>例1</strong>：总体分布为<span class="math inline">\(U(0,\theta)\)</span>, 求参数<span class="math inline">\(\theta\)</span>的充分统计量。</p>
+<p><strong>例2</strong>：总体分布为<span class="math inline">\(N(\mu,\sigma^2)\)</span>，求</p>
+<ul>
+<li>参数<span class="math inline">\((\mu,\sigma^2)\)</span>的充分统计量</li>
+<li>当<span class="math inline">\(\sigma^2\)</span>已知时，<span class="math inline">\(\mu\)</span>的充分统计量</li>
+<li>当<span class="math inline">\(\mu\)</span>已知时，<span class="math inline">\(\sigma^2\)</span>的充分统计量</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>指数型分布族的充分统计量</h2>
+<p>指数型分布族下的样本分布为</p>
+<p><span class="math display">\[f_\theta(x_1,\dots,x_n)=\prod_{i=1}^np_\theta(x_i)=c(\theta)^n\exp\{\sum_{j=1}^kc_j(\theta)\sum_{i=1}^nT_j(x_i)\}\prod_{i=1}^nh(x_i)\]</span></p>
+<p>由因子分解定理知，参数<span class="math inline">\(\theta\)</span>的一个充分统计量为</p>
+<p><span class="math display">\[\left(\sum_{i=1}^nT_1(x_i),\dots,\sum_{i=1}^nT_k(x_i)\right).\]</span></p>
+</div>
+<div class="section level2">
+<h2>充分统计量有无穷多个</h2>
+<p><strong>定理</strong>：如果<span class="math inline">\(T\)</span>是充分统计量，且<span class="math inline">\(T=\psi(S)\)</span>, 其中<span class="math inline">\(\psi\)</span>是可测函数，<span class="math inline">\(S\)</span>是另一个统计量，则<span class="math inline">\(S\)</span>也是充分统计量。</p>
+<p><strong>例</strong>：总体分布为<span class="math inline">\(N(\mu,\sigma^2)\)</span>，以下哪些统计量为参数<span class="math inline">\((\mu,\sigma^2)\)</span>的充分统计量</p>
+<ul>
+<li><span class="math inline">\((\bar X, S_n)\)</span></li>
+<li><span class="math inline">\((\bar X, S_n^2)\)</span></li>
+<li><span class="math inline">\((\bar X, S_n^*)\)</span></li>
+<li><span class="math inline">\((\bar X, S_n^{*2})\)</span></li>
+<li><span class="math inline">\((\sum_{i=1}^n X_i,\sum_{i=1}^n X_i^2)\)</span></li>
+<li><span class="math inline">\((\sum_{i=1}^n X_i,\sum_{i=1}^n |X_i|)\)</span></li>
+<li><span class="math inline">\((\sum_{i=1}^n X_i,\sum_{i=1}^n |X_i|,\sum_{i=1}^n X_i^2)\)</span></li>
+</ul>
+<p><strong>思考</strong>：哪种最好？<em>最小充分统计量</em></p>
+</div>

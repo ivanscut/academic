@@ -1,0 +1,75 @@
++++
+title = "An Auto-Realignment Method in Quasi-Monte Carlo for Pricing Financial Derivatives with Jump Structures"
+date = 2017-07-01T00:00:00
+draft = false
+
+# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
+authors = ["Chengfeng Weng", "Xiaoqun Wang", "Zhijian He"]
+
+# Publication type.
+# Legend:
+# 0 = Uncategorized
+# 1 = Conference paper
+# 2 = Journal article
+# 3 = Manuscript
+# 4 = Report
+# 5 = Book
+# 6 = Book section
+publication_types = ["2"]
+
+# Publication name and optional abbreviated version.
+publication = "In *SIAM Journal on Scientific Computing*, 39 (2), B298-B322, 2017."
+publication_short = "In *SISC*"
+
+# Abstract and optional shortened version.
+abstract = "Discontinuities and high dimensionality are common in the problems of pricing and hedging of derivative securities. Both factors have a tremendous impact on the accuracy of the quasi--Monte Carlo (QMC) method. An ideal approach to improve the QMC method is to transform the functions to make them smoother and having smaller effective dimension. This paper develops a two-step procedure to tackle the challenging problems of both the discontinuity and the high dimensionality concurrently. In the first step, we adopt the smoothing method to remove the discontinuities of the payoff function, improving the smoothness. In the second step, we propose a general dimension reduction method (called the CQR method) to reduce the effective dimension such that the better quality of QMC points in their initial dimensions can be fully exploited. The CQR method is based on the combination of the k-means clustering algorithm and the QR decomposition. The k-means clustering algorithm, a classical algorithm of machine learning, is used to find some representative linear structures inherent in the function, which are used to construct a matching function of the smoothed function. The matching function serves as an approximation of the smoothed function but has a simpler form, and it is used to find the required transformation. Extensive numerical experiments on option pricing and Greeks estimation demonstrate that the combination of the smoothing method and dimension reduction in QMC achieves substantially larger variance reduction even in high dimension than dealing with either discontinuities or high dimensionality single sidedly."
+
+# Featured image thumbnail (optional)
+image_preview = ""
+
+# Is this a selected publication? (true/false)
+selected = false
+
+# Projects (optional).
+#   Associate this publication with one or more of your projects.
+#   Simply enter your project's filename without extension.
+#   E.g. `projects = ["deep-learning"]` references `content/project/deep-learning.md`.
+#   Otherwise, set `projects = []`.
+projects = []
+
+# Tags (optional).
+#   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
+tags = ["QMC", "Simulation"]
+
+# Links (optional).
+url_pdf = "http://epubs.siam.org/doi/abs/10.1137/15M1050380"
+url_preprint = ""
+url_code = ""
+url_dataset = ""
+url_project = ""
+url_slides = ""
+url_video = ""
+url_poster = ""
+url_source = ""
+
+# Custom links (optional).
+#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
+url_custom = []
+
+# Does this page contain LaTeX math? (true/false)
+math = true
+
+# Does this page require source code highlighting? (true/false)
+highlight = true
+
+# Featured image
+# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
+[header]
+image = "headers/bubbles-wide.jpg"
+caption = "My caption :smile:"
+
+# More detail can easily be written here using *Markdown* and $\rm \LaTeX$ math code.
+
++++
+
+

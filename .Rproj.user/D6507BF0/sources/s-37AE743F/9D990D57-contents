@@ -1,0 +1,93 @@
+---
+title: "上机练习1-1：R的基本画图技巧"
+date: "2018-09-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align='center',collapse = TRUE)
+```
+
+
+
+## 预备工作
+
+- `R软件`下载: [https://www.r-project.org/](https://www.r-project.org/)
+	
+- `RStudio编辑器`下载: [https://www.rstudio.com/](https://www.rstudio.com/)
+
+## 例1：密度函数画图
+
+画图的主要命令^[更高级的画图方式见`ggplot2`, 初学者可先忽略]为`plot(x,y,...)`，里面各种参数的含义可查看帮助文档`help(plot)`或者`? plot`. 下面以画**伽马分布**的密度为例。
+
+1. 所有的图像都是离散点拼接起来，首先要确定横坐标，可用`seq(from = a, to = b, length=n)`生成$[a,b]$间的$n$个等分点。
+
+2. 接着根据横坐标的值计算相应的密度函数值，常用分布的密度函数在R种有现成的函数（使用命令`? distribution`查看常用的分布），直接调用即可。比如**伽马分布**的密度为`dgamma(x,shape=alpha,rate = lambda)`, 详情查看帮助文档`? dgamma`
+3. 下面为三组参数下的画图代码（可复制到一个空白的R文件中保存运行）
+
+```{r gammaplot}
+x = seq(0.001,10,length = 10000) #生成横坐标值
+lambda = 0.5
+alpha = 1
+y = dgamma(x,shape=alpha,rate = lambda) #计算相应的密度值
+par(mai=c(0.9,0.9,0.3,0.1),cex=1.1) #调整图像边缘空白处大小，初学者可不用设置
+plot(x,y,type="l",ylab = "f(x)",col="blue",cex.lab=1.2)
+
+#画第二组参数的图像
+alpha = 2
+y = dgamma(x,shape=alpha,rate = lambda)
+lines(x,y,col="red") #此次通过lines命令画第二组参数的图，若用plot命令则输出一副新的图像，而不是在上一幅图基础上叠加
+
+#画第三组参数的图像
+alpha = 3
+y = dgamma(x,shape=alpha,rate = lambda)
+lines(x,y,col="green")
+
+#画出相应的标注，即图中的小矩形
+expr1 = expression(alpha==1) #此命令用于希腊字母的转化
+expr2 = expression(alpha==2)
+expr3 = expression(alpha==3)
+legend(6,0.5,legend=c(expr1,expr2,expr3),col=c("blue","red","green"),lty = c(1,1,1))
+```
+
+
+## 例2：经验分布函数画图
+
+画经验分布函数主要用到命令`ecdf(x)`. 下面的例子为标准正态样本的经验分布图。R中提供了生成常见分布的样本的命令（使用命令`? distribution`查看常用的分布）。如生成正态分布$N(a,b^2)$的$n$个样本代码为`rnorm(n, mean = a, sd = b)`. 
+
+
+```{r ecdf}
+x = rnorm(100) #生成100个标准正态的样本
+Fn1 = ecdf(x[1:10]) #计算前10个样本对应的经验分布函数
+Fn2 = ecdf(x[1:100]) #计算前100个样本对应的经验分布函数
+
+#计算标准正态分布函数
+t = seq(-3,3,by=0.01) #横坐标
+y = pnorm(t) #相应的分布函数值
+
+#mfrow表示生成两行一列的图，后面的两个参数用于调整页边距，初学者可不用设置
+#最终输出一幅图，包含两幅子图
+par(mfrow=c(2,1),mgp=c(1.5,0.8,0),mar=.1+c(3,3,2,1)) 
+
+# 第一幅子图
+plot(Fn1,verticals=TRUE,do.points=FALSE,main="n=10",xlim=c(-3,3)) #画经验分布函数
+lines(t,y,col="red") #画真实的正态分布函数图像
+
+# 第二幅子图
+plot(Fn2,verticals=TRUE,do.points=FALSE,main="n=100",xlim=c(-3,3)) #画经验分布函数
+lines(t,y,col="red") #画真实的正态分布函数图像
+```
+
+## 课后练习
+
+- 安装相应的软件
+- 参考上面两个例子，学会使用`plot(...)`画相关的图形，了解该命令里面参数的作用。
+- 参考例1，画不同参数下**贝塔分布**的密度函数；关键的命令查看帮助`? beta`.
+- 参考例2，比较其他分布（查看R中的常用分布`?distribution`）的经验分布函数与真实的分布函数，并观察他们的差距是否随着样本量的增加而减小。
+
+## 一些建议
+
+- **充分利用帮助文档**。我们不可能记住所有命令的使用方式，使用帮助文档是一种高效的学习途径，此外帮助文档末尾还提供一些参考例子，有助于理解命令的使用方式。
+- **充分利用网上资源**。编程过程中如果遇到问题，可以通过度娘等方式搜索寻找答案，现在的很多技术博客提供很多有价值的资源。
+- **要学会偷懒**。在编写一种算法之前，首先要去了解R软件中有没有现成的命令。如果有现成的，则只需学会如何运用即可。通过不断地积累，工作效率会大大提高。
+

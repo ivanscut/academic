@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536732358878.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "91D04386",
+    "lastKnownWriteTime" : 1536740523,
+    "last_content_update" : 1536740523972,
+    "path" : "D:/Dropbox/courses/web/academic/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "245,39",
+        "scrollLine" : "230"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Dr. Zhijian He</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on Dr. Zhijian He</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 10 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R的基本画图技巧</title>
+      <link>/post/ex1-1/</link>
+      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ex1-1/</guid>
+      <description>预备工作R软件下载: https://www.r-project.org/
+RStudio编辑器下载: https://www.rstudio.com/
+例1：密度函数画图画图的主要命令1为plot(x,y,...)，里面各种参数的含义可查看帮助文档help(plot)或者? plot. 下面以画伽马分布的密度为例。
+所有的图像都是离散点拼接起来，首先要确定横坐标，可用seq(from = a, to = b, length=n)生成\([a,b]\)间的\(n\)个等分点。
+接着根据横坐标的值计算相应的密度函数值，常用分布的密度函数在R种有现成的函数（使用命令? distribution查看常用的分布），直接调用即可。比如伽马分布的密度为dgamma(x,shape=alpha,rate = lambda), 详情查看帮助文档? dgamma下面为三组参数下的画图代码（可复制到一个空白的R文件中保存运行）
+x = seq(0.001,10,length = 10000) #生成横坐标值lambda = 0.5alpha = 1y = dgamma(x,shape=alpha,rate = lambda) #计算相应的密度值par(mai=c(0.9,0.9,0.3,0.1),cex=1.1) #调整图像边缘空白处大小，初学者可不用设置plot(x,y,type=&amp;quot;l&amp;quot;,ylab = &amp;quot;f(x)&amp;quot;,col=&amp;quot;blue&amp;quot;,cex.lab=1.2)#画第二组参数的图像alpha = 2y = dgamma(x,shape=alpha,rate = lambda)lines(x,y,col=&amp;quot;red&amp;quot;) #此次通过lines命令画第二组参数的图，若用plot命令则输出一副新的图像，而不是在上一幅图基础上叠加#画第三组参数的图像alpha = 3y = dgamma(x,shape=alpha,rate = lambda)lines(x,y,col=&amp;quot;green&amp;quot;)#画出相应的标注，即图中的小矩形expr1 = expression(alpha==1) #此命令用于希腊字母的转化expr2 = expression(alpha==2)expr3 = expression(alpha==3)legend(6,0.</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+    </item>
+    
+  </channel>
+</rss>

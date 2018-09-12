@@ -1,0 +1,75 @@
++++
+title = "Good Path Generation Methods in Quasi-Monte Carlo for Pricing Financial Derivatives"
+date = 2015-07-01T00:00:00
+draft = false
+
+# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
+authors = ["Zhijian He", "Xiaoqun Wang"]
+
+# Publication type.
+# Legend:
+# 0 = Uncategorized
+# 1 = Conference paper
+# 2 = Journal article
+# 3 = Manuscript
+# 4 = Report
+# 5 = Book
+# 6 = Book section
+publication_types = ["2"]
+
+# Publication name and optional abbreviated version.
+publication = "In *SIAM Journal on Scientific Computing*, 36 (2), B171-B197, 2014."
+publication_short = "In *SISC*"
+
+# Abstract and optional shortened version.
+abstract = "The quasi-Monte Carlo (QMC) method is a powerful numerical tool for pricing complex derivative securities, whose accuracy is affected by the smoothness of the integrands. The payoff functions of many financial derivatives involve two types of nonsmooth factors: an indicator function (called jump structure) and a positive part of a smooth function (called kink structure). This paper develops a good path generation method (PGM) for recovering the superiority of the QMC method on problems involving multiple such structures. This is achieved by realigning these structures such that the associated nonsmooth surfaces are parallel to as many coordinate axes as possible. The proposed method has the advantage of addressing different structures according to their importance. We also offer a systematic measurement of different structures for quantifying and then ranking their importance. Numerical experiments demonstrate that the proposed method is more efficient than traditional PGMs for pricing exotic options, such as straddle Asian options, digital options, and barrier options. The numerical results confirm that both the jumps and kinks have tremendous impacts on the performance of the QMC method."
+
+# Featured image thumbnail (optional)
+image_preview = ""
+
+# Is this a selected publication? (true/false)
+selected = false
+
+# Projects (optional).
+#   Associate this publication with one or more of your projects.
+#   Simply enter your project's filename without extension.
+#   E.g. `projects = ["deep-learning"]` references `content/project/deep-learning.md`.
+#   Otherwise, set `projects = []`.
+projects = []
+
+# Tags (optional).
+#   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
+tags = ["QMC", "Simulation"]
+
+# Links (optional).
+url_pdf = "http://epubs.siam.org/doi/abs/10.1137/13091556X"
+url_preprint = ""
+url_code = ""
+url_dataset = ""
+url_project = ""
+url_slides = ""
+url_video = ""
+url_poster = ""
+url_source = ""
+
+# Custom links (optional).
+#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
+url_custom = []
+
+# Does this page contain LaTeX math? (true/false)
+math = true
+
+# Does this page require source code highlighting? (true/false)
+highlight = true
+
+# Featured image
+# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
+[header]
+image = "headers/bubbles-wide.jpg"
+caption = "My caption :smile:"
+
+# More detail can easily be written here using *Markdown* and $\rm \LaTeX$ math code.
+
++++
+
+
