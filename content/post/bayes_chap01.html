@@ -1,0 +1,198 @@
+---
+title: 'Chapter 1: Probability and Inference'
+date: "2018/8/30"
+categories: ["slides"]
+Summary: "Chapter 1: Probability and Inference"
+tags: ["slides", "BDA"]
+---
+
+
+
+<div id="steps-in-bda" class="section level2">
+<h2>3 steps in BDA</h2>
+<ul>
+<li><p>set up the statistical model</p></li>
+<li><p>compute the <code>posterior distribution</code></p></li>
+<li><p>model checking and model improvement</p></li>
+</ul>
+</div>
+<div id="statistical-inference" class="section level2">
+<h2>Statistical inference</h2>
+<p><strong>Goal</strong>: draw conclusions about <strong>unobserved quantities</strong> from the data (observed)</p>
+<ul>
+<li><p>potentially observable quantities, e.g., future observations of a process</p></li>
+<li><p>not directly observable quantities, e.g., unobservable population parameters</p></li>
+</ul>
+</div>
+<div id="notations-and-assumptions" class="section level2">
+<h2>Notations and assumptions</h2>
+<ul>
+<li><p>unobservable population parameters of interest: <span class="math inline">\(\theta=(\theta_1,\dots,\theta_m)\)</span></p></li>
+<li><p>the observed data: <span class="math inline">\(y=(y_1,\dots,y_n)\)</span></p></li>
+<li><p>potentially observable quantities: <span class="math inline">\(\tilde y\)</span></p></li>
+</ul>
+<p><strong>Assumption 1</strong></p>
+<ul>
+<li>exchangeability: the <span class="math inline">\(n\)</span> values <span class="math inline">\(y_i\)</span> are exchangeable, e.g., iid samples.</li>
+</ul>
+<p><strong>Assumption 2</strong></p>
+<ul>
+<li>conditional independence of <span class="math inline">\(y\)</span> and <span class="math inline">\(\tilde y\)</span> given <span class="math inline">\(\theta\)</span></li>
+</ul>
+</div>
+<div id="bayesian-inference" class="section level2">
+<h2>Bayesian inference</h2>
+<p>To make inferences about the posterior distributions, such as <span class="math inline">\(p(\theta|y)\)</span> and <span class="math inline">\(p(\tilde y|y)\)</span></p>
+<p><strong>Bayes’ rule</strong></p>
+<p><span class="math display">\[p(\theta|y)=\frac{p(\theta,y)}{p(y)}=\frac{p(y|\theta)p(\theta)}{p(y)}\]</span></p>
+<p><span class="math display">\[p(\theta|y)\propto  p(y|\theta)p(\theta)\]</span></p>
+<p>The imiplied constant is
+<span class="math display">\[p(y)=\int p(y|\theta)p(\theta) d \theta.\]</span></p>
+</div>
+<div id="prediction" class="section level2">
+<h2>Prediction</h2>
+<p>To make inferences about an unknown observable quantity</p>
+<ul>
+<li><p>prior predictive distribution: <span class="math inline">\(p(y)\)</span></p></li>
+<li><p>posterior predictive dsitribution: <span class="math inline">\(p(\tilde y|y)\)</span></p></li>
+</ul>
+<p><span class="math display">\[
+p(\tilde y|y) = \int p(\tilde y,\theta|y)d\theta = \int p(\tilde y|\theta,y)p(\theta|y)d \theta = \int p(\tilde y|\theta)p(\theta|y)d \theta
+\]</span></p>
+<p>Again, <span class="math inline">\(y\)</span> and <span class="math inline">\(\tilde y\)</span> are conditionally independent given <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div id="likelihood" class="section level2">
+<h2>Likelihood</h2>
+<p><span class="math inline">\(p(y|\theta)\)</span> is called the <strong>likelihood function</strong>, which is regarded as a function of <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>odds ratios</strong></p>
+<p><span class="math display">\[\frac{p(\theta_1|y)}{p(\theta_2|y)}=\frac{p(\theta_1)p(y|\theta_1)/p(y)}{p(\theta_2)p(y|\theta_2)/p(y)}=\frac{p(\theta_1)}{p(\theta_2)}\frac{p(y|\theta_1)}{p(y|\theta_2)}\]</span></p>
+<p>posterior odds = prior odds <span class="math inline">\(\times\)</span> likelihood ratio</p>
+</div>
+<div id="example-1-inference-about-a-genetic-status" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<ul>
+<li>males: one X-chromosome + one Y-chromosome</li>
+<li>females: two X-chromosomes</li>
+</ul>
+<p>Hemophilia is a disease that exhibits X-chromosome-linked recessive inheritance.
+The disease is generally fatal for women who inherit two such genes.</p>
+<p>Consider a woman who has an affected brother and her father is not affected.
+Let <span class="math inline">\(\theta\)</span> be the state of the woman: a carrier of the gene (<span class="math inline">\(\theta=1\)</span>) or not (<span class="math inline">\(\theta=0\)</span>).</p>
+<p><strong>Prior distribution</strong>: <span class="math inline">\(P(\theta=1)=P(\theta=0)=0.5\)</span></p>
+<p><strong>Data and model</strong>: She has two sons. Let <span class="math inline">\(y_i=1\)</span> or 0 denote the state of her sons. Now observe that her sons are not affected. Given <span class="math inline">\(\theta\)</span>, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are iid.</p>
+</div>
+<div id="example-1-inference-about-a-genetic-status-1" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<p><strong>Likelihood function</strong>:</p>
+<p><span class="math display">\[P(y_1=0,y_2=0|\theta=1)=0.5\times 0.5=0.25\]</span></p>
+<p><span class="math display">\[P(y_1=0,y_2=0|\theta=0)=1\times 1=1\]</span></p>
+<p><strong>Posterior distribution</strong>:</p>
+<p><span class="math display">\[P(\theta=1|y) = \frac{p(y|\theta=1)p(\theta=1)}{p(y)}=0.2\]</span></p>
+</div>
+<div id="example-1-inference-about-a-genetic-status-2" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<p><strong>Adding more data</strong>: suppose that the woman has a third son, who is also unaffacted.</p>
+<p><span class="math display">\[P(\theta=1|y_1,y_2,y_3) = \frac{0.5\times 0.2}{0.5\times 0.2+1\times 0.8}=0.111\]</span></p>
+<p>A key aspect of Bayesian analysis is the ease with which sequential analyses can be performed.</p>
+<p><strong>Question</strong>: What happen if we suppose that the third son is affected?</p>
+</div>
+<div id="example-2-spelling-correction" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p>Classification of words is a problem of managing uncertainty. Suppose someone types <strong>radom</strong>. How should that be read?</p>
+<ul>
+<li>random</li>
+<li>radon</li>
+<li>radom</li>
+</ul>
+<p><strong>Data and model</strong>: Let <span class="math inline">\(\theta\)</span> be the word that the person was intending to type, and let <span class="math inline">\(y\)</span> as the data. Now <span class="math inline">\(y=\)</span>’radom’ and <span class="math inline">\(\theta\in\)</span>{<span class="math inline">\(\theta_1\)</span>=‘random’,<span class="math inline">\(\theta_2\)</span>=‘radon’,<span class="math inline">\(\theta_3\)</span>=‘radom’}. The posterior density is</p>
+<p><span class="math display">\[P(\theta|y=\text{&#39;radom&#39;})\propto p(\theta)P(y=\text{&#39;radom&#39;}|\theta).\]</span></p>
+</div>
+<div id="example-2-spelling-correction-1" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p><strong>Prior distribution</strong>: Here are probabilities supplied by researchers at Google.
+Goole Ngram Viewer: <a href="https://books.google.com/ngrams" class="uri">https://books.google.com/ngrams</a></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\theta)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(7.60\times 10^{-5}\)</span></td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(6.05\times 10^{-6}\)</span></td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(3.12\times 10^{-7}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Likelihood</strong>: Here are some conditional probabilities from Google’s model of spelling and typing errors:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\text{&#39;radom&#39;}|\theta)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(0.00193\)</span></td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(0.000143\)</span></td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(0.975\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-2-spelling-correction-2" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p><strong>Posterior distribution</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\theta)P(y=\text{&#39;radom&#39;}|\theta)\)</span></th>
+<th><span class="math inline">\(P(\theta|y=\text{&#39;radom&#39;})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(1.47\times 10^{-7}\)</span></td>
+<td>0.325</td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(8.65\times 10^{-10}\)</span></td>
+<td>0.002</td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(3.04\times 10^{-7}\)</span></td>
+<td><strong>0.673</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model improvement</strong>:</p>
+<ul>
+<li>including contextual info in the prior probabilities, e.g., statistical book.</li>
+<li>let <span class="math inline">\(x\)</span> be the contextual information used by the model.</li>
+</ul>
+<p><span class="math display">\[p(\theta|x,y)\propto p(\theta|x)p(y|\theta,x)\]</span></p>
+<ul>
+<li>for simplicity, we may assume <span class="math inline">\(p(y|\theta,x)=p(y|\theta)\)</span>.</li>
+</ul>
+</div>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Dr. Zhijian He</title>
+    <link>/tags/slides/</link>
+    <description>Recent content in Slides on Dr. Zhijian He</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    
+	<atom:link href="/tags/slides/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chapter 1: Probability and Inference</title>
+      <link>/post/bayes_chap01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap01/</guid>
+      <description>3 steps in BDAset up the statistical model
+compute the posterior distribution
+model checking and model improvement
+Statistical inferenceGoal: draw conclusions about unobserved quantities from the data (observed)
+potentially observable quantities, e.g., future observations of a process
+not directly observable quantities, e.g., unobservable population parameters
+Notations and assumptionsunobservable population parameters of interest: \(\theta=(\theta_1,\dots,\theta_m)\)
+the observed data: \(y=(y_1,\dots,y_n)\)</description>
+    </item>
+    
+    <item>
+      <title>Chapter 2: Single-parameter models</title>
+      <link>/post/bayes_chap02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap02/</guid>
+      <description>2.1 Binomial modelsEstimating a probability from binomial datalet \(\theta\) be the proportion of successes in the populationthe data \((y_1,\dots,y_n)\in \{0,1\}^n\)the total number of successes in the \(n\) trials is denoted by \(y\)the binomial model is\[p(y|\theta) = C_n^y\theta^y(1-\theta)^{n-y}\]
+the posterior distribution is\[p(\theta|y) \propto p(\theta)p(y|\theta)\propto p(\theta)\theta^y(1-\theta)^{n-y}\]
+Example: estimating the probability of a female birth
+A total of 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.</description>
+    </item>
+    
+    <item>
+      <title>Chapter 4: Asymptotics and connections to non-Bayesian approaches</title>
+      <link>/post/bayes_chap04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap04/</guid>
+      <description>Large-sample theoryAssumptions and notations:
+true distribution: \(y_i\stackrel {iid}{\sim} f(\cdot)\)\(\theta\in\Theta\)prior distribution: \(p(\theta)\)model distribution: \(p(y_i|\theta)\)Kullback-Leibler divergence: a measure of ‘discrepancy’ between the model and the true distribution\[KL(\theta)= E\left[\log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)\right]=\int \log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)f(y_i)dy_i\]
+\(\theta_0\): the unique minimizer of \(KL(\theta)\)if \(f(y_i) = p(y_i|\theta)\) then \(\theta=\theta_0\)
+Convergence of the posterior distributionDiscrete parmeter space: If the parameter space \(\Theta\) is finite and \(P(\theta=\theta_0)&amp;gt;0\), then\[P(\theta=\theta_0|y)\to 1\text{ as }n\to \infty,\]where \(\theta_0=\arg_{\theta\in\Theta} KL(\theta)\).</description>
+    </item>
+    
+  </channel>
+</rss>

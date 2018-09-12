@@ -1,0 +1,183 @@
+---
+title: 'Chapter 1: Probability and Inference'
+date: "2018/8/30"
+categories: ["slides"]
+Summary: "Chapter 1: Probability and Inference"
+tags: ["slides", "BDA"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## 3 steps in BDA
+
+- set up the statistical model 
+
+- compute the `posterior distribution`
+
+- model checking and model improvement
+
+## Statistical inference
+
+**Goal**: draw conclusions about **unobserved quantities** from the data (observed)
+
+- potentially observable quantities, e.g., future observations of a process
+
+- not directly observable quantities, e.g., unobservable population parameters
+
+
+## Notations and assumptions
+
+- unobservable population parameters of interest: $\theta=(\theta_1,\dots,\theta_m)$
+
+- the observed data: $y=(y_1,\dots,y_n)$
+
+- potentially observable quantities: $\tilde y$
+
+**Assumption 1**
+
+- exchangeability: the $n$ values $y_i$ are exchangeable, e.g., iid samples.
+
+**Assumption 2**
+
+- conditional independence of $y$ and $\tilde y$ given $\theta$
+
+## Bayesian inference
+
+To make inferences about the posterior distributions, such as $p(\theta|y)$ and $p(\tilde y|y)$
+
+**Bayes' rule**
+
+$$p(\theta|y)=\frac{p(\theta,y)}{p(y)}=\frac{p(y|\theta)p(\theta)}{p(y)}$$
+
+$$p(\theta|y)\propto  p(y|\theta)p(\theta)$$
+
+The imiplied constant is
+$$p(y)=\int p(y|\theta)p(\theta) d \theta.$$
+
+## Prediction
+
+To make inferences about an unknown observable quantity
+
+- prior predictive distribution: $p(y)$
+
+- posterior predictive dsitribution: $p(\tilde y|y)$
+
+$$
+p(\tilde y|y) = \int p(\tilde y,\theta|y)d\theta = \int p(\tilde y|\theta,y)p(\theta|y)d \theta = \int p(\tilde y|\theta)p(\theta|y)d \theta
+$$
+
+Again, $y$ and $\tilde y$ are conditionally independent given $\theta$.
+
+
+## Likelihood
+
+$p(y|\theta)$ is called the **likelihood function**, which is regarded as a function of $\theta$.
+
+**odds ratios**
+
+$$\frac{p(\theta_1|y)}{p(\theta_2|y)}=\frac{p(\theta_1)p(y|\theta_1)/p(y)}{p(\theta_2)p(y|\theta_2)/p(y)}=\frac{p(\theta_1)}{p(\theta_2)}\frac{p(y|\theta_1)}{p(y|\theta_2)}$$
+
+posterior odds = prior odds $\times$ likelihood ratio
+
+## Example 1: inference about a genetic status
+
+- males: one X-chromosome + one Y-chromosome
+- females: two X-chromosomes
+
+Hemophilia is a disease that exhibits X-chromosome-linked recessive inheritance.
+The disease is generally fatal for women who inherit two such genes.
+
+Consider a woman who has an affected brother and her father is not affected.
+Let $\theta$ be the state of the woman: a carrier of the gene ($\theta=1$) or not ($\theta=0$).
+
+**Prior distribution**: $P(\theta=1)=P(\theta=0)=0.5$
+
+**Data and model**: She has two sons. Let $y_i=1$ or 0 denote the state of her sons. Now observe that  her sons are not affected. Given $\theta$, $y_1$ and $y_2$ are iid.
+
+## Example 1: inference about a genetic status
+
+**Likelihood function**: 
+
+$$P(y_1=0,y_2=0|\theta=1)=0.5\times 0.5=0.25$$
+
+$$P(y_1=0,y_2=0|\theta=0)=1\times 1=1$$
+
+
+**Posterior distribution**: 
+
+$$P(\theta=1|y) = \frac{p(y|\theta=1)p(\theta=1)}{p(y)}=0.2$$
+
+## Example 1: inference about a genetic status
+
+**Adding more data**: suppose that the woman has a third son, who is also unaffacted.
+
+$$P(\theta=1|y_1,y_2,y_3) = \frac{0.5\times 0.2}{0.5\times 0.2+1\times 0.8}=0.111$$
+
+A key aspect of Bayesian analysis is the ease with which sequential analyses can be performed.
+
+
+
+**Question**: What happen if we suppose that the third son is affected?
+
+
+## Example 2: spelling correction
+
+Classification of words is a problem of managing uncertainty. Suppose someone types **radom**. How should that be read?
+
+- random
+- radon
+- radom
+
+**Data and model**: Let $\theta$ be the word that the person was intending to type, and let $y$ as the data. Now $y=$'radom' and $\theta\in${$\theta_1$='random',$\theta_2$='radon',$\theta_3$='radom'}. The posterior density is 
+
+
+$$P(\theta|y=\text{'radom'})\propto p(\theta)P(y=\text{'radom'}|\theta).$$
+
+
+## Example 2: spelling correction
+
+**Prior distribution**: Here are probabilities supplied by researchers at Google.
+Goole Ngram Viewer: [https://books.google.com/ngrams](https://books.google.com/ngrams)
+
+$\theta$ | $p(\theta)$ |
+-|-|
+random | $7.60\times 10^{-5}$ |
+radon  | $6.05\times 10^{-6}$ |
+radom  | $3.12\times 10^{-7}$ |
+
+**Likelihood**: Here are some conditional probabilities from Google's model of spelling and typing errors:
+
+$\theta$ | $p(\text{'radom'}|\theta)$ |
+-|-|
+random | $0.00193$ |
+radon  | $0.000143$ |
+radom  | $0.975$ |
+
+
+## Example 2: spelling correction
+
+**Posterior distribution**: 
+
+
+$\theta$ | $p(\theta)P(y=\text{'radom'}|\theta)$ | $P(\theta|y=\text{'radom'})$ |
+-|-|-|
+random | $1.47\times 10^{-7}$  | 0.325 |
+radon  | $8.65\times 10^{-10}$ | 0.002 |
+radom  | $3.04\times 10^{-7}$  | **0.673** |
+
+
+
+**Model improvement**: 
+
+- including contextual info in the prior probabilities, e.g., statistical book. 
+- let $x$ be the contextual information used by the model.
+
+$$p(\theta|x,y)\propto p(\theta|x)p(y|\theta,x)$$
+
+- for simplicity, we may assume $p(y|\theta,x)=p(y|\theta)$.
+
+
+

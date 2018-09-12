@@ -198,8 +198,37 @@
     
     <url>
     
+      <loc>/tags/bda/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/categories/</loc>
       <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap01/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap02/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap04/</loc>
     </url>
     
   
@@ -298,6 +327,22 @@
     
       <loc>/tags/simulation/</loc>
       <lastmod>2017-07-01T00:00:00+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/slides/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/slides/</loc>
       <priority>0</priority>
     </url>
     

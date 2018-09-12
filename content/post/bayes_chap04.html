@@ -1,0 +1,94 @@
+---
+title: 'Chapter 4: Asymptotics and connections to non-Bayesian approaches'
+date: "2018/9/7"
+categories: ["slides"]
+Summary: "Chapter 4: Asymptotics and connections to non-Bayesian approaches"
+tags: ["slides", "BDA"]
+---
+
+
+
+<div id="large-sample-theory" class="section level2">
+<h2>Large-sample theory</h2>
+<p><strong>Assumptions and notations</strong>:</p>
+<ul>
+<li>true distribution: <span class="math inline">\(y_i\stackrel {iid}{\sim} f(\cdot)\)</span></li>
+<li><span class="math inline">\(\theta\in\Theta\)</span></li>
+<li>prior distribution: <span class="math inline">\(p(\theta)\)</span></li>
+<li>model distribution: <span class="math inline">\(p(y_i|\theta)\)</span></li>
+<li><p><em>Kullback-Leibler divergence</em>: a measure of ‘discrepancy’ between the model and the true distribution
+<span class="math display">\[KL(\theta)= E\left[\log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)\right]=\int \log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)f(y_i)dy_i\]</span></p></li>
+<li><span class="math inline">\(\theta_0\)</span>: the <strong>unique minimizer</strong> of <span class="math inline">\(KL(\theta)\)</span></li>
+<li><p>if <span class="math inline">\(f(y_i) = p(y_i|\theta)\)</span> then <span class="math inline">\(\theta=\theta_0\)</span></p></li>
+</ul>
+</div>
+<div id="convergence-of-the-posterior-distribution" class="section level2">
+<h2>Convergence of the posterior distribution</h2>
+<p><strong>Discrete parmeter space</strong>: If the parameter space <span class="math inline">\(\Theta\)</span> is finite and <span class="math inline">\(P(\theta=\theta_0)&gt;0\)</span>, then
+<span class="math display">\[P(\theta=\theta_0|y)\to 1\text{ as }n\to \infty,\]</span>
+where <span class="math inline">\(\theta_0=\arg_{\theta\in\Theta} KL(\theta)\)</span>.</p>
+<p><strong>Continuous parmeter space</strong>: If <span class="math inline">\(\theta\)</span> is defined on a compace set <span class="math inline">\(\Theta\)</span> and <span class="math inline">\(A\)</span> is a neighborhood of <span class="math inline">\(\theta_0\)</span> with <span class="math inline">\(P(\theta\in A)&gt;0\)</span>, then
+<span class="math display">\[P(\theta\in A|y)\to 1\text{ as }n\to \infty,\]</span>
+where <span class="math inline">\(\theta_0=\arg_{\theta\in\Theta} KL(\theta)\)</span>.</p>
+<p>See the proofs in Appendix B.</p>
+</div>
+<div id="normal-approximations-to-the-posterior-distribution" class="section level2">
+<h2>Normal approximations to the posterior distribution</h2>
+<ul>
+<li><span class="math inline">\(\hat \theta\)</span>: the posterior mode</li>
+<li><p>Taylor series expansion of <span class="math inline">\(\log p(\theta|y)\)</span> gives
+<span class="math display">\[\log(\theta|y) = \log p(\hat \theta|y)-\frac 12 (\theta-\hat\theta)^\top I(\hat \theta) (\theta-\hat\theta) + \cdots \]</span></p></li>
+<li><p>where <span class="math inline">\(I(\theta)\)</span> is the <em>observed</em> information
+<span class="math display">\[I(\theta)=-\frac{d^2}{d\theta^2}\log p(\theta|y)\]</span></p></li>
+<li><p>Normal approximation: <span class="math inline">\(p(\theta|y)\approx N(\hat\theta,[I(\hat\theta)]^{-1})\)</span></p></li>
+<li><p><em>Fisher information</em>:
+<span class="math display">\[J(\theta)=-E_f\left[\frac{d^2}{d\theta^2}\log p(y_j|\theta)\right]\]</span></p></li>
+</ul>
+</div>
+<div id="convergence-of-the-posterior-distribution-to-normality" class="section level2">
+<h2>Convergence of the posterior distribution to normality</h2>
+<p><strong>Theorem</strong>: Under some regularity conditions (notably that <span class="math inline">\(\theta\)</span> not be on the boundary of <span class="math inline">\(\Theta\)</span>), as <span class="math inline">\(n\to \infty\)</span>, the posterior distribution of <span class="math inline">\(\theta\)</span> approaches normality with mean <span class="math inline">\(\theta_0\)</span> and variance <span class="math inline">\([nJ(\theta_0)]^{-1}\)</span>, where <span class="math inline">\(\theta_0=\arg_{\theta\in\Theta} KL(\theta)\)</span> and <span class="math inline">\(J\)</span> is the Fisher information.</p>
+<p>Oberved that:</p>
+<ul>
+<li><p><span class="math inline">\(\hat\theta\to \theta_0\)</span> as <span class="math inline">\(n\to \infty\)</span></p></li>
+<li><p><span class="math inline">\(I(\hat\theta)=-\frac{d^2}{d\theta^2}\log p(\hat\theta)-\sum_{i=1}^n\frac{d^2}{d\theta^2}\log p(y_i|\hat\theta)\approx nJ(\theta_0)\)</span></p></li>
+<li><p><span class="math inline">\(J(\theta_0)=\frac{d^2}{d\theta^2} KL(\theta_0)&gt;0\)</span></p></li>
+</ul>
+</div>
+<div id="counterexamples-to-the-theorems" class="section level2">
+<h2>Counterexamples to the theorems</h2>
+<ul>
+<li><p>underidentified models: <span class="math inline">\(p(y|\theta)\)</span> is equal for a range of values of <span class="math inline">\(\theta\)</span></p></li>
+<li><p>nonindentified parameters: for example, consider the model,
+<span class="math display">\[\left(
+\begin{matrix}
+u\\
+v
+\end{matrix}
+\right)\sim N \left( \left(\begin{matrix}
+0\\
+0
+\end{matrix}
+\right),\left(\begin{matrix}
+1&amp;\rho\\
+\rho &amp; 1
+\end{matrix}
+\right)\right)\]</span>
+only one of <span class="math inline">\(u,v\)</span> is observed from each pair <span class="math inline">\((u,v)\)</span></p></li>
+<li><p>number of parameters increasing with sample sizes: new latent parameters with each data point</p></li>
+</ul>
+</div>
+<div id="point-estimation-consistency-and-efficiency" class="section level2">
+<h2>Point estimation, consistency, and efficiency</h2>
+<p><strong>point estimations</strong>:</p>
+<ul>
+<li>posterior mode <span class="math inline">\(\hat\theta(y)=\arg \max_{\theta\in\Theta} p(\theta|y)\)</span></li>
+<li>posterior mean <span class="math inline">\(\hat\theta(y)=E[\theta|y]=\int \theta p(\theta|y)d \theta\)</span></li>
+<li>posterior median <span class="math inline">\(\hat\theta(y)=F^{-1}_{\theta|y}(0.5)\)</span></li>
+</ul>
+<p><strong>consistency</strong>: <span class="math inline">\(\hat\theta(y)\to \theta_0\)</span> as <span class="math inline">\(n\to \infty\)</span></p>
+<p><strong>asymptotic unbiasedness</strong>: <span class="math inline">\(E[\hat\theta|\theta_0]\to\theta_0\)</span> as <span class="math inline">\(n\to \infty\)</span></p>
+<p><strong>efficiency</strong>:
+<span class="math display">\[\text{eff}(\hat\theta)=\frac{\inf_T E[(T(y)-\theta_0)^2|\theta_0]}{E[(\hat\theta-\theta_0)^2|\theta_0]}\le 1\]</span></p>
+<p><strong>asymptotically efficient</strong>: <span class="math inline">\(\text{eff}(\hat\theta)\to 1\)</span> as <span class="math inline">\(n\to \infty\)</span></p>
+</div>

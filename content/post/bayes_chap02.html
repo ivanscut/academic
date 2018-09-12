@@ -1,0 +1,360 @@
+---
+title: 'Chapter 2: Single-parameter models'
+date: "2018/8/30"
+categories: ["slides"]
+Summary: "Chapter 2: Single-parameter models"
+tags: ["slides", "BDA"]
+---
+
+
+
+<div id="binomial-models" class="section level1">
+<h1>2.1 Binomial models</h1>
+<div id="estimating-a-probability-from-binomial-data" class="section level2">
+<h2>Estimating a probability from binomial data</h2>
+<ul>
+<li>let <span class="math inline">\(\theta\)</span> be the proportion of successes in the population</li>
+<li>the data <span class="math inline">\((y_1,\dots,y_n)\in \{0,1\}^n\)</span></li>
+<li>the total number of successes in the <span class="math inline">\(n\)</span> trials is denoted by <span class="math inline">\(y\)</span></li>
+<li><p>the binomial model is
+<span class="math display">\[p(y|\theta) = C_n^y\theta^y(1-\theta)^{n-y}\]</span></p></li>
+<li><p>the posterior distribution is
+<span class="math display">\[p(\theta|y) \propto p(\theta)p(y|\theta)\propto p(\theta)\theta^y(1-\theta)^{n-y}\]</span></p></li>
+</ul>
+<p><strong>Example</strong>: estimating the probability of a female birth</p>
+<ul>
+<li>A total of 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.</li>
+</ul>
+</div>
+<div id="how-to-choose-a-proper-prior" class="section level2">
+<h2>How to choose a proper prior?</h2>
+<ul>
+<li><p>A naive choice for <span class="math inline">\(p(\theta)\)</span> is uniform on the interval <span class="math inline">\([0,1]\)</span>. Then
+<span class="math display">\[p(\theta|y) \propto \theta^y(1-\theta)^{n-y}\]</span></p></li>
+<li><p>that is, <span class="math inline">\(\theta|y\sim Beta(y+1,n-y+1)\)</span></p></li>
+</ul>
+<p><img src="/post/bayes_chap02_files/figure-html/beta-1.png" width="60%" style="display: block; margin: auto;" />
+- <span class="math inline">\(P(\theta\ge 0.5|y=241945,n=241945+251527)\approx 1.15\times 10^{-42}\)</span></p>
+</div>
+<div id="prediction" class="section level2">
+<h2>Prediction</h2>
+<ul>
+<li>Let <span class="math inline">\(\tilde y\)</span> be the result of a new trial
+<span class="math display">\[P(\tilde y =1|y) = \int_0^1 P(\tilde y=1|\theta,y)p(\theta|y)d \theta=E[\theta|y]=\frac{y+1}{n+2}\]</span></li>
+</ul>
+<p><strong>Posterior as compromise between data and prior information</strong></p>
+<ul>
+<li>prior mean is <span class="math inline">\(1/2\)</span></li>
+<li>sample mean is <span class="math inline">\(y/n\)</span></li>
+<li>posterior mean is <span class="math inline">\((y+1)/(n+2)\)</span></li>
+<li>the compromise is controlled to a greater extent by the data as the sample size
+increases.</li>
+</ul>
+</div>
+<div id="posterior-quantiles-and-intervals" class="section level2">
+<h2>Posterior quantiles and intervals</h2>
+<ul>
+<li>let <span class="math inline">\(T_1\)</span> be the <span class="math inline">\(\alpha/2\)</span> quantile of the posterior distribution</li>
+<li>let <span class="math inline">\(T_2\)</span> be the <span class="math inline">\(1-\alpha/2\)</span> quantile of the posterior distribution</li>
+<li><span class="math inline">\(100(1-\alpha)\%\)</span> posterior interval is <span class="math inline">\([T_1,T_2]\)</span></li>
+</ul>
+<p><img src="figs/binterval.png" width="65%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>compare with the usual confidence interval</li>
+</ul>
+</div>
+<div id="informative-prior-distributions" class="section level2">
+<h2>Informative prior distributions</h2>
+<p><strong>Goal</strong>: assigning a prior distribution that reflects substantive info.</p>
+<ul>
+<li><p>the likelihood is
+<span class="math display">\[p(y|\theta) \propto \theta^y(1-\theta)^{n-y}\]</span></p></li>
+<li>choose a prior as a <span class="math inline">\(Beta(\alpha,\beta)\)</span> distribution:
+<span class="math display">\[p(\theta) \propto \theta^{\alpha-1}(1-\theta)^{\beta-1}\]</span></li>
+<li><p>the parameters <span class="math inline">\(\alpha,\beta&gt;0\)</span> of the prior distribution is called <em>hyperparameters</em>.</p></li>
+<li><p>the posterior is
+<span class="math display">\[p(\theta|y)\propto \theta^{\alpha+y-1}(1-\theta)^{n-y+\beta-1}=Beta(\alpha+y,\beta+n-y)\]</span></p></li>
+</ul>
+</div>
+<div id="informative-prior-distributions-1" class="section level2">
+<h2>Informative prior distributions</h2>
+<ul>
+<li><p>the posterior mean is
+<span class="math display">\[E[\theta|y]=\frac{\alpha+y}{\alpha+\beta+n}\]</span>
+which lies between the sample proportion <span class="math inline">\(y/n\)</span> and the prior mean <span class="math inline">\(\alpha/(\alpha+\beta)\)</span></p></li>
+<li><p>the posterior variance is
+<span class="math display">\[Var[\theta|y]=\frac{(\alpha+y)(\beta+n-y)}{(\alpha+\beta+n)^2(\alpha+\beta+n+1)}=\frac{E[\theta|y](1-E[\theta|y])}{\alpha+\beta+n+1}\]</span></p></li>
+<li><p>as <span class="math inline">\(y\)</span> and <span class="math inline">\(n\)</span> become large with fixed <span class="math inline">\(\alpha,\beta\)</span>,
+<span class="math display">\[E[\theta|y]\approx \frac yn,\ Var[\theta|y]\approx \frac 1n\frac yn(1-\frac yn).\]</span></p></li>
+</ul>
+</div>
+<div id="conjugate-prior-distributions" class="section level2">
+<h2>Conjugate prior distributions</h2>
+<p><strong>Definition</strong>: If <span class="math inline">\(\mathcal{F}\)</span> is a class of sampling distribution <span class="math inline">\(p(y|\theta)\)</span>, and <span class="math inline">\(\mathcal{P}\)</span> is a class of prior distributions for <span class="math inline">\(\theta\)</span>, then the class <span class="math inline">\(\mathcal{P}\)</span> is <em>conjugate</em> for <span class="math inline">\(\mathcal{F}\)</span> if
+<span class="math display">\[p(\theta|y)\in \mathcal{P} \text{ for all } p(\cdot|\theta)\in\mathcal{F} \text{ and }p(\cdot)\in\mathcal{P}.\]</span></p>
+<p><strong>Advantages of conjugate prior distributions</strong></p>
+<ul>
+<li>computational convenience</li>
+<li>can be interpreted as additional data</li>
+</ul>
+</div>
+<div id="exponential-families" class="section level2">
+<h2>Exponential families</h2>
+<p><strong>Definition</strong>: The class <span class="math inline">\(\mathcal{F}\)</span> is an <em>exponential family</em> if all its members have the form
+<span class="math display">\[p(y_i|\theta)=f(y_i)g(\theta)\exp[\phi(\theta)^\top u(y_i)].\]</span></p>
+<ul>
+<li><span class="math inline">\(f(\cdot)\ge 0\)</span></li>
+<li><span class="math inline">\(\phi(\theta)\)</span> is called the <code>natural parameter</code></li>
+</ul>
+<p>For iid samples, we have
+<span class="math display">\[p(y|\theta)=\left(\prod_{i=1}^n f(y_i)\right)g(\theta)^n\exp\left[\phi(\theta)^\top \sum_{i=1}^nu(y_i)\right]
+\]</span>
+<span class="math display">\[p(y|\theta)\propto g(\theta)^n\exp[\phi(\theta)^\top t(y)]\]</span></p>
+<ul>
+<li>where <span class="math inline">\(t(y)=\sum_{i=1}^nu(y_i)\)</span> (i.e., a <em>sufficient statistic</em> for <span class="math inline">\(\theta\)</span>).</li>
+</ul>
+</div>
+<div id="conjugate-prior-distribution-for-exponential-families" class="section level2">
+<h2>Conjugate prior distribution for exponential families</h2>
+<p>If the prior distribution is specified as
+<span class="math display">\[p(\theta)\propto g(\theta)^\eta \exp[\phi(\theta)^\top \nu],\]</span>
+then the posterior density is
+<span class="math display">\[p(\theta|y)\propto g(\theta)^{\eta+n} \exp[\phi(\theta)^\top (\nu+t(y))].\]</span></p>
+<p><strong>A list of exponential families</strong></p>
+<ul>
+<li>binomial distributions</li>
+<li>normal distributions</li>
+<li>exponential distributions</li>
+<li>possion distributions</li>
+</ul>
+</div>
+<div id="example-probability-of-a-girl-birth-given-placenta-previa" class="section level2">
+<h2>Example: Probability of a girl birth given placenta previa</h2>
+<p>An early study concerning the sex of placenta previa births in Germany found that of a total of 980 births, 437 were female.</p>
+<p>How much evidence does this provide for the claim that the proportion of female births in the population of placenta previa births is less than <strong>0.485</strong>, the proportion of female births in the general population?</p>
+<ul>
+<li><p>using a uniform prior: the posterior is <span class="math inline">\(Beta(438,544)\)</span>. The central <span class="math inline">\(95\%\)</span> posterior interval is <span class="math inline">\([0.415,0.477]\)</span>.</p></li>
+<li>using conjugate prior <span class="math inline">\(Beta(\alpha,\beta)\)</span></li>
+<li><p>using nonconjugate prior</p></li>
+</ul>
+</div>
+<div id="different-conjugate-prior-distributions" class="section level2">
+<h2>Different conjugate prior distributions</h2>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\alpha/(\alpha+\beta)\)</span></th>
+<th><span class="math inline">\(\alpha+\beta\)</span></th>
+<th>posterior median</th>
+<th><span class="math inline">\(95\%\)</span> posterior interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.500</td>
+<td>2</td>
+<td>0.446</td>
+<td>[0.415, 0.477]</td>
+</tr>
+<tr class="even">
+<td>0.485</td>
+<td>2</td>
+<td>0.446</td>
+<td>[0.415, 0.477]</td>
+</tr>
+<tr class="odd">
+<td>0.485</td>
+<td>5</td>
+<td>0.446</td>
+<td>[0.415, 0.477]</td>
+</tr>
+<tr class="even">
+<td>0.485</td>
+<td>10</td>
+<td>0.446</td>
+<td>[0.415, 0.477]</td>
+</tr>
+<tr class="odd">
+<td>0.485</td>
+<td>20</td>
+<td>0.447</td>
+<td>[0.416, 0.478]</td>
+</tr>
+<tr class="even">
+<td>0.485</td>
+<td>100</td>
+<td>0.450</td>
+<td>[0.420, 0.479]</td>
+</tr>
+<tr class="odd">
+<td>0.485</td>
+<td>200</td>
+<td>0.453</td>
+<td>[0.424, 0.481]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Posterior inferences based on a large sample are not sensitive to the prior distribution.</li>
+<li>All the <span class="math inline">\(95\%\)</span> posterior intervals exclude the prior mean.</li>
+</ul>
+</div>
+<div id="the-effect-of-prior-distributions" class="section level2">
+<h2>The effect of prior distributions</h2>
+<p><img src="figs/bprior" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="using-a-nonconjugate-prior-distribution" class="section level2">
+<h2>Using a nonconjugate prior distribution</h2>
+<p><img src="figs/nonconjugate.png" width="90%" style="display: block; margin: auto;" />
+<span class="math inline">\(95\%\)</span> posterior interval is [0.419, 0.480]</p>
+</div>
+</div>
+<div id="normal-models" class="section level1">
+<h1>2.2 Normal models</h1>
+<div id="estimating-a-normal-mean-with-known-variance" class="section level2">
+<h2>Estimating a normal mean with known variance</h2>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y|\theta) = \prod_{i=1}^n \frac 1{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\theta)^2}{2\sigma^2}}\propto e^{-\frac{n\theta^2}{2\sigma^2}}e^{\frac{n\theta\bar y}{\sigma^2}}\]</span></p>
+<p><strong>Conjugate prior</strong>: <span class="math inline">\(\theta\sim N(\mu_0,\tau_0^2)\)</span></p>
+<p><strong>Posterior distribution</strong>:
+<span class="math display">\[p(\theta|y)\propto e^{-\frac{n\theta^2}{2\sigma^2}}e^{\frac{n\theta\bar y}{\sigma^2}}e^{-\frac{\theta^2}{2\tau_0^2}}e^{\frac{\mu_0\theta}{\tau_0^2}}=N(\mu_n,\tau_n^2)\]</span></p>
+<p>where
+<span class="math display">\[\mu_n=\frac{\frac 1{\tau_0^2}\mu_0+\frac n{\sigma^2}\bar y}{\frac 1{\tau_0^2}+\frac n{\sigma^2}},\ \frac1{\tau_n^2}=\frac{1}{\tau_0^2}+\frac n{\sigma^2}.\]</span></p>
+</div>
+<div id="comments" class="section level2">
+<h2>Comments</h2>
+<ul>
+<li>the inverse of the variance plays a prominet role and is called the <em>precision</em></li>
+<li>posterior precision = prior precision + data precision</li>
+<li>the posterior mean is expressed as a weighted average of the prior mean <span class="math inline">\(\mu_0\)</span> and the sample mean <span class="math inline">\(\bar y\)</span>, with weights proportional to the precisions.</li>
+<li>what happens if <span class="math inline">\(n\to \infty\)</span> with <span class="math inline">\(\tau_0^2\)</span> fixed? data info. dominated!</li>
+<li>what happens if <span class="math inline">\(\tau_0\to \infty\)</span> with <span class="math inline">\(n\)</span> fixed? This would result from assuming <span class="math inline">\(p(\theta)\)</span> is proportional to a constant for <span class="math inline">\(\theta\in(-\infty,\infty)\)</span>. (improper prior, serves as an noninformative prior)</li>
+</ul>
+</div>
+<div id="normal-distribution-with-known-mean-but-unknown-variance" class="section level2">
+<h2>Normal distribution with known mean but unknown variance</h2>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y|\sigma^2)=\prod_{i=1}^n \frac 1{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\theta)^2}{2\sigma^2}}\propto \sigma^{-n}\exp\left[-\frac{n}{2\sigma^2}\nu\right]\]</span>
+where the sufficient statistic is
+<span class="math display">\[\nu=\frac 1n\sum_{i=1}^n(y_i-\theta)^2.\]</span>
+<strong>Conjugate prior density</strong>:
+<span class="math display">\[p(\sigma^2)\propto (\sigma^2)^{-(\alpha+1)}e^{-\beta/\sigma^2},\]</span>
+where the hyperparameters is <span class="math inline">\((\alpha,\beta)\)</span>.</p>
+<p>We may take <span class="math inline">\(\theta\sim \text{Inv-}\chi^2(\nu_0,\sigma^2_0)\)</span> as a prior (i.e., <span class="math inline">\(\theta\stackrel d {=}\sigma_0^2\nu_0/\chi^2_{\nu_0}\)</span>).</p>
+</div>
+<div id="normal-distribution-with-known-mean-but-unknown-variance-1" class="section level2">
+<h2>Normal distribution with known mean but unknown variance</h2>
+<p><strong>Prior density</strong>:
+<span class="math display">\[p(\sigma^2)= \text{Inv-}\chi^2(\nu_0,\sigma^2_0)\]</span></p>
+<p><strong>Posterior density</strong>:
+<span class="math display">\[p(\sigma^2|y)=\text{Inv-}\chi^2\left(\nu_0+n,\frac{\nu_0\sigma_0^2+n\nu}{\nu_0+n}\right)\]</span></p>
+<ul>
+<li>degree of freedom = sum of the prior and data</li>
+<li><p>scale = weighted average of the prior and data</p></li>
+<li><p>if <span class="math inline">\(\nu_0=0\)</span>, <span class="math inline">\(p(\sigma^2|y)=\text{Inv-}\chi^2(n,\nu)\)</span>, as effectively taking <span class="math inline">\(p(\sigma^2)\propto 1/\sigma^2\)</span> (improper prior, serves as an noninformative prior)</p></li>
+</ul>
+</div>
+</div>
+<div id="poisson-models" class="section level1">
+<h1>2.3 Poisson models</h1>
+<div id="poisson-models-1" class="section level2">
+<h2>Poisson models</h2>
+<p><strong>Applications</strong>: The Possion distribution arises naturally in the study of data taking the form of counts.</p>
+<ul>
+<li>number of customer on the queue over an unit time</li>
+<li>epidemiology – the incidence of diseases</li>
+</ul>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y|\theta) = \prod_{i=1}^n\frac{\theta^{y_i}e^{-\theta}}{y_i!}\propto \theta^{t(y)}e^{-n\theta}\propto e^{-n\theta}e^{t(y)\log \theta}\]</span></p>
+<ul>
+<li><span class="math inline">\(t(y)=\sum_{i=1}^n y_i\)</span> is the sufficient statistic</li>
+<li>the natural parameter is <span class="math inline">\(\log \theta\)</span></li>
+</ul>
+<p><strong>Conjugate prior</strong>:
+<span class="math display">\[p(\theta)\propto e^{-\eta\theta}e^{\nu\log \theta}\]</span></p>
+<p>So we may choose <span class="math inline">\(p(\theta)=Gamma(\alpha,\beta)\propto \theta^{\alpha-1}e^{-\beta\theta}\)</span></p>
+</div>
+<div id="poisson-models-2" class="section level2">
+<h2>Poisson models</h2>
+<p><strong>Prior density</strong>: <span class="math inline">\(p(\theta)=Gamma(\alpha,\beta)\)</span></p>
+<p><strong>Posterior density</strong>: <span class="math inline">\(p(\theta|y)=Gamma(\alpha+n\bar y,\beta+n)\)</span></p>
+<p><strong>Marginal density</strong>:
+<span class="math display">\[p(y_i)=C_{\alpha+y_i-1}^{y_i} \left(\frac{\beta}{\beta+1}\right)^\alpha\left(\frac{1}{\beta+1}\right)^{y_i}\]</span></p>
+<ul>
+<li><span class="math inline">\(y_i\sim \text{Neg-bin}(\alpha,\beta)\)</span>, i.e., the negative binomial distribution</li>
+</ul>
+</div>
+<div id="possion-models-an-extension" class="section level2">
+<h2>Possion models: an extension</h2>
+<p>In many applications, it is convenient to extend the Possion model for data pionts <span class="math inline">\(y_1,\dots,y_n\)</span> to the form
+<span class="math display">\[y_i\sim Poission(x_i\theta),\]</span></p>
+<ul>
+<li><p>the values <span class="math inline">\(x_i\)</span> are known positive values of an explanatory variable <span class="math inline">\(x\)</span>, called the <em>exposure</em> of the <span class="math inline">\(i\)</span>th unit</p></li>
+<li><p><span class="math inline">\(\theta\)</span> is unknown, called the <em>rate</em></p></li>
+</ul>
+<p><strong>Prior density</strong>: <span class="math inline">\(p(\theta)=Gamma(\alpha,\beta)\)</span></p>
+<p><strong>Posterior density</strong>:
+<span class="math display">\[p(\theta|y)=Gamma(\alpha+\sum_{i=1}^ny_i,\beta+\sum_{i=1}^nx_i)\]</span></p>
+<p><strong>Example</strong>: Bayesian inference for the cancer death rates (p.48)</p>
+</div>
+</div>
+<div id="exponential-models" class="section level1">
+<h1>2.4 Exponential models</h1>
+<div id="exponential-models-1" class="section level2">
+<h2>Exponential models</h2>
+<p><strong>Applications</strong>: The expoential distribution is commonly used to model ‘waiting times’ and other continuous, poisitive, real-valued random variables. It has a ‘memoryless’ property that makes it a natural model for survival or lifetime data.</p>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y|\theta) = \prod_{i=1}^n\theta \exp(-y_i\theta)= \theta^{n}e^{-n\bar y \theta}\]</span></p>
+<p><strong>Prior density</strong>: <span class="math inline">\(p(\theta)=Gamma(\alpha,\beta)\)</span></p>
+<p><strong>Posterior density</strong>:
+<span class="math display">\[p(\theta|y)=Gamma(\alpha+n,\beta+n\bar y)\]</span></p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Population</th>
+<th>Parameter</th>
+<th>Conjugate prior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomial</td>
+<td>probability of success</td>
+<td>Beta dist.</td>
+</tr>
+<tr class="even">
+<td>Possion</td>
+<td>mean</td>
+<td>Gamma dist.</td>
+</tr>
+<tr class="odd">
+<td>Exponential</td>
+<td>inverse mean</td>
+<td>Gamma dist.</td>
+</tr>
+<tr class="even">
+<td>Normal (known variance)</td>
+<td>mean</td>
+<td>Normal dist.</td>
+</tr>
+<tr class="odd">
+<td>Normal (known mean)</td>
+<td>variance</td>
+<td>Inv-Gamma dist.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="end-notes" class="section level2">
+<h2>End notes</h2>
+<ul>
+<li><p>two kinds of prior distributions: uniform (noninformative) and conjugate (informative)</p></li>
+<li><p>some other noninformative prior distributions: Jeffreys’ prior etc. See pp.52-56</p></li>
+<li><p>noninformative prior are often useful when it does not seem to be worth the effort to quantify one’s real prior knowledge as a probability distribution</p></li>
+<li><p>when using conjugate prior, it remains to choose the hyperparameters; see Chapter 5 for hierarchical models</p></li>
+</ul>
+</div>
+</div>

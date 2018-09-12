@@ -1,0 +1,108 @@
+---
+title: 'Chapter 4: Asymptotics and connections to non-Bayesian approaches'
+date: "2018/9/7"
+categories: ["slides"]
+Summary: "Chapter 4: Asymptotics and connections to non-Bayesian approaches"
+tags: ["slides", "BDA"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Large-sample theory
+
+**Assumptions and notations**:
+
+- true distribution: $y_i\stackrel {iid}{\sim} f(\cdot)$
+- $\theta\in\Theta$
+- prior distribution: $p(\theta)$
+- model distribution: $p(y_i|\theta)$
+- *Kullback-Leibler divergence*: a measure of 'discrepancy' between the model and the true distribution
+$$KL(\theta)= E\left[\log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)\right]=\int \log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)f(y_i)dy_i$$
+
+- $\theta_0$: the **unique minimizer** of $KL(\theta)$
+- if $f(y_i) = p(y_i|\theta)$ then $\theta=\theta_0$
+
+## Convergence of the posterior distribution
+
+**Discrete parmeter space**: If the parameter space $\Theta$ is finite and $P(\theta=\theta_0)>0$, then
+$$P(\theta=\theta_0|y)\to 1\text{ as }n\to \infty,$$
+where $\theta_0=\arg_{\theta\in\Theta} KL(\theta)$.
+
+**Continuous parmeter space**: If $\theta$ is defined on a compace set $\Theta$ and $A$ is a neighborhood of $\theta_0$ with $P(\theta\in A)>0$, then
+$$P(\theta\in A|y)\to 1\text{ as }n\to \infty,$$
+where $\theta_0=\arg_{\theta\in\Theta} KL(\theta)$.
+
+See the proofs in Appendix B.
+
+## Normal approximations to the posterior distribution
+
+- $\hat \theta$: the posterior mode
+- Taylor series expansion of $\log p(\theta|y)$ gives
+$$\log(\theta|y) = \log p(\hat \theta|y)-\frac 12 (\theta-\hat\theta)^\top I(\hat \theta) (\theta-\hat\theta) + \cdots $$
+
+- where $I(\theta)$ is the *observed* information
+$$I(\theta)=-\frac{d^2}{d\theta^2}\log p(\theta|y)$$
+
+- Normal approximation: $p(\theta|y)\approx N(\hat\theta,[I(\hat\theta)]^{-1})$
+
+- *Fisher information*:
+$$J(\theta)=-E_f\left[\frac{d^2}{d\theta^2}\log p(y_j|\theta)\right]$$
+
+
+
+## Convergence of the posterior distribution to normality
+
+**Theorem**: Under some regularity conditions (notably that $\theta$ not be on the boundary of $\Theta$), as $n\to \infty$, the posterior distribution of $\theta$ approaches normality with mean $\theta_0$ and variance $[nJ(\theta_0)]^{-1}$, where $\theta_0=\arg_{\theta\in\Theta} KL(\theta)$ and $J$ is the Fisher information.
+
+
+Oberved that:
+
+- $\hat\theta\to \theta_0$ as $n\to \infty$
+
+- $I(\hat\theta)=-\frac{d^2}{d\theta^2}\log p(\hat\theta)-\sum_{i=1}^n\frac{d^2}{d\theta^2}\log p(y_i|\hat\theta)\approx nJ(\theta_0)$
+
+- $J(\theta_0)=\frac{d^2}{d\theta^2} KL(\theta_0)>0$
+
+
+## Counterexamples to the theorems
+
+- underidentified models: $p(y|\theta)$ is equal for a range of values of $\theta$
+
+- nonindentified parameters: for example, consider the model,
+$$\left(
+\begin{matrix}
+u\\
+v
+\end{matrix}
+\right)\sim N \left( \left(\begin{matrix}
+0\\
+0
+\end{matrix}
+\right),\left(\begin{matrix}
+1&\rho\\
+\rho & 1
+\end{matrix}
+\right)\right)$$
+only one of $u,v$ is observed from each pair $(u,v)$
+
+- number of parameters increasing with sample sizes: new latent parameters with each data point
+
+## Point estimation, consistency, and efficiency
+
+**point estimations**:
+
+- posterior mode $\hat\theta(y)=\arg \max_{\theta\in\Theta} p(\theta|y)$
+- posterior mean $\hat\theta(y)=E[\theta|y]=\int \theta p(\theta|y)d \theta$
+- posterior median $\hat\theta(y)=F^{-1}_{\theta|y}(0.5)$
+
+**consistency**: $\hat\theta(y)\to \theta_0$ as $n\to \infty$
+
+**asymptotic unbiasedness**: $E[\hat\theta|\theta_0]\to\theta_0$ as $n\to \infty$
+
+**efficiency**:
+$$\text{eff}(\hat\theta)=\frac{\inf_T E[(T(y)-\theta_0)^2|\theta_0]}{E[(\hat\theta-\theta_0)^2|\theta_0]}\le 1$$
+
+**asymptotically efficient**: $\text{eff}(\hat\theta)\to 1$ as $n\to \infty$

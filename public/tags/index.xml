@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>BDA</title>
+      <link>/tags/bda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep Learning</title>
       <link>/tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
@@ -81,6 +90,15 @@
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0800</pubDate>
       
       <guid>/tags/simulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>/tags/slides/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/slides/</guid>
       <description></description>
     </item>
     

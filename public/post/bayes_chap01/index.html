@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.48" />
+  <meta name="author" content="Zhijian He">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="Chapter 1: Probability and Inference">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/bayes_chap01/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/bayes_chap01/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Dr. Zhijian He">
+  <meta property="og:url" content="/post/bayes_chap01/">
+  <meta property="og:title" content="Chapter 1: Probability and Inference | Dr. Zhijian He">
+  <meta property="og:description" content="Chapter 1: Probability and Inference">
+  <meta property="og:locale" content="en-us">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title>Chapter 1: Probability and Inference | Dr. Zhijian He</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Dr. Zhijian He</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Chapter 1: Probability and Inference</h1>
+
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhijian He">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="" itemprop="datePublished">
+    <time datetime="" itemprop="dateModified">
+      Jan 1, 0001
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Zhijian He">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/slides/">slides</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Chapter%201%3a%20Probability%20and%20Inference&amp;url=%2fpost%2fbayes_chap01%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fbayes_chap01%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fbayes_chap01%2f&amp;title=Chapter%201%3a%20Probability%20and%20Inference"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fbayes_chap01%2f&amp;title=Chapter%201%3a%20Probability%20and%20Inference"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Chapter%201%3a%20Probability%20and%20Inference&amp;body=%2fpost%2fbayes_chap01%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <div id="steps-in-bda" class="section level2">
+<h2>3 steps in BDA</h2>
+<ul>
+<li><p>set up the statistical model</p></li>
+<li><p>compute the <code>posterior distribution</code></p></li>
+<li><p>model checking and model improvement</p></li>
+</ul>
+</div>
+<div id="statistical-inference" class="section level2">
+<h2>Statistical inference</h2>
+<p><strong>Goal</strong>: draw conclusions about <strong>unobserved quantities</strong> from the data (observed)</p>
+<ul>
+<li><p>potentially observable quantities, e.g., future observations of a process</p></li>
+<li><p>not directly observable quantities, e.g., unobservable population parameters</p></li>
+</ul>
+</div>
+<div id="notations-and-assumptions" class="section level2">
+<h2>Notations and assumptions</h2>
+<ul>
+<li><p>unobservable population parameters of interest: <span class="math inline">\(\theta=(\theta_1,\dots,\theta_m)\)</span></p></li>
+<li><p>the observed data: <span class="math inline">\(y=(y_1,\dots,y_n)\)</span></p></li>
+<li><p>potentially observable quantities: <span class="math inline">\(\tilde y\)</span></p></li>
+</ul>
+<p><strong>Assumption 1</strong></p>
+<ul>
+<li>exchangeability: the <span class="math inline">\(n\)</span> values <span class="math inline">\(y_i\)</span> are exchangeable, e.g., iid samples.</li>
+</ul>
+<p><strong>Assumption 2</strong></p>
+<ul>
+<li>conditional independence of <span class="math inline">\(y\)</span> and <span class="math inline">\(\tilde y\)</span> given <span class="math inline">\(\theta\)</span></li>
+</ul>
+</div>
+<div id="bayesian-inference" class="section level2">
+<h2>Bayesian inference</h2>
+<p>To make inferences about the posterior distributions, such as <span class="math inline">\(p(\theta|y)\)</span> and <span class="math inline">\(p(\tilde y|y)\)</span></p>
+<p><strong>Bayes’ rule</strong></p>
+<p><span class="math display">\[p(\theta|y)=\frac{p(\theta,y)}{p(y)}=\frac{p(y|\theta)p(\theta)}{p(y)}\]</span></p>
+<p><span class="math display">\[p(\theta|y)\propto  p(y|\theta)p(\theta)\]</span></p>
+<p>The imiplied constant is
+<span class="math display">\[p(y)=\int p(y|\theta)p(\theta) d \theta.\]</span></p>
+</div>
+<div id="prediction" class="section level2">
+<h2>Prediction</h2>
+<p>To make inferences about an unknown observable quantity</p>
+<ul>
+<li><p>prior predictive distribution: <span class="math inline">\(p(y)\)</span></p></li>
+<li><p>posterior predictive dsitribution: <span class="math inline">\(p(\tilde y|y)\)</span></p></li>
+</ul>
+<p><span class="math display">\[
+p(\tilde y|y) = \int p(\tilde y,\theta|y)d\theta = \int p(\tilde y|\theta,y)p(\theta|y)d \theta = \int p(\tilde y|\theta)p(\theta|y)d \theta
+\]</span></p>
+<p>Again, <span class="math inline">\(y\)</span> and <span class="math inline">\(\tilde y\)</span> are conditionally independent given <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div id="likelihood" class="section level2">
+<h2>Likelihood</h2>
+<p><span class="math inline">\(p(y|\theta)\)</span> is called the <strong>likelihood function</strong>, which is regarded as a function of <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>odds ratios</strong></p>
+<p><span class="math display">\[\frac{p(\theta_1|y)}{p(\theta_2|y)}=\frac{p(\theta_1)p(y|\theta_1)/p(y)}{p(\theta_2)p(y|\theta_2)/p(y)}=\frac{p(\theta_1)}{p(\theta_2)}\frac{p(y|\theta_1)}{p(y|\theta_2)}\]</span></p>
+<p>posterior odds = prior odds <span class="math inline">\(\times\)</span> likelihood ratio</p>
+</div>
+<div id="example-1-inference-about-a-genetic-status" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<ul>
+<li>males: one X-chromosome + one Y-chromosome</li>
+<li>females: two X-chromosomes</li>
+</ul>
+<p>Hemophilia is a disease that exhibits X-chromosome-linked recessive inheritance.
+The disease is generally fatal for women who inherit two such genes.</p>
+<p>Consider a woman who has an affected brother and her father is not affected.
+Let <span class="math inline">\(\theta\)</span> be the state of the woman: a carrier of the gene (<span class="math inline">\(\theta=1\)</span>) or not (<span class="math inline">\(\theta=0\)</span>).</p>
+<p><strong>Prior distribution</strong>: <span class="math inline">\(P(\theta=1)=P(\theta=0)=0.5\)</span></p>
+<p><strong>Data and model</strong>: She has two sons. Let <span class="math inline">\(y_i=1\)</span> or 0 denote the state of her sons. Now observe that her sons are not affected. Given <span class="math inline">\(\theta\)</span>, <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are iid.</p>
+</div>
+<div id="example-1-inference-about-a-genetic-status-1" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<p><strong>Likelihood function</strong>:</p>
+<p><span class="math display">\[P(y_1=0,y_2=0|\theta=1)=0.5\times 0.5=0.25\]</span></p>
+<p><span class="math display">\[P(y_1=0,y_2=0|\theta=0)=1\times 1=1\]</span></p>
+<p><strong>Posterior distribution</strong>:</p>
+<p><span class="math display">\[P(\theta=1|y) = \frac{p(y|\theta=1)p(\theta=1)}{p(y)}=0.2\]</span></p>
+</div>
+<div id="example-1-inference-about-a-genetic-status-2" class="section level2">
+<h2>Example 1: inference about a genetic status</h2>
+<p><strong>Adding more data</strong>: suppose that the woman has a third son, who is also unaffacted.</p>
+<p><span class="math display">\[P(\theta=1|y_1,y_2,y_3) = \frac{0.5\times 0.2}{0.5\times 0.2+1\times 0.8}=0.111\]</span></p>
+<p>A key aspect of Bayesian analysis is the ease with which sequential analyses can be performed.</p>
+<p><strong>Question</strong>: What happen if we suppose that the third son is affected?</p>
+</div>
+<div id="example-2-spelling-correction" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p>Classification of words is a problem of managing uncertainty. Suppose someone types <strong>radom</strong>. How should that be read?</p>
+<ul>
+<li>random</li>
+<li>radon</li>
+<li>radom</li>
+</ul>
+<p><strong>Data and model</strong>: Let <span class="math inline">\(\theta\)</span> be the word that the person was intending to type, and let <span class="math inline">\(y\)</span> as the data. Now <span class="math inline">\(y=\)</span>’radom’ and <span class="math inline">\(\theta\in\)</span>{<span class="math inline">\(\theta_1\)</span>=‘random’,<span class="math inline">\(\theta_2\)</span>=‘radon’,<span class="math inline">\(\theta_3\)</span>=‘radom’}. The posterior density is</p>
+<p><span class="math display">\[P(\theta|y=\text{&#39;radom&#39;})\propto p(\theta)P(y=\text{&#39;radom&#39;}|\theta).\]</span></p>
+</div>
+<div id="example-2-spelling-correction-1" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p><strong>Prior distribution</strong>: Here are probabilities supplied by researchers at Google.
+Goole Ngram Viewer: <a href="https://books.google.com/ngrams" class="uri">https://books.google.com/ngrams</a></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\theta)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(7.60\times 10^{-5}\)</span></td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(6.05\times 10^{-6}\)</span></td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(3.12\times 10^{-7}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Likelihood</strong>: Here are some conditional probabilities from Google’s model of spelling and typing errors:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\text{&#39;radom&#39;}|\theta)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(0.00193\)</span></td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(0.000143\)</span></td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(0.975\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-2-spelling-correction-2" class="section level2">
+<h2>Example 2: spelling correction</h2>
+<p><strong>Posterior distribution</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\theta\)</span></th>
+<th><span class="math inline">\(p(\theta)P(y=\text{&#39;radom&#39;}|\theta)\)</span></th>
+<th><span class="math inline">\(P(\theta|y=\text{&#39;radom&#39;})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td><span class="math inline">\(1.47\times 10^{-7}\)</span></td>
+<td>0.325</td>
+</tr>
+<tr class="even">
+<td>radon</td>
+<td><span class="math inline">\(8.65\times 10^{-10}\)</span></td>
+<td>0.002</td>
+</tr>
+<tr class="odd">
+<td>radom</td>
+<td><span class="math inline">\(3.04\times 10^{-7}\)</span></td>
+<td><strong>0.673</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model improvement</strong>:</p>
+<ul>
+<li>including contextual info in the prior probabilities, e.g., statistical book.</li>
+<li>let <span class="math inline">\(x\)</span> be the contextual information used by the model.</li>
+</ul>
+<p><span class="math display">\[p(\theta|x,y)\propto p(\theta|x)p(y|\theta,x)\]</span></p>
+<ul>
+<li>for simplicity, we may assume <span class="math inline">\(p(y|\theta,x)=p(y|\theta)\)</span>.</li>
+</ul>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/slides/">slides</a>
+  
+  <a class="badge badge-light" href="/tags/bda/">BDA</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/bayes_chap04/">Chapter 4: Asymptotics and connections to non-Bayesian approaches</a></li>
+        
+        <li><a href="/post/bayes_chap02/">Chapter 2: Single-parameter models</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        CommonHTML: { linebreaks: { automatic: true } },
+        tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+        TeX: { noUndefined: { attributes: { mathcolor: 'red', mathbackground: '#FFEEEE', mathsize: '90%' } } },
+        messageStyle: 'none'
+      });
+    </script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+  </body>
+</html>
+
