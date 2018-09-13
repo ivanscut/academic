@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1536827198230.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2524210612",
+    "id" : "632DC8BA",
+    "lastKnownWriteTime" : 1536479103,
+    "last_content_update" : 1536479103,
+    "path" : "D:/Dropbox/courses/2018-2019-1MathematicalStatistics/slides/homework/homework1.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "2,3",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
