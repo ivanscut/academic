@@ -334,7 +334,7 @@
     
     <url>
     
-      <loc>/tags/slides/</loc>
+      <loc>/categories/slides/</loc>
       <priority>0</priority>
     </url>
     
@@ -342,7 +342,7 @@
     
     <url>
     
-      <loc>/categories/slides/</loc>
+      <loc>/tags/slides/</loc>
       <priority>0</priority>
     </url>
     
@@ -368,7 +368,7 @@
     
     <url>
     
-      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
+      <loc>/categories/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-09-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -377,7 +377,7 @@
     
     <url>
     
-      <loc>/categories/%E4%BD%9C%E4%B8%9A/</loc>
+      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-09-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -395,7 +395,7 @@
     
     <url>
     
-      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
+      <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
       <lastmod>2018-09-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -404,7 +404,7 @@
     
     <url>
     
-      <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
+      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
       <lastmod>2018-09-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
