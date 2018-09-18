@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/post/chap02/</loc>
+      <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/homework2/</loc>
       <lastmod>2018-09-13T00:00:00+00:00</lastmod>
     </url>
@@ -21,14 +29,6 @@
     <url>
     
       <loc>/post/ex1-1/</loc>
-      <lastmod>2018-09-10T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/chap00/</loc>
       <lastmod>2018-09-10T00:00:00+00:00</lastmod>
     </url>
     
@@ -367,6 +367,13 @@
     
     <url>
     
+      <loc>/post/chap00/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/%E4%B8%8A%E6%9C%BA%E7%BB%83%E4%B9%A0/</loc>
       <lastmod>2018-09-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -395,7 +402,7 @@
     <url>
     
       <loc>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</loc>
-      <lastmod>2018-09-13T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -404,7 +411,7 @@
     <url>
     
       <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-09-10T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -413,7 +420,7 @@
     <url>
     
       <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-09-10T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

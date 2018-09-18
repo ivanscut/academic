@@ -1,0 +1,39 @@
+## reference: https://cosx.org/2009/07/drawing-china-map-using-r
+
+
+
+
+dat = data.frame(
+  city=c("广州"),
+  jd=c(113.25),
+  wd=c(23.13333333)
+)
+
+library(maptools);
+x=readShapePoly('bou2_4p.shp');#下文中会继续用到x这个变量，
+#如果你用的是其它的名称，
+#请在下文的程序中也进行相应的改动。
+plot(x)
+
+
+plot(x,col=gray(924:0/924))
+
+getColor = function(mapdata, provname, provcol, othercol){
+  f = function(x, y) ifelse(x %in% y, which(y == x), 0);
+  colIndex = sapply(mapdata@data$NAME, f, provname);
+  fg = c(othercol, provcol)[colIndex + 1];
+  return(fg);
+}
+
+
+provname = c("广东省","安徽省","福建省","甘肃省",
+             "广西壮族自治区","贵州省","河南省","黑龙江省","湖南省",
+             "江西省","青海省","新疆维吾尔自治区","云南省","浙江省")
+pop = c(27, 1, 1, 2, 2,2,2,1,2,3,1,2,3,1)
+provcol = rgb(red = 1 - pop/max(pop)/2, green = 1-pop/max(pop)/2, blue = 0);
+
+plot(x, col = getColor(x, provname, provcol, "white"))
+
+
+
+

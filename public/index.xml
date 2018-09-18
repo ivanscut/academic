@@ -11,6 +11,693 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>第二章：估计</title>
+      <link>/post/chap02/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chap02/</guid>
+      <description>&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;1. 点估计&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1.1 矩估计法&lt;/li&gt;
+&lt;li&gt;1.2 极大似然估计法&lt;/li&gt;
+&lt;li&gt;1.3 估计的优良性准则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;2. 区间估计&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;2.1 单个正态总体的区间估计&lt;/li&gt;
+&lt;li&gt;2.2 两个独立正态总体的区间估计&lt;/li&gt;
+&lt;li&gt;2.3 非正态总体的区间估计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;3. 分布估计&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;3.1 直方图法&lt;/li&gt;
+&lt;li&gt;3.2 核估计法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;参数估计&lt;/h2&gt;
+&lt;p&gt;在实际问题中，对于一个总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;往往是仅知其分布的类型&lt;span class=&#34;math inline&#34;&gt;\(f(x, \theta)\)&lt;/span&gt;，而参数&lt;span class=&#34;math inline&#34;&gt;\(\theta=(\theta_1,\dots,\theta_m)\in \Theta \subset \mathbb{R}^m\)&lt;/span&gt;是未知的。对任给的实值函数&lt;span class=&#34;math display&#34;&gt;\[g:\ \mathbb{R}^m\to \mathbb{R},\]&lt;/span&gt;
+如何根据&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;估计&lt;span class=&#34;math inline&#34;&gt;\(g( \theta)\)&lt;/span&gt;的值呢？这就是统计推断中的“&lt;strong&gt;参数估计&lt;/strong&gt;”问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;点估计&lt;/strong&gt;：寻找一个统计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta} = T(X_1,\dots,X_n)\)&lt;/span&gt;作为$ $的点估计&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;区间估计&lt;/strong&gt;：寻找两个统计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta}_1 = T_1(X_1,\dots,X_n)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta}_2 = T_2(X_1,\dots,X_n)\)&lt;/span&gt;，所构成的区间&lt;span class=&#34;math inline&#34;&gt;\([\hat{ \theta}_1,\hat{ \theta}_2]\)&lt;/span&gt;作为$ $的区间估计&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1.1 矩估计法&lt;/h2&gt;
+&lt;p&gt;矩估计的想法来源于大数定理。如果总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;存在&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩，对任意&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\lim_{n\to \infty} P(|\frac 1 n\sum_{i=1}^n X_i^k-E[X^k]|\ge \epsilon )=0.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这说明，当样本容量&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;较大时，样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩与总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩差别很小。&lt;strong&gt;矩法估计就是用样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩代替总体的&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩。&lt;/strong&gt;通常用&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}_M\)&lt;/span&gt;表示。一般步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;列出估计式&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]=g_k(\theta_1,\dots,\theta_m),\ k=1,\dots,m.\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;求解关于估计量的方程组&lt;span class=&#34;math inline&#34;&gt;\(\theta_k = \theta_k(E[X^1],\dots,E[X^m])\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用&lt;span class=&#34;math inline&#34;&gt;\(M_k=\frac 1 n\sum_{i=1}^n X_i^k\)&lt;/span&gt;替代&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]\)&lt;/span&gt;得到矩估计&lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_k = \theta_k(M_1,\dots,M_m)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：求总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu=E[X]\)&lt;/span&gt;与方差&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2=Var[X]\)&lt;/span&gt;的矩估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: (1)列出估计式&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+E[X] &amp;amp;= \mu\\
+E[X^2] &amp;amp;= \mu^2+\sigma^2
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;(2)求解关于估计量的方程组
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+\mu &amp;amp;= E[X]\\
+\sigma^2 &amp;amp;= E[X^2]-(E[X])^2
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;所以，&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}_M = \bar X\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\hat{\sigma}^2_M = \frac{1}{n}\sum_{i=1}^n X_i^2-(\bar X)^2 = S_n^2.\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注：不难证明，总体的各阶中心矩的矩估计就是样本各阶中心矩。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例2&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim U[a,b]\)&lt;/span&gt;, 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;的矩估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 易知，&lt;span class=&#34;math inline&#34;&gt;\(E[X]=(a+b)/2,\ Var[X]= (b-a)^2/12\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;所以，
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+a &amp;amp;= E[X]-\sqrt{3Var[X]}\\
+b &amp;amp;= E[X]+\sqrt{3Var[X]}
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+\hat a_M &amp;amp;= \bar{X}-\sqrt{3}S_n\\
+\hat b_M &amp;amp;= \bar{X}+\sqrt{3}S_n
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例3&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的分布密度为
+&lt;span class=&#34;math display&#34;&gt;\[
+f(x)=\frac{\theta}{2}e^{-\theta|x|},\ x\in\mathbb{R}, \theta&amp;gt;0.
+\]&lt;/span&gt;
+求&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的矩估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;:
+&lt;span class=&#34;math display&#34;&gt;\[
+E[X]= 0,\ E[X^2]=\int_{-\infty}^{\infty}x^2\frac{\theta}{2}e^{-\theta|x|}d x=\theta\int_{0}^{\infty}x^2e^{-\theta x}d x=\frac{2}{\theta^2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_M=\sqrt{\frac{2n}{\sum_{i=1}^n X_i^2}}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;除外，还可以由&lt;span class=&#34;math inline&#34;&gt;\(E[|X|]=1/\theta\)&lt;/span&gt;得到另一种矩估计。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1.2 最大似然估计法&lt;/h2&gt;
+&lt;p&gt;最大似然估计法最早由高斯(C.F.Gauss)提出，后来被 Fisher完善。最大似然估计这一名称也是Fisher给的。这是一个目前仍得到广泛应用的方法。它是建立在最大似然原理基础上的一个统计方法。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最大似然原理：最先出现的是概率最大的&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设有外形完全相同的两个箱子，甲箱中有99个白球和1个黑球，乙箱中有99个黑球和1个白球，今随机地抽取一箱并从中随机抽取一球，结果取得白球，问这球是从哪个箱子中取出？&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;最大似然估计法&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;似然函数&lt;/strong&gt;：
+&lt;span class=&#34;math display&#34;&gt;\[L(x_1,\dots,x_n;\theta)=L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)
+\]&lt;/span&gt;
+给定样本观测值&lt;span class=&#34;math inline&#34;&gt;\((x_1,\dots,x_n)\)&lt;/span&gt;, 记&lt;span class=&#34;math inline&#34;&gt;\(L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;的最大值点为&lt;span class=&#34;math inline&#34;&gt;\(\theta=T(x_1,\dots,x_n)\)&lt;/span&gt;. 则&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计量(MLE, maximum likelihood estimator)为
+&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_L=T(X_1,\dots,X_n).\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;最大似然估计的一般步骤&lt;/h2&gt;
+&lt;p&gt;第一步：写出似然函数&lt;span class=&#34;math inline&#34;&gt;\(L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;第二步：若似然函数&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的可微函数，则最大值必然满足&lt;strong&gt;似然方程&lt;/strong&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\frac{d L}{d \theta}=0\]&lt;/span&gt;
+解出&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, 并验证其是否是极大值：&lt;span class=&#34;math display&#34;&gt;\[\frac{d^2 L}{d \theta^2}&amp;lt;0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注1：为方便求导，一般求对数似然函数&lt;span class=&#34;math inline&#34;&gt;\(\ln L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;求极大值点&lt;/p&gt;
+&lt;p&gt;注2：若有多个参数&lt;span class=&#34;math inline&#34;&gt;\(\theta_1,\dots,\theta_m\)&lt;/span&gt;，对每个变量求偏导，联立&lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;个方程求解&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;10-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例1：0-1离散型&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim B(1,p)\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为
+&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;p)=\prod_{i=1}^{n}p^{x_i}(1-p)^{1-x_i}=p^{\sum_{i=1}^nx_i}(1-p)^{n-\sum_{i=1}^nx_i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(y=\sum_{i=1}^nx_i\)&lt;/span&gt;, 对数似然函数为：
+&lt;span class=&#34;math display&#34;&gt;\[\ln L = y \ln p + (n-y)\ln (1-p).\]&lt;/span&gt;
+对数似然方程为：
+&lt;span class=&#34;math inline&#34;&gt;\(\frac{d \ln L}{d p} = y/p - (n-y)/(1-p)=0.\)&lt;/span&gt;
+解得&lt;span class=&#34;math inline&#34;&gt;\(p= y/n=\frac{1}{n}\sum_{i=1}^nx_i\)&lt;/span&gt;. 因为&lt;span class=&#34;math inline&#34;&gt;\(\frac{d^2\ln L}{d p^2}&amp;lt;0\)&lt;/span&gt;, 所以&lt;span class=&#34;math inline&#34;&gt;\(p= y/n\)&lt;/span&gt;是极大值。&lt;span class=&#34;math inline&#34;&gt;\(\hat{p}_L = \bar X.\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例2：正态分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;\mu,\sigma^2)=\prod_{i=1}^{n}f(x_i)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\]&lt;/span&gt;
+令&lt;span class=&#34;math inline&#34;&gt;\(\theta_1=\mu,\theta_2=\sigma^2\)&lt;/span&gt;, 对数似然函数为：
+&lt;span class=&#34;math display&#34;&gt;\[\ln L = (n/2)\ln (2\pi)-(n/2)\ln\theta_2-\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;2-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例2：正态分布&lt;/h2&gt;
+&lt;p&gt;对数似然方程组为：
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+\frac{\partial \ln L}{\partial \theta_1} &amp;amp;=\frac{\sum_{i=1}^n(x_i-\theta_1)}{\theta_2}=0\\
+\frac{\partial \ln L}{\partial \theta_2} &amp;amp;=-\frac{n}{2\theta_2}+\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2^2}=0
+\end{cases}
+\]&lt;/span&gt;
+解得&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}_L=\bar X,\ \hat{\sigma}^2_L = S_n^2\)&lt;/span&gt;. (可以验证二阶导函数非正定，即取得极大值。)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;3-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例3&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim U[a,b]\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为
+&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;a,b)=\frac{1}{(b-a)^n}\prod_{i=1}^{n} 1\{a\le x_i\le b\}\]&lt;/span&gt;
+注意到&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;关于&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;不可微。容易观察到，当&lt;span class=&#34;math inline&#34;&gt;\(a=\min_{i=1,\dots,n}\{x_i\},\ b=\max_{i=1,\dots,n}\{x_i\}\)&lt;/span&gt;时&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;取得最大值。故&lt;span class=&#34;math display&#34;&gt;\[\hat{a}_L = X_{(1)},\ \hat{b}_L = X_{(n)}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;关于最大似然估计的一些说明&lt;/h2&gt;
+&lt;p&gt;最大似然估计的不变性：如果&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计，则对任一函数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, 其最大似然估计为&lt;span class=&#34;math inline&#34;&gt;\(g(\hat{\theta})\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;当分布中有&lt;em&gt;多余的参数&lt;/em&gt;或者&lt;em&gt;数据为截尾或缺失&lt;/em&gt;时，似然函数的求极大值比较困难。针对这种问题，文献&lt;/p&gt;
+&lt;p&gt;Dempster, A.P.; Laird, N.M.; Rubin, D.B. (1977). &lt;a href=&#34;https://www.jianguoyun.com/p/DSfhflcQpvLJBhjv42s&#34;&gt;Maximum Likelihood from Incomplete Data via the EM Algorithm&lt;/a&gt;. &lt;em&gt;Journal of the Royal Statistical Society, Series B&lt;/em&gt;. 39 (1): 1–38. (cited by 54539, 2018/8/18)&lt;/p&gt;
+&lt;p&gt;提出了一种有效的&lt;strong&gt;Expectation–Maximization (EM)&lt;/strong&gt;算法。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;矩估计与最大似然估计的对比&lt;/h2&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;矩估计法（也称数字特征法）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;直观意义比较明显，但要求总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩存在。&lt;/li&gt;
+&lt;li&gt;缺点是不唯一，此时尽量使用样本低阶矩。&lt;/li&gt;
+&lt;li&gt;观测值受异常值影响较大，不够稳健，实际中避免使用样本高阶矩。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;极大似然估计法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;具有一些理论上的优点（不变性、渐近正态性）&lt;/li&gt;
+&lt;li&gt;缺点是如果似然函数不可微，没有一般的求解法则。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;矩估计与最大似然估计的对比&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;estimations.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1.3 估计的优良性标准&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;估计量的无偏性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;估计量的有效性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;估计量的大样本性质：相合性与渐近正态性&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;无偏性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\theta\in \Theta\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无偏估计量：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;渐近无偏估计量：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;无偏性意味着：虽然估计量&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;由于随机可能偏离真值&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, 但取其平均值（期望）却等于&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;. 即没有系统偏差。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;样本均值是总体的均值的无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(E[\bar X]=E[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;样本方差是总体方差的渐近无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(\lim_{n\to \infty}E[S_n^{2}]=Var[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修正样本方差是总体方差的无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(E[S_n^{*2}]=Var[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;均方误差&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量，其均方误差 (mean squared error, MSE)为
+&lt;span class=&#34;math display&#34;&gt;\[M_{\theta}(T):=E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2].\]&lt;/span&gt;
+均方根误差 (root mean squared error, RMSE)为
+&lt;span class=&#34;math display&#34;&gt;\[R_{\theta}(T):=\sqrt{E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2]}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注意到：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[M_{\theta}(T)=(E[T]-g(\theta))^2+Var(T)=偏差^2+方差\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，则&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta}(T)=Var(T)\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;比较两个估计量的优劣&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：若&lt;span class=&#34;math inline&#34;&gt;\(T_1(X_1,\dots,X_n)\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(T_2(X_1,\dots,X_n)\)&lt;/span&gt;都为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta}(T_1)\le M_{\theta}(T_2),\forall \theta\in \Theta\)&lt;/span&gt;, 则称&lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt;不次于&lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt;。&lt;/li&gt;
+&lt;li&gt;在此基础上，如果存在一个&lt;span class=&#34;math inline&#34;&gt;\(\theta_0\in\Theta\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta_0}(T_1)&amp;lt; M_{\theta_0}(T_2)\)&lt;/span&gt;, 则称&lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt;比&lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt;有效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为其样本(&lt;span class=&#34;math inline&#34;&gt;\(n&amp;gt;1\)&lt;/span&gt;)，证明下列估计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu} = \sum_{i=1} C_iX_i\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的无偏估计的充要条件是&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^nC_i = 1.\)&lt;/span&gt; 在满足该条件前提下，&lt;span class=&#34;math inline&#34;&gt;\(C_i\)&lt;/span&gt;取何值时，&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}\)&lt;/span&gt;的最有效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(E[\hat{\mu}]=\mu\Leftrightarrow \sum_{i=1}^nC_i = 1\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[Var[\hat{\mu}]=\sigma^2\sum_{i=1}^nC_i^2\ge \sigma^2\frac{(C_1+\dots+C_n)^2}{n}=\frac{\sigma^2}{n}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;而且唯一的最小值在&lt;span class=&#34;math inline&#34;&gt;\(C_i=1/n,i=1,\dots,n\)&lt;/span&gt;处取得。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一致最小方差无偏估计&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T_0(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，如果对于&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的任意无偏估计量&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;都有
+&lt;span class=&#34;math display&#34;&gt;\[Var[T_0]\le Var[T],\ \forall\theta\in\Theta\]&lt;/span&gt;
+则称&lt;span class=&#34;math inline&#34;&gt;\(T_0\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;一致最小方差无偏估计量&lt;/strong&gt; (uniformly minimum-variance unbiased estimator, UMVUE)。&lt;/p&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;思考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;无偏估计量是不是一定存在？（反例见课本例2.5, p27）&lt;/li&gt;
+&lt;li&gt;如果存在多个无偏估计量，如何找到UMVUE？（Blackwell, Rao, Lehmann, Scheffe等统计学家获得了一系列寻求UMVUE的理论和方法）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;black-lehmann-scheffe&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Black-Lehmann-Scheffe定理&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为统计量。如果对任何(Borel可测)函数&lt;span class=&#34;math inline&#34;&gt;\(u(\cdot)\)&lt;/span&gt;, 只要&lt;span class=&#34;math inline&#34;&gt;\(E[u(T)]=0\)&lt;/span&gt;(对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;)就可以推出&lt;span class=&#34;math inline&#34;&gt;\(P(u(T)=0)=1\)&lt;/span&gt;, 这次称统计量&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;为&lt;em&gt;完全的统计量&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;B-L-S定理&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;em&gt;完全的充分统计量&lt;/em&gt;，&lt;span class=&#34;math inline&#34;&gt;\(\psi(T)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，则&lt;span class=&#34;math inline&#34;&gt;\(\psi(T)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的最小方差无偏估计。&lt;/p&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;：可以证明，如果参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的集合有内点，则指数型分布族的充分统计量
+&lt;span class=&#34;math inline&#34;&gt;\(\left(\sum_{i=1}^nT_1(x_i),\dots,\sum_{i=1}^nT_k(x_i)\right)\)&lt;/span&gt;
+是完全的。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cramer-rao&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cramer-Rao不等式&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的密度为&lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta)\)&lt;/span&gt;, 参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\in (a,b)\)&lt;/span&gt;. &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本，&lt;span class=&#34;math inline&#34;&gt;\(\psi(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的一个无偏估计，且满足下列正则性条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的支撑与&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关；&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(g&amp;#39;(\theta)\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\frac{df(x;\theta)}{d\theta}\)&lt;/span&gt;都存在且对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;有&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty \frac{df(x;\theta)}{d\theta} d x = 0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty\frac d{d\theta} L(\vec x;\theta) d \vec x=0\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac d{d\theta}\int_{-\infty}^\infty \psi(\vec x) L(\vec x;\theta) d \vec x=\int_{-\infty}^\infty \psi(\vec x) \frac d{d\theta}L(\vec x;\theta) d \vec x\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cramer-rao-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cramer-Rao不等式&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(I(\theta):=E[(\frac {d\ln f(X;\theta)}{d\theta})^2]&amp;gt;0\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;则有
+&lt;span class=&#34;math display&#34;&gt;\[Var_\theta[\psi(X_1,\dots,X_n)]\ge \frac{[g&amp;#39;(\theta)]^2}{nI(\theta)}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;证明见p. 28&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(I(\theta)\)&lt;/span&gt;叫做&lt;strong&gt;Fisher信息量&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;离散情形有类似的结论&lt;/li&gt;
+&lt;li&gt;C-R不等式的下界不一定达到，见例2.9, p30.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例&lt;/h2&gt;
+&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;未知，&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;已知。
+Fisher信息量为
+&lt;span class=&#34;math display&#34;&gt;\[I(\mu) = E[(\frac {d\ln f(X;\mu)}{d\mu})^2]=\frac 1{\sigma^4}E[(X-\mu)^2]=\frac 1{\sigma^2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[\bar X] = \frac{\sigma^2}{n}=\frac{1}{nI(\mu)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;可以证明：若&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;已知，则&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的估计量&lt;span class=&#34;math inline&#34;&gt;\(\frac 1n\sum_{i=1}^n(X_i-\mu)^2\)&lt;/span&gt;的方差达到了C-R不等式的下界。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;统计量的大样本性质&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;统计量的相合性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;统计量的渐近正态性&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;统计量的相合性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;（弱）相合估计&lt;/strong&gt;：称&lt;span class=&#34;math inline&#34;&gt;\(T_n(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的相合估计，如果对任何
+&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 有&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty}P(|T_n-g(\theta)|\ge \epsilon)=0.\]&lt;/span&gt; 等价于依概率收敛&lt;span class=&#34;math inline&#34;&gt;\(T_n\stackrel p\to g(\theta)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;强相合估计&lt;/strong&gt;：称&lt;span class=&#34;math inline&#34;&gt;\(T_n(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的强相合估计，如果&lt;span class=&#34;math display&#34;&gt;\[P(\lim_{n\to\infty}T_n=g(\theta))=1.\]&lt;/span&gt; 等价于概率1收敛&lt;span class=&#34;math inline&#34;&gt;\(T_n\stackrel {w.p.1}\to g(\theta)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由强大数定理知，矩估计一般是强估计的&lt;/li&gt;
+&lt;li&gt;最大似然估计在十分广泛的条件下也是有强相合性（见p31)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例&lt;/h2&gt;
+&lt;p&gt;设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为其样本，证明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样本均值&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的相合估计量；&lt;/li&gt;
+&lt;li&gt;样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶原点矩&lt;span class=&#34;math inline&#34;&gt;\(M_k\)&lt;/span&gt;是总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶原点矩&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]\)&lt;/span&gt;的相合估计量；&lt;/li&gt;
+&lt;li&gt;样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;和修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^{2*}\)&lt;/span&gt;都是&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的相合估计量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：由辛钦大数定律知，&lt;span class=&#34;math inline&#34;&gt;\(\bar X\stackrel p\to \mu\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(M_k\stackrel p\to E[X^k]\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_n^2 = \frac{1}{n}\sum_{i=1}^nX_i^2-\bar X^2\stackrel p\to E[X^2]-E[X]^2=\sigma^2\]&lt;/span&gt;
+同理，&lt;span class=&#34;math inline&#34;&gt;\(S_n^{2*}=\frac{n-1}{n}S_n^2\stackrel p\to \sigma^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：这里用到依概率收敛的性质：假设&lt;span class=&#34;math inline&#34;&gt;\(X_n\stackrel p\to X,\ Y_n\stackrel p\to Y\)&lt;/span&gt;. 则&lt;span class=&#34;math inline&#34;&gt;\(X_n+Y_n\stackrel p\to X+Y\)&lt;/span&gt;. 如果&lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt;连续，则&lt;span class=&#34;math inline&#34;&gt;\(g(X_n)\stackrel p\to g(X)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(g(X_n,Y_n)\stackrel p\to g(X,Y)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;相合估计的充分条件&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\ \theta\in \Theta\)&lt;/span&gt;, 统计量&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。如果
+&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)] = g(\theta),\ \lim_{n\to \infty}Var[T(X_1,\dots,X_n)] =0,\]&lt;/span&gt;
+则&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的相合估计量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：令&lt;span class=&#34;math inline&#34;&gt;\(T_n=T(X_1,\dots,X_n)\)&lt;/span&gt;.
+注意到&lt;span class=&#34;math display&#34;&gt;\[\{|T_n-g(\theta)|\ge \epsilon\}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\cup \{|E[T_n]-g(\theta)|\ge \epsilon/2\}.\]&lt;/span&gt;
+对任意&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 存在&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;, 当&lt;span class=&#34;math inline&#34;&gt;\(n\ge N\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(|E[T_n]-g(\theta)|&amp;lt; \epsilon/2\)&lt;/span&gt;.
+此时&lt;span class=&#34;math display&#34;&gt;\[\{|T_n-g(\theta)|\ge \epsilon \}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\]&lt;/span&gt;
+所以，
+&lt;span class=&#34;math display&#34;&gt;\[P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR[T_n]}{\epsilon^2}\to 0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;统计量的渐近正态性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。如果存在一个趋于零的正数列&lt;span class=&#34;math inline&#34;&gt;\(\sigma_n(\theta)\)&lt;/span&gt;, 使得&lt;span class=&#34;math inline&#34;&gt;\([T-g(\theta)]/\sigma_n(\theta)\)&lt;/span&gt;的分布收敛到标准正态分布，则称&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;渐近正态估计&lt;/strong&gt;，或称&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;具备&lt;strong&gt;渐近正态性&lt;/strong&gt;，即&lt;span class=&#34;math display&#34;&gt;\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;最大似然估计的渐近正态性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的密度为&lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta)\)&lt;/span&gt;, 其参数空间&lt;span class=&#34;math inline&#34;&gt;\(\Theta\)&lt;/span&gt;是非退化区间，且满足下列正则性条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\frac{\partial \ln f}{\partial\theta}, \frac{\partial^2 \ln f}{\partial\theta^2}, \frac{\partial^3 \ln f}{\partial\theta^3}\)&lt;/span&gt; 都存在&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, 有&lt;span class=&#34;math inline&#34;&gt;\(|\frac{\partial \ln f}{\partial\theta}|&amp;lt;F_1(x),\ |\frac{\partial^2 \ln f}{\partial\theta^2}|&amp;lt;F_2(x),\ |\frac{\partial^3 \ln f}{\partial\theta^3}|&amp;lt;H(x),\)&lt;/span&gt; 其中&lt;span class=&#34;math inline&#34;&gt;\(F_1(x),F_2(x)\)&lt;/span&gt;在实数轴上可积，且&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty H(x)f(x;\theta)dx&amp;lt;M\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, 有&lt;span class=&#34;math inline&#34;&gt;\(0&amp;lt;I(\theta)=E[(\frac{\partial \ln f}{\partial\theta})^2]&amp;lt;\infty\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;则在参数真值&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(\Theta\)&lt;/span&gt;内点的情况下，其似然方程有一个解&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}_L\)&lt;/span&gt;存在，且&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_L\stackrel{p}{\to}\theta,\ \hat{\theta}_L\stackrel{\cdot}{\sim} N(\theta,[nI(\theta)]^{-1}).\]&lt;/span&gt;&lt;/p&gt;
+&lt;div id=&#34;.-.--1992&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;证明参考：陈希孺. 概率论与数理统计. 中国科技大学出版社, 1992&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2 区间估计&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;区间估计的定义&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单个正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;两个独立正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;非正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;区间估计的定义&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\ \theta\in \Theta\)&lt;/span&gt;. 如果统计量&lt;span class=&#34;math inline&#34;&gt;\(T_1(X_1,\dots,X_n),T_2(X_1,\dots,X_n)\)&lt;/span&gt;使得对给定的&lt;span class=&#34;math inline&#34;&gt;\(\alpha\in(0,1)\)&lt;/span&gt;有
+&lt;span class=&#34;math display&#34;&gt;\[P(T_1\le g(\theta)\le T_2)=1-\alpha,\ \forall \theta\in\Theta,\]&lt;/span&gt;
+则称随机区间&lt;span class=&#34;math inline&#34;&gt;\([T_1,T_2]\)&lt;/span&gt;为参数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;置信度（置信概率）&lt;/strong&gt;为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的&lt;strong&gt;置信区间&lt;/strong&gt;，&lt;span class=&#34;math inline&#34;&gt;\(T_1,T_2\)&lt;/span&gt;分别称为&lt;strong&gt;置信下界&lt;/strong&gt;和&lt;strong&gt;置信上界&lt;/strong&gt;。&lt;/p&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;说明&lt;/h3&gt;
+&lt;p&gt;在一些情况下，定义中的“等式”无解，此时考虑的置信区间&lt;span class=&#34;math inline&#34;&gt;\([T_1,T_2]\)&lt;/span&gt;应满足
+&lt;span class=&#34;math display&#34;&gt;\[P(T_1\le g(\theta)\le T_2)\ge 1-\alpha,\ \forall \theta\in\Theta.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;置信区间示意图&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;CI.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;区间估计基本步骤——枢轴量法&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：找到&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的区间估计，置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Step 1: 选择恰当的&lt;strong&gt;枢轴量&lt;/strong&gt;&lt;span class=&#34;math inline&#34;&gt;\(G(X_1,\dots,X_n;g(\theta))\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;不含有其他未知参数&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;的分布确定，即不含未知参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;一般地，&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;是关于参数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的单调函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Step 2: 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(P(a\le G\le b)=1-\alpha\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Step 3: 转化不等式&lt;span class=&#34;math inline&#34;&gt;\(a\le G\le b\)&lt;/span&gt;为如下形式：
+&lt;span class=&#34;math display&#34;&gt;\[T_1\le g(\theta)\le T_2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;指数分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：若总体为指数分布&lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;，求未知参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的置信区间。&lt;/p&gt;
+&lt;p&gt;Step 1: 选择枢轴量
+&lt;span class=&#34;math display&#34;&gt;\[G(X_1,\dots,X_n;\lambda) = 2\lambda  n\bar X\sim Ga(n,1/2)=\chi^2(2n)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Step 2: 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(P(a\le G\le b)=1-\alpha\)&lt;/span&gt;，即
+&lt;span class=&#34;math display&#34;&gt;\[P(a\le 2\lambda  n\bar X\le b)=1-\alpha\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Step 3: &lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math inline&#34;&gt;\([a/(2n\bar X),b/(2n\bar X)]\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;ab&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;如何选择&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;平分法：&lt;span class=&#34;math inline&#34;&gt;\(a=\chi^2_{\alpha/2}(2n), b=\chi^2_{1-\alpha/2}(2n)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最优方案？参考书p35&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;平分法示意图&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;chiCI.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2.1 单个正态总体的区间估计&lt;/h2&gt;
+&lt;p&gt;设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 如何找出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;已知方差，求期望的置信区间&lt;/h2&gt;
+&lt;p&gt;由抽样定理知，&lt;span class=&#34;math inline&#34;&gt;\(\bar{X}\sim N(\mu,\sigma^2/n)\)&lt;/span&gt;. 因此
+&lt;span class=&#34;math inline&#34;&gt;\(U = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}+a\frac{\sigma}{\sqrt{n}},\  \bar{X}+b\frac{\sigma}{\sqrt{n}}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=u_{1-\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;方差未知，求期望的置信区间&lt;/h2&gt;
+&lt;p&gt;由抽样定理知，
+&lt;span class=&#34;math display&#34;&gt;\[T = \frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}= \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-a\frac{S_n^*}{\sqrt{n}},\  \bar{X}+b\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-a\frac{S_n}{\sqrt{n-1}},\  \bar{X}+b\frac{S_n}{\sqrt{n-1}}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=t_{1-\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：假设OPPO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;. 随机抽取6部手机测试通话时间（单位：小时）为
+&lt;span class=&#34;math display&#34;&gt;\[1.6,\ 2.1,\ 1.9,\ 1.8,\ 2.2,\ 2.1,\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2=0.06\)&lt;/span&gt;, 求&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;未知, 求&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;查表知，&lt;span class=&#34;math inline&#34;&gt;\(u_{1-\alpha/2}=u_{0.975}=1.96,\ t_{1-\alpha/2}=t_{0.975}=2.5706\)&lt;/span&gt;. 且&lt;span class=&#34;math inline&#34;&gt;\(\bar X = 1.95,\ S_n=0.206\)&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\left[1.95-1.96\frac{\sqrt{0.06}}{\sqrt{6}},\  1.95+1.96\frac{\sqrt{0.06}}{\sqrt{6}}\right]=[1.754,\ 2.146]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\left[1.95-2.5706\frac{0.206}{\sqrt{6-1}},\  1.95+2.5706\frac{0.206}{\sqrt{6-1}}\right]=[1.713,\ 2.187]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一些思考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;分析这两种的结果会发现，由同一组样本观察值，按同样的置信概率，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;计算出的置信区间因为&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;的是否已知会不一样。这因为：当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;为已知时，我们掌握的信息多一些，在其他条件相同的情况下，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的估计精度要高一些，即表现为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间长度要小些。反之，当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;为未知时，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的估计精度要低一些，即表现为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间长度在大一些。这是因为当&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;比较小时，&lt;span class=&#34;math inline&#34;&gt;\(t_{1-\alpha/2}(n-1)&amp;gt;u_{1-\alpha/2}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;还可以发现，当样本量&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;不断增大时，两种情况下的置信区间会慢慢接近。
+也就意味着大样本信息可以弥补&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;的缺失带来的偏差（&lt;strong&gt;大数定律&lt;/strong&gt;）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;已知期望，求方差的置信区间&lt;/h2&gt;
+&lt;p&gt;构造统计量
+&lt;span class=&#34;math display&#34;&gt;\[T =\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2(n)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left(\chi^2_{\alpha/2}(n)\le\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n)\right) = 1-\alpha\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{1-\alpha/2}(n)},\  \frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{\alpha/2}(n)}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;期望未知，求方差的置信区间&lt;/h2&gt;
+&lt;p&gt;构造统计量
+&lt;span class=&#34;math display&#34;&gt;\[T =\frac{nS_n^2}{\sigma^2}=\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[P\left(\chi^2_{\alpha/2}(n-1)\le\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n-1)\right) = 1-\alpha\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{\alpha/2}(n-1)}\right]=\left[\frac{nS_n^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{nS_n^2}{\chi^2_{\alpha/2}(n-1)}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2.2 两个独立正态总体的区间估计&lt;/h2&gt;
+&lt;p&gt;设两个独立总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma_1^2)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Y\sim N(\mu_2,\sigma^2)\)&lt;/span&gt;, 如何找出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间？其中&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本为&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_m\)&lt;/span&gt;, 样本方差为&lt;span class=&#34;math inline&#34;&gt;\(S_{1m}^2\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;的样本为&lt;span class=&#34;math inline&#34;&gt;\(Y_1,\dots,Y_n\)&lt;/span&gt;, 样本方差为&lt;span class=&#34;math inline&#34;&gt;\(S_{2n}^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2,\sigma_2^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;以知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2=\sigma_2^2=\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\mu_1,\mu_2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\mu_1,\mu_2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;应用场景&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;比较男生、女生两个群体的身高/体重/成绩平均水平的差异&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;已知方差，求均值差的置信区间&lt;/h2&gt;
+&lt;p&gt;选择枢轴量：
+&lt;span class=&#34;math display&#34;&gt;\[U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\sim N(0,1).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[(\bar{X}-\bar{Y})-u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n},\  (\bar{X}-\bar{Y})+u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;已知方差相同，求均值差的置信区间&lt;/h2&gt;
+&lt;p&gt;选择枢轴量：
+&lt;span class=&#34;math display&#34;&gt;\[T=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;span class=&#34;math inline&#34;&gt;\(S_w =\sqrt{(mS_{1m}^2+nS_{2n}^2)/(m+n-2)}.\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(t_{1-\alpha/2}(m+n-2)=t_{1-\alpha/2}\)&lt;/span&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[(\bar{X}-\bar{Y})-t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n},\  (\bar{X}-\bar{Y})+t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-4&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;例&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：假设OPPO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma_1^2)\)&lt;/span&gt;, VIVO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(Y\sim N(\mu_2,\sigma_2^2)\)&lt;/span&gt;. 随机抽取6部手机测试通话时间（单位：小时）为&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{OPPO}:\ 1.6,\   2.1,\  1.9,\  1.8,\   2.2,\   2.1\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{VIVO}:\ 1.8,\   2.2,\ 1.5,\   1.4,\   2.0,\   1.7\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;求&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = 0.06,\ \sigma_2^2 = 0.08\)&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 =\sigma_2^2\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(m=n=6\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bar{X}=1.95,\ \bar{Y}=1.77\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(S_{1m}^2=0.042, S_{2n}^2=0.064, S_w = 0.252.\)&lt;/span&gt; 查表知，&lt;span class=&#34;math inline&#34;&gt;\(u_{0.975}=1.96\)&lt;/span&gt;,
+&lt;span class=&#34;math inline&#34;&gt;\(t_{0.975}(10)=2.23\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一种情况为&lt;span class=&#34;math inline&#34;&gt;\([-0.12,\ 0.48]\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;第二种情况为&lt;span class=&#34;math inline&#34;&gt;\([-0.14,\ 0.50]\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;已知均值，求方差比的置信区间&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_1 =\sum_{i=1}^m\frac{(X_i-\mu_1)^2}{\sigma_1^2}\sim \chi^2(m),\ T_2 =\sum_{i=1}^n\frac{(Y_i-\mu_2)^2}{\sigma_2^2}\sim \chi^2(n)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{T_1/m}{T_2/n}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m,n)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{1}{F_{1-\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2},\ \frac{1}{F_{\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}  \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;均值未知，求方差比的置信区间&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_1=\frac{(m-1)S_{1m}^{*2}}{\sigma_1^2}=\sum_{i=1}^m\frac{(X_i-\bar X)^2}{\sigma_1^2}\sim \chi^2(m-1)\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[T_2=\frac{(n-1)S_{2n}^{*2}}{\sigma_2^2}=\sum_{i=1}^n\frac{(Y_i-\bar Y)^2}{\sigma_2^2}\sim \chi^2(n-1)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\frac{T_1/(m-1)}{T_2/(n-1)}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m-1,n-1)\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{1}{F_{1-\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}},\ \frac{1}{F_{\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}}  \right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一些说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;枢轴量法的难点在于寻找枢轴量，没有统一的方法。正态总体下的应用应当熟练掌握。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;另外一种求置信区间方法叫&lt;strong&gt;统计量方法&lt;/strong&gt;，不作要求，感兴趣参考教材pp42-46.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“最优的置信区间”是否存在？目前尚缺乏对置信区间的优良性讨论。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2.3 非正态总体参数的区间估计&lt;/h2&gt;
+&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(\mu=E[X],\sigma^2=Var[X]\)&lt;/span&gt;分别为总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望和方差。
+由中心极限定理，
+&lt;span class=&#34;math display&#34;&gt;\[\frac{\bar X-\mu}{\sigma/\sqrt{n}}\stackrel{\cdot}\sim N(0,1).\]&lt;/span&gt;
+当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;已知时，总体期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的区间估计可以近似为
+&lt;span class=&#34;math display&#34;&gt;\[\left[\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right].\]&lt;/span&gt;
+如果&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;未知，可以用样本标准差&lt;span class=&#34;math inline&#34;&gt;\(S_n\)&lt;/span&gt;（或者修正样本差&lt;span class=&#34;math inline&#34;&gt;\(S_n^*\)&lt;/span&gt;）替代&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;，
+&lt;span class=&#34;math display&#34;&gt;\[\left[\bar X-u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}\right].\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3 分布的估计&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;分布函数的估计&lt;/li&gt;
+&lt;li&gt;密度函数的直方图估计&lt;/li&gt;
+&lt;li&gt;密度函数的核估计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;分布函数的估计&lt;/h2&gt;
+&lt;p&gt;经验分布函数：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
+0,&amp;amp;\ x&amp;lt;x_{(1)}\\
+1/n,&amp;amp;\ x_{(1)}\le x&amp;lt;x_{(2)}\\
+2/n,&amp;amp;\ x_{(2)}\le x&amp;lt;x_{(3)}\\
+&amp;amp;\vdots\\
+k/n,&amp;amp;\ x_{(k)}\le x&amp;lt;x_{(k+1)}\\
+&amp;amp;\vdots\\
+1,&amp;amp;\ x&amp;gt;x_{(n)}\\
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3.1 密度函数的估计——直方图法&lt;/h2&gt;
+&lt;p&gt;只考虑一维连续型总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim f(x)\)&lt;/span&gt;。设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为样本，&lt;span class=&#34;math inline&#34;&gt;\(R_n(a,b)\)&lt;/span&gt;表示落在区间&lt;span class=&#34;math inline&#34;&gt;\((a,b]\)&lt;/span&gt;中的个数。由中值定理得，存在&lt;span class=&#34;math inline&#34;&gt;\(x_0\in(a,b]\)&lt;/span&gt;使得
+&lt;span class=&#34;math display&#34;&gt;\[f(x_0)=\frac 1{b-a}\int_a^b f(x)dx\approx \frac {R_n(a,b)}{n(b-a)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(-\infty&amp;lt;t_0&amp;lt;t_1&amp;lt;\dots&amp;lt;t_m&amp;lt;\infty\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(t_{i+1}-t_i=h&amp;gt;0\)&lt;/span&gt;. 直方图法的密度估计为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+f_n(x)=
+\begin{cases}
+\frac{R_n(t_i,t_{i+1})}{nh},\ x\in(t_i,t_{i+1}],i=0,\dots,m-1\\
+0, x\le t_0,x&amp;gt;t_m
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;实际上选取&lt;span class=&#34;math inline&#34;&gt;\(t_0\)&lt;/span&gt;为比&lt;span class=&#34;math inline&#34;&gt;\(X_{(1)}\)&lt;/span&gt;略小的数，选取&lt;span class=&#34;math inline&#34;&gt;\(t_m\)&lt;/span&gt;为比&lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt;略大的数。&lt;strong&gt;经验法则&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(m\approx 1+3.322\log_{10} n.\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;案例：身高数据&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;直方图法的相合性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(f(\cdot)\)&lt;/span&gt;在点&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;连续且&lt;span class=&#34;math inline&#34;&gt;\(\lim_n h_n=0,\lim_n nh_n=\infty\)&lt;/span&gt;, 则对任何&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;有
+&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty} P(|f_n(x)-f(x)|\ge \epsilon)=0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(f(\cdot)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}\)&lt;/span&gt;上一致连续，&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty |x|^\delta d x&amp;lt;\infty\)&lt;/span&gt;(对某个&lt;span class=&#34;math inline&#34;&gt;\(\delta&amp;gt;0\)&lt;/span&gt;), 且&lt;span class=&#34;math inline&#34;&gt;\(\lim_n h_n=0,h_n\ge (\ln n)^2/n\)&lt;/span&gt;, 则
+&lt;span class=&#34;math display&#34;&gt;\[P(\lim_{n\to\infty} \sup_x|f_n(x)-f(x)|=0)=1.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;证明见书pp54-55.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3.2 核估计法&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;中心差分&lt;/strong&gt;：
+&lt;span class=&#34;math display&#34;&gt;\[f(x)\approx \frac{F(x+h)-F(x-h)}{2h}\approx \frac{F_n(x+h)-F_n(x-h)}{2h}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n 1\{x-h&amp;lt;X_i\le x+h\}=\frac{1}{2hn}\sum_{i=1}^n K_0\left(\frac{x-X_i}{h}\right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;其中
+&lt;span class=&#34;math display&#34;&gt;\[K_0(x)= \frac 12 1\{-1\le x&amp;lt;1\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核函数&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(K(x)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}\)&lt;/span&gt;上的非负函数且满足&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty K(x)=1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核估计&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;常用的核函数&lt;/h2&gt;
+&lt;p&gt;均匀核函数：
+&lt;span class=&#34;math display&#34;&gt;\[K_0(x)= \frac 12 1\{-1\le x\le1\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[K_1(x)= 1\{-1/2\le x\le1/2\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;正态核函数：
+&lt;span class=&#34;math display&#34;&gt;\[K_2(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;核估计的相合性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设核函数&lt;span class=&#34;math inline&#34;&gt;\(K(x)\)&lt;/span&gt;满足条件
+&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty (K(x))^2 dx&amp;lt;\infty,\ \lim_{|x|\to \infty} |x|K(x)=0,\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;又密度函数&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;在点&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;处连续，且&lt;span class=&#34;math inline&#34;&gt;\(h_n\to 0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(nh_n\to\infty\)&lt;/span&gt;, 则对一切&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 有
+&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty} P(|\hat{f}_n(x)-f(x)|\ge \epsilon) = 0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;证明见pp56-58.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;案例：身高数据&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;案例：身高数据&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一些说明&lt;/h2&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;收敛速度的比较&lt;/h3&gt;
+&lt;p&gt;在满足一些正则性的条件（如，&lt;span class=&#34;math inline&#34;&gt;\(h_n\to 0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(nh_n\to\infty\)&lt;/span&gt;）下，可以证明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直方图法的均方误差为&lt;span class=&#34;math inline&#34;&gt;\(O(n^{-2/3})\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;核估计的均方误差为&lt;span class=&#34;math inline&#34;&gt;\(O(n^{-4/5})\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bandwidth-h_n&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;核估计的带宽(bandwidth) &lt;span class=&#34;math inline&#34;&gt;\(h_n\)&lt;/span&gt;如何选取?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;如果选择正态核函数，&lt;strong&gt;经验法则&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(h_n\approx 1.06S_nn^{-1/5}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level3&#34;&gt;
+&lt;h3&gt;延伸阅读&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Kernel_density_estimation&#34; class=&#34;uri&#34;&gt;https://en.wikipedia.org/wiki/Kernel_density_estimation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Kernel smoothing techniques used in finance&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;used in Approximate Bayesian Computation (ABC)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一些参考文献&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Liu, Guangwu; Hong, L. Jeff. Kernel estimation of the greeks for options with discontinuous payoffs. &lt;em&gt;Operations Research&lt;/em&gt;. Vol. 59, No. 1, pp. 96-108, 2011.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hong, L. Jeff; Juneja, Sandeep; Liu, Guangwu. Kernel smoothing for nested estimation with application to portfolio risk measurement. &lt;em&gt;Operations Research&lt;/em&gt;. Vol. 65, No. 3, pp. 657-673, 2017.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Amal B. Abdellah, Pierre L’Ecuyer, Art B. Owen, Florian Puchhammer. Density estimation by Randomized Quasi-Monte Carlo. &lt;a href=&#34;https://arxiv.org/abs/1807.06133&#34;&gt;arXiv:1807.06133&lt;/a&gt;, 2018&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>第二次作业</title>
       <link>/post/homework2/</link>
       <pubDate>Thu, 13 Sep 2018 00:00:00 +0000</pubDate>
@@ -182,195 +869,6 @@ lines(t,y,col=&amp;quot;red&amp;quot;) #画真实的正态分布函数图像&lt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;更高级的画图方式见&lt;code&gt;ggplot2&lt;/code&gt;, 初学者可先忽略&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>《数理统计》课程简介</title>
-      <link>/post/chap00/</link>
-      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap00/</guid>
-      <description>&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;教师简介&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;姓名&lt;/th&gt;
-&lt;th&gt;何志坚&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;职称&lt;/td&gt;
-&lt;td&gt;数学学院副教授&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;研究兴趣&lt;/td&gt;
-&lt;td&gt;统计模拟与计算、随机算法、金融工程&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;办公地址&lt;/td&gt;
-&lt;td&gt;五山校区四号楼4301&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;个人主页&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://www2.scut.edu.cn/math/2018/0118/c14638a254123/page.htm&#34;&gt;主页链接&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;邮箱&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:hezhijian@scut.edu.cn&#34;&gt;hezhijian@scut.edu.cn&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;教材&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;主要教材&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;数理统计学讲义（第3版），陈家鼎、孙山泽、李东风、刘力平编著，高等教育出版社。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;参考教材&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;数理统计学（第2版），茆诗松、吕晓玲编著，中国人民大学出版社。&lt;/li&gt;
-&lt;li&gt;高等数理统计学，陈希孺编著，中国科技大学出版社。&lt;/li&gt;
-&lt;li&gt;Introduction to Mathematical Statistics (Fifth Edition), R. V. Hogg, A. T. Craig. （高等教育出版社，影印版）&lt;/li&gt;
-&lt;li&gt;Mathematical Statistics (Second Edition), Jun Shao. （世界图书出版公司，影印版）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;教学安排&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;上课时间&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;1-16周，周一第三、四节，周三第一、二节，共64学时&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;上课地点&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;博学101&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;教学内容&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;《数理统计学讲义》第1-5章&lt;/li&gt;
-&lt;li&gt;《数理统计学》第1章&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;教学日历&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;内容&lt;/th&gt;
-&lt;th&gt;学时&lt;/th&gt;
-&lt;th&gt;要求&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;第一章 绪论&lt;/td&gt;
-&lt;td&gt;6&lt;/td&gt;
-&lt;td&gt;了解统计学的发展以及基本概念&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;第二章 估计&lt;/td&gt;
-&lt;td&gt;12&lt;/td&gt;
-&lt;td&gt;熟练掌握各种估计方法&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;第三章 假设检验&lt;/td&gt;
-&lt;td&gt;16&lt;/td&gt;
-&lt;td&gt;熟练掌握各种假设检验方法&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;第四章 回归分析&lt;/td&gt;
-&lt;td&gt;16&lt;/td&gt;
-&lt;td&gt;熟练掌握线性模型的建立与分析的技巧&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;第五章 方差分析&lt;/td&gt;
-&lt;td&gt;12&lt;/td&gt;
-&lt;td&gt;掌握方差分析的技巧&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;复习&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;考试重点复习&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;统计软件&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;本课程使用&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;R软件&lt;/code&gt;: &lt;a href=&#34;https://www.r-project.org/&#34; class=&#34;uri&#34;&gt;https://www.r-project.org/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;RStudio编辑器&lt;/code&gt;: &lt;a href=&#34;https://www.rstudio.com/&#34; class=&#34;uri&#34;&gt;https://www.rstudio.com/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;R软件参考资料&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://statweb.stanford.edu/~owen/courses/305-1415/RLabAutumn2011.pdf&#34;&gt;Rudy Angeles’ R tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;R语言实用教程，薛毅、陈立萍编著，清华大学出版社。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;其它选择&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Matlab&lt;/li&gt;
-&lt;li&gt;SAS&lt;/li&gt;
-&lt;li&gt;Python&lt;/li&gt;
-&lt;li&gt;C/C++&lt;/li&gt;
-&lt;li&gt;Stata&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;数据科学中常用软件的比较&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;software_compare.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;考核方式&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;最终成绩 = 平时成绩（30%）+期末成绩（70%）&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;平时成绩&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;作业（20%），其中2-3次大作业（案例分析）&lt;/li&gt;
-&lt;li&gt;课堂表现（5%）&lt;/li&gt;
-&lt;li&gt;考勤（5%）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;期末考试&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;闭卷&lt;/li&gt;
-&lt;li&gt;百分制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;课程管理&lt;/h2&gt;
-&lt;div id=&#34;app&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;雨课堂APP管理平台&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;发布课程通知（课件、参考资料、作业等）&lt;/li&gt;
-&lt;li&gt;课堂互动（课堂小测、提问）&lt;/li&gt;
-&lt;li&gt;收集作业（&lt;strong&gt;只接受电子版作业&lt;/strong&gt;：手写拍照/word/Rmarkdown/Latex）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;具体功能介绍见雨课堂网址：&lt;a href=&#34;http://ykt.io/&#34; class=&#34;uri&#34;&gt;http://ykt.io/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;推荐使用Rmarkdown写作：&lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; class=&#34;uri&#34;&gt;https://rmarkdown.rstudio.com/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
