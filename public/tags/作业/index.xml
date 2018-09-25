@@ -7,10 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Thu, 13 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第三次作业</title>
+      <link>/post/homework3/</link>
+      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework3/</guid>
+      <description>（课本p.59, 第2题）设\(X\)的分布密度函数为\[f(x)=\frac{1}{2\sigma} e^{-|x|/\sigma}\ (\sigma&amp;gt;0),\]
+\(X_1,\dots,X_n\)是\(X\)的样本，求\(\sigma\)的最大似然估计。
+（课本p.59, 第3题）设\(X_1,\dots,X_n\)是来自\([\theta,\theta+1]\)上均匀分布的样本，其中\(\theta\in\mathbb{R}\), 证明\(\theta\)的最大似然估计不止一个，并求出所有的最大似然估计。
+（课本p.59, 第4题）设随机变量\(X\)以均等机会按\(N(0,1)\)分布取值和按\(N(\mu,\sigma^2)\)分布取值，其中\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\). 这时\(X\)的分布密度函数为这两个分布的密度的平均，即\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]
+设\(X_1,\dots,X_n\)为此混合分布的简单随机样本，证明\(\mu,\sigma^2\)不存在最大似然估计。能否通过矩法估计\(\mu,\sigma^2\)？
+（附加题，选做）若考虑更一般的混合分布：
+\[f(x;\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]其中\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&amp;gt;0\), 你能求出未知参数\(\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2\)的矩估计吗？
+（课本p.59, 第9题）设\(X_1,\dots,X_n\)是来自分布密度为\[f(x;\theta)=\frac{\Gamma(\theta+1)}{\Gamma(\theta)\Gamma(1)}x^{\theta-1}1\{0\le x\le 1\}\]
+的总体的样本，其中\(\theta&amp;gt;0\), 试用矩法估计\(\theta\).
+（课本p.60, 第10题）设\(X_1,\dots,X_n\)是来自分布密度为\[f(x;c,\theta)=\frac{1}{2\theta}1\{c-\theta\le x\le c+\theta\}\]
+的总体的样本，其中\(\theta&amp;gt;0,c\in\mathbb{R}\), 试用矩法估计\(c,\theta\).</description>
+    </item>
     
     <item>
       <title>第二次作业</title>
