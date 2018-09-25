@@ -27,8 +27,8 @@
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为此混合分布的简单随机样本，证明&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;不存在最大似然估计。能否通过矩法估计&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;？&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;（附加题，选做）若考虑更一般的混合分布：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f(x;\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]&lt;/span&gt;
-其中&lt;span class=&#34;math inline&#34;&gt;\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&amp;gt;0\)&lt;/span&gt;, 你能求出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2\)&lt;/span&gt;的矩估计吗？&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f(x;\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]&lt;/span&gt;
+其中&lt;span class=&#34;math inline&#34;&gt;\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&amp;gt;0\)&lt;/span&gt;, 你能求出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2\)&lt;/span&gt;的矩估计吗？&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;（课本p.59, 第9题）设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自分布密度为
 &lt;span class=&#34;math display&#34;&gt;\[f(x;\theta)=\frac{\Gamma(\theta+1)}{\Gamma(\theta)\Gamma(1)}x^{\theta-1}1\{0\le x\le 1\}\]&lt;/span&gt;&lt;/p&gt;

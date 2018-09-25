@@ -32,8 +32,8 @@ $$f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\
 
 （附加题，选做）若考虑更一般的混合分布：
 
-$$f(x;\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}$$
-其中$\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2>0$, 你能求出未知参数$\lambda,\mu_1,\sigma_1,\mu_1,\sigma_2$的矩估计吗？
+$$f(x;\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}$$
+其中$\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2>0$, 你能求出未知参数$\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2$的矩估计吗？
 
 ---
 
