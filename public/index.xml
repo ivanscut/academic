@@ -747,11 +747,14 @@ f_n(x)=
       <guid>/post/homework1/</guid>
       <description>&lt;p&gt;韦布尔分布(Weibull distribution)族
 &lt;span class=&#34;math display&#34;&gt;\[p(x)=\frac k\lambda\left(\frac{x}{\lambda}\right)^{k-1}e^{-(x/\lambda)^k}1\{x\ge 0\},k&amp;gt;0,\lambda&amp;gt;0\]&lt;/span&gt;
-是不是指数型分布族？&lt;/p&gt;
+是不是指数型分布族？&lt;strong&gt;答案：B&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;A. 是&lt;/p&gt;
 &lt;p&gt;B. 不是&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：这里的未知参数有两个，分别是&lt;span class=&#34;math inline&#34;&gt;\(k,\lambda\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;p&gt;从均值为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的总体中随机抽取样本量为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;均未知，指出下列样本函数中哪些为统计量（ ）。&lt;/p&gt;
+&lt;p&gt;从均值为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的总体中随机抽取样本量为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;均未知，指出下列样本函数中哪些为统计量（ ）。&lt;strong&gt;答案：ADE&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(T_1=x_1+x_2\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(T_2=x_1+x_2-2\mu\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(T_3=(x_1-\mu)/\sigma\)&lt;/span&gt;&lt;/p&gt;
@@ -759,6 +762,13 @@ f_n(x)=
 &lt;p&gt;E. &lt;span class=&#34;math inline&#34;&gt;\(T_5=\frac 1 n\sum_{i=1}^n(x_i-S_n)^2\)&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(\bar x_n,s_n^2\)&lt;/span&gt;表示样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;的样本均值与样本方差。已知&lt;span class=&#34;math display&#34;&gt;\[n=15,\bar x_{n}=168, s_n=11.43, x_{n+1}=170.\]&lt;/span&gt; 求&lt;span class=&#34;math inline&#34;&gt;\(\bar x_{n+1},s_{n+1}^2\)&lt;/span&gt;，以及修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(s_{n+1}^{*2}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答案来自：&lt;a href=&#34;mailto:张华@16统计&#34;&gt;张华@16统计&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;1张华-16统计.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：有同学把已知条件&lt;span class=&#34;math inline&#34;&gt;\(s_n=11.43\)&lt;/span&gt;看成&lt;span class=&#34;math inline&#34;&gt;\(s_n^2=11.43\)&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1\sim Ga(\alpha_1,\lambda)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_2\sim Ga(\alpha_2,\lambda)\)&lt;/span&gt;, 且&lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;独立。证明&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -766,8 +776,19 @@ f_n(x)=
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(Y_2=X_1/(X_1+X_2)\sim Beta(\alpha_1,\alpha_2)\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(Y_1\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(Y_2\)&lt;/span&gt;独立&lt;/li&gt;
 &lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答案来自：&lt;a href=&#34;mailto:王博@16统计&#34;&gt;王博@16统计&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;2王博-16统计.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：大部分同学每一问都分别给出证明；实际上只需在求第三问时算出他们的联合密度函数即可，容易观察出联合密度函数是“可分离”的。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自某连续总体的一个样本，总体的分布函数&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;是连续严增函数，证明：统计量&lt;span class=&#34;math inline&#34;&gt;\(T=-2\sum_{i=1}^n \ln F(X_i)\sim \chi^2(2n)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答案来自：&lt;a href=&#34;mailto:刘霏@16信管&#34;&gt;刘霏@16信管&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;3刘霏-16信管.jpeg&#34; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;从正态总体&lt;span class=&#34;math inline&#34;&gt;\(N(52,6.3^2)\)&lt;/span&gt;中随机抽取容量为36的样本。&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -775,6 +796,10 @@ f_n(x)=
 &lt;li&gt;求&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;落在区间&lt;span class=&#34;math inline&#34;&gt;\((50.8,53.8)\)&lt;/span&gt;内的概率；&lt;/li&gt;
 &lt;li&gt;若要以&lt;span class=&#34;math inline&#34;&gt;\(99\%\)&lt;/span&gt;的概率保证&lt;span class=&#34;math inline&#34;&gt;\(|\bar X-52|&amp;lt;2\)&lt;/span&gt;, 试问样本量至少应取多少？&lt;/li&gt;
 &lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;答案来自：&lt;a href=&#34;mailto:甘桃菁@16信计&#34;&gt;甘桃菁@16信计&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;4.jpeg&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
