@@ -154,7 +154,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link" href="/#posts">
+          <a class="nav-link" href="/post">
             
             <span>Posts</span>
             
@@ -266,45 +266,6 @@
 
   
   
-<div class="share-box" aria-hidden="true">
-  <ul class="share">
-    <li>
-      <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=%e7%ac%ac%e4%b8%89%e6%ac%a1%e4%bd%9c%e4%b8%9a&amp;url=%2fpost%2fhomework3%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-    <li>
-      <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2fhomework3%2f"
-         target="_blank" rel="noopener">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-    </li>
-    <li>
-      <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fhomework3%2f&amp;title=%e7%ac%ac%e4%b8%89%e6%ac%a1%e4%bd%9c%e4%b8%9a"
-         target="_blank" rel="noopener">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </li>
-    <li>
-      <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2fhomework3%2f&amp;title=%e7%ac%ac%e4%b8%89%e6%ac%a1%e4%bd%9c%e4%b8%9a"
-         target="_blank" rel="noopener">
-        <i class="fab fa-weibo"></i>
-      </a>
-    </li>
-    <li>
-      <a class="email"
-         href="mailto:?subject=%e7%ac%ac%e4%b8%89%e6%ac%a1%e4%bd%9c%e4%b8%9a&amp;body=%2fpost%2fhomework3%2f">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-
 
   
 
@@ -322,7 +283,9 @@
 <span class="math display">\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]</span></p>
 <p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为此混合分布的简单随机样本，证明<span class="math inline">\(\mu,\sigma^2\)</span>不存在最大似然估计。能否通过矩法估计<span class="math inline">\(\mu,\sigma^2\)</span>？</p>
 <hr />
-<p>（附加题，选做）若考虑更一般的混合分布：</p>
+<p>（附加题I，选做）考虑上题的模型。设<span class="math inline">\(Y\)</span>为一随机变量，<span class="math inline">\(Y=1\)</span>表示<span class="math inline">\(X\)</span>来自<span class="math inline">\(N(0,1)\)</span>分布，<span class="math inline">\(Y=0\)</span>表示<span class="math inline">\(X\)</span>来自<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布，即<span class="math inline">\(Y\sim b(1,0.5)\)</span>. 假设我们可以观测<span class="math inline">\(Y_i\)</span>的值，基于样本<span class="math inline">\((X_i,Y_i),i=1,\dots,n\)</span>，是否可以求出<span class="math inline">\(\mu,\sigma^2\)</span>的最大似然估计？事实上，<span class="math inline">\(Y_i\)</span>的值不可观测（通常称为潜变量），此时你有没有更好的办法估计<span class="math inline">\(\mu,\sigma^2\)</span>？</p>
+<hr />
+<p>（附加题II，选做）若考虑更一般的混合分布：</p>
 <p><span class="math display">\[f(x;\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]</span>
 其中<span class="math inline">\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&gt;0\)</span>, 你能求出未知参数<span class="math inline">\(\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2\)</span>的矩估计吗？</p>
 <hr />
@@ -363,9 +326,9 @@
         
         <li><a href="/post/chap02/">第二章：估计</a></li>
         
-        <li><a href="/post/ex1-1/">R的基本画图技巧</a></li>
-        
         <li><a href="/post/chap01/">第一章：绪论</a></li>
+        
+        <li><a href="/post/ex1-1/">R的基本画图技巧</a></li>
         
       </ul>
     </div>

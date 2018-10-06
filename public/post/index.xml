@@ -23,7 +23,8 @@
 （课本p.59, 第3题）设\(X_1,\dots,X_n\)是来自\([\theta,\theta+1]\)上均匀分布的样本，其中\(\theta\in\mathbb{R}\), 证明\(\theta\)的最大似然估计不止一个，并求出所有的最大似然估计。
 （课本p.59, 第4题）设随机变量\(X\)以均等机会按\(N(0,1)\)分布取值和按\(N(\mu,\sigma^2)\)分布取值，其中\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\). 这时\(X\)的分布密度函数为这两个分布的密度的平均，即\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]
 设\(X_1,\dots,X_n\)为此混合分布的简单随机样本，证明\(\mu,\sigma^2\)不存在最大似然估计。能否通过矩法估计\(\mu,\sigma^2\)？
-（附加题，选做）若考虑更一般的混合分布：
+（附加题I，选做）考虑上题的模型。设\(Y\)为一随机变量，\(Y=1\)表示\(X\)来自\(N(0,1)\)分布，\(Y=0\)表示\(X\)来自\(N(\mu,\sigma^2)\)分布，即\(Y\sim b(1,0.5)\). 假设我们可以观测\(Y_i\)的值，基于样本\((X_i,Y_i),i=1,\dots,n\)，是否可以求出\(\mu,\sigma^2\)的最大似然估计？事实上，\(Y_i\)的值不可观测（通常称为潜变量），此时你有没有更好的办法估计\(\mu,\sigma^2\)？
+（附加题II，选做）若考虑更一般的混合分布：
 \[f(x;\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]其中\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&amp;gt;0\), 你能求出未知参数\(\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2\)的矩估计吗？
 （课本p.59, 第9题）设\(X_1,\dots,X_n\)是来自分布密度为\[f(x;\theta)=\frac{\Gamma(\theta+1)}{\Gamma(\theta)\Gamma(1)}x^{\theta-1}1\{0\le x\le 1\}\]
 的总体的样本，其中\(\theta&amp;gt;0\), 试用矩法估计\(\theta\).
@@ -176,6 +177,17 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 the posterior distribution is\[p(\theta|y) \propto p(\theta)p(y|\theta)\propto p(\theta)\theta^y(1-\theta)^{n-y}\]
 Example: estimating the probability of a female birth
 A total of 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.</description>
+    </item>
+    
+    <item>
+      <title>Chapter 3: Introduction to multiparameter models</title>
+      <link>/post/bayes_chap03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap03/</guid>
+      <description>Nuisance parametersthere are more than one unknown or unobservable parametersconclusions will often be drawn about one, or only a few parameters at a timethere is no interest in making inferences about many of the unknown parameters – nuisance parameters
+suppose \(\theta=(\theta_1,\theta_2)\)interest centers only on \(\theta_1\); \(\theta_2\) is a ‘nuisance’ parameter.the joint posterior density:\[p(\theta_1,\theta_2|y)\propto p(y|\theta_1,\theta_2)p(\theta_1,\theta_2)\]
+the marginal posterior density:\[p(\theta_1|y)=\int p(\theta_1,\theta_2|y)d\theta_2=\int p(\theta_1|\theta_2,y)p(\theta_2|y)d\theta_2\]</description>
     </item>
     
     <item>

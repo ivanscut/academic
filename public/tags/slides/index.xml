@@ -40,6 +40,17 @@
     </item>
     
     <item>
+      <title>Chapter 3: Introduction to multiparameter models</title>
+      <link>/post/bayes_chap03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap03/</guid>
+      <description>Nuisance parametersthere are more than one unknown or unobservable parametersconclusions will often be drawn about one, or only a few parameters at a timethere is no interest in making inferences about many of the unknown parameters – nuisance parameters
+suppose \(\theta=(\theta_1,\theta_2)\)interest centers only on \(\theta_1\); \(\theta_2\) is a ‘nuisance’ parameter.the joint posterior density:\[p(\theta_1,\theta_2|y)\propto p(y|\theta_1,\theta_2)p(\theta_1,\theta_2)\]
+the marginal posterior density:\[p(\theta_1|y)=\int p(\theta_1,\theta_2|y)d\theta_2=\int p(\theta_1|\theta_2,y)p(\theta_2|y)d\theta_2\]</description>
+    </item>
+    
+    <item>
       <title>Chapter 4: Asymptotics and connections to non-Bayesian approaches</title>
       <link>/post/bayes_chap04/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
