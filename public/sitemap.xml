@@ -4,6 +4,30 @@
     
     <url>
     
+      <loc>/post/bayes_chap05/</loc>
+      <lastmod>2018-10-07T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap04/</loc>
+      <lastmod>2018-10-06T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap03/</loc>
+      <lastmod>2018-10-05T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/homework3/</loc>
       <lastmod>2018-09-25T00:00:00+00:00</lastmod>
     </url>
@@ -70,6 +94,22 @@
     
       <loc>/publication/qmcrate/</loc>
       <lastmod>2018-09-01T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap02/</loc>
+      <lastmod>2018-08-30T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/bayes_chap01/</loc>
+      <lastmod>2018-08-29T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -215,6 +255,7 @@
     <url>
     
       <loc>/tags/bda/</loc>
+      <lastmod>2018-10-07T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -224,34 +265,6 @@
     
       <loc>/categories/</loc>
       <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/bayes_chap01/</loc>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/bayes_chap02/</loc>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/bayes_chap03/</loc>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/bayes_chap04/</loc>
     </url>
     
   
@@ -357,7 +370,8 @@
     
     <url>
     
-      <loc>/tags/slides/</loc>
+      <loc>/categories/slides/</loc>
+      <lastmod>2018-10-07T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -365,7 +379,8 @@
     
     <url>
     
-      <loc>/categories/slides/</loc>
+      <loc>/tags/slides/</loc>
+      <lastmod>2018-10-07T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -398,7 +413,7 @@
     
     <url>
     
-      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
+      <loc>/categories/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-09-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -407,7 +422,7 @@
     
     <url>
     
-      <loc>/categories/%E4%BD%9C%E4%B8%9A/</loc>
+      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-09-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -425,7 +440,7 @@
     
     <url>
     
-      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
+      <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
       <lastmod>2018-09-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -434,7 +449,7 @@
     
     <url>
     
-      <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
+      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
       <lastmod>2018-09-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>

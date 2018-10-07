@@ -1,0 +1,221 @@
+---
+title: 'Chapter 5: Hierarchial models'
+date: "2018-10-07"
+categories: ["slides"]
+Summary: "Chapter 5: Hierarchial models"
+tags: ["slides", "BDA"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Introduction to hierarchial models
+
+Many statistical applications involve multiple parameters (say, $\theta_1,\dots,\theta_J$) that can be regarded as related or connected in some way by the structure of the problem.
+
+- for the group $j\in 1{:}J$, we have the observed data $y_{ij}$, $i=1,\dots,n_j$ from the population distribution with unknown parameter $\theta_j$
+
+- we use a prior distribution in which the $\theta_j$'s are viewed as a sample from a common *population distribution*, say $p(\theta|\phi)$, where $\phi$ is known as *hyperparameters*. Assume that $\theta_j$ are iid, i.e.,
+$$p(\theta|\phi)=\prod_{j=1}^Jp(\theta_j|\phi)$$
+
+
+
+## Hierarchical model for Rats experiment
+
+The experiment is used to estimate the probability $\theta$ of tumor in a population of female laboratory rats of type 'F344' that receive a zero dose of the drug. The data show that 4 out of 14 rats developed a kind of tumor.
+
+- assume a binomial model for the number of tumors
+- select a prior from the conjugate family, i.e., $\theta\sim Beta(\alpha,\beta)$
+- the posterior is therefore $Beta(\alpha+1,\beta+10)$
+
+The question is how to determine the hyperparameters $\phi=(\alpha,\beta)$
+
+- historical data are available on previous experiments on similar groups of rats: in the jth historical experiments, let the number of rats with tumors be $y_j$ and the total number of rats be $n_j$, the parameters for the populations are $\theta_j$, $j=1,\dots,70$.
+- for current experiment, let $y_{71},n_{71},\theta_{71}$ be the associated notations.
+
+## Historical data for the 70 historical experiments
+
+```{r}
+y <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,1,5,2,5,3,2,7,7,3,3,2,9,10,4,4,4,4,4,4,4,10,4,4,4,5,11,12,5,5,6,5,6,6,6,6,16,15,15,9,4)
+n <- c(20,20,20,20,20,20,20,19,19,19,19,18,18,17,20,20,20,20,19,19,18,18,25,24,23,20,20,20,20,20,20,10,49,19,46,27,17,49,47,20,20,13,48,50,20,20,20,20,20,20,20,48,19,19,19,22,46,49,20,20,23,19,22,20,20,20,52,46,47,24,14)
+
+print(y)
+print(n)
+```
+
+## Viewed as separate models using uniform priors
+
+![](separate_model.png)
+
+## Viewed as a pooled model using uniform prior
+
+![](pool_model.png)
+
+## Using the historical data to estimate the hyperparameters
+
+- the sample mean and standard deviation of the 70 values $y_i/n_i$ are 0.136 and 0.103
+
+- let $E[\theta]=\frac{\alpha}{\alpha+\beta}=0.136$ and $Var[\theta]=\frac{E[\theta](1-E[\theta])}{\alpha+\beta+1}=0.103$
+
+- $\hat{\alpha}=1.4,\ \hat{\beta}=8.6$
+
+- for the current exeriment, the posterior for $\theta$ is $Beta(5.4,18.6)$, posterior mean is $0.223$, standard deviation is 0.083.
+
+
+There are several logical and practical problems with the approach of directly estimating a prior distribution from existing data:
+
+- the data will be used twice for inference about the first 70 experiments -- overestimate our precision
+
+- the point estimate for $\alpha,\beta$ seems arbitrary that necessarily ignores some posterior uncertainty
+
+- this is not the logic of Bayesian inference
+
+## The full Bayesian treatment of the hierarchical model
+
+Suppose the hyperparameters $\phi$ has its own prior distribution $p(\phi)$, which is called *hyperprior distribution*. The appropriate Bayesian posterior distribution is of the vector $(\phi,\theta)$. 
+
+- the joint prior distribution is 
+$$p(\phi,\theta)=p(\phi)p(\theta|\phi)$$
+
+- the joint posterior distribution is
+$$p(\phi,\theta|y)\propto p(\phi,\theta)p(y|\phi,\theta)=p(\phi)p(\theta|\phi)p(y|\theta)$$
+
+Previously, we assumed $\phi$ was known, which is unrealistic; now we include the uncertainty in $\phi$ in the model.
+
+
+## Fully Bayesian analysis of conjugate hierarchical models
+
+Consider the setting in which $p(\theta|\phi)$ is conjugate to the likelihood $p(y|\theta)$. For this case, it is easy to determine analytically $$p(\theta|\phi,y)\propto p(\theta|\phi)p(y|\theta)$$
+
+- the joint posterior density:
+$$p(\phi,\theta|y)\propto p(\phi)p(\theta|\phi)p(y|\theta)$$
+- the marginal posterior density $p(\phi|y)$ can be computed via
+$$p(\phi|y)=\int p(\phi,\theta|y)d \theta$$
+
+$$\text{or }p(\phi|y)=\frac{p(\phi,\theta|y)}{p(\theta|\phi,y)}$$
+
+
+## Application to the model for rat tumors
+
+
+The binomial model:
+$$y_j\sim Bin(n_j,\theta_j),\ j=1,\dots,J=71$$
+
+The parameters $\theta_j$ are assumed to be independent samples from a beta distribution:
+$$\theta_j\sim Beta(\alpha,\beta)$$
+
+The joint posterior density is
+$$p(\theta,\alpha,\beta|y)\propto p(\alpha,\beta)p(\theta|\alpha,\beta)p(y|\theta)$$
+$$\propto p(\alpha,\beta)\prod_{j=1}^J\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta_j^{\alpha-1}(1-\theta_j)^{\beta-1}\prod_{j=1}^J\theta_j^{y_j}(1-\theta_j)^{n_j-y_j}$$
+
+$$p(\theta|\alpha,\beta,y)=\prod_{j=1}^J\frac{\Gamma(\alpha+\beta+n_j)}{\Gamma(\alpha+y_j)\Gamma(\beta+n_j-y_j)}\theta_j^{\alpha+y_i-1}(1-\theta_j)^{\beta+n_j-y_j-1}$$
+
+
+## Application to the model for rat tumors
+
+The marginal posterior density:
+$$p(\alpha,\beta|y)\propto p(\alpha,\beta)\prod_{j=1}^J\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\frac{\Gamma(\alpha+y_j)\Gamma(\beta+n_j-y_j)}{\Gamma(\alpha+\beta+n_j)}$$
+
+
+Choosing a noninformative hyperprior distribution:
+$$p(\alpha,\beta)\propto (\alpha+\beta)^{-5/2}$$
+
+This implies that $(\alpha/(\alpha+\beta),(\alpha+\beta)^{-1/2})$ is uniformly distributed.
+
+- the prior mean is $\alpha/(\alpha+\beta)$
+- the prior variance is approximately $(\alpha+\beta)^{-1}$  
+
+
+## Plot of the marginal posterior density
+
+![](alphabeta.png)
+
+
+## Compare the separate model and hierarchical model
+
+![](hier_sep.png)
+
+
+## Hierarchical model based on normal distribution
+
+Consider $J$ independent experiments, with experiment $j$ estimating $\theta_j$ form $n_j$ independent distributed data points $y_{ij}$, each with known error variance $\sigma^2$, that is
+$$y_{ij}|\theta_j\stackrel{iid}{\sim} N(\theta_j,\sigma^2), \text{ for }i=1,\dots,n_j;\ j=1,\dots,J$$
+
+- denote the sample mean of each group $j$ as
+$$\bar{y}_{\cdot j}=\frac 1{n_j}\sum_{i=1}^{n_j}y_{ij}$$
+
+- let $\sigma^2_j=\sigma^2/n_j$
+
+- the likelihood for each $\theta_j$:
+$$\bar{y}_{\cdot j}|\theta_j\sim N(\theta_j,\sigma_j^2)$$
+
+
+
+
+- for the convenience of conjugacy, assume the paramerters $\theta_j$ are drawn from a normal distribution with hyperparameters $\mu,\tau$:
+$$p(\theta_1,\dots,\theta_J|\mu,\tau)=\prod_{j=1}^J N(\theta_j|\mu,\tau^2)$$
+
+
+- assign noninformative uniform hyperprior density to $\mu$ given $\tau$:
+$$p(\mu,\tau)=p(\mu|\tau)p(\tau)\propto p(\tau)$$
+- prior distribution for $\tau$: $p(\tau)\propto 1$
+- the joint posterior density is 
+$$p(\theta,\mu,\tau|y)\propto p(\mu,\tau)p(\theta|\mu,\tau)p(y|\theta)$$
+
+$$p(\theta,\mu,\tau|y)\propto p(\mu,\tau)\prod_{j=1}^J N(\theta_j|\mu,\tau^2)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\theta_j,\sigma_j^2)$$
+
+
+- the conditional posterior distirbution:
+$$\theta_j|\mu,\tau,y\sim N(\hat{\theta}_j,V_j)$$
+
+where 
+$$\hat{\theta}_j=\frac{\frac 1{\sigma^2}\bar{y}_{\cdot j}+\frac 1{\tau^2}\mu}{\frac 1{\sigma^2}+\frac 1{\tau^2}},\ V_j=\frac{1}{\frac 1{\sigma^2}+\frac 1{\tau^2}}$$
+
+
+- the marginal posterior density can be computed in a simple way
+$$p(\mu,\tau|y)\propto p(\mu,\tau)p(y|\mu,\tau)$$
+
+- $\bar{y}_{\cdot j}|\mu,\tau\sim N(\mu,\sigma_j^2+\tau^2)$
+
+$$p(\mu,\tau|y)\propto p(\mu,\tau)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\mu,\sigma_j^2+\tau^2)$$
+
+
+
+
+- posterior distribution of $\mu$ given $\tau$
+$$\mu|\tau,y\sim N(\hat{\mu},V_{\mu})$$
+
+where
+$$\hat{\mu}=\frac{\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}\bar{y}_{\cdot j}}{\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}},\ V_{\mu}^{-1}=\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}$$
+
+- posterior distribution of $\tau$:
+$$p(\tau|y)=\frac{p(\mu,\tau|y)}{p(\mu|\tau,y)}\propto \frac{p(\tau)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\mu,\sigma_j^2+\tau^2)}{N(\mu|\hat{\mu},V_{\mu})}$$
+
+$$p(\tau|y)\propto p(\tau)V_{\mu}^{1/2}\prod_{j=1}^J(\sigma_j^2+\tau^2)^{-1/2}\exp\left(-\frac{(\bar{y}_{\cdot j}-\hat{\mu})^2}{2(\sigma_j^2+\tau^2)}\right)$$
+
+
+
+## Example: parallel experiments in eight schools
+
+A study was performanced for the Educational Testing Service to analyze the effects of special coaching programs on test scores. Seperate randomized experiments were performed to estimate the effects of coaching programs for the SAT-V (Verbal).
+
+School | Estiamted treatment effect $y_j$ | Standard error of effect estimate $\sigma_j$|
+-|-|-|
+A|28|15|
+B|8|10|
+C|-3|16|
+D|7|11|
+E|-1|9|
+F|1|11|
+G|18|10|
+H|12|18|
+
+## Comparisons
+
+![](8schools.png)
+
+## Plot the posterior summaries
+
+![](8schools2.png)
