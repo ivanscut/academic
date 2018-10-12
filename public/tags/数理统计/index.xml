@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第四次作业</title>
+      <link>/post/homework4/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework4/</guid>
+      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。（多选题）
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
+设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
+设\(X_1,\dots,X_n\)为\(N(\mu,\sigma^2)\)分布的样本，参数\(\mu,\sigma^2\)未知。证明样本方差\(S_n^2\)与修正样本方差\(S_n^{*2}\)均为\(\sigma^2\)的弱相合估计量。
+设\(X_1,\dots,X_n\)为\(N(\mu,\sigma^2)\)分布的样本，参数\(\mu,\sigma^2\)未知。样本方差\(S_n^2\)与修正样本方差\(S_n^{*2}\)作为\(\sigma^2\)的两种估计量，哪个更有效？由B-L-S定理知，\(S_n^{*2}\)是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？</description>
+    </item>
     
     <item>
       <title>第三次作业</title>

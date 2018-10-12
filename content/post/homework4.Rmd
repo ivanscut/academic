@@ -1,0 +1,51 @@
+---
+title: "第四次作业"
+date: "2018-10-12"
+categories: ["作业"]
+Summary: "截止日期：2018-10-21 23:00"
+tags: ["作业", "数理统计"]
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本. 在下列选项中选出用于估计参数$\lambda$的无偏估计量。（多选题）
+
+A. $\bar X$
+
+B. $S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2$
+
+C. $\frac 1 {n-1}\sum_{i=1}^{n-1}X_i$
+
+D. $S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2$
+
+---
+
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本, 已知$\bar X$是未知参数$\lambda$的完全统计量。在下列选项中选出用于估计参数$\lambda$的最有效的估计量。
+
+A. $\bar X$
+
+B. $S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2$
+
+C. $\frac 1 {n-1}\sum_{i=1}^{n-1}X_i$
+
+
+
+---
+
+设$X,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本，求$\lambda^2$的无偏估计。已知$\bar X$是参数$\lambda$的完全统计量，能否找到$\lambda^2$的最小方差无偏估计量？
+
+---
+
+设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。证明样本方差$S_n^2$与修正样本方差$S_n^{*2}$均为$\sigma^2$的弱相合估计量。
+
+---
+
+设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。样本方差$S_n^2$与修正样本方差$S_n^{*2}$作为$\sigma^2$的两种估计量，哪个更有效？由B-L-S定理知，$S_n^{*2}$是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？
+
+
+
+
+
+
