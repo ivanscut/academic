@@ -21,17 +21,23 @@
 &lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;E. &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为来自参数为&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的Poisson分布的样本, 已知&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;是未知参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的完全统计量。在下列选项中选出用于估计参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的最有效的估计量。&lt;/p&gt;
 &lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X,\dots,X_n\)&lt;/span&gt;为来自参数为&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的Poisson分布的样本，求&lt;span class=&#34;math inline&#34;&gt;\(\lambda^2\)&lt;/span&gt;的无偏估计。已知&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;是参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的完全统计量，能否找到&lt;span class=&#34;math inline&#34;&gt;\(\lambda^2\)&lt;/span&gt;的最小方差无偏估计量？&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;分布的样本，参数&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;未知。证明样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;与修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^{*2}\)&lt;/span&gt;均为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的弱相合估计量。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;分布的样本，参数&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;未知。样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;与修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^{*2}\)&lt;/span&gt;作为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的两种估计量，哪个更有效？由B-L-S定理知，&lt;span class=&#34;math inline&#34;&gt;\(S_n^{*2}\)&lt;/span&gt;是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为总体&lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;已知，&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;未知。证明&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的估计量
+&lt;span class=&#34;math display&#34;&gt;\[T(X_1,\dots,X_n)=\frac 1n\sum_{i=1}^n(X_i-\mu)^2\]&lt;/span&gt;
+的方差达到C-R不等式的下界。&lt;/p&gt;
 </description>
     </item>
     
