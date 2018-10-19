@@ -1,24 +1,24 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1539335458026.000,
+    "created" : 1539912336314.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3103319901",
-    "id" : "43FF33A3",
-    "lastKnownWriteTime" : 1538811174,
-    "last_content_update" : 1538811174,
+    "hash" : "2634391907",
+    "id" : "583E6733",
+    "lastKnownWriteTime" : 1539918462,
+    "last_content_update" : 1539918462042,
     "path" : "D:/Dropbox/courses/web/academic/content/post/homework3.Rmd",
     "project_path" : "content/post/homework3.Rmd",
     "properties" : {
-        "cursorPosition" : "0,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "18,10",
+        "scrollLine" : "9"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"

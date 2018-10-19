@@ -1,0 +1,2 @@
+"0","#添加女生数据"
+"0","lines(density(female_height,from = 50,to=85),col=""blue"",lwd=2)"

@@ -1,0 +1,60 @@
+---
+title: "密度估计：直方图与核估计"
+date: "2018-10-19"
+categories: ["R"]
+math: TRUE
+Summary: "R的基本画图技巧"
+tags: ["上机练习", "数理统计"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align='center',collapse = TRUE)
+```
+
+
+## 案例：身高数据
+
+数据来源于R的包`dslabs`，第一次使用时需要安装该包，命令为`install.packages("dslabs")`
+
+参考资料： [Some datasets for teaching data science](https://simplystatistics.org/2018/01/22/the-dslabs-package-provides-datasets-for-teaching-data-science/)
+
+### 直方图
+
+直方图的R命令为：`hist(...)`, 查看帮助`?hist`看具体参数含义
+
+### 核估计
+
+核估计的R命令为：`density(...)`, 查看帮助`?density`看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如`plot(...)`.
+
+以下代码展示所有身高数据的直方图与和核估计。
+
+```{r, echo=TRUE, message=FALSE}
+if(!require(dslabs))
+  install.packages("dslabs")
+attach(heights) #此命令用于使用该包里面的身高数据heights
+par(mar=c(2,2,1,1)) #调整图形边距
+#直方图
+hist(height,breaks=10,ylim=c(0,.115),col = "lightblue", border = "pink",freq=FALSE,main="Histogram vs. Kernel density")
+#添加核估计数据
+lines(density(height,from = 50,to=85),col="red",lwd=2)
+
+```
+
+下面代码比较男生和女生数据的核估计
+
+```{r, echo=TRUE, message=FALSE}
+female_height = height[sex=="Female"]#提取男生数据
+male_height = height[sex=="Male"]#提取女生数据
+par(mar=c(2,2,1,1))
+#画男生数据
+plot(density(male_height,from = 50,to=85),col="red",lwd=2,ylim=c(0,.14),main="Male vs. Female")
+#添加女生数据
+lines(density(female_height,from = 50,to=85),col="blue",lwd=2)
+#画出图例说明
+legend(74,0.12,legend = c("Male","Female"),lty = c(1,1),col=c("red","blue"),lwd=c(2,2))
+```
+
+
+> 结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
+

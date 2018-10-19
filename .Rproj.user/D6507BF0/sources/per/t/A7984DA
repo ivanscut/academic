@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539920062956.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "52562682",
+    "id" : "A7984DA",
+    "lastKnownWriteTime" : 1536737982,
+    "last_content_update" : 1536737982,
+    "path" : "D:/Dropbox/courses/web/academic/content/post/ex1-1.Rmd",
+    "project_path" : "content/post/ex1-1.Rmd",
+    "properties" : {
+        "cursorPosition" : "4,10",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
