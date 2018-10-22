@@ -13,6 +13,23 @@
     
     
     <item>
+      <title>第五次作业</title>
+      <link>/post/homework5/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework5/</guid>
+      <description>课本P61第23题
+课本P62第27题
+课本P62第28题
+分析R软件的dslabs包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 https://hezhijian.netlify.com/post/ex2/
+假设整个总体服从正态分布，求期望和方差的95%置信区间。
+为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？
+假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？
+为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？
+</description>
+    </item>
+    
+    <item>
       <title>密度估计：直方图与核估计</title>
       <link>/post/ex2/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
@@ -24,7 +41,7 @@
 核估计核估计的R命令为：density(...), 查看帮助?density看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如plot(...).
 以下代码展示所有身高数据的直方图与和核估计。
 if(!require(dslabs))install.packages(&amp;quot;dslabs&amp;quot;)attach(heights) #此命令用于使用该包里面的身高数据heightspar(mar=c(2,2,1,1)) #调整图形边距#直方图hist(height,breaks=10,ylim=c(0,.115),col = &amp;quot;lightblue&amp;quot;, border = &amp;quot;pink&amp;quot;,freq=FALSE,main=&amp;quot;Histogram vs. Kernel density&amp;quot;)#添加核估计数据lines(density(height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2)下面代码比较男生和女生数据的核估计
-female_height = height[sex==&amp;quot;Female&amp;quot;]#提取男生数据male_height = height[sex==&amp;quot;Male&amp;quot;]#提取女生数据par(mar=c(2,2,1,1))#画男生数据plot(density(male_height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2,ylim=c(0,.14),main=&amp;quot;Male vs. Female&amp;quot;)#添加女生数据lines(density(female_height,from = 50,to=85),col=&amp;quot;blue&amp;quot;,lwd=2)#画出图例说明legend(74,0.12,legend = c(&amp;quot;Male&amp;quot;,&amp;quot;Female&amp;quot;),lty = c(1,1),col=c(&amp;quot;red&amp;quot;,&amp;quot;blue&amp;quot;),lwd=c(2,2))结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
+female_height = height[sex==&amp;quot;Female&amp;quot;]#提取女生数据male_height = height[sex==&amp;quot;Male&amp;quot;]#提取男生数据par(mar=c(2,2,1,1))#画男生数据plot(density(male_height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2,ylim=c(0,.14),main=&amp;quot;Male vs. Female&amp;quot;)#添加女生数据lines(density(female_height,from = 50,to=85),col=&amp;quot;blue&amp;quot;,lwd=2)#画出图例说明legend(74,0.12,legend = c(&amp;quot;Male&amp;quot;,&amp;quot;Female&amp;quot;),lty = c(1,1),col=c(&amp;quot;red&amp;quot;,&amp;quot;blue&amp;quot;),lwd=c(2,2))结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
 </description>
     </item>
     
@@ -103,10 +120,10 @@ D. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
 （课本p.59, 第3题）设\(X_1,\dots,X_n\)是来自\([\theta,\theta+1]\)上均匀分布的样本，其中\(\theta\in\mathbb{R}\), 证明\(\theta\)的最大似然估计不止一个，并求出所有的最大似然估计。
 证明：似然函数为
 \[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]
-观察得知，当\(\theta\in [x_{(n)}-1,x_{(1)}]\)时，似然函数取得最大值\(1\). 所以，\(\theta\)的最大似然估计不止一个，所有的最大似然估计为集合\([x_{(n)}-1,x_{(1)}]\).
+观察得知，当\(\theta\in [x_{(n)}-1,x_{(1)}]\)时，似然函数取得最大值\(1\). 所以，\(\theta\)的最大似然估计不止一个，所有的最大似然估计为集合\([X_{(n)}-1,X_{(1)}]\).
 （课本p.59, 第4题）设随机变量\(X\)以均等机会按\(N(0,1)\)分布取值和按\(N(\mu,\sigma^2)\)分布取值，其中\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\). 这时\(X\)的分布密度函数为这两个分布的密度的平均，即\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]
 设\(X_1,\dots,X_n\)为此混合分布的简单随机样本，证明\(\mu,\sigma^2\)不存在最大似然估计。能否通过矩法估计\(\mu,\sigma^2\)？
-证明：似然函数为\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]取\(\mu=x_1\), 则有\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{n=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</description>
+证明：似然函数为\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]取\(\mu=x_1\), 则有\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</description>
     </item>
     
     <item>

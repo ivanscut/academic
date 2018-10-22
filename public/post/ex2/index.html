@@ -15,7 +15,7 @@
   
     
   
-  <meta name="description" content="R的基本画图技巧">
+  <meta name="description" content="密度估计：直方图与核估计">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/ex2/">
@@ -89,7 +89,7 @@
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/post/ex2/">
   <meta property="og:title" content="密度估计：直方图与核估计 | Dr. Zhijian He">
-  <meta property="og:description" content="R的基本画图技巧">
+  <meta property="og:description" content="密度估计：直方图与核估计">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-10-19T00:00:00&#43;00:00">
@@ -295,8 +295,8 @@ hist(height,breaks=10,ylim=c(0,.115),col = &quot;lightblue&quot;, border = &quot
 lines(density(height,from = 50,to=85),col=&quot;red&quot;,lwd=2)</code></pre>
 <p><img src="/post/ex2_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>下面代码比较男生和女生数据的核估计</p>
-<pre class="r"><code>female_height = height[sex==&quot;Female&quot;]#提取男生数据
-male_height = height[sex==&quot;Male&quot;]#提取女生数据
+<pre class="r"><code>female_height = height[sex==&quot;Female&quot;]#提取女生数据
+male_height = height[sex==&quot;Male&quot;]#提取男生数据
 par(mar=c(2,2,1,1))
 #画男生数据
 plot(density(male_height,from = 50,to=85),col=&quot;red&quot;,lwd=2,ylim=c(0,.14),main=&quot;Male vs. Female&quot;)

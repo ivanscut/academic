@@ -2,7 +2,7 @@
 title: "第三次作业"
 date: "2018-09-25"
 categories: ["作业"]
-Summary: "截止日期：2018-10-14 23:00"
+Summary: "答案已上传！"
 tags: ["作业", "数理统计"]
 ---
 
@@ -27,7 +27,7 @@ tags: ["作业", "数理统计"]
 <p>（课本p.59, 第3题）设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自<span class="math inline">\([\theta,\theta+1]\)</span>上均匀分布的样本，其中<span class="math inline">\(\theta\in\mathbb{R}\)</span>, 证明<span class="math inline">\(\theta\)</span>的最大似然估计不止一个，并求出所有的最大似然估计。</p>
 <p><code>证明</code>：似然函数为</p>
 <p><span class="math display">\[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]</span></p>
-<p>观察得知，当<span class="math inline">\(\theta\in [x_{(n)}-1,x_{(1)}]\)</span>时，似然函数取得最大值<span class="math inline">\(1\)</span>. 所以，<span class="math inline">\(\theta\)</span>的最大似然估计不止一个，所有的最大似然估计为集合<span class="math inline">\([x_{(n)}-1,x_{(1)}]\)</span>.</p>
+<p>观察得知，当<span class="math inline">\(\theta\in [x_{(n)}-1,x_{(1)}]\)</span>时，似然函数取得最大值<span class="math inline">\(1\)</span>. 所以，<span class="math inline">\(\theta\)</span>的最大似然估计不止一个，所有的最大似然估计为集合<span class="math inline">\([X_{(n)}-1,X_{(1)}]\)</span>.</p>
 <hr />
 <p>（课本p.59, 第4题）设随机变量<span class="math inline">\(X\)</span>以均等机会按<span class="math inline">\(N(0,1)\)</span>分布取值和按<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布取值，其中<span class="math inline">\(\mu\in \mathbb{R},\sigma^2&gt;0\)</span>. 这时<span class="math inline">\(X\)</span>的分布密度函数为这两个分布的密度的平均，即
 <span class="math display">\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]</span></p>
@@ -37,7 +37,7 @@ tags: ["作业", "数理统计"]
 <span class="math display">\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]</span></li>
 </ol>
 <p>取<span class="math inline">\(\mu=x_1\)</span>, 则有
-<span class="math display">\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{n=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</span></p>
+<span class="math display">\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</span></p>
 <p>因为<span class="math inline">\(\sigma\to 0\)</span>时，上式右端趋于无穷，所以似然函数<span class="math inline">\(L(\mu,\sigma^2)\)</span>在<span class="math inline">\(\mathbb{R}\times[0,\infty)\)</span>上无界，故最大似然估计不存在。</p>
 <ol start="2" style="list-style-type: decimal">
 <li><code>解</code>：</li>

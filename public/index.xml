@@ -11,6 +11,28 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>第五次作业</title>
+      <link>/post/homework5/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework5/</guid>
+      <description>&lt;p&gt;课本P61第23题&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;课本P62第27题&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;课本P62第28题&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;分析R软件的&lt;code&gt;dslabs&lt;/code&gt;包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 &lt;a href=&#34;https://hezhijian.netlify.com/post/ex2/&#34; class=&#34;uri&#34;&gt;https://hezhijian.netlify.com/post/ex2/&lt;/a&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;假设整个总体服从正态分布，求期望和方差的95%置信区间。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>密度估计：直方图与核估计</title>
       <link>/post/ex2/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
@@ -38,8 +60,8 @@ hist(height,breaks=10,ylim=c(0,.115),col = &amp;quot;lightblue&amp;quot;, border
 lines(density(height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/ex2_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;下面代码比较男生和女生数据的核估计&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;female_height = height[sex==&amp;quot;Female&amp;quot;]#提取男生数据
-male_height = height[sex==&amp;quot;Male&amp;quot;]#提取女生数据
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;female_height = height[sex==&amp;quot;Female&amp;quot;]#提取女生数据
+male_height = height[sex==&amp;quot;Male&amp;quot;]#提取男生数据
 par(mar=c(2,2,1,1))
 #画男生数据
 plot(density(male_height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2,ylim=c(0,.14),main=&amp;quot;Male vs. Female&amp;quot;)
@@ -568,7 +590,7 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\sum_{j=1}^k\theta_j=1\)&lt;/spa
 &lt;p&gt;（课本p.59, 第3题）设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自&lt;span class=&#34;math inline&#34;&gt;\([\theta,\theta+1]\)&lt;/span&gt;上均匀分布的样本，其中&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\mathbb{R}\)&lt;/span&gt;, 证明&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计不止一个，并求出所有的最大似然估计。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：似然函数为&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;观察得知，当&lt;span class=&#34;math inline&#34;&gt;\(\theta\in [x_{(n)}-1,x_{(1)}]\)&lt;/span&gt;时，似然函数取得最大值&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;. 所以，&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计不止一个，所有的最大似然估计为集合&lt;span class=&#34;math inline&#34;&gt;\([x_{(n)}-1,x_{(1)}]\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;观察得知，当&lt;span class=&#34;math inline&#34;&gt;\(\theta\in [x_{(n)}-1,x_{(1)}]\)&lt;/span&gt;时，似然函数取得最大值&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;. 所以，&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计不止一个，所有的最大似然估计为集合&lt;span class=&#34;math inline&#34;&gt;\([X_{(n)}-1,X_{(1)}]\)&lt;/span&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;（课本p.59, 第4题）设随机变量&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;以均等机会按&lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;分布取值和按&lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;分布取值，其中&lt;span class=&#34;math inline&#34;&gt;\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\)&lt;/span&gt;. 这时&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的分布密度函数为这两个分布的密度的平均，即
 &lt;span class=&#34;math display&#34;&gt;\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]&lt;/span&gt;&lt;/p&gt;
@@ -578,7 +600,7 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\sum_{j=1}^k\theta_j=1\)&lt;/spa
 &lt;span class=&#34;math display&#34;&gt;\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;取&lt;span class=&#34;math inline&#34;&gt;\(\mu=x_1\)&lt;/span&gt;, 则有
-&lt;span class=&#34;math display&#34;&gt;\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{n=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;因为&lt;span class=&#34;math inline&#34;&gt;\(\sigma\to 0\)&lt;/span&gt;时，上式右端趋于无穷，所以似然函数&lt;span class=&#34;math inline&#34;&gt;\(L(\mu,\sigma^2)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}\times[0,\infty)\)&lt;/span&gt;上无界，故最大似然估计不存在。&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;code&gt;解&lt;/code&gt;：&lt;/li&gt;
@@ -3033,203 +3055,6 @@ where the hyperparameters is &lt;span class=&#34;math inline&#34;&gt;\((\alpha,\
 &lt;li&gt;&lt;p&gt;when using conjugate prior, it remains to choose the hyperparameters; see Chapter 5 for hierarchical models&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Chapter 1: Probability and Inference</title>
-      <link>/post/bayes_chap01/</link>
-      <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap01/</guid>
-      <description>&lt;div id=&#34;steps-in-bda&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;3 steps in BDA&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;set up the statistical model&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;compute the &lt;code&gt;posterior distribution&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;model checking and model improvement&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;statistical-inference&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Statistical inference&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: draw conclusions about &lt;strong&gt;unobserved quantities&lt;/strong&gt; from the data (observed)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;potentially observable quantities, e.g., future observations of a process&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;not directly observable quantities, e.g., unobservable population parameters&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;notations-and-assumptions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Notations and assumptions&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;unobservable population parameters of interest: &lt;span class=&#34;math inline&#34;&gt;\(\theta=(\theta_1,\dots,\theta_m)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the observed data: &lt;span class=&#34;math inline&#34;&gt;\(y=(y_1,\dots,y_n)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;potentially observable quantities: &lt;span class=&#34;math inline&#34;&gt;\(\tilde y\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Assumption 1&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;exchangeability: the &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; values &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; are exchangeable, e.g., iid samples.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Assumption 2&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;conditional independence of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde y\)&lt;/span&gt; given &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;bayesian-inference&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Bayesian inference&lt;/h2&gt;
-&lt;p&gt;To make inferences about the posterior distributions, such as &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|y)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(p(\tilde y|y)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Bayes’ rule&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)=\frac{p(\theta,y)}{p(y)}=\frac{p(y|\theta)p(\theta)}{p(y)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)\propto  p(y|\theta)p(\theta)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The imiplied constant is
-&lt;span class=&#34;math display&#34;&gt;\[p(y)=\int p(y|\theta)p(\theta) d \theta.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;prediction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Prediction&lt;/h2&gt;
-&lt;p&gt;To make inferences about an unknown observable quantity&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;prior predictive distribution: &lt;span class=&#34;math inline&#34;&gt;\(p(y)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;posterior predictive dsitribution: &lt;span class=&#34;math inline&#34;&gt;\(p(\tilde y|y)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-p(\tilde y|y) = \int p(\tilde y,\theta|y)d\theta = \int p(\tilde y|\theta,y)p(\theta|y)d \theta = \int p(\tilde y|\theta)p(\theta|y)d \theta
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Again, &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde y\)&lt;/span&gt; are conditionally independent given &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;likelihood&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Likelihood&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta)\)&lt;/span&gt; is called the &lt;strong&gt;likelihood function&lt;/strong&gt;, which is regarded as a function of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;odds ratios&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{p(\theta_1|y)}{p(\theta_2|y)}=\frac{p(\theta_1)p(y|\theta_1)/p(y)}{p(\theta_2)p(y|\theta_2)/p(y)}=\frac{p(\theta_1)}{p(\theta_2)}\frac{p(y|\theta_1)}{p(y|\theta_2)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;posterior odds = prior odds &lt;span class=&#34;math inline&#34;&gt;\(\times\)&lt;/span&gt; likelihood ratio&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-1-inference-about-a-genetic-status&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 1: inference about a genetic status&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;males: one X-chromosome + one Y-chromosome&lt;/li&gt;
-&lt;li&gt;females: two X-chromosomes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Hemophilia is a disease that exhibits X-chromosome-linked recessive inheritance.
-The disease is generally fatal for women who inherit two such genes.&lt;/p&gt;
-&lt;p&gt;Consider a woman who has an affected brother and her father is not affected.
-Let &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; be the state of the woman: a carrier of the gene (&lt;span class=&#34;math inline&#34;&gt;\(\theta=1\)&lt;/span&gt;) or not (&lt;span class=&#34;math inline&#34;&gt;\(\theta=0\)&lt;/span&gt;).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Prior distribution&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(P(\theta=1)=P(\theta=0)=0.5\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Data and model&lt;/strong&gt;: She has two sons. Let &lt;span class=&#34;math inline&#34;&gt;\(y_i=1\)&lt;/span&gt; or 0 denote the state of her sons. Now observe that her sons are not affected. Given &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(y_1\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(y_2\)&lt;/span&gt; are iid.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-1-inference-about-a-genetic-status-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 1: inference about a genetic status&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood function&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(y_1=0,y_2=0|\theta=1)=0.5\times 0.5=0.25\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(y_1=0,y_2=0|\theta=0)=1\times 1=1\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior distribution&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(\theta=1|y) = \frac{p(y|\theta=1)p(\theta=1)}{p(y)}=0.2\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-1-inference-about-a-genetic-status-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 1: inference about a genetic status&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Adding more data&lt;/strong&gt;: suppose that the woman has a third son, who is also unaffacted.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(\theta=1|y_1,y_2,y_3) = \frac{0.5\times 0.2}{0.5\times 0.2+1\times 0.8}=0.111\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;A key aspect of Bayesian analysis is the ease with which sequential analyses can be performed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt;: What happen if we suppose that the third son is affected?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-2-spelling-correction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 2: spelling correction&lt;/h2&gt;
-&lt;p&gt;Classification of words is a problem of managing uncertainty. Suppose someone types &lt;strong&gt;radom&lt;/strong&gt;. How should that be read?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;random&lt;/li&gt;
-&lt;li&gt;radon&lt;/li&gt;
-&lt;li&gt;radom&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Data and model&lt;/strong&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; be the word that the person was intending to type, and let &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; as the data. Now &lt;span class=&#34;math inline&#34;&gt;\(y=\)&lt;/span&gt;’radom’ and &lt;span class=&#34;math inline&#34;&gt;\(\theta\in\)&lt;/span&gt;{&lt;span class=&#34;math inline&#34;&gt;\(\theta_1\)&lt;/span&gt;=‘random’,&lt;span class=&#34;math inline&#34;&gt;\(\theta_2\)&lt;/span&gt;=‘radon’,&lt;span class=&#34;math inline&#34;&gt;\(\theta_3\)&lt;/span&gt;=‘radom’}. The posterior density is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(\theta|y=\text{&amp;#39;radom&amp;#39;})\propto p(\theta)P(y=\text{&amp;#39;radom&amp;#39;}|\theta).\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-2-spelling-correction-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 2: spelling correction&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Prior distribution&lt;/strong&gt;: Here are probabilities supplied by researchers at Google.
-Goole Ngram Viewer: &lt;a href=&#34;https://books.google.com/ngrams&#34; class=&#34;uri&#34;&gt;https://books.google.com/ngrams&lt;/a&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(\theta)\)&lt;/span&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;random&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(7.60\times 10^{-5}\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;radon&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(6.05\times 10^{-6}\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;radom&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(3.12\times 10^{-7}\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood&lt;/strong&gt;: Here are some conditional probabilities from Google’s model of spelling and typing errors:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(\text{&amp;#39;radom&amp;#39;}|\theta)\)&lt;/span&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;random&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.00193\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;radon&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.000143\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;radom&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.975\)&lt;/span&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-2-spelling-correction-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example 2: spelling correction&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Posterior distribution&lt;/strong&gt;:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(\theta)P(y=\text{&amp;#39;radom&amp;#39;}|\theta)\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(P(\theta|y=\text{&amp;#39;radom&amp;#39;})\)&lt;/span&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;random&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(1.47\times 10^{-7}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td&gt;0.325&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;radon&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(8.65\times 10^{-10}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td&gt;0.002&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;radom&lt;/td&gt;
-&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(3.04\times 10^{-7}\)&lt;/span&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;0.673&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Model improvement&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;including contextual info in the prior probabilities, e.g., statistical book.&lt;/li&gt;
-&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; be the contextual information used by the model.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|x,y)\propto p(\theta|x)p(y|\theta,x)\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;for simplicity, we may assume &lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta,x)=p(y|\theta)\)&lt;/span&gt;.&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>

@@ -7,10 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Fri, 12 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第五次作业</title>
+      <link>/post/homework5/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework5/</guid>
+      <description>课本P61第23题
+课本P62第27题
+课本P62第28题
+分析R软件的dslabs包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 https://hezhijian.netlify.com/post/ex2/
+假设整个总体服从正态分布，求期望和方差的95%置信区间。
+为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？
+假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？
+为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？
+</description>
+    </item>
     
     <item>
       <title>第四次作业</title>
@@ -53,10 +70,10 @@ D. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
 （课本p.59, 第3题）设\(X_1,\dots,X_n\)是来自\([\theta,\theta+1]\)上均匀分布的样本，其中\(\theta\in\mathbb{R}\), 证明\(\theta\)的最大似然估计不止一个，并求出所有的最大似然估计。
 证明：似然函数为
 \[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]
-观察得知，当\(\theta\in [x_{(n)}-1,x_{(1)}]\)时，似然函数取得最大值\(1\). 所以，\(\theta\)的最大似然估计不止一个，所有的最大似然估计为集合\([x_{(n)}-1,x_{(1)}]\).
+观察得知，当\(\theta\in [x_{(n)}-1,x_{(1)}]\)时，似然函数取得最大值\(1\). 所以，\(\theta\)的最大似然估计不止一个，所有的最大似然估计为集合\([X_{(n)}-1,X_{(1)}]\).
 （课本p.59, 第4题）设随机变量\(X\)以均等机会按\(N(0,1)\)分布取值和按\(N(\mu,\sigma^2)\)分布取值，其中\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\). 这时\(X\)的分布密度函数为这两个分布的密度的平均，即\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]
 设\(X_1,\dots,X_n\)为此混合分布的简单随机样本，证明\(\mu,\sigma^2\)不存在最大似然估计。能否通过矩法估计\(\mu,\sigma^2\)？
-证明：似然函数为\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]取\(\mu=x_1\), 则有\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{n=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</description>
+证明：似然函数为\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]取\(\mu=x_1\), 则有\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</description>
     </item>
     
     <item>
