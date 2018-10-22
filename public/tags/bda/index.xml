@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Sun, 07 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/bda/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chapter 10: Bayesian computation</title>
+      <link>/post/bayes_chap10/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap10/</guid>
+      <description>Introduction to Bayesian computationThe goals are to estimate
+the posterior distribution \(p(\theta|y)\propto p(\theta)p(y|\theta)\)
+the posterior predictive distribution\[p(\tilde y|y) = \int p(\tilde y|\theta)p(\theta|y)d \theta =E[p(\tilde y|\theta)|y]\]
+We are therefore insterested in estimating the posterior expectation\[\mu=E[h(\theta)|y]=\int h(\theta)p(\theta|y)d \theta\]
+moments: \(h(\theta)=\theta^k\)probability: \(h(\theta)=1_A(\theta)\), \(A\subseteq \Theta\)predictive density: \(h(\theta)=p(\tilde y|\theta)\) for fixed \(\tilde y\)Monte Carlo methodsSuppose we can simulate \(\theta^{(i)},\dots,\theta^{(N)}\sim p(\theta|y)\) independently. Monte Carlo (MC) esimate is then the sample average:\[\hat{\mu}_N = \frac1N\sum_{i=1}^N h(\theta^{(i)})\]</description>
+    </item>
     
     <item>
       <title>Chapter 5: Hierarchial models</title>

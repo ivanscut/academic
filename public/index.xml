@@ -11,6 +11,633 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Chapter 10: Bayesian computation</title>
+      <link>/post/bayes_chap10/</link>
+      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayes_chap10/</guid>
+      <description>&lt;div id=&#34;introduction-to-bayesian-computation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction to Bayesian computation&lt;/h2&gt;
+&lt;p&gt;The goals are to estimate&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the posterior distribution &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|y)\propto p(\theta)p(y|\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the posterior predictive distribution
+&lt;span class=&#34;math display&#34;&gt;\[p(\tilde y|y) = \int p(\tilde y|\theta)p(\theta|y)d \theta =E[p(\tilde y|\theta)|y]\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We are therefore insterested in estimating the posterior expectation
+&lt;span class=&#34;math display&#34;&gt;\[\mu=E[h(\theta)|y]=\int h(\theta)p(\theta|y)d \theta\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;moments: &lt;span class=&#34;math inline&#34;&gt;\(h(\theta)=\theta^k\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;probability: &lt;span class=&#34;math inline&#34;&gt;\(h(\theta)=1_A(\theta)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(A\subseteq \Theta\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;predictive density: &lt;span class=&#34;math inline&#34;&gt;\(h(\theta)=p(\tilde y|\theta)\)&lt;/span&gt; for fixed &lt;span class=&#34;math inline&#34;&gt;\(\tilde y\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;monte-carlo-methods&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Monte Carlo methods&lt;/h2&gt;
+&lt;p&gt;Suppose we can simulate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)},\dots,\theta^{(N)}\sim p(\theta|y)\)&lt;/span&gt; independently. Monte Carlo (MC) esimate is then the sample average:
+&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu}_N = \frac1N\sum_{i=1}^N h(\theta^{(i)})\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LLN: &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu_N\to \mu\)&lt;/span&gt; w.p.1 as &lt;span class=&#34;math inline&#34;&gt;\(N\to \infty\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;CLT: &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu_N-\mu=O_p(N^{-1/2})\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Traditional quadrature rules’ have error rate &lt;span class=&#34;math inline&#34;&gt;\(O(N^{-r/d})\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(r\ge 1\)&lt;/span&gt; depends on the smoothness of the functions, and &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; is the dimension of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. This suffers &lt;strong&gt;the curse of dimensionality&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;MC has an error rate &lt;span class=&#34;math inline&#34;&gt;\(O(N^{-1/2})\)&lt;/span&gt; independently of the smoothness and the dimension of the functions. The task is to simulate iid samples &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim p(\theta|y)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;random-number-generators&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Random number generators&lt;/h2&gt;
+&lt;p&gt;We start with a pseudo-random number generator:
+&lt;span class=&#34;math display&#34;&gt;\[u_1,\dots,u_n,\dots\stackrel{iid}\sim U(0,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mersenne Twister&lt;/strong&gt; by Matsumoto &amp;amp; Nishimura (1998), whose period is &lt;span class=&#34;math inline&#34;&gt;\(2^{19937}-1&amp;gt;10^{6000}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RngStreams&lt;/strong&gt; by L’Ecuyer, Simard, Chen, Kelton (2002)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;They aren’t really uniform random, but good ones are close enough.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;non-uniform-random-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Non-uniform random variables&lt;/h2&gt;
+&lt;p&gt;Some common distributions (such as Normal, exponential, binomial, Poisson etc.) are already in some scientific softwares (R, Python, Matlab, Julia, Mathematica, etc.)&lt;/p&gt;
+&lt;p&gt;We are now concerned with a general distribution. Principled approaches are&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;inversion&lt;/li&gt;
+&lt;li&gt;acceptance-rejection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;inversion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Inversion&lt;/h2&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt; be the CDF of the distribution of interest. We can simulate the distribution via iid uniforms &lt;span class=&#34;math inline&#34;&gt;\(U_1,\dots,U_N\stackrel{iid}\sim U(0,1)\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X_i=F^{-1}(U_i),i=1,\dots,N\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(F^{-1}\)&lt;/span&gt; is the inverse of the CDF &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt;, definited by
+&lt;span class=&#34;math display&#34;&gt;\[F^{-1}(u)=\inf\{x\in\mathbb{R}|F(x)\ge u\}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;it is easy to see that &lt;span class=&#34;math inline&#34;&gt;\(X_i\stackrel{iid}\sim F\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;inversion-examples&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Inversion: examples&lt;/h2&gt;
+&lt;div id=&#34;gaussian&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Gaussian&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Z=\Phi^{-1}(U)\sim N(0,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X=\mu+\sigma\Phi^{-1}(U) \sim N(\mu,\sigma^2)\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exponential&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Exponential&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X= -\frac 1\lambda \log (1-U)\sim Exp(\lambda)\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bernoulli&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Bernoulli&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X=1\{U\le p\}\sim Bin(1,p)\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multivariate-inverse-transformation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multivariate inverse transformation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(F(x_1,\dots,x_d)\)&lt;/span&gt; be the PDF of &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_d\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(F_i(x_i)\)&lt;/span&gt; be the marginal distribution of &lt;span class=&#34;math inline&#34;&gt;\(X_i\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;for &lt;span class=&#34;math inline&#34;&gt;\(i=2,\dots,d\)&lt;/span&gt;, let &lt;span class=&#34;math inline&#34;&gt;\(F_i(x_i|x_1,\dots,x_{i-1})\)&lt;/span&gt; be the conditional CDF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The multivariate inverse transformation is proposed by Rosenblatt (1952), which simulates the components &lt;span class=&#34;math inline&#34;&gt;\(X_i\)&lt;/span&gt; recursively, i.e.,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[X_1=F_1^{-1}(U_1)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[X_i=F_i^{-1}(U_i|X_1,\dots,X_{i-1}),\ i=2,\dots,d\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the output has the destribution &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;the order of simulating the components can be arbitrary&lt;/li&gt;
+&lt;li&gt;the critical issue is to know the conditional CDFs in advance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;acceptance-rejection&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Acceptance-rejection&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;suppose the target distrubtion is &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; with the support &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{X}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;we can sample &lt;span class=&#34;math inline&#34;&gt;\(Y\sim g\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; is another density satisfying: there exists &lt;span class=&#34;math inline&#34;&gt;\(M&amp;gt;0\)&lt;/span&gt; such that
+&lt;span class=&#34;math display&#34;&gt;\[\frac{f(x)}{g(x)}\le M\ \forall x\in \mathcal{X}\]&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;we can compute &lt;span class=&#34;math inline&#34;&gt;\(f(x)/g(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The algorithm goes below&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: simulate &lt;span class=&#34;math inline&#34;&gt;\(Y\sim g\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: accept &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; as a draw from &lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(f(Y)/(Mg(Y))\)&lt;/span&gt;. If the draw is rejected, return to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2’: simulate &lt;span class=&#34;math inline&#34;&gt;\(U\sim U(0,1)\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{cases}
+\text{accept } Y &amp;amp; U\le f(Y)/(Mg(Y))\\
+\text{go to Step 1 }&amp;amp; else
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;acceptance-rejection-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Acceptance-rejection&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;AR.png&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the acceptance probability: &lt;span class=&#34;math display&#34;&gt;\[E[f(Y)/(Mg(Y))]=\frac 1 M\]&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;we may choose the smallest &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(f(x)\le Mg(x)\)&lt;/span&gt; for all &lt;span class=&#34;math inline&#34;&gt;\(x\in\mathcal{X}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;acceptance-rejection-for-bayesian-computation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Acceptance-rejection for Bayesian computation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the target density
+&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)=\frac{p(\theta)p(y|\theta)}{p(y)}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the constant &lt;span class=&#34;math inline&#34;&gt;\(p(y)\)&lt;/span&gt; is unknown&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the AR algorithm works well if taking &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)=p(\theta)p(y|\theta)\)&lt;/span&gt;
+and using proposal density &lt;span class=&#34;math inline&#34;&gt;\(\propto g(\theta)\)&lt;/span&gt; with
+&lt;span class=&#34;math display&#34;&gt;\[\frac{p(\theta)p(y|\theta)}{g(\theta)}\le M\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-gamma-distribution&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example: Gamma distribution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha,\lambda)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt;0\)&lt;/span&gt; is the shape, &lt;span class=&#34;math inline&#34;&gt;\(\lambda&amp;gt;0\)&lt;/span&gt; is the rate&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;density&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}1\{x&amp;gt; 0\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Gamma(\alpha,\lambda)\stackrel{d}{=}\frac 1 \lambda Gamma(\alpha,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Gamma(\alpha,1)\stackrel{d}{=}U(0,1)^{1/\alpha}Gamma(\alpha+1,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;so our target is &lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha,1)\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt;1\)&lt;/span&gt;. For this case, the density is bounded.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal
+&lt;span class=&#34;math display&#34;&gt;\[g(x)=?\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;gamma-density&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Gamma density&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Ahrens and Dieter (1974) took proposals from a density that combines a
+Gaussian density in the center and an exponential density in the right tail.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Marsaglia and Tsang (2000) present an AR algorithm from a truncated
+&lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-beta-distribution&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example: Beta distribution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Beta(\alpha,\beta)\)&lt;/span&gt; density
+&lt;span class=&#34;math display&#34;&gt;\[f(x)=\frac{\Gamma(\alpha,\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}1\{0&amp;lt;x&amp;lt;1\}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;generate a Beta from two independent Gammas
+&lt;span class=&#34;math display&#34;&gt;\[Beta(\alpha,\beta)\stackrel{d}{=}\frac{Gamma(\alpha,\lambda)}{Gamma(\alpha,\lambda)+Gamma(\beta,\lambda)}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt;1\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta&amp;gt;1\)&lt;/span&gt;, the beta density is unimodal and achieves its maximum at &lt;span class=&#34;math inline&#34;&gt;\(x^*=(\alpha-1)/(\alpha+\beta-2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;beta-density&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Beta density&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Proposal distribution: &lt;span class=&#34;math inline&#34;&gt;\(U(0,1)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(M=f(x^*)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;accept &lt;span class=&#34;math inline&#34;&gt;\(U\sim U(0,1)\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(f(U)/M\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;beta-generator-r-code&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Beta generator: R code&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myBeta &amp;lt;- function(n,alpha,beta){
+  if(alpha&amp;lt;=1 | beta&amp;lt;=1)
+    stop(&amp;quot;alpha, beta cannot be &amp;lt;= 1&amp;quot;)
+  M = dbeta((alpha-1)/(alpha+beta-2),alpha,beta)
+  x = rep(0,n)
+  for(i in 1:n){
+    while (TRUE){
+      U = runif(1)
+      if(dbeta(U,alpha,beta)&amp;gt;= M*runif(1)){
+        x[i] = U
+        break
+      }
+    }
+  }
+  return(x)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Simulation results&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-5&#34;&gt;Table 1: &lt;/span&gt;&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;myBeta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4001780&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1968478&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;dbeta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3996059&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2000705&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;true values&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4000000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2000000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;importance-sampling&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importance Sampling&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;the target is to estimate &lt;span class=&#34;math inline&#34;&gt;\(\mu=E_f[h(X)]\)&lt;/span&gt; w.r.t. the density &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal density &lt;span class=&#34;math inline&#34;&gt;\(q(x)\)&lt;/span&gt;: &lt;span class=&#34;math inline&#34;&gt;\(q(x)&amp;gt;0\)&lt;/span&gt; whenever &lt;span class=&#34;math inline&#34;&gt;\(h(x)f(x)&amp;gt;0\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\mu=\int h(x)f(x)dx=\int h(x)\frac{f(x)}{g(x)}g(x)dx=E_g[h(X)f(X)/g(X)]\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(f(x)/g(x)\)&lt;/span&gt; called the &lt;strong&gt;likelihood ratio (LR)&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The IS algorithm goes below&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Step 1: simulate &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; samples &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; from &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Step 2: compute the sample average:
+&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu}_{IS}=\frac 1N\sum_{i=1}^N \frac{h(X_i)f(X_i)}{g(X_i)}\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choosing-the-proposal&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Choosing the proposal&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[\hat{\mu}_{IS}] = \frac{\sigma^2_g}{N}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\sigma^2_g = \int \left(\frac{h(x)f(x)}{g(x)}-\mu\right)^2g(x)d x=\int\frac{(h(x)f(x)-\mu g(x))^2}{g(x)}dx\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if &lt;span class=&#34;math inline&#34;&gt;\(g(x)=h(x)f(x)/\mu\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(h\ge 0\)&lt;/span&gt;, then we have &lt;strong&gt;the optimal case&lt;/strong&gt; &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_g=0\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;but unattainable: &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; is unknown constant&lt;/li&gt;
+&lt;li&gt;we may find &lt;span class=&#34;math inline&#34;&gt;\(g(x)\approx h(x)f(x)/\mu\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-weight-function&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The weight function&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(w(x)=f(x)/g(x)\)&lt;/span&gt; be the LR
+&lt;span class=&#34;math display&#34;&gt;\[\sigma^2_g =\int \frac{(hf)^2}{g}dx -\mu^2\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\int \frac{(hf)^2}{g}dx=E_f[w(X)h(X)^2]=E_g[w(X)^2h(X)^2]\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if &lt;span class=&#34;math inline&#34;&gt;\(w(x)\)&lt;/span&gt; is bounded, then &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_g\)&lt;/span&gt; is bounded&lt;/li&gt;
+&lt;li&gt;if &lt;span class=&#34;math inline&#34;&gt;\(w(x)\)&lt;/span&gt; is unbounded, then &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_g\)&lt;/span&gt; may be unbounded (&lt;strong&gt;the worst case!&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;self-normalized-is-snis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Self-normalized IS (SNIS)&lt;/h2&gt;
+&lt;p&gt;What if we cannot compute &lt;span class=&#34;math inline&#34;&gt;\(f/g\)&lt;/span&gt;? Suppose that
+&lt;span class=&#34;math display&#34;&gt;\[f(x)=c_f\tilde{f}(x),\ g(x)=c_g\tilde{g}(x)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and we can compute &lt;span class=&#34;math inline&#34;&gt;\(\tilde f,\tilde g\)&lt;/span&gt; but not the constants &lt;span class=&#34;math inline&#34;&gt;\(c_f,c_g\)&lt;/span&gt;. Then we use&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu}_{SNIS}= \frac{\frac 1 N\sum_{i=1}^nh(X_i)\tilde{f}(X_i)/\tilde{g}(X_i)}{\frac 1 N\sum_{i=1}^n\tilde{f}(X_i)/\tilde{g}(X_i)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;or, equivalently,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu}_{SNIS}= \frac{\frac 1 N\sum_{i=1}^Nh(X_i){f}(X_i)/{g}(X_i)}{\frac 1 N\sum_{i=1}^N{f}(X_i)/{g}(X_i)}=\frac{\frac 1 N\sum_{i=1}^Nh(X_i)w(X_i)}{\frac 1 N\sum_{i=1}^Nw(X_i)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance-of-snis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variance of SNIS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Taylor expansions
+&lt;span class=&#34;math display&#34;&gt;\[f(\bar X,\bar Y)\approx f(\mu_1,\mu_2)+f_x(\mu_1,\mu_2)(\bar X-\mu_1)+f_y(\mu_1,\mu_2)(\bar Y-\mu_2)\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[f(\bar X,\bar Y)]\approx f(\mu_1,\mu_2)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[f(\bar X,\bar Y)]\approx f_x^2Var[\bar X]+f_y^2Var[\bar Y]+2f_xf_yCov(\bar X,\bar Y)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;for &lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=x/y\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(f_x=1/y,f_y=-x/y^2\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[Var[f(\bar X,\bar Y)]\approx \frac{\sigma_X^2}{N\mu_2^2}+\frac{\mu_1^2\sigma_Y^2}{N\mu_2^4}-\frac{2\mu_1}{N\mu_2^3}Cov(X,Y)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(Var[\hat{\mu}_{SNIS}]\approx \frac{1}{N}E_g[w(X)^2(h(X)-\mu)^2]\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Var[\hat{\mu}_{IS}]= \frac{1}{N}E_g[(h(X)w(X)-\mu)^2]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;optimal-snis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Optimal SNIS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;SNIS: &lt;span class=&#34;math inline&#34;&gt;\(g_{opt}(x)\propto f(x)|h(x)-\mu|\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IS: &lt;span class=&#34;math inline&#34;&gt;\(g_{opt}(x)\propto f(x)|h(x)|\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;effective-sample-size&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Effective sample size&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Unequal weighting raises variance, see, Kong (1992), Evans and Swartz (1995)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for iid &lt;span class=&#34;math inline&#34;&gt;\(Y_i\)&lt;/span&gt; with variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; and fixed &lt;span class=&#34;math inline&#34;&gt;\(w_i\ge 0\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[Var\left(\frac{\sum_{i}w_iY_i}{\sum_iw_i}\right)=\frac{\sum_iw_i^2\sigma^2}{(\sum_iw_i)^2}=\frac{\sigma^2}{N_{eff}}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;where the effective sample size &lt;span class=&#34;math inline&#34;&gt;\(N_{eff}\)&lt;/span&gt; is defined as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[N_{eff} = \frac{(\sum_{i=1}^Nw_i)^2}{\sum_{i=1}^Nw_i^2}\in [1,N]\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(N_{eff}\)&lt;/span&gt; is small if there are few extremely high weights which would unduly influence the distribution&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for equal weights, we have &lt;span class=&#34;math inline&#34;&gt;\(N_{eff}=N\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 1&lt;/h2&gt;
+&lt;p&gt;Suppose the posterior distribution is &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;, the proposal distribution is &lt;span class=&#34;math inline&#34;&gt;\(t_3(\mu,\sigma^2)\)&lt;/span&gt;. Consider &lt;span class=&#34;math inline&#34;&gt;\(\mu=\sigma=2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-1-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 1&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Effective sample size is  9178 / 10000&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-7&#34;&gt;Table 2: &lt;/span&gt;&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=100&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=1000&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=10000&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;exact_value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Mean&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.214328&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.011347&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.945335&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Variance&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.069694&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.688183&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.052519&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 2&lt;/h2&gt;
+&lt;p&gt;Suppose the posterior distribution is &lt;span class=&#34;math inline&#34;&gt;\(t_3(\mu,\sigma^2)\)&lt;/span&gt;, the proposal distribution is &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Effective sample size is  6180 / 10000&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-8&#34;&gt;Table 3: &lt;/span&gt;&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=100&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=1000&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n=10000&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;exact_value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Mean&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.802681&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.784954&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.019707&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Variance&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.630305&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.931088&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.875331&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;is-vs-acceptance-rejection&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;IS vs acceptance rejection&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Acceptance-rejection requires bounded LR &lt;span class=&#34;math inline&#34;&gt;\(f/g\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We also have to know a bound&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IS and SNIS require us to keep track of weights&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Plain IS requires normalized &lt;span class=&#34;math inline&#34;&gt;\(f/g\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Acceptance-rejection samples cost more (due to rejections)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;is-for-rare-events&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;IS for rare events&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;rare events:
+&lt;span class=&#34;math display&#34;&gt;\[h(x)=1_A(x), \mu = E_f[h(x)]=\int_A f(x) dx=\epsilon\approx 0\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[cv:=\frac{\sigma/\sqrt{N}}{\mu}=\frac{\sqrt{\epsilon(1-\epsilon)}}{\sqrt{n}\epsilon}\approx \frac{1}{\sqrt{n\epsilon}}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;to get &lt;span class=&#34;math inline&#34;&gt;\(cv=0.1\)&lt;/span&gt; takes &lt;span class=&#34;math inline&#34;&gt;\(N\ge 100/\epsilon\)&lt;/span&gt;, e.g., &lt;span class=&#34;math inline&#34;&gt;\(\epsilon = 10^{-5}\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(N\ge 10^7\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Taking &lt;span class=&#34;math inline&#34;&gt;\(X\sim f\)&lt;/span&gt; does not get enough data from the important region &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Get more data from &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; (from a proper proposal &lt;span class=&#34;math inline&#34;&gt;\(g(x)\)&lt;/span&gt;), and then correct the bias (the LR function)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;changing-a-parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Changing a parameter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;norminal distribution &lt;span class=&#34;math inline&#34;&gt;\(p(x;\theta_0)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\theta_0\in\Theta\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;proposal distribution &lt;span class=&#34;math inline&#34;&gt;\(p(x;\theta)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;estimator
+&lt;span class=&#34;math display&#34;&gt;\[\hat\mu_\theta=\frac{1}{N}\sum_{i=1}^N h(X_i) \frac{p(X_i;\theta_0)}{p(X_i;\theta)}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The importance ratio often simplifies, e.g., in exponential families.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exponential-tilting&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exponential tilting&lt;/h2&gt;
+&lt;p&gt;Many important distributions can be written in the form
+&lt;span class=&#34;math display&#34;&gt;\[p(x;\theta) = a(\theta)\exp[\eta(\theta)^\top T(x)]b(x), \theta\in \Theta\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\mu_\theta=\frac{a(\theta_0)}{a(\theta)}\frac{1}{N}\sum_{i=1}^N h(X_i) \exp[(\eta(\theta_0)-\eta(\theta))^\top T(X_i)]\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\eta(\theta)\)&lt;/span&gt; is the natrual parameter&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This is called the ‘exponential twisting’.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The goal is to choose &lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\mu_\theta]\)&lt;/span&gt; is minimized.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-simple-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A simple example&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;norminal distribution &lt;span class=&#34;math inline&#34;&gt;\(p(x;\theta_0)=N(x;0,1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;proposal distribution &lt;span class=&#34;math inline&#34;&gt;\(p(x;\theta)=N(x;\theta,1)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\theta\in\mathbb{R}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;target function &lt;span class=&#34;math inline&#34;&gt;\(h(x) = 1\{x&amp;gt;c\}\)&lt;/span&gt;, for large &lt;span class=&#34;math inline&#34;&gt;\(c&amp;gt;0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\mu=E[h(X)]=1-\Phi(c)\approx 0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IS estimator
+&lt;span class=&#34;math display&#34;&gt;\[\hat\mu_\theta=\frac{1}{N}\sum_{i=1}^N h(X_i) \frac{N(X_i;0,1)}{N(X_i;\theta,1)}=\frac{1}{N}\sum_{i=1}^N h(X_i) e^{-\frac{2\theta X_i-\theta^2}{2}}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IS variance &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\mu_\theta]=\sigma^2_\theta/N\)&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\sigma^2_\theta=\frac{e^{\theta^2}}{\sqrt{2\pi}}\int_c^\infty e^{-\frac{(x+\theta)^2}{2}}dx-\mu^2=\frac{e^{\theta^2}[1-\Phi(c+\theta)]}{\sqrt{2\pi}}-\mu^2\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the optimal parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta^*=\arg \min_{\theta\in \mathbb{R}} e^{\theta^2}[1-\Phi(c+\theta)]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-effect-of-different-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The effect of different parameters&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/bayes_chap10_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;the threshold c = 3&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;the true value is 0.0013498980316301&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;the optimal theta is 3.155&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;variance reduction factor is 404&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;applications-in-computational-finance&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Applications in Computational Finance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;P. Glasserman, P. Heidelberger, and P. Shahabuddin. Asymptotically optimal importance
+sampling and stratification for pricing path-dependent options. &lt;em&gt;Mathematical Finance&lt;/em&gt;, 9
+(2):117–152, 1999.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;P. Glasserman, P. Heidelberger, and P. Shahabuddin. Variance reduction techniques for
+estimating value-at-risk. &lt;em&gt;Management Science&lt;/em&gt;, 46(10):1349–1364, 2000.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;P. Glasserman, J. Li. Importance Sampling for Portfolio Credit Risk. &lt;em&gt;Management Science&lt;/em&gt;, 51(11):1643–1656, 2005.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xie, Fei, &lt;strong&gt;Zhijian He&lt;/strong&gt;, and Xiaoqun Wang. An Importance Sampling-Based Smoothing Approach for Quasi-Monte Carlo Simulation of Discrete Barrier Options. &lt;em&gt;European Journal of Operational Research&lt;/em&gt;, October 17, 2018.
+&lt;a href=&#34;https://doi.org/10.1016/j.ejor.2018.10.030&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1016/j.ejor.2018.10.030&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;importance-sampling-for-portfolio-credit-risk&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importance Sampling for Portfolio Credit Risk&lt;/h2&gt;
+&lt;p&gt;Our interest centers on the distribution of losses
+from default over a fixed horizon.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;: number of obligors&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Y_k\)&lt;/span&gt;: default indicator for &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;th obligor, &lt;span class=&#34;math inline&#34;&gt;\(Y_k=1\)&lt;/span&gt; denotes the default; &lt;span class=&#34;math inline&#34;&gt;\(Y_k=0\)&lt;/span&gt; otherwise&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p_k\)&lt;/span&gt;: marginal probability that &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;th obligor defaults&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(c_k\)&lt;/span&gt;: loss resulting from default of &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;th obligor&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(L=c_1Y_1+\dots+c_mY_m\)&lt;/span&gt;: total loss from defaults&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Our goal is to estimate tail probabilities &lt;span class=&#34;math inline&#34;&gt;\(P(L&amp;gt;x)\)&lt;/span&gt;, especially at large values of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;normal-copula-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Normal copula model&lt;/h2&gt;
+&lt;p&gt;In the normal copula model, dependence
+is introduced through a multivariate normal vector &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_m\)&lt;/span&gt; of latent variables. Each default indicator is represented as
+&lt;span class=&#34;math display&#34;&gt;\[Y_k = 1\{X_k&amp;gt; x_k\},\ k=1,\dots,m.\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[X_k = a_{k1}Z_1+\dots+a_{kd}Z_d+b_k\epsilon_k\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(x_k\)&lt;/span&gt; are chosen to match &lt;span class=&#34;math inline&#34;&gt;\(P(X_k&amp;gt;x_k)=p_k\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Z_1,\dots,Z_d\stackrel{iid}{\sim} N(0,1)\)&lt;/span&gt; are systematic risk factors&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\epsilon_k\stackrel{iid}{\sim} N(0,1)\)&lt;/span&gt; is an idiosyncratic risk&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(a_{k1},\dots,a_{kd}\)&lt;/span&gt; are the loading factors satisfying &lt;span class=&#34;math inline&#34;&gt;\(\sum_{j=1}^d a_{kj}^2\le 1\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(b_k=\sqrt{1-\sum_{j=1}^d a_{kj}^2}\)&lt;/span&gt; so that &lt;span class=&#34;math inline&#34;&gt;\(X_k\sim N(0,1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;is-for-independent-obligors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;IS for independent obligors&lt;/h2&gt;
+&lt;p&gt;Consider the simple case of independent obligors: &lt;span class=&#34;math inline&#34;&gt;\(a_{ij}=0,\ b_k=1\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(Y_k\sim Bin(1,p_k)\)&lt;/span&gt; independently. The idea is to replace each default probability &lt;span class=&#34;math inline&#34;&gt;\(p_k\)&lt;/span&gt; by some other default probability &lt;span class=&#34;math inline&#34;&gt;\(q_k\)&lt;/span&gt;, the basic IS identity is
+&lt;span class=&#34;math display&#34;&gt;\[P(L&amp;gt;x)= \tilde{E}\left[1\{L&amp;gt;x\}\prod_{k=1}^m\frac{p_k^{Y_k}(1-p_k)^{1-Y_k}}{q_k^{Y_k}(1-q_k)^{1-Y_k}}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Exponential Twisting&lt;/strong&gt;: Glasserman and Li (2005) chooses
+&lt;span class=&#34;math display&#34;&gt;\[q_{k,\theta} = \frac{p_ke^{\theta c_k}}{1+p_k(e^{\theta c_k}-1)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The original probabilities correspond to &lt;span class=&#34;math inline&#34;&gt;\(\theta=0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;if &lt;span class=&#34;math inline&#34;&gt;\(\theta&amp;gt;0\)&lt;/span&gt;, this does indeed increase the default
+probabilities; a larger exposure &lt;span class=&#34;math inline&#34;&gt;\(c_k\)&lt;/span&gt; results in a greater
+increase in the default probability.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choosing-the-optimal-parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Choosing the optimal parameter&lt;/h2&gt;
+&lt;p&gt;The LR is reduced to
+&lt;span class=&#34;math display&#34;&gt;\[\prod_{k=1}^m\frac{p_k^{Y_k}(1-p_k)^{1-Y_k}}{q_k^{Y_k}(1-q_k)^{1-Y_k}}=\exp(-\theta L+\psi(\theta))\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where
+&lt;span class=&#34;math display&#34;&gt;\[\psi(\theta)=\log E[e^{\theta L}]=\sum_{k=1}^m \log(1+p_k(e^{\theta c_k}-1))\]&lt;/span&gt;
+is the cumulant generating function (CGF) of L.&lt;/p&gt;
+&lt;p&gt;The optimal parameter is
+&lt;span class=&#34;math display&#34;&gt;\[\theta^* = \arg \min_{\theta\ge 0} \{M_2(\theta)=E_\theta[1\{L&amp;gt;x\}e^{-2\theta L+2\psi(\theta)}]\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choosing-the-sub-optimal-parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Choosing the sub-optimal parameter&lt;/h2&gt;
+&lt;p&gt;Observe that for &lt;span class=&#34;math inline&#34;&gt;\(\theta\ge 0\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[M_2(\theta)\le e^{-2\theta x+2\psi(\theta)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Minimizing &lt;span class=&#34;math inline&#34;&gt;\(M_2(\theta)\)&lt;/span&gt; is difficult, but minimizing
+the upper bound is easy:
+&lt;span class=&#34;math display&#34;&gt;\[\theta_x = \arg \min_{\theta\ge 0}e^{-2\theta x+2\psi(\theta)}=\arg \max_{\theta\ge 0} \{\theta x-\psi(\theta)\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The function &lt;span class=&#34;math inline&#34;&gt;\(\psi(\theta)\)&lt;/span&gt; is strictly convex and passes through the origin, so the maximum
+is attained at
+&lt;span class=&#34;math display&#34;&gt;\[\theta_x = 
+\begin{cases}
+\text{unique solution to }\psi&amp;#39;(\theta)=x,\ &amp;amp;x&amp;gt;\psi&amp;#39;(0)\\
+0,\ &amp;amp;x\le \psi&amp;#39;(0).
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;for the first case, &lt;span class=&#34;math inline&#34;&gt;\(E_{\theta_x}[L]=\psi&amp;#39;(\theta_x)=x\)&lt;/span&gt;, thus, we have shifted the distribution of L so that x is now its mean.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;for the second case, the event &lt;span class=&#34;math inline&#34;&gt;\(\{L&amp;gt;x\}\)&lt;/span&gt; is not rare, so we do not change the probabilities.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dependent-obligors-conditional-importance-sampling&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Dependent Obligors: Conditional Importance Sampling&lt;/h2&gt;
+&lt;p&gt;For general factor models, &lt;span class=&#34;math inline&#34;&gt;\(Y_k\)&lt;/span&gt; are dependent; but they are independent conditinal on the systematic risk factors &lt;span class=&#34;math inline&#34;&gt;\(Z_1,\dots,Z_d\)&lt;/span&gt;. So we can apply the so-called conditional IS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: simulate &lt;span class=&#34;math inline&#34;&gt;\(Z_1,\dots,Z_d\sim N(0,1)\)&lt;/span&gt; and compute the default probability
+&lt;span class=&#34;math inline&#34;&gt;\(p_k=p_k(Z_1,\dots,Z_d)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: for simulated &lt;span class=&#34;math inline&#34;&gt;\(p_k\)&lt;/span&gt;, obtain the twisting parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta_x=\theta_x(Z_1,\dots,Z_d)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: compute the LR for the &lt;span class=&#34;math inline&#34;&gt;\(\theta_x\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 4: repeat Steps 1–4 &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt; times and then obtain the final IS estimate&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;numerical-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Numerical results&lt;/h2&gt;
+&lt;p&gt;The numerical results were reported in Glasserman and Li (2005).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(21\)&lt;/span&gt;-factor model with &lt;span class=&#34;math inline&#34;&gt;\(m=1000\)&lt;/span&gt; obligors&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(p_k = 0.01(1+\sin(16\pi k/m))\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(c_k=(\lceil5k/m\rceil)^2\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;VRF = “Variance Reduction Factor”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(P(L&amp;gt;x)\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;VRF&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;10,000&lt;/td&gt;
+&lt;td&gt;0.0114&lt;/td&gt;
+&lt;td&gt;33&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;14,000&lt;/td&gt;
+&lt;td&gt;0.0065&lt;/td&gt;
+&lt;td&gt;53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;18,000&lt;/td&gt;
+&lt;td&gt;0.0037&lt;/td&gt;
+&lt;td&gt;83&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;22,000&lt;/td&gt;
+&lt;td&gt;0.0021&lt;/td&gt;
+&lt;td&gt;125&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;30,000&lt;/td&gt;
+&lt;td&gt;0.0006&lt;/td&gt;
+&lt;td&gt;278&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;40,000&lt;/td&gt;
+&lt;td&gt;0.0001&lt;/td&gt;
+&lt;td&gt;977&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;extensions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Extensions&lt;/h2&gt;
+&lt;p&gt;The defual indicators&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y_k=1\{X_k&amp;gt;x_k\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(X_k\)&lt;/span&gt; follow t copula model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Joshua C.C. Chan, Dirk P. Kroese. Efficient estimation of large portfolio loss probabilities in t-copula models. &lt;em&gt;European Journal of Operational Research&lt;/em&gt;, 205:361–367, 2010.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(X_k\)&lt;/span&gt; follow another advanced models, e.g., self-exciting model, Giesecke et al. (2010)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Random default exposures: &lt;span class=&#34;math inline&#34;&gt;\(c_k=e_k\ell_k\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\ell_k\in[0,1]\)&lt;/span&gt; denotes a random
+percentage loss, and &lt;span class=&#34;math inline&#34;&gt;\(e_k&amp;gt;0\)&lt;/span&gt; are constants.
+&lt;span class=&#34;math display&#34;&gt;\[L = \sum_{k=1}^m e_k\ell_k1\{X_k&amp;gt;x_k\}\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\ell_k\)&lt;/span&gt; are iid truncated normals or betas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cross-entropy&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Cross-entropy&lt;/h2&gt;
+&lt;p&gt;The optimal proposal
+density is obtained by locating the member &lt;span class=&#34;math inline&#34;&gt;\(p(x;\theta),\theta\in\Theta\)&lt;/span&gt; that minimizes
+its cross-entropy distance to the zero-variance proposal
+density &lt;span class=&#34;math inline&#34;&gt;\(q^*(x)\propto h(x)p(x;\theta_0)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The minimization of the cross-entropy is equivalent to solving
+the following maximization problem
+&lt;span class=&#34;math display&#34;&gt;\[\max_{\theta\in\Theta} \int h(x)p(x;\theta_0)\log p(x;\theta)d x=\max_{\theta\in\Theta}  E_{\theta_0}[h(X)\log p(X;\theta)]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Since most often an analytical solution to the above maximization
+problem is not available, we consider instead its stochastic
+counterpart
+&lt;span class=&#34;math display&#34;&gt;\[\theta^*=\arg \max_{\theta\in\Theta}\frac 1{N_0}\sum_{i=1}^{N_0}h(X_i)\log p(X_i;\theta),\ X_i\stackrel{iid}{\sim} p(x;\theta_0)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;More detials see Rubinstein (1997), Rubinstein &amp;amp; Kroese (2004).&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>第五次作业</title>
       <link>/post/homework5/</link>
       <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
@@ -1113,8 +1740,9 @@ Fisher信息量为
 &lt;p&gt;由抽样定理知，&lt;span class=&#34;math inline&#34;&gt;\(\bar{X}\sim N(\mu,\sigma^2/n)\)&lt;/span&gt;. 因此
 &lt;span class=&#34;math inline&#34;&gt;\(U = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\)&lt;/span&gt;
 &lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}+a\frac{\sigma}{\sqrt{n}},\  \bar{X}+b\frac{\sigma}{\sqrt{n}}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=u_{1-\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-b\frac{\sigma}{\sqrt{n}},\  \bar{X}-a\frac{\sigma}{\sqrt{n}}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=u_{1-\alpha/2}\)&lt;/span&gt;, 此时置信区间为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\  \bar{X}+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right]=\bar{X}\pm u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;section level2&#34;&gt;
 &lt;h2&gt;方差未知，求期望的置信区间&lt;/h2&gt;
@@ -1122,8 +1750,9 @@ Fisher信息量为
 &lt;span class=&#34;math display&#34;&gt;\[T = \frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}= \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]&lt;/span&gt;
 &lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
 &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-a\frac{S_n^*}{\sqrt{n}},\  \bar{X}+b\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-a\frac{S_n}{\sqrt{n-1}},\  \bar{X}+b\frac{S_n}{\sqrt{n-1}}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=t_{1-\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-b\frac{S_n^*}{\sqrt{n}},\  \bar{X}-a\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-b\frac{S_n}{\sqrt{n-1}},\  \bar{X}-a\frac{S_n}{\sqrt{n-1}}\right]\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=t_{1-\alpha/2}(n-1)\)&lt;/span&gt;, 此时置信区间为：
+&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}},\  \bar{X}+t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\right]=\bar{X}\pm t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-3&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;例&lt;/h2&gt;
@@ -2698,365 +3327,6 @@ f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\t
       
       <guid>/publication/qmcrate/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Chapter 2: Single-parameter models</title>
-      <link>/post/bayes_chap02/</link>
-      <pubDate>Thu, 30 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap02/</guid>
-      <description>&lt;div id=&#34;binomial-models&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;2.1 Binomial models&lt;/h1&gt;
-&lt;div id=&#34;estimating-a-probability-from-binomial-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Estimating a probability from binomial data&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; be the proportion of successes in the population&lt;/li&gt;
-&lt;li&gt;the data &lt;span class=&#34;math inline&#34;&gt;\((y_1,\dots,y_n)\in \{0,1\}^n\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;the total number of successes in the &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; trials is denoted by &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the binomial model is
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta) = C_n^y\theta^y(1-\theta)^{n-y}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the posterior distribution is
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y) \propto p(\theta)p(y|\theta)\propto p(\theta)\theta^y(1-\theta)^{n-y}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;: estimating the probability of a female birth&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A total of 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-choose-a-proper-prior&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How to choose a proper prior?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;A naive choice for &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)\)&lt;/span&gt; is uniform on the interval &lt;span class=&#34;math inline&#34;&gt;\([0,1]\)&lt;/span&gt;. Then
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y) \propto \theta^y(1-\theta)^{n-y}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;that is, &lt;span class=&#34;math inline&#34;&gt;\(\theta|y\sim Beta(y+1,n-y+1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;/post/bayes_chap02_files/figure-html/beta-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
-- &lt;span class=&#34;math inline&#34;&gt;\(P(\theta\ge 0.5|y=241945,n=241945+251527)\approx 1.15\times 10^{-42}\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;prediction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Prediction&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\tilde y\)&lt;/span&gt; be the result of a new trial
-&lt;span class=&#34;math display&#34;&gt;\[P(\tilde y =1|y) = \int_0^1 P(\tilde y=1|\theta,y)p(\theta|y)d \theta=E[\theta|y]=\frac{y+1}{n+2}\]&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Posterior as compromise between data and prior information&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;prior mean is &lt;span class=&#34;math inline&#34;&gt;\(1/2\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;sample mean is &lt;span class=&#34;math inline&#34;&gt;\(y/n\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;posterior mean is &lt;span class=&#34;math inline&#34;&gt;\((y+1)/(n+2)\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;the compromise is controlled to a greater extent by the data as the sample size
-increases.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;posterior-quantiles-and-intervals&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Posterior quantiles and intervals&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt; be the &lt;span class=&#34;math inline&#34;&gt;\(\alpha/2\)&lt;/span&gt; quantile of the posterior distribution&lt;/li&gt;
-&lt;li&gt;let &lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt; be the &lt;span class=&#34;math inline&#34;&gt;\(1-\alpha/2\)&lt;/span&gt; quantile of the posterior distribution&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; posterior interval is &lt;span class=&#34;math inline&#34;&gt;\([T_1,T_2]\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;binterval.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;compare with the usual confidence interval&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;informative-prior-distributions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Informative prior distributions&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: assigning a prior distribution that reflects substantive info.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the likelihood is
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta) \propto \theta^y(1-\theta)^{n-y}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;choose a prior as a &lt;span class=&#34;math inline&#34;&gt;\(Beta(\alpha,\beta)\)&lt;/span&gt; distribution:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta) \propto \theta^{\alpha-1}(1-\theta)^{\beta-1}\]&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the parameters &lt;span class=&#34;math inline&#34;&gt;\(\alpha,\beta&amp;gt;0\)&lt;/span&gt; of the prior distribution is called &lt;em&gt;hyperparameters&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the posterior is
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)\propto \theta^{\alpha+y-1}(1-\theta)^{n-y+\beta-1}=Beta(\alpha+y,\beta+n-y)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;informative-prior-distributions-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Informative prior distributions&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the posterior mean is
-&lt;span class=&#34;math display&#34;&gt;\[E[\theta|y]=\frac{\alpha+y}{\alpha+\beta+n}\]&lt;/span&gt;
-which lies between the sample proportion &lt;span class=&#34;math inline&#34;&gt;\(y/n\)&lt;/span&gt; and the prior mean &lt;span class=&#34;math inline&#34;&gt;\(\alpha/(\alpha+\beta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the posterior variance is
-&lt;span class=&#34;math display&#34;&gt;\[Var[\theta|y]=\frac{(\alpha+y)(\beta+n-y)}{(\alpha+\beta+n)^2(\alpha+\beta+n+1)}=\frac{E[\theta|y](1-E[\theta|y])}{\alpha+\beta+n+1}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;as &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; become large with fixed &lt;span class=&#34;math inline&#34;&gt;\(\alpha,\beta\)&lt;/span&gt;,
-&lt;span class=&#34;math display&#34;&gt;\[E[\theta|y]\approx \frac yn,\ Var[\theta|y]\approx \frac 1n\frac yn(1-\frac yn).\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;conjugate-prior-distributions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Conjugate prior distributions&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Definition&lt;/strong&gt;: If &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}\)&lt;/span&gt; is a class of sampling distribution &lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta)\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{P}\)&lt;/span&gt; is a class of prior distributions for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, then the class &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{P}\)&lt;/span&gt; is &lt;em&gt;conjugate&lt;/em&gt; for &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}\)&lt;/span&gt; if
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)\in \mathcal{P} \text{ for all } p(\cdot|\theta)\in\mathcal{F} \text{ and }p(\cdot)\in\mathcal{P}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Advantages of conjugate prior distributions&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;computational convenience&lt;/li&gt;
-&lt;li&gt;can be interpreted as additional data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exponential-families&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Exponential families&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Definition&lt;/strong&gt;: The class &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}\)&lt;/span&gt; is an &lt;em&gt;exponential family&lt;/em&gt; if all its members have the form
-&lt;span class=&#34;math display&#34;&gt;\[p(y_i|\theta)=f(y_i)g(\theta)\exp[\phi(\theta)^\top u(y_i)].\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(f(\cdot)\ge 0\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\phi(\theta)\)&lt;/span&gt; is called the &lt;code&gt;natural parameter&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For iid samples, we have
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta)=\left(\prod_{i=1}^n f(y_i)\right)g(\theta)^n\exp\left[\phi(\theta)^\top \sum_{i=1}^nu(y_i)\right]
-\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta)\propto g(\theta)^n\exp[\phi(\theta)^\top t(y)]\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;where &lt;span class=&#34;math inline&#34;&gt;\(t(y)=\sum_{i=1}^nu(y_i)\)&lt;/span&gt; (i.e., a &lt;em&gt;sufficient statistic&lt;/em&gt; for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;conjugate-prior-distribution-for-exponential-families&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Conjugate prior distribution for exponential families&lt;/h2&gt;
-&lt;p&gt;If the prior distribution is specified as
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta)\propto g(\theta)^\eta \exp[\phi(\theta)^\top \nu],\]&lt;/span&gt;
-then the posterior density is
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)\propto g(\theta)^{\eta+n} \exp[\phi(\theta)^\top (\nu+t(y))].\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A list of exponential families&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;binomial distributions&lt;/li&gt;
-&lt;li&gt;normal distributions&lt;/li&gt;
-&lt;li&gt;exponential distributions&lt;/li&gt;
-&lt;li&gt;possion distributions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-probability-of-a-girl-birth-given-placenta-previa&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example: Probability of a girl birth given placenta previa&lt;/h2&gt;
-&lt;p&gt;An early study concerning the sex of placenta previa births in Germany found that of a total of 980 births, 437 were female.&lt;/p&gt;
-&lt;p&gt;How much evidence does this provide for the claim that the proportion of female births in the population of placenta previa births is less than &lt;strong&gt;0.485&lt;/strong&gt;, the proportion of female births in the general population?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;using a uniform prior: the posterior is &lt;span class=&#34;math inline&#34;&gt;\(Beta(438,544)\)&lt;/span&gt;. The central &lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; posterior interval is &lt;span class=&#34;math inline&#34;&gt;\([0.415,0.477]\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;using conjugate prior &lt;span class=&#34;math inline&#34;&gt;\(Beta(\alpha,\beta)\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;using nonconjugate prior&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;different-conjugate-prior-distributions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Different conjugate prior distributions&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(\alpha/(\alpha+\beta)\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(\alpha+\beta\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;posterior median&lt;/th&gt;
-&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; posterior interval&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;0.500&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;0.446&lt;/td&gt;
-&lt;td&gt;[0.415, 0.477]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;0.446&lt;/td&gt;
-&lt;td&gt;[0.415, 0.477]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;5&lt;/td&gt;
-&lt;td&gt;0.446&lt;/td&gt;
-&lt;td&gt;[0.415, 0.477]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;10&lt;/td&gt;
-&lt;td&gt;0.446&lt;/td&gt;
-&lt;td&gt;[0.415, 0.477]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0.447&lt;/td&gt;
-&lt;td&gt;[0.416, 0.478]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;100&lt;/td&gt;
-&lt;td&gt;0.450&lt;/td&gt;
-&lt;td&gt;[0.420, 0.479]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;0.485&lt;/td&gt;
-&lt;td&gt;200&lt;/td&gt;
-&lt;td&gt;0.453&lt;/td&gt;
-&lt;td&gt;[0.424, 0.481]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;Posterior inferences based on a large sample are not sensitive to the prior distribution.&lt;/li&gt;
-&lt;li&gt;All the &lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; posterior intervals exclude the prior mean.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-effect-of-prior-distributions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;The effect of prior distributions&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;bprior.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-a-nonconjugate-prior-distribution&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Using a nonconjugate prior distribution&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;nonconjugate.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; posterior interval is [0.419, 0.480]&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;normal-models&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;2.2 Normal models&lt;/h1&gt;
-&lt;div id=&#34;estimating-a-normal-mean-with-known-variance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Estimating a normal mean with known variance&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood function&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta) = \prod_{i=1}^n \frac 1{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\theta)^2}{2\sigma^2}}\propto e^{-\frac{n\theta^2}{2\sigma^2}}e^{\frac{n\theta\bar y}{\sigma^2}}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Conjugate prior&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\theta\sim N(\mu_0,\tau_0^2)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior distribution&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)\propto e^{-\frac{n\theta^2}{2\sigma^2}}e^{\frac{n\theta\bar y}{\sigma^2}}e^{-\frac{\theta^2}{2\tau_0^2}}e^{\frac{\mu_0\theta}{\tau_0^2}}=N(\mu_n,\tau_n^2)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where
-&lt;span class=&#34;math display&#34;&gt;\[\mu_n=\frac{\frac 1{\tau_0^2}\mu_0+\frac n{\sigma^2}\bar y}{\frac 1{\tau_0^2}+\frac n{\sigma^2}},\ \frac1{\tau_n^2}=\frac{1}{\tau_0^2}+\frac n{\sigma^2}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;comments&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;the inverse of the variance plays a prominet role and is called the &lt;em&gt;precision&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;posterior precision = prior precision + data precision&lt;/li&gt;
-&lt;li&gt;the posterior mean is expressed as a weighted average of the prior mean &lt;span class=&#34;math inline&#34;&gt;\(\mu_0\)&lt;/span&gt; and the sample mean &lt;span class=&#34;math inline&#34;&gt;\(\bar y\)&lt;/span&gt;, with weights proportional to the precisions.&lt;/li&gt;
-&lt;li&gt;what happens if &lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(\tau_0^2\)&lt;/span&gt; fixed? data info. dominated!&lt;/li&gt;
-&lt;li&gt;what happens if &lt;span class=&#34;math inline&#34;&gt;\(\tau_0\to \infty\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; fixed? This would result from assuming &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)\)&lt;/span&gt; is proportional to a constant for &lt;span class=&#34;math inline&#34;&gt;\(\theta\in(-\infty,\infty)\)&lt;/span&gt;. (improper prior, serves as an noninformative prior)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;normal-distribution-with-known-mean-but-unknown-variance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Normal distribution with known mean but unknown variance&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood function&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\sigma^2)=\prod_{i=1}^n \frac 1{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\theta)^2}{2\sigma^2}}\propto \sigma^{-n}\exp\left[-\frac{n}{2\sigma^2}\nu\right]\]&lt;/span&gt;
-where the sufficient statistic is
-&lt;span class=&#34;math display&#34;&gt;\[\nu=\frac 1n\sum_{i=1}^n(y_i-\theta)^2.\]&lt;/span&gt;
-&lt;strong&gt;Conjugate prior density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\sigma^2)\propto (\sigma^2)^{-(\alpha+1)}e^{-\beta/\sigma^2},\]&lt;/span&gt;
-where the hyperparameters is &lt;span class=&#34;math inline&#34;&gt;\((\alpha,\beta)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;We may take &lt;span class=&#34;math inline&#34;&gt;\(\theta\sim \text{Inv-}\chi^2(\nu_0,\sigma^2_0)\)&lt;/span&gt; as a prior (i.e., &lt;span class=&#34;math inline&#34;&gt;\(\theta\stackrel d {=}\sigma_0^2\nu_0/\chi^2_{\nu_0}\)&lt;/span&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;normal-distribution-with-known-mean-but-unknown-variance-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Normal distribution with known mean but unknown variance&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Prior density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\sigma^2)= \text{Inv-}\chi^2(\nu_0,\sigma^2_0)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\sigma^2|y)=\text{Inv-}\chi^2\left(\nu_0+n,\frac{\nu_0\sigma_0^2+n\nu}{\nu_0+n}\right)\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;degree of freedom = sum of the prior and data&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;scale = weighted average of the prior and data&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;if &lt;span class=&#34;math inline&#34;&gt;\(\nu_0=0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(p(\sigma^2|y)=\text{Inv-}\chi^2(n,\nu)\)&lt;/span&gt;, as effectively taking &lt;span class=&#34;math inline&#34;&gt;\(p(\sigma^2)\propto 1/\sigma^2\)&lt;/span&gt; (improper prior, serves as an noninformative prior)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;poisson-models&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;2.3 Poisson models&lt;/h1&gt;
-&lt;div id=&#34;poisson-models-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Poisson models&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Applications&lt;/strong&gt;: The Possion distribution arises naturally in the study of data taking the form of counts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;number of customer on the queue over an unit time&lt;/li&gt;
-&lt;li&gt;epidemiology – the incidence of diseases&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood function&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta) = \prod_{i=1}^n\frac{\theta^{y_i}e^{-\theta}}{y_i!}\propto \theta^{t(y)}e^{-n\theta}\propto e^{-n\theta}e^{t(y)\log \theta}\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(t(y)=\sum_{i=1}^n y_i\)&lt;/span&gt; is the sufficient statistic&lt;/li&gt;
-&lt;li&gt;the natural parameter is &lt;span class=&#34;math inline&#34;&gt;\(\log \theta\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Conjugate prior&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta)\propto e^{-\eta\theta}e^{\nu\log \theta}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;So we may choose &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)=Gamma(\alpha,\beta)\propto \theta^{\alpha-1}e^{-\beta\theta}\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;poisson-models-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Poisson models&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Prior density&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)=Gamma(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior density&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|y)=Gamma(\alpha+n\bar y,\beta+n)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Marginal density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(y_i)=C_{\alpha+y_i-1}^{y_i} \left(\frac{\beta}{\beta+1}\right)^\alpha\left(\frac{1}{\beta+1}\right)^{y_i}\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(y_i\sim \text{Neg-bin}(\alpha,\beta)\)&lt;/span&gt;, i.e., the negative binomial distribution&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;possion-models-an-extension&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Possion models: an extension&lt;/h2&gt;
-&lt;p&gt;In many applications, it is convenient to extend the Possion model for data pionts &lt;span class=&#34;math inline&#34;&gt;\(y_1,\dots,y_n\)&lt;/span&gt; to the form
-&lt;span class=&#34;math display&#34;&gt;\[y_i\sim Poission(x_i\theta),\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the values &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are known positive values of an explanatory variable &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, called the &lt;em&gt;exposure&lt;/em&gt; of the &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;th unit&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is unknown, called the &lt;em&gt;rate&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Prior density&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)=Gamma(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)=Gamma(\alpha+\sum_{i=1}^ny_i,\beta+\sum_{i=1}^nx_i)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;: Bayesian inference for the cancer death rates (p.48)&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exponential-models&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;2.4 Exponential models&lt;/h1&gt;
-&lt;div id=&#34;exponential-models-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Exponential models&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Applications&lt;/strong&gt;: The expoential distribution is commonly used to model ‘waiting times’ and other continuous, poisitive, real-valued random variables. It has a ‘memoryless’ property that makes it a natural model for survival or lifetime data.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Likelihood function&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(y|\theta) = \prod_{i=1}^n\theta \exp(-y_i\theta)= \theta^{n}e^{-n\bar y \theta}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Prior density&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(p(\theta)=Gamma(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Posterior density&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|y)=Gamma(\alpha+n,\beta+n\bar y)\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Summary&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;Population&lt;/th&gt;
-&lt;th&gt;Parameter&lt;/th&gt;
-&lt;th&gt;Conjugate prior&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;Binomial&lt;/td&gt;
-&lt;td&gt;probability of success&lt;/td&gt;
-&lt;td&gt;Beta dist.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;Possion&lt;/td&gt;
-&lt;td&gt;mean&lt;/td&gt;
-&lt;td&gt;Gamma dist.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;Exponential&lt;/td&gt;
-&lt;td&gt;inverse mean&lt;/td&gt;
-&lt;td&gt;Gamma dist.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;Normal (known variance)&lt;/td&gt;
-&lt;td&gt;mean&lt;/td&gt;
-&lt;td&gt;Normal dist.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;Normal (known mean)&lt;/td&gt;
-&lt;td&gt;variance&lt;/td&gt;
-&lt;td&gt;Inv-Gamma dist.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;end-notes&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;End notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;two kinds of prior distributions: uniform (noninformative) and conjugate (informative)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;some other noninformative prior distributions: Jeffreys’ prior etc. See pp.52-56&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;noninformative prior are often useful when it does not seem to be worth the effort to quantify one’s real prior knowledge as a probability distribution&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;when using conjugate prior, it remains to choose the hyperparameters; see Chapter 5 for hierarchical models&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
     </item>
     
   </channel>

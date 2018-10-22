@@ -438,8 +438,9 @@ Fisher信息量为
 <p>由抽样定理知，<span class="math inline">\(\bar{X}\sim N(\mu,\sigma^2/n)\)</span>. 因此
 <span class="math inline">\(U = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\)</span>
 <span class="math display">\[P\left(a\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le b\right) = 1-\alpha\]</span>
-<span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为<span class="math display">\[\left[\bar{X}+a\frac{\sigma}{\sqrt{n}},\  \bar{X}+b\frac{\sigma}{\sqrt{n}}\right]\]</span></p>
-<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=u_{1-\alpha/2}\)</span></p>
+<span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为<span class="math display">\[\left[\bar{X}-b\frac{\sigma}{\sqrt{n}},\  \bar{X}-a\frac{\sigma}{\sqrt{n}}\right]\]</span></p>
+<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=u_{1-\alpha/2}\)</span>, 此时置信区间为：</p>
+<p><span class="math display">\[\left[\bar{X}-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\  \bar{X}+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right]=\bar{X}\pm u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]</span></p>
 </div>
 <div class="section level2">
 <h2>方差未知，求期望的置信区间</h2>
@@ -447,8 +448,9 @@ Fisher信息量为
 <span class="math display">\[T = \frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}= \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]</span>
 <span class="math display">\[P\left(a\le \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\le b\right) = 1-\alpha\]</span>
 <span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
-<span class="math display">\[\left[\bar{X}-a\frac{S_n^*}{\sqrt{n}},\  \bar{X}+b\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-a\frac{S_n}{\sqrt{n-1}},\  \bar{X}+b\frac{S_n}{\sqrt{n-1}}\right]\]</span></p>
-<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=t_{1-\alpha/2}\)</span></p>
+<span class="math display">\[\left[\bar{X}-b\frac{S_n^*}{\sqrt{n}},\  \bar{X}-a\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-b\frac{S_n}{\sqrt{n-1}},\  \bar{X}-a\frac{S_n}{\sqrt{n-1}}\right]\]</span></p>
+<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=t_{1-\alpha/2}(n-1)\)</span>, 此时置信区间为：
+<span class="math display">\[\left[\bar{X}-t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}},\  \bar{X}+t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\right]=\bar{X}\pm t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\]</span></p>
 </div>
 <div id="-3" class="section level2">
 <h2>例</h2>

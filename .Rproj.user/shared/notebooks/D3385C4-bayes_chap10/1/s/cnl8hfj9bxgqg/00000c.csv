@@ -1,0 +1,1 @@
+"0","plot(1:n,y2,col=""red"",xlab="""",ylab="""",main=paste(n,"" samples from rbeta("",alpha,"","",beta,"")"",seq=""1""))"

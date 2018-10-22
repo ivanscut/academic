@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540186584740.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3234336375",
+    "id" : "45CD7354",
+    "lastKnownWriteTime" : 1538901577,
+    "last_content_update" : 1538901577,
+    "path" : "D:/Dropbox/courses/web/academic/content/post/bayes_chap03.Rmd",
+    "project_path" : "content/post/bayes_chap03.Rmd",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
