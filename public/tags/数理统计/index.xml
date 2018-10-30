@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Mon, 22 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第六次作业</title>
+      <link>/post/homework6/</link>
+      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework6/</guid>
+      <description>True or false, and state why:
+The significance level of a statistical test is equal to the probability that thenull hypothesis is true.If the significance level of a test is decreased, the power of the test would be expected toincrease.The probability that the null hypothesis is falsely rejected is equal to the powerof the test.A type I error occurs when the test statistic falls in the rejection region of thetest.</description>
+    </item>
     
     <item>
       <title>第五次作业</title>
@@ -51,21 +61,21 @@ female_height = height[sex==&amp;quot;Female&amp;quot;]#提取女生数据male_
       <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/homework4/</guid>
-      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。（多选题）
+      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。答案：ABCE
 A. \(\bar X\)
 B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
 C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
 D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
 E. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
-设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。
+设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。答案：A
 A. \(\bar X\)
 B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
 C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
 D. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
 设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
-设\(X_1,\dots,X_n\)为\(N(\mu,\sigma^2)\)分布的样本，参数\(\mu,\sigma^2\)未知。证明样本方差\(S_n^2\)与修正样本方差\(S_n^{*2}\)均为\(\sigma^2\)的弱相合估计量。
-设\(X_1,\dots,X_n\)为\(N(\mu,\sigma^2)\)分布的样本，参数\(\mu,\sigma^2\)未知。样本方差\(S_n^2\)与修正样本方差\(S_n^{*2}\)作为\(\sigma^2\)的两种估计量，哪个更有效？由B-L-S定理知，\(S_n^{*2}\)是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？
-设\(X_1,\dots,X_n\)为总体\(N(\mu,\sigma^2)\), 其中\(\mu\)已知，\(\sigma^2\)未知。证明\(\sigma^2\)的估计量\[T(X_1,\dots,X_n)=\frac 1n\sum_{i=1}^n(X_i-\mu)^2\]的方差达到C-R不等式的下界。</description>
+解: 1. \(\lambda^2\)的无偏估计有很多种答案：
+因为\(E[X]=Var[\lambda]=\lambda\), 所以\(E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2\)，由矩法得到一种无偏估计量：\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]
+因为\(E[\bar X]=\lambda\), \[E(\bar X^2) = Var(\bar X)+(E[\bar X])^2=\lambda/n+\lambda^2=E[\bar X]/n+\lambda^2,\]于是可以得到一种无偏估计量：\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]</description>
     </item>
     
     <item>

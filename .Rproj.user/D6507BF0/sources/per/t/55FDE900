@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540535223396.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "372007066",
+    "id" : "55FDE900",
+    "lastKnownWriteTime" : 1540535296,
+    "last_content_update" : 1540535296314,
+    "path" : "D:/Dropbox/courses/web/academic/content/post/homework6.Rmd",
+    "project_path" : "content/post/homework6.Rmd",
+    "properties" : {
+        "cursorPosition" : "33,79",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
