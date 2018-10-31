@@ -15,7 +15,7 @@
   
     
   
-  <meta name="description" content="截止日期：2018-10-28 23:00">
+  <meta name="description" content="答案已上传！">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/homework5/">
@@ -89,7 +89,7 @@
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/post/homework5/">
   <meta property="og:title" content="第五次作业 | Dr. Zhijian He">
-  <meta property="og:description" content="截止日期：2018-10-28 23:00">
+  <meta property="og:description" content="答案已上传！">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-10-22T00:00:00&#43;00:00">
@@ -244,7 +244,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -273,11 +273,94 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <p>课本P61第23题</p>
+      <p>课本P61第23题：设<span class="math inline">\(X_1,\dots,X_n\)</span>是<span class="math inline">\(U(0,\theta)\)</span>的样本，求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间。设得到了<span class="math inline">\(5\)</span>个样本值<span class="math inline">\(0.08,0.28,0.53,0.91,0.89\)</span>, 求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(0.95\)</span>的置信区间。</p>
+<p><code>解</code>：因为<span class="math inline">\(X_i\stackrel{iid}{\sim} U(0,\theta)\)</span>, 所以<span class="math inline">\(Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)\)</span>. 由此可以构造很多种枢轴量。由于<span class="math inline">\(X_{(n)}\)</span>为<span class="math inline">\(\theta\)</span>的最大似然估计，所以很自然想到通过<span class="math inline">\(X_{(n)}\)</span>来构造枢轴量。</p>
+<p><span class="math display">\[G_1= \frac{X_{(n)}}{\theta}=Y_{(n)}\]</span></p>
+<p>因为<span class="math inline">\(Y_i\stackrel{iid}{\sim} U(0,1)\)</span>, 不难计算<span class="math inline">\(Y_{(n)}\)</span>(也就是<span class="math inline">\(G_1\)</span>)的分布函数为：
+<span class="math display">\[F_1(x) = P(Y_{(n)}\le x ) = \prod_{i=1}^n P(Y_i\le x) = x^n,x\in (0,1) \]</span></p>
+<p>假设存在<span class="math inline">\(0\le a&lt;b\le 1\)</span>满足<span class="math inline">\(P(a\le G_1\le b)=b^n-a^n=1-\alpha\)</span>, 则有可以得到一个
+置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间
+<span class="math display">\[\left[\frac{X_{(n)}}{b},\frac{X_{(n)}}{a}\right].\]</span></p>
+<p>显然满足方程<span class="math inline">\(b^n-a^n=1-\alpha\)</span>的解有无穷多种，最好的选择方案是使得<span class="math inline">\(1/a-1/b\)</span>最短，即
+<span class="math display">\[a_{opt} = \arg \min_{a\in[0,\alpha^{1/n}]} \left[\frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}}\right]= \arg \min_{a\in[0,\alpha^{1/n}]}g(a)\]</span></p>
+<p>其中<span class="math inline">\(g(a) = \frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}},a\in[0,\alpha^{1/n}]\)</span>。因为
+<span class="math display">\[g&#39;(a) = -\frac 1{a^2}+\frac{a^{n-1}}{(1-\alpha+a^n)^{1+1/n}}&lt; -\frac{1}{a^2}+\frac{a^{n-1}}{(a^n)^{1+1/n}}=0\]</span></p>
+<p>所以<span class="math inline">\(g(a)\)</span>为单调递减函数，于是<span class="math inline">\(a_{opt}=\alpha^{1/n},b_{opt}=1\)</span>. 所以最优的置信区间为<span class="math inline">\(\left[X_{(n)},\frac{X_{(n)}}{\alpha^{1/n}}\right]\)</span>，把具体数据代进去可得置信区间为<span class="math inline">\([0.91,1.66]\)</span>.</p>
+<p>当然你可以用平分法得到<span class="math inline">\(a=(\alpha/2)^{1/n},b=(1-\alpha/2)^{1/n}\)</span>, 把具体数据代进去可得置信区间为<span class="math inline">\([0.9146,1.9031]\)</span>, 显然这样的区间长度比最优的情况长些。</p>
+<p>此外，我们还可以构造其他的枢轴量，比如
+<span class="math display">\[G_2 = -2\sum_{i=1}^n\log Y_i = -2\sum_{i=1}^n\log X_i+2n\log \theta\sim\chi^2(2n)\]</span></p>
+<p>为什么是卡方分布？请查看<a href="https://hezhijian.netlify.com/post/homework1/">第一次作业第五题</a></p>
+<p>假设存在<span class="math inline">\(0\le c&lt;d\)</span>满足<span class="math inline">\(P(c\le G_2\le d)=1-\alpha\)</span>, 则有可以得到另一个
+置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间
+<span class="math display">\[\left[e^{(c+2\sum_{i=1}^n\log X_i)/2n},e^{(d+2\sum_{i=1}^n\log X_i)/2n}\right].\]</span></p>
+<p>利用平分法，不妨取<span class="math inline">\(c=\chi^2_{\alpha/2}(2n),d=\chi^2_{1-\alpha/2}(2n)\)</span>. 代入数据得到置信区间为<span class="math inline">\([0.5465,3.0631]\)</span>，这种做法需要用到所有的数据，而且置信区间长度更长。</p>
+<blockquote>
+<p>总结：从这例子看出，置信区间的选择有很多种，选取不同的枢轴量，所得的区间往往差别很大。如何选择恰当的枢轴量？一个很好的启发就是与点估计量联系起来。比如这道题第一种方式用到了最大值统计量，这个是未知参数的极大似然估计量，所以“好的”置信区间可能与它存在某种联系，比如包含它。然而，遗憾的是，对区间估计问题没有一个准则来得到所谓“好的”置信区间。</p>
+</blockquote>
+<blockquote>
+<p>有部分同学使用中心极限定理来得到近似置信区间，这种做法对<span class="math inline">\(n=5\)</span>的小样本问题不合适。</p>
+</blockquote>
 <hr />
-<p>课本P62第27题</p>
+<p>下面通过R语言来求解具体的区间估计问题，最方便的方法是用函数来实现。</p>
+<pre class="r"><code>## 单个总体期望的区间估计
+# x为数据
+# 1-alpha为置信水平
+# sigma为总体标准差，默认sigma=NA为未知标准差的情形
+# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果
+meanCI &lt;- function(x,alpha,sigma=NA,k=6){
+  n = length(x)
+  mu = mean(x)
+  if(is.na(sigma)){
+    #方差未知, 用t分布
+    len = qt(1-alpha/2,df=n-1)*sd(x)/sqrt(n)
+    CI = c(mu-len,mu+len)
+  }else{
+    #方差已知, 用正态分布
+    len = qnorm(1-alpha/2)*sigma/sqrt(n)
+    CI = c(mu-len,mu+len)
+  }
+  if(k&gt;0){#输出结果，保留k位有效数字
+    print(paste0(&quot;期望的&quot;,(1-alpha)*100,&quot;%置信区间为[&quot;,signif(CI[1],k),&quot;, &quot;,signif(CI[2],k),&quot;]&quot;))
+  }
+  return(CI)
+}
+
+## 单个总体方差的区间估计
+# x为数据
+# 1-alpha为置信水平
+# mu为总体期望，默认mu=NA为未知期望的情形
+# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果
+varCI &lt;- function(x,alpha,mu=NA,k=6){
+  n = length(x)
+  if(is.na(mu)){
+    #期望未知, 用chisq(n-1)分布
+    CI = (n-1)*var(x)*c(1/qchisq(1-alpha/2,df=n-1),1/qchisq(alpha/2,df=n-1))
+  }else{
+    #期望已知, 用chisq(n)分布
+    CI = sum((x-mu)^2)*c(1/qchisq(1-alpha/2,df=n),1/qchisq(alpha/2,df=n))
+  }
+  if(k&gt;0){#输出结果，保留k位有效数字
+    print(paste0(&quot;方差的&quot;,(1-alpha)*100,&quot;%置信区间为[&quot;,signif(CI[1],k),&quot;, &quot;,signif(CI[2],k),&quot;]&quot;))
+  }
+  return(CI)
+}</code></pre>
 <hr />
-<p>课本P62第28题</p>
+<p>为了解决课本P62第27题，只需要调用<code>varCI</code>函数就可以，操作如下</p>
+<pre class="r"><code># 第27题数据导入
+data1 = c(249,254,243,268,253,269,287,241,273,
+          306,303,280,260,256,278,344,304,283,310)
+alpha = 0.05
+CI1 = varCI(data1,alpha)</code></pre>
+<pre><code>## [1] &quot;方差的95%置信区间为[418.754, 1603.96]&quot;</code></pre>
+<pre class="r"><code>print(paste0(&quot;标准差的&quot;,(1-alpha)*100,&quot;%置信区间为[&quot;,signif(sqrt(CI1[1]),6),&quot;, &quot;,signif(sqrt(CI1[2]),6),&quot;]&quot;))</code></pre>
+<pre><code>## [1] &quot;标准差的95%置信区间为[20.4635, 40.0495]&quot;</code></pre>
+<hr />
+<p>为解决课本P62第28题，只需要调用<code>meanCI</code>函数就可以，操作如下</p>
+<pre class="r"><code># 第28题数据导入
+data2 = c(40,45,23,40,31,33,49,33,34,43,26,39)
+alpha = 0.05
+CI2 = meanCI(data2,alpha)</code></pre>
+<pre><code>## [1] &quot;期望的95%置信区间为[31.4317, 41.235]&quot;</code></pre>
 <hr />
 <p>分析R软件的<code>dslabs</code>包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 <a href="https://hezhijian.netlify.com/post/ex2/" class="uri">https://hezhijian.netlify.com/post/ex2/</a></p>
 <ol style="list-style-type: decimal">
@@ -286,6 +369,63 @@
 <li><p>假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？</p></li>
 <li><p>为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？</p></li>
 </ol>
+<p><code>解</code>：第一问只需调用前面的两个函数求解即可。</p>
+<pre class="r"><code>library(&quot;dslabs&quot;) #事先需要安装该package
+attach(heights) #这样可以直接使用height和sex
+alpha = 0.05
+CI3 = meanCI(height,alpha)</code></pre>
+<pre><code>## [1] &quot;期望的95%置信区间为[68.076, 68.57]&quot;</code></pre>
+<pre class="r"><code>CI4 = varCI(height,alpha)</code></pre>
+<pre><code>## [1] &quot;方差的95%置信区间为[15.2985, 18.1559]&quot;</code></pre>
+<p>下面解决第二问，可以看出是核估计与正态估计接近。</p>
+<pre class="r"><code>par(lwd = 2,mar=c(4,4,4,2))
+plot(density(height,from = 50,to=85),type=&quot;l&quot;,col=&quot;blue&quot;,xlab=&quot;x&quot;,main=&quot;Kernel vs. Normal&quot;)
+x = seq(50,85,by=0.001)
+y = dnorm(x,mean(height),sd(height))
+lines(x,y,col=&quot;red&quot;)
+legend(x=50,y=.1,legend=c(&quot;Kernel&quot;,&quot;Normal&quot;),lty=c(1,1),col=c(&quot;blue&quot;,&quot;red&quot;),lwd=c(2,2))</code></pre>
+<p><img src="/post/homework5_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>下面解决两个正态总体均值差（方差相同）的区间估计，同样用函数来解决。</p>
+<pre class="r"><code>## 两个总体期望差的区间估计（已知方差相同）
+# x,y为两个样本数据
+# 1-alpha为置信水平
+# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果
+meandiffCI &lt;- function(x,y,alpha,k=6){
+  n = length(x)
+  m = length(y)
+  mu1 = mean(x)
+  mu2 = mean(y)
+  sw = sqrt(((n-1)*var(x)+(m-1)*var(y))/(n+m-2))
+  CI = mu1-mu2+qt(1-alpha/2,m+n-2)*sw*sqrt(1/n+1/m)*c(-1,1)
+  if(k&gt;0){#输出结果，保留k位有效数字
+    print(paste0(&quot;期望差的&quot;,(1-alpha)*100,&quot;%置信区间为[&quot;,signif(CI[1],k),&quot;, &quot;,signif(CI[2],k),&quot;]&quot;))
+  }
+  return(CI)
+}
+
+M_height = height[sex==&quot;Male&quot;] #男生数据
+F_height = height[sex==&quot;Female&quot;] #女生数据
+alpha = 0.05
+CI5 = meandiffCI(M_height,F_height,alpha)</code></pre>
+<pre><code>## [1] &quot;期望差的95%置信区间为[3.84807, 4.90259]&quot;</code></pre>
+<p>下面解决两个正态总体方差比的区间估计，同样用函数来解决。</p>
+<pre class="r"><code>## 两个总体方差比的区间估计（期望未知）
+# x,y为两个样本数据
+# 1-alpha为置信水平
+# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果
+vardiffCI &lt;- function(x,y,alpha,k=6){
+  n = length(x)
+  m = length(y)
+  CI = var(x)/var(y)*c(1/qf(1-alpha/2,n-1,m-1),1/qf(alpha/2,n-1,m-1))
+  if(k&gt;0){#输出结果，保留k位有效数字
+    print(paste0(&quot;方差比的&quot;,(1-alpha)*100,&quot;%置信区间为[&quot;,signif(CI[1],k),&quot;, &quot;,signif(CI[2],k),&quot;]&quot;))
+  }
+  return(CI)
+}
+
+CI6 = vardiffCI(M_height,F_height,alpha)</code></pre>
+<pre><code>## [1] &quot;方差比的95%置信区间为[0.746698, 1.12527]&quot;</code></pre>
+<p>从中可以看出，方差比的置信区间包含1，可以认为男女两个总体的方差相同。</p>
 
     </div>
 

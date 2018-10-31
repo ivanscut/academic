@@ -1,0 +1,3 @@
+"0","x = seq(50,85,by=0.001)"
+"0","y = dnorm(x,mean(height),sd(height))"
+"0","lines(x,y,col=""red"")"

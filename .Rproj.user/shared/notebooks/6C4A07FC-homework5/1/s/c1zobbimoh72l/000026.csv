@@ -1,0 +1,2 @@
+"0","par(lwd = 2,mar=c(3,3,3,1))"
+"0","plot(density(height,from = 50,to=85),type=""l"",col=""blue"",xlab=""x"",main=""Kernel vs. normal"")"

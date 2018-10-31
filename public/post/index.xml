@@ -41,15 +41,18 @@ The significance level of a statistical test is equal to the probability that th
       <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/homework5/</guid>
-      <description>课本P61第23题
-课本P62第27题
-课本P62第28题
-分析R软件的dslabs包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 https://hezhijian.netlify.com/post/ex2/
-假设整个总体服从正态分布，求期望和方差的95%置信区间。
-为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？
-假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？
-为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？
-</description>
+      <description>课本P61第23题：设\(X_1,\dots,X_n\)是\(U(0,\theta)\)的样本，求\(\theta\)的置信水平为\(1-\alpha\)的置信区间。设得到了\(5\)个样本值\(0.08,0.28,0.53,0.91,0.89\), 求\(\theta\)的置信水平为\(0.95\)的置信区间。
+解：因为\(X_i\stackrel{iid}{\sim} U(0,\theta)\), 所以\(Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)\). 由此可以构造很多种枢轴量。由于\(X_{(n)}\)为\(\theta\)的最大似然估计，所以很自然想到通过\(X_{(n)}\)来构造枢轴量。
+\[G_1= \frac{X_{(n)}}{\theta}=Y_{(n)}\]
+因为\(Y_i\stackrel{iid}{\sim} U(0,1)\), 不难计算\(Y_{(n)}\)(也就是\(G_1\))的分布函数为：\[F_1(x) = P(Y_{(n)}\le x ) = \prod_{i=1}^n P(Y_i\le x) = x^n,x\in (0,1) \]
+假设存在\(0\le a&amp;lt;b\le 1\)满足\(P(a\le G_1\le b)=b^n-a^n=1-\alpha\), 则有可以得到一个置信水平为\(1-\alpha\)的置信区间\[\left[\frac{X_{(n)}}{b},\frac{X_{(n)}}{a}\right].\]
+显然满足方程\(b^n-a^n=1-\alpha\)的解有无穷多种，最好的选择方案是使得\(1/a-1/b\)最短，即\[a_{opt} = \arg \min_{a\in[0,\alpha^{1/n}]} \left[\frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}}\right]= \arg \min_{a\in[0,\alpha^{1/n}]}g(a)\]
+其中\(g(a) = \frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}},a\in[0,\alpha^{1/n}]\)。因为\[g&amp;#39;(a) = -\frac 1{a^2}+\frac{a^{n-1}}{(1-\alpha+a^n)^{1+1/n}}&amp;lt; -\frac{1}{a^2}+\frac{a^{n-1}}{(a^n)^{1+1/n}}=0\]
+所以\(g(a)\)为单调递减函数，于是\(a_{opt}=\alpha^{1/n},b_{opt}=1\). 所以最优的置信区间为\(\left[X_{(n)},\frac{X_{(n)}}{\alpha^{1/n}}\right]\)，把具体数据代进去可得置信区间为\([0.91,1.66]\).
+当然你可以用平分法得到\(a=(\alpha/2)^{1/n},b=(1-\alpha/2)^{1/n}\), 把具体数据代进去可得置信区间为\([0.9146,1.9031]\), 显然这样的区间长度比最优的情况长些。
+此外，我们还可以构造其他的枢轴量，比如\[G_2 = -2\sum_{i=1}^n\log Y_i = -2\sum_{i=1}^n\log X_i+2n\log \theta\sim\chi^2(2n)\]
+为什么是卡方分布？请查看第一次作业第五题
+假设存在\(0\le c&amp;lt;d\)满足\(P(c\le G_2\le d)=1-\alpha\), 则有可以得到另一个置信水平为\(1-\alpha\)的置信区间\[\left[e^{(c+2\sum_{i=1}^n\log X_i)/2n},e^{(d+2\sum_{i=1}^n\log X_i)/2n}\right].</description>
     </item>
     
     <item>

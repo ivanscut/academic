@@ -1,0 +1,3 @@
+"0","plot(density(height,from = 50,to=85),type=""l"")"
+"2","Error in density(height, from = 50, to = 85) : object 'height' not found
+"
