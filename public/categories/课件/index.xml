@@ -7,10 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/%E8%AF%BE%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第三章：假设检验</title>
+      <link>/post/chap03/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chap03/</guid>
+      <description>Contents1. 假设检验基本概念1.1 检验问题的提出1.2 检验法则与两类错误1.3 检验水平与功效2. 似然比检验2.1 似然比检验法原理2.2 Neyman-Pearson引理2.3 单参数指数型的假设检验Contents (continued)3. 广义似然比检验3.1 广义似然比检验法原理3.2 单个正态总体的假设检验3.3 两个独立正态总体的假设检验4. 拟合优度检验4.1 卡方检验法4.2 独立性检验4.3 柯尔莫哥洛夫检验法4.4 正态性检验Case study奶茶是由牛奶与茶按一定比例混合而成，可以先倒茶后加奶，也可以先倒奶再倒茶。某女士声称她可以鉴别这两种混合方式，周围品茶的人对此产生了议论，都觉得不可思议。在场的费希尔也在思考这个问题，他提议做一项试验来检验如下命题是否可以接受：
+假设H: 该女士无此种鉴别能力
+他准备了10杯调好的奶茶（两种顺序的都有）给该女士鉴别，结果那位女士竟然能够正确地分辨出10杯奶茶中的每一杯的调制顺序。
+如何做出你的判断？
+假如该女士只猜对了9杯（或者8杯），又该如何判断？
+Some examples产品的次品率是否不超过\(3\%\)
+男生群体平均身高是否大于女生群体平均身高？
+身高是否服从正态分布？
+抽烟与慢性支气管炎是否有关？</description>
+    </item>
     
     <item>
       <title>第二章：估计</title>

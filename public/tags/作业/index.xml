@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Fri, 26 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第七次作业</title>
+      <link>/post/homework7/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework7/</guid>
+      <description>Let \(X_1,\dots,X_n\) be a sample from an expnential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
+\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
+where \(\lambda_1\neq\lambda_2\).
+Let \(X_1,\dots,X_n\) be a sample from an expnential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a UMPU test of
+\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]
+Let \(X_1,\dots,X_n\) be a sample from \(U[0,\theta]\). Given a significance level \(\alpha\), derive a UMP test of
+\[H_0:\theta=\theta_0\ vs.\ H_1:\theta&amp;gt;\theta_0.\]
+Let \(X_1,X_2,X_3,X_4\) be a sample from \(N(\theta,1)\).</description>
+    </item>
     
     <item>
       <title>第六次作业</title>

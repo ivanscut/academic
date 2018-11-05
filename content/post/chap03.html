@@ -1,0 +1,651 @@
+---
+title: "第三章：假设检验"
+date: "2018-11-05"
+categories: ["课件"]
+Summary: "第三章：假设检验(Hypothesis Tests)"
+tags: ["课件", "数理统计"]
+---
+
+
+
+<div id="contents" class="section level2">
+<h2>Contents</h2>
+<div class="section level3">
+<h3>1. 假设检验基本概念</h3>
+<ul>
+<li>1.1 检验问题的提出</li>
+<li>1.2 检验法则与两类错误</li>
+<li>1.3 检验水平与功效</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>2. 似然比检验</h3>
+<ul>
+<li>2.1 似然比检验法原理</li>
+<li>2.2 Neyman-Pearson引理</li>
+<li>2.3 单参数指数型的假设检验</li>
+</ul>
+</div>
+</div>
+<div id="contents-continued" class="section level2">
+<h2>Contents (continued)</h2>
+<div class="section level3">
+<h3>3. 广义似然比检验</h3>
+<ul>
+<li>3.1 广义似然比检验法原理</li>
+<li>3.2 单个正态总体的假设检验</li>
+<li>3.3 两个独立正态总体的假设检验</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>4. 拟合优度检验</h3>
+<ul>
+<li>4.1 卡方检验法</li>
+<li>4.2 独立性检验</li>
+<li>4.3 柯尔莫哥洛夫检验法</li>
+<li>4.4 正态性检验</li>
+</ul>
+</div>
+</div>
+<div id="case-study" class="section level2">
+<h2>Case study</h2>
+<p>奶茶是由牛奶与茶按一定比例混合而成，可以先倒茶后加奶，也可以先倒奶再倒茶。某女士声称她可以鉴别这两种混合方式，周围品茶的人对此产生了议论，都觉得不可思议。在场的费希尔也在思考这个问题，他提议做一项试验来检验如下命题是否可以接受：</p>
+<blockquote>
+<p>假设H: 该女士无此种鉴别能力</p>
+</blockquote>
+<p>他准备了10杯调好的奶茶（两种顺序的都有）给该女士鉴别，结果那位女士竟然能够正确地分辨出10杯奶茶中的每一杯的调制顺序。</p>
+<p><strong>如何做出你的判断？</strong></p>
+<p><strong>假如该女士只猜对了9杯（或者8杯），又该如何判断？</strong></p>
+</div>
+<div id="some-examples" class="section level2">
+<h2>Some examples</h2>
+<ol style="list-style-type: decimal">
+<li><p>产品的次品率是否不超过<span class="math inline">\(3\%\)</span></p></li>
+<li><p>男生群体平均身高是否大于女生群体平均身高？</p></li>
+<li><p>身高是否服从正态分布？</p></li>
+<li><p>抽烟与慢性支气管炎是否有关？</p></li>
+</ol>
+</div>
+<div id="basis-concepts-for-ht" class="section level2">
+<h2>1. Basis concepts for HT</h2>
+<p>设有来自某一参数分布族<span class="math inline">\(\{F(x,\theta)\}\)</span>, <span class="math inline">\(\theta\in\Theta\)</span>, 其中<span class="math inline">\(\Theta\)</span>为参数空间。</p>
+<p>原假设（零假设, Null Hypothesis）</p>
+<p><span class="math display">\[H_0:\theta \in \Theta_0\]</span></p>
+<p>备选假设（对立假设，备择假设, Alternative Hypothesis）</p>
+<p><span class="math display">\[H_1:\theta \in \Theta_1\]</span></p>
+<p>其中<span class="math inline">\(\varnothing\neq \Theta_0,\Theta_1\subset \Theta,\Theta_0\cap \Theta_1=\varnothing\)</span>. 最常见的情况<span class="math inline">\(\Theta_1=\Theta-\Theta_0\)</span>.</p>
+<p>简单原假设(simple null)：<span class="math inline">\(\Theta_0\)</span>只包含一个点，如<span class="math inline">\(H_0:\theta=\theta_0\)</span></p>
+<p>复杂原假设(composite null)：<span class="math inline">\(\Theta_0\)</span>只包含多个点，如<span class="math inline">\(H_0:\theta\le \theta_0\)</span></p>
+<p>备选假设<span class="math inline">\(H_1\)</span>通常有三种可能：</p>
+<ol style="list-style-type: decimal">
+<li>双边(two-sided)：<span class="math inline">\(H_1:\theta\neq \theta_0\)</span></li>
+<li>单边(one-sided)：<span class="math inline">\(H_1:\theta&gt; \theta_0\)</span></li>
+<li>单边(one-sided)：<span class="math inline">\(H_1:\theta&lt; \theta_0\)</span></li>
+</ol>
+</div>
+<div id="the-decision-rule-for-ht" class="section level2">
+<h2>The decision rule for HT</h2>
+<p><strong>检验法则</strong>：检验本质上是把样本空间划分成两个互不相交的部分<span class="math inline">\(W\)</span>和<span class="math inline">\(\bar{W}\)</span>, 当样本属于<span class="math inline">\(W\)</span>时就拒绝<span class="math inline">\(H_0\)</span>; 否则接受<span class="math inline">\(H_0\)</span>. 称<span class="math inline">\(W\)</span>为该检验的<em>拒绝域(rejection region)</em>，而<span class="math inline">\(\bar W\)</span>为<em>接受域(acceptance region)</em>.</p>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\theta,1)\)</span>, 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 考虑检验问题</p>
+<p><span class="math display">\[H_0:\theta=\theta_0\ vs. \ H_1:\theta\neq\theta_0\]</span></p>
+<p>拒绝域可以设为：<span class="math inline">\(W=\{(x_1,\dots,x_n):|\bar x-\theta_0|\ge c\}\)</span></p>
+<p>一个检验法则对应一种拒绝域；一个拒绝域决定一种检验法则。<strong>假设检验的目标是在给定准则下选取合适的拒绝域</strong>。</p>
+<ul>
+<li><p>原假设<span class="math inline">\(H_0\)</span>在客观上只有“真”和“假”两种可能</p></li>
+<li><p>样本也只有两种可能性：<span class="math inline">\((X_1,\dots,X_n)\in W\)</span> 或者 <span class="math inline">\((X_1,\dots,X_n)\notin W\)</span></p></li>
+<li><p>由于样本的随机性，检验不可能<span class="math inline">\(100\%\)</span>正确</p></li>
+</ul>
+</div>
+<div id="two-types-of-errors" class="section level2">
+<h2>Two types of errors</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>接受原假设</th>
+<th>拒绝原假设</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>原假设为真</td>
+<td>正确</td>
+<td>第一类（拒真, Type I）错误</td>
+</tr>
+<tr class="even">
+<td>备择假设为真</td>
+<td>第二类（纳伪, Type II）错误</td>
+<td>正确</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="a-toy-example" class="section level2">
+<h2>A toy example</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\theta,1)\)</span>, 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 考虑简单的检验问题(simple hypothesis)</p>
+<p><span class="math display">\[H_0:\theta=\theta_1\ vs. \ H_1:\theta=\theta_2\]</span></p>
+<p>其中<span class="math inline">\(\theta_1\neq\theta_2\)</span>. 拒绝域选择为<span class="math inline">\(W=\{(x_1,\dots,x_n):|\bar x-\theta_1|\ge c\}\)</span>.</p>
+<ul>
+<li>犯第一类错误的概率为</li>
+</ul>
+<p><span class="math display">\[\alpha = P_{\theta_1}(|\bar{X}-\theta_1|\ge c)=2-2\Phi(c\sqrt{n})\]</span></p>
+<ul>
+<li>犯第二类错误的概率为</li>
+</ul>
+<p><span class="math display">\[\beta = P_{\theta_2}(|\bar{X}-\theta_1|&lt; c)=\Phi((\theta_1-\theta_2+c)\sqrt{n})-\Phi((\theta_1-\theta_2-c)\sqrt{n})\]</span></p>
+<ul>
+<li>如果<span class="math inline">\(\alpha\)</span>变小，则<span class="math inline">\(c\)</span>增大，于是<span class="math inline">\(\beta\)</span>变大。</li>
+<li>如果<span class="math inline">\(\beta\)</span>变小，则<span class="math inline">\(c\)</span>减小，于是<span class="math inline">\(\alpha\)</span>变大。</li>
+</ul>
+<p><strong>结论</strong>：在样本量不变的前提下，两类错误不能同时减小。</p>
+</div>
+<div id="significance-level-and-power" class="section level2">
+<h2>Significance level and power</h2>
+<p><strong>拒绝域的选取准则</strong>：在保证犯第一类错误的概率不超过一定水平的前提下，选择犯第二类错误的概率尽可能小的拒绝域<span class="math inline">\(W\)</span></p>
+<p><strong>功效函数(power function)</strong>：</p>
+<p><span class="math display">\[\rho_W(\theta):=P_{\theta}((X_1,\dots,X_n)\in W)\]</span></p>
+<ul>
+<li><p>当<span class="math inline">\(\theta\in \Theta_0\)</span>时，<span class="math inline">\(\rho_W(\theta)\)</span>表示犯第一类错误的概率</p></li>
+<li><p>当<span class="math inline">\(\theta\in \Theta_1\)</span>时，<span class="math inline">\(1-\rho_W(\theta)\)</span>表示犯第二类错误的概率</p></li>
+</ul>
+<p><span class="math inline">\(W\)</span>的<strong>检验水平</strong>（显著性水平，level of significance）：
+<span class="math display">\[\sup_{\theta\in\Theta_0} \rho_W(\theta)= \alpha\]</span></p>
+<ul>
+<li>一般取<span class="math inline">\(\alpha=0.1,0.05,0.01\)</span></li>
+</ul>
+<p><strong>小概率原理</strong>：小概率事件在一次试验中是几乎不发生的。若<span class="math inline">\(H_0\)</span>为真，样本落在拒绝域<span class="math inline">\(W\)</span>是小概率事件，不应发生。如发生，则拒绝原假设</p>
+</div>
+<div id="how-to-choose-the-significance-level" class="section level2">
+<h2>How to choose the significance level?</h2>
+<p>人们自然会产生这样的问题：概率小到什么程度才当作“小概率事件”呢？这要据实际情况而定，例如即使下雨的概率为10%，仍有人会因为它太小而不带雨具。但某航空公司的事故率为1%，人们就会因为它太大而不敢乘坐该公司的飞机，通常把概率不超过0.05 (或0.01)的事件当作“小概率事件(rare event)”。为此在假设检验时，必须先确定小概率即显著性的值<span class="math inline">\(\alpha\)</span> (即不超过<span class="math inline">\(\alpha\)</span>的概率认为是小概率)。</p>
+</div>
+<div id="ump-tests" class="section level2">
+<h2>UMP tests</h2>
+<p><strong>定义</strong>：称<span class="math inline">\(W\)</span>为检验水平<span class="math inline">\(\alpha\)</span>的一致最大功效(uniformly most powerful, UMP)的拒绝域，若<span class="math inline">\(W\)</span>的水平为<span class="math inline">\(\alpha\)</span>且对一切水平不超过<span class="math inline">\(\alpha\)</span>的拒绝域<span class="math inline">\(W&#39;\)</span>均有
+<span class="math display">\[\rho_W(\theta)\ge \rho_{W&#39;}(\theta),\ \forall \theta\in \Theta_1\]</span></p>
+<p><strong>定义</strong>：称<span class="math inline">\(W\)</span>为检验水平<span class="math inline">\(\alpha\)</span>的无偏拒绝域，若<span class="math inline">\(\forall \theta\in \Theta_1\)</span>, 有<span class="math inline">\(\rho_W(\theta)\ge \alpha\)</span>.</p>
+<p><strong>定义</strong>：称<span class="math inline">\(W\)</span>为检验水平<span class="math inline">\(\alpha\)</span>的一致最大功效无偏(uniformly most powerful unbiased, UMPU)的拒绝域，若<span class="math inline">\(W\)</span>是水平为<span class="math inline">\(\alpha\)</span>的无偏拒绝域且对一切水平不超过<span class="math inline">\(\alpha\)</span>的无偏拒绝域<span class="math inline">\(W&#39;\)</span>均有
+<span class="math display">\[\rho_W(\theta)\ge \rho_{W&#39;}(\theta),\ \forall \theta\in \Theta_1\]</span></p>
+<ul>
+<li>UMP意味着在犯第一类错误的概率不超过<span class="math inline">\(\alpha\)</span>的前提下，犯第二类错误的概率最小</li>
+</ul>
+</div>
+<div id="case-study-two-coins" class="section level2">
+<h2>Case study: two coins</h2>
+<p>Suppose that I
+have two coins, coin 0 has probability of heads equal to <strong>0.5</strong> and coin 1 has probability
+of heads equal to <strong>0.7</strong>. I choose one of the coins, <strong>toss it 10 times</strong> and tell you the
+number of heads, but do not tell you whether it was coin 0 or coin 1. On the basis
+of the number of heads, your task is to decide which coin it was. How should your
+decision rule be?</p>
+<ul>
+<li><p>let <span class="math inline">\(X\)</span> be the number of heads</p></li>
+<li><p>let <span class="math inline">\(\theta\)</span> be the coin that produce this result.</p></li>
+<li><p>your test might be: <span class="math inline">\(H_0: \theta=0\ vs.\ \theta=1\)</span></p></li>
+</ul>
+</div>
+<div id="the-probability-mass-function-pmf" class="section level2">
+<h2>The probability mass function (PMF)</h2>
+<p><img src="2coins.png" /></p>
+</div>
+<div id="the-decision-rule" class="section level2">
+<h2>The decision rule</h2>
+<ul>
+<li><p>Suppose that you observed two heads. Then <span class="math inline">\(P_0(2)/P_1(2)\approx 30\)</span>, which we
+will call the <strong>likelihood ratio (LR)</strong>—coin 0 was about 30 times more likely to produce this
+result than was coin 1. This result would favor coin 0.</p></li>
+<li><p>On the other hand, if there were
+8 heads, the likelihood ratio would be <span class="math inline">\(P_0(8)/P_1(8)\approx 0.19\)</span>, which would favor coin 1.</p></li>
+<li><p>The likelihood ratio will play a central role in the procedures we develop.</p></li>
+</ul>
+</div>
+<div id="likelihood-ratio-tests" class="section level2">
+<h2>2. Likelihood ratio tests</h2>
+<p>考虑最简单的假设检验<span class="math inline">\((\theta_1\neq \theta_2)\)</span>：</p>
+<p><span class="math display">\[H_0: \theta=\theta_1\ vs.\ \theta=\theta_2\]</span></p>
+<p>令<span class="math inline">\(\vec x=(x_1,\dots,x_n)\)</span>, 似然比检验的拒绝域为：</p>
+<p><span class="math display">\[W=\{\vec x:\frac{L(\vec x;\theta_2)}{L(\vec x;\theta_1)}&gt; \lambda\}\]</span></p>
+<p>其中<span class="math inline">\(\lambda\ge 0\)</span>满足</p>
+<p><span class="math display">\[P_{\theta_1}((X_1,\dots,X_n)\in W)=\int_W L(\vec x;\theta_1)d\vec x=\alpha\]</span></p>
+<p><strong>Neyman-Pearson Lemma</strong>(课本P68)：上述定义的似然比检验<span class="math inline">\(W\)</span>是一致最大功效的</p>
+<p><strong>定理</strong>：上述似然比拒绝域<span class="math inline">\(W\)</span>是无偏的(unbiased)，即<span class="math inline">\(\rho_{W}(\theta_2)\ge \alpha\)</span></p>
+</div>
+<div id="ump-tests-for-normal-mean" class="section level2">
+<h2>UMP tests for normal mean</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 考虑检验水平为<span class="math inline">\(\alpha\)</span>的检验问题<span class="math inline">\((\mu_2&gt;\mu_1)\)</span>,</p>
+<p><span class="math display">\[H_0:\mu=\mu_1\ vs. \ H_1:\mu=\mu_2\]</span></p>
+<p><strong>解</strong>：似然比检验的拒绝域为：<span class="math inline">\(W=\{\vec x:\frac{L(\vec x;\mu_2)}{L(\vec x;\mu_1)}&gt; \lambda\}\)</span>. 令似然比
+<span class="math display">\[\frac{L(X_1,\dots,X_n;\mu_2)}{L(X_1,\dots,X_n;\mu_1)}=\prod_{i=1}^n\frac{f(X_i;\mu_2,\sigma^2)}{f(X_i;\mu_1,\sigma^2)}=e^{\frac{n(\mu_2-\mu_1)(2\bar X-\mu_1-\mu_2)}{2\sigma^2}}\]</span></p>
+<p>等价于找<span class="math inline">\(C\)</span>, 使得<span class="math inline">\(P_{\mu_1}(\bar X&gt; C)=\alpha\)</span>, <span class="math inline">\(C=\mu_1+u_{1-\alpha}\sigma/\sqrt{n}\)</span>, 所以似然比检验的拒绝域为<span class="math inline">\(W=\{\vec x:\vec x&gt; \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}\)</span></p>
+<p>与双侧拒绝域比较：<span class="math inline">\(W&#39;=\{\vec x:|\vec x-\mu_1|&gt; u_{1-\alpha/2}\sigma/\sqrt{n}\}\)</span>, <strong>哪个好？</strong></p>
+</div>
+<div id="comparison" class="section level2">
+<h2>Comparison</h2>
+<p><img src="/post/chap03_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="ump-tests-for-normal-mean-1" class="section level2">
+<h2>UMP tests for normal mean</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 考虑检验水平为<span class="math inline">\(\alpha\)</span>的检验问题<span class="math inline">\((\mu_2&lt;\mu_1)\)</span>,</p>
+<p><span class="math display">\[H_0:\mu=\mu_1\ vs. \ H_1:\mu=\mu_2\]</span></p>
+<p><strong>解</strong>：似然比检验的拒绝域为：<span class="math inline">\(W=\{\vec x:\frac{L(\vec x;\mu_2)}{L(\vec x;\mu_1)}&gt; \lambda\}\)</span>. 令似然比
+<span class="math display">\[\frac{L(X_1,\dots,X_n;\mu_2)}{L(X_1,\dots,X_n;\mu_1)}=\prod_{i=1}^n\frac{f(X_i;\mu_2,\sigma^2)}{f(X_i;\mu_1,\sigma^2)}=e^{\frac{n(\mu_2-\mu_1)(2\bar X-\mu_1-\mu_2)}{2\sigma^2}}\]</span></p>
+<p>等价于找<span class="math inline">\(C\)</span>, 使得<span class="math inline">\(P_{\mu_1}(\bar X&lt; C)=\alpha\)</span>, <span class="math inline">\(C=\mu_1+u_{\alpha}\sigma/\sqrt{n}\)</span>, 所以似然比检验的拒绝域为<span class="math inline">\(W=\{\vec x:\vec x&lt; \mu_1+u_{\alpha}\sigma/\sqrt{n}\}\)</span></p>
+</div>
+<div id="ump-tests-for-normal-mean-2" class="section level2">
+<h2>UMP tests for normal mean</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 分别求以下假设检验的一致最大功效拒绝域：</p>
+<p><span class="math display">\[H_0:\mu=\mu_1\ vs. \ H_1:\mu&gt;\mu_1\]</span></p>
+<p><span class="math display">\[H_0:\mu\le\mu_1\ vs. \ H_1:\mu&gt;\mu_1\]</span></p>
+<p><span class="math display">\[H_0:\mu=\mu_1\ vs. \ H_1:\mu&lt;\mu_1\]</span></p>
+<p><span class="math display">\[H_0:\mu\ge\mu_1\ vs. \ H_1:\mu&lt;\mu_1\]</span></p>
+<p><strong>解</strong>：前面两种情况的UMP拒绝域为<span class="math display">\[W=\{\vec x:\vec x&gt; \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}\]</span></p>
+<p>后面两种情况的UMP拒绝域为<span class="math display">\[W=\{\vec x:\vec x&lt; \mu_1+u_{\alpha}\sigma/\sqrt{n}\}\]</span></p>
+</div>
+<div id="single-parameter-exponential-families" class="section level2">
+<h2>Single-parameter exponential families</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(X\)</span>的可能的集合为<span class="math inline">\(\mathcal{X}\)</span>. 称<span class="math inline">\(X\)</span>服从单参数指数型分布(single-parameter exponential family)，若<span class="math inline">\(X\)</span>的密度函数（或者分布列）有下列表达式</p>
+<p><span class="math display">\[f(x;\theta) =  S(\theta)h(x)\exp(Q(\theta)V(x))\]</span></p>
+<p>其中<span class="math inline">\(\theta\in\Theta=(a,b),-\infty\le a&lt;b\le \infty,S(\theta)&gt;0,x\in \mathcal{X},h(x)&gt;0,Q(\theta)\)</span>是<span class="math inline">\(\theta\)</span>的<em>严格增函数</em>。常见的分布都是指数型分布，比如：</p>
+<ul>
+<li><p>指数分布：<span class="math inline">\(f(x;\lambda)=\lambda e^{-\lambda x}\)</span>, <span class="math inline">\(Q(\lambda)=\lambda\)</span>, <span class="math inline">\(V(x)=-x\)</span></p></li>
+<li><p>Poisson分布：<span class="math inline">\(f(x;\lambda)=\frac{e^{-\lambda}\lambda^x}{x!}=\frac{e^{-\lambda}e^{\log(\lambda) x}}{x!}\)</span>, <span class="math inline">\(Q(\lambda)=\log(\lambda)\)</span>, <span class="math inline">\(V(x)=x\)</span></p></li>
+<li><p>正态分布(<span class="math inline">\(\sigma^2\)</span>已知)：<span class="math inline">\(f(x;\mu) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span>, <span class="math inline">\(Q(\mu)=\mu/\sigma^2\)</span>, <span class="math inline">\(V(x)=x\)</span></p></li>
+<li><p>正态分布(<span class="math inline">\(\mu\)</span>已知)：<span class="math inline">\(Q(\sigma^2)=-\frac{1}{2\sigma^2}\)</span>, <span class="math inline">\(V(x)=(x-\mu)^2\)</span></p></li>
+</ul>
+</div>
+<div id="the-tests" class="section level2">
+<h2>The tests</h2>
+<p><span class="math display">\[H_0:\theta\le \theta_1\ vs.\ H_1:\theta&gt;\theta_1\]</span></p>
+<p><span class="math display">\[H_0:\theta\ge \theta_1\ vs.\ H_1:\theta&lt;\theta_1\]</span></p>
+<p><span class="math display">\[H_0:\theta\notin (\theta_1,\theta_2)\ vs.\ H_1:\theta\in (\theta_1,\theta_2)\]</span></p>
+<p><span class="math display">\[H_0:\theta\in [\theta_1,\theta_2]\ vs.\ H_1:\theta\notin [\theta_1,\theta_2]\]</span></p>
+<p><span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta\neq\theta_0\]</span></p>
+</div>
+<div id="ump-tests-i" class="section level2">
+<h2>UMP tests I</h2>
+<p><strong>定理</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta\le \theta_1\ vs.\ H_1:\theta&gt;\theta_1\]</span></p>
+<p>对<span class="math inline">\(\alpha\in(0,1)\)</span>, 若存在<span class="math inline">\(C\)</span>满足</p>
+<p><span class="math display">\[P_{\theta_1}\left(\sum_{i=1}^n V(X_i)&gt;C\right)=\alpha,\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效的拒绝域为：<span class="math display">\[W=\{\vec x:\sum_{i=1}^n V(x_i)&gt;C\}.\]</span></p>
+</div>
+<div id="ump-tests-ii" class="section level2">
+<h2>UMP tests II</h2>
+<p><strong>定理</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta\ge \theta_1\ vs.\ H_1:\theta&lt;\theta_1\]</span></p>
+<p>对<span class="math inline">\(\alpha\in(0,1)\)</span>, 若存在<span class="math inline">\(C\)</span>满足</p>
+<p><span class="math display">\[P_{\theta_1}\left(\sum_{i=1}^n V(X_i)&lt;C\right)=\alpha,\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效的拒绝域为：<span class="math display">\[W=\{\vec x:\sum_{i=1}^n V(x_i)&lt;C\}.\]</span></p>
+</div>
+<div id="ump-tests-for-normal-mean-3" class="section level2">
+<h2>UMP tests for normal mean</h2>
+<p><strong>例1</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 求下列检验的UMP</p>
+<p><span class="math display">\[H_0:\mu\le\mu_1\ vs. \ H_1:\mu&gt;\mu_1\]</span></p>
+<p><strong>解</strong>：因为在指数分布族形式中<span class="math inline">\(V(x)=x\)</span>, UMP拒绝域为<span class="math display">\[W=\{\vec x:\sum_{i=1}^nx_i&gt;C\}=\{\vec x:\bar x&gt;C&#39;\},\]</span> 其中<span class="math inline">\(C&#39;\)</span>满足
+<span class="math inline">\(P_{\mu_1}(\bar X&gt;C&#39;)=\alpha\)</span>, <span class="math inline">\(C&#39;=\mu_1+u_{1-\alpha}\sigma/\sqrt{n}\)</span></p>
+</div>
+<div id="ump-tests-for-normal-variance" class="section level2">
+<h2>UMP tests for normal variance</h2>
+<p><strong>例2</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\mu\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 求下列检验的UMP</p>
+<p><span class="math display">\[H_0:\sigma^2\le\sigma^2_1\ vs. \ H_1:\sigma^2&gt;\sigma^2_1\]</span></p>
+<p><strong>解</strong>：因为在指数分布族形式中<span class="math inline">\(V(x)=(x-\mu)^2\)</span>, UMP拒绝域为
+<span class="math display">\[W=\{\vec x:\sum_{i=1}^n(x_i-\mu)^2&gt;C\}=\{\vec x:\frac{1}{n}\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}&gt;C&#39;\},\]</span></p>
+<p>其中<span class="math inline">\(C&#39;\)</span>满足<span class="math inline">\(P_{\sigma^2_1}(\frac{1}{n}\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}&gt;C&#39;)=\alpha\)</span>, 所以<span class="math inline">\(C&#39;=\chi^2_{1-\alpha}(n)\)</span></p>
+</div>
+<div id="ump-tests-iii" class="section level2">
+<h2>UMP tests III</h2>
+<p><strong>定理</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta\notin (\theta_1,\theta_2)\ vs.\ H_1:\theta\in (\theta_1,\theta_2)\]</span></p>
+<p>令
+<span class="math display">\[W=\{\vec x:C_1&lt;\sum_{i=1}^n V(x_i)&lt;C_2\}.\]</span></p>
+<p>若存在<span class="math inline">\(C_1,C_2\)</span>满足
+<span class="math display">\[P_{\theta_1}(\vec X\in W)=P_{\theta_2}(\vec X\in W)=\alpha\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效的拒绝域为<span class="math inline">\(W\)</span>.</p>
+</div>
+<div id="umpu-tests-i" class="section level2">
+<h2>UMPU tests I</h2>
+<p><strong>定理</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta\in [\theta_1,\theta_2]\ vs.\ H_1:\theta\notin [\theta_1,\theta_2]\]</span></p>
+<p>令<span class="math display">\[W=\{\vec x:\sum_{i=1}^n V(x_i)\notin[C_1,C_2]\}.\]</span></p>
+<p>若存在<span class="math inline">\(C_1,C_2\)</span>满足
+<span class="math display">\[P_{\theta_1}(\vec X\in W)=P_{\theta_2}(\vec X\in W)=\alpha\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效无偏(UMPU)的拒绝域为<span class="math inline">\(W\)</span>.</p>
+</div>
+<div id="umpu-tests-ii" class="section level2">
+<h2>UMPU tests II</h2>
+<p><strong>定理</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta\neq\theta_0\]</span></p>
+<p>令<span class="math inline">\(W=\{\vec x:\sum_{i=1}^n V(x_i)\notin[C_1,C_2]\}.\)</span></p>
+<p>若存在<span class="math inline">\(C_1,C_2\)</span>满足<br />
+<span class="math display">\[P_{\theta_0}(\vec X\in W)=\alpha\]</span></p>
+<p><span class="math display">\[E_{\theta_0}\left[1\{\vec X\in W\}\sum_{i=1}^n V(X_i)\right]=\alpha E_{\theta_0}\left[\sum_{i=1}^n V(X_i)\right]\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效无偏(UMPU)的拒绝域为<span class="math inline">\(W\)</span>.</p>
+</div>
+<div id="umpu-tests-ii-continued" class="section level2">
+<h2>UMPU tests II (continued)</h2>
+<p><strong>推论</strong>：考虑上述单参数指数型分布，给定检验问题</p>
+<p><span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta\neq\theta_0\]</span>
+如果在<span class="math inline">\(\theta=\theta_0\)</span>下，<span class="math inline">\(T(\vec X) = \sum_{i=1}^n V(X_i)\)</span>的分布关于某数<span class="math inline">\(r_0\)</span>对称，取<span class="math display">\[W=\{\vec x:|T(\vec x)-r_0|&gt;C\}.\]</span></p>
+<p>若存在<span class="math inline">\(C\)</span>满足<br />
+<span class="math display">\[P_{\theta_0}(\vec X\in W)=\alpha,\]</span></p>
+<p>则检验水平为<span class="math inline">\(\alpha\)</span>的一致最大功效无偏(UMPU)的拒绝域为<span class="math inline">\(W\)</span>.</p>
+</div>
+<div id="two-sided-tests-for-normal-mean" class="section level2">
+<h2>Two-sided tests for normal mean</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\sigma^2\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 求下列检验的UMPU拒绝域</p>
+<p><span class="math display">\[H_0:\mu=\mu_0\ vs. \ H_1:\mu\neq\mu_0\]</span></p>
+<p><strong>解</strong>：因为在指数分布族形式中<span class="math inline">\(V(x)=x\)</span>, 此时<span class="math inline">\(T(\vec X)=\sum_{i=1}^nX_i\)</span>.
+在<span class="math inline">\(\mu=\mu_0\)</span>下，<span class="math inline">\(T(\vec X)\sim N(n\mu_0,n\sigma^2)\)</span>, 故其分布关于<span class="math inline">\(r_0=n\mu_0\)</span>对称，</p>
+<p>UMPU拒绝域为
+<span class="math display">\[W=\{\vec x:|T(\vec x)-n\mu_0|&gt;C\}=\{\vec x:|\bar x-\mu_0|&gt;C&#39;\},\]</span></p>
+<p>其中<span class="math inline">\(C&#39;\)</span>满足<span class="math inline">\(P_{\mu_0}(|\bar X-\mu_0|&gt;C&#39;)=\alpha\)</span>, 所以<span class="math inline">\(C&#39;=u_{1-\alpha/2}\sigma/\sqrt{n}\)</span></p>
+</div>
+<div id="two-sided-tests-for-normal-variance" class="section level2">
+<h2>Two-sided tests for normal variance</h2>
+<p><strong>例</strong>：假设总体为<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\mu\)</span>已知， 样本为<span class="math inline">\(X_1,\dots,X_n\)</span>. 求下列检验的UMPU拒绝域</p>
+<p><span class="math display">\[H_0:\sigma^2=\sigma_0^2\ vs. \ H_1:\sigma^2\neq\sigma_0^2\]</span></p>
+<p><strong>解</strong>：为方便起见，令<span class="math inline">\(T(\vec X)=\sum_{i=1}^n(X_i-\mu)^2/\sigma_0^2\)</span>. 这样，
+在<span class="math inline">\(\mu=\mu_0\)</span>下，<span class="math inline">\(T(\vec X)\sim \chi^2(n)\)</span>. UMPU拒绝域表示为
+<span class="math inline">\(W=\{\vec x:T(\vec x)\notin [C_1,C_2]\}\)</span>，其中<span class="math inline">\(C_1,C_2\)</span>满足
+<span class="math display">\[P_{\sigma^2_0}(T(\vec X)\notin W)=\int_{C_1}^{C_2} f(x;n) dx=1-\alpha\]</span></p>
+<p><span class="math display">\[E_{\sigma^2_0}[1\{\vec X\notin W\}T(\vec X)]=\int_{C_1}^{C_2} x f(x;n)dx=(1-\alpha)E_{\sigma_0^2}[T(\vec X)]=n(1-\alpha)\]</span></p>
+</div>
+<div id="two-sided-tests-for-normal-variance-1" class="section level2">
+<h2>Two-sided tests for normal variance</h2>
+<p>其中，<span class="math inline">\(f(x;n)\)</span>为<span class="math inline">\(\chi^2(n)\)</span>的密度函数，即</p>
+<p><span class="math display">\[f(x;n)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}1\{x&gt;0\}\]</span></p>
+<p><span class="math display">\[\int_{C_1}^{C_2} \frac{x}{n} f(x;n)dx=\int_{C_1}^{C_2} \frac{x}{n} \frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}dx=\int_{C_1}^{C_2} f(x;n+2)dx=\int_{C_1}^{C_2} f(x;n) dx=1-\alpha\]</span></p>
+<p>实际上，求解<span class="math inline">\(C_1,C_2\)</span>比较困难，为方便起见，不妨用平均法取<span class="math inline">\(C_1=\chi_{\alpha/2}^2(n), C_2=\chi_{1-\alpha/2}^2(n)\)</span>.</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>我们已经在单参数指数型分布总体下给出常见的假设检验的UMP/UMPU, 具体步骤可以归纳如下：</p>
+<ul>
+<li><p>根据指数型分布写出<strong>检验统计量(test statistic)</strong><span class="math inline">\(T(\vec X)=\sum_{i=1}^nV(X_i)\)</span>，或者它的常数倍</p></li>
+<li><p>根据假设检验的类型写出拒绝域<span class="math inline">\(W\)</span>的形式，一般有</p></li>
+</ul>
+<p><span class="math display">\[T(\vec x)&gt;C,T(\vec x)&lt;C,T(\vec x)\in (C_1,C_2),T(\vec x)\notin [C_1,C_2]\]</span></p>
+<ul>
+<li>如果是只有一个待定参数<span class="math inline">\(C\)</span>时，可以检验水平<span class="math inline">\(\alpha\)</span>来得到<span class="math inline">\(C\)</span>的值，即</li>
+</ul>
+<p><span class="math display">\[P_{\theta_0}(T(\vec X)\in W)=\alpha,\  \theta_0\text{为}\Theta_0\text{的边界点}\]</span></p>
+<ul>
+<li>如果有两个待定参数<span class="math inline">\(C_1,C_2\)</span>时, 可能还需另外一个等式来求解（比如双边假设检验）。</li>
+</ul>
+<p>正态总体的期望的检验统计量为<span class="math inline">\(n\bar X\)</span>或者<span class="math inline">\(\bar X\)</span>, 称为<strong>U检验(U test)</strong>；方差的检验统计量为<span class="math inline">\(\sum_{i=1}^n(X_i-\mu)^2\)</span>, 称为<strong>卡方检验(chi-square test)</strong>。</p>
+</div>
+<div id="generalized-lr-tests" class="section level2">
+<h2>3. Generalized LR tests</h2>
+<p>设总体的密度函数(分布函数)为<span class="math inline">\(f(x;\theta),\theta\in\Theta\)</span>, 研究检验问题</p>
+<p><span class="math display">\[H_0:\theta\in \Theta_0\ vs.\ H_1:\theta \notin \Theta_0\]</span></p>
+<p>设似然函数(likelihood function)为<span class="math inline">\(L(\vec x;\theta)=\prod_{i=1}^nf(x_i;\theta)\)</span>, 令</p>
+<p><span class="math display">\[L(A):= \sup_{\theta\in A}L(\vec x;\theta),\ A\subseteq \Theta\]</span></p>
+<p>定义<strong>广义似然比</strong>为：</p>
+<p><span class="math display">\[\lambda(\vec x):=\frac{L(\Theta)}{L(\Theta_0)}\ge 1\]</span></p>
+<p><strong>广义似然比拒绝域</strong>为：</p>
+<p><span class="math display">\[W=\{\vec x:\lambda(\vec x)&gt;\lambda_0\}\]</span></p>
+<p>其中<span class="math inline">\(\lambda_0\)</span>满足<span class="math inline">\(\sup_{\theta\in\Theta_0}P_{\theta}(\vec X\in W)=\alpha\)</span>, <span class="math inline">\(\alpha\)</span>为检验水平。</p>
+</div>
+<div id="generalized-lr-and-sufficient-statistic" class="section level2">
+<h2>Generalized LR and sufficient statistic</h2>
+<p>设充分统计量(sufficient statistic)为<span class="math inline">\(\psi(\vec X)\)</span>, 由因子分解定理(factorization theorem)知，</p>
+<p><span class="math display">\[L(\vec x;\theta)=g(\psi(\vec x),\theta)h(\vec x)\]</span></p>
+<p><span class="math display">\[\lambda(\vec x):=\frac{\sup_{\theta\in\Theta} g(\psi(\vec x),\theta)h(\vec x)}{\sup_{\theta\in\Theta_0} g(\psi(\vec x),\theta)h(\vec x)}=\frac{\sup_{\theta\in\Theta} g(\psi(\vec x),\theta)}{\sup_{\theta\in\Theta_0} g(\psi(\vec x),\theta)}=\ell(\psi(\vec x))\]</span></p>
+<p><strong>结论</strong>：广义似然比是充分统计量的函数，所以拒绝域可以写成</p>
+<p><span class="math display">\[W=\{\vec x:\lambda(\vec x)&gt;\lambda_0\}=\{\vec x:\psi(\vec x)\in B\}\]</span></p>
+<p>问题转化成求解集合<span class="math inline">\(B\)</span>使得检验水平为<span class="math inline">\(\alpha\)</span>. 如果充分统计量在给定<span class="math inline">\(\theta=\theta_0\)</span>下容易得到，这个问题则比较容易处理。
+下面只针对<strong>正态总体</strong>来分析。</p>
+</div>
+<div id="ht-for-normal-distribution" class="section level2">
+<h2>HT for normal distribution</h2>
+<p>前面我们已经分析了<span class="math inline">\(N(\mu,\sigma^2)\)</span>只有一个未知参数的假设检验问题，现在利用广义似然比来分析两个未知参数的情形。我们只考虑下面三种情况：</p>
+<p><span class="math display">\[\theta=\theta_0\ vs.\ \theta\neq \theta_0\]</span></p>
+<p><span class="math display">\[\theta\le \theta_0\ vs.\ \theta&gt;\theta_0\]</span></p>
+<p><span class="math display">\[\theta\ge \theta_0\ vs.\ \theta&lt;\theta_0\]</span></p>
+<p>其中<span class="math inline">\(\theta=\mu\)</span> 或者 <span class="math inline">\(\sigma^2\)</span>, 另外一个参数未知。</p>
+</div>
+<div id="two-sided-tests-for-normal-mean-1" class="section level2">
+<h2>Two-sided tests for normal mean</h2>
+<p>总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 考虑检验问题</p>
+<p><span class="math display">\[\mu=\mu_0\ vs.\ \mu\neq \mu_0\]</span></p>
+<p>则，<span class="math inline">\(\theta=(\mu,\sigma^2),\Theta_0=\{(\mu_0,\sigma^2):\sigma^2&gt;0\},\Theta=\{(\theta,\sigma^2):\theta\in\mathbb{R},\sigma^2&gt;0\}\)</span></p>
+<p>似然函数：</p>
+<p><span class="math display">\[L(\vec x;\theta)=(2\pi \sigma^2)^{-n/2}\exp\left(-\frac 1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2\right)\]</span></p>
+<p><span class="math inline">\(L(\Theta)=L(\vec x;\bar x,s_n^2)=(2\pi s_n^2e)^{-n/2}\)</span>, 令<span class="math inline">\(q_n^2=\frac 1n\sum_{i=1}^n (x_i-\mu_0)^2\)</span>. <span class="math inline">\(L(\Theta_0)=L(\vec x;\mu_0, q_n^2)=(2\pi q_n^2e)^{-n/2}\)</span>. 似然比为
+<span class="math display">\[\lambda(\vec x)=(q_n^2/s_n^2)^{n/2}=\left(1+\frac{T(\vec x)^2}{n-1}\right)^{n/2}
+,\ T(\vec x)=\frac{\bar x-\mu_0}{s_n/\sqrt{n-1}}\]</span></p>
+</div>
+<div id="two-sided-tests-for-normal-mean-2" class="section level2">
+<h2>Two-sided tests for normal mean</h2>
+<p>所以，拒绝域为<span class="math inline">\(W=\{\vec x:|T(\vec x)|&gt;C\}\)</span>, 其中</p>
+<p><span class="math display">\[P_{\mu_0}(\vec X\in W)=P_{\mu_0}(|T(\vec X)|&gt;C)=\alpha\]</span></p>
+<p>因为在<span class="math inline">\(\mu=\mu_0\)</span>时，<span class="math inline">\(T\sim t(n-1)\)</span>, 所以，<span class="math inline">\(C=t_{1-\alpha/2}(n-1)\)</span></p>
+<p><strong>注</strong>：</p>
+<ul>
+<li><p>可以证明<span class="math inline">\(W\)</span>是UMPU的，证明较复杂（略）</p></li>
+<li><p>这种检验方式称为<strong>t检验</strong>，<span class="math inline">\(T\)</span>为检验统计量</p></li>
+</ul>
+</div>
+<div id="one-sided-tests-for-normal-mean-i" class="section level2">
+<h2>One-sided tests for normal mean I</h2>
+<p>总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 考虑检验问题</p>
+<p><span class="math display">\[\mu\le\mu_0\ vs.\ \mu&gt; \mu_0\]</span></p>
+<p>此时，<span class="math inline">\(\Theta_0=\{(\mu,\sigma^2):\mu\le \mu_0,\sigma^2&gt;0\}\)</span></p>
+<p><span class="math display">\[L(\Theta_0)=
+\begin{cases}
+L(\vec x;\bar x,s_n^2),\ &amp;\bar x\le \mu_0\\
+L(\vec x;\bar x,q_n^2),\ &amp;\bar x&gt; \mu_0
+\end{cases}\]</span></p>
+<p>似然比为
+<span class="math display">\[\lambda(\vec x)=\begin{cases}
+\left(1+\frac{T(\vec x)^2}{n-1}\right)^{n/2}, \ &amp;\bar x&gt; \mu_0\\
+1,\ &amp;\bar x\le \mu_0
+\end{cases}
+\]</span></p>
+<p>所以，拒绝域为<span class="math inline">\(W=\{\vec x:T(\vec x)&gt;C\}\)</span>, <span class="math inline">\(C=t_{1-\alpha}(n-1)\)</span>, 是UMPU</p>
+</div>
+<div id="one-sided-tests-for-normal-mean-ii" class="section level2">
+<h2>One-sided tests for normal mean II</h2>
+<p>总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 考虑检验问题</p>
+<p><span class="math display">\[\mu\ge\mu_0\ vs.\ \mu&lt; \mu_0\]</span></p>
+<p>类似地，拒绝域为<span class="math inline">\(W=\{\vec x:T(\vec x)&lt;C\}\)</span>, <span class="math inline">\(C=t_{\alpha}(n-1)\)</span>, 是UMPU</p>
+<p><strong>总结</strong>：在方差未知的情况下考虑期望的检验问题，由<span class="math inline">\(t\)</span>检验可以得到UMPU拒绝域，检验统计量为
+<span class="math display">\[T=\frac{\bar X-\mu_0}{S_n/\sqrt{n-1}}=\frac{\bar X-\mu_0}{S_n^*/\sqrt{n}}\]</span></p>
+<p>拒绝域<span class="math inline">\(W\)</span>形式为<span class="math inline">\(|T|&gt;C,\ T&gt;C,\ T&lt;C\)</span>, 其中<span class="math inline">\(C\)</span>满足<span class="math inline">\(P_{\mu_0}(T\in W)=\alpha\)</span></p>
+</div>
+<div id="illustration" class="section level2">
+<h2>Illustration</h2>
+<p><img src="test.jpg" /></p>
+</div>
+<div id="two-sided-tests-for-normal-variance-2" class="section level2">
+<h2>Two-sided tests for normal variance</h2>
+<p>总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 考虑检验问题</p>
+<p><span class="math display">\[\sigma^2=\sigma^2_0\ vs.\ \sigma^2\neq \sigma^2_0\]</span></p>
+<p>利用广义似然比检验法可以得到拒绝域为</p>
+<p><span class="math display">\[W=\{\vec x: \chi^2&gt;C_2, \chi^2&lt;C_1\}\]</span></p>
+<p>其中<span class="math inline">\(\chi^2 = \frac{1}{\sigma^2_0}\sum_{i=1}^n(x_i-\bar x)^2=ns_n^2/\sigma_0^2\)</span>, <span class="math inline">\(C_1,C_2\)</span>满足</p>
+<p><span class="math display">\[\int_{C_1}^{C_2} g_{n-1}(x) dx = 1-\alpha\]</span></p>
+<p>其中<span class="math inline">\(g_n(x)\)</span>表示<span class="math inline">\(\chi^2(n)\)</span>的密度函数。可以证明当<span class="math inline">\(C_1,C_2\)</span>再满足<span class="math inline">\(\int_{C_1}^{C_2} g_{n+1}(x) dx = 1-\alpha\)</span>时，拒绝域<span class="math inline">\(W\)</span>为UMPU.</p>
+<p>为方便起见，取<span class="math inline">\(C_1=\chi^2_{\alpha/2}(n-1),\ C_2=\chi^2_{1-\alpha/2}(n-1)\)</span></p>
+</div>
+<div id="one-sided-tests-for-normal-variance" class="section level2">
+<h2>One-sided tests for normal variance</h2>
+<p>总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 考虑检验问题</p>
+<p><span class="math display">\[\sigma^2\le\sigma^2_0\ vs.\ \sigma^2&gt; \sigma^2_0\]</span></p>
+<p>利用广义似然比检验法可以得到拒绝域为</p>
+<p><span class="math display">\[W=\{\vec x: \chi^2&gt;C\}\]</span></p>
+<p>其中<span class="math inline">\(C=\chi^2_{1-\alpha}(n-1)\)</span></p>
+<p>考虑检验问题</p>
+<p><span class="math display">\[\sigma^2\ge\sigma^2_0\ vs.\ \sigma^2&lt; \sigma^2_0\]</span></p>
+<p>利用广义似然比检验法可以得到拒绝域为</p>
+<p><span class="math display">\[W=\{\vec x: \chi^2&lt;C\}\]</span></p>
+<p>其中<span class="math inline">\(C=\chi^2_{\alpha}(n-1)\)</span></p>
+<p>这两者都是UMPU.</p>
+</div>
+<div id="ht-for-two-independent-normals" class="section level2">
+<h2>HT for two independent normals</h2>
+<p>设总体<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, 另有与<span class="math inline">\(X\)</span>独立的总体<span class="math inline">\(Y\sim N(\mu_2,\sigma_2^2)\)</span>.</p>
+<p><span class="math display">\[H_0: \mu_1-\mu_2=\delta,\ H_1: \mu_1-\mu_2\neq \delta\]</span></p>
+<ul>
+<li>如果<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>已知, 选择<strong>U检验统计量</strong>：</li>
+</ul>
+<p><span class="math display">\[U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}=\frac{\bar X-\bar Y-\delta}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\]</span></p>
+<p>若<span class="math inline">\(|U|&gt; u_{1-\alpha/2}\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
+<ul>
+<li>如果<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>未知，已知<span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span>，选择<strong>t检验统计量</strong>：</li>
+</ul>
+<p><span class="math display">\[T=\frac{\bar X-\bar Y-\delta}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2)\]</span></p>
+<p>若<span class="math inline">\(|T|&gt; t_{1-\alpha/2}(n+m-2)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
+</div>
+<div id="ht-for-two-independent-normals-1" class="section level2">
+<h2>HT for two independent normals</h2>
+<p>如果<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>未知，但<span class="math inline">\(\sigma_1^2\neq\sigma_2^2\)</span>, 选择<strong>检验统计量</strong>：</p>
+<p><span class="math display">\[T=\frac{(\bar X-\bar Y)-\delta}{\sqrt{S_{1m}^{*2}/m+S_{2n}^{*2}/n}}\]</span></p>
+<p>在<span class="math inline">\(\mu_1-\mu_2=\delta\)</span>下，<span class="math inline">\(T\)</span>近似服从自由度为<span class="math inline">\(k\)</span>的<span class="math inline">\(t\)</span>分布，其中<span class="math inline">\(k\)</span>为接近<span class="math inline">\(k^*\)</span>的整数，</p>
+<p><span class="math display">\[k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2}/n)^2/(n-1)}\]</span></p>
+<p>这就是著名的<strong>Behrens-Fisher问题</strong>。</p>
+</div>
+<div id="ht-for-two-independent-normals-2" class="section level2">
+<h2>HT for two independent normals</h2>
+<p>设总体<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, 另有与<span class="math inline">\(X\)</span>独立的总体<span class="math inline">\(Y\sim N(\mu_2,\sigma_2^2)\)</span>.</p>
+<p><span class="math display">\[H_0: \sigma_1^2=\sigma_2^2,\ H_1: \sigma_1^2\neq \sigma_2^2\]</span></p>
+<ul>
+<li>如果<span class="math inline">\(\mu_1,\mu_2\)</span>已知，选择<strong>F检验统计量</strong>：
+<span class="math display">\[F=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\sim F(m,n)\]</span></li>
+</ul>
+<p>若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m,n)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m,n)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
+<ul>
+<li>如果<span class="math inline">\(\mu_1,\mu_2\)</span>未知，选择<strong>F检验统计量</strong>：
+<span class="math display">\[F=\frac{\frac 1 {m-1}\sum_{i=1}^m(X_i-\bar X)^2}{\frac 1 {n-1}\sum_{i=1}^n(Y_i-\bar Y)^2}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\sim F(m-1,n-1)\]</span></li>
+</ul>
+<p>若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m-1,n-1)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m-1,n-1)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
+</div>
+<div id="confidence-intervals-vs-ht" class="section level2">
+<h2>Confidence intervals vs HT</h2>
+<p>假设<span class="math inline">\(\theta\)</span>的100<span class="math inline">\((1-\alpha)\%\)</span> 置信区间(confidence interval, CI)为 <span class="math inline">\([L(X_1,\dots,X_n),U(X_1,\dots,X_n)]\)</span>. 这表明</p>
+<p><span class="math display">\[P_{\theta}(\theta\in [L,U])=1-\alpha,\ \forall\theta\in\Theta.\]</span></p>
+<p>考虑假设检验: <span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta\neq\theta_0\]</span></p>
+<p><strong>检验法则</strong>: 如果<span class="math inline">\(\theta_0\notin [L,U]\)</span>, 拒绝原假设；否则接受原假设。于是得到一个拒绝域：<span class="math inline">\(W=\{\vec x:\theta_0\notin [L(\vec x),U(\vec x)]\}\)</span>, 显著性水平为</p>
+<p><span class="math display">\[P_{\theta_0}(\theta_0\notin [L,U])=\alpha\]</span></p>
+<p>但这样得到的拒绝域不一定是UMP或者UMPU!</p>
+</div>
+<div id="confidence-intervals-vs-ht-1" class="section level2">
+<h2>Confidence intervals vs HT</h2>
+<p>反过来，假如我们有以下检验的一个拒绝域<span class="math inline">\(W(\theta_0)\)</span></p>
+<p><span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta\neq\theta_0,\]</span></p>
+<p>其中<span class="math inline">\(P_{\theta_0}((X_1,\dots,X_n)\in W(\theta_0))=\alpha, \forall \theta_0\in\Theta\)</span>. 可以得到一个置信集<strong>(confidence set)</strong>:</p>
+<p><span class="math display">\[S(X_1,\dots,X_n)=\{\theta:(X_1,\dots,X_n)\notin W(\theta)\}\]</span></p>
+<p><span class="math display">\[P_\theta(\theta\in S) = P_{\theta}((X_1,\dots,X_n)\notin W(\theta)) = 1-\alpha,\ \forall\theta\in\Theta\]</span></p>
+<ul>
+<li><p>该置信集是由所有“接受”的<span class="math inline">\(\theta\)</span>的值组成的</p></li>
+<li><p>一般情况下，该置信集为区间形式</p></li>
+</ul>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<p>考虑总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，其中<span class="math inline">\(\mu\)</span>未知，方差<span class="math inline">\(\sigma^2\)</span>已知。则有
+<span class="math display">\[P(\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\le \mu\le \bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}})=1-\alpha\]</span></p>
+<p>于是得到一个置信区间：<span class="math inline">\([\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]\)</span></p>
+<p>由此可以构造拒绝域：<span class="math display">\[W=\{\mu_0\notin [\bar x-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar x+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]\}\]</span>
+<span class="math display">\[W=\{\vec x:|\vec x-\mu_0|&gt;u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}\]</span></p>
+<p>此拒绝域和我们之前得到的一样的。</p>
+</div>
+<div id="p-values" class="section level2">
+<h2>p-values</h2>
+<p>假设拒绝域具备如下形式</p>
+<p><span class="math display">\[W=\{\vec x:T(\vec x)&gt;\lambda\}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(T\)</span>为检验统计量</p></li>
+<li><p><span class="math inline">\(\lambda\)</span>满足<span class="math inline">\(\sup_{\theta\in\Theta_0}P_{\theta}(T(\vec X)&gt;\lambda)=\alpha\)</span></p></li>
+</ul>
+<p>由此可得：</p>
+<ul>
+<li><p>对于固定的样本，显著性水平<span class="math inline">\(\alpha\)</span>越大，<span class="math inline">\(\lambda\)</span>越小，这样越容易拒绝原假设</p></li>
+<li><p>对于固定的样本，是否存在一个临界值<span class="math inline">\(p\)</span>, 使得当<span class="math inline">\(p&lt;\alpha\)</span>时拒绝原假设，当<span class="math inline">\(p\ge \alpha\)</span>时接受原假设？这个临界值称为<span class="math inline">\(p\)</span>值(p-value)</p></li>
+</ul>
+<p><span class="math display">\[p=p(\vec x)=\sup_{\theta\in\Theta_0}P_\theta(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))\]</span></p>
+<p>如果给定<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span>存在且唯一，则可以证明：<span class="math inline">\(T(\vec x)&gt;\lambda\)</span>当且仅当<span class="math inline">\(p(\vec x)&lt;\alpha\)</span></p>
+</div>
+<div id="p-values-for-simple-null" class="section level2">
+<h2>p-values for simple null</h2>
+<p>如果原假设是简单的, 即<span class="math inline">\(H_0:\theta=\theta_0\)</span>，则</p>
+<p><span class="math display">\[p = P_{\theta_0}(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))\]</span></p>
+<p><strong>例</strong>：总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，其中<span class="math inline">\(\mu\)</span>未知，方差<span class="math inline">\(\sigma^2\)</span>已知，考虑检验<span class="math display">\[H_0:\mu=\mu_0\ vs.\ H_1:\mu\neq\mu_0.\]</span> 拒绝域为<span class="math inline">\(W=\{\vec x:\sqrt{n}|\bar x-\mu_0|/\sigma&gt;u_{1-\alpha/2}\}\)</span>, 其中检验统计量为<span class="math inline">\(T = \sqrt{n}|\bar X-\mu_0|/\sigma\)</span>. 故p值为</p>
+<p><span class="math display">\[p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\bar x-\mu_0|}{\sigma/\sqrt{n}}\right)\]</span></p>
+</div>
+<div id="some-advantages-of-p-values" class="section level2">
+<h2>Some advantages of p-values</h2>
+<ul>
+<li><p>做检验时不需要事先确定显著性水平<span class="math inline">\(\alpha\)</span>（它的具有一定的主观性），如果p值非常小，则毫不犹豫地拒绝原假设；同样地，如果p值比较大，则接受原假设，这样就不用争论<span class="math inline">\(\alpha=0.1,0.05\)</span>或者其他。</p></li>
+<li><p>p值提高更多的信息，可以用于<strong>保护隐私数据</strong></p></li>
+<li><p>统计软件提供的是p值</p></li>
+</ul>
+</div>
+<div id="multiple-tests" class="section level2">
+<h2>Multiple tests</h2>
+<ul>
+<li><p>如果独立检验同一个假设<span class="math inline">\(k\)</span>次，我们可以得到<span class="math inline">\(k\)</span>个p值: <span class="math inline">\(p_1,\dots,p_k\)</span>, 可否由这<span class="math inline">\(k\)</span>个p值汇总成一个p值来检验该假设？<strong>元分析(meta-analysis)</strong></p></li>
+<li><p>假如我们有<span class="math inline">\(k\)</span>个不同的原假设<span class="math inline">\(H_{0j},j=1,\dots,k\)</span>，这种问题称为<strong>多重假设(multiple tests)</strong>问题。可否利用<span class="math inline">\(k\)</span>个不同假设的p值: <span class="math inline">\(p_1,\dots,p_k\)</span>来进一步控制错误的发生概率?</p></li>
+</ul>
+<p>例子：吃果冻与长青春痘的联系：<a href="https://xkcd.com/882/" class="uri">https://xkcd.com/882/</a></p>
+</div>
+<div id="seminar" class="section level2">
+<h2>Seminar</h2>
+<p><img src="mtests.bmp" /></p>
+</div>
+<div id="ht-for-ratio" class="section level2">
+<h2>HT for ratio</h2>
+<p>设<span class="math inline">\(X\)</span>服从两点分布<span class="math inline">\(B(1,p)\)</span>, 下面考虑以下三种常见的假设检验</p>
+<ul>
+<li><p><span class="math inline">\(H_0:p\le p_0\ vs.\ H_1:p&gt;p_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0:p\ge p_0\ vs.\ H_1:p&lt;p_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0:p= p_0\ vs.\ H_1:p\neq p_0\)</span></p></li>
+</ul>
+<p>对于该总体，我们选<span class="math inline">\(S=\sum_{i=1}^nX_i\sim B(n,p)\)</span>为检验统计量。相应的拒绝域形式为</p>
+<ul>
+<li><p><span class="math inline">\(W=\{s\ge c\}\)</span></p></li>
+<li><p><span class="math inline">\(W=\{s\le c\}\)</span></p></li>
+<li><p><span class="math inline">\(W=\{s\ge c_2\}\cup\{s\le c_1\}\)</span></p></li>
+</ul>
+<p>注意到<span class="math inline">\(S\)</span>为离散型随机变量，所以满足<span class="math inline">\(\sup_{p\in\Theta_0}P_p(\vec X\in W)=\alpha\)</span>的分界点不一定存在。因此，我们考虑<span class="math inline">\(\sup_{p\in\Theta_0}P_p(\vec X\in W)\le \alpha\)</span>下分界点的选取。</p>
+</div>
+<div id="ht-for-ratio-one-sided-i" class="section level2">
+<h2>HT for ratio: one-sided I</h2>
+<p>考虑单边假设<span class="math inline">\(H_0:p\le p_0\ vs.\ H_1:p&gt;p_0\)</span>, 临界值<span class="math inline">\(c\)</span>为满足下式<strong>最小的整数</strong></p>
+<p><span class="math inline">\(\sup_{p\le p_0}P_p(S\ge c)\le \alpha\)</span></p>
+<p>由于<span class="math inline">\(P_p(S\ge c)=\sum_{i=c}^nC_n^ip^i(1-p)^{n-i}\)</span>关于<span class="math inline">\(p\)</span><strong>单调递增</strong>(=<span class="math inline">\(Beta(c,n-c+1)\)</span>分布的CDF在<span class="math inline">\(p\)</span>点的取值，见课本P44)，所以只需考虑</p>
+<p><span class="math display">\[P_{p_0}(S\ge c)=\sum_{i=c}^nC_n^ip_0^i(1-p_0)^{n-i}\le \alpha\]</span></p>
+<p>计算<span class="math inline">\(c\)</span>比较复杂，为了避免此，我们将拒绝域<span class="math inline">\(\{s\ge c\}\)</span>等价转化为</p>
+<p><span class="math display">\[W=\{\sum_{i=s}^nC_n^ip_0^i(1-p_0)^{n-i}\le \alpha\}\]</span></p>
+</div>
+<div id="ht-for-ratio-one-sided-i-1" class="section level2">
+<h2>HT for ratio: one-sided I</h2>
+<p>更进一步，假设<span class="math inline">\(p_\alpha(s)\)</span>为方程<span class="math inline">\(\sum_{i=s}^nC_n^ip^i(1-p)^{n-i}=\alpha\)</span>的根，则拒绝域等价转化为</p>
+<p><span class="math display">\[W=\{p_0\le p_\alpha(s)\}\]</span></p>
+<p>其中<span class="math inline">\(p_\alpha(s)=Beta_{\alpha}(s,n-s+1)\)</span>, 或者可以表示成</p>
+<p><span class="math display">\[p_\alpha(s)=(1+\frac{n-s+1}{s}F_{1-\alpha}(2(n-s+1),2s))^{-1}\]</span></p>
+<p>详细的转化见课本P105引理4.2.</p>
+</div>
+<div id="ht-for-ratio-one-sided-ii" class="section level2">
+<h2>HT for ratio: one-sided II</h2>
+<p>考虑单边假设<span class="math inline">\(H_0:p\ge p_0\ vs.\ H_1:p&lt;p_0\)</span>, 临界值<span class="math inline">\(c\)</span>为满足下式<strong>最大的整数</strong></p>
+<p><span class="math inline">\(\sup_{p\ge p_0}P_p(S\le c)\le \alpha\)</span></p>
+<p>由于<span class="math inline">\(P_p(S\le c)=\sum_{i=0}^cC_n^ip^i(1-p)^{n-i}\)</span>关于<span class="math inline">\(p\)</span><strong>单调递减</strong>，所以只需考虑</p>
+<p><span class="math display">\[P_{p_0}(S\le c)=\sum_{i=0}^cC_n^ip_0^i(1-p_0)^{n-i}\le \alpha\]</span></p>
+<p>计算<span class="math inline">\(c\)</span>比较复杂，为了避免此，我们将拒绝域<span class="math inline">\(\{s\ge c\}\)</span>等价转化为</p>
+<p><span class="math display">\[W=\{\sum_{i=s+1}^nC_n^ip_0^i(1-p_0)^{n-i}\ge 1-\alpha\}\]</span></p>
+</div>
+<div id="ht-for-ratio-one-sided-ii-1" class="section level2">
+<h2>HT for ratio: one-sided II</h2>
+<p>更进一步，假设<span class="math inline">\(\tilde p_\alpha(s)\)</span>为方程<span class="math inline">\(\sum_{i=s+1}^nC_n^ip^i(1-p)^{n-i}=1-\alpha\)</span>的根，则拒绝域等价转化为</p>
+<p><span class="math display">\[W=\{p_0\ge \tilde p_\alpha(s)\}\]</span></p>
+<p>其中<span class="math inline">\(\tilde p_\alpha(s)=Beta_{1-\alpha}(s+1,n-s)\)</span>, 或者可以表示成</p>
+<p><span class="math display">\[\tilde p_\alpha(s)=(1+\frac{n-s}{(s+1)F_{1-\alpha}(2(s+1),2(n-s))})^{-1}\]</span></p>
+<p>详细的转化见课本P105引理4.2.</p>
+</div>
+<div id="ht-for-ratio-two-sided" class="section level2">
+<h2>HT for ratio: two-sided</h2>
+<p>考虑双边假设<span class="math display">\[H_0:p= p_0\ vs.\ H_1:p\neq p_0\]</span>
+拒绝域为<span class="math inline">\(\{s\le c_1\}\cup\{s\ge c_2\}\)</span>，其中临界值<span class="math inline">\(c_1\)</span>为满足<span class="math inline">\(P_{p_0}(S\le c_1)=\alpha/2\)</span><strong>最大的整数</strong>，临界值<span class="math inline">\(c_1\)</span>为满足<span class="math inline">\(P_{p_0}(S\ge c_2)=\alpha/2\)</span><strong>最小的整数</strong>。由前面分析，该拒绝域等价于</p>
+<p><span class="math display">\[\{p_0\le p_{\alpha/2}(s)\}\cup\{p_0\ge \tilde{p}_{\alpha/2}(s)\}\]</span></p>
+</div>
