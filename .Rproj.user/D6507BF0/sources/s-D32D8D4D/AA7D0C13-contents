@@ -1,6 +1,6 @@
 ---
 title: "第三章：假设检验"
-date: "2018-11-05"
+date: "2018-11-07"
 categories: ["课件"]
 Summary: "第三章：假设检验(Hypothesis Tests)"
 tags: ["课件", "数理统计"]
@@ -9,6 +9,7 @@ tags: ["课件", "数理统计"]
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
 
 ## Contents
 
@@ -23,8 +24,6 @@ knitr::opts_chunk$set(echo = FALSE)
 - 2.1 似然比检验法原理
 - 2.2 Neyman-Pearson引理
 - 2.3 单参数指数型的假设检验
-
-## Contents (continued)
 
 ### 3. 广义似然比检验
 
@@ -228,9 +227,9 @@ $$H_0:\mu=\mu_1\ vs. \ H_1:\mu=\mu_2$$
 **解**：似然比检验的拒绝域为：$W=\{\vec x:\frac{L(\vec x;\mu_2)}{L(\vec x;\mu_1)}> \lambda\}$. 令似然比
 $$\frac{L(X_1,\dots,X_n;\mu_2)}{L(X_1,\dots,X_n;\mu_1)}=\prod_{i=1}^n\frac{f(X_i;\mu_2,\sigma^2)}{f(X_i;\mu_1,\sigma^2)}=e^{\frac{n(\mu_2-\mu_1)(2\bar X-\mu_1-\mu_2)}{2\sigma^2}}$$
 
-等价于找$C$, 使得$P_{\mu_1}(\bar X> C)=\alpha$, $C=\mu_1+u_{1-\alpha}\sigma/\sqrt{n}$, 所以似然比检验的拒绝域为$W=\{\vec x:\vec x> \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}$
+等价于找$C$, 使得$P_{\mu_1}(\bar X> C)=\alpha$, $C=\mu_1+u_{1-\alpha}\sigma/\sqrt{n}$, 所以似然比检验的拒绝域为$W=\{\vec x:\bar x> \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}$
 
-与双侧拒绝域比较：$W'=\{\vec x:|\vec x-\mu_1|> u_{1-\alpha/2}\sigma/\sqrt{n}\}$, **哪个好？**
+与双侧拒绝域比较：$W'=\{\vec x:|\bar x-\mu_1|> u_{1-\alpha/2}\sigma/\sqrt{n}\}$, **哪个好？**
 
 ## Comparison
 
@@ -257,7 +256,7 @@ $$H_0:\mu=\mu_1\ vs. \ H_1:\mu=\mu_2$$
 **解**：似然比检验的拒绝域为：$W=\{\vec x:\frac{L(\vec x;\mu_2)}{L(\vec x;\mu_1)}> \lambda\}$. 令似然比
 $$\frac{L(X_1,\dots,X_n;\mu_2)}{L(X_1,\dots,X_n;\mu_1)}=\prod_{i=1}^n\frac{f(X_i;\mu_2,\sigma^2)}{f(X_i;\mu_1,\sigma^2)}=e^{\frac{n(\mu_2-\mu_1)(2\bar X-\mu_1-\mu_2)}{2\sigma^2}}$$
 
-等价于找$C$, 使得$P_{\mu_1}(\bar X< C)=\alpha$, $C=\mu_1+u_{\alpha}\sigma/\sqrt{n}$, 所以似然比检验的拒绝域为$W=\{\vec x:\vec x< \mu_1+u_{\alpha}\sigma/\sqrt{n}\}$
+等价于找$C$, 使得$P_{\mu_1}(\bar X< C)=\alpha$, $C=\mu_1+u_{\alpha}\sigma/\sqrt{n}$, 所以似然比检验的拒绝域为$W=\{\vec x:\bar x< \mu_1+u_{\alpha}\sigma/\sqrt{n}\}$
 
 ## UMP tests for normal mean 
 
@@ -271,9 +270,9 @@ $$H_0:\mu=\mu_1\ vs. \ H_1:\mu<\mu_1$$
 
 $$H_0:\mu\ge\mu_1\ vs. \ H_1:\mu<\mu_1$$
 
-**解**：前面两种情况的UMP拒绝域为$$W=\{\vec x:\vec x> \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}$$
+**解**：前面两种情况的UMP拒绝域为$$W=\{\vec x:\bar x> \mu_1+u_{1-\alpha}\sigma/\sqrt{n}\}$$
 
-后面两种情况的UMP拒绝域为$$W=\{\vec x:\vec x< \mu_1+u_{\alpha}\sigma/\sqrt{n}\}$$
+后面两种情况的UMP拒绝域为$$W=\{\vec x:\bar x< \mu_1+u_{\alpha}\sigma/\sqrt{n}\}$$
 
 ## Single-parameter exponential families 
 
@@ -347,9 +346,9 @@ $P_{\mu_1}(\bar X>C')=\alpha$, $C'=\mu_1+u_{1-\alpha}\sigma/\sqrt{n}$
 $$H_0:\sigma^2\le\sigma^2_1\ vs. \ H_1:\sigma^2>\sigma^2_1$$
 
 **解**：因为在指数分布族形式中$V(x)=(x-\mu)^2$, UMP拒绝域为
-$$W=\{\vec x:\sum_{i=1}^n(x_i-\mu)^2>C\}=\{\vec x:\frac{1}{n}\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}>C'\},$$ 
+$$W=\{\vec x:\sum_{i=1}^n(x_i-\mu)^2>C\}=\{\vec x:\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}>C'\},$$ 
 
-其中$C'$满足$P_{\sigma^2_1}(\frac{1}{n}\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}>C')=\alpha$, 所以$C'=\chi^2_{1-\alpha}(n)$
+其中$C'$满足$P_{\sigma^2_1}(\sum_{i=1}^n\frac{(x_i-\mu)^2}{\sigma^2_1}>C')=\alpha$, 所以$C'=\chi^2_{1-\alpha}(n)$
 
 
 
@@ -558,7 +557,7 @@ $$\mu\le\mu_0\ vs.\ \mu> \mu_0$$
 $$L(\Theta_0)=
 \begin{cases}
 L(\vec x;\bar x,s_n^2),\ &\bar x\le \mu_0\\
-L(\vec x;\bar x,q_n^2),\ &\bar x> \mu_0
+L(\vec x;\mu_0,q_n^2),\ &\bar x> \mu_0
 \end{cases}$$
 
 似然比为
@@ -761,7 +760,7 @@ $$p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\
 
 - 做检验时不需要事先确定显著性水平$\alpha$（它的具有一定的主观性），如果p值非常小，则毫不犹豫地拒绝原假设；同样地，如果p值比较大，则接受原假设，这样就不用争论$\alpha=0.1,0.05$或者其他。
 
-- p值提高更多的信息，可以用于**保护隐私数据**
+- p值提供更多的信息，可以用于**保护隐私数据**
 
 - 统计软件提供的是p值
 
@@ -773,10 +772,15 @@ $$p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\
 
 例子：吃果冻与长青春痘的联系：[https://xkcd.com/882/](https://xkcd.com/882/)
 
+![](https://imgs.xkcd.com/comics/significant.png)
+
 
 ## Seminar 
 
-![](mtests.bmp)
+```{r, out.width='40%', fig.cap=''}
+knitr::include_graphics('mtests.bmp')
+```
+
 
 
 ## HT for ratio
@@ -828,6 +832,26 @@ $$p_\alpha(s)=(1+\frac{n-s+1}{s}F_{1-\alpha}(2(n-s+1),2s))^{-1}$$
 
 详细的转化见课本P105引理4.2.
 
+## Example
+
+考虑女士品茶问题，设该女士鉴别的成功率为$p$. 设$X_i$表示第$i$次鉴别结果，即$X_i=1$表示成功，$X_i=0$表示失败。如果$p>p_0$我们认为该女士具备这种辨别能力，其中$p_0\ge 1/2$为给定的数。故考虑检验
+
+$$H_0: p\le p_0\ vs.\ H_1:p>p_0.$$
+
+
+## The results for n=10
+
+```{r, echo=TRUE}
+library(tidyr)
+df = data.frame(alpha=c(0.9,0.95,0.99))
+data = c(1,6,8,10)
+n = 10
+helperf <- function(s,df,n)
+  cbind(s=s,df,pr=qbeta(df$alpha,s,n-s+1))
+kappa = lapply(data,helperf,df,n) %>% do.call(rbind, args = .)
+knitr::kable(kappa,format = "html")
+```
+
 
 ## HT for ratio: one-sided II
 
@@ -863,3 +887,62 @@ $$\tilde p_\alpha(s)=(1+\frac{n-s}{(s+1)F_{1-\alpha}(2(s+1),2(n-s))})^{-1}$$
 拒绝域为$\{s\le c_1\}\cup\{s\ge c_2\}$，其中临界值$c_1$为满足$P_{p_0}(S\le c_1)=\alpha/2$**最大的整数**，临界值$c_1$为满足$P_{p_0}(S\ge c_2)=\alpha/2$**最小的整数**。由前面分析，该拒绝域等价于
 
 $$\{p_0\le p_{\alpha/2}(s)\}\cup\{p_0\ge \tilde{p}_{\alpha/2}(s)\}$$
+
+
+
+## 4. Goodness-of-fit tests
+
+
+考虑离散型分布的假设检验，$X\in \{t_1,\dots,t_m\}$.
+
+$$H_0: P(X=t_i)=p_i,\ i=1,\dots,m,\ vs.\ H_1: P(X=t_i)\neq p_i$$
+
+其中$\sum_{i=1}^m p_i=1$.
+
+卡方检验法检验统计量：
+
+$$V=\sum_{i=1}^{m} \frac{(v_i-np_i)^2}{np_i}$$
+
+其中$v_i$表示$X_1,\dots,X_n$中包含$t_i$的个数，即$v_i=\sum_{j=1}^m 1\{X_j=t_i\}$.
+
+拒绝域$W=\{V>\lambda\}$. 可以证明在$H_0$下，$V\stackrel{\cdot}{\sim} \chi^2(m-1)$, 故$\lambda=\chi^2_{1-\alpha}(m-1)$
+
+
+## Example:  Mendel’s Data
+
+In one of his famous experiments, Mendel crossed 556 smooth, yellow male peas
+with wrinkled, green female peas. According to now established genetic theory, the
+relative frequencies of the progeny should be as given below.
+
+$$P(\text{smooth yellow}) = 9/16, P(\text{smooth green}) = 3/16$$
+
+$$P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16$$
+
+The counts that Mendel recorded are 315, 108, 102, 31, respectively.
+
+- the $\chi^2$ test statistic is $V=0.604$
+
+- p-value is $0.90$
+
+- $\chi^2_{1-0.1}(3)=6.25$
+
+##  Goodness-of-fit tests
+
+考虑连续型分布：
+
+$$H_0:F(x)=F_0(x)\ vs. \ F(x)\neq F_0(x)$$
+
+把整个实轴分成$m$份，$(-\infty,t_1],\ (t_1,t_2],\dots,(t_{m-2},t_{m-1}],\ (t_{m-1},\infty)$, 分别计算这$m$个区间的概率$p_i,i=1,\dots,m$, $v_i$表示$X_1,\dots,X_n$落到第$i$个区间的个数， 类似离散的分布的检验。
+
+$t_{i},m$的选择？借鉴直方图法的选取
+
+
+## Summary
+
+其他检验：
+
+- 独立性检验
+
+- 正态性检验
+
+- 柯尔莫哥洛夫检验法
