@@ -864,6 +864,264 @@ relative frequencies of the progeny should be as given below.&lt;/p&gt;
     </item>
     
     <item>
+      <title>第八次作业</title>
+      <link>/post/homework8/</link>
+      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework8/</guid>
+      <description>&lt;p&gt;True or false, and state why:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;The generalized likelihood ratio statistic &lt;span class=&#34;math inline&#34;&gt;\(\lambda(\vec x)\)&lt;/span&gt; (see P.87 of our textbook) is always greater than or equal to 1.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the p-value is 0.03, the corresponding test will reject at the significance
+level 0.02.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If a test rejects at significance level 0.06, then the p-value is less than or equal
+to 0.06.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The p-value of a test is the probability that the null hypothesis is correct.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In testing a simple versus simple hypothesis via the likelihood ratio test, the
+p-value equals the inverse of the likelihood ratio.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;Case study 1&lt;/code&gt;: Mutual funds are investment vehicles consisting of a portfolio of various types
+of investments. If such an investment is to meet annual spending needs, the
+owner of shares in the fund is interested in the average of the annual returns of
+the fund. Investors are also concerned with the volatility of the annual returns,
+measured by the variance or standard deviation. One common method of evaluating
+a mutual fund is to compare it to a benchmark, the Lipper Average being
+one of these. This index number is the average of returns from a universe of
+mutual funds.
+The Global Rock Fund is a typical mutual fund, with heavy investments in
+international funds. It claimed to best the Lipper Average in terms of volatility
+over the period from 1989 through 2007. Its returns are given in the table below.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Year&lt;/th&gt;
+&lt;th&gt;Investment Return %&lt;/th&gt;
+&lt;th&gt;Year&lt;/th&gt;
+&lt;th&gt;Investment Return %&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1989&lt;/td&gt;
+&lt;td&gt;15.32&lt;/td&gt;
+&lt;td&gt;1999&lt;/td&gt;
+&lt;td&gt;27.43&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1990&lt;/td&gt;
+&lt;td&gt;1.62&lt;/td&gt;
+&lt;td&gt;2000&lt;/td&gt;
+&lt;td&gt;8.57&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1991&lt;/td&gt;
+&lt;td&gt;28.43&lt;/td&gt;
+&lt;td&gt;2001&lt;/td&gt;
+&lt;td&gt;1.88&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1992&lt;/td&gt;
+&lt;td&gt;11.91&lt;/td&gt;
+&lt;td&gt;2002&lt;/td&gt;
+&lt;td&gt;−7.96&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1993&lt;/td&gt;
+&lt;td&gt;20.71&lt;/td&gt;
+&lt;td&gt;2003&lt;/td&gt;
+&lt;td&gt;35.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1994&lt;/td&gt;
+&lt;td&gt;−2.15&lt;/td&gt;
+&lt;td&gt;2004&lt;/td&gt;
+&lt;td&gt;14.27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1995&lt;/td&gt;
+&lt;td&gt;23.29&lt;/td&gt;
+&lt;td&gt;2005&lt;/td&gt;
+&lt;td&gt;10.33&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1996&lt;/td&gt;
+&lt;td&gt;15.96&lt;/td&gt;
+&lt;td&gt;2006&lt;/td&gt;
+&lt;td&gt;15.94&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1997&lt;/td&gt;
+&lt;td&gt;11.12&lt;/td&gt;
+&lt;td&gt;2007&lt;/td&gt;
+&lt;td&gt;16.71&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1998&lt;/td&gt;
+&lt;td&gt;0.37&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The standard deviation for the Lipper Average is &lt;span class=&#34;math inline&#34;&gt;\(11.67\%\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; denote the variance of the population represented by the return
+percentages shown in the table above. Consider the test
+&lt;span class=&#34;math display&#34;&gt;\[H_0: \sigma^2=(11.67)^2\ vs.\ H_1:\sigma^2&amp;lt;(11.67)^2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;If the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;, what’s your decision?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Show up the p-value of your test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;Case study 2&lt;/code&gt;: Forensic scientists sometimes have difficulty identifying the sex of a murder
+victim whose body is discovered badly decomposed. Often, dental structure can
+provide useful clues because female teeth and male teeth have different physical and chemical characteristics. The extent to which X-rays can penetrate tooth
+enamel, for instance, is not the same for the two sexes.&lt;/p&gt;
+&lt;p&gt;Table below lists the enamel spectropenetration gradients for eight male
+teeth and eight female teeth. These measurements have all the characteristics
+of the two-sample format: the data are quantitative, the units are similar,
+two factor levels (male and female) are involved, and the observations are
+independent.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Male&lt;/th&gt;
+&lt;th&gt;Female&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;4.9&lt;/td&gt;
+&lt;td&gt;4.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;5.4&lt;/td&gt;
+&lt;td&gt;5.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;5.0&lt;/td&gt;
+&lt;td&gt;3.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;5.5&lt;/td&gt;
+&lt;td&gt;4.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;5.4&lt;/td&gt;
+&lt;td&gt;5.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;6.6&lt;/td&gt;
+&lt;td&gt;4.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;6.3&lt;/td&gt;
+&lt;td&gt;3.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;4.3&lt;/td&gt;
+&lt;td&gt;5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Assume that the enamel spectropenetration gradients for male teeth and female teeth are normally distributed. Based on the data above, conduct a test (the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;) to judge whether female teeth and male teeth have different physical and chemical characteristics.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Assume that their variances are the same, what’s your decision?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you were not able to have the prior information that their variances are the same, what would you do? This is the case of &lt;strong&gt;Behrens-Fisher Problem&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The data are paired. Is it possible to do a paired test, without judging whether their variances are the same?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;Case study 3&lt;/code&gt;: The National Center for Health Statistics (1970) gives the following data on
+distribution of suicides in the United States by month in 1970. Is there any
+evidence that the suicide rate varies seasonally, or are the data consistent with
+the hypothesis that the rate is constant? (Hint: Under the latter hypothesis, model
+the number of suicides in each month as a multinomial random variable with the
+appropriate probabilities and conduct a goodness-of-fit test.)&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Month&lt;/th&gt;
+&lt;th&gt;Number of Suicides&lt;/th&gt;
+&lt;th&gt;Days/Month&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Jan.&lt;/td&gt;
+&lt;td&gt;1867&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Feb.&lt;/td&gt;
+&lt;td&gt;1789&lt;/td&gt;
+&lt;td&gt;28&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Mar.&lt;/td&gt;
+&lt;td&gt;1944&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Apr.&lt;/td&gt;
+&lt;td&gt;2094&lt;/td&gt;
+&lt;td&gt;30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;May&lt;/td&gt;
+&lt;td&gt;2097&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;June&lt;/td&gt;
+&lt;td&gt;1981&lt;/td&gt;
+&lt;td&gt;30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;July&lt;/td&gt;
+&lt;td&gt;1887&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Aug.&lt;/td&gt;
+&lt;td&gt;2024&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Sept.&lt;/td&gt;
+&lt;td&gt;1928&lt;/td&gt;
+&lt;td&gt;30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Oct.&lt;/td&gt;
+&lt;td&gt;2032&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Nov.&lt;/td&gt;
+&lt;td&gt;1978&lt;/td&gt;
+&lt;td&gt;30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Dec.&lt;/td&gt;
+&lt;td&gt;1859&lt;/td&gt;
+&lt;td&gt;31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;Case study 4&lt;/code&gt;: Under (the assumption of) simple Mendelian inheritance, a cross
+between plants of two particular genotypes produces progeny 1/4 of
+which are “dwarf” and &lt;span class=&#34;math inline&#34;&gt;\(3/4\)&lt;/span&gt; of which are “giant”, respectively.
+In an experiment to determine if this assumption is reasonable, a
+cross results in progeny having 243 dwarf and 682 giant plants.
+If “giant” is taken as success, the null hypothesis is that &lt;span class=&#34;math inline&#34;&gt;\(p =3/4\)&lt;/span&gt; and the alternative that &lt;span class=&#34;math inline&#34;&gt;\(p \neq 3/4\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_i,i=1,\dots,n\)&lt;/span&gt; be the sample of the population &lt;span class=&#34;math inline&#34;&gt;\(B(1,p)\)&lt;/span&gt;. By central limit theorem (CLT), the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt; can be approximated by a normal distribution &lt;span class=&#34;math inline&#34;&gt;\(N(p,p(1-p)/n)\)&lt;/span&gt;. Please use this approximation to do the binominal test above.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Actually, we can do the exact binominal test according to the formula given in P.114 of our textbook. Compare the results in the exact test and the approximate test for significance levels &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05,0.01,0.001\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>第七次作业</title>
       <link>/post/homework7/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
@@ -3255,101 +3513,6 @@ f_n(x)=
 &lt;p&gt;答案来自：&lt;a href=&#34;mailto:甘桃菁@16信计&#34;&gt;甘桃菁@16信计&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;4.jpeg&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>R的基本画图技巧</title>
-      <link>/post/ex1-1/</link>
-      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ex1-1/</guid>
-      <description>&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;预备工作&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;R软件&lt;/code&gt;下载: &lt;a href=&#34;https://www.r-project.org/&#34; class=&#34;uri&#34;&gt;https://www.r-project.org/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;RStudio编辑器&lt;/code&gt;下载: &lt;a href=&#34;https://www.rstudio.com/&#34; class=&#34;uri&#34;&gt;https://www.rstudio.com/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例1：密度函数画图&lt;/h2&gt;
-&lt;p&gt;画图的主要命令&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;为&lt;code&gt;plot(x,y,...)&lt;/code&gt;，里面各种参数的含义可查看帮助文档&lt;code&gt;help(plot)&lt;/code&gt;或者&lt;code&gt;? plot&lt;/code&gt;. 下面以画&lt;strong&gt;伽马分布&lt;/strong&gt;的密度为例。&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;所有的图像都是离散点拼接起来，首先要确定横坐标，可用&lt;code&gt;seq(from = a, to = b, length=n)&lt;/code&gt;生成&lt;span class=&#34;math inline&#34;&gt;\([a,b]\)&lt;/span&gt;间的&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;个等分点。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;接着根据横坐标的值计算相应的密度函数值，常用分布的密度函数在R种有现成的函数（使用命令&lt;code&gt;? distribution&lt;/code&gt;查看常用的分布），直接调用即可。比如&lt;strong&gt;伽马分布&lt;/strong&gt;的密度为&lt;code&gt;dgamma(x,shape=alpha,rate = lambda)&lt;/code&gt;, 详情查看帮助文档&lt;code&gt;? dgamma&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下面为三组参数下的画图代码（可复制到一个空白的R文件中保存运行）&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = seq(0.001,10,length = 10000) #生成横坐标值
-lambda = 0.5
-alpha = 1
-y = dgamma(x,shape=alpha,rate = lambda) #计算相应的密度值
-par(mai=c(0.9,0.9,0.3,0.1),cex=1.1) #调整图像边缘空白处大小，初学者可不用设置
-plot(x,y,type=&amp;quot;l&amp;quot;,ylab = &amp;quot;f(x)&amp;quot;,col=&amp;quot;blue&amp;quot;,cex.lab=1.2)
-
-#画第二组参数的图像
-alpha = 2
-y = dgamma(x,shape=alpha,rate = lambda)
-lines(x,y,col=&amp;quot;red&amp;quot;) #此次通过lines命令画第二组参数的图，若用plot命令则输出一副新的图像，而不是在上一幅图基础上叠加
-
-#画第三组参数的图像
-alpha = 3
-y = dgamma(x,shape=alpha,rate = lambda)
-lines(x,y,col=&amp;quot;green&amp;quot;)
-
-#画出相应的标注，即图中的小矩形
-expr1 = expression(alpha==1) #此命令用于希腊字母的转化
-expr2 = expression(alpha==2)
-expr3 = expression(alpha==3)
-legend(6,0.5,legend=c(expr1,expr2,expr3),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;green&amp;quot;),lty = c(1,1,1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ex1-1_files/figure-html/gammaplot-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例2：经验分布函数画图&lt;/h2&gt;
-&lt;p&gt;画经验分布函数主要用到命令&lt;code&gt;ecdf(x)&lt;/code&gt;. 下面的例子为标准正态样本的经验分布图。R中提供了生成常见分布的样本的命令（使用命令&lt;code&gt;? distribution&lt;/code&gt;查看常用的分布）。如生成正态分布&lt;span class=&#34;math inline&#34;&gt;\(N(a,b^2)\)&lt;/span&gt;的&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;个样本代码为&lt;code&gt;rnorm(n, mean = a, sd = b)&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = rnorm(100) #生成100个标准正态的样本
-Fn1 = ecdf(x[1:10]) #计算前10个样本对应的经验分布函数
-Fn2 = ecdf(x[1:100]) #计算前100个样本对应的经验分布函数
-
-#计算标准正态分布函数
-t = seq(-3,3,by=0.01) #横坐标
-y = pnorm(t) #相应的分布函数值
-
-#mfrow表示生成两行一列的图，后面的两个参数用于调整页边距，初学者可不用设置
-#最终输出一幅图，包含两幅子图
-par(mfrow=c(2,1),mgp=c(1.5,0.8,0),mar=.1+c(3,3,2,1)) 
-
-# 第一幅子图
-plot(Fn1,verticals=TRUE,do.points=FALSE,main=&amp;quot;n=10&amp;quot;,xlim=c(-3,3)) #画经验分布函数
-lines(t,y,col=&amp;quot;red&amp;quot;) #画真实的正态分布函数图像
-
-# 第二幅子图
-plot(Fn2,verticals=TRUE,do.points=FALSE,main=&amp;quot;n=100&amp;quot;,xlim=c(-3,3)) #画经验分布函数
-lines(t,y,col=&amp;quot;red&amp;quot;) #画真实的正态分布函数图像&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ex1-1_files/figure-html/ecdf-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;课后练习&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;安装相应的软件&lt;/li&gt;
-&lt;li&gt;参考上面两个例子，学会使用&lt;code&gt;plot(...)&lt;/code&gt;画相关的图形，了解该命令里面参数的作用。&lt;/li&gt;
-&lt;li&gt;参考例1，画不同参数下&lt;strong&gt;贝塔分布&lt;/strong&gt;的密度函数；关键的命令查看帮助&lt;code&gt;? beta&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;参考例2，比较其他分布（查看R中的常用分布&lt;code&gt;?distribution&lt;/code&gt;）的经验分布函数与真实的分布函数，并观察他们的差距是否随着样本量的增加而减小。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一些建议&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;充分利用帮助文档&lt;/strong&gt;。我们不可能记住所有命令的使用方式，使用帮助文档是一种高效的学习途径，此外帮助文档末尾还提供一些参考例子，有助于理解命令的使用方式。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;充分利用网上资源&lt;/strong&gt;。编程过程中如果遇到问题，可以通过度娘等方式搜索寻找答案，现在的很多技术博客提供很多有价值的资源。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;要学会偷懒&lt;/strong&gt;。在编写一种算法之前，首先要去了解R软件中有没有现成的命令。如果有现成的，则只需学会如何运用即可。通过不断地积累，工作效率会大大提高。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;更高级的画图方式见&lt;code&gt;ggplot2&lt;/code&gt;, 初学者可先忽略&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     

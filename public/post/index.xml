@@ -31,6 +31,19 @@
     </item>
     
     <item>
+      <title>第八次作业</title>
+      <link>/post/homework8/</link>
+      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework8/</guid>
+      <description>True or false, and state why:
+The generalized likelihood ratio statistic \(\lambda(\vec x)\) (see P.87 of our textbook) is always greater than or equal to 1.
+If the p-value is 0.03, the corresponding test will reject at the significancelevel 0.02.
+If a test rejects at significance level 0.06, then the p-value is less than or equalto 0.06.
+The p-value of a test is the probability that the null hypothesis is correct.</description>
+    </item>
+    
+    <item>
       <title>第七次作业</title>
       <link>/post/homework7/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
