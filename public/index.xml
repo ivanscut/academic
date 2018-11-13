@@ -151,7 +151,7 @@
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\rho_W(\theta):=P_{\theta}((X_1,\dots,X_n)\in W)\]&lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;当&lt;span class=&#34;math inline&#34;&gt;\(\theta\in \Theta_0\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(\rho_W(\theta)\)&lt;/span&gt;表示犯第一类错误的概率&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当&lt;span class=&#34;math inline&#34;&gt;\(\theta\in \Theta_1\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(1-\rho_W(\theta)\)&lt;/span&gt;表示犯第二类错误的概率&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当&lt;span class=&#34;math inline&#34;&gt;\(\theta\in \Theta_1\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(1-\rho_W(\theta)\)&lt;/span&gt;表示犯第二类错误的概率，&lt;span class=&#34;math inline&#34;&gt;\(\rho_W(\theta)\)&lt;/span&gt;表示检验的功效(power of a test)&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt;的&lt;strong&gt;检验水平&lt;/strong&gt;（显著性水平，level of significance）：
 &lt;span class=&#34;math display&#34;&gt;\[\sup_{\theta\in\Theta_0} \rho_W(\theta)= \alpha\]&lt;/span&gt;&lt;/p&gt;
@@ -226,6 +226,16 @@ result than was coin 1. This result would favor coin 0.&lt;/p&gt;&lt;/li&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparison&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a = 1
+b = 2
+x = seq(-4,4,by=0.01)+2
+y1 = dnorm(x,a,1)
+y2 = dnorm(x,b,1)
+par(mfrow=c(2,1),mar=c(2,2,2,1))
+plot(x,y1,type=&amp;quot;l&amp;quot;,xlab=&amp;quot;&amp;quot;,ylab=&amp;quot;&amp;quot;,main=&amp;quot;H_0&amp;quot;)
+abline(v=c(a+qnorm(0.9),a+qnorm(0.95),a-qnorm(0.95)),col = c(&amp;quot;red&amp;quot;,&amp;quot;green&amp;quot;,&amp;quot;green&amp;quot;),lty=2,lwd=3)
+plot(x,y2,type=&amp;quot;l&amp;quot;,xlab=&amp;quot;&amp;quot;,ylab=&amp;quot;&amp;quot;,main=&amp;quot;H_1&amp;quot;)
+abline(v=c(a+qnorm(0.9),a+qnorm(0.95),a-qnorm(0.95)),col = c(&amp;quot;red&amp;quot;,&amp;quot;green&amp;quot;,&amp;quot;green&amp;quot;),lty=2,lwd=3)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/chap03_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ump-tests-for-normal-mean-1&#34; class=&#34;section level2&#34;&gt;
@@ -525,6 +535,86 @@ L(\vec x;\mu_0,q_n^2),\ &amp;amp;\bar x&amp;gt; \mu_0
 &lt;/ul&gt;
 &lt;p&gt;若&lt;span class=&#34;math inline&#34;&gt;\(F&amp;gt; F_{1-\alpha/2}(m-1,n-1)\)&lt;/span&gt;或者&lt;span class=&#34;math inline&#34;&gt;\(F&amp;lt;F_{\alpha/2}(m-1,n-1)\)&lt;/span&gt;拒绝&lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;，否则接受&lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;case-study-heights-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Case study: Heights dataset&lt;/h2&gt;
+&lt;p&gt;假设男生身高&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma_1^2)\)&lt;/span&gt;, 女生身高&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_2,\sigma_2^2)\)&lt;/span&gt;, 比较他们的均值与方差的差异。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;均值的假设检验R命令&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;t.test(x, y = NULL,
+alternative = c(“two.sided”, “less”, “greater”),
+mu = 0, paired = FALSE, var.equal = FALSE,
+conf.level = 0.95, …)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方差的假设检验R命令&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;var.test(x, y, ratio = 1,
+alternative = c(“two.sided”, “less”, “greater”),
+conf.level = 0.95, …)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mean-difference-test-i&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mean difference test (I)&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dslabs)
+attach(heights)
+female_height = height[sex==&amp;quot;Female&amp;quot;]#提取女生数据
+male_height = height[sex==&amp;quot;Male&amp;quot;]#提取男生数据
+## 方差相等时双边假设检验
+t.test(male_height,female_height,var.equal = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 16.283, df = 1048, p-value &amp;lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.848073 4.902589
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mean-difference-test-ii&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mean difference test (II)&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## 方差不相等时双边假设检验
+t.test(male_height,female_height)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Welch Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 15.925, df = 374.41, p-value &amp;lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.835108 4.915553
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mean-difference-test-iii&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mean difference test (III)&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## 方差不相等时单边假设检验
+t.test(male_height,female_height,alternative = &amp;quot;less&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Welch Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 15.925, df = 374.41, p-value = 1
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##      -Inf 4.828355
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variance-ratio-test&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Variance ratio test&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;var.test(male_height,female_height)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  F test to compare two variances
+## 
+## data:  male_height and female_height
+## F = 0.92201, num df = 811, denom df = 237, p-value = 0.4226
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.7466979 1.1252727
+## sample estimates:
+## ratio of variances 
+##          0.9220053&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;div id=&#34;confidence-intervals-vs-ht&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Confidence intervals vs HT&lt;/h2&gt;
 &lt;p&gt;假设&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的100&lt;span class=&#34;math inline&#34;&gt;\((1-\alpha)\%\)&lt;/span&gt; 置信区间(confidence interval, CI)为 &lt;span class=&#34;math inline&#34;&gt;\([L(X_1,\dots,X_n),U(X_1,\dots,X_n)]\)&lt;/span&gt;. 这表明&lt;/p&gt;
@@ -578,9 +668,10 @@ L(\vec x;\mu_0,q_n^2),\ &amp;amp;\bar x&amp;gt; \mu_0
 &lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;未知，方差&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;已知，考虑检验&lt;span class=&#34;math display&#34;&gt;\[H_0:\mu=\mu_0\ vs.\ H_1:\mu\neq\mu_0.\]&lt;/span&gt; 拒绝域为&lt;span class=&#34;math inline&#34;&gt;\(W=\{\vec x:\sqrt{n}|\bar x-\mu_0|/\sigma&amp;gt;u_{1-\alpha/2}\}\)&lt;/span&gt;, 其中检验统计量为&lt;span class=&#34;math inline&#34;&gt;\(T = \sqrt{n}|\bar X-\mu_0|/\sigma\)&lt;/span&gt;. 故p值为&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\bar x-\mu_0|}{\sigma/\sqrt{n}}\right)\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;some-advantages-of-p-values&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Some advantages of p-values&lt;/h2&gt;
+&lt;div id=&#34;comments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Comments&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;p值可以看作样本与原假设&lt;strong&gt;相容程度的度量&lt;/strong&gt;。p值越大相容度越高；反之，p值越小相容度越低。当p值小于&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;时认为两者不相容，拒绝原假设&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;做检验时不需要事先确定显著性水平&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;（它的具有一定的主观性），如果p值非常小，则毫不犹豫地拒绝原假设；同样地，如果p值比较大，则接受原假设，这样就不用争论&lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.1,0.05\)&lt;/span&gt;或者其他。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;p值提供更多的信息，可以用于&lt;strong&gt;保护隐私数据&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;统计软件提供的是p值&lt;/p&gt;&lt;/li&gt;
@@ -595,12 +686,8 @@ L(\vec x;\mu_0,q_n^2),\ &amp;amp;\bar x&amp;gt; \mu_0
 &lt;p&gt;例子：吃果冻与长青春痘的联系：&lt;a href=&#34;https://xkcd.com/882/&#34; class=&#34;uri&#34;&gt;https://xkcd.com/882/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://imgs.xkcd.com/comics/significant.png&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;seminar&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Seminar&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;mtests.bmp&#34; width=&#34;40%&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ht-for-ratio&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;HT for ratio&lt;/h2&gt;
+&lt;div id=&#34;binomial-tests&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Binomial tests&lt;/h2&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;服从两点分布&lt;span class=&#34;math inline&#34;&gt;\(B(1,p)\)&lt;/span&gt;, 下面考虑以下三种常见的假设检验&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(H_0:p\le p_0\ vs.\ H_1:p&amp;gt;p_0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
@@ -636,166 +723,45 @@ L(\vec x;\mu_0,q_n^2),\ &amp;amp;\bar x&amp;gt; \mu_0
 &lt;h2&gt;Example&lt;/h2&gt;
 &lt;p&gt;考虑女士品茶问题，设该女士鉴别的成功率为&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;. 设&lt;span class=&#34;math inline&#34;&gt;\(X_i\)&lt;/span&gt;表示第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;次鉴别结果，即&lt;span class=&#34;math inline&#34;&gt;\(X_i=1\)&lt;/span&gt;表示成功，&lt;span class=&#34;math inline&#34;&gt;\(X_i=0\)&lt;/span&gt;表示失败。如果&lt;span class=&#34;math inline&#34;&gt;\(p&amp;gt;p_0\)&lt;/span&gt;我们认为该女士具备这种辨别能力，其中&lt;span class=&#34;math inline&#34;&gt;\(p_0\ge 1/2\)&lt;/span&gt;为给定的数。故考虑检验&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0: p\le p_0\ vs.\ H_1:p&amp;gt;p_0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二项分布检验的R代码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;binom.test(x, n, p = 0.5,
+alternative = c(“two.sided”, “less”, “greater”),
+conf.level = 0.95)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;the-results-for-n10&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The results for n=10&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyr)
-df = data.frame(alpha=c(0.9,0.95,0.99))
-data = c(1,6,8,10)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;alpha = 0.1
 n = 10
-helperf &amp;lt;- function(s,df,n)
-  cbind(s=s,df,pr=qbeta(df$alpha,s,n-s+1))
-kappa = lapply(data,helperf,df,n) %&amp;gt;% do.call(rbind, args = .)
-knitr::kable(kappa,format = &amp;quot;html&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-s
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-alpha
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-pr
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.90
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2056718
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.95
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2588656
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.99
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3690427
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.90
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7326819
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.95
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7775589
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.99
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.8495572
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.90
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.8841747
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.95
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9127356
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.99
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9524930
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.90
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9895193
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.95
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9948838
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.99
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9989955
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+s = 1:n
+pr = qbeta(alpha,s,n-s+1)
+
+par(mfrow = c(1,2),mar=c(4,4,2,0.5))
+plot(s,pr,type=&amp;quot;b&amp;quot;,ylab=expression(p[alpha](s)), main=expression(alpha==0.1))
+abline(h=0.5,col=&amp;quot;red&amp;quot;)
+lb = expression(p[0]==0.5)
+text(3,0.55,lb)
+
+alpha = 0.05
+pr = qbeta(alpha,s,n-s+1)
+plot(s,pr,type=&amp;quot;b&amp;quot;,ylab=expression(p[alpha](s)), main=expression(alpha==0.05))
+abline(h=0.5,col=&amp;quot;red&amp;quot;)
+text(3,0.55,lb)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/chap03_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;binom.test&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;binom.test&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;binom.test(8,10,0.5,alternative = &amp;quot;greater&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Exact binomial test
+## 
+## data:  8 and 10
+## number of successes = 8, number of trials = 10, p-value = 0.05469
+## alternative hypothesis: true probability of success is greater than 0.5
+## 95 percent confidence interval:
+##  0.4930987 1.0000000
+## sample estimates:
+## probability of success 
+##                    0.8&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ht-for-ratio-one-sided-ii&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;HT for ratio: one-sided II&lt;/h2&gt;
@@ -839,10 +805,24 @@ relative frequencies of the progeny should be as given below.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The counts that Mendel recorded are 315, 108, 102, 31, respectively.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the &lt;span class=&#34;math inline&#34;&gt;\(\chi^2\)&lt;/span&gt; test statistic is &lt;span class=&#34;math inline&#34;&gt;\(V=0.604\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the &lt;span class=&#34;math inline&#34;&gt;\(\chi^2\)&lt;/span&gt; test statistic is &lt;span class=&#34;math inline&#34;&gt;\(V=0.604\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\chi^2_{1-0.1}(3)=6.25\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;p-value is &lt;span class=&#34;math inline&#34;&gt;\(0.90\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\chi^2_{1-0.1}(3)=6.25\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R code:&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;chisq.test&lt;/strong&gt;(x, y = NULL, correct = TRUE,
+p = rep(1/length(x), length(x)), rescale.p = FALSE,
+simulate.p.value = FALSE, B = 2000)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;chisq.test&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;chisq.test&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = c(315, 108, 102, 31)
+p = c(9/16,3/16,3/16,1/16)
+chisq.test(x,p=p)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 0.60432, df = 3, p-value = 0.8954&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;goodness-of-fit-tests-1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Goodness-of-fit tests&lt;/h2&gt;

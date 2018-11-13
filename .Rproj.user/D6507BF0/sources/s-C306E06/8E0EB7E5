@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542078641564.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8E0EB7E5",
+    "lastKnownWriteTime" : 1542091664,
+    "last_content_update" : 1542091664377,
+    "path" : "D:/Dropbox/courses/web/academic/content/post/chap03.Rmd",
+    "project_path" : "content/post/chap03.Rmd",
+    "properties" : {
+        "cursorPosition" : "796,76",
+        "scrollLine" : "782",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

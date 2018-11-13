@@ -143,7 +143,7 @@ tags: ["课件", "数理统计"]
 <p><span class="math display">\[\rho_W(\theta):=P_{\theta}((X_1,\dots,X_n)\in W)\]</span></p>
 <ul>
 <li><p>当<span class="math inline">\(\theta\in \Theta_0\)</span>时，<span class="math inline">\(\rho_W(\theta)\)</span>表示犯第一类错误的概率</p></li>
-<li><p>当<span class="math inline">\(\theta\in \Theta_1\)</span>时，<span class="math inline">\(1-\rho_W(\theta)\)</span>表示犯第二类错误的概率</p></li>
+<li><p>当<span class="math inline">\(\theta\in \Theta_1\)</span>时，<span class="math inline">\(1-\rho_W(\theta)\)</span>表示犯第二类错误的概率，<span class="math inline">\(\rho_W(\theta)\)</span>表示检验的功效(power of a test)</p></li>
 </ul>
 <p><span class="math inline">\(W\)</span>的<strong>检验水平</strong>（显著性水平，level of significance）：
 <span class="math display">\[\sup_{\theta\in\Theta_0} \rho_W(\theta)= \alpha\]</span></p>
@@ -218,6 +218,16 @@ result than was coin 1. This result would favor coin 0.</p></li>
 </div>
 <div id="comparison" class="section level2">
 <h2>Comparison</h2>
+<pre class="r"><code>a = 1
+b = 2
+x = seq(-4,4,by=0.01)+2
+y1 = dnorm(x,a,1)
+y2 = dnorm(x,b,1)
+par(mfrow=c(2,1),mar=c(2,2,2,1))
+plot(x,y1,type=&quot;l&quot;,xlab=&quot;&quot;,ylab=&quot;&quot;,main=&quot;H_0&quot;)
+abline(v=c(a+qnorm(0.9),a+qnorm(0.95),a-qnorm(0.95)),col = c(&quot;red&quot;,&quot;green&quot;,&quot;green&quot;),lty=2,lwd=3)
+plot(x,y2,type=&quot;l&quot;,xlab=&quot;&quot;,ylab=&quot;&quot;,main=&quot;H_1&quot;)
+abline(v=c(a+qnorm(0.9),a+qnorm(0.95),a-qnorm(0.95)),col = c(&quot;red&quot;,&quot;green&quot;,&quot;green&quot;),lty=2,lwd=3)</code></pre>
 <p><img src="/post/chap03_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="ump-tests-for-normal-mean-1" class="section level2">
@@ -517,6 +527,86 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 </ul>
 <p>若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m-1,n-1)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m-1,n-1)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
 </div>
+<div id="case-study-heights-dataset" class="section level2">
+<h2>Case study: Heights dataset</h2>
+<p>假设男生身高<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, 女生身高<span class="math inline">\(X\sim N(\mu_2,\sigma_2^2)\)</span>, 比较他们的均值与方差的差异。</p>
+<p><strong>均值的假设检验R命令</strong></p>
+<p>t.test(x, y = NULL,
+alternative = c(“two.sided”, “less”, “greater”),
+mu = 0, paired = FALSE, var.equal = FALSE,
+conf.level = 0.95, …)</p>
+<p><strong>方差的假设检验R命令</strong></p>
+<p>var.test(x, y, ratio = 1,
+alternative = c(“two.sided”, “less”, “greater”),
+conf.level = 0.95, …)</p>
+</div>
+<div id="mean-difference-test-i" class="section level2">
+<h2>Mean difference test (I)</h2>
+<pre class="r"><code>library(dslabs)
+attach(heights)
+female_height = height[sex==&quot;Female&quot;]#提取女生数据
+male_height = height[sex==&quot;Male&quot;]#提取男生数据
+## 方差相等时双边假设检验
+t.test(male_height,female_height,var.equal = TRUE)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 16.283, df = 1048, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.848073 4.902589
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942</code></pre>
+</div>
+<div id="mean-difference-test-ii" class="section level2">
+<h2>Mean difference test (II)</h2>
+<pre class="r"><code>## 方差不相等时双边假设检验
+t.test(male_height,female_height)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 15.925, df = 374.41, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  3.835108 4.915553
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942</code></pre>
+</div>
+<div id="mean-difference-test-iii" class="section level2">
+<h2>Mean difference test (III)</h2>
+<pre class="r"><code>## 方差不相等时单边假设检验
+t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male_height and female_height
+## t = 15.925, df = 374.41, p-value = 1
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##      -Inf 4.828355
+## sample estimates:
+## mean of x mean of y 
+##  69.31475  64.93942</code></pre>
+</div>
+<div id="variance-ratio-test" class="section level2">
+<h2>Variance ratio test</h2>
+<pre class="r"><code>var.test(male_height,female_height)</code></pre>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  male_height and female_height
+## F = 0.92201, num df = 811, denom df = 237, p-value = 0.4226
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.7466979 1.1252727
+## sample estimates:
+## ratio of variances 
+##          0.9220053</code></pre>
+</div>
 <div id="confidence-intervals-vs-ht" class="section level2">
 <h2>Confidence intervals vs HT</h2>
 <p>假设<span class="math inline">\(\theta\)</span>的100<span class="math inline">\((1-\alpha)\%\)</span> 置信区间(confidence interval, CI)为 <span class="math inline">\([L(X_1,\dots,X_n),U(X_1,\dots,X_n)]\)</span>. 这表明</p>
@@ -570,9 +660,10 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <p><strong>例</strong>：总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，其中<span class="math inline">\(\mu\)</span>未知，方差<span class="math inline">\(\sigma^2\)</span>已知，考虑检验<span class="math display">\[H_0:\mu=\mu_0\ vs.\ H_1:\mu\neq\mu_0.\]</span> 拒绝域为<span class="math inline">\(W=\{\vec x:\sqrt{n}|\bar x-\mu_0|/\sigma&gt;u_{1-\alpha/2}\}\)</span>, 其中检验统计量为<span class="math inline">\(T = \sqrt{n}|\bar X-\mu_0|/\sigma\)</span>. 故p值为</p>
 <p><span class="math display">\[p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\bar x-\mu_0|}{\sigma/\sqrt{n}}\right)\]</span></p>
 </div>
-<div id="some-advantages-of-p-values" class="section level2">
-<h2>Some advantages of p-values</h2>
+<div id="comments" class="section level2">
+<h2>Comments</h2>
 <ul>
+<li><p>p值可以看作样本与原假设<strong>相容程度的度量</strong>。p值越大相容度越高；反之，p值越小相容度越低。当p值小于<span class="math inline">\(\alpha\)</span>时认为两者不相容，拒绝原假设</p></li>
 <li><p>做检验时不需要事先确定显著性水平<span class="math inline">\(\alpha\)</span>（它的具有一定的主观性），如果p值非常小，则毫不犹豫地拒绝原假设；同样地，如果p值比较大，则接受原假设，这样就不用争论<span class="math inline">\(\alpha=0.1,0.05\)</span>或者其他。</p></li>
 <li><p>p值提供更多的信息，可以用于<strong>保护隐私数据</strong></p></li>
 <li><p>统计软件提供的是p值</p></li>
@@ -587,12 +678,8 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <p>例子：吃果冻与长青春痘的联系：<a href="https://xkcd.com/882/" class="uri">https://xkcd.com/882/</a></p>
 <p><img src="https://imgs.xkcd.com/comics/significant.png" /></p>
 </div>
-<div id="seminar" class="section level2">
-<h2>Seminar</h2>
-<p><img src="mtests.bmp" width="40%" /></p>
-</div>
-<div id="ht-for-ratio" class="section level2">
-<h2>HT for ratio</h2>
+<div id="binomial-tests" class="section level2">
+<h2>Binomial tests</h2>
 <p>设<span class="math inline">\(X\)</span>服从两点分布<span class="math inline">\(B(1,p)\)</span>, 下面考虑以下三种常见的假设检验</p>
 <ul>
 <li><p><span class="math inline">\(H_0:p\le p_0\ vs.\ H_1:p&gt;p_0\)</span></p></li>
@@ -628,166 +715,45 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <h2>Example</h2>
 <p>考虑女士品茶问题，设该女士鉴别的成功率为<span class="math inline">\(p\)</span>. 设<span class="math inline">\(X_i\)</span>表示第<span class="math inline">\(i\)</span>次鉴别结果，即<span class="math inline">\(X_i=1\)</span>表示成功，<span class="math inline">\(X_i=0\)</span>表示失败。如果<span class="math inline">\(p&gt;p_0\)</span>我们认为该女士具备这种辨别能力，其中<span class="math inline">\(p_0\ge 1/2\)</span>为给定的数。故考虑检验</p>
 <p><span class="math display">\[H_0: p\le p_0\ vs.\ H_1:p&gt;p_0.\]</span></p>
+<p><strong>二项分布检验的R代码</strong></p>
+<p>binom.test(x, n, p = 0.5,
+alternative = c(“two.sided”, “less”, “greater”),
+conf.level = 0.95)</p>
 </div>
 <div id="the-results-for-n10" class="section level2">
 <h2>The results for n=10</h2>
-<pre class="r"><code>library(tidyr)
-df = data.frame(alpha=c(0.9,0.95,0.99))
-data = c(1,6,8,10)
+<pre class="r"><code>alpha = 0.1
 n = 10
-helperf &lt;- function(s,df,n)
-  cbind(s=s,df,pr=qbeta(df$alpha,s,n-s+1))
-kappa = lapply(data,helperf,df,n) %&gt;% do.call(rbind, args = .)
-knitr::kable(kappa,format = &quot;html&quot;)</code></pre>
-<table>
-<thead>
-<tr>
-<th style="text-align:right;">
-s
-</th>
-<th style="text-align:right;">
-alpha
-</th>
-<th style="text-align:right;">
-pr
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.90
-</td>
-<td style="text-align:right;">
-0.2056718
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.95
-</td>
-<td style="text-align:right;">
-0.2588656
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:right;">
-0.3690427
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0.90
-</td>
-<td style="text-align:right;">
-0.7326819
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0.95
-</td>
-<td style="text-align:right;">
-0.7775589
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:right;">
-0.8495572
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.90
-</td>
-<td style="text-align:right;">
-0.8841747
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.95
-</td>
-<td style="text-align:right;">
-0.9127356
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:right;">
-0.9524930
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.90
-</td>
-<td style="text-align:right;">
-0.9895193
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.95
-</td>
-<td style="text-align:right;">
-0.9948838
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:right;">
-0.9989955
-</td>
-</tr>
-</tbody>
-</table>
+s = 1:n
+pr = qbeta(alpha,s,n-s+1)
+
+par(mfrow = c(1,2),mar=c(4,4,2,0.5))
+plot(s,pr,type=&quot;b&quot;,ylab=expression(p[alpha](s)), main=expression(alpha==0.1))
+abline(h=0.5,col=&quot;red&quot;)
+lb = expression(p[0]==0.5)
+text(3,0.55,lb)
+
+alpha = 0.05
+pr = qbeta(alpha,s,n-s+1)
+plot(s,pr,type=&quot;b&quot;,ylab=expression(p[alpha](s)), main=expression(alpha==0.05))
+abline(h=0.5,col=&quot;red&quot;)
+text(3,0.55,lb)</code></pre>
+<p><img src="/post/chap03_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="binom.test" class="section level2">
+<h2>binom.test</h2>
+<pre class="r"><code>binom.test(8,10,0.5,alternative = &quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  8 and 10
+## number of successes = 8, number of trials = 10, p-value = 0.05469
+## alternative hypothesis: true probability of success is greater than 0.5
+## 95 percent confidence interval:
+##  0.4930987 1.0000000
+## sample estimates:
+## probability of success 
+##                    0.8</code></pre>
 </div>
 <div id="ht-for-ratio-one-sided-ii" class="section level2">
 <h2>HT for ratio: one-sided II</h2>
@@ -831,10 +797,24 @@ relative frequencies of the progeny should be as given below.</p>
 <p><span class="math display">\[P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16\]</span></p>
 <p>The counts that Mendel recorded are 315, 108, 102, 31, respectively.</p>
 <ul>
-<li><p>the <span class="math inline">\(\chi^2\)</span> test statistic is <span class="math inline">\(V=0.604\)</span></p></li>
+<li><p>the <span class="math inline">\(\chi^2\)</span> test statistic is <span class="math inline">\(V=0.604\)</span>, <span class="math inline">\(\chi^2_{1-0.1}(3)=6.25\)</span></p></li>
 <li><p>p-value is <span class="math inline">\(0.90\)</span></p></li>
-<li><p><span class="math inline">\(\chi^2_{1-0.1}(3)=6.25\)</span></p></li>
+<li><p>R code:</p></li>
 </ul>
+<p><strong>chisq.test</strong>(x, y = NULL, correct = TRUE,
+p = rep(1/length(x), length(x)), rescale.p = FALSE,
+simulate.p.value = FALSE, B = 2000)</p>
+</div>
+<div id="chisq.test" class="section level2">
+<h2>chisq.test</h2>
+<pre class="r"><code>x = c(315, 108, 102, 31)
+p = c(9/16,3/16,3/16,1/16)
+chisq.test(x,p=p)</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 0.60432, df = 3, p-value = 0.8954</code></pre>
 </div>
 <div id="goodness-of-fit-tests-1" class="section level2">
 <h2>Goodness-of-fit tests</h2>
