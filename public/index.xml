@@ -1013,7 +1013,7 @@ independent.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Case study 3&lt;/code&gt;: The National Center for Health Statistics (1970) gives the following data on
 distribution of suicides in the United States by month in 1970. Is there any
 evidence that the suicide rate varies seasonally, or are the data consistent with
-the hypothesis that the rate is constant? (Hint: Under the latter hypothesis, model
+the hypothesis that the rate is constant (the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;)? (Hint: Under the latter hypothesis, model
 the number of suicides in each month as a multinomial random variable with the
 appropriate probabilities and conduct a goodness-of-fit test.)&lt;/p&gt;
 &lt;table&gt;
@@ -1107,19 +1107,216 @@ If “giant” is taken as success, the null hypothesis is that &lt;span class=&
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/homework7/</guid>
-      <description>&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an expnential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a likelihood ratio test of&lt;/p&gt;
+      <description>&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an exponential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a likelihood ratio test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\lambda_1\neq\lambda_2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: The likelihood function is
+&lt;span class=&#34;math display&#34;&gt;\[L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The likelihood ratio is given by
+&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x)= \frac{L(\lambda_2)}{L(\lambda_1)}=\frac{\lambda_2^ne^{-\lambda_2 n\bar x}}{\lambda_1^ne^{-\lambda_1 n\bar x}}=(\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)n\bar x}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Choose the &lt;code&gt;test statistic&lt;/code&gt; &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x) = 2\lambda_1n\bar x\)&lt;/span&gt;. When &lt;span class=&#34;math inline&#34;&gt;\(\lambda=\lambda_1\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(\vec X)\sim \chi^2(2n)\)&lt;/span&gt;. Also,
+&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\lambda_1)}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Note that &lt;span class=&#34;math inline&#34;&gt;\(\lambda_1,\lambda_2&amp;gt;0\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\lambda_1&amp;gt;\lambda_2\)&lt;/span&gt;, the rejection region is of the form &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;gt;C\}\)&lt;/span&gt;. We thus have &lt;span class=&#34;math inline&#34;&gt;\(C=\chi_{1-\alpha}^2(2n)\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(\lambda_1&amp;lt;\lambda_2\)&lt;/span&gt;, the rejection region is of the form &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;lt;C\}\)&lt;/span&gt;. We thus have &lt;span class=&#34;math inline&#34;&gt;\(C=\chi_{\alpha}^2(2n)\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr /&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an expnential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a UMPU test of&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an exponential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a UMPU test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Exponential distribution belongs to exponential family of the form &lt;span class=&#34;math inline&#34;&gt;\(S(\lambda)h(x)e^{Q(\lambda)V(x)}\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(V(x) = -x\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Q(\lambda)=\lambda\)&lt;/span&gt;. Choose the &lt;code&gt;test statistic&lt;/code&gt; &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)=2\lambda_0 n\bar x\)&lt;/span&gt;. As a result, the UMPU rejection region has the form
+&lt;span class=&#34;math display&#34;&gt;\[W = \{T(\vec x)&amp;lt;C_1 \text{ or } &amp;gt;C_2\},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(C_1,C_2\)&lt;/span&gt; satisfy
+&lt;span class=&#34;math display&#34;&gt;\[P_{\lambda_0}(\bar X\in W)=\alpha\]&lt;/span&gt;
+and
+&lt;span class=&#34;math display&#34;&gt;\[E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].\]&lt;/span&gt;
+Let &lt;span class=&#34;math inline&#34;&gt;\(f(x;n)\)&lt;/span&gt; be the density of &lt;span class=&#34;math inline&#34;&gt;\(\chi^2(n)\)&lt;/span&gt;, that is
+&lt;span class=&#34;math display&#34;&gt;\[f(x;n)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}1\{x&amp;gt;0\}.\]&lt;/span&gt;
+If &lt;span class=&#34;math inline&#34;&gt;\(\lambda=\lambda_0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(\vec X)\sim \chi^2(2n)\)&lt;/span&gt;. We thus have
+&lt;span class=&#34;math display&#34;&gt;\[\int_{C_1}^{C_2}f(x;2n) d x=1-\alpha,\quad(1)\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\int_{C_1}^{C_2} x f(x;2n)dx = 2n(1-\alpha).\]&lt;/span&gt;
+The later equality can be expressed as
+&lt;span class=&#34;math display&#34;&gt;\[\int_{C_1}^{C_2} \frac{x}{2n} f(x;2n)dx=\int_{C_1}^{C_2} \frac{x}{2n} \frac{1}{2^{n}\Gamma(n)}x^{n-1}e^{-x/2}dx=\int_{C_1}^{C_2} f(x;2n+2)dx=1-\alpha.\quad(2)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It is hard to solve the equations (1) and (2). In practice, we may take
+&lt;span class=&#34;math inline&#34;&gt;\(C_1=\chi_{\alpha/2}^2(2n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(C_2=\chi_{1-\alpha/2}^2(2n)\)&lt;/span&gt; so that the significance level of the test is &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;. BUT, it is not the exact UMPU test since (2) is not satisfied. If &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is large enough, &lt;span class=&#34;math inline&#34;&gt;\(f(x;2n+2)\approx f(x;2n)\)&lt;/span&gt; (see figure below). This implies the resulting rejection region is almost UMPU when &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is large.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homework7_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’ methods. Let &lt;span class=&#34;math inline&#34;&gt;\(F(x;n)\)&lt;/span&gt; be the CDF of &lt;span class=&#34;math inline&#34;&gt;\(\chi^2(n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(F^{-1}\)&lt;/span&gt; denote its inverse. By (1), we have &lt;span class=&#34;math inline&#34;&gt;\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)&lt;/span&gt;. Substituting it into (2), we arrive at an equation:
+&lt;span class=&#34;math display&#34;&gt;\[F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can slove the equation using R function &lt;code&gt;uniroot&lt;/code&gt;. The code is given below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myfun &amp;lt;- function(c,n,alpha)
+  pchisq(qchisq(pchisq(c,2*n)+1-alpha,2*n),2*n+2)-pchisq(c,2*n+2)-1+alpha
+
+mysolver &amp;lt;- function(n,alpha){
+  a = qchisq(alpha/2,2*n)
+  b = qchisq(alpha/2,2*n+2)
+  ## solve the equation by using the root finding algorithm
+  r = uniroot(myfun,n=n,alpha=alpha,interval = c(a,b))
+  c1 = r$root
+  c2 = qchisq(pchisq(c1,2*n)+1-alpha,2*n)
+  err1 = pchisq(c2,2*n+2)-pchisq(c1,2*n+2)-1+alpha #check the error for eq. (2)
+  ## the approximate method
+  c11 = qchisq(alpha/2,2*n)
+  c22 = qchisq(1-alpha/2,2*n)
+  err2 = pchisq(c22,2*n+2)-pchisq(c11,2*n+2)-1+alpha #check the error for eq. (2)
+  output = data.frame(exact=c(c1,c2,abs(err1)),rough=c(c11,c22,abs(err2)),
+                      row.names = c(&amp;quot;C1&amp;quot;,&amp;quot;C2&amp;quot;,&amp;quot;error&amp;quot;))
+  return(output)
+}
+alpha = 0.5
+n = 10
+output = mysolver(n,alpha)
+knitr::kable(output,&amp;quot;html&amp;quot;,caption = &amp;quot;n=10, alpha=0.05&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;n=10, alpha=0.05
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+exact
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+rough
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+C1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+16.00121
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+15.451773
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+C2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+24.61524
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+23.827692
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+error
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.00000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.014194
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For large &lt;span class=&#34;math inline&#34;&gt;\(n=100\)&lt;/span&gt;, we have the following results.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n = 100
+output = mysolver(n,alpha)
+knitr::kable(output,&amp;quot;html&amp;quot;,caption = &amp;quot;n=100, alpha=0.05&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-3&#34;&gt;Table 2: &lt;/span&gt;n=100, alpha=0.05
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+exact
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+rough
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+C1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+186.8010
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+186.171668
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+C2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+213.8065
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+213.102185
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+error
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.001428
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As expected, the error for the rough estimates &lt;span class=&#34;math inline&#34;&gt;\(C_1=\chi_{\alpha/2}^2(2n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(C_2=\chi_{1-\alpha/2}^2(2n)\)&lt;/span&gt; decreases as &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; goes up.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from &lt;span class=&#34;math inline&#34;&gt;\(U[0,\theta]\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a UMP test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\theta=\theta_0\ vs.\ H_1:\theta&amp;gt;\theta_0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Firstly, consider the simple alternative:
+&lt;span class=&#34;math display&#34;&gt;\[H_0:\theta=\theta_0\ vs.\ H_1:\theta=\theta_1&amp;gt;\theta_0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The likelihood function is &lt;span class=&#34;math inline&#34;&gt;\(L(\theta)=\theta^{-n}1\{x_{(n)}\le \theta\}\)&lt;/span&gt;.
+The likelihood ratio for the simple test is
+&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x) = \frac{\theta_1^{-n}1\{x_{(n)}\le \theta_1\}}{\theta_0^{-n}1\{x_{(n)}\le \theta_0\}}
+=\begin{cases}
+(\theta_0/\theta_1)^n,\ &amp;amp;x_{(n)}\le \theta_0\\
+\infty,\ &amp;amp;x_{(n)}&amp;gt; \theta_0
+\end{cases}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We therefore cannot find a &lt;span class=&#34;math inline&#34;&gt;\(\lambda_0\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda_0)=\alpha\)&lt;/span&gt;. This implies that the NP lemma cannot be applied. As we can see, the likelihood ratio is a function of &lt;span class=&#34;math inline&#34;&gt;\(x_{(n)}\)&lt;/span&gt;. We thus can use &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt; as the test statistic. A resonable rejection region might be
+&lt;span class=&#34;math inline&#34;&gt;\(W = \{x_{(n)}&amp;gt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; satisfies
+&lt;span class=&#34;math display&#34;&gt;\[P_{\theta_0}(X_{(n)}&amp;gt;C)=\alpha.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;When &lt;span class=&#34;math inline&#34;&gt;\(\theta=\theta_0\)&lt;/span&gt;, the order statistic &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}/\theta_0\)&lt;/span&gt; has a CDF &lt;span class=&#34;math inline&#34;&gt;\(F(x)=x^n\)&lt;/span&gt; (see &lt;a href=&#34;https://hezhijian.netlify.com/post/homework5/&#34;&gt;Exercise 1&lt;/a&gt;). So we have &lt;span class=&#34;math inline&#34;&gt;\(C=(1-\alpha)^{1/n}\theta_0\)&lt;/span&gt;. The rejection region is
+&lt;span class=&#34;math display&#34;&gt;\[W = \{\vec x:x_{(n)}&amp;gt;(1-\alpha)^{1/n}\theta_0\}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We next prove that &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; is UMP. Suppose that there exists a rejection region &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;\)&lt;/span&gt; satisfying &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\vec X\in W)\le \alpha\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(A=[0,\theta_0]^d\)&lt;/span&gt; be the sample space when &lt;span class=&#34;math inline&#34;&gt;\(\theta=\theta_0\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(B=[0,\theta_1]^d\)&lt;/span&gt; be the sample space when &lt;span class=&#34;math inline&#34;&gt;\(\theta=\theta_1\)&lt;/span&gt;. It is clear that &lt;span class=&#34;math inline&#34;&gt;\(A\subseteq B\)&lt;/span&gt; since &lt;span class=&#34;math inline&#34;&gt;\(\theta_1&amp;gt;\theta_0\)&lt;/span&gt;. This implies
+&lt;span class=&#34;math display&#34;&gt;\[P_{\theta_0}(\vec X\in W&amp;#39;) = P_{\theta_0}(\vec X\in W&amp;#39;\cap A)=\frac{1}{\theta_0^n}\int_{W&amp;#39;\cap A} 1 d x_1\dots d x_n\le \alpha.\]&lt;/span&gt;
+Similarly,
+&lt;span class=&#34;math display&#34;&gt;\[P_{\theta_0}(\vec X\in W) = P_{\theta_0}(\vec X\in W\cap A)=\frac{1}{\theta_0^n}\int_{W\cap A} 1 d x_1\dots d x_n= \alpha.\]&lt;/span&gt;
+Define &lt;span class=&#34;math inline&#34;&gt;\(\mu(E) = \int_E 1 d x_1\dots d x_n\)&lt;/span&gt;. So we have &lt;span class=&#34;math inline&#34;&gt;\(\mu(W\cap A)\ge \mu(W&amp;#39;\cap A)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;On the other hand, noticing that &lt;span class=&#34;math inline&#34;&gt;\(W\cap B=W\cap A+\bar A\cap B\)&lt;/span&gt;, we thus have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P_{\theta_1}(\vec X\in W) &amp;amp;=\frac{1}{\theta_1^n}\int_{W\cap B} 1 d x_1\dots d x_n\\&amp;amp;=\frac{1}{\theta_1^n}\int_{W\cap A}1 d x_1\dots d x_n+\frac{1}{\theta_1^n}\int_{\bar A\cap B}1 d x_1\dots d x_n\\
+&amp;amp;=\theta_1^{-n}[\mu(W\cap A)+\mu(\bar A\cap B)]\\
+&amp;amp;\ge \theta_1^{-n}[\mu(W&amp;#39;\cap A)+\mu(W&amp;#39;\cap\bar A\cap B)\\
+&amp;amp;=\theta_1^{-n}\mu(W&amp;#39;\cap B)=P_{\theta_1}(\bar X\in W&amp;#39;).
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; is UMP rejection region. Since &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; does not depend on &lt;span class=&#34;math inline&#34;&gt;\(\theta_1\)&lt;/span&gt;, it is also the UMP rejection region for the alternative &lt;span class=&#34;math inline&#34;&gt;\(H_1:\theta&amp;gt;\theta_0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;For this example, the UMP rejection region is not unique. Following the same procedure above, one can easily prove that for any
+set &lt;span class=&#34;math inline&#34;&gt;\(W_0\subset A\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(\mu(W_0)=\alpha\theta_0^n\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(W=W_0\cup \bar A\)&lt;/span&gt; is UMP.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,X_2,X_3,X_4\)&lt;/span&gt; be a sample from &lt;span class=&#34;math inline&#34;&gt;\(N(\theta,1)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.1\)&lt;/span&gt;, derive a UMP test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\theta\ge 10\ vs.\ H_1:\theta&amp;lt;10.\]&lt;/span&gt;
 Calculate the power of the test when &lt;span class=&#34;math inline&#34;&gt;\(\theta=9\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: The test statistics is &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(n=4\)&lt;/span&gt;. The UMP rejection region has the form &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;lt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; satisfies
+&lt;span class=&#34;math display&#34;&gt;\[P(T(\vec X)&amp;lt;C|\theta=10)=\alpha=0.1\]&lt;/span&gt;
+This gives &lt;span class=&#34;math inline&#34;&gt;\(C= u_{0.1}=-u_{0.9}=-1.28\)&lt;/span&gt;. So &lt;span class=&#34;math display&#34;&gt;\[W=\{\vec x|2(\bar x-10)&amp;lt;-1.28\}=\{\vec x|\bar x&amp;lt;9.36\}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The power of the test is
+&lt;span class=&#34;math display&#34;&gt;\[P(\bar X&amp;lt;9.36|\theta=9)=P(2(\bar X-9)&amp;lt;0.72|\theta=9)=\Phi(0.72)=0.76.\]&lt;/span&gt;&lt;/p&gt;
 </description>
     </item>
     

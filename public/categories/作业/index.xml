@@ -31,14 +31,12 @@ The generalized likelihood ratio statistic \(\lambda(\vec x)\) (see P.87 of our 
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/homework7/</guid>
-      <description>Let \(X_1,\dots,X_n\) be a sample from an expnential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
+      <description>Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
 \[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
 where \(\lambda_1\neq\lambda_2\).
-Let \(X_1,\dots,X_n\) be a sample from an expnential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a UMPU test of
-\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]
-Let \(X_1,\dots,X_n\) be a sample from \(U[0,\theta]\). Given a significance level \(\alpha\), derive a UMP test of
-\[H_0:\theta=\theta_0\ vs.\ H_1:\theta&amp;gt;\theta_0.\]
-Let \(X_1,X_2,X_3,X_4\) be a sample from \(N(\theta,1)\).</description>
+Solution: The likelihood function is\[L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.\]
+The likelihood ratio is given by\[\lambda(\vec x)= \frac{L(\lambda_2)}{L(\lambda_1)}=\frac{\lambda_2^ne^{-\lambda_2 n\bar x}}{\lambda_1^ne^{-\lambda_1 n\bar x}}=(\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)n\bar x}.\]
+Choose the test statistic \(T(\vec x) = 2\lambda_1n\bar x\). When \(\lambda=\lambda_1\), \(T(\vec X)\sim \chi^2(2n)\). Also,\[\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\lambda_1)}.</description>
     </item>
     
     <item>
