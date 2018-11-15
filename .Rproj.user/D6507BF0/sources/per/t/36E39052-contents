@@ -131,7 +131,7 @@ $$\lambda(\vec x) = \frac{\theta_1^{-n}1\{x_{(n)}\le \theta_1\}}{\theta_0^{-n}1\
 \infty,\ &x_{(n)}> \theta_0
 \end{cases}$$
 
-We therefore cannot find a $\lambda_0$ such that $P_{\theta_0}(\lambda(\vec X)>\lambda_0)=\alpha$. This implies that the NP lemma cannot be applied. As we can see, the likelihood ratio is a function of $x_{(n)}$. We thus can use $X_{(n)}$ as the test statistic. A resonable rejection region might be
+We therefore cannot find a $\lambda_0$ such that $P_{\theta_0}(\lambda(\vec X)>\lambda_0)=\alpha$. This implies that the NP lemma cannot be applied. As we can see, the likelihood ratio is a function of $x_{(n)}$. We thus can use $X_{(n)}$ as the test statistic. A resonable rejection region would be
 $W = \{x_{(n)}>C\}$, where $C$ satisfies
 $$P_{\theta_0}(X_{(n)}>C)=\alpha.$$
 
@@ -139,7 +139,7 @@ When $\theta=\theta_0$, the order statistic $X_{(n)}/\theta_0$ has a CDF $F(x)=x
 $$W = \{\vec x:x_{(n)}>(1-\alpha)^{1/n}\theta_0\}.$$
 
 
-We next prove that $W$ is UMP. Suppose that there exists a rejection region $W'$ satisfying $P_{\theta_0}(\vec X\in W)\le \alpha$. Let $A=[0,\theta_0]^d$ be the sample space when $\theta=\theta_0$, and let $B=[0,\theta_1]^d$ be the sample space  when $\theta=\theta_1$. It is clear that $A\subseteq B$ since $\theta_1>\theta_0$. This implies 
+We next prove that $W$ is UMP. Suppose that there exists a rejection region $W'$ satisfying $P_{\theta_0}(\vec X\in W')\le \alpha$. Let $A=[0,\theta_0]^n$ be the sample space when $\theta=\theta_0$, and let $B=[0,\theta_1]^n$ be the sample space  when $\theta=\theta_1$. It is clear that $A\subseteq B$ since $\theta_1>\theta_0$. This implies 
 $$P_{\theta_0}(\vec X\in W') = P_{\theta_0}(\vec X\in W'\cap A)=\frac{1}{\theta_0^n}\int_{W'\cap A} 1 d x_1\dots d x_n\le \alpha.$$
 Similarly, 
 $$P_{\theta_0}(\vec X\in W) = P_{\theta_0}(\vec X\in W\cap A)=\frac{1}{\theta_0^n}\int_{W\cap A} 1 d x_1\dots d x_n= \alpha.$$
