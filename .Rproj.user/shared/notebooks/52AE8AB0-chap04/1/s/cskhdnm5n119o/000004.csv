@@ -1,0 +1,2 @@
+"0","lm.rod = lm(finished_weight~rough_weight)"
+"0","abline(coef(lm.rod),col=""blue"")"

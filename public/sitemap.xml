@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/post/chap04/</loc>
+      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/chap03/</loc>
       <lastmod>2018-11-07T00:00:00+00:00</lastmod>
     </url>
@@ -496,7 +504,7 @@
     <url>
     
       <loc>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</loc>
-      <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -505,7 +513,7 @@
     <url>
     
       <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -514,7 +522,7 @@
     <url>
     
       <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-11-07T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

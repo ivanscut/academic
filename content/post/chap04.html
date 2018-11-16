@@ -1,0 +1,690 @@
+---
+title: "第四章：线性回归(Linear regression)"
+date: "2018-11-15"
+categories: ["课件"]
+Summary: "第四章：线性回归(Linear regression)"
+tags: ["课件", "数理统计"]
+---
+
+
+
+<div id="simple-linear-models" class="section level2">
+<h2>Simple linear models</h2>
+<p>The linear model is given by
+<span class="math display">\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]</span></p>
+<ul>
+<li><span class="math inline">\(\epsilon_i\)</span> are random (need some assumptions)</li>
+<li><span class="math inline">\(x_i\)</span> are <strong>fixed</strong> (<em>independent/preditor</em> variable)</li>
+<li><span class="math inline">\(y_i\)</span> are random (<em>dependent/response</em> variable)</li>
+<li><span class="math inline">\(\beta_0\)</span> is the <em>intercept</em></li>
+<li><span class="math inline">\(\beta_1\)</span> is the <em>slope</em></li>
+</ul>
+<div id="least-square-estimators" class="section level3">
+<h3>Least square estimators</h3>
+<p>Choose <span class="math inline">\(\beta_0,\beta_1\)</span> to minimize
+<span class="math display">\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]</span></p>
+<p>The minimizers <span class="math inline">\(\hat\beta_0,\hat\beta_1\)</span> satisfy
+<span class="math display">\[
+\begin{cases}
+\frac{\partial Q}{\partial \beta_0} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)=0\\
+\frac{\partial Q}{\partial \beta_1} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)x_i=0
+\end{cases}
+\]</span></p>
+<p>This gives
+<span class="math display">\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)x_i}{\sum_{i=1}^n(x_i-\bar x)x_i},\ \hat\beta_0=\bar y-\hat\beta_1\bar x.\]</span></p>
+<p>Define <span class="math display">\[\ell_{xx} = \sum_{i=1}^n(x_i-\bar x)^2,\]</span> <span class="math display">\[\ell_{yy} = \sum_{i=1}^n(y_i-\bar y)^2,\]</span> <span class="math display">\[\ell_{xy} = \sum_{i=1}^n(x_i-\bar x)(y_i-\bar y).\]</span>
+We thus have
+<span class="math display">\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)(x_i-\bar x)}{\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)}=\frac{\ell_{xy}}{\ell_{xx}}=\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)y_i.\]</span></p>
+<p><code>Regression function</code>: <span class="math inline">\(\hat y=\hat\beta_0+\hat\beta_1x\)</span>.</p>
+</div>
+<div id="expected-values" class="section level3">
+<h3>Expected values</h3>
+<p><code>Assumption A1</code>: <span class="math inline">\(E[\epsilon_i]=0,i=1,\dots,n\)</span>.</p>
+<p><code>Theorem 1</code>: Under Assumption A1, <span class="math inline">\(\hat\beta_0,\hat\beta_1\)</span> are unbiased estimators for <span class="math inline">\(\beta_0,\beta_1\)</span>, respectively.</p>
+<p><code>Proof</code>:
+<span class="math display">\[
+\begin{align}
+E[\hat \beta_1] &amp;= \frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)E[y_i]\\
+&amp;=\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)(\beta_0+\beta_1x_i)\\
+&amp;=\frac{\beta_0}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)+\frac{\beta_1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)x_i\\
+&amp;=\frac{\beta_1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)\\
+&amp;=\beta_1
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+E[\hat \beta_0] &amp;= E[\bar y-\hat\beta_1\bar x]=E[\bar y]-\beta_1\bar x=\beta_0+\beta_1\bar x-\beta_1\bar x=\beta_0.
+\end{align}
+\]</span></p>
+</div>
+<div id="variances" class="section level3">
+<h3>Variances</h3>
+<p><code>Assumption A2</code>: <span class="math inline">\(Cov(\epsilon_i,\epsilon_j)=\sigma^21\{i=j\}\)</span>.</p>
+<p><code>Theorem 2</code>: Under Assumption A2, we have
+<span class="math display">\[Var[\hat\beta_0] = \left(\frac 1n+\frac{\bar x^2}{\ell_{xx}}\right)\sigma^2,\]</span></p>
+<p><span class="math display">\[Var[\hat\beta_1] =\frac{\sigma^2}{\ell_{xx}},\]</span></p>
+<p><span class="math display">\[Cov(\hat\beta_0,\hat\beta_1) = \frac{-\bar x}{\ell_{xx}}\sigma^2.\]</span></p>
+<p><code>Proof</code>: Since <span class="math inline">\(Cov(\epsilon_i,\epsilon_j)=0\)</span> for any <span class="math inline">\(i\neq j\)</span>, <span class="math inline">\(Cov(y_i,y_j)=0\)</span>. We thus have
+<span class="math display">\[
+\begin{align}
+Var[\hat\beta_1] &amp;= \frac{1}{\ell_{xx}^2}\sum_{i=1}^n(x_i-\bar x)^2Var[y_i]\\
+&amp;= \frac{\sigma^2}{\ell_{xx}^2}\sum_{i=1}^n(x_i-\bar x)^2=\frac{\sigma^2}{\ell_{xx}}.
+\end{align}
+\]</span></p>
+<p>We next show that <span class="math inline">\(Cov(\bar y,\hat \beta_1)=0\)</span>.
+<span class="math display">\[
+\begin{align}
+Cov(\bar y,\hat \beta_1) &amp;= Cov\left(\frac{1}{n}\sum_{i=1}^n y_i,\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)y_i\right)\\
+&amp;=\frac{1}{n\ell_{xx}}Cov\left(\sum_{i=1}^n y_i,\sum_{i=1}^n(x_i-\bar x)y_i\right)\\
+&amp;=\frac{1}{n\ell_{xx}}\sum_{i=1}^nCov(y_i,(x_i-\bar x)y_i)\\
+&amp;=\frac{1}{n\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)\sigma^2 = 0.
+\end{align}
+\]</span></p>
+<p><span class="math display">\[Var[\hat\beta_0] = Var[\bar y-\hat\beta_1\bar x]=Var[\bar y]+Var[\hat \beta_1\bar x]=\frac{\sigma^2}{n}+\frac{\bar x^2\sigma^2}{\ell_{xx}}.\]</span></p>
+<p><span class="math display">\[Cov(\hat\beta_0,\hat\beta_1) = Cov(\bar y-\hat\beta_1\bar x,\hat\beta_1) = -\bar x Var[\hat\beta_1]=\frac{-\bar x}{\ell_{xx}}\sigma^2.\]</span></p>
+<blockquote>
+<p>So bigger <span class="math inline">\(n\)</span> is better. Get a bigger sample size if you can. Smaller <span class="math inline">\(\sigma\)</span> is better. The most interesting one is that bigger <span class="math inline">\(\ell_{xx}\)</span> is better. The more spread out the <span class="math inline">\(x_i\)</span> are the better we can
+estimate the slope <span class="math inline">\(\beta_1\)</span>. When you’re picking the <span class="math inline">\(x_i\)</span>, if you can spread them out more, then it is more informative.</p>
+</blockquote>
+</div>
+<div id="estimation-of-sigma2" class="section level3">
+<h3>Estimation of <span class="math inline">\(\sigma^2\)</span></h3>
+<p>For Assumption A2, it is common that the variance <span class="math inline">\(\sigma^2\)</span> is unknown.
+The next theorem gives an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><code>Definition</code>: The residual sum of squares (RSS) is defined by
+<span class="math display">\[\mathrm{RSS} = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.\]</span></p>
+<p><code>Theorem 3</code>: Let
+<span class="math display">\[\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{\mathrm{RSS}}{n-2}.\]</span>
+Under Assumptions A1 and A2, we have <span class="math inline">\(E[\hat\sigma^2]=\sigma^2\)</span>.</p>
+<p><code>Proof</code>: Let <span class="math inline">\(\hat y_i = \hat\beta_0+\hat\beta_1x_i=\bar y+\hat\beta_1(x_i-\bar x)\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}
+E[Q(\hat \beta_0,\hat\beta_1)] &amp;= \sum_{i=1}^nE[(y_i-\hat y_i)^2]=\sum_{i=1}^nVar[y_i-\hat y_i]+(E[y_i]-E[\hat y_i])^2\\
+&amp;=\sum_{i=1}^n[Var[y_i]+Var[\hat y_i]-2Cov(y_i,\hat y_i)].
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+Var[\hat y_i]&amp;= Var[\hat\beta_0+\hat\beta_1x_i]=Var[\bar y+\hat\beta_1(x_i-\bar x)]\\
+&amp;=Var[\bar y]+(x_i-\bar x)^2Var[\hat\beta_1]\\
+&amp;=\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}.
+\end{align}\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+Cov(y_i,\hat y_i)  &amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\beta_1(x_i-\bar x))\\
+&amp;=Cov(\epsilon_i,\bar y)+(x_i-\bar x)Cov(\epsilon_i,\hat\beta_1)\\
+&amp;=\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}.
+\end{align}
+\]</span></p>
+<p>As a result, we have
+<span class="math display">\[E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}\right]=(n-2)\sigma^2.\]</span></p>
+</div>
+<div id="normal-distributions" class="section level3">
+<h3>Normal distributions</h3>
+<p><code>Assumption B</code>: <span class="math inline">\(\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2),i=1,\dots,n\)</span>.</p>
+<blockquote>
+<p>Assumption B includes Assumptions A1 and A2.</p>
+</blockquote>
+<p><code>Theorem 4</code>: Under Assumption B, we have</p>
+<p>(1). <span class="math inline">\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)</span></p>
+<p>(2). <span class="math inline">\(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)</span></p>
+<p>(3). <span class="math inline">\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
+<p>(4). <span class="math inline">\(\hat\sigma^2\)</span> is independent of <span class="math inline">\((\hat\beta_0,\hat\beta_1)\)</span>.</p>
+<p><code>Proof</code>: Under Assumption B, <span class="math inline">\(y_i=\beta_0+\beta_1x_i+\epsilon_i\sim N(\beta_0+\beta_1x_i,\sigma^2)\)</span> independently. Both <span class="math inline">\(\hat\beta_0,\hat\beta_1\)</span> are linear combinations of <span class="math inline">\(y_i\)</span>s. Consequently, they are normally distributed. We have known their expected values and variances from Theorems 1 and 2. The claims (1) and (2) are thus verified. The proofs of claims (3) and (4) are deferred to the general case.</p>
+<blockquote>
+<p>It is <span class="math inline">\(n-2\)</span> degrees of freedom because we have fit two parameters to the <span class="math inline">\(n\)</span> data points.</p>
+</blockquote>
+</div>
+<div id="confidence-intervals-and-hypothesis-tests" class="section level3">
+<h3>Confidence intervals and hypothesis tests</h3>
+<p>For known <span class="math inline">\(\sigma\)</span> we can make tests and confidence
+intervals using
+<span class="math display">\[\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{\ell_{xx}}}\sim N(0,1).\]</span></p>
+<p>The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_1\)</span> is given by <span class="math inline">\(\hat\beta_1\pm u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)</span>. For testing
+<span class="math display">\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]</span>
+we reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\hat\beta_1-\beta_1^*|&gt;u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)</span> with the most popular hypothesized value being <span class="math inline">\(\beta^*=0\)</span> (i.e., the regession function is <strong>significant</strong> or not at significance level <span class="math inline">\(\alpha\)</span>.)</p>
+<p>In the more realistic setting of unknown <span class="math inline">\(\sigma\)</span>, so long as <span class="math inline">\(n &gt; 3\)</span>, using claims (2-4) gives
+<span class="math display">\[\frac{\hat\beta_1-\beta_1}{\hat{\sigma}/\sqrt{\ell_{xx}}}\sim t(n-2).\]</span>
+The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_1\)</span> is <span class="math inline">\(\hat\beta_1\pm t_{1-\alpha/2}(n-2)\hat{\sigma}/\sqrt{\ell_{xx}}\)</span>. For testing
+<span class="math display">\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]</span>
+we reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\hat\beta_1-\beta_1^*|&gt;t_{1-\alpha/2}(n-2)\hat\sigma/\sqrt{\ell_{xx}}\)</span>.</p>
+<p>For drawing inferences about <span class="math inline">\(\beta_0\)</span>, we can use <span class="math display">\[\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim N(0,1),\]</span>
+<span class="math display">\[\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim t(n-2).\]</span></p>
+<p>The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\sigma^2\)</span> is
+<span class="math display">\[\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{\mathrm{RSS}}{\chi_{1-\alpha/2}^2(n-2)},\frac{\mathrm{RSS}}{\chi_{\alpha/2}^2(n-2)}\right].\]</span></p>
+</div>
+<div id="case-study-1" class="section level3">
+<h3>Case study 1</h3>
+<p>A manufacturer of air conditioning units is having assembly problems due to
+the failure of a connecting rod (连接杆) to meet finished-weight specifications. Too many
+rods are being completely tooled, then rejected as overweight. To reduce that
+cost, the company’s quality-control department wants to quantify the relationship
+between the weight of the <strong>finished rod</strong>, <span class="math inline">\(y\)</span>, and that of the <strong>rough casting</strong> (毛坯铸件), <span class="math inline">\(x\)</span>. Castings likely to produce rods that are too heavy can then be discarded
+before undergoing the final (and costly) tooling process. The data are displayed below.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-1">Table 1: </span>rough weight vs. finished weight
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+rough_weight
+</th>
+<th style="text-align:right;">
+finished_weight
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2.745
+</td>
+<td style="text-align:right;">
+2.080
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2.700
+</td>
+<td style="text-align:right;">
+2.045
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2.690
+</td>
+<td style="text-align:right;">
+2.050
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2.680
+</td>
+<td style="text-align:right;">
+2.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2.675
+</td>
+<td style="text-align:right;">
+2.035
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2.670
+</td>
+<td style="text-align:right;">
+2.035
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.665
+</td>
+<td style="text-align:right;">
+2.020
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2.660
+</td>
+<td style="text-align:right;">
+2.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2.655
+</td>
+<td style="text-align:right;">
+2.010
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2.655
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2.650
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2.650
+</td>
+<td style="text-align:right;">
+2.005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+2.645
+</td>
+<td style="text-align:right;">
+2.015
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2.635
+</td>
+<td style="text-align:right;">
+1.990
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+2.630
+</td>
+<td style="text-align:right;">
+1.990
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2.625
+</td>
+<td style="text-align:right;">
+1.995
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+2.625
+</td>
+<td style="text-align:right;">
+1.985
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+2.620
+</td>
+<td style="text-align:right;">
+1.970
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+2.615
+</td>
+<td style="text-align:right;">
+1.985
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+2.615
+</td>
+<td style="text-align:right;">
+1.990
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+2.615
+</td>
+<td style="text-align:right;">
+1.995
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+2.610
+</td>
+<td style="text-align:right;">
+1.990
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+2.590
+</td>
+<td style="text-align:right;">
+1.975
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+2.590
+</td>
+<td style="text-align:right;">
+1.995
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+2.565
+</td>
+<td style="text-align:right;">
+1.955
+</td>
+</tr>
+</tbody>
+</table>
+<p>Consider the linear model
+<span class="math display">\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]</span></p>
+<p>The observed data gives <span class="math inline">\(\bar x = 2.643\)</span>, <span class="math inline">\(\bar y=2.0048\)</span>, <span class="math inline">\(\ell_{xx}=0.0367\)</span>, <span class="math inline">\(\ell_{xy}=0.023565\)</span>, <span class="math inline">\(\hat\sigma = 0.0113\)</span>.
+The least square estimates are
+<span class="math display">\[\hat\beta_1=\frac{\ell_{xy}}{\ell_{xx}}=\frac{0.023565}{0.0367}=0.642,\ \hat\beta_0=\bar y-\hat\beta_1\bar x=0.308.\]</span></p>
+<p>The regession function <span class="math inline">\(\hat y = 0.308+0.642 x\)</span>; see the blue line given below.</p>
+<pre class="r"><code>attach(rod)
+par(mar=c(4,4,1,0.5))
+plot(rough_weight,finished_weight,type=&quot;p&quot;,pch=16,
+     xlab = &quot;Rough Weight&quot;,ylab = &quot;Finished Weight&quot;)
+lm.rod = lm(finished_weight~rough_weight)
+abline(coef(lm.rod),col=&quot;blue&quot;)</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>summary(lm.rod) #output the results</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = finished_weight ~ rough_weight)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.023558 -0.008242  0.001074  0.008179  0.024231 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   0.30773    0.15608   1.972   0.0608 .  
+## rough_weight  0.64210    0.05905  10.874 1.54e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.01131 on 23 degrees of freedom
+## Multiple R-squared:  0.8372, Adjusted R-squared:  0.8301 
+## F-statistic: 118.3 on 1 and 23 DF,  p-value: 1.536e-10</code></pre>
+</div>
+<div id="assessing-the-fit" class="section level3">
+<h3>Assessing the Fit</h3>
+<p>As an aid in assessing the quality of the fit, we will make extensive use of the residuals,
+which are the differences between the observed and fitted values:
+<span class="math display">\[\hat e_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]</span></p>
+<p>It is most useful to examine the residuals graphically. Plots of the residuals versus the
+<span class="math inline">\(x\)</span> values may reveal systematic misfit or ways in which the data do not conform to
+the fitted model. Ideally, the residuals should show no relation to the <span class="math inline">\(x\)</span> values, and the plot should look like a horizontal blur. The residuals for case study 1 are plotted below.</p>
+<pre class="r"><code>par(mar=c(4,4,2,1))
+plot(lm.rod$fitted.values,lm.rod$residuals,&quot;p&quot;,
+     xlab=&quot;Fitted values&quot;,ylab = &quot;Residuals&quot;)</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+Standardized Residuals are graphed below. The key command is <code>rstandard</code>.</p>
+<pre class="r"><code>par(mar=c(4,4,2,1))
+plot(lm.rod$fitted.values,rstandard(lm.rod),&quot;p&quot;,
+     xlab=&quot;Fitted values&quot;,ylab = &quot;Standardized Residuals&quot;)
+abline(h=c(-2,2),lty=c(5,5))</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="drawing-inferences-about-ey" class="section level3">
+<h3>Drawing Inferences about <span class="math inline">\(E[y]\)</span></h3>
+<p>For given <span class="math inline">\(x\)</span>, we want the estimate the expected value of <span class="math inline">\(y\)</span>, i.e., <span class="math inline">\(E[y]=\beta_0+\beta_1x.\)</span> A natural unbiased estimate is <span class="math inline">\(\hat y = \hat\beta_0+\hat\beta_1x\)</span>. From the proof of Theorem 3, we have the variance
+<span class="math display">\[Var[\hat y] = \left(\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]</span>
+Under Assumption B, by Theorem 4, we have
+<span class="math display">\[\hat y\sim N(\beta_0+\beta_1x,(1/n+(x-\bar x)^2/\ell_{xx})\sigma^2),\]</span>
+<span class="math display">\[\frac{\hat y-E[\hat y]}{\hat{\sigma}\sqrt{1/n+(x-\bar x)/\ell_{xx}}}\sim t(n-2)\]</span>
+We thus have the following results.</p>
+<p><code>Theorem 5</code>: Suppose Assumption B is satisfied. Then we have
+<span class="math display">\[\hat y = \hat\beta_0+\hat\beta_1x \sim N(\beta_0+\beta_1x,[1/n+(x-\bar x)^2/\ell_{xx}]\sigma^2).\]</span>
+A <span class="math inline">\(100(1−\alpha)\%\)</span> confidence interval for <span class="math inline">\(E[y]=\beta_0+\beta_1x\)</span> is
+given by
+<span class="math display">\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]</span></p>
+<blockquote>
+<p>Notice from the formula in Theorem 5 that the width of a confidence
+interval for <span class="math inline">\(E[y]\)</span> increases as the value of <span class="math inline">\(x\)</span> becomes more extreme. That
+is, we are better able to predict the location of the regression line for an <span class="math inline">\(x\)</span>-value
+close to <span class="math inline">\(\bar x\)</span> than we are for <span class="math inline">\(x\)</span>-values that are either very small or very large.</p>
+</blockquote>
+<p>For case study 1, we plot the lower and upper limits for the <span class="math inline">\(95\%\)</span> confidence interval for <span class="math inline">\(E[y]\)</span>.</p>
+<pre class="r"><code>x = seq(2.5,2.8,by=0.001)
+newdata = data.frame(rough_weight= x)
+pred_x = predict(lm.rod,newdata,interval = &quot;confidence&quot;)
+par(mar=c(4,4,2,1))
+matplot(x,pred_x,type=&quot;l&quot;,lty = c(1,5,5),
+        col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;),lwd=2,
+        xlab=&quot;Rough Weight&quot;,ylab=&quot;Finished Weight&quot;)
+abline(v=mean(rough_weight),lty=5)
+points(rough_weight,finished_weight,pch=16)
+legend(2.5,2.1,c(&quot;Fitted&quot;,&quot;Lower limit&quot;,&quot;Upper limit&quot;),
+       lty = c(1,5,5),col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;))</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="drawing-inferences-about-future-observations" class="section level3">
+<h3>Drawing Inferences about Future Observations</h3>
+<p>We now give a <strong>prediction interval</strong> for the future observation <span class="math inline">\(y\)</span> rather than its expected value <span class="math inline">\(E[y]\)</span>. Note that here <span class="math inline">\(y\)</span> is no longer a fixed parameter, which is assumed to be independent of <span class="math inline">\(y_i\)</span>’s. A prediction interval is a range of numbers that
+contains <span class="math inline">\(y\)</span> with a specified probability. Consider <span class="math inline">\(y-\hat y\)</span>. If Assumption A1 is satisfied, then
+<span class="math display">\[E[y-\hat y] = E[y]-E[\hat y]= 0.\]</span></p>
+<p>If Assumption A2 is satisfied, then
+<span class="math display">\[Var[y-\hat y] = Var[y]+Var[\hat y]=\left(1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]</span></p>
+<p>If Assumption B is satisfied, <span class="math inline">\(y-\hat y\)</span> is then normally distributed.</p>
+<p><code>Theorem 6</code>: Suppose Assumption B is satisfied. Let <span class="math inline">\(y=\beta_0+\beta_1x+\epsilon\)</span>, where <span class="math inline">\(\epsilon\sim N(0,\sigma^2)\)</span> is independent of <span class="math inline">\(\epsilon_i\)</span>’s. A <span class="math inline">\(100(1−\alpha)\%\)</span> prediction interval for <span class="math inline">\(y\)</span> is
+given by
+<span class="math display">\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]</span></p>
+<p>For case study 1, we plot the lower and upper limits for the <span class="math inline">\(95\%\)</span> prediction interval for <span class="math inline">\(y\)</span>.</p>
+<pre class="r"><code>x = seq(2.5,2.8,by=0.001)
+newdata = data.frame(rough_weight= x)
+pred_x = predict(lm.rod,newdata,interval = &quot;prediction&quot;)
+par(mar=c(4,4,2,1))
+matplot(x,pred_x,type=&quot;l&quot;,lty = c(1,5,5),
+        col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;),lwd=2,
+        xlab=&quot;Rough Weight&quot;,ylab=&quot;Finished Weight&quot;)
+abline(v=mean(rough_weight),lty=5)
+points(rough_weight,finished_weight,pch=16)
+legend(2.5,2.1,c(&quot;Fitted&quot;,&quot;Lower limit&quot;,&quot;Upper limit&quot;),
+       lty = c(1,5,5),col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;))</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="how-to-control-y" class="section level3">
+<h3>How to control y?</h3>
+<p>Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod <span class="math inline">\(y\)</span> with weights no large than 2.05. How to choose the rough casting?</p>
+<p>Now we want <span class="math inline">\(y\le y_0=2.05\)</span> with probability <span class="math inline">\(1-\alpha\)</span>. Similarly to Theorem 6, we can construct one-side confidence interval for <span class="math inline">\(y\)</span>, that is
+<span class="math display">\[\bigg(-\infty,\hat y+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\bigg].\]</span>
+This implies <span class="math display">\[\hat\beta_0+\hat\beta_1x+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\le y_0.\]</span></p>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="multiple-linear-regression" class="section level2">
+<h2>Multiple linear regression</h2>
+<p>With problems more complex than fitting a straight line, it is very useful to approach the linear least squares analysis via linear algebra.
+Consider a model of the form
+<span class="math display">\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\dots+\beta_{p-1}x_{i,p-1}+\epsilon_i,\ i=1,\dots,n.\]</span></p>
+<p>Let <span class="math inline">\(Y=(y_1,\dots,y_n)^\top\)</span>, <span class="math inline">\(\beta=(\beta_0,\dots,\beta_{p-1})^\top\)</span>, <span class="math inline">\(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\)</span>, and let <span class="math inline">\(X\)</span> be the <span class="math inline">\(n\times p\)</span> matrix
+<span class="math display">\[
+X=
+\left[
+\begin{matrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1,p-1}\\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2,p-1}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{n,p-1}\\
+\end{matrix}
+\right].
+\]</span></p>
+<p>The model can be rewritten as <span class="math display">\[Y=X\beta+\epsilon,\]</span></p>
+<ul>
+<li><p>the matrix <span class="math inline">\(X\)</span> is called the <strong>design matrix</strong>,</p></li>
+<li><p>assume that <span class="math inline">\(p&lt;n\)</span>.</p></li>
+</ul>
+<p>The
+least squares problem can then be phrased as follows: Find <span class="math inline">\(\beta\)</span> to minimize</p>
+<p><span class="math display">\[Q(\beta)=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_{i1}-\dots-\beta_{p-1}x_{i,p-1})^2:=||Y-X\beta||^2,\]</span></p>
+<p>where <span class="math inline">\(||\cdot||\)</span> is the Euclidean norm.</p>
+<p>Note that <span class="math display">\[Q=(Y-X\beta)^\top(Y-X\beta) = Y^\top Y-2Y^\top X\beta+\beta^\top X^\top X\beta.\]</span>
+If we differentiate <span class="math inline">\(Q\)</span> with respect to each <span class="math inline">\(\beta_i\)</span> and set the derivatives equal to zero, we see that the minimizers <span class="math inline">\(\hat\beta_0,\dots,\hat\beta_{p-1}\)</span> satisfy</p>
+<p><span class="math display">\[\frac{\partial Q}{\partial \beta_i}=-2(Y^\top X)_i+2(X^{\top}X)_{i\cdot}\hat\beta=0.\]</span></p>
+<p>We thus arrive at <span class="math display">\[X^\top X\hat\beta = X^\top Y.\]</span></p>
+<p>If the design matrix <span class="math inline">\(X^\top X\)</span> is <strong>nonsingular</strong>, the formal solution is
+<span class="math display">\[\hat\beta = (X^\top X)^{-1}X^\top Y.\]</span></p>
+<p>The following lemma gives a criterion for the existence and uniqueness of solutions
+of the normal equations.</p>
+<p><code>Lemma 1</code>: The design matrix <span class="math inline">\(X^\top X\)</span> is nonsingular if and only if <span class="math inline">\(\mathrm{rank}(X)=p\)</span>.</p>
+<p><code>Proof</code>: First suppose that <span class="math inline">\(X^\top X\)</span> is singular. There exists a nonzero vector <span class="math inline">\(u\)</span> such that
+<span class="math inline">\(X^\top Xu = 0\)</span>. Multiplying the left-hand side of this equation by <span class="math inline">\(u^\top\)</span>, we have <span class="math inline">\(0=u^\top X^\top Xu=(Xu)^\top (Xu)\)</span>
+So <span class="math inline">\(Xu=0\)</span>, the columns of <span class="math inline">\(X\)</span> are linearly dependent, and the rank of <span class="math inline">\(X\)</span> is less
+than <span class="math inline">\(p\)</span>.</p>
+<p>Next, suppose that the rank of <span class="math inline">\(X\)</span> is less than <span class="math inline">\(p\)</span> so that there exists a nonzero
+vector <span class="math inline">\(u\)</span> such that <span class="math inline">\(Xu = 0\)</span>. Then <span class="math inline">\(X^\top Xu = 0\)</span>, and hence <span class="math inline">\(X^\top X\)</span> is singular.</p>
+<blockquote>
+<p>In what follows, we assume that <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>.</p>
+</blockquote>
+<div id="expected-values-and-variances" class="section level3">
+<h3>Expected values and variances</h3>
+<p><code>Assumption A</code>: Assume that <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\sigma^2I_p\)</span>.</p>
+<p><code>Theorem 7</code>: Suppose that Assumption A is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>, we have</p>
+<p>(1). <span class="math inline">\(E[\hat\beta]=\beta,\)</span></p>
+<p>(2). <span class="math inline">\(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\)</span>,</p>
+<p><code>Proof</code>:</p>
+<p><span class="math display">\[
+\begin{align}
+E[\hat\beta]&amp;= E[(X^\top X)^{-1}X^{\top}Y] \\
+&amp;= (X^\top X)^{-1}X^{\top}E[Y]\\
+&amp;=(X^\top X)^{-1}X^{\top}(X\beta)=\beta.
+\end{align}\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+Var[\hat\beta] &amp;= Var[(X^\top X)^{-1}X^{\top}Y]\\
+&amp;=(X^\top X)^{-1}X^{\top}Var(Y)X(X^\top X)^{-1}\\
+&amp;=\sigma^2(X^\top X)^{-1}.
+\end{align}
+\]</span></p>
+<p>We used the fact that <span class="math inline">\(Var(AY) = AVar(Y)A^\top\)</span> for any fixed matrix <span class="math inline">\(A\)</span>, and <span class="math inline">\(X^\top X\)</span> and therefore <span class="math inline">\((X^\top X)^{-1}\)</span> are symmetric.</p>
+</div>
+<div id="estimation-of-sigma2-1" class="section level3">
+<h3>Estimation of <span class="math inline">\(\sigma^2\)</span></h3>
+<p>The residual sum of squares (RSS) is defined by
+<span class="math display">\[\mathrm{RSS}=Q(\hat\beta)=||Y-X\hat\beta||^2=||\hat\epsilon||^2,\]</span></p>
+<p>where the vector of residuals is
+<span class="math display">\[\hat\epsilon = Y-X(X^\top X)^{-1}X^\top Y:=Y-PY=Y(I_n-P),\]</span></p>
+<ul>
+<li><span class="math inline">\(P=X(X^\top X)^{-1}X^\top\)</span> is an <span class="math inline">\(n\times n\)</span> matrix (called the <strong>projection matrix</strong>).</li>
+</ul>
+<p>Two useful properties of <span class="math inline">\(P\)</span> are given in the following lemma.</p>
+<p><code>Lemma 2</code>: Let <span class="math inline">\(P\)</span> be defined as before. Then
+<span class="math display">\[P = P^\top=P^2\]</span></p>
+<p><span class="math display">\[I_n-P = (I_n-P)^\top=(I_n-P)^2.\]</span></p>
+<blockquote>
+<p>We may think
+geometrically of the fitted values, $Y=X$, as being the projection of <span class="math inline">\(Y\)</span> onto the subspace
+spanned by the columns of <span class="math inline">\(X\)</span>.</p>
+</blockquote>
+<p>The sum of squared residuals is then
+<span class="math display">\[
+\begin{align}
+\mathrm{SSE} = ||(I_n-P)Y||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
+\end{align}
+\]</span></p>
+<p><code>Lemma 3</code>: The cyclic property of the trace, that is, <span class="math inline">\(\mathrm{trace}(AB)=\mathrm{trace}(BA)\)</span>.</p>
+<p>Using Lemma 3, we have</p>
+<p><span class="math display">\[
+\begin{align}
+E[\mathrm{RSS}]&amp;= E[Y^\top(I_n-P)Y]=E[\mathrm{trace}(Y^\top(I_n-P)Y)] \\&amp;= E[\mathrm{trace}((I_n-P)YY^\top)]=\mathrm{trace}((I_n-P)E[YY^\top])\\
+&amp;=\mathrm{trace}((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
+&amp;=\mathrm{trace}((I_n-P)(\sigma^2 I_n))+\mathrm{trace}((I_n-P)X\beta\beta^\top X^\top)\\
+&amp;=\sigma^2(n-\mathrm{trace}(P))
+\end{align}
+\]</span>
+where we used <span class="math inline">\((I_n-P)X=X-X(X^\top X)^{-1}X^\top X=0\)</span>. Using the cyclic property of the trace again gives</p>
+<p><span class="math display">\[
+\begin{align}
+\mathrm{trace}(P)&amp;= \mathrm{trace}(X(X^\top X)^{-1}X^\top)\\
+&amp;=\mathrm{trace}(X^\top X(X^\top X)^{-1})=\mathrm{trace}(I_p)=p.
+\end{align}
+\]</span></p>
+<p>We therefore have <span class="math inline">\(E[\mathrm{RSS}]=(n-p)\sigma^2\)</span>.</p>
+<p><code>Theorem 8</code>: Suppose that Assumption A is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>,
+<span class="math display">\[\hat\sigma^2 = \frac{\mathrm{RSS}}{n-p}\]</span></p>
+<p>is an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+</div>
