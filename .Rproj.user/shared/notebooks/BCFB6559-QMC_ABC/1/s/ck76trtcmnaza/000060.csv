@@ -1,0 +1,4 @@
+"0","ns = 2^(0:m)"
+"0","fmean = fsum[ns]/ns"
+"0","err = abs(fmean-trueval)"
+"0","plot(ns,err,xlab=""N"",ylab=""Error"",typ=""b"",log=""xy"",main=tt)"

@@ -40,7 +40,7 @@ The later equality can be expressed as
 <p>It is hard to solve the equations (1) and (2). In practice, we may take
 <span class="math inline">\(C_1=\chi_{\alpha/2}^2(2n)\)</span> and <span class="math inline">\(C_2=\chi_{1-\alpha/2}^2(2n)\)</span> so that the significance level of the test is <span class="math inline">\(\alpha\)</span>. BUT, it is not the exact UMPU test since (2) is not satisfied. If <span class="math inline">\(n\)</span> is large enough, <span class="math inline">\(f(x;2n+2)\approx f(x;2n)\)</span> (see figure below). This implies the resulting rejection region is almost UMPU when <span class="math inline">\(n\)</span> is large.</p>
 <p><img src="/post/homework7_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’ methods. Let <span class="math inline">\(F(x;n)\)</span> be the CDF of <span class="math inline">\(\chi^2(n)\)</span> and <span class="math inline">\(F^{-1}\)</span> denote its inverse. By (1), we have <span class="math inline">\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)</span>. Substituting it into (2), we arrive at an equation:
+<p>Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’s methods. Let <span class="math inline">\(F(x;n)\)</span> be the CDF of <span class="math inline">\(\chi^2(n)\)</span> and <span class="math inline">\(F^{-1}\)</span> denote its inverse. By (1), we have <span class="math inline">\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)</span>. Substituting it into (2), we arrive at an equation:
 <span class="math display">\[F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.\]</span></p>
 <p>We can slove the equation using R function <code>uniroot</code>. The code is given below.</p>
 <pre class="r"><code>myfun &lt;- function(c,n,alpha)
@@ -187,7 +187,7 @@ The likelihood ratio for the simple test is
 (\theta_0/\theta_1)^n,\ &amp;x_{(n)}\le \theta_0\\
 \infty,\ &amp;x_{(n)}&gt; \theta_0
 \end{cases}\]</span></p>
-<p>We therefore cannot find a <span class="math inline">\(\lambda_0\)</span> such that <span class="math inline">\(P_{\theta_0}(\lambda(\vec X)&gt;\lambda_0)=\alpha\)</span>. This implies that the NP lemma cannot be applied. As we can see, the likelihood ratio is a function of <span class="math inline">\(x_{(n)}\)</span>. We thus can use <span class="math inline">\(X_{(n)}\)</span> as the test statistic. A resonable rejection region would be
+<p>We therefore cannot find a <span class="math inline">\(\lambda_0\)</span> such that <span class="math inline">\(P_{\theta_0}(\lambda(\vec X)&gt;\lambda_0)=\alpha\)</span>. This implies that the N-P lemma cannot be applied. As we can see, the likelihood ratio is a function of <span class="math inline">\(x_{(n)}\)</span>. We thus can use <span class="math inline">\(X_{(n)}\)</span> as the test statistic. A resonable rejection region would be
 <span class="math inline">\(W = \{x_{(n)}&gt;C\}\)</span>, where <span class="math inline">\(C\)</span> satisfies
 <span class="math display">\[P_{\theta_0}(X_{(n)}&gt;C)=\alpha.\]</span></p>
 <p>When <span class="math inline">\(\theta=\theta_0\)</span>, the order statistic <span class="math inline">\(X_{(n)}/\theta_0\)</span> has a CDF <span class="math inline">\(F(x)=x^n\)</span> (see <a href="https://hezhijian.netlify.com/post/homework5/">Exercise 1</a>). So we have <span class="math inline">\(C=(1-\alpha)^{1/n}\theta_0\)</span>. The rejection region is

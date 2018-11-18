@@ -1,0 +1,1 @@
+"0","plot(qmc,pch=19,xlab=""x"",ylab=""y"",main=""Sobol' points: N = 1024"")"

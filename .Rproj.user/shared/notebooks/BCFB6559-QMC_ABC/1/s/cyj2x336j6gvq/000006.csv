@@ -1,0 +1,2 @@
+"0","mc = matrix(runif(2048),ncol = 2)"
+"0","plot(rqmc[1:256,],pch=19,xlab=""x"",ylab=""y"",main=""RQMC points: N = 256"")"

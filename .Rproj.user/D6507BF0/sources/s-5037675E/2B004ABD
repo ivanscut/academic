@@ -1,24 +1,24 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1542335996967.000,
+    "created" : 1542507485578.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "9F264AA3",
-    "lastKnownWriteTime" : 1542112925,
-    "last_content_update" : 1542112925,
-    "path" : "D:/Dropbox/courses/2018-2019-1MathematicalStatistics/slides/chap04.Rmd",
+    "id" : "2B004ABD",
+    "lastKnownWriteTime" : 1541321188,
+    "last_content_update" : 1541321188,
+    "path" : "D:/Dropbox/courses/2018-2019-1Bayesian/slides/ABC.Rmd",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "40,3",
-        "scrollLine" : "26"
+        "cursorPosition" : "8,34",
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 5,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"

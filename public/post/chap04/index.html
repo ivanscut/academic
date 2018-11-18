@@ -88,7 +88,7 @@
   
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/post/chap04/">
-  <meta property="og:title" content="第四章：线性回归(Linear regression) | Dr. Zhijian He">
+  <meta property="og:title" content="第四章：线性回归 | Dr. Zhijian He">
   <meta property="og:description" content="第四章：线性回归(Linear regression)">
   <meta property="og:locale" content="en-us">
   
@@ -101,7 +101,7 @@
 
   
 
-  <title>第四章：线性回归(Linear regression) | Dr. Zhijian He</title>
+  <title>第四章：线性回归 | Dr. Zhijian He</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -217,7 +217,7 @@
 
 
   <div class="article-container">
-    <h1 itemprop="name">第四章：线性回归(Linear regression)</h1>
+    <h1 itemprop="name">第四章：线性回归</h1>
 
     
 
@@ -393,7 +393,7 @@ Cov(y_i,\hat y_i)  &amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\beta_1(
 <p><code>Theorem 4</code>: Under Assumption B, we have</p>
 <p>(1). <span class="math inline">\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)</span></p>
 <p>(2). <span class="math inline">\(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)</span></p>
-<p>(3). <span class="math inline">\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
+<p>(3). <span class="math inline">\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\mathrm{RSS}}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
 <p>(4). <span class="math inline">\(\hat\sigma^2\)</span> is independent of <span class="math inline">\((\hat\beta_0,\hat\beta_1)\)</span>.</p>
 <p><code>Proof</code>: Under Assumption B, <span class="math inline">\(y_i=\beta_0+\beta_1x_i+\epsilon_i\sim N(\beta_0+\beta_1x_i,\sigma^2)\)</span> independently. Both <span class="math inline">\(\hat\beta_0,\hat\beta_1\)</span> are linear combinations of <span class="math inline">\(y_i\)</span>s. Consequently, they are normally distributed. We have known their expected values and variances from Theorems 1 and 2. The claims (1) and (2) are thus verified. The proofs of claims (3) and (4) are deferred to the general case.</p>
 <blockquote>
@@ -758,7 +758,7 @@ abline(coef(lm.rod),col=&quot;blue&quot;)</code></pre>
 <h3>Assessing the Fit</h3>
 <p>As an aid in assessing the quality of the fit, we will make extensive use of the residuals,
 which are the differences between the observed and fitted values:
-<span class="math display">\[\hat e_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]</span></p>
+<span class="math display">\[\hat \epsilon_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]</span></p>
 <p>It is most useful to examine the residuals graphically. Plots of the residuals versus the
 <span class="math inline">\(x\)</span> values may reveal systematic misfit or ways in which the data do not conform to
 the fitted model. Ideally, the residuals should show no relation to the <span class="math inline">\(x\)</span> values, and the plot should look like a horizontal blur. The residuals for case study 1 are plotted below.</p>
@@ -775,7 +775,7 @@ abline(h=c(-2,2),lty=c(5,5))</code></pre>
 </div>
 <div id="drawing-inferences-about-ey" class="section level3">
 <h3>Drawing Inferences about <span class="math inline">\(E[y]\)</span></h3>
-<p>For given <span class="math inline">\(x\)</span>, we want the estimate the expected value of <span class="math inline">\(y\)</span>, i.e., <span class="math inline">\(E[y]=\beta_0+\beta_1x.\)</span> A natural unbiased estimate is <span class="math inline">\(\hat y = \hat\beta_0+\hat\beta_1x\)</span>. From the proof of Theorem 3, we have the variance
+<p>For given <span class="math inline">\(x\)</span>, we want to estimate the expected value of <span class="math inline">\(y\)</span>, i.e., <span class="math inline">\(E[y]=\beta_0+\beta_1x.\)</span> A natural unbiased estimate is <span class="math inline">\(\hat y = \hat\beta_0+\hat\beta_1x\)</span>. From the proof of Theorem 3, we have the variance
 <span class="math display">\[Var[\hat y] = \left(\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]</span>
 Under Assumption B, by Theorem 4, we have
 <span class="math display">\[\hat y\sim N(\beta_0+\beta_1x,(1/n+(x-\bar x)^2/\ell_{xx})\sigma^2),\]</span>

@@ -1,5 +1,5 @@
 ---
-title: "第四章：线性回归(Linear regression)"
+title: "第四章：线性回归"
 date: "2018-11-15"
 categories: ["课件"]
 Summary: "第四章：线性回归(Linear regression)"
@@ -155,7 +155,7 @@ $$E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n
 
 (2). $\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})$
 
-(3). $\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{\sigma^2}\sim \chi^2(n-2)$
+(3). $\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\mathrm{RSS}}{\sigma^2}\sim \chi^2(n-2)$
 
 (4). $\hat\sigma^2$ is independent of $(\hat\beta_0,\hat\beta_1)$.
 
@@ -223,7 +223,7 @@ summary(lm.rod) #output the results
 
 As an aid in assessing the quality of the fit, we will make extensive use of the residuals,
 which are the differences between the observed and fitted values:
-$$\hat e_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.$$
+$$\hat \epsilon_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.$$
 
 It is most useful to examine the residuals graphically. Plots of the residuals versus the
 $x$ values may reveal systematic misfit or ways in which the data do not conform to
@@ -245,7 +245,7 @@ abline(h=c(-2,2),lty=c(5,5))
 
 ### Drawing Inferences about $E[y]$
 
-For given $x$, we want the estimate the expected value of $y$, i.e., $E[y]=\beta_0+\beta_1x.$ A natural unbiased estimate is $\hat y = \hat\beta_0+\hat\beta_1x$. From the proof of Theorem 3, we have the variance
+For given $x$, we want to estimate the expected value of $y$, i.e., $E[y]=\beta_0+\beta_1x.$ A natural unbiased estimate is $\hat y = \hat\beta_0+\hat\beta_1x$. From the proof of Theorem 3, we have the variance
 $$Var[\hat y] = \left(\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.$$
 Under Assumption B, by Theorem 4, we have
 $$\hat y\sim N(\beta_0+\beta_1x,(1/n+(x-\bar x)^2/\ell_{xx})\sigma^2),$$

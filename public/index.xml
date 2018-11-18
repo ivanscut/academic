@@ -11,7 +11,726 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>第四章：线性回归(Linear regression)</title>
+      <title>Approximate Bayesian Computation</title>
+      <link>/post/abc/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/abc/</guid>
+      <description>&lt;div id=&#34;bayesian-inference&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bayesian inference&lt;/h2&gt;
+&lt;p&gt;Our goal is to estimate an expectation of &lt;span class=&#34;math inline&#34;&gt;\(a(\theta)\)&lt;/span&gt; under the posterior distribution&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi(\theta|y_{obs})=\frac{\pi(\theta)p(y_{obs}|\theta)}{p(y_{obs})}\propto \pi(\theta)p(y_{obs}|\theta)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\pi(\theta)\)&lt;/span&gt; is the prior distribution&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta)\)&lt;/span&gt; is the likelihood function&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the constant &lt;span class=&#34;math inline&#34;&gt;\(p(y_{obs})\)&lt;/span&gt; is intractable&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Suppose that one can generate samples &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(1)},\dots,\theta^{(N)}\sim \pi(\theta|y_{obs})\)&lt;/span&gt;, then&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[a(\theta)|y_{obs}]\approx \frac 1 N\sum_{i=1}^N a(\theta^{(i)})\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This is the basic idea of Monte Carlo (MC).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;acceptance-rejection-ar-methods&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Acceptance rejection (AR) methods&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the target density &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, with &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)&amp;gt;0\)&lt;/span&gt; if &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)&amp;gt;0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(K\ge \sup_{\theta}\frac{f(\theta)}{g(\theta)}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{f(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To fit into Bayesian inference, let &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the proposal &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)=\pi(\theta)\)&lt;/span&gt;, the acceptance probability is the likelihood &lt;span class=&#34;math inline&#34;&gt;\(r(\theta)=p(y_{obs}|\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;generally, the acceptance probablity is
+&lt;span class=&#34;math display&#34;&gt;\[r(\theta)=\frac{\pi(\theta)}{Kg(\theta)}p(y_{obs}|\theta),\ K=\sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;importance-sampling-is&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Importance sampling (IS)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the target density &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, with &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)&amp;gt;0\)&lt;/span&gt; if &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)&amp;gt;0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: compute the weight &lt;span class=&#34;math inline&#34;&gt;\(w(\theta^{(i)})=\frac{f(\theta^{(i)})}{g(\theta^{(i)})}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Return the weight samples &lt;span class=&#34;math inline&#34;&gt;\((w(\theta^{(i)}),\theta^{(i)}), i=1,\dots,N\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To fit into Bayesian inference, let &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)&lt;/span&gt;, then the self-normalized IS estimator is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[a(\theta)|y_{obs}]\approx \frac{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})a(\theta^{(i)})}{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mcmc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;MCMC&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the target density &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal distribution: &lt;span class=&#34;math inline&#34;&gt;\(q(\theta&amp;#39;|\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The algorithm goes below:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;for &lt;span class=&#34;math inline&#34;&gt;\(i=0\)&lt;/span&gt;, draw a starting poing &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(0)}\sim f_0(x)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;, sample &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim q(\theta&amp;#39;|\theta^{(i-1)})\)&lt;/span&gt;, accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability
+&lt;span class=&#34;math display&#34;&gt;\[r(\theta^{(i-1)},\theta^{(i)})=\min\left(\frac{f(\theta^{(i)})q(\theta^{(i-1)}|\theta^{(i)})}{f(\theta^{(i-1)})q(\theta^{(i)}|\theta^{(i-1)})},1\right)\]&lt;/span&gt;
+Otherwise, taking &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}=\theta^{(i-1)}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To fit into Bayesian inference, let &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the acceptance probablity is
+&lt;span class=&#34;math display&#34;&gt;\[r(\theta,\theta&amp;#39;)=\min\left(\frac{p(y_{obs}|\theta&amp;#39;)q(\theta|\theta&amp;#39;)}{p(y_{obs}|\theta)q(\theta&amp;#39;|\theta)},1\right)\]&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation-for-abc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Motivation for ABC&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Both the AR and MCMC require the evaluation of likelihood function.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;However, for an increasing range of scientific problems, numerical evaluation of the likelihood function is
+either &lt;strong&gt;computationally prohibitive&lt;/strong&gt;, or simply &lt;strong&gt;not possible&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Instances when the complete likelihood function is
+unavailable can occur when the model density function is only implicitly
+defined, for example, through quantile or characteristic functions&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-g-and-k-distribution&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A g-and-k distribution&lt;/h2&gt;
+&lt;p&gt;The univariate g-and-k distribution is a flexible unimodal distribution that
+is able to describe data with significant amounts of skewness and kurtosis. Its density function has no closed form, but
+is alternatively defined through its quantile function as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q(q|A,B,g,k)=A+B\left[1+c\frac{1-\exp\{-gz(q)\}}{1+\exp\{-gz(q)\}}\right](1+z(q)^2)^kz(q)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(c=0.8,\ B&amp;gt;0, k&amp;gt;-1/2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(z(q)=\Phi^{-1}(q)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;if &lt;span class=&#34;math inline&#34;&gt;\(g=k=0\)&lt;/span&gt;, it is the normal density&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;likelihood-free-rejection-sampling-i&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Likelihood-free rejection sampling I&lt;/h2&gt;
+&lt;p&gt;While direct evaluation of the
+acceptance probability is not available if the likelihood is computationally intractable,
+it is possible to stochastically determine whether or not to accept
+or reject a draw from the sampling density, &lt;em&gt;without&lt;/em&gt; numerical evaluation of
+the acceptance probability.&lt;/p&gt;
+&lt;p&gt;Assume that the data &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; are discrete. The algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt; from the likelihood&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: if &lt;span class=&#34;math inline&#34;&gt;\(y=y_{obs}\)&lt;/span&gt;, then accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;stereological-extremes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Stereological extremes&lt;/h2&gt;
+&lt;p&gt;Interest is in the distribution of the size of inclusions, microscopically small
+particles introduced during the production of steel. The steel strength is
+thought to be directly related to the size of the largest inclusion. Commonly,
+the sampling of inclusions involves measuring the maximum cross-sectional diameter
+of each observed inclusion, &lt;span class=&#34;math inline&#34;&gt;\(y_{obs}=(y_{obs,1},\dots,y_{obs,n})\)&lt;/span&gt;, obtained from a
+two-dimensional planar slice through the steel block.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;unobserved true inclusion diameter &lt;span class=&#34;math inline&#34;&gt;\(V_i\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(y_{obs,i}\le V_i\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;inclusions were &lt;strong&gt;spherical&lt;/strong&gt; with diameters &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; follows a generalised Pareto distribution
+&lt;span class=&#34;math display&#34;&gt;\[P(V\le v|V&amp;gt;v_0)=1-\max\{1+\xi(v-v_0)/\sigma,0\}^{-1/\xi}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the centres followed a homogeneous Poisson process
+with rate &lt;span class=&#34;math inline&#34;&gt;\(\lambda&amp;gt;0\)&lt;/span&gt; in the volume of steel&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the parameter is &lt;span class=&#34;math inline&#34;&gt;\(\theta=(\lambda,\sigma,\xi)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;stereological-extremes-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Stereological extremes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Anderson and Coles (2002) were able to construct a tractable likelihood
+function for this model. However, while their model assumptions of a Poisson
+process are not unreasonable, the assumption that the inclusions are spherical
+is not plausible in practice.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Bortot et al. (2007) generalised this model to a family of &lt;strong&gt;ellipsoidal
+inclusions&lt;/strong&gt;. While this model is more realistic than the spherical inclusion
+model, there are &lt;strong&gt;analytic and computational difficulties&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Analysis&lt;/h2&gt;
+&lt;p&gt;Consider the simple case &lt;span class=&#34;math inline&#34;&gt;\(\sigma=1.5,\xi = 0.1\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt; unknown. Let &lt;span class=&#34;math inline&#34;&gt;\(n_{obs}\)&lt;/span&gt; be the observed
+number of inclusions, so that &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|y_{obs})=p(\lambda|n_{obs})\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;prior density &lt;span class=&#34;math inline&#34;&gt;\(\pi(\lambda)\sim U(0,100)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the data &lt;span class=&#34;math inline&#34;&gt;\(n_{obs}\in \{92,102,112,122,132\}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Acceptance rates for the right panel are &lt;span class=&#34;math inline&#34;&gt;\(0.5\%,10.5\%,20.5\%\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;extremes.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;likelihood-free-rejection-sampling-ii&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Likelihood-free rejection sampling II&lt;/h2&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, the algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt; from the likelihood&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: if &lt;span class=&#34;math inline&#34;&gt;\(||y- y_{obs}||\le h\)&lt;/span&gt;, then accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-g-and-k-distribution&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The g-and-k distribution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(y_{obs}\)&lt;/span&gt; of length &lt;span class=&#34;math inline&#34;&gt;\(1000\)&lt;/span&gt; is generated from the &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt;-and-&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; distribution with parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta_0=(3,1,2,0.5)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior density&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi(\theta) = \pi(A)\pi(B)\pi(g)\pi(k) = N(1,5)\times N(0.25,2) \times U(0,10) \times U(0,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The results&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;gandk.png&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;grey dots: for the AR rule &lt;span class=&#34;math inline&#34;&gt;\(||y-y_{obs}||\le h\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;black dots: for the AR rule &lt;span class=&#34;math inline&#34;&gt;\(||S(y)-S(y_{obs})||\le h\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-use-of-summary-statistic&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The use of summary statistic&lt;/h2&gt;
+&lt;p&gt;Summary statistic (Drovandi and Pettitt, 2011): &lt;span class=&#34;math inline&#34;&gt;\(S(y) = (S_A,S_B,S_g,S_k)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_A=E_4\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_B=E_6-E_2\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_g=(E_6+E_2-2E_4)/S_B\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_k = (E_7-E_5+E_3-E_1)/S_B\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(E_1\le E_2 \le \cdots \le E_8\)&lt;/span&gt; are the octiles of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;likelihood-free-rejection-sampling-iii&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Likelihood-free rejection sampling III&lt;/h2&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, the algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt; from the likelihood&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: if &lt;span class=&#34;math inline&#34;&gt;\(||S(y)- S(y_{obs})||\le h\)&lt;/span&gt;, then accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;NOTE: usually &lt;span class=&#34;math inline&#34;&gt;\(\text{dim}(S(y))\ll\text{dim}(y)\)&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;approximate-bayesian-computation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Approximate Bayesian Computation&lt;/h2&gt;
+&lt;p&gt;ABC is a kind of likelihood-free methods developed
+for when the likelihood function is computationally intractable or otherwise unavailable.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The likelihood-free rejection algorithm with &lt;span class=&#34;math inline&#34;&gt;\(h=0\)&lt;/span&gt; which is exact (work for discrete cases), is not an ABC algorithm&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;For &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, it is an ABC algorithm as the samples will be drawn from an approximation to the posterior distribution.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The aim of any ABC analysis is to find a practical way of
+performing the Bayesian analysis, while keeping the approximation and the
+computation to a minimum.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;abc-with-general-kernels&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ABC with general kernels&lt;/h2&gt;
+&lt;p&gt;The approximate joint distribution:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta,y|y_{obs})\propto I\{||y-y_{obs}||\le h\}p(y|\theta)\pi(\theta)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;generalize the AR rule &lt;span class=&#34;math inline&#34;&gt;\(I\{||y-y_{obs}||\le h\}\)&lt;/span&gt; to smoothing kernel function &lt;span class=&#34;math inline&#34;&gt;\(K_h(||y-y_{obs}||)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta,y|y_{obs})\propto K_h(||y-y_{obs}||)p(y|\theta)\pi(\theta)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The kernel: &lt;span class=&#34;math inline&#34;&gt;\(K_h(u)=\frac 1 h K(u/h)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(K(u)\)&lt;/span&gt; is a symmetric function&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(K(u)\ge 0\)&lt;/span&gt; for all &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\int K(u) d u=1,\ \int uK(u)du=0,\ \int u^2K(u)du&amp;lt;\infty\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; is the bandwidth&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;common-kernels&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Common kernels&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Uniform &lt;span class=&#34;math inline&#34;&gt;\(\frac 1 2 I\{|u|\le 1\}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Tringular &lt;span class=&#34;math inline&#34;&gt;\((1-|u|)I\{|u|\le 1\}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Epanechnikov &lt;span class=&#34;math inline&#34;&gt;\(\frac 3 4(1-u^2)I\{|u|\le 1\}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Biweight &lt;span class=&#34;math inline&#34;&gt;\(\frac{15}{16}(1-u^2)^3I\{|u|\le 1\}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Gaussian &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{\sqrt{2\pi}}e^{-u^2/2}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;kernels.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;abc-rejection-sampling-algorithm-i&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ABC Rejection Sampling Algorithm I&lt;/h2&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, the algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt; from the likelihood&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{K_h(||y-y_{obs}||)\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(K\ge \sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\sup_uK(u)\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;approximate-posterior-distribution&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Approximate Posterior Distribution&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta,y|y_{obs})\propto K_h(||y-y_{obs}||)p(y|\theta)\pi(\theta)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The approximate posterior:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta|y_{obs})=\int \pi_{ABC}(\theta,y|y_{obs}) d y\propto \pi(\theta)\int K_h(||y-y_{obs}||)p(y|\theta)dy\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;ABC approximation to the true likelihood:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p_{ABC}(y_{obs}|\theta) = \int K_h(||y-y_{obs}||)p(y|\theta)dy.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta|y_{obs})\to \pi(\theta|y_{obs}) \text{ as }h\to 0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;likelihood function &lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta)=\theta e^{-\theta y}\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(Exp(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(\pi(\theta) \propto \theta^{\alpha-1}e^{-\beta\theta}\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;posterior density &lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha+1,\beta+y_{obs})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;uniform kernel &lt;span class=&#34;math inline&#34;&gt;\(K_h(u) = \frac 1{2h}1\{|u|\le h\}\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p_{ABC}(y_{obs}|\theta) = \int K_h(||y-y_{obs}||)p(y|\theta)dy=\frac 1{2h}e^{-\theta y_{obs}}(e^{\theta h}-e^{-\theta h})\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p_{ABC}(y_{obs}|\theta)-p(y_{obs}|\theta)=p(y_{obs}|\theta)\left(\frac{e^{\theta h}-e^{-\theta h}}{2\theta h}-1\right)\approx \frac{h^2\theta^3e^{-\theta y_{obs}}}{6}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta|y_{obs}) = \frac{\theta^{\alpha-1}e^{-\theta (y_{obs}+\beta)}(e^{\theta h}-e^{-\theta h})}{\frac{\Gamma(\alpha)}{(y_{obs}+\beta-h)^\alpha}-\frac{\Gamma(\alpha)}{(y_{obs}+\beta+h)^\alpha}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;plots&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Plots&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ex1.png&#34; width=&#34;80%&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 2&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;likelihood &lt;span class=&#34;math inline&#34;&gt;\(N(\theta,\sigma_0^2)\)&lt;/span&gt; with known &lt;span class=&#34;math inline&#34;&gt;\(\sigma_0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(N(m_0,s_0^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Guassian kernel &lt;span class=&#34;math inline&#34;&gt;\(K_h(u)=N(0,h^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p_{ABC}(\bar y_{obs}|\theta)=N(\theta,\sigma^2/n+h^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\pi_{ABC}(\theta|y_{obs})=N(\mu_{ABC},\sigma_{ABC}^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mu_{ABC} = \frac{\frac{m_0}{s_0^2}+\frac{\bar y_{obs}}{\sigma_0^2/n+h^2}}{\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n+h^2}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{\sigma_{ABC}^2}=\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n+h^2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;plots-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Plots&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ex2.png&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Gaussian kernel vs. uniform kernel&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The ABC posterior approximation may
+be improved simply by rescaling the posterior variance to remove the term &lt;span class=&#34;math inline&#34;&gt;\(h^2\)&lt;/span&gt; (Drovandi 2012).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-use-of-summary-statistics&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The Use of Summary Statistics&lt;/h2&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, the algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt; from the likelihood&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: accept &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(r(\theta^{(i)})=\frac{K_h(||S(y)-S(y_{obs})||)\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(K\ge \sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\sup_uK(u)\)&lt;/span&gt;. Else go to Step 1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the model &lt;span class=&#34;math inline&#34;&gt;\(y=(y_1,y_2), y_i\sim B(n,\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(\theta\sim U(0,1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;three sufficient statistics: &lt;span class=&#34;math inline&#34;&gt;\(s^1=(y_1,y_2)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(s^2 =(y_{(1)},y_{(2)})\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(s^3=y_1+y_2\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Acceptance rates (&lt;span class=&#34;math inline&#34;&gt;\(h=0\)&lt;/span&gt;) are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(r_1=C_n^{y_1}C_n^{y_2} B(y_1+y_2+1,2n-y_1-y_2+1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(r_2 = [2-1\{y_{(1)}=y_{(2)}\}]r_1\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(r_3 = 1/(2n+1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;E.g., &lt;span class=&#34;math inline&#34;&gt;\(y_{obs}=(1,2)\)&lt;/span&gt; from &lt;span class=&#34;math inline&#34;&gt;\(n=5\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(p_1\approx 0.038,\ p_2\approx 0.076,\ p_3\approx 0.091\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The most efficient choice is the &lt;strong&gt;minimal sufficient statistic&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This may still be non-viable in practice; low-dimensional sufficient statistic may not exist – Weibull distribution&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-2-continued&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 2 (continued)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;likelihood &lt;span class=&#34;math inline&#34;&gt;\(N(\theta,\sigma_0^2)\)&lt;/span&gt; with known &lt;span class=&#34;math inline&#34;&gt;\(\sigma_0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(N(m_0,s_0^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Guassian kernel &lt;span class=&#34;math inline&#34;&gt;\(K_h(u)=N(0,h^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;summary statistic &lt;span class=&#34;math inline&#34;&gt;\(s=\bar{y}_{1{:}n&amp;#39;}=\frac{1}{n&amp;#39;}\sum_{i=1}^{n&amp;#39;}y_i\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(n&amp;#39;&amp;lt;n\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p_{ABC}(s_{obs}|\theta)=N(\theta,\sigma^2/n&amp;#39;+h^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\pi_{ABC}(\theta|y_{obs})=N(\mu_{ABC},\sigma_{ABC}^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mu_{ABC} = \frac{\frac{m_0}{s_0^2}+\frac{s_{obs}}{\sigma_0^2/n&amp;#39;+h^2}}{\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n&amp;#39;+h^2}},\ \frac{1}{\sigma_{ABC}^2}=\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n&amp;#39;+h^2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;two sources of error: the degree
+of inefficiency of replacing &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; by &lt;span class=&#34;math inline&#34;&gt;\(s=S(y)\)&lt;/span&gt; and the matching of the
+simulated and observed data through the Gaussian kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-choice-of-summary-statistics-for-abc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The choice of summary statistics for ABC&lt;/h2&gt;
+&lt;p&gt;The choice of summary statistics for an ABC analysis is a critical decision
+that directly affects the quality of the posterior approximation.&lt;/p&gt;
+&lt;p&gt;Many
+approaches for determining these statistics are available, and these are reviewed
+in Blum et al. (2013) and Prangle (2019). These methods seek to trade off two aspects of the ABC posterior
+approximation that directly result from the choice of summary statistics.&lt;/p&gt;
+&lt;p&gt;The dimension of the summary statistic should be large enough so
+that it contains as much information about the observed data as possible, but
+also low enough so that the curse-of-dimensionality of matching &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(s_{obs}\)&lt;/span&gt;
+is avoided.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-practical-issues-with-summary-statistics&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some practical issues with summary statistics&lt;/h2&gt;
+&lt;p&gt;It is NOT always viable to continue to add summary statistics to s until the
+resulting ABC posterior approximation does not change for the worse.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the model &lt;span class=&#34;math inline&#34;&gt;\(y=(y_1,\dots,y_n), y_i\sim Poission(\lambda)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(\lambda \sim Gamma(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;posterior &lt;span class=&#34;math inline&#34;&gt;\(\lambda|y\sim Gamma(\alpha+n\bar y,\beta+n)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;data &lt;span class=&#34;math inline&#34;&gt;\(y_{obs}=(0,0,0,0,5)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;summary statistics: &lt;span class=&#34;math inline&#34;&gt;\(s^1=\bar y,\ s^2= v=\sqrt{\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar y)^2}, s^3=(\bar y,v)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;using uniform kernel with &lt;span class=&#34;math inline&#34;&gt;\(h=0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(h=0.3\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\alpha=\beta=1\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;comparison&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Comparison&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ss.png&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;top (&lt;span class=&#34;math inline&#34;&gt;\(h=0\)&lt;/span&gt;), bottom (&lt;span class=&#34;math inline&#34;&gt;\(h=0.3\)&lt;/span&gt;)&lt;/li&gt;
+&lt;li&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha,\beta)\)&lt;/span&gt; (dashed lines), target distribution &lt;span class=&#34;math inline&#34;&gt;\(Gamma(\alpha+n\bar y,\beta+n)\)&lt;/span&gt; (solid line)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-choice-of-distance-measure&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The choice of distance measure&lt;/h2&gt;
+&lt;p&gt;The distance measure &lt;span class=&#34;math inline&#34;&gt;\(||s-s_{obs}||\)&lt;/span&gt; can also have a substantial impact on ABC algorithm efficiency, and therefore the quality of the posterior approximation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the most common one is the Euclidean distance&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the Mahalanobis distance (Peters
+et al. 2012; Erhardt and Sisson 2016):&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[||s-s_{obs}||=(s-s_{obs})^\top\Sigma^{-1}(s-s_{obs})\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\Sigma\)&lt;/span&gt; is the covariance matrix of &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;comparison-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Comparison&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;distance.png&#34; width=&#34;60%&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the entries of &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt; may dependent&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;implementing a circular acceptance region (implying independence
+and identical scales) induces both type I and type II errors.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-4&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 4&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the model &lt;span class=&#34;math inline&#34;&gt;\(y_1,\dots,y_{50}\sim N(\theta,1)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior &lt;span class=&#34;math inline&#34;&gt;\(\theta\sim U(-5,5)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;summary statistics: &lt;span class=&#34;math inline&#34;&gt;\(s^1=(\bar y_{1{:}40},\bar y_{41{:}50})\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(s^2=(\bar y_{1{:}25}-\bar y_{26{:}50},\bar y_{26{:}50})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\Sigma^1 = Cov(s^1|\theta) = \left(
+\begin{matrix}
+1/40 &amp;amp; 0\\
+0 &amp;amp; 1/10
+\end{matrix}
+\right)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\Sigma^2 = Cov(s^2|\theta) = \left(
+\begin{matrix}
+2/25 &amp;amp; -1/25\\
+-1/25 &amp;amp; 1/25
+\end{matrix}
+\right)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Simulation&lt;/h2&gt;
+&lt;p&gt;Mean Number of Summary StatisticGenerations per Final Accepted Particle (with Standard Errors inParentheses)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;tabdistance.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pilot-analysis-on-the-covariance-matrix&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pilot analysis on the covariance matrix&lt;/h2&gt;
+&lt;p&gt;To estimate the covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\Sigma\)&lt;/span&gt;, Luciani
+et al. (2009) and Erhardt and Sisson (2016) identify some value of &lt;span class=&#34;math inline&#34;&gt;\(\theta=\theta^*\)&lt;/span&gt; in a high posterior density region via a pilot analysis and then estimate
+&lt;span class=&#34;math inline&#34;&gt;\(Cov(s|\theta^*)\)&lt;/span&gt; based on repeated draws from &lt;span class=&#34;math inline&#34;&gt;\(p(s|\theta^*)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;abc-is-algorithm&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ABC-IS algorithm&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the target density &lt;span class=&#34;math inline&#34;&gt;\(\pi_{ABC}(\theta|s_{obs})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the proposal &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, with &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)&amp;gt;0\)&lt;/span&gt; if &lt;span class=&#34;math inline&#34;&gt;\(f(\theta)&amp;gt;0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;, the algorithm goes below, for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,N\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Step 1: generate &lt;span class=&#34;math inline&#34;&gt;\(\theta^{(i)}\sim g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 2: generate &lt;span class=&#34;math inline&#34;&gt;\(y\sim p(y|\theta^{(i)})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Step 3: compute the weight &lt;span class=&#34;math display&#34;&gt;\[w(\theta^{(i)})=\frac{K_h(||S(y)-S(y_{obs})||)\pi(\theta^{(i)})}{g(\theta^{(i)})}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Return the weight samples &lt;span class=&#34;math inline&#34;&gt;\((w(\theta^{(i)}),\theta^{(i)}), i=1,\dots,N\)&lt;/span&gt;. The self-normalized IS estimator is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[a(\theta)|y_{obs}]\approx \frac{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})a(\theta^{(i)})}{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;All models are approximations to the real data-generation process.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;use of summary statistics &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;, the effect of &lt;span class=&#34;math inline&#34;&gt;\(\text{dim}(s)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;use of kernel appriximation &lt;span class=&#34;math inline&#34;&gt;\(K_h\)&lt;/span&gt;, the effect of bandwidth &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;use of distance measure, the effect of covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\Sigma\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Monte Carlo error, the effect of the sample size &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quasi-Monte Carlo in ABC</title>
+      <link>/post/qmc_abc/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/qmc_abc/</guid>
+      <description>&lt;div id=&#34;ingredients-for-abc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Ingredients for ABC&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;summary statistic &lt;span class=&#34;math inline&#34;&gt;\(S(y):\mathbb{R}^n\to \mathbb{R}^d\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;kernel function &lt;span class=&#34;math inline&#34;&gt;\(k(u_1,\dots,u_d)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;bandwidth &lt;span class=&#34;math inline&#34;&gt;\(h&amp;gt;0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;proposal density &lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ABC approximation&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi_{ABC}(\theta|s_{obs})\propto \pi(\theta)\int \pi(s|\theta)K((s-s_{obs})/h) d s\to \pi(\theta|s_{obs})\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(\pi(\theta|s_{obs})\approx \pi(\theta|y)\)&lt;/span&gt;, then ABC density is a proper approximation of the posterior &lt;span class=&#34;math inline&#34;&gt;\(\pi(\theta|y)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;abc-convergence-rates&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ABC convergence rates&lt;/h2&gt;
+&lt;p&gt;Consider the estimation of &lt;span class=&#34;math inline&#34;&gt;\(\mu=E[a(\theta)|s_{obs}]\)&lt;/span&gt;. The acceptance-rejection (AR) based ABC estimate is given by
+&lt;span class=&#34;math display&#34;&gt;\[\hat\mu=\frac{1}{N}\sum_{i=1}^Na(\theta^{(i)}).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Under regular conditions, ABC bias is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathrm{bias}=|E_{ABC}[a(\theta)|s_{obs}]-\mu|=O(h^2),\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and the acceptance probability is &lt;span class=&#34;math inline&#34;&gt;\(R = O(h^{d}),\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and Monte Carlo variance is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathrm{variance}=\frac{\sigma^2_{ABC}}{N}=O\left(\frac{1}{C h^d}\right),\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; is the complexity. Overall, the MSE is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathrm{MSE} = \mathrm{bias}^2+\mathrm{vaiance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For a given &lt;span class=&#34;math inline&#34;&gt;\(C&amp;gt;0\)&lt;/span&gt;,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;the optimal &lt;span class=&#34;math inline&#34;&gt;\(h^*=O(C^{-1/(4+d)})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the optimal &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{MSE}^*=O(C^{-4/(d+4)})\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This reveals that ABC suffers from the &lt;strong&gt;curse of dimensionality&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;improving-the-sampling-efficiency&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Improving the sampling efficiency&lt;/h2&gt;
+&lt;p&gt;A possible way to improve ABC efficiency is to accelerate the Monte Carlo. Monte Carlo error is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{MC error}=\frac{\sigma}{\sqrt{N}}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Some variance reduction techniques are proposed to reduce &lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;, such as&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;importance sampling&lt;/li&gt;
+&lt;li&gt;antithetic variates&lt;/li&gt;
+&lt;li&gt;control variates&lt;/li&gt;
+&lt;li&gt;hybrid strategies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the other hand, quasi-Monte Carlo is used to &lt;strong&gt;improve the rate of convergence&lt;/strong&gt; (&lt;span class=&#34;math inline&#34;&gt;\(1/\sqrt{N}\)&lt;/span&gt;) rather than the constant &lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quasi-monte-carlo-a-review&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Quasi-Monte Carlo: A review&lt;/h2&gt;
+&lt;p&gt;As a start-up setting, let’s consider an intergal over the unit cube &lt;span class=&#34;math inline&#34;&gt;\([0,1]^d\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mu=\int_{[0,1]^d} f(u_1,\dots,u_d)du_1\cdots du_d.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;MC estimate is the average of &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt; iid samples:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\mu_N = \frac 1 N\sum_{i=1}^N f(u^{(i)}),\ u^{(i)}\stackrel{iid}{\sim} U[0,1]^d.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;QMC estimate has the same form but uses deterministic sequences&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\mu_N = \frac 1 N\sum_{i=1}^N f(u^{(i)}),\ u^{(i)}\in[0,1]^d.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The sequences are clearly constructed with better uniformness, which are known as &lt;strong&gt;low discrepancy sequences (LDSs)&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Halton (1960)&lt;/li&gt;
+&lt;li&gt;Sobol’ (1967)&lt;/li&gt;
+&lt;li&gt;Faure (1982)&lt;/li&gt;
+&lt;li&gt;Niderreiter (1992)&lt;/li&gt;
+&lt;li&gt;Lattice rules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Koksma-Hlawka inequality&lt;/strong&gt; gives&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+|\hat\mu_N-\mu|\le V_{\mathrm{HK}}(f)D^*(u^{(1)},...,u^{(N)})
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(V_{\mathrm{HK}}(f)\)&lt;/span&gt; is the variation in the sense of Hardy and Krause&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(D^*\)&lt;/span&gt; is the star discrepancy of the points&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(V_{\mathrm{HK}}(f)&amp;lt;\infty\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\{u^{(1)},...,u^{(N)}\}\)&lt;/span&gt; is a LDS, then&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{QMC error}=O(N^{-1}(\log N)^d)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;QMC can achieve higher-order rate of convergence, but needs higher smoothness conditions; see Dick (Ann. Stat., 2011).&lt;/p&gt;
+&lt;p&gt;Some mathematical softwares such as &lt;code&gt;Matlab&lt;/code&gt;, &lt;code&gt;R&lt;/code&gt; include some common generators of LDSs.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#  install.packages(&amp;quot;randtoolbox&amp;quot;)
+set.seed(7)
+library(&amp;quot;randtoolbox&amp;quot;)
+par(mfrow=c(2,2))
+qmc = sobol(1024,2)
+plot(qmc[1:256,],pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;Sobol&amp;#39; points: N = 256&amp;quot;)
+plot(qmc,pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;Sobol&amp;#39; points: N = 1024&amp;quot;)
+mc = matrix(runif(2048),ncol = 2)
+plot(mc[1:256,],pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;MC points: N = 256&amp;quot;)
+plot(mc,pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;MC points: N = 1024&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/QMC_ABC_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example 1&lt;/h2&gt;
+&lt;p&gt;Consider the integral:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mu = \int_{[0,1]^d} \sum_{i=1}^d x_i^2 dx =\frac{d}{3}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myfun = function(x){
+  rowSums(x^2)
+  #apply(x-0.5,1,prod)
+}
+
+m = 16
+N = 2^m
+d = 8
+trueval = d/3
+#trueval = 0
+qmc = as.matrix(sobol(n=N,dim=d),ncol=d)
+fsum = cumsum(myfun(qmc))
+ns = 1:N
+fmean = fsum[ns]/ns
+par(mar=c(4,4,2,1),mfrow=c(2,1))
+tt = paste0(&amp;quot;QMC: d = &amp;quot;,d)
+plot(ns,fmean,xlab=&amp;quot;N&amp;quot;,ylab=&amp;quot;Mean&amp;quot;,typ=&amp;quot;l&amp;quot;,main=tt)
+abline(h=trueval,lty=5,col=&amp;quot;red&amp;quot;)
+ns = 2^(0:m)
+fmean = fsum[ns]/ns
+err = abs(fmean-trueval)
+plot(ns,err,xlab=&amp;quot;N&amp;quot;,ylab=&amp;quot;Error&amp;quot;,typ=&amp;quot;b&amp;quot;,log=&amp;quot;xy&amp;quot;,main=tt)
+r = 1
+lines(ns[c(3,m)], c(err[3],err[3]*(ns[3]/ns[m])^r),col=&amp;quot;red&amp;quot;,lty=5)
+legend(500,err[2],legend = c(&amp;quot;QMC errors&amp;quot;,paste0(&amp;quot;N^{&amp;quot;,-r,&amp;quot;}&amp;quot;)),lty = c(1,5),
+       col=c(&amp;quot;black&amp;quot;,&amp;quot;red&amp;quot;),pch=c(1,NA),cex=1.2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/QMC_ABC_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;randomized-qmc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Randomized QMC&lt;/h2&gt;
+&lt;p&gt;In practice, we use randomized QMC (RQMC), which yields an unbiased estimate.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;random-shift, see Cranley and Patterson (1976)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;scrambled nets, see Owen (1995,1997,1998)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Survey in L’Ecuyer and Lemieux (2005)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(7)
+library(&amp;quot;randtoolbox&amp;quot;)
+par(mfrow=c(2,2))
+qmc = sobol(1024,2)
+rqmc = sobol(1024,2,scrambling=1)
+plot(qmc[1:256,],pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;Sobol&amp;#39; points: N = 256&amp;quot;)
+plot(qmc,pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;Sobol&amp;#39; points: N = 1024&amp;quot;)
+mc = matrix(runif(2048),ncol = 2)
+plot(rqmc[1:256,],pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;RQMC points: N = 256&amp;quot;)
+plot(rqmc,pch=19,xlab=&amp;quot;x&amp;quot;,ylab=&amp;quot;y&amp;quot;,main=&amp;quot;RQMC points: N = 1024&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/QMC_ABC_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myfun = function(x){
+  d = ncol(x)
+  #(rowSums(x)&amp;gt;d/2)-0.5
+  rowSums(x^2)-d/3
+  #apply(x-0.5,1,prod)
+  
+}
+
+m = 16
+N = 2^m
+d = 2
+trueval = 0
+R = 100
+ns = 2^(0:m)
+fmean = matrix(0,m+1,R)
+tmp = sobol(N,d)##initialization
+for(i in 1:R)
+{
+  rqmc = as.matrix(sobol(N,d,scrambling=1,init=FALSE),ncol=d)
+  fsum = cumsum(myfun(rqmc))
+  fmean[,i] = fsum[ns]/ns
+}
+
+par(mar=c(4,4,2,1),mfrow=c(2,1))
+tt = paste0(&amp;quot;RQMC: d = &amp;quot;,d)
+plot(ns,rowMeans(fmean),xlab=&amp;quot;N&amp;quot;,ylab=&amp;quot;Mean&amp;quot;,typ=&amp;quot;b&amp;quot;,main=tt)
+abline(h=trueval,lty=5,col=&amp;quot;red&amp;quot;)
+
+rmse = apply(fmean,1,sd)
+
+plot(ns,rmse,xlab=&amp;quot;N&amp;quot;,ylab=&amp;quot;rmse&amp;quot;,typ=&amp;quot;b&amp;quot;,log=&amp;quot;xy&amp;quot;,main=tt)
+r = 1
+lines(ns[c(3,m)], c(rmse[3],rmse[3]*(ns[3]/ns[m])^r),col=&amp;quot;red&amp;quot;,lty=5)
+legend(500,rmse[2],legend = c(&amp;quot;RQMC errors&amp;quot;,paste0(&amp;quot;N^{&amp;quot;,-r,&amp;quot;}&amp;quot;)),lty = c(1,5),
+       col=c(&amp;quot;black&amp;quot;,&amp;quot;red&amp;quot;),pch=c(1,NA),cex=1.2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/QMC_ABC_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-qmc-in-abc&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using QMC in ABC&lt;/h2&gt;
+&lt;p&gt;The univariate g-and-k distribution is a flexible unimodal distribution that
+is able to describe data with significant amounts of skewness and kurtosis. Its density function has no closed form, but
+is alternatively defined through its quantile function as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q(q|A,B,g,k)=A+B\left[1+c\frac{1-\exp\{-gz(q)\}}{1+\exp\{-gz(q)\}}\right](1+z(q)^2)^kz(q)\]&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(c=0.8,\ B&amp;gt;0, k&amp;gt;-1/2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(z(q)=\Phi^{-1}(q)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;if &lt;span class=&#34;math inline&#34;&gt;\(g=k=0\)&lt;/span&gt;, it is the normal density&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(y_{obs}\)&lt;/span&gt; of length &lt;span class=&#34;math inline&#34;&gt;\(1000\)&lt;/span&gt; is generated from the &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt;-and-&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; distribution with parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta_0=(3,1,2,0.5)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;prior density&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\pi(\theta) = \pi(A)\pi(B)\pi(g)\pi(k) = N(1,5)\times N(0.25,2) \times U(0,10) \times U(0,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Summary statistic (Drovandi and Pettitt, 2011): &lt;span class=&#34;math inline&#34;&gt;\(S(y) = (S_A,S_B,S_g,S_k)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_A=E_4\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_B=E_6-E_2\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_g=(E_6+E_2-2E_4)/S_B\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(S_k = (E_7-E_5+E_3-E_1)/S_B\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(E_1\le E_2 \le \cdots \le E_8\)&lt;/span&gt; are the octiles of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(100)
+theta0 = c(3,1,2,0.5)
+
+gkmodel &amp;lt;- function(theta,n,z=NA){
+  if(is.na(z)[1]){
+    z = rnorm(n)
+  }
+  y = theta[1] + theta[2]*(1+0.8*(1-exp(-theta[3]*z))/
+        (1+exp(-theta[3]*z)))*(1+z^2)^theta[4]*z
+  return(matrix(y,n,1))
+}
+n = 1e3
+yobs = gkmodel(theta0,n)
+## prior density
+gkprior &amp;lt;- function(n,u=NA){
+  if(is.na(u)[1]){
+    u = matrix(runif(n*4),n,4)
+  }
+  A = qnorm(u[,1])*sqrt(5)+1
+  B = qnorm(u[,2])*sqrt(2)+.25
+  g = u[,3]*10
+  k = u[,4]
+  return(cbind(A,B,g,k))
+}
+gksummary &amp;lt;- function(y){
+  sorty = sort(y)
+  n = length(y)
+  q = sorty[ceiling(n/8*(1:8))]
+  s = c(q[4],
+        q[6]-q[2],
+        (q[6]+q[2]-2*q[4])/(q[6]-q[2]),
+        (q[7]-q[5]+q[3]-q[1])/(q[6]-q[2]))
+  return(s)
+}
+ytmp1 = matrix(0,2000,4)
+for(i in 1:2000){
+  ytmp1[i,] = gksummary(gkmodel(gkprior(1),n))
+}
+Sigma = var(ytmp1)
+invsig = solve(Sigma)
+N = 1e5
+ytmp = rep(0,N)
+theta = matrix(0,N,4)
+stmp = rep(0,N)
+sobs = gksummary(yobs)
+#qmc = sobol(N+1,n+4)
+#qmc = qmc[-1,]##initialization
+for(i in 1:N){
+  theta[i,] = gkprior(1) # matrix(qmc[i,1:4],1,4)
+  ypro = gkmodel(theta[i,],n) # qnorm(matrix(qmc[i,-(1:4)],1,n))
+  spro = gksummary(ypro)
+  diff = matrix(spro-sobs,1,4)
+  ytmp[i] = sqrt(sum((ypro-yobs)^2))
+  stmp[i] = sqrt(diff%*%invsig%*%t(diff))
+}
+ysort = sort(ytmp)
+ssort = sort(stmp)
+effN = N*5e-3
+hy = ysort[effN]
+hs = ssort[effN]
+## draw pairwise scatterplots
+theta1 = theta[ytmp&amp;lt;=hy,]
+theta2 = theta[stmp&amp;lt;=hs,]
+theta = rbind(theta1,theta2,theta0)
+colnames(theta) = c(&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;g&amp;quot;,&amp;quot;k&amp;quot;)
+pairs(theta,pch=c(rep(20,effN*2),24),
+      col=c(rep(&amp;quot;grey&amp;quot;,effN),rep(&amp;quot;black&amp;quot;,effN),&amp;quot;red&amp;quot;),cex=1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/QMC_ABC_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>第四章：线性回归</title>
       <link>/post/chap04/</link>
       <pubDate>Thu, 15 Nov 2018 00:00:00 +0000</pubDate>
       
@@ -136,7 +855,7 @@ Cov(y_i,\hat y_i)  &amp;amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\bet
 &lt;p&gt;&lt;code&gt;Theorem 4&lt;/code&gt;: Under Assumption B, we have&lt;/p&gt;
 &lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(3). &lt;span class=&#34;math inline&#34;&gt;\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{\sigma^2}\sim \chi^2(n-2)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;(3). &lt;span class=&#34;math inline&#34;&gt;\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\mathrm{RSS}}{\sigma^2}\sim \chi^2(n-2)\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;(4). &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\((\hat\beta_0,\hat\beta_1)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: Under Assumption B, &lt;span class=&#34;math inline&#34;&gt;\(y_i=\beta_0+\beta_1x_i+\epsilon_i\sim N(\beta_0+\beta_1x_i,\sigma^2)\)&lt;/span&gt; independently. Both &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; are linear combinations of &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;s. Consequently, they are normally distributed. We have known their expected values and variances from Theorems 1 and 2. The claims (1) and (2) are thus verified. The proofs of claims (3) and (4) are deferred to the general case.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -501,7 +1220,7 @@ abline(coef(lm.rod),col=&amp;quot;blue&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Assessing the Fit&lt;/h3&gt;
 &lt;p&gt;As an aid in assessing the quality of the fit, we will make extensive use of the residuals,
 which are the differences between the observed and fitted values:
-&lt;span class=&#34;math display&#34;&gt;\[\hat e_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;It is most useful to examine the residuals graphically. Plots of the residuals versus the
 &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; values may reveal systematic misfit or ways in which the data do not conform to
 the fitted model. Ideally, the residuals should show no relation to the &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; values, and the plot should look like a horizontal blur. The residuals for case study 1 are plotted below.&lt;/p&gt;
@@ -518,7 +1237,7 @@ abline(h=c(-2,2),lty=c(5,5))&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;drawing-inferences-about-ey&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Drawing Inferences about &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;For given &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, we want the estimate the expected value of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(E[y]=\beta_0+\beta_1x.\)&lt;/span&gt; A natural unbiased estimate is &lt;span class=&#34;math inline&#34;&gt;\(\hat y = \hat\beta_0+\hat\beta_1x\)&lt;/span&gt;. From the proof of Theorem 3, we have the variance
+&lt;p&gt;For given &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, we want to estimate the expected value of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(E[y]=\beta_0+\beta_1x.\)&lt;/span&gt; A natural unbiased estimate is &lt;span class=&#34;math inline&#34;&gt;\(\hat y = \hat\beta_0+\hat\beta_1x\)&lt;/span&gt;. From the proof of Theorem 3, we have the variance
 &lt;span class=&#34;math display&#34;&gt;\[Var[\hat y] = \left(\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]&lt;/span&gt;
 Under Assumption B, by Theorem 4, we have
 &lt;span class=&#34;math display&#34;&gt;\[\hat y\sim N(\beta_0+\beta_1x,(1/n+(x-\bar x)^2/\ell_{xx})\sigma^2),\]&lt;/span&gt;
@@ -1828,7 +2547,7 @@ The later equality can be expressed as
 &lt;p&gt;It is hard to solve the equations (1) and (2). In practice, we may take
 &lt;span class=&#34;math inline&#34;&gt;\(C_1=\chi_{\alpha/2}^2(2n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(C_2=\chi_{1-\alpha/2}^2(2n)\)&lt;/span&gt; so that the significance level of the test is &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;. BUT, it is not the exact UMPU test since (2) is not satisfied. If &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is large enough, &lt;span class=&#34;math inline&#34;&gt;\(f(x;2n+2)\approx f(x;2n)\)&lt;/span&gt; (see figure below). This implies the resulting rejection region is almost UMPU when &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is large.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/homework7_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’ methods. Let &lt;span class=&#34;math inline&#34;&gt;\(F(x;n)\)&lt;/span&gt; be the CDF of &lt;span class=&#34;math inline&#34;&gt;\(\chi^2(n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(F^{-1}\)&lt;/span&gt; denote its inverse. By (1), we have &lt;span class=&#34;math inline&#34;&gt;\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)&lt;/span&gt;. Substituting it into (2), we arrive at an equation:
+&lt;p&gt;Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’s methods. Let &lt;span class=&#34;math inline&#34;&gt;\(F(x;n)\)&lt;/span&gt; be the CDF of &lt;span class=&#34;math inline&#34;&gt;\(\chi^2(n)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(F^{-1}\)&lt;/span&gt; denote its inverse. By (1), we have &lt;span class=&#34;math inline&#34;&gt;\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)&lt;/span&gt;. Substituting it into (2), we arrive at an equation:
 &lt;span class=&#34;math display&#34;&gt;\[F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;We can slove the equation using R function &lt;code&gt;uniroot&lt;/code&gt;. The code is given below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myfun &amp;lt;- function(c,n,alpha)
@@ -1975,7 +2694,7 @@ The likelihood ratio for the simple test is
 (\theta_0/\theta_1)^n,\ &amp;amp;x_{(n)}\le \theta_0\\
 \infty,\ &amp;amp;x_{(n)}&amp;gt; \theta_0
 \end{cases}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We therefore cannot find a &lt;span class=&#34;math inline&#34;&gt;\(\lambda_0\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda_0)=\alpha\)&lt;/span&gt;. This implies that the NP lemma cannot be applied. As we can see, the likelihood ratio is a function of &lt;span class=&#34;math inline&#34;&gt;\(x_{(n)}\)&lt;/span&gt;. We thus can use &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt; as the test statistic. A resonable rejection region would be
+&lt;p&gt;We therefore cannot find a &lt;span class=&#34;math inline&#34;&gt;\(\lambda_0\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda_0)=\alpha\)&lt;/span&gt;. This implies that the N-P lemma cannot be applied. As we can see, the likelihood ratio is a function of &lt;span class=&#34;math inline&#34;&gt;\(x_{(n)}\)&lt;/span&gt;. We thus can use &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt; as the test statistic. A resonable rejection region would be
 &lt;span class=&#34;math inline&#34;&gt;\(W = \{x_{(n)}&amp;gt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; satisfies
 &lt;span class=&#34;math display&#34;&gt;\[P_{\theta_0}(X_{(n)}&amp;gt;C)=\alpha.\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;When &lt;span class=&#34;math inline&#34;&gt;\(\theta=\theta_0\)&lt;/span&gt;, the order statistic &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}/\theta_0\)&lt;/span&gt; has a CDF &lt;span class=&#34;math inline&#34;&gt;\(F(x)=x^n\)&lt;/span&gt; (see &lt;a href=&#34;https://hezhijian.netlify.com/post/homework5/&#34;&gt;Exercise 1&lt;/a&gt;). So we have &lt;span class=&#34;math inline&#34;&gt;\(C=(1-\alpha)^{1/n}\theta_0\)&lt;/span&gt;. The rejection region is
@@ -3563,758 +4282,6 @@ c_2, &amp;amp;\sum_{i=1}^n Y_i=n
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[X] = \frac{(2\theta)^2}{12}=\frac{\theta^2}{3}\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;所以矩估计为：
 &lt;span class=&#34;math display&#34;&gt;\[\hat{c}=\bar X=\frac 1n\sum_{i=1}^nX_i,\ \hat{\theta} = \sqrt{3S_n^2}=\sqrt{\frac{3}{n}\sum_{i=1}^n(X_i-\bar X)^2}.\]&lt;/span&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>第二章：估计</title>
-      <link>/post/chap02/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap02/</guid>
-      <description>&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;目录&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;1. 点估计&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;1.1 矩估计法&lt;/li&gt;
-&lt;li&gt;1.2 极大似然估计法&lt;/li&gt;
-&lt;li&gt;1.3 估计的优良性准则&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;2. 区间估计&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;2.1 单个正态总体的区间估计&lt;/li&gt;
-&lt;li&gt;2.2 两个独立正态总体的区间估计&lt;/li&gt;
-&lt;li&gt;2.3 非正态总体的区间估计&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;3. 分布估计&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;3.1 直方图法&lt;/li&gt;
-&lt;li&gt;3.2 核估计法&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;参数估计&lt;/h2&gt;
-&lt;p&gt;在实际问题中，对于一个总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;往往是仅知其分布的类型&lt;span class=&#34;math inline&#34;&gt;\(f(x, \theta)\)&lt;/span&gt;，而参数&lt;span class=&#34;math inline&#34;&gt;\(\theta=(\theta_1,\dots,\theta_m)\in \Theta \subset \mathbb{R}^m\)&lt;/span&gt;是未知的。对任给的实值函数&lt;span class=&#34;math display&#34;&gt;\[g:\ \mathbb{R}^m\to \mathbb{R},\]&lt;/span&gt;
-如何根据&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;估计&lt;span class=&#34;math inline&#34;&gt;\(g( \theta)\)&lt;/span&gt;的值呢？这就是统计推断中的“&lt;strong&gt;参数估计&lt;/strong&gt;”问题。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;点估计&lt;/strong&gt;：寻找一个统计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta} = T(X_1,\dots,X_n)\)&lt;/span&gt;作为$ $的点估计&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;区间估计&lt;/strong&gt;：寻找两个统计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta}_1 = T_1(X_1,\dots,X_n)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\hat{ \theta}_2 = T_2(X_1,\dots,X_n)\)&lt;/span&gt;，所构成的区间&lt;span class=&#34;math inline&#34;&gt;\([\hat{ \theta}_1,\hat{ \theta}_2]\)&lt;/span&gt;作为$ $的区间估计&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;1.1 矩估计法&lt;/h2&gt;
-&lt;p&gt;矩估计的想法来源于大数定理。如果总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;存在&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩，对任意&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;,
-&lt;span class=&#34;math display&#34;&gt;\[
-\lim_{n\to \infty} P(|\frac 1 n\sum_{i=1}^n X_i^k-E[X^k]|\ge \epsilon )=0.
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;这说明，当样本容量&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;较大时，样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩与总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩差别很小。&lt;strong&gt;矩法估计就是用样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩代替总体的&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩。&lt;/strong&gt;通常用&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}_M\)&lt;/span&gt;表示。一般步骤如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;列出估计式&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]=g_k(\theta_1,\dots,\theta_m),\ k=1,\dots,m.\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;求解关于估计量的方程组&lt;span class=&#34;math inline&#34;&gt;\(\theta_k = \theta_k(E[X^1],\dots,E[X^m])\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用&lt;span class=&#34;math inline&#34;&gt;\(M_k=\frac 1 n\sum_{i=1}^n X_i^k\)&lt;/span&gt;替代&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]\)&lt;/span&gt;得到矩估计&lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_k = \theta_k(M_1,\dots,M_m)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例1&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：求总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu=E[X]\)&lt;/span&gt;与方差&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2=Var[X]\)&lt;/span&gt;的矩估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: (1)列出估计式&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-E[X] &amp;amp;= \mu\\
-E[X^2] &amp;amp;= \mu^2+\sigma^2
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(2)求解关于估计量的方程组
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-\mu &amp;amp;= E[X]\\
-\sigma^2 &amp;amp;= E[X^2]-(E[X])^2
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;所以，&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}_M = \bar X\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\hat{\sigma}^2_M = \frac{1}{n}\sum_{i=1}^n X_i^2-(\bar X)^2 = S_n^2.\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;注：不难证明，总体的各阶中心矩的矩估计就是样本各阶中心矩。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例2&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim U[a,b]\)&lt;/span&gt;, 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;的矩估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 易知，&lt;span class=&#34;math inline&#34;&gt;\(E[X]=(a+b)/2,\ Var[X]= (b-a)^2/12\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;所以，
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-a &amp;amp;= E[X]-\sqrt{3Var[X]}\\
-b &amp;amp;= E[X]+\sqrt{3Var[X]}
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-\hat a_M &amp;amp;= \bar{X}-\sqrt{3}S_n\\
-\hat b_M &amp;amp;= \bar{X}+\sqrt{3}S_n
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;3&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例3&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的分布密度为
-&lt;span class=&#34;math display&#34;&gt;\[
-f(x)=\frac{\theta}{2}e^{-\theta|x|},\ x\in\mathbb{R}, \theta&amp;gt;0.
-\]&lt;/span&gt;
-求&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的矩估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[
-E[X]= 0,\ E[X^2]=\int_{-\infty}^{\infty}x^2\frac{\theta}{2}e^{-\theta|x|}d x=\theta\int_{0}^{\infty}x^2e^{-\theta x}d x=\frac{2}{\theta^2}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_M=\sqrt{\frac{2n}{\sum_{i=1}^n X_i^2}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;除外，还可以由&lt;span class=&#34;math inline&#34;&gt;\(E[|X|]=1/\theta\)&lt;/span&gt;得到另一种矩估计。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;1.2 最大似然估计法&lt;/h2&gt;
-&lt;p&gt;最大似然估计法最早由高斯(C.F.Gauss)提出，后来被 Fisher完善。最大似然估计这一名称也是Fisher给的。这是一个目前仍得到广泛应用的方法。它是建立在最大似然原理基础上的一个统计方法。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;最大似然原理：最先出现的是概率最大的&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设有外形完全相同的两个箱子，甲箱中有99个白球和1个黑球，乙箱中有99个黑球和1个白球，今随机地抽取一箱并从中随机抽取一球，结果取得白球，问这球是从哪个箱子中取出？&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;最大似然估计法&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;似然函数&lt;/strong&gt;：
-&lt;span class=&#34;math display&#34;&gt;\[L(x_1,\dots,x_n;\theta)=L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)
-\]&lt;/span&gt;
-给定样本观测值&lt;span class=&#34;math inline&#34;&gt;\((x_1,\dots,x_n)\)&lt;/span&gt;, 记&lt;span class=&#34;math inline&#34;&gt;\(L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;的最大值点为&lt;span class=&#34;math inline&#34;&gt;\(\theta=T(x_1,\dots,x_n)\)&lt;/span&gt;. 则&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计量(MLE, maximum likelihood estimator)为
-&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_L=T(X_1,\dots,X_n).\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;最大似然估计的一般步骤&lt;/h2&gt;
-&lt;p&gt;第一步：写出似然函数&lt;span class=&#34;math inline&#34;&gt;\(L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;第二步：若似然函数&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的可微函数，则最大值必然满足&lt;strong&gt;似然方程&lt;/strong&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\frac{d L}{d \theta}=0\]&lt;/span&gt;
-解出&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, 并验证其是否是极大值：&lt;span class=&#34;math display&#34;&gt;\[\frac{d^2 L}{d \theta^2}&amp;lt;0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;注1：为方便求导，一般求对数似然函数&lt;span class=&#34;math inline&#34;&gt;\(\ln L(x_1,\dots,x_n;\theta)\)&lt;/span&gt;求极大值点&lt;/p&gt;
-&lt;p&gt;注2：若有多个参数&lt;span class=&#34;math inline&#34;&gt;\(\theta_1,\dots,\theta_m\)&lt;/span&gt;，对每个变量求偏导，联立&lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;个方程求解&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;10-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例1：0-1离散型&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim B(1,p)\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为
-&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;p)=\prod_{i=1}^{n}p^{x_i}(1-p)^{1-x_i}=p^{\sum_{i=1}^nx_i}(1-p)^{n-\sum_{i=1}^nx_i}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(y=\sum_{i=1}^nx_i\)&lt;/span&gt;, 对数似然函数为：
-&lt;span class=&#34;math display&#34;&gt;\[\ln L = y \ln p + (n-y)\ln (1-p).\]&lt;/span&gt;
-对数似然方程为：
-&lt;span class=&#34;math inline&#34;&gt;\(\frac{d \ln L}{d p} = y/p - (n-y)/(1-p)=0.\)&lt;/span&gt;
-解得&lt;span class=&#34;math inline&#34;&gt;\(p= y/n=\frac{1}{n}\sum_{i=1}^nx_i\)&lt;/span&gt;. 因为&lt;span class=&#34;math inline&#34;&gt;\(\frac{d^2\ln L}{d p^2}&amp;lt;0\)&lt;/span&gt;, 所以&lt;span class=&#34;math inline&#34;&gt;\(p= y/n\)&lt;/span&gt;是极大值。&lt;span class=&#34;math inline&#34;&gt;\(\hat{p}_L = \bar X.\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例2：正态分布&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;\mu,\sigma^2)=\prod_{i=1}^{n}f(x_i)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\]&lt;/span&gt;
-令&lt;span class=&#34;math inline&#34;&gt;\(\theta_1=\mu,\theta_2=\sigma^2\)&lt;/span&gt;, 对数似然函数为：
-&lt;span class=&#34;math display&#34;&gt;\[\ln L = (n/2)\ln (2\pi)-(n/2)\ln\theta_2-\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;2-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例2：正态分布&lt;/h2&gt;
-&lt;p&gt;对数似然方程组为：
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-\frac{\partial \ln L}{\partial \theta_1} &amp;amp;=\frac{\sum_{i=1}^n(x_i-\theta_1)}{\theta_2}=0\\
-\frac{\partial \ln L}{\partial \theta_2} &amp;amp;=-\frac{n}{2\theta_2}+\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2^2}=0
-\end{cases}
-\]&lt;/span&gt;
-解得&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}_L=\bar X,\ \hat{\sigma}^2_L = S_n^2\)&lt;/span&gt;. (可以验证二阶导函数非正定，即取得极大值。)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;3-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例3&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim U[a,b]\)&lt;/span&gt;, 从中抽取样本&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;的观测值为&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;. 求参数&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;的最大似然估计。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;: 似然函数为
-&lt;span class=&#34;math display&#34;&gt;\[ L(x_1,\dots,x_n;a,b)=\frac{1}{(b-a)^n}\prod_{i=1}^{n} 1\{a\le x_i\le b\}\]&lt;/span&gt;
-注意到&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;关于&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;不可微。容易观察到，当&lt;span class=&#34;math inline&#34;&gt;\(a=\min_{i=1,\dots,n}\{x_i\},\ b=\max_{i=1,\dots,n}\{x_i\}\)&lt;/span&gt;时&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;取得最大值。故&lt;span class=&#34;math display&#34;&gt;\[\hat{a}_L = X_{(1)},\ \hat{b}_L = X_{(n)}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;关于最大似然估计的一些说明&lt;/h2&gt;
-&lt;p&gt;最大似然估计的不变性：如果&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的最大似然估计，则对任一函数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, 其最大似然估计为&lt;span class=&#34;math inline&#34;&gt;\(g(\hat{\theta})\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;当分布中有&lt;em&gt;多余的参数&lt;/em&gt;或者&lt;em&gt;数据为截尾或缺失&lt;/em&gt;时，似然函数的求极大值比较困难。针对这种问题，文献&lt;/p&gt;
-&lt;p&gt;Dempster, A.P.; Laird, N.M.; Rubin, D.B. (1977). &lt;a href=&#34;https://www.jianguoyun.com/p/DSfhflcQpvLJBhjv42s&#34;&gt;Maximum Likelihood from Incomplete Data via the EM Algorithm&lt;/a&gt;. &lt;em&gt;Journal of the Royal Statistical Society, Series B&lt;/em&gt;. 39 (1): 1–38. (cited by 54539, 2018/8/18)&lt;/p&gt;
-&lt;p&gt;提出了一种有效的&lt;strong&gt;Expectation–Maximization (EM)&lt;/strong&gt;算法。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;矩估计与最大似然估计的对比&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;矩估计法（也称数字特征法）&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;直观意义比较明显，但要求总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶矩存在。&lt;/li&gt;
-&lt;li&gt;缺点是不唯一，此时尽量使用样本低阶矩。&lt;/li&gt;
-&lt;li&gt;观测值受异常值影响较大，不够稳健，实际中避免使用样本高阶矩。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;极大似然估计法&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;具有一些理论上的优点（不变性、渐近正态性）&lt;/li&gt;
-&lt;li&gt;缺点是如果似然函数不可微，没有一般的求解法则。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;矩估计与最大似然估计的对比&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;estimations.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;1.3 估计的优良性标准&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;估计量的无偏性&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;估计量的有效性&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;估计量的大样本性质：相合性与渐近正态性&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;无偏性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\theta\in \Theta\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;无偏估计量：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;渐近无偏估计量：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;无偏性意味着：虽然估计量&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;由于随机可能偏离真值&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;, 但取其平均值（期望）却等于&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;. 即没有系统偏差。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;样本均值是总体的均值的无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(E[\bar X]=E[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;样本方差是总体方差的渐近无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(\lim_{n\to \infty}E[S_n^{2}]=Var[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;修正样本方差是总体方差的无偏估计，即&lt;span class=&#34;math inline&#34;&gt;\(E[S_n^{*2}]=Var[X]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;均方误差&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量，其均方误差 (mean squared error, MSE)为
-&lt;span class=&#34;math display&#34;&gt;\[M_{\theta}(T):=E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2].\]&lt;/span&gt;
-均方根误差 (root mean squared error, RMSE)为
-&lt;span class=&#34;math display&#34;&gt;\[R_{\theta}(T):=\sqrt{E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2]}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;注意到：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[M_{\theta}(T)=(E[T]-g(\theta))^2+Var(T)=偏差^2+方差\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，则&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta}(T)=Var(T)\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;比较两个估计量的优劣&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：若&lt;span class=&#34;math inline&#34;&gt;\(T_1(X_1,\dots,X_n)\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(T_2(X_1,\dots,X_n)\)&lt;/span&gt;都为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量，&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如果&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta}(T_1)\le M_{\theta}(T_2),\forall \theta\in \Theta\)&lt;/span&gt;, 则称&lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt;不次于&lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt;。&lt;/li&gt;
-&lt;li&gt;在此基础上，如果存在一个&lt;span class=&#34;math inline&#34;&gt;\(\theta_0\in\Theta\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(M_{\theta_0}(T_1)&amp;lt; M_{\theta_0}(T_2)\)&lt;/span&gt;, 则称&lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt;比&lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt;有效。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为其样本(&lt;span class=&#34;math inline&#34;&gt;\(n&amp;gt;1\)&lt;/span&gt;)，证明下列估计量&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu} = \sum_{i=1} C_iX_i\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的无偏估计的充要条件是&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^nC_i = 1.\)&lt;/span&gt; 在满足该条件前提下，&lt;span class=&#34;math inline&#34;&gt;\(C_i\)&lt;/span&gt;取何值时，&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mu}\)&lt;/span&gt;的最有效。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(E[\hat{\mu}]=\mu\Leftrightarrow \sum_{i=1}^nC_i = 1\)&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[Var[\hat{\mu}]=\sigma^2\sum_{i=1}^nC_i^2\ge \sigma^2\frac{(C_1+\dots+C_n)^2}{n}=\frac{\sigma^2}{n}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;而且唯一的最小值在&lt;span class=&#34;math inline&#34;&gt;\(C_i=1/n,i=1,\dots,n\)&lt;/span&gt;处取得。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一致最小方差无偏估计&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T_0(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，如果对于&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的任意无偏估计量&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;都有
-&lt;span class=&#34;math display&#34;&gt;\[Var[T_0]\le Var[T],\ \forall\theta\in\Theta\]&lt;/span&gt;
-则称&lt;span class=&#34;math inline&#34;&gt;\(T_0\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;一致最小方差无偏估计量&lt;/strong&gt; (uniformly minimum-variance unbiased estimator, UMVUE)。&lt;/p&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;思考&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;无偏估计量是不是一定存在？（反例见课本例2.5, p27）&lt;/li&gt;
-&lt;li&gt;如果存在多个无偏估计量，如何找到UMVUE？（Blackwell, Rao, Lehmann, Scheffe等统计学家获得了一系列寻求UMVUE的理论和方法）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;black-lehmann-scheffe&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Black-Lehmann-Scheffe定理&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为统计量。如果对任何(Borel可测)函数&lt;span class=&#34;math inline&#34;&gt;\(u(\cdot)\)&lt;/span&gt;, 只要&lt;span class=&#34;math inline&#34;&gt;\(E[u(T)]=0\)&lt;/span&gt;(对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;)就可以推出&lt;span class=&#34;math inline&#34;&gt;\(P(u(T)=0)=1\)&lt;/span&gt;, 这次称统计量&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;为&lt;em&gt;完全的统计量&lt;/em&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;B-L-S定理&lt;/strong&gt;：如果&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;em&gt;完全的充分统计量&lt;/em&gt;，&lt;span class=&#34;math inline&#34;&gt;\(\psi(T)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的无偏估计，则&lt;span class=&#34;math inline&#34;&gt;\(\psi(T)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的最小方差无偏估计。&lt;/p&gt;
-&lt;div id=&#34;section&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;：可以证明，如果参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的集合有内点，则指数型分布族的充分统计量
-&lt;span class=&#34;math inline&#34;&gt;\(\left(\sum_{i=1}^nT_1(x_i),\dots,\sum_{i=1}^nT_k(x_i)\right)\)&lt;/span&gt;
-是完全的。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;cramer-rao&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Cramer-Rao不等式&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的密度为&lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta)\)&lt;/span&gt;, 参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\in (a,b)\)&lt;/span&gt;. &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本，&lt;span class=&#34;math inline&#34;&gt;\(\psi(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的一个无偏估计，且满足下列正则性条件：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的支撑与&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关；&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(g&amp;#39;(\theta)\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\frac{df(x;\theta)}{d\theta}\)&lt;/span&gt;都存在且对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;有&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty \frac{df(x;\theta)}{d\theta} d x = 0\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty\frac d{d\theta} L(\vec x;\theta) d \vec x=0\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac d{d\theta}\int_{-\infty}^\infty \psi(\vec x) L(\vec x;\theta) d \vec x=\int_{-\infty}^\infty \psi(\vec x) \frac d{d\theta}L(\vec x;\theta) d \vec x\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;cramer-rao-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Cramer-Rao不等式&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(I(\theta):=E[(\frac {d\ln f(X;\theta)}{d\theta})^2]&amp;gt;0\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;则有
-&lt;span class=&#34;math display&#34;&gt;\[Var_\theta[\psi(X_1,\dots,X_n)]\ge \frac{[g&amp;#39;(\theta)]^2}{nI(\theta)}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;证明见p. 28&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(I(\theta)\)&lt;/span&gt;叫做&lt;strong&gt;Fisher信息量&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;离散情形有类似的结论&lt;/li&gt;
-&lt;li&gt;C-R不等式的下界不一定达到，见例2.9, p30.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例&lt;/h2&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;未知，&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;已知。
-Fisher信息量为
-&lt;span class=&#34;math display&#34;&gt;\[I(\mu) = E[(\frac {d\ln f(X;\mu)}{d\mu})^2]=\frac 1{\sigma^4}E[(X-\mu)^2]=\frac 1{\sigma^2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[\bar X] = \frac{\sigma^2}{n}=\frac{1}{nI(\mu)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;可以证明：若&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;已知，则&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的估计量&lt;span class=&#34;math inline&#34;&gt;\(\frac 1n\sum_{i=1}^n(X_i-\mu)^2\)&lt;/span&gt;的方差达到了C-R不等式的下界。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;统计量的大样本性质&lt;/h2&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;统计量的相合性&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;统计量的渐近正态性&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;统计量的相合性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;（弱）相合估计&lt;/strong&gt;：称&lt;span class=&#34;math inline&#34;&gt;\(T_n(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的相合估计，如果对任何
-&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 有&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty}P(|T_n-g(\theta)|\ge \epsilon)=0.\]&lt;/span&gt; 等价于依概率收敛&lt;span class=&#34;math inline&#34;&gt;\(T_n\stackrel p\to g(\theta)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;强相合估计&lt;/strong&gt;：称&lt;span class=&#34;math inline&#34;&gt;\(T_n(X_1,\dots,X_n)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的强相合估计，如果&lt;span class=&#34;math display&#34;&gt;\[P(\lim_{n\to\infty}T_n=g(\theta))=1.\]&lt;/span&gt; 等价于概率1收敛&lt;span class=&#34;math inline&#34;&gt;\(T_n\stackrel {w.p.1}\to g(\theta)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;由强大数定理知，矩估计一般是强估计的&lt;/li&gt;
-&lt;li&gt;最大似然估计在十分广泛的条件下也是有强相合性（见p31)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例&lt;/h2&gt;
-&lt;p&gt;设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为其样本，证明&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;样本均值&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的相合估计量；&lt;/li&gt;
-&lt;li&gt;样本&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶原点矩&lt;span class=&#34;math inline&#34;&gt;\(M_k\)&lt;/span&gt;是总体&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;阶原点矩&lt;span class=&#34;math inline&#34;&gt;\(E[X^k]\)&lt;/span&gt;的相合估计量；&lt;/li&gt;
-&lt;li&gt;样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;和修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^{2*}\)&lt;/span&gt;都是&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的相合估计量。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：由辛钦大数定律知，&lt;span class=&#34;math inline&#34;&gt;\(\bar X\stackrel p\to \mu\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(M_k\stackrel p\to E[X^k]\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_n^2 = \frac{1}{n}\sum_{i=1}^nX_i^2-\bar X^2\stackrel p\to E[X^2]-E[X]^2=\sigma^2\]&lt;/span&gt;
-同理，&lt;span class=&#34;math inline&#34;&gt;\(S_n^{2*}=\frac{n-1}{n}S_n^2\stackrel p\to \sigma^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：这里用到依概率收敛的性质：假设&lt;span class=&#34;math inline&#34;&gt;\(X_n\stackrel p\to X,\ Y_n\stackrel p\to Y\)&lt;/span&gt;. 则&lt;span class=&#34;math inline&#34;&gt;\(X_n+Y_n\stackrel p\to X+Y\)&lt;/span&gt;. 如果&lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt;连续，则&lt;span class=&#34;math inline&#34;&gt;\(g(X_n)\stackrel p\to g(X)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(g(X_n,Y_n)\stackrel p\to g(X,Y)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;相合估计的充分条件&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\ \theta\in \Theta\)&lt;/span&gt;, 统计量&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。如果
-&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)] = g(\theta),\ \lim_{n\to \infty}Var[T(X_1,\dots,X_n)] =0,\]&lt;/span&gt;
-则&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的相合估计量。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：令&lt;span class=&#34;math inline&#34;&gt;\(T_n=T(X_1,\dots,X_n)\)&lt;/span&gt;.
-注意到&lt;span class=&#34;math display&#34;&gt;\[\{|T_n-g(\theta)|\ge \epsilon\}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\cup \{|E[T_n]-g(\theta)|\ge \epsilon/2\}.\]&lt;/span&gt;
-对任意&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 存在&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;, 当&lt;span class=&#34;math inline&#34;&gt;\(n\ge N\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(|E[T_n]-g(\theta)|&amp;lt; \epsilon/2\)&lt;/span&gt;.
-此时&lt;span class=&#34;math display&#34;&gt;\[\{|T_n-g(\theta)|\ge \epsilon \}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\]&lt;/span&gt;
-所以，
-&lt;span class=&#34;math display&#34;&gt;\[P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR[T_n]}{\epsilon^2}\to 0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;统计量的渐近正态性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的估计量。如果存在一个趋于零的正数列&lt;span class=&#34;math inline&#34;&gt;\(\sigma_n(\theta)\)&lt;/span&gt;, 使得&lt;span class=&#34;math inline&#34;&gt;\([T-g(\theta)]/\sigma_n(\theta)\)&lt;/span&gt;的分布收敛到标准正态分布，则称&lt;span class=&#34;math inline&#34;&gt;\(T(X_1,\dots,X_n)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;渐近正态估计&lt;/strong&gt;，或称&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;具备&lt;strong&gt;渐近正态性&lt;/strong&gt;，即&lt;span class=&#34;math display&#34;&gt;\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;最大似然估计的渐近正态性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的密度为&lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta)\)&lt;/span&gt;, 其参数空间&lt;span class=&#34;math inline&#34;&gt;\(\Theta\)&lt;/span&gt;是非退化区间，且满足下列正则性条件：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\frac{\partial \ln f}{\partial\theta}, \frac{\partial^2 \ln f}{\partial\theta^2}, \frac{\partial^3 \ln f}{\partial\theta^3}\)&lt;/span&gt; 都存在&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, 有&lt;span class=&#34;math inline&#34;&gt;\(|\frac{\partial \ln f}{\partial\theta}|&amp;lt;F_1(x),\ |\frac{\partial^2 \ln f}{\partial\theta^2}|&amp;lt;F_2(x),\ |\frac{\partial^3 \ln f}{\partial\theta^3}|&amp;lt;H(x),\)&lt;/span&gt; 其中&lt;span class=&#34;math inline&#34;&gt;\(F_1(x),F_2(x)\)&lt;/span&gt;在实数轴上可积，且&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty H(x)f(x;\theta)dx&amp;lt;M\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对一切&lt;span class=&#34;math inline&#34;&gt;\(\theta\in\Theta\)&lt;/span&gt;, 有&lt;span class=&#34;math inline&#34;&gt;\(0&amp;lt;I(\theta)=E[(\frac{\partial \ln f}{\partial\theta})^2]&amp;lt;\infty\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;则在参数真值&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(\Theta\)&lt;/span&gt;内点的情况下，其似然方程有一个解&lt;span class=&#34;math inline&#34;&gt;\(\hat{\theta}_L\)&lt;/span&gt;存在，且&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_L\stackrel{p}{\to}\theta,\ \hat{\theta}_L\stackrel{\cdot}{\sim} N(\theta,[nI(\theta)]^{-1}).\]&lt;/span&gt;&lt;/p&gt;
-&lt;div id=&#34;.-.--1992&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;证明参考：陈希孺. 概率论与数理统计. 中国科技大学出版社, 1992&lt;/h3&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;2 区间估计&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;区间估计的定义&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;单个正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;两个独立正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;非正态总体的区间估计&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;区间估计的定义&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim F(x;\theta),\ \theta\in \Theta\)&lt;/span&gt;. 如果统计量&lt;span class=&#34;math inline&#34;&gt;\(T_1(X_1,\dots,X_n),T_2(X_1,\dots,X_n)\)&lt;/span&gt;使得对给定的&lt;span class=&#34;math inline&#34;&gt;\(\alpha\in(0,1)\)&lt;/span&gt;有
-&lt;span class=&#34;math display&#34;&gt;\[P(T_1\le g(\theta)\le T_2)=1-\alpha,\ \forall \theta\in\Theta,\]&lt;/span&gt;
-则称随机区间&lt;span class=&#34;math inline&#34;&gt;\([T_1,T_2]\)&lt;/span&gt;为参数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的&lt;strong&gt;置信度（置信概率）&lt;/strong&gt;为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的&lt;strong&gt;置信区间&lt;/strong&gt;，&lt;span class=&#34;math inline&#34;&gt;\(T_1,T_2\)&lt;/span&gt;分别称为&lt;strong&gt;置信下界&lt;/strong&gt;和&lt;strong&gt;置信上界&lt;/strong&gt;。&lt;/p&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;说明&lt;/h3&gt;
-&lt;p&gt;在一些情况下，定义中的“等式”无解，此时考虑的置信区间&lt;span class=&#34;math inline&#34;&gt;\([T_1,T_2]\)&lt;/span&gt;应满足
-&lt;span class=&#34;math display&#34;&gt;\[P(T_1\le g(\theta)\le T_2)\ge 1-\alpha,\ \forall \theta\in\Theta.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;置信区间示意图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;CI.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;区间估计基本步骤——枢轴量法&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：找到&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的区间估计，置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Step 1: 选择恰当的&lt;strong&gt;枢轴量&lt;/strong&gt;&lt;span class=&#34;math inline&#34;&gt;\(G(X_1,\dots,X_n;g(\theta))\)&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;不含有其他未知参数&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;的分布确定，即不含未知参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;一般地，&lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;是关于参数&lt;span class=&#34;math inline&#34;&gt;\(g(\theta)\)&lt;/span&gt;的单调函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Step 2: 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(P(a\le G\le b)=1-\alpha\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Step 3: 转化不等式&lt;span class=&#34;math inline&#34;&gt;\(a\le G\le b\)&lt;/span&gt;为如下形式：
-&lt;span class=&#34;math display&#34;&gt;\[T_1\le g(\theta)\le T_2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;指数分布&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;：若总体为指数分布&lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;，求未知参数&lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的置信区间。&lt;/p&gt;
-&lt;p&gt;Step 1: 选择枢轴量
-&lt;span class=&#34;math display&#34;&gt;\[G(X_1,\dots,X_n;\lambda) = 2\lambda  n\bar X\sim Ga(n,1/2)=\chi^2(2n)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Step 2: 求&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(P(a\le G\le b)=1-\alpha\)&lt;/span&gt;，即
-&lt;span class=&#34;math display&#34;&gt;\[P(a\le 2\lambda  n\bar X\le b)=1-\alpha\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Step 3: &lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math inline&#34;&gt;\([a/(2n\bar X),b/(2n\bar X)]\)&lt;/span&gt;.&lt;/p&gt;
-&lt;div id=&#34;ab&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;如何选择&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;?&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;平分法：&lt;span class=&#34;math inline&#34;&gt;\(a=\chi^2_{\alpha/2}(2n), b=\chi^2_{1-\alpha/2}(2n)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;最优方案？参考书p35&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;平分法示意图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;chiCI.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;2.1 单个正态总体的区间估计&lt;/h2&gt;
-&lt;p&gt;设总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, 如何找出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;已知方差，求期望的置信区间&lt;/h2&gt;
-&lt;p&gt;由抽样定理知，&lt;span class=&#34;math inline&#34;&gt;\(\bar{X}\sim N(\mu,\sigma^2/n)\)&lt;/span&gt;. 因此
-&lt;span class=&#34;math inline&#34;&gt;\(U = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\)&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-b\frac{\sigma}{\sqrt{n}},\  \bar{X}-a\frac{\sigma}{\sqrt{n}}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=u_{1-\alpha/2}\)&lt;/span&gt;, 此时置信区间为：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\  \bar{X}+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right]=\bar{X}\pm u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;方差未知，求期望的置信区间&lt;/h2&gt;
-&lt;p&gt;由抽样定理知，
-&lt;span class=&#34;math display&#34;&gt;\[T = \frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}= \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[P\left(a\le \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\le b\right) = 1-\alpha\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-b\frac{S_n^*}{\sqrt{n}},\  \bar{X}-a\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-b\frac{S_n}{\sqrt{n-1}},\  \bar{X}-a\frac{S_n}{\sqrt{n-1}}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;最优的选择&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(b=-a=t_{1-\alpha/2}(n-1)\)&lt;/span&gt;, 此时置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\bar{X}-t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}},\  \bar{X}+t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\right]=\bar{X}\pm t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-3&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：假设OPPO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;. 随机抽取6部手机测试通话时间（单位：小时）为
-&lt;span class=&#34;math display&#34;&gt;\[1.6,\ 2.1,\ 1.9,\ 1.8,\ 2.2,\ 2.1,\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2=0.06\)&lt;/span&gt;, 求&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;未知, 求&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;查表知，&lt;span class=&#34;math inline&#34;&gt;\(u_{1-\alpha/2}=u_{0.975}=1.96,\ t_{1-\alpha/2}=t_{0.975}=2.5706\)&lt;/span&gt;. 且&lt;span class=&#34;math inline&#34;&gt;\(\bar X = 1.95,\ S_n=0.206\)&lt;/span&gt;&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\left[1.95-1.96\frac{\sqrt{0.06}}{\sqrt{6}},\  1.95+1.96\frac{\sqrt{0.06}}{\sqrt{6}}\right]=[1.754,\ 2.146]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\left[1.95-2.5706\frac{0.206}{\sqrt{6-1}},\  1.95+2.5706\frac{0.206}{\sqrt{6-1}}\right]=[1.713,\ 2.187]\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一些思考&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;分析这两种的结果会发现，由同一组样本观察值，按同样的置信概率，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;计算出的置信区间因为&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;的是否已知会不一样。这因为：当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;为已知时，我们掌握的信息多一些，在其他条件相同的情况下，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的估计精度要高一些，即表现为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间长度要小些。反之，当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;为未知时，对&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的估计精度要低一些，即表现为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信区间长度在大一些。这是因为当&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;比较小时，&lt;span class=&#34;math inline&#34;&gt;\(t_{1-\alpha/2}(n-1)&amp;gt;u_{1-\alpha/2}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;还可以发现，当样本量&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;不断增大时，两种情况下的置信区间会慢慢接近。
-也就意味着大样本信息可以弥补&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;的缺失带来的偏差（&lt;strong&gt;大数定律&lt;/strong&gt;）。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;已知期望，求方差的置信区间&lt;/h2&gt;
-&lt;p&gt;构造统计量
-&lt;span class=&#34;math display&#34;&gt;\[T =\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2(n)\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[P\left(\chi^2_{\alpha/2}(n)\le\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n)\right) = 1-\alpha\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{1-\alpha/2}(n)},\  \frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{\alpha/2}(n)}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;期望未知，求方差的置信区间&lt;/h2&gt;
-&lt;p&gt;构造统计量
-&lt;span class=&#34;math display&#34;&gt;\[T =\frac{nS_n^2}{\sigma^2}=\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[P\left(\chi^2_{\alpha/2}(n-1)\le\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n-1)\right) = 1-\alpha\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{\alpha/2}(n-1)}\right]=\left[\frac{nS_n^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{nS_n^2}{\chi^2_{\alpha/2}(n-1)}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;2.2 两个独立正态总体的区间估计&lt;/h2&gt;
-&lt;p&gt;设两个独立总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma_1^2)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Y\sim N(\mu_2,\sigma^2)\)&lt;/span&gt;, 如何找出未知参数&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的置信区间？其中&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本为&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_m\)&lt;/span&gt;, 样本方差为&lt;span class=&#34;math inline&#34;&gt;\(S_{1m}^2\)&lt;/span&gt;; &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;的样本为&lt;span class=&#34;math inline&#34;&gt;\(Y_1,\dots,Y_n\)&lt;/span&gt;, 样本方差为&lt;span class=&#34;math inline&#34;&gt;\(S_{2n}^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2,\sigma_2^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;以知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2=\sigma_2^2=\sigma^2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\mu_1,\mu_2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;未知&lt;span class=&#34;math inline&#34;&gt;\(\mu_1,\mu_2\)&lt;/span&gt;, 找出&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信区间&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;应用场景&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;比较男生、女生两个群体的身高/体重/成绩平均水平的差异&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;已知方差，求均值差的置信区间&lt;/h2&gt;
-&lt;p&gt;选择枢轴量：
-&lt;span class=&#34;math display&#34;&gt;\[U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\sim N(0,1).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[(\bar{X}-\bar{Y})-u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n},\  (\bar{X}-\bar{Y})+u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;已知方差相同，求均值差的置信区间&lt;/h2&gt;
-&lt;p&gt;选择枢轴量：
-&lt;span class=&#34;math display&#34;&gt;\[T=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;其中&lt;span class=&#34;math inline&#34;&gt;\(S_w =\sqrt{(mS_{1m}^2+nS_{2n}^2)/(m+n-2)}.\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(t_{1-\alpha/2}(m+n-2)=t_{1-\alpha/2}\)&lt;/span&gt;，&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[(\bar{X}-\bar{Y})-t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n},\  (\bar{X}-\bar{Y})+t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n}\right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-4&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;例&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：假设OPPO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma_1^2)\)&lt;/span&gt;, VIVO手机充电五分钟通话时间&lt;span class=&#34;math inline&#34;&gt;\(Y\sim N(\mu_2,\sigma_2^2)\)&lt;/span&gt;. 随机抽取6部手机测试通话时间（单位：小时）为&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{OPPO}:\ 1.6,\   2.1,\  1.9,\  1.8,\   2.2,\   2.1\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{VIVO}:\ 1.8,\   2.2,\ 1.5,\   1.4,\   2.0,\   1.7\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;求&lt;span class=&#34;math inline&#34;&gt;\(\mu_1-\mu_2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的置信区间:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = 0.06,\ \sigma_2^2 = 0.08\)&lt;/span&gt;.&lt;/li&gt;
-&lt;li&gt;已知&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 =\sigma_2^2\)&lt;/span&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;解&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(m=n=6\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bar{X}=1.95,\ \bar{Y}=1.77\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(S_{1m}^2=0.042, S_{2n}^2=0.064, S_w = 0.252.\)&lt;/span&gt; 查表知，&lt;span class=&#34;math inline&#34;&gt;\(u_{0.975}=1.96\)&lt;/span&gt;,
-&lt;span class=&#34;math inline&#34;&gt;\(t_{0.975}(10)=2.23\)&lt;/span&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;第一种情况为&lt;span class=&#34;math inline&#34;&gt;\([-0.12,\ 0.48]\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;第二种情况为&lt;span class=&#34;math inline&#34;&gt;\([-0.14,\ 0.50]\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;已知均值，求方差比的置信区间&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_1 =\sum_{i=1}^m\frac{(X_i-\mu_1)^2}{\sigma_1^2}\sim \chi^2(m),\ T_2 =\sum_{i=1}^n\frac{(Y_i-\mu_2)^2}{\sigma_2^2}\sim \chi^2(n)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{T_1/m}{T_2/n}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m,n)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{1}{F_{1-\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2},\ \frac{1}{F_{\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}  \right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;均值未知，求方差比的置信区间&lt;/h2&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_1=\frac{(m-1)S_{1m}^{*2}}{\sigma_1^2}=\sum_{i=1}^m\frac{(X_i-\bar X)^2}{\sigma_1^2}\sim \chi^2(m-1)\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[T_2=\frac{(n-1)S_{2n}^{*2}}{\sigma_2^2}=\sum_{i=1}^n\frac{(Y_i-\bar Y)^2}{\sigma_2^2}\sim \chi^2(n-1)\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\frac{T_1/(m-1)}{T_2/(n-1)}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m-1,n-1)\]&lt;/span&gt;
-&lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2/\sigma_2^2\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的置信区间为：
-&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{1}{F_{1-\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}},\ \frac{1}{F_{\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}}  \right]\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一些说明&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;枢轴量法的难点在于寻找枢轴量，没有统一的方法。正态总体下的应用应当熟练掌握。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;另外一种求置信区间方法叫&lt;strong&gt;统计量方法&lt;/strong&gt;，不作要求，感兴趣参考教材pp42-46.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“最优的置信区间”是否存在？目前尚缺乏对置信区间的优良性讨论。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;2.3 非正态总体参数的区间估计&lt;/h2&gt;
-&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(\mu=E[X],\sigma^2=Var[X]\)&lt;/span&gt;分别为总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的期望和方差。
-由中心极限定理，
-&lt;span class=&#34;math display&#34;&gt;\[\frac{\bar X-\mu}{\sigma/\sqrt{n}}\stackrel{\cdot}\sim N(0,1).\]&lt;/span&gt;
-当&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;已知时，总体期望&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;的置信度为&lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;的区间估计可以近似为
-&lt;span class=&#34;math display&#34;&gt;\[\left[\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right].\]&lt;/span&gt;
-如果&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;未知，可以用样本标准差&lt;span class=&#34;math inline&#34;&gt;\(S_n\)&lt;/span&gt;（或者修正样本差&lt;span class=&#34;math inline&#34;&gt;\(S_n^*\)&lt;/span&gt;）替代&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;，
-&lt;span class=&#34;math display&#34;&gt;\[\left[\bar X-u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}\right].\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;3 分布的估计&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;分布函数的估计&lt;/li&gt;
-&lt;li&gt;密度函数的直方图估计&lt;/li&gt;
-&lt;li&gt;密度函数的核估计&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;分布函数的估计&lt;/h2&gt;
-&lt;p&gt;经验分布函数：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
-0,&amp;amp;\ x&amp;lt;x_{(1)}\\
-1/n,&amp;amp;\ x_{(1)}\le x&amp;lt;x_{(2)}\\
-2/n,&amp;amp;\ x_{(2)}\le x&amp;lt;x_{(3)}\\
-&amp;amp;\vdots\\
-k/n,&amp;amp;\ x_{(k)}\le x&amp;lt;x_{(k+1)}\\
-&amp;amp;\vdots\\
-1,&amp;amp;\ x&amp;gt;x_{(n)}\\
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;3.1 密度函数的估计——直方图法&lt;/h2&gt;
-&lt;p&gt;只考虑一维连续型总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim f(x)\)&lt;/span&gt;。设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为样本，&lt;span class=&#34;math inline&#34;&gt;\(R_n(a,b)\)&lt;/span&gt;表示落在区间&lt;span class=&#34;math inline&#34;&gt;\((a,b]\)&lt;/span&gt;中的个数。由中值定理得，存在&lt;span class=&#34;math inline&#34;&gt;\(x_0\in(a,b]\)&lt;/span&gt;使得
-&lt;span class=&#34;math display&#34;&gt;\[f(x_0)=\frac 1{b-a}\int_a^b f(x)dx\approx \frac {R_n(a,b)}{n(b-a)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(-\infty&amp;lt;t_0&amp;lt;t_1&amp;lt;\dots&amp;lt;t_m&amp;lt;\infty\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(t_{i+1}-t_i=h&amp;gt;0\)&lt;/span&gt;. 直方图法的密度估计为：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-f_n(x)=
-\begin{cases}
-\frac{R_n(t_i,t_{i+1})}{nh},\ x\in(t_i,t_{i+1}],i=0,\dots,m-1\\
-0, x\le t_0,x&amp;gt;t_m
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;实际上选取&lt;span class=&#34;math inline&#34;&gt;\(t_0\)&lt;/span&gt;为比&lt;span class=&#34;math inline&#34;&gt;\(X_{(1)}\)&lt;/span&gt;略小的数，选取&lt;span class=&#34;math inline&#34;&gt;\(t_m\)&lt;/span&gt;为比&lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt;略大的数。&lt;strong&gt;经验法则&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(m\approx 1+3.322\log_{10} n.\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;案例：身高数据&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;直方图法的相合性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(f(\cdot)\)&lt;/span&gt;在点&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;连续且&lt;span class=&#34;math inline&#34;&gt;\(\lim_n h_n=0,\lim_n nh_n=\infty\)&lt;/span&gt;, 则对任何&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;有
-&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty} P(|f_n(x)-f(x)|\ge \epsilon)=0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(f(\cdot)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}\)&lt;/span&gt;上一致连续，&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty |x|^\delta d x&amp;lt;\infty\)&lt;/span&gt;(对某个&lt;span class=&#34;math inline&#34;&gt;\(\delta&amp;gt;0\)&lt;/span&gt;), 且&lt;span class=&#34;math inline&#34;&gt;\(\lim_n h_n=0,h_n\ge (\ln n)^2/n\)&lt;/span&gt;, 则
-&lt;span class=&#34;math display&#34;&gt;\[P(\lim_{n\to\infty} \sup_x|f_n(x)-f(x)|=0)=1.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;证明见书pp54-55.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;3.2 核估计法&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;中心差分&lt;/strong&gt;：
-&lt;span class=&#34;math display&#34;&gt;\[f(x)\approx \frac{F(x+h)-F(x-h)}{2h}\approx \frac{F_n(x+h)-F_n(x-h)}{2h}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n 1\{x-h&amp;lt;X_i\le x+h\}=\frac{1}{2hn}\sum_{i=1}^n K_0\left(\frac{x-X_i}{h}\right)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;其中
-&lt;span class=&#34;math display&#34;&gt;\[K_0(x)= \frac 12 1\{-1\le x&amp;lt;1\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核函数&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(K(x)\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}\)&lt;/span&gt;上的非负函数且满足&lt;span class=&#34;math inline&#34;&gt;\(\int_{-\infty}^\infty K(x)=1\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;核估计&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)\)&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;常用的核函数&lt;/h2&gt;
-&lt;p&gt;均匀核函数：
-&lt;span class=&#34;math display&#34;&gt;\[K_0(x)= \frac 12 1\{-1\le x\le1\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[K_1(x)= 1\{-1/2\le x\le1/2\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;正态核函数：
-&lt;span class=&#34;math display&#34;&gt;\[K_2(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;核估计的相合性&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设核函数&lt;span class=&#34;math inline&#34;&gt;\(K(x)\)&lt;/span&gt;满足条件
-&lt;span class=&#34;math display&#34;&gt;\[\int_{-\infty}^\infty (K(x))^2 dx&amp;lt;\infty,\ \lim_{|x|\to \infty} |x|K(x)=0,\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;又密度函数&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;在点&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;处连续，且&lt;span class=&#34;math inline&#34;&gt;\(h_n\to 0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(nh_n\to\infty\)&lt;/span&gt;, 则对一切&lt;span class=&#34;math inline&#34;&gt;\(\epsilon&amp;gt;0\)&lt;/span&gt;, 有
-&lt;span class=&#34;math display&#34;&gt;\[\lim_{n\to\infty} P(|\hat{f}_n(x)-f(x)|\ge \epsilon) = 0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;证明见pp56-58.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;案例：身高数据&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;案例：身高数据&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/chap02_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一些说明&lt;/h2&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;收敛速度的比较&lt;/h3&gt;
-&lt;p&gt;在满足一些正则性的条件（如，&lt;span class=&#34;math inline&#34;&gt;\(h_n\to 0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(nh_n\to\infty\)&lt;/span&gt;）下，可以证明&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;直方图法的均方误差为&lt;span class=&#34;math inline&#34;&gt;\(O(n^{-2/3})\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;核估计的均方误差为&lt;span class=&#34;math inline&#34;&gt;\(O(n^{-4/5})\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;bandwidth-h_n&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;核估计的带宽(bandwidth) &lt;span class=&#34;math inline&#34;&gt;\(h_n\)&lt;/span&gt;如何选取?&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;如果选择正态核函数，&lt;strong&gt;经验法则&lt;/strong&gt;：&lt;span class=&#34;math inline&#34;&gt;\(h_n\approx 1.06S_nn^{-1/5}\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;延伸阅读&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Kernel_density_estimation&#34; class=&#34;uri&#34;&gt;https://en.wikipedia.org/wiki/Kernel_density_estimation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Kernel smoothing techniques used in finance&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;used in Approximate Bayesian Computation (ABC)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;一些参考文献&lt;/h2&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;Liu, Guangwu; Hong, L. Jeff. Kernel estimation of the greeks for options with discontinuous payoffs. &lt;em&gt;Operations Research&lt;/em&gt;. Vol. 59, No. 1, pp. 96-108, 2011.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Hong, L. Jeff; Juneja, Sandeep; Liu, Guangwu. Kernel smoothing for nested estimation with application to portfolio risk measurement. &lt;em&gt;Operations Research&lt;/em&gt;. Vol. 65, No. 3, pp. 657-673, 2017.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Amal B. Abdellah, Pierre L’Ecuyer, Art B. Owen, Florian Puchhammer. Density estimation by Randomized Quasi-Monte Carlo. &lt;a href=&#34;https://arxiv.org/abs/1807.06133&#34;&gt;arXiv:1807.06133&lt;/a&gt;, 2018&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>第二次作业</title>
-      <link>/post/homework2/</link>
-      <pubDate>Thu, 13 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework2/</guid>
-      <description>&lt;p&gt;设随机变量&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(0,1)\)&lt;/span&gt;, 对给定的&lt;span class=&#34;math inline&#34;&gt;\(\alpha\in(0,1)\)&lt;/span&gt;, 数&lt;span class=&#34;math inline&#34;&gt;\(u_{\alpha}\)&lt;/span&gt; 满足&lt;span class=&#34;math inline&#34;&gt;\(P(X&amp;gt;u_\alpha)=\alpha\)&lt;/span&gt;. 若&lt;span class=&#34;math inline&#34;&gt;\(P(|X|&amp;lt;x)=\alpha\)&lt;/span&gt;, 则&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;等于（ ）。&lt;strong&gt;答案：C&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(u_{\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(u_{1-\alpha/2}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(u_{(1-\alpha)/2}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(u_{1-\alpha}\)&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为总体&lt;span class=&#34;math inline&#34;&gt;\(N(1,2^2)\)&lt;/span&gt;的样本，下面正确的是（ ）。&lt;strong&gt;答案：D&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim \chi^2(n)\)&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_{15}\)&lt;/span&gt;为总体&lt;span class=&#34;math inline&#34;&gt;\(N(0,2^2)\)&lt;/span&gt;的样本，则统计量
-&lt;span class=&#34;math display&#34;&gt;\[Y=\frac{X_1^2+\dots+X_{10}^2}{2(X_{11}^2+\dots+X_{15}^2)}\]&lt;/span&gt;
-的分布为（ ）。&lt;strong&gt;答案：A&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(F(10,5)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(F(11,4)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(\chi^2(10)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;D. 以上都不是&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自双参数指数分布
-&lt;span class=&#34;math display&#34;&gt;\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&amp;gt;\mu,\theta&amp;gt;0\]&lt;/span&gt;
-的一个样本，证明&lt;span class=&#34;math inline&#34;&gt;\((\bar X,X_{(1)})\)&lt;/span&gt;是该分布的充分统计量。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：样本的联合密度函数为
-&lt;span class=&#34;math display&#34;&gt;\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&amp;gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&amp;gt;\mu\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;由此得知，样本的联合密度函数可以表示为形如&lt;span class=&#34;math inline&#34;&gt;\(h(\bar X,X_{(1)};\mu,\theta)\)&lt;/span&gt;的函数。由因子分解定理可得&lt;span class=&#34;math inline&#34;&gt;\((\bar X,X_{(1)})\)&lt;/span&gt;为该分布的充分统计量。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自密度函数
-&lt;span class=&#34;math display&#34;&gt;\[p_\theta(x)=\theta/x^2,\ 0&amp;lt;\theta&amp;lt;x&amp;lt;\infty\]&lt;/span&gt;
-的一个样本，求参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;解&lt;/code&gt;：样本的联合密度函数为
-&lt;span class=&#34;math display&#34;&gt;\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&amp;gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&amp;gt;\theta\}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;由因子分解定理可得&lt;span class=&#34;math inline&#34;&gt;\(X_{(1)}\)&lt;/span&gt;为参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注意：当然充分统计量不是唯一，比如一部分同学认为&lt;span class=&#34;math inline&#34;&gt;\((X_{(1)},\prod_{i=1}^nx_i^{-2})\)&lt;/span&gt;是充分统计量。这也是正确的，不过这个充分统计量&lt;code&gt;不是最优的&lt;/code&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr /&gt;
-&lt;p&gt;在R中使用命令&lt;code&gt;boxplot&lt;/code&gt;分析数据&lt;code&gt;OrchardSprays&lt;/code&gt;, 上传相应的箱线图并&lt;strong&gt;基于实验背景&lt;/strong&gt;分析结果。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;关于数据&lt;code&gt;OrchardSprays&lt;/code&gt;的背景介绍查看帮助文档：&lt;code&gt;? OrchardSprays&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;R语言的代码供参考（&lt;strong&gt;请把“你的名字”替换成你真实的名字&lt;/strong&gt;)：boxplot(decrease ~ treatment, data = OrchardSprays, main=“你的名字”)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;实验背景&lt;/code&gt;：在蔗糖溶液中用&lt;a href=&#34;https://baike.baidu.com/item/%E7%9F%B3%E7%A1%AB%E5%90%88%E5%89%82/2228879?fr=aladdin&#34;&gt;石灰硫磺合剂&lt;/a&gt;填充蜂巢的每个蜂房,一共使用了七个不同浓度的石灰硫磺合剂，浓度分别为&lt;span class=&#34;math inline&#34;&gt;\(0.01\times 5^{-i+1},i=1,\dots,7\)&lt;/span&gt;, 以及一个不含石灰硫磺合剂的溶液。
-通过将100只蜜蜂放在密室中两小时，测量不同浓度下蜂巢中蔗糖溶液体积的减少量。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;实验目的&lt;/code&gt;：研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;R代码&lt;/code&gt;：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;boxplot(decrease ~ treatment, data = OrchardSprays,xlab=&amp;quot;石灰硫磺合剂浓度&amp;quot;,ylab=&amp;quot;溶液减少量&amp;quot;,main=&amp;quot;不同浓度的驱蜂效果比较&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/homework2_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;数据分析&lt;/code&gt;：由于蜜蜂是喜欢蔗糖溶液的，所以在正常情况下将100只蜜蜂放至密室两小时，蜂巢中蔗糖溶液体积是会变少的。实验中的“蔗糖溶液”的作用类比果园中的“花粉”。果园种植要除去害虫，但使用含石灰硫磺合剂的喷雾剂在消灭害虫的同时也会驱赶蜜蜂。本实验的目的是研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果。因此，实验中溶液的减少量（即纵坐标）越小说明蜜蜂越排斥该溶液，这样驱赶效果越明显，也就意味着不利于花粉的传播。&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;石灰硫磺合剂的浓度对驱赶蜜蜂是有显著影响的，而且浓度越高驱赶效果越明显，对应数据的中位数呈线性相关。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;当浓度比较低时(F、G组), 数据波动较大，且与不含石灰硫磺合剂的溶液(H组)中位数相差不大，这表明浓度比较低时驱蜂效果不显著。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;从实际的角度出发，我们需要有一定浓度的石灰硫磺合剂才能取得较好的除去害虫的效果，但过高的浓度必然会导致驱赶蜜蜂（这不利于花粉传播）。如何权衡这两者？这就要对这两方面进行建模：一是建立石灰硫磺合剂浓度对去除害虫效果的关系；二是建立石灰硫磺合剂浓度对驱赶蜜蜂效果的关系。对于第二方面，我们可以利用这个数据进行深入建模，比如假设&lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;表示溶液减少量，&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;表示浓度，可以通过引入恰当的模型刻画&lt;span class=&#34;math inline&#34;&gt;\(x,y\)&lt;/span&gt;的联系。而对于第一方面，根据目前的数据无法判断。基于这点，我们目前不能得到“哪种浓度的石灰硫磺合剂最好”的结论。或许我们可以排除两种极端情况：A（不利于花粉传播）和H（不利于去除害虫）。&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

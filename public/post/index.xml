@@ -13,7 +13,43 @@
     
     
     <item>
-      <title>第四章：线性回归(Linear regression)</title>
+      <title>Approximate Bayesian Computation</title>
+      <link>/post/abc/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/abc/</guid>
+      <description>Bayesian inferenceOur goal is to estimate an expectation of \(a(\theta)\) under the posterior distribution
+\[\pi(\theta|y_{obs})=\frac{\pi(\theta)p(y_{obs}|\theta)}{p(y_{obs})}\propto \pi(\theta)p(y_{obs}|\theta)\]
+\(\pi(\theta)\) is the prior distribution
+\(p(y|\theta)\) is the likelihood function
+the constant \(p(y_{obs})\) is intractable
+Suppose that one can generate samples \(\theta^{(1)},\dots,\theta^{(N)}\sim \pi(\theta|y_{obs})\), then
+\[E[a(\theta)|y_{obs}]\approx \frac 1 N\sum_{i=1}^N a(\theta^{(i)})\]
+This is the basic idea of Monte Carlo (MC).
+Acceptance rejection (AR) methodsthe target density \(f(\theta)\)</description>
+    </item>
+    
+    <item>
+      <title>Quasi-Monte Carlo in ABC</title>
+      <link>/post/qmc_abc/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/qmc_abc/</guid>
+      <description>Ingredients for ABCsummary statistic \(S(y):\mathbb{R}^n\to \mathbb{R}^d\)
+kernel function \(k(u_1,\dots,u_d)\)
+bandwidth \(h&amp;gt;0\)
+proposal density \(g(\theta)\)
+ABC approximation
+\[\pi_{ABC}(\theta|s_{obs})\propto \pi(\theta)\int \pi(s|\theta)K((s-s_{obs})/h) d s\to \pi(\theta|s_{obs})\]
+If \(\pi(\theta|s_{obs})\approx \pi(\theta|y)\), then ABC density is a proper approximation of the posterior \(\pi(\theta|y)\).
+ABC convergence ratesConsider the estimation of \(\mu=E[a(\theta)|s_{obs}]\). The acceptance-rejection (AR) based ABC estimate is given by\[\hat\mu=\frac{1}{N}\sum_{i=1}^Na(\theta^{(i)}).\]
+Under regular conditions, ABC bias is
+\[\mathrm{bias}=|E_{ABC}[a(\theta)|s_{obs}]-\mu|=O(h^2),\]
+and the acceptance probability is \(R = O(h^{d}),\)</description>
+    </item>
+    
+    <item>
+      <title>第四章：线性回归</title>
       <link>/post/chap04/</link>
       <pubDate>Thu, 15 Nov 2018 00:00:00 +0000</pubDate>
       

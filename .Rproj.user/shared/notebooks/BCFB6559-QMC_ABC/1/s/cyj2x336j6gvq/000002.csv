@@ -1,0 +1,6 @@
+"0","set.seed(7)"
+"0","library(""randtoolbox"")"
+"0","par(mfrow=c(1,2))"
+"0","qmc = sobol(1024,2)"
+"0","rqmc = sobol(1024,2,scrambling=1)"
+"0","plot(qmc[1:256,],pch=19,xlab=""x"",ylab=""y"",main=""Sobol' points: N = 256"")"

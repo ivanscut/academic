@@ -1,0 +1,2 @@
+"0","r = 0.5"
+"0","lines(ns[c(3,m)], c(err[3],err[3]*(ns[3]/ns[m])^r),col=""red"",lty=5)"

@@ -1,0 +1,2 @@
+"0","legend(500,err[2],legend = c(""QMC errors"",paste0(""N^{"",-r,""}"")),lty = c(1,5),"
+"0","       col=c(""black"",""red""),pch=c(1,NA),cex=1.2)"
