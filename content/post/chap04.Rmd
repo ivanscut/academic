@@ -723,5 +723,5 @@ legend(20,150,c("Fitted","Confidence","Prediction"),
        lty = c(1,5,2),col=c("blue","red","brown"))
 ```
 
-
+[PPT link](ppt.html)
 
