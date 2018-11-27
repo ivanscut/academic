@@ -1,0 +1,2 @@
+"0","rod = read.table(""rod.txt"",col.names = c(""id"",""rough_weight"",""finished_weight""))"
+"0","knitr::kable(rod,""html"",caption = ""rough weight vs. finished weight"")"
