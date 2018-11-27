@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Zhijian He &amp;copy; 2018</copyright>
-    <lastBuildDate>Wed, 07 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/%E4%BD%9C%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第九次作业</title>
+      <link>/post/homework9/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework9/</guid>
+      <description>Consider the linear model\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2), i=1,\dots,n.\]
+Derive the maximum likelihood estimators (MLE) for \(\beta_0,\beta_1\). Are they consistent with the least square estimators (LSE)?
+Derive the MLE for \(\sigma^2\) and look at its unbiasedness.
+A very slippery point is whether to treat the \(x_i\) as fixed numbers or as random variables. In the class, we treated the predictors \(x_i\) as fixed numbers for sake of convenience. Now suppose that the predictors \(x_i\) are iid random variables (independent of \(\epsilon_i\)) with density \(f_X(x;\theta)\) for some parameter \(\theta\).</description>
+    </item>
     
     <item>
       <title>第八次作业</title>

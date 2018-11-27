@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Zhijian He &amp;copy; 2018</copyright>
-    <lastBuildDate>Thu, 15 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第九次作业</title>
+      <link>/post/homework9/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework9/</guid>
+      <description>Consider the linear model\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2), i=1,\dots,n.\]
+Derive the maximum likelihood estimators (MLE) for \(\beta_0,\beta_1\). Are they consistent with the least square estimators (LSE)?
+Derive the MLE for \(\sigma^2\) and look at its unbiasedness.
+A very slippery point is whether to treat the \(x_i\) as fixed numbers or as random variables. In the class, we treated the predictors \(x_i\) as fixed numbers for sake of convenience. Now suppose that the predictors \(x_i\) are iid random variables (independent of \(\epsilon_i\)) with density \(f_X(x;\theta)\) for some parameter \(\theta\).</description>
+    </item>
     
     <item>
       <title>第四章：线性回归</title>
@@ -19,7 +31,7 @@
       
       <guid>/post/chap04/</guid>
       <description>Simple linear modelsThe linear model is given by\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]
-\(\epsilon_i\) are random (need some assumptions)\(x_i\) are fixed (independent/preditor variable)\(y_i\) are random (dependent/response variable)\(\beta_0\) is the intercept\(\beta_1\) is the slopeLeast square estimatorsChoose \(\beta_0,\beta_1\) to minimize\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]
+\(\epsilon_i\) are random (need some assumptions)\(x_i\) are fixed (independent/predictor variable)\(y_i\) are random (dependent/response variable)\(\beta_0\) is the intercept\(\beta_1\) is the slopeLeast square estimatorsChoose \(\beta_0,\beta_1\) to minimize\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]
 The minimizers \(\hat\beta_0,\hat\beta_1\) satisfy\[\begin{cases}\frac{\partial Q}{\partial \beta_0} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)=0\\\frac{\partial Q}{\partial \beta_1} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)x_i=0\end{cases}\]
 This gives\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)x_i}{\sum_{i=1}^n(x_i-\bar x)x_i},\ \hat\beta_0=\bar y-\hat\beta_1\bar x.</description>
     </item>

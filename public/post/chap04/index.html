@@ -192,6 +192,25 @@
         
 
         <li class="nav-item">
+          <a class="nav-link" href="/talk">
+            
+            <span>Talks</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link" href="/#contact">
             
             <span>Contact</span>
@@ -244,7 +263,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    10 min read
+    16 min read
   </span>
   
 
@@ -279,7 +298,7 @@
 <span class="math display">\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]</span></p>
 <ul>
 <li><span class="math inline">\(\epsilon_i\)</span> are random (need some assumptions)</li>
-<li><span class="math inline">\(x_i\)</span> are <strong>fixed</strong> (<em>independent/preditor</em> variable)</li>
+<li><span class="math inline">\(x_i\)</span> are <strong>fixed</strong> (<em>independent/predictor</em> variable)</li>
 <li><span class="math inline">\(y_i\)</span> are random (<em>dependent/response</em> variable)</li>
 <li><span class="math inline">\(\beta_0\)</span> is the <em>intercept</em></li>
 <li><span class="math inline">\(\beta_1\)</span> is the <em>slope</em></li>
@@ -356,10 +375,10 @@ estimate the slope <span class="math inline">\(\beta_1\)</span>. When you’re p
 <h3>Estimation of <span class="math inline">\(\sigma^2\)</span></h3>
 <p>For Assumption A2, it is common that the variance <span class="math inline">\(\sigma^2\)</span> is unknown.
 The next theorem gives an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
-<p><code>Definition</code>: The residual sum of squares (RSS) is defined by
-<span class="math display">\[\mathrm{RSS} = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.\]</span></p>
+<p><code>Definition</code>: The sum of squared errors (SSE) is defined by
+<span class="math display">\[S_e^2 = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.\]</span></p>
 <p><code>Theorem 3</code>: Let
-<span class="math display">\[\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{\mathrm{RSS}}{n-2}.\]</span>
+<span class="math display">\[\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{S_e^2}{n-2}.\]</span>
 Under Assumptions A1 and A2, we have <span class="math inline">\(E[\hat\sigma^2]=\sigma^2\)</span>.</p>
 <p><code>Proof</code>: Let <span class="math inline">\(\hat y_i = \hat\beta_0+\hat\beta_1x_i=\bar y+\hat\beta_1(x_i-\bar x)\)</span>.</p>
 <p><span class="math display">\[
@@ -393,7 +412,7 @@ Cov(y_i,\hat y_i)  &amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\beta_1(
 <p><code>Theorem 4</code>: Under Assumption B, we have</p>
 <p>(1). <span class="math inline">\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)</span></p>
 <p>(2). <span class="math inline">\(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)</span></p>
-<p>(3). <span class="math inline">\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\mathrm{RSS}}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
+<p>(3). <span class="math inline">\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
 <p>(4). <span class="math inline">\(\hat\sigma^2\)</span> is independent of <span class="math inline">\((\hat\beta_0,\hat\beta_1)\)</span>.</p>
 <p><code>Proof</code>: Under Assumption B, <span class="math inline">\(y_i=\beta_0+\beta_1x_i+\epsilon_i\sim N(\beta_0+\beta_1x_i,\sigma^2)\)</span> independently. Both <span class="math inline">\(\hat\beta_0,\hat\beta_1\)</span> are linear combinations of <span class="math inline">\(y_i\)</span>s. Consequently, they are normally distributed. We have known their expected values and variances from Theorems 1 and 2. The claims (1) and (2) are thus verified. The proofs of claims (3) and (4) are deferred to the general case.</p>
 <blockquote>
@@ -407,16 +426,16 @@ intervals using
 <span class="math display">\[\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{\ell_{xx}}}\sim N(0,1).\]</span></p>
 <p>The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_1\)</span> is given by <span class="math inline">\(\hat\beta_1\pm u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)</span>. For testing
 <span class="math display">\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]</span>
-we reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\hat\beta_1-\beta_1^*|&gt;u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)</span> with the most popular hypothesized value being <span class="math inline">\(\beta^*=0\)</span> (i.e., the regession function is <strong>significant</strong> or not at significance level <span class="math inline">\(\alpha\)</span>.)</p>
-<p>In the more realistic setting of unknown <span class="math inline">\(\sigma\)</span>, so long as <span class="math inline">\(n &gt; 3\)</span>, using claims (2-4) gives
+we reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\hat\beta_1-\beta_1^*|&gt;u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)</span> with the most popular hypothesized value being <span class="math inline">\(\beta_1^*=0\)</span> (i.e., the regession function is <strong>significant</strong> or not at significance level <span class="math inline">\(\alpha\)</span>.)</p>
+<p>In the more realistic setting of unknown <span class="math inline">\(\sigma\)</span>, so long as <span class="math inline">\(n \ge 3\)</span>, using claims (2-4) gives
 <span class="math display">\[\frac{\hat\beta_1-\beta_1}{\hat{\sigma}/\sqrt{\ell_{xx}}}\sim t(n-2).\]</span>
 The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\beta_1\)</span> is <span class="math inline">\(\hat\beta_1\pm t_{1-\alpha/2}(n-2)\hat{\sigma}/\sqrt{\ell_{xx}}\)</span>. For testing
 <span class="math display">\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]</span>
 we reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|\hat\beta_1-\beta_1^*|&gt;t_{1-\alpha/2}(n-2)\hat\sigma/\sqrt{\ell_{xx}}\)</span>.</p>
-<p>For drawing inferences about <span class="math inline">\(\beta_0\)</span>, we can use <span class="math display">\[\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim N(0,1),\]</span>
-<span class="math display">\[\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim t(n-2).\]</span></p>
+<p>For drawing inferences about <span class="math inline">\(\beta_0\)</span>, we can use <span class="math display">\[\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim N(0,1),\]</span>
+<span class="math display">\[\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim t(n-2).\]</span></p>
 <p>The <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(\sigma^2\)</span> is
-<span class="math display">\[\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{\mathrm{RSS}}{\chi_{1-\alpha/2}^2(n-2)},\frac{\mathrm{RSS}}{\chi_{\alpha/2}^2(n-2)}\right].\]</span></p>
+<span class="math display">\[\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-2)}\right].\]</span></p>
 </div>
 <div id="case-study-1" class="section level3">
 <h3>Case study 1</h3>
@@ -833,7 +852,7 @@ legend(2.5,2.1,c(&quot;Fitted&quot;,&quot;Lower limit&quot;,&quot;Upper limit&qu
 </div>
 <div id="how-to-control-y" class="section level3">
 <h3>How to control y?</h3>
-<p>Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod <span class="math inline">\(y\)</span> with weights no large than 2.05. How to choose the rough casting?</p>
+<p>Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod <span class="math inline">\(y\)</span> with weights no large than 2.05 with probablity no less than 0.95. How to choose the rough casting?</p>
 <p>Now we want <span class="math inline">\(y\le y_0=2.05\)</span> with probability <span class="math inline">\(1-\alpha\)</span>. Similarly to Theorem 6, we can construct one-side confidence interval for <span class="math inline">\(y\)</span>, that is
 <span class="math display">\[\bigg(-\infty,\hat y+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\bigg].\]</span>
 This implies <span class="math display">\[\hat\beta_0+\hat\beta_1x+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\le y_0.\]</span></p>
@@ -869,7 +888,7 @@ least squares problem can then be phrased as follows: Find <span class="math inl
 <p>Note that <span class="math display">\[Q=(Y-X\beta)^\top(Y-X\beta) = Y^\top Y-2Y^\top X\beta+\beta^\top X^\top X\beta.\]</span>
 If we differentiate <span class="math inline">\(Q\)</span> with respect to each <span class="math inline">\(\beta_i\)</span> and set the derivatives equal to zero, we see that the minimizers <span class="math inline">\(\hat\beta_0,\dots,\hat\beta_{p-1}\)</span> satisfy</p>
 <p><span class="math display">\[\frac{\partial Q}{\partial \beta_i}=-2(Y^\top X)_i+2(X^{\top}X)_{i\cdot}\hat\beta=0.\]</span></p>
-<p>We thus arrive at <span class="math display">\[X^\top X\hat\beta = X^\top Y.\]</span></p>
+<p>We thus arrive at the so-called <strong>normal equations</strong>: <span class="math display">\[X^\top X\hat\beta = X^\top Y.\]</span></p>
 <p>If the design matrix <span class="math inline">\(X^\top X\)</span> is <strong>nonsingular</strong>, the formal solution is
 <span class="math display">\[\hat\beta = (X^\top X)^{-1}X^\top Y.\]</span></p>
 <p>The following lemma gives a criterion for the existence and uniqueness of solutions
@@ -908,50 +927,457 @@ Var[\hat\beta] &amp;= Var[(X^\top X)^{-1}X^{\top}Y]\\
 </div>
 <div id="estimation-of-sigma2-1" class="section level3">
 <h3>Estimation of <span class="math inline">\(\sigma^2\)</span></h3>
-<p>The residual sum of squares (RSS) is defined by
-<span class="math display">\[\mathrm{RSS}=Q(\hat\beta)=||Y-X\hat\beta||^2=||\hat\epsilon||^2,\]</span></p>
-<p>where the vector of residuals is
-<span class="math display">\[\hat\epsilon = Y-X(X^\top X)^{-1}X^\top Y:=Y-PY=Y(I_n-P),\]</span></p>
+<p><code>Definition</code>:</p>
 <ul>
-<li><span class="math inline">\(P=X(X^\top X)^{-1}X^\top\)</span> is an <span class="math inline">\(n\times n\)</span> matrix (called the <strong>projection matrix</strong>).</li>
+<li><p><strong>The fitted values</strong>: <span class="math inline">\(\hat Y = X\hat\beta\)</span></p></li>
+<li><p><strong>The vector of residuals</strong>: <span class="math inline">\(\hat\epsilon = Y-\hat Y\)</span></p></li>
+<li><p><strong>The sum of squared errors (SSE)</strong>: <span class="math inline">\(S_e^2=Q(\hat\beta)=||Y-\hat Y||^2=||\hat\epsilon||^2\)</span></p></li>
 </ul>
-<p>Two useful properties of <span class="math inline">\(P\)</span> are given in the following lemma.</p>
+<p>Note that</p>
+<p><span class="math display">\[\hat Y = X\hat\beta=X(X^\top X)^{-1}X^\top Y=:PY\]</span></p>
+<ul>
+<li><strong>The projection matrix</strong>: <span class="math inline">\(P = X(X^\top X)^{-1}X^\top\)</span></li>
+</ul>
+<p>The vector of residuals is then <span class="math inline">\(\hat\epsilon=(I_n-P)Y\)</span>. Two useful properties of <span class="math inline">\(P\)</span> are given in the following lemma.</p>
 <p><code>Lemma 2</code>: Let <span class="math inline">\(P\)</span> be defined as before. Then
 <span class="math display">\[P = P^\top=P^2\]</span></p>
 <p><span class="math display">\[I_n-P = (I_n-P)^\top=(I_n-P)^2.\]</span></p>
-<blockquote>
-<p>We may think
-geometrically of the fitted values, $Y=X$, as being the projection of <span class="math inline">\(Y\)</span> onto the subspace
+<p><code>Note</code>: We may think
+geometrically of the fitted values, <span class="math inline">\(\hat Y=X\hat\beta=PY\)</span>, as being the projection of <span class="math inline">\(Y\)</span> onto the subspace
 spanned by the columns of <span class="math inline">\(X\)</span>.</p>
-</blockquote>
 <p>The sum of squared residuals is then
 <span class="math display">\[
 \begin{align}
-\mathrm{SSE} = ||(I_n-P)Y||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
+S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
 \end{align}
 \]</span></p>
-<p><code>Lemma 3</code>: The cyclic property of the trace, that is, <span class="math inline">\(\mathrm{trace}(AB)=\mathrm{trace}(BA)\)</span>.</p>
+<p><code>Definition</code>: Let <span class="math inline">\(A\)</span> be an <span class="math inline">\(n\times n\)</span> matrix. The trace of the matrix <span class="math inline">\(A\)</span> is defined as <span class="math inline">\(tr(A) = \sum_{i=1}^n a_{ii}\)</span>, where <span class="math inline">\(a_{ii}\)</span> are the elements on the main diagonal.</p>
+<p><code>Lemma 3</code>: If <span class="math inline">\(A\)</span> is an <span class="math inline">\(m \times n\)</span> matrix and <span class="math inline">\(B\)</span> is an <span class="math inline">\(n \times m\)</span> matrix, then <span class="math display">\[tr(AB)=tr(BA).\]</span> This is the cyclic property of the trace.</p>
 <p>Using Lemma 3, we have</p>
 <p><span class="math display">\[
 \begin{align}
-E[\mathrm{RSS}]&amp;= E[Y^\top(I_n-P)Y]=E[\mathrm{trace}(Y^\top(I_n-P)Y)] \\&amp;= E[\mathrm{trace}((I_n-P)YY^\top)]=\mathrm{trace}((I_n-P)E[YY^\top])\\
-&amp;=\mathrm{trace}((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
-&amp;=\mathrm{trace}((I_n-P)(\sigma^2 I_n))+\mathrm{trace}((I_n-P)X\beta\beta^\top X^\top)\\
-&amp;=\sigma^2(n-\mathrm{trace}(P))
+E[S_e^2]&amp;= E[Y^\top(I_n-P)Y]=E[tr(Y^\top(I_n-P)Y)] \\&amp;= E[tr((I_n-P)YY^\top)]=tr((I_n-P)E[YY^\top])\\
+&amp;=tr((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
+&amp;=tr((I_n-P)(\sigma^2 I_n))+tr((I_n-P)X\beta\beta^\top X^\top)\\
+&amp;=\sigma^2(n-tr(P))
 \end{align}
 \]</span>
 where we used <span class="math inline">\((I_n-P)X=X-X(X^\top X)^{-1}X^\top X=0\)</span>. Using the cyclic property of the trace again gives</p>
 <p><span class="math display">\[
 \begin{align}
-\mathrm{trace}(P)&amp;= \mathrm{trace}(X(X^\top X)^{-1}X^\top)\\
-&amp;=\mathrm{trace}(X^\top X(X^\top X)^{-1})=\mathrm{trace}(I_p)=p.
+tr(P)&amp;= tr(X(X^\top X)^{-1}X^\top)\\
+&amp;=tr(X^\top X(X^\top X)^{-1})=tr(I_p)=p.
 \end{align}
 \]</span></p>
-<p>We therefore have <span class="math inline">\(E[\mathrm{RSS}]=(n-p)\sigma^2\)</span>.</p>
+<p>We therefore have <span class="math inline">\(E[S_e^2]=(n-p)\sigma^2\)</span>.</p>
 <p><code>Theorem 8</code>: Suppose that Assumption A is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>,
-<span class="math display">\[\hat\sigma^2 = \frac{\mathrm{RSS}}{n-p}\]</span></p>
+<span class="math display">\[\hat\sigma^2 = \frac{S_e^2}{n-p}\]</span></p>
 <p>is an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
 </div>
+<div id="normal-distribution" class="section level3">
+<h3>Normal distribution</h3>
+<p><code>Assumption B</code>: Assume that <span class="math inline">\(\epsilon\sim N(0,\sigma^2I_n)\)</span>.</p>
+<p><code>Theorem 9</code>: Suppose that Assumption B is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>, we have</p>
+<p>(1). <span class="math inline">\(\hat\beta \sim N(\beta, \sigma^2(X^\top X)^{-1})\)</span>,</p>
+<p>(2). <span class="math inline">\(\frac{(n-p)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-p)\)</span>,</p>
+<p>(3). <span class="math inline">\(\hat\epsilon\)</span> is independent of <span class="math inline">\(\hat Y\)</span>,</p>
+<p>(4). <span class="math inline">\(S_e^2\)</span> (or equivalently <span class="math inline">\(\hat\sigma^2\)</span>) is independent of <span class="math inline">\(\hat\beta\)</span>.</p>
+<p><code>Proof</code>: If Assumption B is satisfied, then <span class="math inline">\(Y = X\beta+\epsilon\sim N(X\beta,\sigma^2_n)\)</span>. Recall that <span class="math inline">\(\hat\beta = (X^\top X)^{-1}X^\top Y\)</span> is normally distributed. The mean and covariance are given in Theorem 7 since Assumption A is satisfied.</p>
+<p>Let <span class="math inline">\(\xi_1,\dots,\xi_p\)</span> be the orthogonal basis of the subspace <span class="math inline">\(\mathrm{span}(X)\)</span> of <span class="math inline">\(\mathbb{R}^n\)</span> generated by the <span class="math inline">\(p\)</span> columns of the matrix <span class="math inline">\(X\)</span>, and <span class="math inline">\(\xi_{p+1},\dots,\xi_n\)</span> be the orthogonal basis of the orthogonal complement <span class="math inline">\(\mathrm{span}(X)^\perp\)</span>. Since <span class="math inline">\(\hat Y = X\hat\beta\in \mathrm{span}(X)\)</span>, there exists <span class="math inline">\(z_1,\dots,z_p\)</span> such that
+<span class="math display">\[\hat Y = \sum_{i=1}^p z_i\xi_i.\]</span></p>
+<p>On the other hand, <span class="math inline">\(\hat Y^\top \hat \epsilon = (PY)^\top (I_n-P)Y = Y^\top P^\top (I_n-P)Y\)</span>. By Lemma 2, we have
+<span class="math display">\[P^\top (I_n-P)=P-P^2 = 0.\]</span>
+As a result, <span class="math inline">\(\hat Y^\top \hat \epsilon = 0\)</span>, implying <span class="math inline">\(\hat \epsilon\in \mathrm{span}(X)^\perp\)</span>. So there exsits <span class="math inline">\(z_{p+1},\dots,z_n\)</span> such that
+<span class="math display">\[\hat \epsilon = \sum_{i=p+1}^n z_i\xi_i.\]</span>
+Let <span class="math inline">\(U = (\xi_1,\dots,\xi_n)\)</span>, then <span class="math inline">\(U\)</span> is an orthogonal matrix, and let <span class="math inline">\(z=(z_1,\dots,z_n)^\top\)</span>. We thus have
+<span class="math display">\[Y = \hat Y+\hat\epsilon =\sum_{i=1}^nz_i\xi_i=Uz.\]</span></p>
+<p>Therefore, <span class="math display">\[z=U^{-1}Y=U^\top Y\sim N(U^\top X\beta,U^\top(\sigma^2 I_n)U)=N(U^\top X\beta,\sigma^2 I_n).\]</span></p>
+<p>This implies that <span class="math inline">\(z_i\)</span> are independently normally distributed. So <span class="math inline">\(\hat Y\)</span> and <span class="math inline">\(\hat\epsilon\)</span> are independent. We next prove that <span class="math inline">\(E[z_i]=0\)</span> for all <span class="math inline">\(i&gt;p\)</span>. Let <span class="math inline">\(A=(\xi_{p+1},\dots,\xi_{n})\)</span>, then</p>
+<p><span class="math display">\[A(z_{p+1},\dots,z_{n})^\top = \hat\epsilon=(I_n-P)Y.\]</span></p>
+<p>This gives
+<span class="math display">\[E[(z_{p+1},\dots,z_{n})^\top] = E[A^\top (I_n-P)Y]=A^\top (I_n-P)E[Y]=A^\top (I_n-P)X\beta=0.\]</span></p>
+<p>Consequently, <span class="math inline">\(z_i\stackrel{iid}{\sim} N(0,\sigma^2),i=p+1,\dots,n\)</span>, implying <span class="math display">\[S_e^2/\sigma^2 = \hat\epsilon^\top\hat\epsilon/\sigma^2 = \sum_{i=p+1}^n (z_i/\sigma)^2\sim \chi^2(n-p).\]</span></p>
+<p>Note that <span class="math inline">\(S_e^2\)</span> is a function of <span class="math inline">\(\hat\epsilon_i\)</span> and <span class="math inline">\(\hat \beta = (X^\top X)^{-1}X^\top Y =(X^\top X)^{-1} X^\top \hat Y\)</span> are linear conbinations of <span class="math inline">\(\hat y_i\)</span>. So <span class="math inline">\(S_e^2\)</span> and <span class="math inline">\(\hat\beta\)</span> are independent.</p>
+</div>
+<div id="confidence-intervals-and-hypothesis-tests-1" class="section level3">
+<h3>Confidence intervals and hypothesis tests</h3>
+<p>Let <span class="math inline">\(C=(X^\top X)^{-1}\)</span> with entries <span class="math inline">\(c_{ij}\)</span>. Suppose that Assumption B is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>. If <span class="math inline">\(\sigma^2\)</span> is known, for each <span class="math inline">\(\beta_i\)</span>, the <span class="math inline">\(100(1-\alpha)\%\)</span> CI is</p>
+<p><span class="math display">\[\hat\beta_i \pm u_{1-\alpha/2}\sigma\sqrt{c_{ii}}.\]</span></p>
+<p>If <span class="math inline">\(\sigma^2\)</span> is unknown, for each <span class="math inline">\(\beta_i\)</span>, the <span class="math inline">\(100(1-\alpha)\%\)</span> CI is</p>
+<p><span class="math display">\[\hat\beta_i \pm t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}.\]</span>
+For testing hypothesis <span class="math inline">\(H_0:\beta_i= 0\ vs.\ H_1:\beta_i\neq 0\)</span>, the rejection region is
+<span class="math display">\[W = \{|\beta_i|&gt;t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}\}.\]</span></p>
+<p>The <span class="math inline">\(100(1-\alpha)\%\)</span> CI for <span class="math inline">\(\sigma^2\)</span> is <span class="math display">\[\left[\frac{(n-p)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{(n-p)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-p)}\right].\]</span></p>
+</div>
+<div id="significance-tests" class="section level3">
+<h3>Significance tests</h3>
+<p>Consider the hypothesis test:</p>
+<p><span class="math display">\[H_0:\beta_1=\dots=\beta_{p-1}=0\ vs.\ H_1: \beta_{i^*}\neq 0\text{ for some }i^*\ge 1.\]</span></p>
+<p><code>Definition</code>:</p>
+<ul>
+<li><strong>The total sum of squares (SST)</strong>:</li>
+</ul>
+<p><span class="math display">\[S_T^2 = \sum_{i=1}^n(y_i-\bar Y)^2\]</span></p>
+<ul>
+<li><strong>The sum of squares due to regression (SSR)</strong>:</li>
+</ul>
+<p><span class="math display">\[S_R^2  = \sum_{i=1}^n(\hat y_i-\bar Y)^2\]</span></p>
+<ul>
+<li><strong>The sum of squared errors (SSE)</strong>:</li>
+</ul>
+<p><span class="math display">\[S_e^2 = \sum_{i=1}^n(y_i-\hat y_i)^2\]</span></p>
+<p>The relationship is
+<span class="math display">\[S_T^2=S_R^2+S_e^2.\]</span></p>
+<p>It is easy to see that</p>
+<p><span class="math display">\[
+\begin{align}
+S_T^2&amp;=\sum_{i=1}^n (y_i-\bar Y)^2 = \sum_{i=1}^n (y_i-\hat y_i+\hat y_i-\bar Y)^2\\
+&amp;=\sum_{i=1}^n [(y_i-\hat y_i)^2+(\hat y_i-\bar Y)^2+2(y_i-\hat y_i)(\hat y_i-\bar Y)]\\
+&amp;=S_R^2+S_e^2 +2\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y)
+\end{align}
+\]</span></p>
+<p>Using Lemma 2, we have
+<span class="math display">\[
+\begin{align}
+\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y) &amp;= \hat\epsilon^\top\hat Y-\bar Y\sum_{i=1}^n \hat\epsilon_i\\
+&amp;= [(I_n-P)Y]^\top PY-\bar Y(1,1,\dots,1) (I_n-P)Y\\
+&amp;=Y^\top (I_n-P)PY - \bar Y[(1,1,\dots,1)-(1,1,\dots,1)P]Y\\
+&amp;= 0.
+\end{align}
+\]</span></p>
+<p>This is because <span class="math inline">\(PX = X\)</span> and the first column of <span class="math inline">\(X\)</span> is <span class="math inline">\((1,1,\dots,1)^\top\)</span>. This implies that <span class="math inline">\(P(1,1,\dots,1)^\top = (1,1,\dots,1)^\top\)</span>.</p>
+<p><code>Theorem 10</code>: Suppose that Assumption B is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>, we have</p>
+<p>(1). <span class="math inline">\(S_R^2,S_e^2,\bar Y\)</span> are independent, and</p>
+<p>(2). if the null <span class="math inline">\(H_0:\beta_1=\dots=\beta_{p-1}=0\)</span> is true, <span class="math inline">\(S_R^2/\sigma^2\sim\chi^2(p-1)\)</span>.</p>
+<p><code>Proof</code>: Using the same notations in Theorem 9. Since <span class="math inline">\((1,\dots,1)^\top\in \mathrm{span}(X)\)</span>, we set <span class="math inline">\(\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top\)</span>. Recall that
+<span class="math display">\[Y = \sum_{i=1}^n z_i\xi_i = Uz.\]</span>
+The average <span class="math inline">\(\bar Y = (1/n,\dots,1/n)Y = (1/n,\dots,1/n)Uz=z_1/\sqrt{n},\)</span> where we used the fact that <span class="math inline">\(U\)</span> is orthogonal matrix and the first colum of <span class="math inline">\(U\)</span> is <span class="math inline">\(\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top\)</span>.</p>
+<p>Recall that <span class="math inline">\(\hat Y = \sum_{i=1}^p z_i\xi_i = (z_1/\sqrt{n},z_1/\sqrt{n},\dots,z_1/\sqrt{n})^\top+\sum_{i=2}^p z_i\xi_i\)</span>.
+This implies that
+<span class="math display">\[(\hat y_1-\bar Y,\dots,\hat y_n-\bar Y)^\top = \sum_{i=2}^p z_i\xi_i.\]</span>
+As a result, <span class="math inline">\(S_R^2 = \sum_{i=2}^p z_i^2\)</span>. Recall that <span class="math inline">\(S_e^2=\sum_{i=p+1}^n z_i^2\)</span>. Since <span class="math inline">\(z_i\)</span> are independent, <span class="math inline">\(S_R^2,S_e^2,\bar Y\)</span> are independent.</p>
+<p>If <span class="math inline">\(\beta_1=\dots=\beta_{p-1}=0\)</span>, we have</p>
+<p><span class="math display">\[E[z] = U^\top X\beta = U^\top (\beta_0,\dots,\beta_0)^\top.\]</span></p>
+<p><span class="math display">\[E[z^\top]=\beta_0(1,1,\dots,1) U = \beta_0(\sqrt{n},0,\dots,0).\]</span>
+We therefore have <span class="math inline">\(z_i\sim N(0,\sigma^2)\)</span> for <span class="math inline">\(i=2,\dots,n\)</span>. So <span class="math display">\[S_R^2/\sigma^2 = \sum_{i=2}^p (z_i/\sigma)^2\sim \chi^2(p-1).\]</span></p>
+<p>We now use generalized likelihood (GLR) test. The likelihood function for <span class="math inline">\(Y\)</span> is given by</p>
+<p><span class="math display">\[L(\beta,\sigma^2) = (2\pi \sigma^2)^{-n/2} e^{-\frac{||Y-X\beta||^2}{2\sigma^2}}.\]</span></p>
+<p>The maximizers for <span class="math inline">\(L(\beta,\sigma^2)\)</span> over the parameter space <span class="math inline">\(\Theta=\{(\beta,\sigma^2)|\beta\in \mathbb{R}^p,\sigma^2&gt;0\}\)</span> are</p>
+<p><span class="math display">\[\hat\beta = (X^\top X)^{-1}X^\top Y,\ \hat\sigma^2 = \frac{||Y-X\hat \beta||}{n}=\frac{S_e^2}{n}.\]</span></p>
+<p>The maximizers for <span class="math inline">\(L(\beta,\sigma^2)\)</span> over the sub-space <span class="math inline">\(\Theta_0=\{(\beta,\sigma^2)|\beta_i=0,i\ge 1,\sigma^2&gt;0\}\)</span> are</p>
+<p><span class="math display">\[\hat\beta^* = (\bar Y,0,\dots,0)^\top,\ \hat\sigma^{*2} = \frac{||Y-X\hat \beta^*||}{n}=\frac{S_T^2}{n}.\]</span></p>
+<p>The likelihood ratio is then given by</p>
+<p><span class="math display">\[\lambda = \frac{\sup_{\theta\in\Theta}L(\beta,\sigma^2)}{\sup_{\theta\in\Theta_0}L(\beta,\sigma^2)} = \frac{L(\hat\beta,\hat\sigma^2)}{L(\hat\beta^*,\hat\sigma^{*2})}= \left(\frac{S_T^2}{S_e^2}\right)^{n/2}= \left(1+\frac{S_R^2}{S_e^2}\right)^{n/2}.\]</span></p>
+<p>By Theorems 9 and 10, if the null is true we have
+<span class="math display">\[F=\frac{S_R^2/(p-1)}{S_e^2/(n-p)}\sim F(p-1,n-p).\]</span>
+We take <span class="math inline">\(F\)</span> as the test statistic. The rejection region is <span class="math inline">\(W=\{F&gt;C\}\)</span>, where the critical value <span class="math inline">\(C = F_{1-\alpha}(p-1,n-p)\)</span> so that <span class="math inline">\(\sup_{\theta\in\Theta_0}P_\theta(F&gt;C)=\alpha\)</span>.</p>
+<p><code>Definition</code>: The <strong>coefficient of determination</strong> is sometimes used as a crude measure of the strength of a relationship that has been
+fit by least squares. This coefficient is defined as</p>
+<p><span class="math display">\[R^2 =\frac{S_R^2}{S_T^2}=\frac{\sum_{i=1}^n(\hat y_i-\bar y)^2}{\sum_{i=1}^n(y_i-\bar y)^2}.\]</span>
+It can be interpreted as the proportion of the variability of the dependent variable that
+can be explained by the independent variables.</p>
+<p>It is easy to see that</p>
+<p><span class="math display">\[F = \frac{S_T^2 R^2/(p-1)}{S_T^2(1-R^2)/(n-p)}=\frac{ R^2/(p-1)}{(1-R^2)/(n-p)}.\]</span></p>
+<p>For the simple linear model <span class="math inline">\(p=2\)</span>, we have</p>
+<p><span class="math display">\[S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.\]</span>
+This gives
+<span class="math display">\[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\]</span>
+where <span class="math inline">\(\rho = \ell_{xy}/\sqrt{\ell_{xx}\ell_{yy}}\)</span> is the <strong>correlation coefficient</strong> between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span>.</p>
+</div>
+</div>
+<div id="case-study-2" class="section level2">
+<h2>Case study 2</h2>
+<p>It is found that the systolic pressure is linked to the weight and the age. We now have the following data.</p>
+<pre class="r"><code>blood=data.frame(
+weight=c(76.0,91.5,85.5,82.5,79.0,80.5,74.5,79.0,85.0,76.5,82.0,95.0,92.5),
+age=c(50,20,20,30,30,50,60,50,40,55,40,40,20),
+pressure=c(120,141,124,126,117,125,123,125,132,123,132,155,147))
+knitr::kable(blood,format=&quot;html&quot;)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+pressure
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+76.0
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+120
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91.5
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+141
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85.5
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+124
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82.5
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+126
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79.0
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+117
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+80.5
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+125
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74.5
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+79.0
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+125
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+85.0
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+132
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+76.5
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+82.0
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+132
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+95.0
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+155
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+92.5
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot(blood)</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>lm.blood=lm(pressure~weight+age,data=blood)
+summary(lm.blood)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = pressure ~ weight + age, data = blood)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.0404 -1.0183  0.4640  0.6908  4.3274 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -62.96336   16.99976  -3.704 0.004083 ** 
+## weight        2.13656    0.17534  12.185 2.53e-07 ***
+## age           0.40022    0.08321   4.810 0.000713 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.854 on 10 degrees of freedom
+## Multiple R-squared:  0.9461, Adjusted R-squared:  0.9354 
+## F-statistic: 87.84 on 2 and 10 DF,  p-value: 4.531e-07</code></pre>
+<p>The regression function is</p>
+<p><span class="math display">\[\hat y = -62.96336 + 2.13656 x_1+ 0.40022 x_2.\]</span></p>
+<pre class="r"><code>n = length(blood$weight)
+X = cbind(intercept=rep(1,n),weight=blood$weight,age=blood$age)
+C = solve(t(X)%*%X)
+SSE = sum(lm.blood$residuals^2) # sum of squared errors
+# SST = var(blood$pressure)*(n-1)
+# SSR = SST-SSE
+# Fstat = SSR/(3-1)/(SSE/(n-3))
+cov = SSE/(n-3)*C
+knitr::kable(cov,format=&quot;html&quot;,caption = &quot;Estimated Covariance Matrix&quot;)</code></pre>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-9">Table 2: </span>Estimated Covariance Matrix
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+intercept
+</th>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:right;">
+age
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+intercept
+</td>
+<td style="text-align:right;">
+288.991861
+</td>
+<td style="text-align:right;">
+-2.9499280
+</td>
+<td style="text-align:right;">
+-1.1174334
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+weight
+</td>
+<td style="text-align:right;">
+-2.949928
+</td>
+<td style="text-align:right;">
+0.0307450
+</td>
+<td style="text-align:right;">
+0.0102176
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:right;">
+-1.117433
+</td>
+<td style="text-align:right;">
+0.0102176
+</td>
+<td style="text-align:right;">
+0.0069243
+</td>
+</tr>
+</tbody>
+</table>
+<p>Similarly to the simple linear model, we can construct the confidence intervals and prediction intervals for <span class="math inline">\(E[y]\)</span> and <span class="math inline">\(y\)</span>, respectively.</p>
+<pre class="r"><code>newdata = data.frame(
+        age = rep(31,100),
+        weight = seq(70,100,length.out = 100)
+)
+CI = predict(lm.blood,newdata,interval = &quot;confidence&quot;)
+Pred = predict(lm.blood,newdata,interval = &quot;prediction&quot;)
+par(mar=c(4,4,2,1))
+matplot(newdata$weight,cbind(CI,Pred[,-1]),type=&quot;l&quot;,lty = c(1,5,5,2,2),
+        col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;,&quot;brown&quot;,&quot;brown&quot;),lwd=2,
+        xlab=&quot;Weight&quot;,ylab=&quot;Pressure&quot;,main = &quot;Age = 31&quot;)
+legend(70,160,c(&quot;Fitted&quot;,&quot;Confidence&quot;,&quot;Prediction&quot;),
+       lty = c(1,5,2),col=c(&quot;blue&quot;,&quot;red&quot;,&quot;brown&quot;))</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>newdata = data.frame(
+        weight = rep(85,41),
+        age = seq(20,60)
+)
+CI = predict(lm.blood,newdata,interval = &quot;confidence&quot;)
+Pred = predict(lm.blood,newdata,interval = &quot;prediction&quot;)
+par(mar=c(4,4,2,1))
+matplot(newdata$age,cbind(CI,Pred[,-1]),type=&quot;l&quot;,lty = c(1,5,5,2,2),
+        col=c(&quot;blue&quot;,&quot;red&quot;,&quot;red&quot;,&quot;brown&quot;,&quot;brown&quot;),lwd=2,
+        xlab=&quot;Age&quot;,ylab=&quot;Pressure&quot;,main = &quot;Weight = 85&quot;)
+legend(20,150,c(&quot;Fitted&quot;,&quot;Confidence&quot;,&quot;Prediction&quot;),
+       lty = c(1,5,2),col=c(&quot;blue&quot;,&quot;red&quot;,&quot;brown&quot;))</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 
     </div>
