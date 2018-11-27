@@ -16,7 +16,7 @@ The linear model is given by
 $$y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.$$
 
 - $\epsilon_i$ are random (need some assumptions)
-- $x_i$ are **fixed** (*independent/preditor* variable)
+- $x_i$ are **fixed** (*independent/predictor* variable)
 - $y_i$ are random (*dependent/response* variable)
 - $\beta_0$ is the *intercept*
 - $\beta_1$ is the *slope*
@@ -108,11 +108,11 @@ estimate the slope $\beta_1$. When you're picking the $x_i$, if you can spread t
 For Assumption A2, it is common that the variance $\sigma^2$ is unknown.
 The next theorem gives an unbiased estimate of $\sigma^2$.
 
-`Definition`: The residual sum of squares (RSS) is defined by
-$$\mathrm{RSS} = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.$$
+`Definition`: The sum of squared errors (SSE) is defined by
+$$S_e^2 = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.$$
 
 `Theorem 3`: Let
-$$\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{\mathrm{RSS}}{n-2}.$$
+$$\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{S_e^2}{n-2}.$$
 Under Assumptions A1 and A2, we have $E[\hat\sigma^2]=\sigma^2$.
 
 `Proof`: Let $\hat y_i = \hat\beta_0+\hat\beta_1x_i=\bar y+\hat\beta_1(x_i-\bar x)$. 
@@ -155,7 +155,7 @@ $$E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n
 
 (2). $\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})$
 
-(3). $\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{\mathrm{RSS}}{\sigma^2}\sim \chi^2(n-2)$
+(3). $\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-2)$
 
 (4). $\hat\sigma^2$ is independent of $(\hat\beta_0,\hat\beta_1)$.
 
@@ -171,19 +171,19 @@ $$\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{\ell_{xx}}}\sim N(0,1).$$
 
 The $100(1-\alpha)\%$ confidence interval for $\beta_1$ is given by $\hat\beta_1\pm u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}$. For testing 
 $$H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,$$
-we reject $H_0$ if $|\hat\beta_1-\beta_1^*|>u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}$ with the most popular hypothesized value being $\beta^*=0$ (i.e., the regession function is **significant** or not at significance level $\alpha$.)
+we reject $H_0$ if $|\hat\beta_1-\beta_1^*|>u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}$ with the most popular hypothesized value being $\beta_1^*=0$ (i.e., the regession function is **significant** or not at significance level $\alpha$.)
 
-In the more realistic setting of unknown $\sigma$, so long as $n > 3$, using claims (2-4) gives
+In the more realistic setting of unknown $\sigma$, so long as $n \ge 3$, using claims (2-4) gives
 $$\frac{\hat\beta_1-\beta_1}{\hat{\sigma}/\sqrt{\ell_{xx}}}\sim t(n-2).$$
 The $100(1-\alpha)\%$ confidence interval for $\beta_1$ is   $\hat\beta_1\pm t_{1-\alpha/2}(n-2)\hat{\sigma}/\sqrt{\ell_{xx}}$. For testing 
 $$H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,$$
 we reject $H_0$ if $|\hat\beta_1-\beta_1^*|>t_{1-\alpha/2}(n-2)\hat\sigma/\sqrt{\ell_{xx}}$.
 
-For drawing inferences about $\beta_0$, we can use $$\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim N(0,1),$$
-$$\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2\ell_{xx}}}\sim t(n-2).$$
+For drawing inferences about $\beta_0$, we can use $$\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim N(0,1),$$
+$$\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim t(n-2).$$
 
 The $100(1-\alpha)\%$ confidence interval for $\sigma^2$ is
-$$\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{\mathrm{RSS}}{\chi_{1-\alpha/2}^2(n-2)},\frac{\mathrm{RSS}}{\chi_{\alpha/2}^2(n-2)}\right].$$
+$$\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-2)}\right].$$
 
 ### Case study 1
 
@@ -314,7 +314,7 @@ legend(2.5,2.1,c("Fitted","Lower limit","Upper limit"),
 
 ### How to control y?
 
-Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod $y$ with weights no large than 2.05. How to choose the rough casting? 
+Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod $y$ with weights no large than 2.05  with probablity no less than 0.95. How to choose the rough casting? 
 
 Now we want $y\le y_0=2.05$ with probability $1-\alpha$. Similarly to Theorem 6, we can construct one-side confidence interval for $y$, that is 
 $$\bigg(-\infty,\hat y+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\bigg].$$
@@ -376,7 +376,7 @@ If we differentiate $Q$ with respect to each $\beta_i$ and set the derivatives e
 
 $$\frac{\partial Q}{\partial \beta_i}=-2(Y^\top X)_i+2(X^{\top}X)_{i\cdot}\hat\beta=0.$$
 
-We thus arrive at $$X^\top X\hat\beta = X^\top Y.$$
+We thus arrive at the so-called **normal equations**: $$X^\top X\hat\beta = X^\top Y.$$
 
 If the design matrix $X^\top X$ is **nonsingular**, the formal solution is
 $$\hat\beta = (X^\top X)^{-1}X^\top Y.$$
@@ -427,35 +427,44 @@ $$
 
 We used the fact that $Var(AY) = AVar(Y)A^\top$ for any fixed matrix $A$, and $X^\top X$ and therefore $(X^\top X)^{-1}$ are symmetric. 
 
+
 ### Estimation of $\sigma^2$
 
-The residual sum of squares (RSS) is defined by
- $$\mathrm{RSS}=Q(\hat\beta)=||Y-X\hat\beta||^2=||\hat\epsilon||^2,$$
+`Definition`: 
 
-where the vector of residuals is 
-$$\hat\epsilon = Y-X(X^\top X)^{-1}X^\top Y:=Y-PY=Y(I_n-P),$$
+- **The fitted values**: $\hat Y = X\hat\beta$
 
-- $P=X(X^\top X)^{-1}X^\top$ is an $n\times n$ matrix (called the **projection matrix**).
+- **The vector of residuals**: $\hat\epsilon = Y-\hat Y$
 
-Two useful properties of $P$ are given in the following lemma.
+- **The sum of squared errors (SSE)**: $S_e^2=Q(\hat\beta)=||Y-\hat Y||^2=||\hat\epsilon||^2$
+
+Note that 
+
+$$\hat Y = X\hat\beta=X(X^\top X)^{-1}X^\top Y=:PY$$
+
+- **The projection matrix**: $P = X(X^\top X)^{-1}X^\top$
+
+The vector of residuals is then $\hat\epsilon=(I_n-P)Y$. Two useful properties of $P$ are given in the following lemma.
 
 `Lemma 2`: Let $P$ be defined as before. Then
 $$P = P^\top=P^2$$
 
 $$I_n-P = (I_n-P)^\top=(I_n-P)^2.$$
  
-> We may think
-geometrically of the fitted values, $\hat Y=X\hat\beta $, as being the projection of $Y$ onto the subspace
+`Note`: We may think
+geometrically of the fitted values, $\hat Y=X\hat\beta=PY$, as being the projection of $Y$ onto the subspace
 spanned by the columns of $X$.
 
 The sum of squared residuals is then 
 $$
 \begin{align}
-\mathrm{SSE} = ||(I_n-P)Y||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
+S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
 \end{align}
 $$
 
-`Lemma 3`: The cyclic property of the trace, that is, $\mathrm{trace}(AB)=\mathrm{trace}(BA)$.
+`Definition`: Let $A$ be an $n\times n$ matrix. The trace of the matrix $A$ is defined as $tr(A) = \sum_{i=1}^n a_{ii}$, where $a_{ii}$ are the  elements on the main diagonal.
+
+`Lemma 3`: If $A$ is an $m \times n$ matrix and $B$ is an $n \times m$ matrix, then $$tr(AB)=tr(BA).$$ This is the cyclic property of the trace.
 
 
 
@@ -463,24 +472,254 @@ Using Lemma 3, we have
  
 $$
 \begin{align}
-E[\mathrm{RSS}]&= E[Y^\top(I_n-P)Y]=E[\mathrm{trace}(Y^\top(I_n-P)Y)] \\&= E[\mathrm{trace}((I_n-P)YY^\top)]=\mathrm{trace}((I_n-P)E[YY^\top])\\
-&=\mathrm{trace}((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
-&=\mathrm{trace}((I_n-P)(\sigma^2 I_n))+\mathrm{trace}((I_n-P)X\beta\beta^\top X^\top)\\
-&=\sigma^2(n-\mathrm{trace}(P))
+E[S_e^2]&= E[Y^\top(I_n-P)Y]=E[tr(Y^\top(I_n-P)Y)] \\&= E[tr((I_n-P)YY^\top)]=tr((I_n-P)E[YY^\top])\\
+&=tr((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
+&=tr((I_n-P)(\sigma^2 I_n))+tr((I_n-P)X\beta\beta^\top X^\top)\\
+&=\sigma^2(n-tr(P))
 \end{align}
 $$
 where we used $(I_n-P)X=X-X(X^\top X)^{-1}X^\top X=0$. Using the cyclic property of the trace again gives
 
 $$
 \begin{align}
-\mathrm{trace}(P)&= \mathrm{trace}(X(X^\top X)^{-1}X^\top)\\
-&=\mathrm{trace}(X^\top X(X^\top X)^{-1})=\mathrm{trace}(I_p)=p.
+tr(P)&= tr(X(X^\top X)^{-1}X^\top)\\
+&=tr(X^\top X(X^\top X)^{-1})=tr(I_p)=p.
 \end{align}
 $$
 
-We therefore have $E[\mathrm{RSS}]=(n-p)\sigma^2$. 
+We therefore have $E[S_e^2]=(n-p)\sigma^2$. 
 
 `Theorem 8`: Suppose that Assumption A is satisfied and $\mathrm{rank}(X)=p<n$, 
-$$\hat\sigma^2 = \frac{\mathrm{RSS}}{n-p}$$
+$$\hat\sigma^2 = \frac{S_e^2}{n-p}$$
 
 is an unbiased estimate of $\sigma^2$.
+
+
+### Normal distribution
+
+`Assumption B`: Assume that $\epsilon\sim N(0,\sigma^2I_n)$.
+
+`Theorem 9`: Suppose that Assumption B is satisfied and $\mathrm{rank}(X)=p<n$, we have
+
+(1). $\hat\beta \sim N(\beta, \sigma^2(X^\top X)^{-1})$,
+
+(2). $\frac{(n-p)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-p)$,
+
+(3). $\hat\epsilon$ is independent of $\hat Y$,
+
+(4). $S_e^2$ (or equivalently $\hat\sigma^2$) is independent of $\hat\beta$.
+
+`Proof`: If Assumption B is satisfied, then $Y = X\beta+\epsilon\sim N(X\beta,\sigma^2_n)$. Recall that $\hat\beta = (X^\top X)^{-1}X^\top Y$ is normally distributed. The mean and covariance are given in Theorem 7 since Assumption A is satisfied.
+
+Let $\xi_1,\dots,\xi_p$ be the orthogonal basis of the subspace $\mathrm{span}(X)$ of $\mathbb{R}^n$ generated by the $p$ columns of the matrix $X$, and $\xi_{p+1},\dots,\xi_n$ be  the orthogonal basis of  the orthogonal complement $\mathrm{span}(X)^\perp$. Since $\hat Y = X\hat\beta\in \mathrm{span}(X)$, there exists $z_1,\dots,z_p$ such that
+$$\hat Y = \sum_{i=1}^p z_i\xi_i.$$
+
+On the other hand, $\hat Y^\top \hat \epsilon = (PY)^\top (I_n-P)Y = Y^\top P^\top (I_n-P)Y$. By Lemma 2, we have
+$$P^\top (I_n-P)=P-P^2 = 0.$$
+As a result, $\hat Y^\top \hat \epsilon = 0$, implying $\hat \epsilon\in \mathrm{span}(X)^\perp$. So there exsits $z_{p+1},\dots,z_n$ such that
+$$\hat \epsilon = \sum_{i=p+1}^n z_i\xi_i.$$
+Let $U = (\xi_1,\dots,\xi_n)$, then $U$ is an orthogonal matrix, and let $z=(z_1,\dots,z_n)^\top$. We thus have
+$$Y = \hat Y+\hat\epsilon =\sum_{i=1}^nz_i\xi_i=Uz.$$
+
+Therefore, $$z=U^{-1}Y=U^\top Y\sim N(U^\top X\beta,U^\top(\sigma^2 I_n)U)=N(U^\top X\beta,\sigma^2 I_n).$$
+
+This implies that $z_i$ are independently normally distributed. So $\hat Y$ and $\hat\epsilon$ are independent. We next prove that $E[z_i]=0$ for all $i>p$. Let $A=(\xi_{p+1},\dots,\xi_{n})$, then
+
+$$A(z_{p+1},\dots,z_{n})^\top = \hat\epsilon=(I_n-P)Y.$$
+
+This gives
+$$E[(z_{p+1},\dots,z_{n})^\top] = E[A^\top (I_n-P)Y]=A^\top (I_n-P)E[Y]=A^\top (I_n-P)X\beta=0.$$
+
+Consequently, $z_i\stackrel{iid}{\sim} N(0,\sigma^2),i=p+1,\dots,n$, implying $$S_e^2/\sigma^2 = \hat\epsilon^\top\hat\epsilon/\sigma^2 = \sum_{i=p+1}^n (z_i/\sigma)^2\sim \chi^2(n-p).$$
+
+Note that $S_e^2$ is a function of $\hat\epsilon_i$ and $\hat \beta = (X^\top X)^{-1}X^\top Y =(X^\top X)^{-1} X^\top \hat Y$ are linear conbinations of $\hat y_i$. So $S_e^2$ and $\hat\beta$ are independent.
+
+### Confidence intervals and hypothesis tests
+
+Let $C=(X^\top X)^{-1}$ with entries $c_{ij}$. Suppose that Assumption B is satisfied and $\mathrm{rank}(X)=p<n$. If $\sigma^2$ is known, for each $\beta_i$, the $100(1-\alpha)\%$ CI is
+
+$$\hat\beta_i \pm u_{1-\alpha/2}\sigma\sqrt{c_{ii}}.$$
+
+If $\sigma^2$ is unknown, for each $\beta_i$, the $100(1-\alpha)\%$ CI is
+
+$$\hat\beta_i \pm t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}.$$
+For testing hypothesis $H_0:\beta_i= 0\ vs.\ H_1:\beta_i\neq 0$, the rejection region is
+$$W = \{|\beta_i|>t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}\}.$$
+
+The $100(1-\alpha)\%$ CI for $\sigma^2$ is $$\left[\frac{(n-p)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{(n-p)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-p)}\right].$$
+
+### Significance tests
+
+Consider the hypothesis test:
+
+$$H_0:\beta_1=\dots=\beta_{p-1}=0\ vs.\ H_1: \beta_{i^*}\neq 0\text{ for some }i^*\ge 1.$$
+
+`Definition`:  
+
+- **The total sum of squares (SST)**:
+
+$$S_T^2 = \sum_{i=1}^n(y_i-\bar Y)^2$$
+
+- **The sum of squares due to regression (SSR)**:
+
+$$S_R^2  = \sum_{i=1}^n(\hat y_i-\bar Y)^2$$
+
+- **The sum of squared errors (SSE)**:
+
+$$S_e^2 = \sum_{i=1}^n(y_i-\hat y_i)^2$$
+
+The relationship is 
+$$S_T^2=S_R^2+S_e^2.$$
+
+It is easy to see that 
+
+$$
+\begin{align}
+S_T^2&=\sum_{i=1}^n (y_i-\bar Y)^2 = \sum_{i=1}^n (y_i-\hat y_i+\hat y_i-\bar Y)^2\\
+&=\sum_{i=1}^n [(y_i-\hat y_i)^2+(\hat y_i-\bar Y)^2+2(y_i-\hat y_i)(\hat y_i-\bar Y)]\\
+&=S_R^2+S_e^2 +2\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y)
+\end{align}
+$$
+
+Using Lemma 2, we have
+$$
+\begin{align}
+\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y) &= \hat\epsilon^\top\hat Y-\bar Y\sum_{i=1}^n \hat\epsilon_i\\
+&= [(I_n-P)Y]^\top PY-\bar Y(1,1,\dots,1) (I_n-P)Y\\
+&=Y^\top (I_n-P)PY - \bar Y[(1,1,\dots,1)-(1,1,\dots,1)P]Y\\
+&= 0.
+\end{align}
+$$
+
+This is because $PX = X$ and the first column of $X$ is $(1,1,\dots,1)^\top$. This implies that $P(1,1,\dots,1)^\top = (1,1,\dots,1)^\top$.
+
+
+`Theorem 10`: Suppose that Assumption B is satisfied and $\mathrm{rank}(X)=p<n$, we have
+
+(1). $S_R^2,S_e^2,\bar Y$ are independent, and
+
+(2). if the null $H_0:\beta_1=\dots=\beta_{p-1}=0$ is true, $S_R^2/\sigma^2\sim\chi^2(p-1)$.
+
+`Proof`: Using the same notations in Theorem 9. Since $(1,\dots,1)^\top\in \mathrm{span}(X)$, we set $\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top$. Recall that
+$$Y = \sum_{i=1}^n z_i\xi_i = Uz.$$
+The average $\bar Y = (1/n,\dots,1/n)Y = (1/n,\dots,1/n)Uz=z_1/\sqrt{n},$ where we used the fact that $U$ is orthogonal matrix and the first colum of $U$ is $\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top$.
+
+Recall that $\hat Y = \sum_{i=1}^p z_i\xi_i = (z_1/\sqrt{n},z_1/\sqrt{n},\dots,z_1/\sqrt{n})^\top+\sum_{i=2}^p z_i\xi_i$.
+This implies that
+$$(\hat y_1-\bar Y,\dots,\hat y_n-\bar Y)^\top = \sum_{i=2}^p z_i\xi_i.$$
+As a result, $S_R^2 = \sum_{i=2}^p z_i^2$. Recall that $S_e^2=\sum_{i=p+1}^n z_i^2$. Since $z_i$ are independent, $S_R^2,S_e^2,\bar Y$ are independent.
+
+
+If $\beta_1=\dots=\beta_{p-1}=0$, we have 
+
+$$E[z] = U^\top X\beta = U^\top (\beta_0,\dots,\beta_0)^\top.$$ 
+
+$$E[z^\top]=\beta_0(1,1,\dots,1) U = \beta_0(\sqrt{n},0,\dots,0).$$
+We therefore have $z_i\sim N(0,\sigma^2)$ for $i=2,\dots,n$. So $$S_R^2/\sigma^2 = \sum_{i=2}^p (z_i/\sigma)^2\sim \chi^2(p-1).$$
+
+We now use generalized likelihood (GLR) test. The likelihood function for $Y$ is given by
+
+$$L(\beta,\sigma^2) = (2\pi \sigma^2)^{-n/2} e^{-\frac{||Y-X\beta||^2}{2\sigma^2}}.$$
+
+The maximizers for $L(\beta,\sigma^2)$ over the parameter space $\Theta=\{(\beta,\sigma^2)|\beta\in \mathbb{R}^p,\sigma^2>0\}$ are 
+
+$$\hat\beta = (X^\top X)^{-1}X^\top Y,\ \hat\sigma^2 = \frac{||Y-X\hat \beta||}{n}=\frac{S_e^2}{n}.$$
+
+The maximizers for $L(\beta,\sigma^2)$ over the sub-space $\Theta_0=\{(\beta,\sigma^2)|\beta_i=0,i\ge 1,\sigma^2>0\}$ are 
+
+$$\hat\beta^* = (\bar Y,0,\dots,0)^\top,\ \hat\sigma^{*2} = \frac{||Y-X\hat \beta^*||}{n}=\frac{S_T^2}{n}.$$
+
+The  likelihood ratio is then given by
+
+$$\lambda = \frac{\sup_{\theta\in\Theta}L(\beta,\sigma^2)}{\sup_{\theta\in\Theta_0}L(\beta,\sigma^2)} = \frac{L(\hat\beta,\hat\sigma^2)}{L(\hat\beta^*,\hat\sigma^{*2})}= \left(\frac{S_T^2}{S_e^2}\right)^{n/2}= \left(1+\frac{S_R^2}{S_e^2}\right)^{n/2}.$$
+
+By Theorems 9 and 10, if the null is true we have 
+$$F=\frac{S_R^2/(p-1)}{S_e^2/(n-p)}\sim F(p-1,n-p).$$
+We take $F$ as the test statistic. The rejection region is $W=\{F>C\}$, where the critical value $C = F_{1-\alpha}(p-1,n-p)$  so that $\sup_{\theta\in\Theta_0}P_\theta(F>C)=\alpha$.
+
+
+`Definition`: The **coefficient of determination** is sometimes used as a crude measure of the strength of a relationship that has been
+fit by least squares. This coefficient is  defined as 
+
+$$R^2 =\frac{S_R^2}{S_T^2}=\frac{\sum_{i=1}^n(\hat y_i-\bar y)^2}{\sum_{i=1}^n(y_i-\bar y)^2}.$$
+It can be interpreted as the proportion of the variability of the dependent variable that
+can be explained by the independent variables.
+
+It is easy to see that
+
+$$F = \frac{S_T^2 R^2/(p-1)}{S_T^2(1-R^2)/(n-p)}=\frac{ R^2/(p-1)}{(1-R^2)/(n-p)}.$$
+
+For the simple linear model $p=2$, we have 
+
+$$S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.$$
+This gives
+$$R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,$$
+where $\rho = \ell_{xy}/\sqrt{\ell_{xx}\ell_{yy}}$ is the **correlation coefficient** between $x_i$ and $y_i$.
+
+## Case study 2
+
+It is found that the systolic pressure is linked to the weight  and the age. We now have the following data.
+
+
+
+```{r}
+blood=data.frame(
+weight=c(76.0,91.5,85.5,82.5,79.0,80.5,74.5,79.0,85.0,76.5,82.0,95.0,92.5),
+age=c(50,20,20,30,30,50,60,50,40,55,40,40,20),
+pressure=c(120,141,124,126,117,125,123,125,132,123,132,155,147))
+knitr::kable(blood,format="html")
+plot(blood)
+lm.blood=lm(pressure~weight+age,data=blood)
+summary(lm.blood)
+```
+
+The regression function is
+
+$$\hat y = -62.96336 + 2.13656 x_1+ 0.40022 x_2.$$
+
+```{r}
+n = length(blood$weight)
+X = cbind(intercept=rep(1,n),weight=blood$weight,age=blood$age)
+C = solve(t(X)%*%X)
+SSE = sum(lm.blood$residuals^2) # sum of squared errors
+# SST = var(blood$pressure)*(n-1)
+# SSR = SST-SSE
+# Fstat = SSR/(3-1)/(SSE/(n-3))
+cov = SSE/(n-3)*C
+knitr::kable(cov,format="html",caption = "Estimated Covariance Matrix")
+```
+
+Similarly to the simple linear model, we can construct the confidence intervals and prediction intervals for $E[y]$ and $y$, respectively.
+
+```{r}
+newdata = data.frame(
+        age = rep(31,100),
+        weight = seq(70,100,length.out = 100)
+)
+CI = predict(lm.blood,newdata,interval = "confidence")
+Pred = predict(lm.blood,newdata,interval = "prediction")
+par(mar=c(4,4,2,1))
+matplot(newdata$weight,cbind(CI,Pred[,-1]),type="l",lty = c(1,5,5,2,2),
+        col=c("blue","red","red","brown","brown"),lwd=2,
+        xlab="Weight",ylab="Pressure",main = "Age = 31")
+legend(70,160,c("Fitted","Confidence","Prediction"),
+       lty = c(1,5,2),col=c("blue","red","brown"))
+```
+
+
+
+```{r}
+newdata = data.frame(
+        weight = rep(85,41),
+        age = seq(20,60)
+)
+CI = predict(lm.blood,newdata,interval = "confidence")
+Pred = predict(lm.blood,newdata,interval = "prediction")
+par(mar=c(4,4,2,1))
+matplot(newdata$age,cbind(CI,Pred[,-1]),type="l",lty = c(1,5,5,2,2),
+        col=c("blue","red","red","brown","brown"),lwd=2,
+        xlab="Age",ylab="Pressure",main = "Weight = 85")
+legend(20,150,c("Fitted","Confidence","Prediction"),
+       lty = c(1,5,2),col=c("blue","red","brown"))
+```
+

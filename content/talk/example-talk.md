@@ -1,12 +1,12 @@
 +++
-title = "Example Talk"
-date = 2017-01-01T00:00:00  # Schedule page publish date.
+title = "Chap 04: Linear Regression"
+date = 2018-11-28T00:00:00  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2030-06-01T13:00:00
-time_end = 2030-06-01T15:00:00
+time_start = 2018-11-28T08:00:00
+time_end = 2018-11-28T09:40:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = []
@@ -16,11 +16,11 @@ abstract = ""
 abstract_short = ""
 
 # Name of event and optional event URL.
-event = "Academic Theme Conference"
-event_url = "https://example.org"
+event = ""
+event_url = ""
 
 # Location of event.
-location = "London, United Kingdom"
+location = "Guangzhou, China"
 
 # Is this a selected talk? (true/false)
 selected = false
@@ -30,7 +30,7 @@ selected = false
 #   Simply enter your project's filename without extension.
 #   E.g. `projects = ["deep-learning"]` references `content/project/deep-learning.md`.
 #   Otherwise, set `projects = []`.
-projects = ["deep-learning"]
+projects = []
 
 # Tags (optional).
 #   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
@@ -56,4 +56,4 @@ caption = "My caption :smile:"
 
 +++
 
-Embed your slides or video here using [shortcodes](https://sourcethemes.com/academic/post/writing-markdown-latex/). Further details can easily be added using *Markdown* and $\rm \LaTeX$ math code.
+[Slides](chap04.html)

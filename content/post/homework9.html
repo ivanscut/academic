@@ -1,0 +1,88 @@
+---
+title: "第九次作业"
+date: "2018-11-26"
+categories: ["作业"]
+Summary: "截止日期：2018-12-02 23:00"
+tags: ["作业", "数理统计"]
+---
+
+
+
+<p>Consider the linear model
+<span class="math display">\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2), i=1,\dots,n.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Derive the maximum likelihood estimators (MLE) for <span class="math inline">\(\beta_0,\beta_1\)</span>. Are they consistent with the least square estimators (LSE)?</p></li>
+<li><p>Derive the MLE for <span class="math inline">\(\sigma^2\)</span> and look at its unbiasedness.</p></li>
+<li><p>A very slippery point is whether to treat the <span class="math inline">\(x_i\)</span> as fixed numbers or as random variables. In the class, we treated the predictors <span class="math inline">\(x_i\)</span> as fixed numbers for sake of convenience. Now suppose that the predictors <span class="math inline">\(x_i\)</span> are iid random variables (independent of <span class="math inline">\(\epsilon_i\)</span>) with density <span class="math inline">\(f_X(x;\theta)\)</span> for some parameter <span class="math inline">\(\theta\)</span>. Write down the likelihood function for all of our data <span class="math inline">\((x_i,y_i),i=1,\dots,n\)</span>. Derive the MLE for <span class="math inline">\(\beta_0,\beta_1\)</span> and see whether the MLE changes if we work with the setting of random predictors?</p></li>
+</ol>
+<hr />
+<p>Consider the linear model without intercept</p>
+<p><span class="math display">\[y_i  = \beta x_i+\epsilon_i,\ i=1,\dots,n,\]</span></p>
+<p>where <span class="math inline">\(\epsilon_i\)</span> are independent with <span class="math inline">\(E[\epsilon_i]=0\)</span> and <span class="math inline">\(Var[\epsilon_i]=\sigma^2\)</span>.</p>
+<ul>
+<li><p>Write down the least square estimator <span class="math inline">\(\hat \beta\)</span> for <span class="math inline">\(\beta\)</span>, and derive an unbiased estiamtor for <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>For fixed <span class="math inline">\(x_0\)</span>, let <span class="math inline">\(\hat{y}_0=\hat\beta x_0\)</span>. Work out <span class="math inline">\(Var[\hat{y}_0]\)</span>.</p></li>
+</ul>
+<hr />
+<p><code>Case study</code>: Genetic variability is thought to be a key factor in the survival of a species, the idea
+being that “diverse” populations should have a better chance of coping with changing
+environments. Table below summarizes the results of a study designed to test
+that hypothesis experimentally. Two populations of fruit flies (Drosophila serrata)-one that was cross-bred (Strain A) and the other,
+in-bred (Strain B)-were put into sealed containers where food and space were kept
+to a minimum. Recorded every hundred days were the numbers of Drosophila alive
+in each population.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Day number</th>
+<th>Strain A</th>
+<th>Strain B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feb 2</td>
+<td>0</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>May 13</td>
+<td>100</td>
+<td>250</td>
+<td>203</td>
+</tr>
+<tr class="odd">
+<td>Aug 21</td>
+<td>200</td>
+<td>304</td>
+<td>214</td>
+</tr>
+<tr class="even">
+<td>Nov 29</td>
+<td>300</td>
+<td>403</td>
+<td>295</td>
+</tr>
+<tr class="odd">
+<td>Mar 8</td>
+<td>400</td>
+<td>446</td>
+<td>330</td>
+</tr>
+<tr class="even">
+<td>Jun 16</td>
+<td>500</td>
+<td>482</td>
+<td>324</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Plot day numbers versus population sizes for Strain A and Strain B, respectively. Does the plot look linear? If so, please use least squares to figure out the coefficients and
+their standard errors, and plot the two regression lines.</p></li>
+<li><p>Let <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_1^*\)</span> be the true slopes (i.e., growth rates) for Strain A and Strain B, respectively. Assume the population sizes for the two strains are independent. Under the same assumptions of <span class="math inline">\(\epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2)\)</span> for both strains, do we have enough evidence here
+to reject the null hypothesis that <span class="math inline">\(\beta_1\le \beta_1^*\)</span> (significance level <span class="math inline">\(\alpha=0.05\)</span>)? Or equivalently, do these data support the theory that genetically mixed populations have a
+better chance of survival in hostile environments.</p></li>
+</ul>

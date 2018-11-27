@@ -43,7 +43,7 @@ $$\mathrm{variance}=\frac{\sigma^2_{ABC}}{N}=O\left(\frac{1}{C h^d}\right),$$
 
 where $C$ is the complexity. Overall, the MSE is
 
-$$\mathrm{MSE} = \mathrm{bias}^2+\mathrm{vaiance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).$$
+$$\mathrm{MSE} = \mathrm{bias}^2+\mathrm{variance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).$$
 
 For a given $C>0$,
 
@@ -132,15 +132,15 @@ $$\mu = \int_{[0,1]^d} \sum_{i=1}^d x_i^2 dx =\frac{d}{3}.$$
 
 ```{r,fig.height=10}
 myfun = function(x){
-  rowSums(x^2)
-  #apply(x-0.5,1,prod)
+  #rowSums(x^2)
+  apply(x-0.5,1,prod)
 }
 
 m = 16
 N = 2^m
 d = 8
-trueval = d/3
-#trueval = 0
+#trueval = d/3
+trueval = 0
 qmc = as.matrix(sobol(n=N,dim=d),ncol=d)
 fsum = cumsum(myfun(qmc))
 ns = 1:N
@@ -190,14 +190,14 @@ plot(rqmc,pch=19,xlab="x",ylab="y",main="RQMC points: N = 1024")
 myfun = function(x){
   d = ncol(x)
   #(rowSums(x)>d/2)-0.5
-  rowSums(x^2)-d/3
+  rowSums(qnorm(x))
   #apply(x-0.5,1,prod)
   
 }
 
 m = 16
 N = 2^m
-d = 2
+d = 8
 trueval = 0
 R = 100
 ns = 2^(0:m)
@@ -254,7 +254,7 @@ Summary statistic (Drovandi and Pettitt, 2011): $S(y) = (S_A,S_B,S_g,S_k)$
 - $E_1\le E_2 \le \cdots \le E_8$ are the octiles of $y$
 
 
-```{r}
+```{r,eval=FALSE}
 set.seed(100)
 theta0 = c(3,1,2,0.5)
 

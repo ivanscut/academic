@@ -30,7 +30,7 @@ Summary: Quasi-Monte Carlo in ABC
 <p>and Monte Carlo variance is</p>
 <p><span class="math display">\[\mathrm{variance}=\frac{\sigma^2_{ABC}}{N}=O\left(\frac{1}{C h^d}\right),\]</span></p>
 <p>where <span class="math inline">\(C\)</span> is the complexity. Overall, the MSE is</p>
-<p><span class="math display">\[\mathrm{MSE} = \mathrm{bias}^2+\mathrm{vaiance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).\]</span></p>
+<p><span class="math display">\[\mathrm{MSE} = \mathrm{bias}^2+\mathrm{variance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).\]</span></p>
 <p>For a given <span class="math inline">\(C&gt;0\)</span>,</p>
 <ul>
 <li><p>the optimal <span class="math inline">\(h^*=O(C^{-1/(4+d)})\)</span></p></li>
@@ -96,15 +96,15 @@ plot(mc,pch=19,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;MC points: N = 1
 <p>Consider the integral:</p>
 <p><span class="math display">\[\mu = \int_{[0,1]^d} \sum_{i=1}^d x_i^2 dx =\frac{d}{3}.\]</span></p>
 <pre class="r"><code>myfun = function(x){
-  rowSums(x^2)
-  #apply(x-0.5,1,prod)
+  #rowSums(x^2)
+  apply(x-0.5,1,prod)
 }
 
 m = 16
 N = 2^m
 d = 8
-trueval = d/3
-#trueval = 0
+#trueval = d/3
+trueval = 0
 qmc = as.matrix(sobol(n=N,dim=d),ncol=d)
 fsum = cumsum(myfun(qmc))
 ns = 1:N
@@ -145,14 +145,14 @@ plot(rqmc,pch=19,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;RQMC points: N
 <pre class="r"><code>myfun = function(x){
   d = ncol(x)
   #(rowSums(x)&gt;d/2)-0.5
-  rowSums(x^2)-d/3
+  rowSums(qnorm(x))
   #apply(x-0.5,1,prod)
   
 }
 
 m = 16
 N = 2^m
-d = 2
+d = 8
 trueval = 0
 R = 100
 ns = 2^(0:m)
@@ -267,5 +267,4 @@ theta = rbind(theta1,theta2,theta0)
 colnames(theta) = c(&quot;A&quot;,&quot;B&quot;,&quot;g&quot;,&quot;k&quot;)
 pairs(theta,pch=c(rep(20,effN*2),24),
       col=c(rep(&quot;grey&quot;,effN),rep(&quot;black&quot;,effN),&quot;red&quot;),cex=1)</code></pre>
-<p><img src="/post/QMC_ABC_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
