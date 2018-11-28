@@ -2775,15 +2775,42 @@ chisq.test(x,p=p)&lt;/code&gt;&lt;/pre&gt;
       <guid>/post/homework8/</guid>
       <description>&lt;p&gt;True or false, and state why:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;The generalized likelihood ratio statistic &lt;span class=&#34;math inline&#34;&gt;\(\lambda(\vec x)\)&lt;/span&gt; (see P.87 of our textbook) is always greater than or equal to 1.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If the p-value is 0.03, the corresponding test will reject at the significance
-level 0.02.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If a test rejects at significance level 0.06, then the p-value is less than or equal
-to 0.06.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The p-value of a test is the probability that the null hypothesis is correct.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;In testing a simple versus simple hypothesis via the likelihood ratio test, the
-p-value equals the inverse of the likelihood ratio.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;The generalized likelihood ratio statistic &lt;span class=&#34;math inline&#34;&gt;\(\lambda(\vec x)\)&lt;/span&gt; (see P.87 of our textbook) is always greater than or equal to 1.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;True&lt;/code&gt;. By the definition, we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\Theta_0\subset\Theta\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;If the p-value is 0.03, the corresponding test will reject at the significance
+level 0.02.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;False&lt;/code&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;lt; p\)&lt;/span&gt;-value, the null is accepted.&lt;/p&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;If a test rejects at significance level 0.06, then the p-value is less than or equal
+to 0.06.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;False&lt;/code&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt; p\)&lt;/span&gt;-value, the null is rejected. It is somewhat &lt;strong&gt;unclear&lt;/strong&gt; whether to reject the null for the case of &lt;span class=&#34;math inline&#34;&gt;\(\alpha = p\)&lt;/span&gt;-value. Let consider the simple null &lt;span class=&#34;math inline&#34;&gt;\(H_0:\theta = \theta_0\)&lt;/span&gt;. Suppose the rejection region is &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;gt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(T(\vec X)\)&lt;/span&gt; is the test statistic. The p-value is
+&lt;span class=&#34;math inline&#34;&gt;\(p(\vec x) = P_{\theta_0}(T(\vec X)&amp;gt;T(\vec x))\)&lt;/span&gt;. Suppose that under &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(\vec X)\)&lt;/span&gt; has a positive density at &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\alpha=p(\vec x)\)&lt;/span&gt;, the corresponding critical value is &lt;span class=&#34;math inline&#34;&gt;\(C = T(\vec x)\)&lt;/span&gt;. We thus accept the null because the rejection region does not include the special case &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)=C\)&lt;/span&gt;. On the other hand, if we choose the rejection region &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)\ge C\}\)&lt;/span&gt; instead, the p-value is unchanged if the test statistic is continuous variable. If &lt;span class=&#34;math inline&#34;&gt;\(\alpha=p(\vec x)\)&lt;/span&gt;, the critical value is also &lt;span class=&#34;math inline&#34;&gt;\(C = T(\vec x)\)&lt;/span&gt;.
+However, for this case, the null is rejected beacause the rejection region includes the special case &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)=C\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;p&gt;More precisely, the p-value is the &lt;strong&gt;infimum&lt;/strong&gt; of those significance levels that lead to a rejection. BUT we do not know whether the infimum is attainable unless the form of rejection region was known.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The p-value of a test is the probability that the null hypothesis is correct.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;False&lt;/code&gt;. The p-value of a test is the smallest significance level at which the null is rejected.&lt;/p&gt;
+&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;In testing a simple versus simple hypothesis via the likelihood ratio test, the
+p-value equals the inverse of the likelihood ratio.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;False&lt;/code&gt;. Consider the simple test &lt;span class=&#34;math inline&#34;&gt;\(H_0:\theta = \theta_0\ vs.\ H_1:\theta=\theta_1\)&lt;/span&gt;. The rejection region is given by &lt;span class=&#34;math inline&#34;&gt;\(W = \{\lambda(\vec x)&amp;gt;\lambda_0\}\)&lt;/span&gt;, where the likelihood ratio is
+&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x) = \frac{L(\vec x;\theta_1)}{L(\vec x;\theta_0)}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The p-value is then given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\vec x)= P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)} =  \frac{1}{\lambda(\vec x)},\]&lt;/span&gt;
+where we used the &lt;a href=&#34;https://en.wikipedia.org/wiki/Markov%27s_inequality&#34;&gt;Markov’s inequality&lt;/a&gt;. The equality holds as long as &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}[\lambda(\vec X)]=\lambda(\vec x)]=1\)&lt;/span&gt;. So the
+p-value is generally less than the inverse of the likelihood ratio. This implies that if &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt;\frac{1}{\lambda(\vec x)}\)&lt;/span&gt; (the inverse of the likelihood ratio), we should reject the null.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 1&lt;/code&gt;: Mutual funds are investment vehicles consisting of a portfolio of various types
 of investments. If such an investment is to meet annual spending needs, the
@@ -2875,6 +2902,23 @@ percentages shown in the table above. Consider the test
 &lt;li&gt;&lt;p&gt;If the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;, what’s your decision?&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Show up the p-value of your test.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Assume that the return percentage &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; for the Global Rock Fund is normally distributed, i.e., &lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt; are unknown. Since &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; is unknown, we choose the test statistic as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T(\vec X) = \frac{nS_n^2}{\sigma^2_0},\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\sigma_0=11.67\)&lt;/span&gt;. The rejection region is given by &lt;span class=&#34;math inline&#34;&gt;\(W = \{T(\vec x)&amp;lt;C\}\)&lt;/span&gt;, where the critical value &lt;span class=&#34;math inline&#34;&gt;\(C=\chi^2_{\alpha}(n-1)\)&lt;/span&gt;. Using the data gives &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x) = 16.81845\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(C=\chi^2_{0.05}(19) = 9.390455\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)&amp;gt;C\)&lt;/span&gt;, we accept the null.&lt;/p&gt;
+&lt;p&gt;The p-value is &lt;span class=&#34;math display&#34;&gt;\[p = P_{\sigma^2_0}(T(\vec X)&amp;lt;T(\vec x)) = P_{\sigma^2_0}(T(\vec X)&amp;lt;16.81845)=0.4643815.\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;return &amp;lt;- c(15.32, 1.62, 28.43, 11.91, 20.71, -2.15, 23.29, 
+            15.96, 11.12, 0.37, 27.43, 8.57, 1.88, -7.96, 35.98,
+            14.27, 10.33, 15.94, 16.71)
+sig0 = 11.67
+n = length(return)
+sn2 = var(return)
+t = (n-1)*var(return)/sig0^2
+cat(&amp;quot;the test statistic is&amp;quot;, t)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## the test statistic is 16.81845&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;the critical value C =&amp;quot;,qchisq(0.05,n-1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## the critical value C = 9.390455&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(&amp;quot;the p-value is&amp;quot;, pchisq(t,n-1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## the p-value is 0.4643815&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 2&lt;/code&gt;: Forensic scientists sometimes have difficulty identifying the sex of a murder
 victim whose body is discovered badly decomposed. Often, dental structure can
@@ -2933,6 +2977,109 @@ independent.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;If you were not able to have the prior information that their variances are the same, what would you do? This is the case of &lt;strong&gt;Behrens-Fisher Problem&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;The data are paired. Is it possible to do a paired test, without judging whether their variances are the same?&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu_1,\sigma^2_1)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\sim N(\mu_2,\sigma^2_2)\)&lt;/span&gt; be the enamel spectropenetration gradients for male teeth and female teeth, respectively. We are going to test
+&lt;span class=&#34;math display&#34;&gt;\[H_0: \mu_1=\mu_2\ vs.\ H_1:\mu_1\neq\mu_2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;If their variances are the same, we use the t-test. The test statistic is
+&lt;span class=&#34;math display&#34;&gt;\[T_1=\frac{\bar X-\bar Y}{S_w\sqrt{1/m+1/n}},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(S_w^2 = (mS_{1m}^2+nS_{2n}^2)/(m+n-2)\)&lt;/span&gt;. The rejection region is &lt;span class=&#34;math inline&#34;&gt;\(W=\{|T_1|&amp;gt;t_{1-\alpha/2}(m+n-2)\}\)&lt;/span&gt;. Using the data gives &lt;span class=&#34;math inline&#34;&gt;\(T_1=2.4258&amp;gt;t_{0.975}(14)=2.1448\)&lt;/span&gt;. We therefore reject the null at the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;. The R code is given blow. We get a p-value of &lt;span class=&#34;math inline&#34;&gt;\(0.02938&amp;lt;0.05\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;male = c(4.9,5.4,5,5.5,5.4,6.6,6.3,4.3)
+female = c(4.8,5.3,3.7,4.1,5.6,4,3.6,5)
+t.test(male,female,var.equal = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Two Sample t-test
+## 
+## data:  male and female
+## t = 2.4258, df = 14, p-value = 0.02938
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1057193 1.7192807
+## sample estimates:
+## mean of x mean of y 
+##    5.4250    4.5125&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;For this case, we may use the &lt;a href=&#34;https://en.wikipedia.org/wiki/Welch%27s_t-test&#34;&gt;Welch’s t test&lt;/a&gt;, which is designed for unequal variances. The test statistic is&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_2=\frac{\bar X-\bar Y}{\sqrt{S_{1m}^{*2}/m+S_{1n}^{*2}/n}}.\]&lt;/span&gt;
+Under the mull &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt; is approximately distributed from &lt;span class=&#34;math inline&#34;&gt;\(t(k)\)&lt;/span&gt;, where the degrees of freedom &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; is the integer closest to &lt;span class=&#34;math inline&#34;&gt;\(k^*\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2}/n)^2/(n-1)}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Using the data gives &lt;span class=&#34;math inline&#34;&gt;\(k^*=13.993,\ T_2=2.4258&amp;gt;t_{0.975}(14)=2.1448\)&lt;/span&gt;. We therefore reject the null at the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;. The R code is given below. We get a p-value of &lt;span class=&#34;math inline&#34;&gt;\(0.02938&amp;lt;0.05\)&lt;/span&gt;. The p-value and the test statistic are the same as those in the case of equal variances, respectively. (WHY?)&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;p&gt;Try to prove that the two test statistics are the same. What happen to the degrees of freedom k if the two sample variances are very close? What’s difference between the two kinds of t-tests when the sample sizes are large? Can we use the &lt;a href=&#34;https://en.wikipedia.org/wiki/Welch%27s_t-test&#34;&gt;Welch’s t test&lt;/a&gt; for the case of equal variances instead of the usual t test?&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(male,female)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Welch Two Sample t-test
+## 
+## data:  male and female
+## t = 2.4258, df = 13.993, p-value = 0.02938
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.105683 1.719317
+## sample estimates:
+## mean of x mean of y 
+##    5.4250    4.5125&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The data are paried since &lt;span class=&#34;math inline&#34;&gt;\(n=m=8\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(Z = X-Y\)&lt;/span&gt;. Then &lt;span class=&#34;math inline&#34;&gt;\(Z\sim N(\mu_1-\mu_2,\sigma_1^2+\sigma^2_2)\)&lt;/span&gt; since &lt;span class=&#34;math inline&#34;&gt;\(X,Y\)&lt;/span&gt; are assumed to be independent.
+We now have the sample for &lt;span class=&#34;math inline&#34;&gt;\(Z\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(Z_i = X_i-Y_i\)&lt;/span&gt;. Based on the sample &lt;span class=&#34;math inline&#34;&gt;\(Z_i\)&lt;/span&gt;, we do the test for the mean of &lt;span class=&#34;math inline&#34;&gt;\(Z\)&lt;/span&gt;, i.e.,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0: \mu_1-\mu_2=0\ vs.\ H_1:\mu_1-\mu_2\neq 0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The test statistic is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T_3= \frac{\bar Z}{S_z^*/\sqrt{n}}=\frac{\bar X-\bar Y}{S_z^*/\sqrt{n}},\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where the sample variance of &lt;span class=&#34;math inline&#34;&gt;\(Z_i\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_z^{*2} = \frac{1}{n-1}\sum_{i=1}^n(Z_i-\bar Z)^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-Y_i-\bar X+\bar Y)^2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Using the data gives &lt;span class=&#34;math inline&#34;&gt;\(T_3=2.0059&amp;lt;t_{0.975}(7)=2.3646\)&lt;/span&gt;. We therefore &lt;strong&gt;accept&lt;/strong&gt; the null at the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;. The R code is given below. We get a p-value of &lt;span class=&#34;math inline&#34;&gt;\(0.08488&amp;gt;0.05\)&lt;/span&gt;. The p-value and the test statistic here is quite different from the two sample t-tests. (WHY?)&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(male,female,paired = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Paired t-test
+## 
+## data:  male and female
+## t = 2.0059, df = 7, p-value = 0.08488
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1631882  1.9881882
+## sample estimates:
+## mean of the differences 
+##                  0.9125&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For comparison, we present the following table.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Methods&lt;/th&gt;
+&lt;th&gt;Test Statistics&lt;/th&gt;
+&lt;th&gt;Degrees of Freedom&lt;/th&gt;
+&lt;th&gt;Critical Values&lt;/th&gt;
+&lt;th&gt;p-values&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Two-Sample t test&lt;/td&gt;
+&lt;td&gt;2.4258&lt;/td&gt;
+&lt;td&gt;14&lt;/td&gt;
+&lt;td&gt;2.1448&lt;/td&gt;
+&lt;td&gt;0.02938&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Welch’s t test&lt;/td&gt;
+&lt;td&gt;2.4258&lt;/td&gt;
+&lt;td&gt;14&lt;/td&gt;
+&lt;td&gt;2.1448&lt;/td&gt;
+&lt;td&gt;0.02938&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Paired t test&lt;/td&gt;
+&lt;td&gt;2.0059&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;2.3646&lt;/td&gt;
+&lt;td&gt;0.08488&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;If we choose &lt;span class=&#34;math inline&#34;&gt;\(\alpha = 0.1\)&lt;/span&gt;, all the methods result in a rejection. But if we choose a smaller significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;, the paired t test results in an acceptance while the null is rejected for the other two methods. Such a discrepancy is due to the assumption of independence of two samples for the two sample tests. Actually, for the paired t test, we &lt;strong&gt;do not&lt;/strong&gt; need the independence of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;, but the assumption of normality of &lt;span class=&#34;math inline&#34;&gt;\(Z=X-Y\)&lt;/span&gt; is maintained. The sample covariance of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(-0.2617857\)&lt;/span&gt;, which is far away from &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt; – the assumption of independence of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;. It had better to use paried t test because it does not require the independence on the &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 3&lt;/code&gt;: The National Center for Health Statistics (1970) gives the following data on
 distribution of suicides in the United States by month in 1970. Is there any
@@ -3012,6 +3159,37 @@ appropriate probabilities and conduct a goodness-of-fit test.)&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(n_i\)&lt;/span&gt; be the number of days in the &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;th month, &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,12\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(N = \sum_{i=1}^{12} n_i\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a discrete random variable with &lt;span class=&#34;math inline&#34;&gt;\(p_i=P(X=i)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,12\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{12} p_i = 1\)&lt;/span&gt;. Consider the test&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0: p_i = n_i/N, i=1,\dots,12\ vs. H_1:p_{i^*} \neq n_{i^*}/N \text{ for some }i^*.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We use the R code to do the goodness-of-fit test. The p-value is &lt;span class=&#34;math inline&#34;&gt;\(1.852\times 10^{-6}&amp;lt;0.05\)&lt;/span&gt;, we therefore reject the null at the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;. The data do not support that the suicide rate is constant.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;suicide = data.frame(
+  days = c(31,28,31,30,31,30,31,31,30,31,30,31),
+  numbers = c(1867,1789,1944,2094,2097,1981,1887,2024,
+              1928,2032,1978,1859)
+)
+x = suicide$numbers
+p = suicide$days/sum(suicide$days)
+chisq.test(x,p=p)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 47.365, df = 11, p-value = 1.852e-06&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also test seasonal suicide rate by splitting the data into four groups:&lt;/p&gt;
+&lt;p&gt;Spring = Mar. + Apr. + May = 6135&lt;/p&gt;
+&lt;p&gt;Summer = June + July + Aug. = 5892&lt;/p&gt;
+&lt;p&gt;Autumn = Sept.+ Oct. + Nov. = 5938&lt;/p&gt;
+&lt;p&gt;Winter = Dec. + Jan. + Feb. = 5515&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = c(6135,5892,5938,5515)
+chisq.test(x)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 34.303, df = 3, p-value = 1.71e-07&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The p-value is &lt;span class=&#34;math inline&#34;&gt;\(1.71\times 10^{-7}&amp;lt;0.05\)&lt;/span&gt;, we therefore reject the null at the significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;.&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 4&lt;/code&gt;: Under (the assumption of) simple Mendelian inheritance, a cross
 between plants of two particular genotypes produces progeny 1/4 of
 which are “dwarf” and &lt;span class=&#34;math inline&#34;&gt;\(3/4\)&lt;/span&gt; of which are “giant”, respectively.
@@ -3022,6 +3200,31 @@ If “giant” is taken as success, the null hypothesis is that &lt;span class=&
 &lt;li&gt;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_i,i=1,\dots,n\)&lt;/span&gt; be the sample of the population &lt;span class=&#34;math inline&#34;&gt;\(B(1,p)\)&lt;/span&gt;. By central limit theorem (CLT), the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt; can be approximated by a normal distribution &lt;span class=&#34;math inline&#34;&gt;\(N(p,p(1-p)/n)\)&lt;/span&gt;. Please use this approximation to do the binominal test above.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Actually, we can do the exact binominal test according to the formula given in P.114 of our textbook. Compare the results in the exact test and the approximate test for significance levels &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05,0.01,0.001\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Under the null, we have &lt;span class=&#34;math inline&#34;&gt;\(\bar X \stackrel{\cdot}{\sim}N(3/4,3/(16n))\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(n = 243+682=925\)&lt;/span&gt;. The rejection region is&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[W = \{|\bar x-3/4|\sqrt{16n/3}&amp;gt;u_{1-\alpha/2}\}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Using data give the test statistic &lt;span class=&#34;math inline&#34;&gt;\(T = |\bar x-3/4|\sqrt{16n/3}= 0.8922\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(u_{1-\alpha/2}= 1.96\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(\alpha= 0.05\)&lt;/span&gt;, we accept the null at significance levels &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05,0.01,0.001\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;We next use R code to do the exact binominal test. The p-value is &lt;span class=&#34;math inline&#34;&gt;\(0.3825&amp;gt;0.05\)&lt;/span&gt;, we therefore accept the null at significance levels &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05,0.01,0.001\)&lt;/span&gt;. Both methods lead to the same conclusions. From this point of view, it is reasonable to use the approximated normal distribution from the CLT in the binominal test because the sample size &lt;span class=&#34;math inline&#34;&gt;\(n=925\)&lt;/span&gt; is large.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = 682
+n = 243+682
+p = 3/4
+binom.test(x,n,p)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Exact binomial test
+## 
+## data:  x and n
+## number of successes = 682, number of trials = 925, p-value =
+## 0.3825
+## alternative hypothesis: true probability of success is not equal to 0.75
+## 95 percent confidence interval:
+##  0.7076683 0.7654066
+## sample estimates:
+## probability of success 
+##              0.7372973&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

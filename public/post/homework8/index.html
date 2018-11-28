@@ -263,7 +263,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    12 min read
   </span>
   
 
@@ -294,15 +294,42 @@
     <div class="article-style" itemprop="articleBody">
       <p>True or false, and state why:</p>
 <ol style="list-style-type: decimal">
-<li><p>The generalized likelihood ratio statistic <span class="math inline">\(\lambda(\vec x)\)</span> (see P.87 of our textbook) is always greater than or equal to 1.</p></li>
-<li><p>If the p-value is 0.03, the corresponding test will reject at the significance
-level 0.02.</p></li>
-<li><p>If a test rejects at significance level 0.06, then the p-value is less than or equal
-to 0.06.</p></li>
-<li><p>The p-value of a test is the probability that the null hypothesis is correct.</p></li>
-<li><p>In testing a simple versus simple hypothesis via the likelihood ratio test, the
-p-value equals the inverse of the likelihood ratio.</p></li>
+<li>The generalized likelihood ratio statistic <span class="math inline">\(\lambda(\vec x)\)</span> (see P.87 of our textbook) is always greater than or equal to 1.</li>
 </ol>
+<p><code>True</code>. By the definition, we have</p>
+<p><span class="math display">\[\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,\]</span>
+where <span class="math inline">\(\Theta_0\subset\Theta\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>If the p-value is 0.03, the corresponding test will reject at the significance
+level 0.02.</li>
+</ol>
+<p><code>False</code>. If <span class="math inline">\(\alpha&lt; p\)</span>-value, the null is accepted.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>If a test rejects at significance level 0.06, then the p-value is less than or equal
+to 0.06.</li>
+</ol>
+<p><code>False</code>. If <span class="math inline">\(\alpha&gt; p\)</span>-value, the null is rejected. It is somewhat <strong>unclear</strong> whether to reject the null for the case of <span class="math inline">\(\alpha = p\)</span>-value. Let consider the simple null <span class="math inline">\(H_0:\theta = \theta_0\)</span>. Suppose the rejection region is <span class="math inline">\(W=\{T(\vec x)&gt;C\}\)</span>, where <span class="math inline">\(T(\vec X)\)</span> is the test statistic. The p-value is
+<span class="math inline">\(p(\vec x) = P_{\theta_0}(T(\vec X)&gt;T(\vec x))\)</span>. Suppose that under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(T(\vec X)\)</span> has a positive density at <span class="math inline">\(T(\vec x)\)</span>. If <span class="math inline">\(\alpha=p(\vec x)\)</span>, the corresponding critical value is <span class="math inline">\(C = T(\vec x)\)</span>. We thus accept the null because the rejection region does not include the special case <span class="math inline">\(T(\vec x)=C\)</span>. On the other hand, if we choose the rejection region <span class="math inline">\(W=\{T(\vec x)\ge C\}\)</span> instead, the p-value is unchanged if the test statistic is continuous variable. If <span class="math inline">\(\alpha=p(\vec x)\)</span>, the critical value is also <span class="math inline">\(C = T(\vec x)\)</span>.
+However, for this case, the null is rejected beacause the rejection region includes the special case <span class="math inline">\(T(\vec x)=C\)</span>.</p>
+<div class="alert alert-warning">
+  <p>More precisely, the p-value is the <strong>infimum</strong> of those significance levels that lead to a rejection. BUT we do not know whether the infimum is attainable unless the form of rejection region was known.</p>
+
+</div>
+
+<ol start="4" style="list-style-type: decimal">
+<li>The p-value of a test is the probability that the null hypothesis is correct.</li>
+</ol>
+<p><code>False</code>. The p-value of a test is the smallest significance level at which the null is rejected.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>In testing a simple versus simple hypothesis via the likelihood ratio test, the
+p-value equals the inverse of the likelihood ratio.</li>
+</ol>
+<p><code>False</code>. Consider the simple test <span class="math inline">\(H_0:\theta = \theta_0\ vs.\ H_1:\theta=\theta_1\)</span>. The rejection region is given by <span class="math inline">\(W = \{\lambda(\vec x)&gt;\lambda_0\}\)</span>, where the likelihood ratio is
+<span class="math display">\[\lambda(\vec x) = \frac{L(\vec x;\theta_1)}{L(\vec x;\theta_0)}.\]</span></p>
+<p>The p-value is then given by</p>
+<p><span class="math display">\[p(\vec x)= P_{\theta_0}(\lambda(\vec X)&gt;\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)} =  \frac{1}{\lambda(\vec x)},\]</span>
+where we used the <a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">Markov’s inequality</a>. The equality holds as long as <span class="math inline">\(P_{\theta_0}[\lambda(\vec X)]=\lambda(\vec x)]=1\)</span>. So the
+p-value is generally less than the inverse of the likelihood ratio. This implies that if <span class="math inline">\(\alpha&gt;\frac{1}{\lambda(\vec x)}\)</span> (the inverse of the likelihood ratio), we should reject the null.</p>
 <hr />
 <p><code>Case study 1</code>: Mutual funds are investment vehicles consisting of a portfolio of various types
 of investments. If such an investment is to meet annual spending needs, the
@@ -394,6 +421,23 @@ percentages shown in the table above. Consider the test
 <li><p>If the significance level <span class="math inline">\(\alpha=0.05\)</span>, what’s your decision?</p></li>
 <li><p>Show up the p-value of your test.</p></li>
 </ul>
+<p><code>Solution</code>: Assume that the return percentage <span class="math inline">\(X\)</span> for the Global Rock Fund is normally distributed, i.e., <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, where <span class="math inline">\(\mu,\sigma^2\)</span> are unknown. Since <span class="math inline">\(\mu\)</span> is unknown, we choose the test statistic as</p>
+<p><span class="math display">\[T(\vec X) = \frac{nS_n^2}{\sigma^2_0},\]</span></p>
+<p>where <span class="math inline">\(\sigma_0=11.67\)</span>. The rejection region is given by <span class="math inline">\(W = \{T(\vec x)&lt;C\}\)</span>, where the critical value <span class="math inline">\(C=\chi^2_{\alpha}(n-1)\)</span>. Using the data gives <span class="math inline">\(T(\vec x) = 16.81845\)</span>, <span class="math inline">\(C=\chi^2_{0.05}(19) = 9.390455\)</span>. Since <span class="math inline">\(T(\vec x)&gt;C\)</span>, we accept the null.</p>
+<p>The p-value is <span class="math display">\[p = P_{\sigma^2_0}(T(\vec X)&lt;T(\vec x)) = P_{\sigma^2_0}(T(\vec X)&lt;16.81845)=0.4643815.\]</span></p>
+<pre class="r"><code>return &lt;- c(15.32, 1.62, 28.43, 11.91, 20.71, -2.15, 23.29, 
+            15.96, 11.12, 0.37, 27.43, 8.57, 1.88, -7.96, 35.98,
+            14.27, 10.33, 15.94, 16.71)
+sig0 = 11.67
+n = length(return)
+sn2 = var(return)
+t = (n-1)*var(return)/sig0^2
+cat(&quot;the test statistic is&quot;, t)</code></pre>
+<pre><code>## the test statistic is 16.81845</code></pre>
+<pre class="r"><code>cat(&quot;the critical value C =&quot;,qchisq(0.05,n-1))</code></pre>
+<pre><code>## the critical value C = 9.390455</code></pre>
+<pre class="r"><code>cat(&quot;the p-value is&quot;, pchisq(t,n-1))</code></pre>
+<pre><code>## the p-value is 0.4643815</code></pre>
 <hr />
 <p><code>Case study 2</code>: Forensic scientists sometimes have difficulty identifying the sex of a murder
 victim whose body is discovered badly decomposed. Often, dental structure can
@@ -452,6 +496,109 @@ independent.</p>
 <li><p>If you were not able to have the prior information that their variances are the same, what would you do? This is the case of <strong>Behrens-Fisher Problem</strong>.</p></li>
 <li><p>The data are paired. Is it possible to do a paired test, without judging whether their variances are the same?</p></li>
 </ul>
+<p><code>Solution</code>: Let <span class="math inline">\(X\sim N(\mu_1,\sigma^2_1)\)</span> and <span class="math inline">\(Y\sim N(\mu_2,\sigma^2_2)\)</span> be the enamel spectropenetration gradients for male teeth and female teeth, respectively. We are going to test
+<span class="math display">\[H_0: \mu_1=\mu_2\ vs.\ H_1:\mu_1\neq\mu_2.\]</span></p>
+<ol style="list-style-type: decimal">
+<li>If their variances are the same, we use the t-test. The test statistic is
+<span class="math display">\[T_1=\frac{\bar X-\bar Y}{S_w\sqrt{1/m+1/n}},\]</span>
+where <span class="math inline">\(S_w^2 = (mS_{1m}^2+nS_{2n}^2)/(m+n-2)\)</span>. The rejection region is <span class="math inline">\(W=\{|T_1|&gt;t_{1-\alpha/2}(m+n-2)\}\)</span>. Using the data gives <span class="math inline">\(T_1=2.4258&gt;t_{0.975}(14)=2.1448\)</span>. We therefore reject the null at the significance level <span class="math inline">\(\alpha=0.05\)</span>. The R code is given blow. We get a p-value of <span class="math inline">\(0.02938&lt;0.05\)</span>.</li>
+</ol>
+<pre class="r"><code>male = c(4.9,5.4,5,5.5,5.4,6.6,6.3,4.3)
+female = c(4.8,5.3,3.7,4.1,5.6,4,3.6,5)
+t.test(male,female,var.equal = TRUE)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  male and female
+## t = 2.4258, df = 14, p-value = 0.02938
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1057193 1.7192807
+## sample estimates:
+## mean of x mean of y 
+##    5.4250    4.5125</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>For this case, we may use the <a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">Welch’s t test</a>, which is designed for unequal variances. The test statistic is</li>
+</ol>
+<p><span class="math display">\[T_2=\frac{\bar X-\bar Y}{\sqrt{S_{1m}^{*2}/m+S_{1n}^{*2}/n}}.\]</span>
+Under the mull <span class="math inline">\(H_0\)</span>, <span class="math inline">\(T_2\)</span> is approximately distributed from <span class="math inline">\(t(k)\)</span>, where the degrees of freedom <span class="math inline">\(k\)</span> is the integer closest to <span class="math inline">\(k^*\)</span>:</p>
+<p><span class="math display">\[k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2}/n)^2/(n-1)}.\]</span></p>
+<p>Using the data gives <span class="math inline">\(k^*=13.993,\ T_2=2.4258&gt;t_{0.975}(14)=2.1448\)</span>. We therefore reject the null at the significance level <span class="math inline">\(\alpha=0.05\)</span>. The R code is given below. We get a p-value of <span class="math inline">\(0.02938&lt;0.05\)</span>. The p-value and the test statistic are the same as those in the case of equal variances, respectively. (WHY?)</p>
+<div class="alert alert-note">
+  <p>Try to prove that the two test statistics are the same. What happen to the degrees of freedom k if the two sample variances are very close? What’s difference between the two kinds of t-tests when the sample sizes are large? Can we use the <a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">Welch’s t test</a> for the case of equal variances instead of the usual t test?</p>
+
+</div>
+
+<pre class="r"><code>t.test(male,female)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  male and female
+## t = 2.4258, df = 13.993, p-value = 0.02938
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.105683 1.719317
+## sample estimates:
+## mean of x mean of y 
+##    5.4250    4.5125</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>The data are paried since <span class="math inline">\(n=m=8\)</span>. Let <span class="math inline">\(Z = X-Y\)</span>. Then <span class="math inline">\(Z\sim N(\mu_1-\mu_2,\sigma_1^2+\sigma^2_2)\)</span> since <span class="math inline">\(X,Y\)</span> are assumed to be independent.
+We now have the sample for <span class="math inline">\(Z\)</span>, i.e., <span class="math inline">\(Z_i = X_i-Y_i\)</span>. Based on the sample <span class="math inline">\(Z_i\)</span>, we do the test for the mean of <span class="math inline">\(Z\)</span>, i.e.,</li>
+</ol>
+<p><span class="math display">\[H_0: \mu_1-\mu_2=0\ vs.\ H_1:\mu_1-\mu_2\neq 0.\]</span></p>
+<p>The test statistic is</p>
+<p><span class="math display">\[T_3= \frac{\bar Z}{S_z^*/\sqrt{n}}=\frac{\bar X-\bar Y}{S_z^*/\sqrt{n}},\]</span></p>
+<p>where the sample variance of <span class="math inline">\(Z_i\)</span> is</p>
+<p><span class="math display">\[S_z^{*2} = \frac{1}{n-1}\sum_{i=1}^n(Z_i-\bar Z)^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-Y_i-\bar X+\bar Y)^2.\]</span></p>
+<p>Using the data gives <span class="math inline">\(T_3=2.0059&lt;t_{0.975}(7)=2.3646\)</span>. We therefore <strong>accept</strong> the null at the significance level <span class="math inline">\(\alpha=0.05\)</span>. The R code is given below. We get a p-value of <span class="math inline">\(0.08488&gt;0.05\)</span>. The p-value and the test statistic here is quite different from the two sample t-tests. (WHY?)</p>
+<pre class="r"><code>t.test(male,female,paired = TRUE)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  male and female
+## t = 2.0059, df = 7, p-value = 0.08488
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1631882  1.9881882
+## sample estimates:
+## mean of the differences 
+##                  0.9125</code></pre>
+<p>For comparison, we present the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Methods</th>
+<th>Test Statistics</th>
+<th>Degrees of Freedom</th>
+<th>Critical Values</th>
+<th>p-values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Two-Sample t test</td>
+<td>2.4258</td>
+<td>14</td>
+<td>2.1448</td>
+<td>0.02938</td>
+</tr>
+<tr class="even">
+<td>Welch’s t test</td>
+<td>2.4258</td>
+<td>14</td>
+<td>2.1448</td>
+<td>0.02938</td>
+</tr>
+<tr class="odd">
+<td>Paired t test</td>
+<td>2.0059</td>
+<td>7</td>
+<td>2.3646</td>
+<td>0.08488</td>
+</tr>
+</tbody>
+</table>
+<p>If we choose <span class="math inline">\(\alpha = 0.1\)</span>, all the methods result in a rejection. But if we choose a smaller significance level <span class="math inline">\(\alpha=0.05\)</span>, the paired t test results in an acceptance while the null is rejected for the other two methods. Such a discrepancy is due to the assumption of independence of two samples for the two sample tests. Actually, for the paired t test, we <strong>do not</strong> need the independence of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, but the assumption of normality of <span class="math inline">\(Z=X-Y\)</span> is maintained. The sample covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is <span class="math inline">\(-0.2617857\)</span>, which is far away from <span class="math inline">\(0\)</span> – the assumption of independence of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. It had better to use paried t test because it does not require the independence on the <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 <hr />
 <p><code>Case study 3</code>: The National Center for Health Statistics (1970) gives the following data on
 distribution of suicides in the United States by month in 1970. Is there any
@@ -531,6 +678,37 @@ appropriate probabilities and conduct a goodness-of-fit test.)</p>
 </tbody>
 </table>
 <hr />
+<p><code>Solution</code>:</p>
+<p>Let <span class="math inline">\(n_i\)</span> be the number of days in the <span class="math inline">\(i\)</span>th month, <span class="math inline">\(i=1,\dots,12\)</span>, and let <span class="math inline">\(N = \sum_{i=1}^{12} n_i\)</span>. Let <span class="math inline">\(X\)</span> be a discrete random variable with <span class="math inline">\(p_i=P(X=i)\)</span>, <span class="math inline">\(i=1,\dots,12\)</span> and <span class="math inline">\(\sum_{i=1}^{12} p_i = 1\)</span>. Consider the test</p>
+<p><span class="math display">\[H_0: p_i = n_i/N, i=1,\dots,12\ vs. H_1:p_{i^*} \neq n_{i^*}/N \text{ for some }i^*.\]</span></p>
+<p>We use the R code to do the goodness-of-fit test. The p-value is <span class="math inline">\(1.852\times 10^{-6}&lt;0.05\)</span>, we therefore reject the null at the significance level <span class="math inline">\(\alpha=0.05\)</span>. The data do not support that the suicide rate is constant.</p>
+<pre class="r"><code>suicide = data.frame(
+  days = c(31,28,31,30,31,30,31,31,30,31,30,31),
+  numbers = c(1867,1789,1944,2094,2097,1981,1887,2024,
+              1928,2032,1978,1859)
+)
+x = suicide$numbers
+p = suicide$days/sum(suicide$days)
+chisq.test(x,p=p)</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 47.365, df = 11, p-value = 1.852e-06</code></pre>
+<p>We can also test seasonal suicide rate by splitting the data into four groups:</p>
+<p>Spring = Mar. + Apr. + May = 6135</p>
+<p>Summer = June + July + Aug. = 5892</p>
+<p>Autumn = Sept.+ Oct. + Nov. = 5938</p>
+<p>Winter = Dec. + Jan. + Feb. = 5515</p>
+<pre class="r"><code>x = c(6135,5892,5938,5515)
+chisq.test(x)</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  x
+## X-squared = 34.303, df = 3, p-value = 1.71e-07</code></pre>
+<p>The p-value is <span class="math inline">\(1.71\times 10^{-7}&lt;0.05\)</span>, we therefore reject the null at the significance level <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<hr />
 <p><code>Case study 4</code>: Under (the assumption of) simple Mendelian inheritance, a cross
 between plants of two particular genotypes produces progeny 1/4 of
 which are “dwarf” and <span class="math inline">\(3/4\)</span> of which are “giant”, respectively.
@@ -541,6 +719,31 @@ If “giant” is taken as success, the null hypothesis is that <span class="mat
 <li><p>Let <span class="math inline">\(X_i,i=1,\dots,n\)</span> be the sample of the population <span class="math inline">\(B(1,p)\)</span>. By central limit theorem (CLT), the distribution of <span class="math inline">\(\bar X\)</span> can be approximated by a normal distribution <span class="math inline">\(N(p,p(1-p)/n)\)</span>. Please use this approximation to do the binominal test above.</p></li>
 <li><p>Actually, we can do the exact binominal test according to the formula given in P.114 of our textbook. Compare the results in the exact test and the approximate test for significance levels <span class="math inline">\(\alpha=0.05,0.01,0.001\)</span>.</p></li>
 </ul>
+<p><code>Solution</code>:</p>
+<ol style="list-style-type: decimal">
+<li>Under the null, we have <span class="math inline">\(\bar X \stackrel{\cdot}{\sim}N(3/4,3/(16n))\)</span>, where <span class="math inline">\(n = 243+682=925\)</span>. The rejection region is</li>
+</ol>
+<p><span class="math display">\[W = \{|\bar x-3/4|\sqrt{16n/3}&gt;u_{1-\alpha/2}\}.\]</span></p>
+<p>Using data give the test statistic <span class="math inline">\(T = |\bar x-3/4|\sqrt{16n/3}= 0.8922\)</span>. Since <span class="math inline">\(u_{1-\alpha/2}= 1.96\)</span> for <span class="math inline">\(\alpha= 0.05\)</span>, we accept the null at significance levels <span class="math inline">\(\alpha=0.05,0.01,0.001\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>We next use R code to do the exact binominal test. The p-value is <span class="math inline">\(0.3825&gt;0.05\)</span>, we therefore accept the null at significance levels <span class="math inline">\(\alpha=0.05,0.01,0.001\)</span>. Both methods lead to the same conclusions. From this point of view, it is reasonable to use the approximated normal distribution from the CLT in the binominal test because the sample size <span class="math inline">\(n=925\)</span> is large.</li>
+</ol>
+<pre class="r"><code>x = 682
+n = 243+682
+p = 3/4
+binom.test(x,n,p)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  x and n
+## number of successes = 682, number of trials = 925, p-value =
+## 0.3825
+## alternative hypothesis: true probability of success is not equal to 0.75
+## 95 percent confidence interval:
+##  0.7076683 0.7654066
+## sample estimates:
+## probability of success 
+##              0.7372973</code></pre>
 
     </div>
 
