@@ -940,7 +940,7 @@ Cov(y_i,\hat y_i)  &amp;amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\bet
 \end{align}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;As a result, we have
-&lt;span class=&#34;math display&#34;&gt;\[E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}\right]=(n-2)\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n}-\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}\right]=(n-2)\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;normal-distributions&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Normal distributions&lt;/h3&gt;
@@ -984,6 +984,18 @@ rods are being completely tooled, then rejected as overweight. To reduce that
 cost, the company’s quality-control department wants to quantify the relationship
 between the weight of the &lt;strong&gt;finished rod&lt;/strong&gt;, &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, and that of the &lt;strong&gt;rough casting&lt;/strong&gt; (毛坯铸件), &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;. Castings likely to produce rods that are too heavy can then be discarded
 before undergoing the final (and costly) tooling process. The data are displayed below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rod = data.frame(
+        id = seq(1:25),
+        rough_weight = c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 
+                         2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635,
+                         2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 
+                         2.610, 2.590, 2.590, 2.565),
+     finished_weight = c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 
+                         2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 
+                         1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 
+                         1.990, 1.975, 1.995, 1.955)
+)
+knitr::kable(rod,&amp;quot;html&amp;quot;,caption = &amp;quot;rough weight vs. finished weight&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:unnamed-chunk-1&#34;&gt;Table 1: &lt;/span&gt;rough weight vs. finished weight
