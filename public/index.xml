@@ -2811,6 +2811,10 @@ p-value equals the inverse of the likelihood ratio.&lt;/li&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\vec x)= P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda(\vec x))\le P_{\theta_0}(\lambda(\vec X)\ge\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)}  =  \frac{1}{\lambda(\vec x)},\]&lt;/span&gt;
 where we used the &lt;a href=&#34;https://en.wikipedia.org/wiki/Markov%27s_inequality&#34;&gt;Markov’s inequality&lt;/a&gt;. If the equality holds, then &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\lambda(\vec X)\in\{0,\lambda(\vec x)\})=1\)&lt;/span&gt; that leads to a contradiction (because &lt;span class=&#34;math inline&#34;&gt;\(E_{\theta_0}[\lambda(\vec X)]=1\)&lt;/span&gt;). So the
 p-value is less than the inverse of the likelihood ratio. This implies that if &lt;span class=&#34;math inline&#34;&gt;\(\alpha\ge\frac{1}{\lambda(\vec x)}\)&lt;/span&gt; (the inverse of the likelihood ratio), we should reject the null.&lt;/p&gt;
+&lt;p&gt;Actually, it is easy to give a counter-example. Let &lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,1)\)&lt;/span&gt;. The test is
+&lt;span class=&#34;math display&#34;&gt;\[H_0: \mu=0\ vs.\ H_1:\mu = 1.\]&lt;/span&gt;
+The likelihood ratio is &lt;span class=&#34;math inline&#34;&gt;\(\lambda(\vec x)= e^{n(\bar x-1/2)}\)&lt;/span&gt;. The p-value is
+&lt;span class=&#34;math display&#34;&gt;\[p(\vec x) = P_0(e^{n(\bar X-1/2)}&amp;gt;e^{n(\bar x-1/2)}) =P_0(\bar X&amp;gt;\bar x)=1-\Phi(\sqrt n \bar x)\neq \frac 1 {\lambda(\vec x)}.\]&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 1&lt;/code&gt;: Mutual funds are investment vehicles consisting of a portfolio of various types
 of investments. If such an investment is to meet annual spending needs, the

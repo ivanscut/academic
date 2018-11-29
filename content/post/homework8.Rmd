@@ -52,6 +52,11 @@ $$p(\vec x)= P_{\theta_0}(\lambda(\vec X)>\lambda(\vec x))\le P_{\theta_0}(\lamb
 where we used the [Markov's inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality). If the equality holds, then $P_{\theta_0}(\lambda(\vec X)\in\{0,\lambda(\vec x)\})=1$ that leads to a contradiction (because $E_{\theta_0}[\lambda(\vec X)]=1$). So the
 p-value is less than the inverse of the  likelihood ratio. This implies that if $\alpha\ge\frac{1}{\lambda(\vec x)}$ (the inverse of the  likelihood ratio), we should reject the null.
 
+Actually, it is easy to give a counter-example. Let $X\sim N(\mu,1)$. The test is 
+$$H_0: \mu=0\ vs.\ H_1:\mu = 1.$$
+The likelihood ratio is $\lambda(\vec x)= e^{n(\bar x-1/2)}$. The p-value is
+$$p(\vec x) = P_0(e^{n(\bar X-1/2)}>e^{n(\bar x-1/2)}) =P_0(\bar X>\bar x)=1-\Phi(\sqrt n \bar x)\neq \frac 1 {\lambda(\vec x)}.$$
+
 ---
 
 `Case study 1`: Mutual funds are investment vehicles consisting of a portfolio of various types
