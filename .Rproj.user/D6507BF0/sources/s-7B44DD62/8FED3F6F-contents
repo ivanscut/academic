@@ -2,7 +2,7 @@
 title: "第八次作业"
 date: "2018-11-07"
 categories: ["作业"]
-Summary: "截止日期：2018-11-18 23:00"
+Summary: "答案已上传！"
 tags: ["作业", "数理统计"]
 ---
 
@@ -48,9 +48,9 @@ $$\lambda(\vec x) = \frac{L(\vec x;\theta_1)}{L(\vec x;\theta_0)}.$$
 
 The p-value is then given by
 
-$$p(\vec x)= P_{\theta_0}(\lambda(\vec X)>\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)} =  \frac{1}{\lambda(\vec x)},$$
-where we used the [Markov's inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality). The equality holds as long as $P_{\theta_0}[\lambda(\vec X)]=\lambda(\vec x)]=1$. So the
-p-value is generally less than the inverse of the  likelihood ratio. This implies that if $\alpha>\frac{1}{\lambda(\vec x)}$ (the inverse of the  likelihood ratio), we should reject the null.
+$$p(\vec x)= P_{\theta_0}(\lambda(\vec X)>\lambda(\vec x))\le P_{\theta_0}(\lambda(\vec X)\ge\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)}  =  \frac{1}{\lambda(\vec x)},$$
+where we used the [Markov's inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality). If the equality holds, then $P_{\theta_0}(\lambda(\vec X)\in\{0,\lambda(\vec x)\})=1$ that leads to a contradiction (because $E_{\theta_0}[\lambda(\vec X)]=1$). So the
+p-value is less than the inverse of the  likelihood ratio. This implies that if $\alpha\ge\frac{1}{\lambda(\vec x)}$ (the inverse of the  likelihood ratio), we should reject the null.
 
 ---
 

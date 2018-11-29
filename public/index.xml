@@ -2808,9 +2808,9 @@ p-value equals the inverse of the likelihood ratio.&lt;/li&gt;
 &lt;p&gt;&lt;code&gt;False&lt;/code&gt;. Consider the simple test &lt;span class=&#34;math inline&#34;&gt;\(H_0:\theta = \theta_0\ vs.\ H_1:\theta=\theta_1\)&lt;/span&gt;. The rejection region is given by &lt;span class=&#34;math inline&#34;&gt;\(W = \{\lambda(\vec x)&amp;gt;\lambda_0\}\)&lt;/span&gt;, where the likelihood ratio is
 &lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x) = \frac{L(\vec x;\theta_1)}{L(\vec x;\theta_0)}.\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The p-value is then given by&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\vec x)= P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)} =  \frac{1}{\lambda(\vec x)},\]&lt;/span&gt;
-where we used the &lt;a href=&#34;https://en.wikipedia.org/wiki/Markov%27s_inequality&#34;&gt;Markov’s inequality&lt;/a&gt;. The equality holds as long as &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}[\lambda(\vec X)]=\lambda(\vec x)]=1\)&lt;/span&gt;. So the
-p-value is generally less than the inverse of the likelihood ratio. This implies that if &lt;span class=&#34;math inline&#34;&gt;\(\alpha&amp;gt;\frac{1}{\lambda(\vec x)}\)&lt;/span&gt; (the inverse of the likelihood ratio), we should reject the null.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\vec x)= P_{\theta_0}(\lambda(\vec X)&amp;gt;\lambda(\vec x))\le P_{\theta_0}(\lambda(\vec X)\ge\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)}  =  \frac{1}{\lambda(\vec x)},\]&lt;/span&gt;
+where we used the &lt;a href=&#34;https://en.wikipedia.org/wiki/Markov%27s_inequality&#34;&gt;Markov’s inequality&lt;/a&gt;. If the equality holds, then &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\lambda(\vec X)\in\{0,\lambda(\vec x)\})=1\)&lt;/span&gt; that leads to a contradiction (because &lt;span class=&#34;math inline&#34;&gt;\(E_{\theta_0}[\lambda(\vec X)]=1\)&lt;/span&gt;). So the
+p-value is less than the inverse of the likelihood ratio. This implies that if &lt;span class=&#34;math inline&#34;&gt;\(\alpha\ge\frac{1}{\lambda(\vec x)}\)&lt;/span&gt; (the inverse of the likelihood ratio), we should reject the null.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study 1&lt;/code&gt;: Mutual funds are investment vehicles consisting of a portfolio of various types
 of investments. If such an investment is to meet annual spending needs, the
