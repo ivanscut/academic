@@ -27,12 +27,12 @@ level 0.02.
 3. If a test rejects at significance level 0.06, then the p-value is less than or equal
 to 0.06.
 
-`False`. If $\alpha> p$-value, the null is rejected. It is somewhat **unclear**  whether to reject the null for the case of $\alpha = p$-value. Let consider the simple null $H_0:\theta = \theta_0$. Suppose the rejection region is $W=\{T(\vec x)>C\}$, where $T(\vec X)$ is the test statistic. The p-value is
+`True`. If $\alpha> p$-value, the null is rejected. It is somewhat **unclear**  whether to reject the null for the case of $\alpha = p$-value. Let consider the simple null $H_0:\theta = \theta_0$. Suppose the rejection region is $W=\{T(\vec x)>C\}$, where $T(\vec X)$ is the test statistic. The p-value is
 $p(\vec x) = P_{\theta_0}(T(\vec X)>T(\vec x))$. Suppose that under $H_0$, $T(\vec X)$ has a positive density at $T(\vec x)$. If $\alpha=p(\vec x)$, the corresponding critical value is $C = T(\vec x)$. We thus accept the null because the rejection region does not include the special case $T(\vec x)=C$. On the other hand, if we choose the rejection region $W=\{T(\vec x)\ge C\}$ instead, the p-value is unchanged if the test statistic is continuous variable. If $\alpha=p(\vec x)$, the critical value is also $C = T(\vec x)$.
 However, for this case, the null is rejected beacause the rejection region includes the special case $T(\vec x)=C$. 
 
 {{% alert warning %}}
-More precisely, the p-value is the **infimum** of those significance levels that lead to a rejection. BUT we do not know whether the infimum is attainable unless the form of rejection region was known.
+More precisely, the p-value is the **infimum** of those significance levels that lead to a rejection of the null. BUT we do not know whether the infimum is attainable unless the form of rejection region was known.
 {{% /alert %}}
 
 
@@ -162,14 +162,14 @@ t.test(male,female,var.equal = TRUE)
 2. For this case, we may use the [Welch's t test](https://en.wikipedia.org/wiki/Welch%27s_t-test), which  is designed for unequal variances. The test statistic is 
 
 $$T_2=\frac{\bar X-\bar Y}{\sqrt{S_{1m}^{*2}/m+S_{1n}^{*2}/n}}.$$
-Under the mull $H_0$, $T_2$ is approximately distributed from $t(k)$, where the degrees of freedom $k$ is the integer closest to $k^*$:
+Under the null $H_0$, $T_2$ is approximately distributed from $t(k)$, where the degree of freedom $k$ is the integer closest to $k^*$:
 
 $$k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2}/n)^2/(n-1)}.$$
 
 Using the data gives $k^*=13.993,\ T_2=2.4258>t_{0.975}(14)=2.1448$. We therefore reject the null at the significance level $\alpha=0.05$.  The R code is given below. We get a p-value of $0.02938<0.05$. The p-value and the test statistic are the same as those in the case of equal variances, respectively. (WHY?)
 
 {{% alert note %}}
-Try to prove that the two test statistics are the same. What happen to the degrees of freedom k if the two sample variances are very close? What's difference between the two kinds of t-tests when the sample sizes are large? Can we use the [Welch's t test](https://en.wikipedia.org/wiki/Welch%27s_t-test) for the case of equal variances instead of the usual t test?
+Try to prove that the two test statistics are the same. What happen to the degree of freedom k if the two sample variances are very close? What's difference between the two kinds of t-tests when the sample sizes are large? Can we use the [Welch's t test](https://en.wikipedia.org/wiki/Welch%27s_t-test) for the case of equal variances instead of the usual t test?
 {{% /alert %}}
 
 ```{r}
@@ -206,7 +206,7 @@ Two-Sample t test | 2.4258 | 14 | 2.1448 |  0.02938 |
 Welch's t test | 2.4258 | 14 | 2.1448 |  0.02938 |
 Paired t test | 2.0059 | 7 | 2.3646 | 0.08488 |
 
-If we choose $\alpha = 0.1$, all the methods result in a rejection. But if we choose a smaller significance level $\alpha=0.05$, the paired t test results in an acceptance while the null is rejected for the other two methods. Such a discrepancy is due to the assumption of independence of two samples for the two sample tests. Actually, for the paired t test, we **do not** need the independence of $X$ and $Y$, but the assumption of normality of $Z=X-Y$ is maintained. The sample covariance of $X$ and $Y$ is $-0.2617857$, which is far away from $0$ -- the assumption of independence of $X$ and $Y$. It had better to use paried t test because it does not require the independence on the $X$ and $Y$.
+If we choose $\alpha = 0.1$, all the methods result in a rejection of the null. But if we choose a smaller significance level $\alpha=0.05$, the paired t test results in an acceptance while the null is rejected for the other two methods. Such a discrepancy is due to the assumption of independence on the two populations required for the two-sample tests. Actually, for the paired t test, we **do not** need the independence assumption, but the assumption of normality of $Z=X-Y$ is maintained. The sample covariance of $X$ and $Y$ is $-0.2617857$, which is far away from $0$ -- the assumption of independence of $X$ and $Y$. It had better to use paried t test because it does not require the independence on the $X$ and $Y$.
 
 ---
 
