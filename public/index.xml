@@ -1459,7 +1459,7 @@ vector &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; such that &lt;
 &lt;p&gt;&lt;code&gt;Assumption A&lt;/code&gt;: Assume that &lt;span class=&#34;math inline&#34;&gt;\(E[\epsilon]=0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var[\epsilon]=\sigma^2I_p\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Theorem 7&lt;/code&gt;: Suppose that Assumption A is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;, we have&lt;/p&gt;
 &lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(E[\hat\beta]=\beta,\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\)&lt;/span&gt;,&lt;/p&gt;
+&lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \begin{align}
@@ -1929,7 +1929,6 @@ matplot(newdata$age,cbind(CI,Pred[,-1]),type=&amp;quot;l&amp;quot;,lty = c(1,5,5
 legend(20,150,c(&amp;quot;Fitted&amp;quot;,&amp;quot;Confidence&amp;quot;,&amp;quot;Prediction&amp;quot;),
        lty = c(1,5,2),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;brown&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/chap04_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;ppt.html&#34;&gt;PPT link&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
