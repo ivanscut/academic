@@ -263,7 +263,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    17 min read
+    19 min read
   </span>
   
 
@@ -917,7 +917,7 @@ vector <span class="math inline">\(u\)</span> such that <span class="math inline
 </blockquote>
 <div id="expected-values-and-variances" class="section level3">
 <h3>Expected values and variances</h3>
-<p><code>Assumption A</code>: Assume that <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\sigma^2I_p\)</span>.</p>
+<p><code>Assumption A</code>: Assume that <span class="math inline">\(E[\epsilon]=0\)</span> and <span class="math inline">\(Var[\epsilon]=\sigma^2I_n\)</span>.</p>
 <p><code>Theorem 7</code>: Suppose that Assumption A is satisfied and <span class="math inline">\(\mathrm{rank}(X)=p&lt;n\)</span>, we have</p>
 <p>(1). <span class="math inline">\(E[\hat\beta]=\beta,\)</span></p>
 <p>(2). <span class="math inline">\(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\)</span>.</p>
@@ -1072,7 +1072,7 @@ As a result, <span class="math inline">\(S_R^2 = \sum_{i=2}^p z_i^2\)</span>. Re
 <p><span class="math display">\[E[z] = U^\top X\beta = U^\top (\beta_0,\dots,\beta_0)^\top.\]</span></p>
 <p><span class="math display">\[E[z^\top]=\beta_0(1,1,\dots,1) U = \beta_0(\sqrt{n},0,\dots,0).\]</span>
 We therefore have <span class="math inline">\(z_i\sim N(0,\sigma^2)\)</span> for <span class="math inline">\(i=2,\dots,n\)</span>. So <span class="math display">\[S_R^2/\sigma^2 = \sum_{i=2}^p (z_i/\sigma)^2\sim \chi^2(p-1).\]</span></p>
-<p>We now use generalized likelihood (GLR) test. The likelihood function for <span class="math inline">\(Y\)</span> is given by</p>
+<p>We now use generalized likelihood ratio (GLR) test. The likelihood function for <span class="math inline">\(Y\)</span> is given by</p>
 <p><span class="math display">\[L(\beta,\sigma^2) = (2\pi \sigma^2)^{-n/2} e^{-\frac{||Y-X\beta||^2}{2\sigma^2}}.\]</span></p>
 <p>The maximizers for <span class="math inline">\(L(\beta,\sigma^2)\)</span> over the parameter space <span class="math inline">\(\Theta=\{(\beta,\sigma^2)|\beta\in \mathbb{R}^p,\sigma^2&gt;0\}\)</span> are</p>
 <p><span class="math display">\[\hat\beta = (X^\top X)^{-1}X^\top Y,\ \hat\sigma^2 = \frac{||Y-X\hat \beta||}{n}=\frac{S_e^2}{n}.\]</span></p>
@@ -1390,6 +1390,585 @@ matplot(newdata$age,cbind(CI,Pred[,-1]),type=&quot;l&quot;,lty = c(1,5,5,2,2),
 legend(20,150,c(&quot;Fitted&quot;,&quot;Confidence&quot;,&quot;Prediction&quot;),
        lty = c(1,5,2),col=c(&quot;blue&quot;,&quot;red&quot;,&quot;brown&quot;))</code></pre>
 <p><img src="/post/chap04_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="extension-to-general-models" class="section level2">
+<h2>Extension to general models</h2>
+<p><strong>Inherently Linear models</strong>:</p>
+<p><span class="math display">\[\begin{align}
+f(y) &amp;= \beta_0+\beta_1 g_1(x_1,\dots,x_{p-1})+\dots\\&amp;+\beta_{k-1} g_{k-1}(x_1,\dots,x_{p-1})+\epsilon
+\end{align}\]</span></p>
+<p>Let <span class="math inline">\(y^*=f(y),\ x_i^*=g_i(x_1,\dots,x_{p-1})\)</span>. The transformed model is linear</p>
+<p><span class="math display">\[y^*=\beta_0+\beta_1 x_1^*+\dots+\beta_{k-1} x_{k-1}^{*}+\epsilon.\]</span></p>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<ul>
+<li><p>Polynomial models: <span class="math display">\[y = \beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon\]</span></p></li>
+<li><p>Interaction models: <span class="math display">\[y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon\]</span></p></li>
+<li><p>Multiplicative models: <span class="math display">\[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma3}\epsilon^*\]</span></p></li>
+<li><p>Exponential models: <span class="math display">\[y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*\]</span></p></li>
+</ul>
+</div>
+<div id="examples-1" class="section level2">
+<h2>Examples</h2>
+<ul>
+<li><p>Reciprocal models: <span class="math display">\[y=\frac{1}{\beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon}\]</span></p></li>
+<li><p>Semilog models: <span class="math display">\[y = \beta_0+\beta_1\log(x)+\epsilon\]</span></p></li>
+<li><p>Logit models: <span class="math display">\[\log\left(\frac{y}{1-y}\right) = \beta_0+\beta_1 x+\epsilon\]</span></p></li>
+<li><p>Probit models: <span class="math inline">\(\Phi^{-1}(y) = \beta_0+\beta_1 x+\epsilon\)</span>, where <span class="math inline">\(\Phi\)</span> is the CDF of <span class="math inline">\(N(0,1)\)</span>.</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>回归诊断</h2>
+<p>回归分析都是基于误差项的假定进行的，最常见的假设<span class="math display">\[\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]</span></p>
+<ul>
+<li><p>如何考察数据基本上满足这些假设？自然从残差的角度来解决问题，这种方法叫<strong>残差分析</strong>。</p></li>
+<li><p>研究那些数据对统计推断（估计、检验、预测和控制）有较大影响的点，这样的点叫做<strong>影响点</strong>。剔除那些有较强影响的异常/离群(outlier)数据，这就是所谓的影响分析(influence analysis).</p></li>
+</ul>
+<p>残差的定义为
+<span class="math display">\[\hat\epsilon = Y-\hat Y\]</span></p>
+</div>
+<div class="section level2">
+<h2>残差的性质</h2>
+<p>在假设<span class="math inline">\(\epsilon\sim N(0,\sigma^2I_n)\)</span>下，</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\hat\epsilon \sim N(0,\sigma^2(I_n-P))\)</span></p></li>
+<li><p><span class="math inline">\(Cov(\hat Y,\hat\epsilon) = 0\)</span></p></li>
+<li><p><span class="math inline">\(1^\top\hat\epsilon = 0\)</span></p></li>
+</ol>
+<p>从中可以看出，<span class="math inline">\(Var[\hat\epsilon_i] = \sigma^2(1-p_{ii})\)</span>, 其中<span class="math inline">\(p_{ij}\)</span>为投影矩阵的元素。该方差与<span class="math inline">\(\sigma^2\)</span>以及<span class="math inline">\(p_{ii}\)</span>有关，因此直接比较残差<span class="math inline">\(\hat\epsilon_i\)</span>是不恰当的。</p>
+<p>为此，将残差标准化：</p>
+<p><span class="math display">\[\frac{\hat\epsilon_i-E[\hat\epsilon_i]}{\sqrt{Var[\hat\epsilon_i}]}= \frac{\hat\epsilon_i}{\sigma\sqrt{1-p_{ii}}},\ i=1,\dots,n\]</span></p>
+</div>
+<div class="section level2">
+<h2>学生化残差</h2>
+<p>由于<span class="math inline">\(\sigma\)</span>是未知的，所以用<span class="math inline">\(\hat\sigma\)</span>来代替，其中<span class="math inline">\(\hat\sigma^2 = S_e^2/(n-p)\)</span>. 于是得到学生化(studentized residuals)</p>
+<p><span class="math display">\[t_i = \frac{\hat\epsilon_i}{\hat{\sigma}\sqrt{1-p_{ii}}}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(t_i\)</span>虽然是<span class="math inline">\(\hat\epsilon_i\)</span>的学生化，但它的分布并不服从<span class="math inline">\(t\)</span>分布，它的分布通常比较复杂</p></li>
+<li><p><span class="math inline">\(t_1,\dots,t_n\)</span>通常是不独立的</p></li>
+<li><p>在实际应用中，可以近似认为：<span class="math inline">\(t_1,\dots,t_n\)</span>是相互独立，服从<span class="math inline">\(N(0,1)\)</span>分布</p></li>
+<li><p>在实际应用中使用的残差图就是根据上述假定来对模型合理性进行诊断的。</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>残差图</h2>
+<p>残差图：以残差为纵坐标，其他的量（一般为拟合值<span class="math inline">\(\hat y_i\)</span>）为横坐标的散点图。</p>
+<p>由于可以近似认为：<span class="math inline">\(t_1,\dots,t_n\)</span>是相互独立，服从<span class="math inline">\(N(0,1)\)</span>分布，所以可以把它们看作来自<span class="math inline">\(N(0,1)\)</span>的iid样本</p>
+<p>根据标准正态的性质，大概有<span class="math inline">\(95\%\)</span>的<span class="math inline">\(t_i\)</span>落入区间<span class="math inline">\([-2,2]\)</span>中。由于<span class="math inline">\(\hat Y\)</span>与<span class="math inline">\(\hat\epsilon\)</span>不相关，所以<span class="math inline">\(\hat y_i\)</span>与学生化残差<span class="math inline">\(t_i\)</span>的相关性也很小。</p>
+<p>这样在残差图中，点<span class="math inline">\((\hat y_i,t_i),i=1,\dots,n\)</span>大致应该落在宽度为4的水平带<span class="math inline">\(|t_i|\le 2\)</span>的区域内，且<strong>不呈现任何趋势</strong>。</p>
+</div>
+<div id="1" class="section level2">
+<h2>残差图（1）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-12"></span>
+<img src="error1.png" alt="正常的残差图" width="90%" />
+<p class="caption">
+Figure 1: 正常的残差图
+</p>
+</div>
+</div>
+<div id="2" class="section level2">
+<h2>残差图（2）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="error2.png" alt="误差随着横坐标的增加而增加" width="90%" />
+<p class="caption">
+Figure 2: 误差随着横坐标的增加而增加
+</p>
+</div>
+</div>
+<div id="3" class="section level2">
+<h2>残差图（3）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-14"></span>
+<img src="error3.png" alt="误差随着横坐标的增加而减少" width="90%" />
+<p class="caption">
+Figure 3: 误差随着横坐标的增加而减少
+</p>
+</div>
+</div>
+<div id="4" class="section level2">
+<h2>残差图（4）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-15"></span>
+<img src="error4.png" alt="误差中间大，两端小" width="90%" />
+<p class="caption">
+Figure 4: 误差中间大，两端小
+</p>
+</div>
+</div>
+<div id="5" class="section level2">
+<h2>残差图（5）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-16"></span>
+<img src="error5.png" alt="回归函数可能非线性，或者误差相关或者漏掉重要的自变量" width="90%" />
+<p class="caption">
+Figure 5: 回归函数可能非线性，或者误差相关或者漏掉重要的自变量
+</p>
+</div>
+</div>
+<div id="6" class="section level2">
+<h2>残差图（6）</h2>
+<div class="figure"><span id="fig:unnamed-chunk-17"></span>
+<img src="error6.png" alt="回归函数可能非线性" width="90%" />
+<p class="caption">
+Figure 6: 回归函数可能非线性
+</p>
+</div>
+</div>
+<div class="section level2">
+<h2>残差图诊断的思路</h2>
+<ul>
+<li>如果残差图中显示误差方差不相等(heterogeneity, 方差非齐性)，可以对变量做适当的变换，使得变换后的相应变量具有近似相等的方差(homogeneity, 方差齐性)。最著名的方法是<strong>Box-Cox变换</strong>，见综述论文：</li>
+</ul>
+<p>R. M. Sakia. The Box-Cox Transformation Technique: A Review. The Statistician, 41: 169-178, 1992.</p>
+<ul>
+<li>如果残差图中显示非线性，可适当增加自变量的二次项或者交叉项。具体问题具体分析。</li>
+</ul>
+</div>
+<div id="outlier" class="section level2">
+<h2>离群值(outlier)</h2>
+<p>产生离群值的原因：</p>
+<ol style="list-style-type: decimal">
+<li><p>主观原因：收集和记录数据时出现错误</p></li>
+<li><p>客观原因：重尾分布（比如，<span class="math inline">\(t\)</span>分布）和混合分布</p></li>
+</ol>
+<p>离群值的简单判断：</p>
+<ol style="list-style-type: decimal">
+<li><p>数据散点图</p></li>
+<li><p>学生化残差图，如果<span class="math inline">\(|t_i|&gt;3\)</span> (或者2.5,2)，则对应的数据判定为离群值。</p></li>
+<li><p>离群值的统计检验方法，M-估计(Maximum likelihood type estimators)</p></li>
+</ol>
+</div>
+<div class="section level2">
+<h2>案例</h2>
+<p>Anscombe在1973年构造了4组数据，每组数据都是由11对点<span class="math inline">\((x_i,y_i)\)</span>组成，试分析4组数据是否通过回归方程的检验。</p>
+<pre class="r"><code>data(&quot;anscombe&quot;)
+knitr::kable(anscombe,format = &quot;html&quot;)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+x1
+</th>
+<th style="text-align:right;">
+x2
+</th>
+<th style="text-align:right;">
+x3
+</th>
+<th style="text-align:right;">
+x4
+</th>
+<th style="text-align:right;">
+y1
+</th>
+<th style="text-align:right;">
+y2
+</th>
+<th style="text-align:right;">
+y3
+</th>
+<th style="text-align:right;">
+y4
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+<td style="text-align:right;">
+9.14
+</td>
+<td style="text-align:right;">
+7.46
+</td>
+<td style="text-align:right;">
+6.58
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+6.95
+</td>
+<td style="text-align:right;">
+8.14
+</td>
+<td style="text-align:right;">
+6.77
+</td>
+<td style="text-align:right;">
+5.76
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+7.58
+</td>
+<td style="text-align:right;">
+8.74
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+7.71
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8.81
+</td>
+<td style="text-align:right;">
+8.77
+</td>
+<td style="text-align:right;">
+7.11
+</td>
+<td style="text-align:right;">
+8.84
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8.33
+</td>
+<td style="text-align:right;">
+9.26
+</td>
+<td style="text-align:right;">
+7.81
+</td>
+<td style="text-align:right;">
+8.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9.96
+</td>
+<td style="text-align:right;">
+8.10
+</td>
+<td style="text-align:right;">
+8.84
+</td>
+<td style="text-align:right;">
+7.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+7.24
+</td>
+<td style="text-align:right;">
+6.13
+</td>
+<td style="text-align:right;">
+6.08
+</td>
+<td style="text-align:right;">
+5.25
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+4.26
+</td>
+<td style="text-align:right;">
+3.10
+</td>
+<td style="text-align:right;">
+5.39
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10.84
+</td>
+<td style="text-align:right;">
+9.13
+</td>
+<td style="text-align:right;">
+8.15
+</td>
+<td style="text-align:right;">
+5.56
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+4.82
+</td>
+<td style="text-align:right;">
+7.26
+</td>
+<td style="text-align:right;">
+6.42
+</td>
+<td style="text-align:right;">
+7.91
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5.68
+</td>
+<td style="text-align:right;">
+4.74
+</td>
+<td style="text-align:right;">
+5.73
+</td>
+<td style="text-align:right;">
+6.89
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level2">
+<h2>回归结果</h2>
+<pre class="r"><code>coef.list = list()
+for(i in 1:4)
+{
+  ff = as.formula(paste0(&quot;y&quot;,i,&quot;~&quot;,&quot;x&quot;,i))
+  lmi = lm(ff,data = anscombe)
+  coef.list = c(coef.list, list(summary(lmi)$coef))
+}
+
+print(coef.list)</code></pre>
+<pre><code>## [[1]]
+##              Estimate Std. Error  t value    Pr(&gt;|t|)
+## (Intercept) 3.0000909  1.1247468 2.667348 0.025734051
+## x1          0.5000909  0.1179055 4.241455 0.002169629
+## 
+## [[2]]
+##             Estimate Std. Error  t value    Pr(&gt;|t|)
+## (Intercept) 3.000909  1.1253024 2.666758 0.025758941
+## x2          0.500000  0.1179637 4.238590 0.002178816
+## 
+## [[3]]
+##              Estimate Std. Error  t value    Pr(&gt;|t|)
+## (Intercept) 3.0024545  1.1244812 2.670080 0.025619109
+## x3          0.4997273  0.1178777 4.239372 0.002176305
+## 
+## [[4]]
+##              Estimate Std. Error  t value    Pr(&gt;|t|)
+## (Intercept) 3.0017273  1.1239211 2.670763 0.025590425
+## x4          0.4999091  0.1178189 4.243028 0.002164602</code></pre>
+</div>
+<div class="section level2">
+<h2>回归直线</h2>
+<pre class="r"><code>par(mfrow = c(2,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
+for(i in 1:4)
+{
+  ff = as.formula(paste0(&quot;y&quot;,i,&quot;~&quot;,&quot;x&quot;,i))
+  lmi = lm(ff,data = anscombe)
+  plot(ff,data = anscombe,col=&quot;red&quot;,pch = 21,bg=&quot;orange&quot;,
+       cex = 1.2,xlim=c(3,19),ylim=c(3,13))
+  abline(coef(lmi),col=&quot;blue&quot;)
+}</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>残差</h2>
+<pre class="r"><code>par(mfrow = c(2,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
+for(i in 1:4)
+{
+  ff = as.formula(paste0(&quot;y&quot;,i,&quot;~&quot;,&quot;x&quot;,i))
+  lmi = lm(ff,data = anscombe)
+  plot(lmi$fitted.values,rstandard(lmi),pch = 21,bg=&quot;orange&quot;,
+       cex = 1.2,xlim=c(3,15),ylim=c(-4,4),xlab = &quot;fitted values&quot;,
+       ylab = &quot;standardized residuals&quot;)
+  abline(h=c(-3,3),lty=2)
+}</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>异常值</h2>
+<pre class="r"><code>lm1 = lm(y1~x1,data = anscombe)
+x = c(anscombe$x1, 18) # 人为添加异常数据
+y = c(anscombe$y1,30) # 人为添加异常数据
+lm.xy = lm(y~x)
+plot(x,y,pch = 21,bg=c(rep(&quot;black&quot;,11),&quot;red&quot;),ylim=c(0,50))
+abline(coef(lm.xy),lty=2,col=&quot;red&quot;)
+abline(coef(lm1),lty=2,col=&quot;blue&quot;)</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="-1" class="section level2">
+<h2>残差图</h2>
+<pre class="r"><code>par(mfrow = c(1,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
+plot(c(fitted(lm1),fitted(lm.xy)),c(rstandard(lm1),rstandard(lm.xy)),
+     ylim=c(-3,3),pch = c(rep(21,11),rep(22,12)),
+     bg = c(rep(&quot;blue&quot;,11),rep(&quot;red&quot;,12)),
+     xlab = &quot;fitted values&quot;,
+     ylab=&quot;standardized residuals&quot;)
+abline(h=c(-2,2),lty=2)
+plot(lm.xy,3) #画出残差图</code></pre>
+<p><img src="/post/chap04_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>回归分析的其他内容</h2>
+<ul>
+<li><p>共线性(collinear)分析，岭回归(ridge regression)方法</p></li>
+<li><p>变量选择方法：向前/后回归法、逐步回归法、完全子集法、交叉核实(cross validation)法，见课本P208-214</p></li>
+<li><p>现代变量选择方法：LASSO (Least Absolute Shrinkage &amp; Selection Operator)</p></li>
+</ul>
+</div>
+<div id="lasso" class="section level2">
+<h2>LASSO</h2>
+<p><img src="rob.jpg" /></p>
+<p>Professor Rob Tibshirani: <a href="https://statweb.stanford.edu/~tibs/" class="uri">https://statweb.stanford.edu/~tibs/</a></p>
+<p>LASSO是斯坦福大学统计系Tibshirani于1996年发表的著名论文“<a href="http://statweb.stanford.edu/~tibs/lasso/lasso.pdf">Regreesion shrinkage and selection via the LASSO</a>” (Journal of Royal Statistical Society, Seriers B, 58, 267-288)中所提出的一种变量选择方法。</p>
+</div>
+<div class="section level2">
+<h2>回归分析与因果分析</h2>
+<p>即使建立了回归关系式并且统计检验证明相关关系成立，也只能说明研究的变量是统计相关的，而<strong>不能就此断定变量之间有因果关系</strong>。</p>
+<p>案例(Ice Cream Causes Polio)：小儿麻痹症疫苗发明前，美国北卡罗来纳州卫生部研究人员通过分析冰淇淋消费量和小儿麻痹症的关系发现当冰淇淋消费量增加时，小儿麻痹疾病也增加。州卫生部发生警告反对吃冰淇淋来试图阻止这种疾病的传播。</p>
+</div>
+<div class="section level2">
+<h2>没有观察的混杂因素——温度</h2>
+<p>Polio and ice cream consumption both increase in the summertime. Summer is when the polio virus thrived.</p>
+<div class="figure"><span id="fig:unnamed-chunk-24"></span>
+<img src="ice.jpg" alt="The danger of mixing up causality and correlation" width="60%" />
+<p class="caption">
+Figure 7: The danger of mixing up causality and correlation
+</p>
+</div>
 </div>
 
     </div>

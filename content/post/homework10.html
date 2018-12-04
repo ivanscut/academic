@@ -1,0 +1,43 @@
+---
+title: "第十次作业"
+date: "2018-12-04"
+categories: ["作业"]
+Summary: "截止日期：2018-12-09 23:00"
+tags: ["作业", "数理统计"]
+---
+
+
+
+<p>Let us consider fitting a straight line, <span class="math inline">\(y = \beta_0+\beta_1x\)</span>, to points <span class="math inline">\((x_i,y_i)\)</span>, where <span class="math inline">\(i=1,\dots,n\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Write down the normal equations for the simple linear model via the matrix formalism.</p></li>
+<li><p>Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.</p></li>
+</ol>
+<hr />
+<p>Prove that the projection matrix <span class="math inline">\(P=X(X^\top X)^{-1} X^\top\)</span> has an eigenvalue 1, and
+<span class="math inline">\((1,\dots,1)^\top\)</span> is one of the associated eigenvectors.</p>
+<hr />
+<p>(The QR Method) This problem outlines the basic ideas of an alternative method,
+the QR method, of finding the least squares estimate <span class="math inline">\(\hat \beta\)</span>. An advantage of the
+method is that it does not include forming the matrix <span class="math inline">\(X^\top X\)</span>, a process that tends
+to increase rounding error. The essential ingredient of the method is that if <span class="math inline">\(X_{n\times p}\)</span>
+has <span class="math inline">\(p\)</span> linearly independent columns, it may be factored in the form</p>
+<p><span class="math display">\[
+\begin{align}
+X\quad &amp;=\quad Q\quad \quad R\\
+n\times p &amp;\quad  n\times p\quad p\times p
+\end{align}
+\]</span></p>
+<p>where the columns of <span class="math inline">\(Q\)</span> are orthogonal (<span class="math inline">\(Q^\top Q = I_p\)</span>) and <span class="math inline">\(R\)</span> is upper-triangular
+(<span class="math inline">\(r_{ij} = 0\)</span>, for <span class="math inline">\(i &gt; j\)</span>) and nonsingular. For a discussion of this decomposition and
+its relationship to the Gram-Schmidt process, see <a href="https://en.wikipedia.org/wiki/QR_decomposition" class="uri">https://en.wikipedia.org/wiki/QR_decomposition</a>.</p>
+<p>Show that <span class="math inline">\(\hat \beta = (X^\top X)^{-1}X^\top Y\)</span> may also be expressed as <span class="math inline">\(\hat \beta = R^{-1}Q^\top Y\)</span>,
+or <span class="math inline">\(R\hat \beta = Q^\top Y\)</span>. Indicate how this last equation may be solved for <span class="math inline">\(\hat \beta\)</span> by back-substitution, using that <span class="math inline">\(R\)</span> is upper-triangular, and show that it is thus unnecessary
+to invert <span class="math inline">\(R\)</span>.</p>
+<hr />
+<p>Consider fitting the curve <span class="math inline">\(y = \beta_0x+\beta_1x^2\)</span> to points (<span class="math inline">\(x_i,y_i\)</span>), where <span class="math inline">\(i = 1,\dots,n\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the matrix formalism to find expressions for the least squares estimates
+of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p></li>
+<li><p>Find an expression for the covariance matrix of the estimates.</p></li>
+</ol>
