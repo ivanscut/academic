@@ -360,7 +360,7 @@ If the design matrix $X^\top X$ is **nonsingular**, the formal solution is
 $$\hat\beta = (X^\top X)^{-1}X^\top Y.$$
 
 
-`Lemma 1`: The design matrix $X^\top X$ is nonsingular if and only if $\mathrm{rank}(X)=p$.
+`Lemma 1`: The matrix $X^\top X$ is nonsingular if and only if $\mathrm{rank}(X)=p$.
 
 NOTE: In what follows, we assume that $\mathrm{rank}(X)=p<n$.  If $p>n$, it belongs to the field of [high-dimensional statistics](https://en.wikipedia.org/wiki/High-dimensional_statistic). 
 

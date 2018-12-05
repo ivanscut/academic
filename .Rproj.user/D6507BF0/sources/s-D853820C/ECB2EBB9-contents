@@ -394,7 +394,7 @@ $$\hat\beta = (X^\top X)^{-1}X^\top Y.$$
 The following lemma gives a criterion for the existence and uniqueness of solutions
 of the normal equations.
 
-`Lemma 1`: The design matrix $X^\top X$ is nonsingular if and only if $\mathrm{rank}(X)=p$.
+`Lemma 1`: The matrix $X^\top X$ is nonsingular if and only if $\mathrm{rank}(X)=p$.
 
 `Proof`: First suppose that $X^\top X$ is singular. There exists a nonzero vector $u$ such that
 $X^\top Xu = 0$. Multiplying the left-hand side of this equation by $u^\top$, we have $0=u^\top X^\top Xu=(Xu)^\top (Xu)$

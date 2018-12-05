@@ -75,6 +75,21 @@ of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span
 &lt;li&gt;&lt;p&gt;Derive the MLE for &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; and look at its unbiasedness.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;A very slippery point is whether to treat the &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; as fixed numbers or as random variables. In the class, we treated the predictors &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; as fixed numbers for sake of convenience. Now suppose that the predictors &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are iid random variables (independent of &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\)&lt;/span&gt;) with density &lt;span class=&#34;math inline&#34;&gt;\(f_X(x;\theta)\)&lt;/span&gt; for some parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. Write down the likelihood function for all of our data &lt;span class=&#34;math inline&#34;&gt;\((x_i,y_i),i=1,\dots,n\)&lt;/span&gt;. Derive the MLE for &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\beta_1\)&lt;/span&gt; and see whether the MLE changes if we work with the setting of random predictors?&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Note that &lt;span class=&#34;math inline&#34;&gt;\(y_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)\)&lt;/span&gt; independently. The likelihood function is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[L(\beta_0,\beta_1,\sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}}=(2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\beta_0,\beta_1)}{2\sigma^2}},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(Q(\beta_0,\beta_1) = \sum_{i=1}^n (y_i-\beta_0-\beta_1x_i)^2\)&lt;/span&gt;.
+For given &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, to maximize &lt;span class=&#34;math inline&#34;&gt;\(L(\beta_0,\beta_1,\sigma^2)\)&lt;/span&gt;, it suffices to minimize &lt;span class=&#34;math inline&#34;&gt;\(Q(\beta_0,\beta_1)\)&lt;/span&gt;. So the MLEs for &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\beta_1\)&lt;/span&gt; are consistent with the LSEs, i.e.,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_1 = \frac{\ell_{xy}}{\ell_{xx}}=\frac{\sum_{i=1}^n (y_i-\bar y)(x_i-\bar x)}{\sum_{i=1}^n(x_i-\bar x)^2},\ \hat\beta_0 = \bar y -\hat\beta_1\bar x.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We then choose &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; to maximize &lt;span class=&#34;math inline&#34;&gt;\(L(\hat\beta_0,\hat\beta_1,\sigma^2) = (2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\hat\beta_0,\hat\beta_1)}{2\sigma^2}}\)&lt;/span&gt;.
+It is easy to see that the maximizer is
+&lt;span class=&#34;math display&#34;&gt;\[\hat\sigma^2_{MLE} = \frac{Q(\hat\beta_0,\hat\beta_1)}{n}=\frac{S_e^2}{n}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We have proved that &lt;span class=&#34;math inline&#34;&gt;\(E[S_e^2] = (n-2)\sigma^2\)&lt;/span&gt;. So &lt;span class=&#34;math inline&#34;&gt;\(E[\hat\sigma^2_{MLE}] = \frac{n-2}{n}\sigma^2\)&lt;/span&gt;, which is NOT an unbiased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are random variables with density &lt;span class=&#34;math inline&#34;&gt;\(f_X(x;\theta)\)&lt;/span&gt;. The likelihood function for &lt;span class=&#34;math inline&#34;&gt;\((x_i,y_i)\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[L(\beta_0,\beta_1,\sigma^2,\theta) =\prod_{i=1}^nf_X(x_i;\theta) f(y_i|x_i) = \prod_{i=1}^nf_X(x_i;\theta) e^{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}} =(2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\beta_0,\beta_1)}{2\sigma^2}}\prod_{i=1}^n f_X(x_i;\theta).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For fixed &lt;span class=&#34;math inline&#34;&gt;\(\theta,\sigma^2\)&lt;/span&gt;, to maximize &lt;span class=&#34;math inline&#34;&gt;\(L(\beta_0,\beta_1,\sigma^2,\theta)\)&lt;/span&gt;, it suffices to minimize &lt;span class=&#34;math inline&#34;&gt;\(Q(\beta_0,\beta_1)\)&lt;/span&gt;. So the MLE does not changes if we work with the setting of random predictors.&lt;/p&gt;
+&lt;p&gt;You can imagine that &lt;span class=&#34;math inline&#34;&gt;\((x_i,y_i)\)&lt;/span&gt; pairs are generated somewhere and on one day you’re given &lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt; independent draws from &lt;span class=&#34;math inline&#34;&gt;\(f_X\)&lt;/span&gt;. At that point the data have not told you anything about &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;. The next
+day &lt;span class=&#34;math inline&#34;&gt;\(y_i|x_i\)&lt;/span&gt; are revealed to you. That is informative about &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; using &lt;span class=&#34;math inline&#34;&gt;\(f_{Y|X}(y_i|x_i;\beta_0,\beta_1,\sigma^2)\)&lt;/span&gt;.
+The easier analysis is with &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; fixed, so that is the one we’ll do.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Consider the linear model without intercept&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_i  = \beta x_i+\epsilon_i,\ i=1,\dots,n,\]&lt;/span&gt;&lt;/p&gt;
@@ -83,6 +98,28 @@ of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; and &lt;span
 &lt;li&gt;&lt;p&gt;Write down the least square estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat \beta\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;, and derive an unbiased estiamtor for &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;For fixed &lt;span class=&#34;math inline&#34;&gt;\(x_0\)&lt;/span&gt;, let &lt;span class=&#34;math inline&#34;&gt;\(\hat{y}_0=\hat\beta x_0\)&lt;/span&gt;. Work out &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat{y}_0]\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(Q(\beta)= \sum_{i=1}^n (y_i-\beta x_i)^2\)&lt;/span&gt;. Then we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q&amp;#39;(\beta) = -\sum_{i=1}^n 2x_i(y_i-\beta x_i).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Letting &lt;span class=&#34;math inline&#34;&gt;\(Q&amp;#39;(\beta) = 0\)&lt;/span&gt;, we work out the LSE for &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;, i.e.,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta = \frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note that&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
+E[Q(\hat\beta)]&amp;amp;= E[\sum_{i=1}^n y_i^2+\hat\beta^2\sum_{i=1}^n x_i^2-2\hat\beta\sum_{i=1}^n x_iy_i]\\
+&amp;amp;= \sum_{i=1}^n \lbrace Var[y_i]+(E[y_i])^2\rbrace-E[\hat\beta\sum_{i=1}^n x_iy_i]\\
+&amp;amp;=\sum_{i=1}^n (\sigma^2+\beta^2 x_i^2)-\frac{E[(\sum_{i=1}^n x_iy_i)^2]}{\sum_{i=1}^n x_i^2}\\
+&amp;amp;= n\sigma^2+\beta^2\sum_{i=1}^n x_i^2-\frac{Var[\sum_{i=1}^n x_iy_i]+\lbrace E[\sum_{i=1}^n x_iy_i]\rbrace^2}{\sum_{i=1}^n x_i^2}\\
+&amp;amp;=(n-1)\sigma^2.
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;So &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2 = Q(\hat\beta)/(n-1)\)&lt;/span&gt; is an unbiased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+Var[\hat y_0] &amp;amp;= Var[x_0\hat\beta] = x_0^2Var[\hat\beta]\\
+&amp;amp;=x_0^2Var\left[\frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}\right]\\&amp;amp;=\frac{x_0^2}{(\sum_{i=1}^n x_i^2)^2}\sum_{i=1}^n Var[x_i y_i]\\
+&amp;amp;=\frac{x_0^2}{(\sum_{i=1}^n x_i^2)^2}\sum_{i=1}^n x_i^2\sigma^2\\
+&amp;amp;=\frac{x_0^2\sigma^2}{\sum_{i=1}^n x_i^2}
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;code&gt;Case study&lt;/code&gt;: Genetic variability is thought to be a key factor in the survival of a species, the idea
 being that “diverse” populations should have a better chance of coping with changing
@@ -146,6 +183,130 @@ their standard errors, and plot the two regression lines.&lt;/p&gt;&lt;/li&gt;
 to reject the null hypothesis that &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\le \beta_1^*\)&lt;/span&gt; (significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;)? Or equivalently, do these data support the theory that genetically mixed populations have a
 better chance of survival in hostile environments.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;day = seq(0,500,by=100)
+A = c(100,250,304,403,446,482)
+B = c(100,203,214,295,330,324)
+matplot(day,cbind(A,B),pch=1:2,ylab=&amp;quot;population size&amp;quot;,ylim = c(100,550))
+legend(0,550,c(&amp;quot;Strain A&amp;quot;, &amp;quot;Strain B&amp;quot;),pch = 1:2,col=c(&amp;quot;black&amp;quot;,&amp;quot;red&amp;quot;))
+lm.A = lm(A~day)
+lm.B = lm(B~day)
+abline(coef(lm.A),lty=2)
+abline(coef(lm.B),lty=2,col=&amp;quot;red&amp;quot;)
+text(120,300,expression(hat(y)[A] == 145.3 + 0.742 * x))
+text(300,200,expression(hat(y)[B] == 131.3 + 0.452 * x),col=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/homework9_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;output = rbind(summary(lm.A)$coef,summary(lm.B)$coef)
+row.names(output) = c(&amp;quot;A-Intercept&amp;quot;,&amp;quot;A-Slope&amp;quot;,&amp;quot;B-Intercept&amp;quot;,&amp;quot;B-Slope&amp;quot;)
+knitr::kable(output,&amp;quot;html&amp;quot;,caption = &amp;quot;The coefficients and their standard errors&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-1&#34;&gt;Table 1: &lt;/span&gt;The coefficients and their standard errors
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Estimate
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Std. Error
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+t value
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Pr(&amp;gt;|t|)
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+A-Intercept
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+145.3333
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+26.8668380
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.409395
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0056567
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+A-Slope
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7420
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0887382
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8.361671
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0011186
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B-Intercept
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+131.3333
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+22.7725468
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.767178
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0044864
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B-Slope
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.4520
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0752152
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6.009420
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0038603
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We now test&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\beta_1\le \beta_1^*,\ H_1:\beta_1&amp;gt;\beta_1^*.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note that &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1 \sim N(\beta_1,\sigma^2/\ell_{xx})\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(S_{e}^2/\sigma^2\sim \chi^2(n-2)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(S_2^2\)&lt;/span&gt; is the sum of squared errors for Strain A. Similarly, &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1^* \sim N(\beta_1^*,\sigma^2/\ell_{xx})\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde{S}_{e}^2/\sigma^2\sim \chi^2(n-2)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\tilde{S}_{e}^2\)&lt;/span&gt; is the sum of squared errors for Strain B. By independence of A and B, we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_1-\hat\beta_1^*\sim N(\beta_1-\beta_1^*,2\sigma^2/\ell_{xx}),\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{S_{e}^2+\tilde{S}_{e}^2}{\sigma^2}\sim \chi^2(2n-4).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As a result,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\beta_1-\hat\beta_1^*-(\beta_1-\beta_1^*)}{\sqrt{ \frac{S_{e}^2+\tilde{S}_{e}^2}{(n-2)\ell_{xx}} }}\sim t(2n-4).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We thus choose the test statistic&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T = \frac{\hat\beta_1-\hat\beta_1^*}{\sqrt{ \frac{S_{e}^2+\tilde{S}_{e}^2}{(n-2)\ell_{xx}} }}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(\beta_1=\beta_1^*\)&lt;/span&gt;, we have &lt;span class=&#34;math inline&#34;&gt;\(T\sim t(2n-4)\)&lt;/span&gt;. The rejection region is &lt;span class=&#34;math inline&#34;&gt;\(W = \{T&amp;gt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; is satisfied&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\sup_{\beta_1\le\beta_1^*}P(T&amp;gt;C|\beta_1,\beta_1^*)=P(T&amp;gt;C|\beta_1=\beta_1^*)=\alpha.\]&lt;/span&gt;
+We used the fact that the maximum is attainable at the boundary &lt;span class=&#34;math inline&#34;&gt;\(\beta_1=\beta_1^*\)&lt;/span&gt; (WHY?), under which &lt;span class=&#34;math inline&#34;&gt;\(T\sim t(2n-4)\)&lt;/span&gt;. So the critical value &lt;span class=&#34;math inline&#34;&gt;\(C=t_{1-\alpha}(2n-4)\)&lt;/span&gt;. The observed test statistic is&lt;br /&gt;
+&lt;span class=&#34;math display&#34;&gt;\[t = \frac{0.742   -0.452  }{\sqrt{ \frac{5512.14+3960.14}{(6-2)\times 175000} }}=2.50&amp;gt;t_{0.95}(8)=1.8595.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We therefore reject the null. These data, then, &lt;strong&gt;do&lt;/strong&gt; support the theory that genetically mixed populations have a
+better chance of survival in hostile environments.&lt;/p&gt;
 </description>
     </item>
     
@@ -1486,7 +1647,7 @@ If we differentiate &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; w
 &lt;span class=&#34;math display&#34;&gt;\[\hat\beta = (X^\top X)^{-1}X^\top Y.\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The following lemma gives a criterion for the existence and uniqueness of solutions
 of the normal equations.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Lemma 1&lt;/code&gt;: The design matrix &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is nonsingular if and only if &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Lemma 1&lt;/code&gt;: The matrix &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is nonsingular if and only if &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: First suppose that &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is singular. There exists a nonzero vector &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; such that
 &lt;span class=&#34;math inline&#34;&gt;\(X^\top Xu = 0\)&lt;/span&gt;. Multiplying the left-hand side of this equation by &lt;span class=&#34;math inline&#34;&gt;\(u^\top\)&lt;/span&gt;, we have &lt;span class=&#34;math inline&#34;&gt;\(0=u^\top X^\top Xu=(Xu)^\top (Xu)\)&lt;/span&gt;
 So &lt;span class=&#34;math inline&#34;&gt;\(Xu=0\)&lt;/span&gt;, the columns of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; are linearly dependent, and the rank of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is less

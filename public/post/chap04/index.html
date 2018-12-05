@@ -905,7 +905,7 @@ If we differentiate <span class="math inline">\(Q\)</span> with respect to each 
 <span class="math display">\[\hat\beta = (X^\top X)^{-1}X^\top Y.\]</span></p>
 <p>The following lemma gives a criterion for the existence and uniqueness of solutions
 of the normal equations.</p>
-<p><code>Lemma 1</code>: The design matrix <span class="math inline">\(X^\top X\)</span> is nonsingular if and only if <span class="math inline">\(\mathrm{rank}(X)=p\)</span>.</p>
+<p><code>Lemma 1</code>: The matrix <span class="math inline">\(X^\top X\)</span> is nonsingular if and only if <span class="math inline">\(\mathrm{rank}(X)=p\)</span>.</p>
 <p><code>Proof</code>: First suppose that <span class="math inline">\(X^\top X\)</span> is singular. There exists a nonzero vector <span class="math inline">\(u\)</span> such that
 <span class="math inline">\(X^\top Xu = 0\)</span>. Multiplying the left-hand side of this equation by <span class="math inline">\(u^\top\)</span>, we have <span class="math inline">\(0=u^\top X^\top Xu=(Xu)^\top (Xu)\)</span>
 So <span class="math inline">\(Xu=0\)</span>, the columns of <span class="math inline">\(X\)</span> are linearly dependent, and the rank of <span class="math inline">\(X\)</span> is less

@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2651900591",
+    "hash" : "0",
     "id" : "E332341D",
-    "lastKnownWriteTime" : 1543895392,
-    "last_content_update" : 1543895392730,
+    "lastKnownWriteTime" : 1543995767,
+    "last_content_update" : 1543995767545,
     "path" : "D:/Dropbox/courses/academic/public/talk/example-talk/chap04.Rmd",
     "project_path" : "public/talk/example-talk/chap04.Rmd",
     "properties" : {
-        "cursorPosition" : "365,0",
+        "cursorPosition" : "794,49",
         "last_setup_crc32" : "D853820C361b8331",
-        "scrollLine" : "353"
+        "scrollLine" : "781"
     },
     "read_only" : false,
     "read_only_alternatives" : [

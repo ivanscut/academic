@@ -7,13 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "3719B404",
-    "lastKnownWriteTime" : 1543304499,
-    "last_content_update" : 1543304499,
+    "lastKnownWriteTime" : 1544003701,
+    "last_content_update" : 1544003701615,
     "path" : "D:/Dropbox/courses/academic/content/post/homework9.Rmd",
     "project_path" : "content/post/homework9.Rmd",
     "properties" : {
-        "cursorPosition" : "0,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "165,89",
+        "last_setup_crc32" : "D853820Cbb338d19",
+        "scrollLine" : "158"
     },
     "read_only" : false,
     "read_only_alternatives" : [
