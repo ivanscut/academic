@@ -11,6 +11,112 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>第十一次作业</title>
+      <link>/post/homework11/</link>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/homework11/</guid>
+      <description>&lt;p&gt;Consider the simple linear model&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_i= \beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Use the F-test method derived in the multiple linear model to test the hypothesis &lt;span class=&#34;math inline&#34;&gt;\(H_0:\beta_1=0\ vs.\ H_1:\beta_1\neq 0\)&lt;/span&gt;, and see whether the F-test agrees with the earlier t-test derived in the simple linear models.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;The following table shows the monthly returns of stock in Disney, MacDonalds,
+Schlumberger, and Haliburton for January through May 1998. Fit a multiple regression
+to predict Disney returns from those of the other stocks. What is the
+standard deviation of the residuals? What is &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Disney&lt;/th&gt;
+&lt;th&gt;MacDonalds&lt;/th&gt;
+&lt;th&gt;Schlumberger&lt;/th&gt;
+&lt;th&gt;Haliburton&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;0.08088&lt;/td&gt;
+&lt;td&gt;-0.01309&lt;/td&gt;
+&lt;td&gt;-0.08463&lt;/td&gt;
+&lt;td&gt;-0.13373&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0.04737&lt;/td&gt;
+&lt;td&gt;0.15958&lt;/td&gt;
+&lt;td&gt;0.02884&lt;/td&gt;
+&lt;td&gt;0.03616&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;-0.04634&lt;/td&gt;
+&lt;td&gt;0.09966&lt;/td&gt;
+&lt;td&gt;0.00165&lt;/td&gt;
+&lt;td&gt;0.07919&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0.16834&lt;/td&gt;
+&lt;td&gt;0.03125&lt;/td&gt;
+&lt;td&gt;0.09571&lt;/td&gt;
+&lt;td&gt;0.09227&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;-0.09082&lt;/td&gt;
+&lt;td&gt;0.06206&lt;/td&gt;
+&lt;td&gt;-0.05723&lt;/td&gt;
+&lt;td&gt;-0.13242&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Next, using the regression equation you have just found, carry out the predictions
+for January through May of 1999 and compare to the actual data listed
+below. What is the standard deviation of the prediction error? How can the comparison
+with the results from 1998 be explained? Is a reasonable explanation that
+the fundamental nature of the relationships changed in the one year period? (最后一问选做)&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Disney&lt;/th&gt;
+&lt;th&gt;MacDonalds&lt;/th&gt;
+&lt;th&gt;Schlumberger&lt;/th&gt;
+&lt;th&gt;Haliburton&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;0.02604&lt;/td&gt;
+&lt;td&gt;0.02695&lt;/td&gt;
+&lt;td&gt;0.00211&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0.06629&lt;/td&gt;
+&lt;td&gt;0.07851&lt;/td&gt;
+&lt;td&gt;0.02362&lt;/td&gt;
+&lt;td&gt;-0.04&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;-0.11545&lt;/td&gt;
+&lt;td&gt;0.06732&lt;/td&gt;
+&lt;td&gt;0.23938&lt;/td&gt;
+&lt;td&gt;0.35526&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0.02008&lt;/td&gt;
+&lt;td&gt;-0.06483&lt;/td&gt;
+&lt;td&gt;0.06127&lt;/td&gt;
+&lt;td&gt;0.10714&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;-0.08268&lt;/td&gt;
+&lt;td&gt;-0.09029&lt;/td&gt;
+&lt;td&gt;-0.05773&lt;/td&gt;
+&lt;td&gt;-0.02933&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
       <title>第十次作业</title>
       <link>/post/homework10/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
@@ -1737,11 +1843,11 @@ tr(P)&amp;amp;= tr(X(X^\top X)^{-1}X^\top)\\
 &lt;p&gt;(3). &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\hat Y\)&lt;/span&gt;,&lt;/p&gt;
 &lt;p&gt;(4). &lt;span class=&#34;math inline&#34;&gt;\(S_e^2\)&lt;/span&gt; (or equivalently &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2\)&lt;/span&gt;) is independent of &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: If Assumption B is satisfied, then &lt;span class=&#34;math inline&#34;&gt;\(Y = X\beta+\epsilon\sim N(X\beta,\sigma^2_n)\)&lt;/span&gt;. Recall that &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta = (X^\top X)^{-1}X^\top Y\)&lt;/span&gt; is normally distributed. The mean and covariance are given in Theorem 7 since Assumption A is satisfied.&lt;/p&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\xi_1,\dots,\xi_p\)&lt;/span&gt; be the orthogonal basis of the subspace &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; generated by the &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; columns of the matrix &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\xi_{p+1},\dots,\xi_n\)&lt;/span&gt; be the orthogonal basis of the orthogonal complement &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)^\perp\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(\hat Y = X\hat\beta\in \mathrm{span}(X)\)&lt;/span&gt;, there exists &lt;span class=&#34;math inline&#34;&gt;\(z_1,\dots,z_p\)&lt;/span&gt; such that
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\xi_1,\dots,\xi_p\)&lt;/span&gt; be the Orthonormal basis (标准正交基) of the subspace &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; generated by the &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; columns of the matrix &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\xi_{p+1},\dots,\xi_n\)&lt;/span&gt; be the orthogonal basis of the orthogonal complement &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)^\perp\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(\hat Y = X\hat\beta\in \mathrm{span}(X)\)&lt;/span&gt;, there exists &lt;span class=&#34;math inline&#34;&gt;\(z_1,\dots,z_p\)&lt;/span&gt; such that
 &lt;span class=&#34;math display&#34;&gt;\[\hat Y = \sum_{i=1}^p z_i\xi_i.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;On the other hand, &lt;span class=&#34;math inline&#34;&gt;\(\hat Y^\top \hat \epsilon = (PY)^\top (I_n-P)Y = Y^\top P^\top (I_n-P)Y\)&lt;/span&gt;. By Lemma 2, we have
-&lt;span class=&#34;math display&#34;&gt;\[P^\top (I_n-P)=P-P^2 = 0.\]&lt;/span&gt;
-As a result, &lt;span class=&#34;math inline&#34;&gt;\(\hat Y^\top \hat \epsilon = 0\)&lt;/span&gt;, implying &lt;span class=&#34;math inline&#34;&gt;\(\hat \epsilon\in \mathrm{span}(X)^\perp\)&lt;/span&gt;. So there exsits &lt;span class=&#34;math inline&#34;&gt;\(z_{p+1},\dots,z_n\)&lt;/span&gt; such that
+&lt;p&gt;On the other hand, by Lemma 2, we have
+&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon^\top X  = Y^\top(I_n-P)^\top X= Y^\top (X-P X) = 0.\]&lt;/span&gt;
+As a result, &lt;span class=&#34;math inline&#34;&gt;\(\hat \epsilon\in \mathrm{span}(X)^\perp\)&lt;/span&gt;. So there exsits &lt;span class=&#34;math inline&#34;&gt;\(z_{p+1},\dots,z_n\)&lt;/span&gt; such that
 &lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon = \sum_{i=p+1}^n z_i\xi_i.\]&lt;/span&gt;
 Let &lt;span class=&#34;math inline&#34;&gt;\(U = (\xi_1,\dots,\xi_n)\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; is an orthogonal matrix, and let &lt;span class=&#34;math inline&#34;&gt;\(z=(z_1,\dots,z_n)^\top\)&lt;/span&gt;. We thus have
 &lt;span class=&#34;math display&#34;&gt;\[Y = \hat Y+\hat\epsilon =\sum_{i=1}^nz_i\xi_i=Uz.\]&lt;/span&gt;&lt;/p&gt;
@@ -1838,6 +1944,24 @@ This gives
 &lt;span class=&#34;math display&#34;&gt;\[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\]&lt;/span&gt;
 where &lt;span class=&#34;math inline&#34;&gt;\(\rho = \ell_{xy}/\sqrt{\ell_{xx}\ell_{yy}}\)&lt;/span&gt; is the &lt;strong&gt;correlation coefficient&lt;/strong&gt; between &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;confidence-interval-for-ey_n1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Consider&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_{n+1} = \beta_0+\beta_1x_{n+1,1}+\dots+\beta_{p-1}x_{n+1,p-1}+\epsilon_{n+1}.\]&lt;/span&gt;
+Under Assumption B, &lt;span class=&#34;math inline&#34;&gt;\(y_{n+1}=v^\top \beta+\epsilon\sim N(v^\top \beta,\sigma^2)\)&lt;/span&gt; , where &lt;span class=&#34;math inline&#34;&gt;\(v = (1,x_{n+1,1},x_{n+1,2},\dots,x_{n+1,p-1})^\top\)&lt;/span&gt;. An unbiased estimate of the expected value of &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]=v^\top \beta\)&lt;/span&gt; is the fitted value&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1} = v^\top \hat\beta \sim N(v^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).\]&lt;/span&gt;
+By Theorem 9, we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat y_{n+1}-v^\top \beta}{\hat\sigma\sqrt{v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; CI for &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;prediction-interval-for-y_n1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y_{n+1}\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Similarly,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{y_{n+1}-\hat y_{n+1}}{\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;case-study-2&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Case study 2&lt;/h2&gt;
@@ -2147,7 +2271,7 @@ f(y) &amp;amp;= \beta_0+\beta_1 g_1(x_1,\dots,x_{p-1})+\dots\\&amp;amp;+\beta_{k
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Polynomial models: &lt;span class=&#34;math display&#34;&gt;\[y = \beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Interaction models: &lt;span class=&#34;math display&#34;&gt;\[y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Multiplicative models: &lt;span class=&#34;math display&#34;&gt;\[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma3}\epsilon^*\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Multiplicative models: &lt;span class=&#34;math display&#34;&gt;\[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma_3}\epsilon^*\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Exponential models: &lt;span class=&#34;math display&#34;&gt;\[y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -5218,236 +5342,6 @@ legend(74,0.12,legend = c(&amp;quot;Male&amp;quot;,&amp;quot;Female&amp;quot;),l
 &lt;p&gt;因为&lt;span class=&#34;math inline&#34;&gt;\(nT/\sigma^2\sim \chi^2(n)\)&lt;/span&gt;, 所以
 &lt;span class=&#34;math display&#34;&gt;\[Var[nT/\sigma^2]=2n\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;于是，&lt;span class=&#34;math inline&#34;&gt;\(Var[T]=2\sigma^4/n\)&lt;/span&gt;达到C-R不等式下界。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Chapter 5: Hierarchial models</title>
-      <link>/post/bayes_chap05/</link>
-      <pubDate>Sun, 07 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap05/</guid>
-      <description>&lt;div id=&#34;introduction-to-hierarchial-models&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Introduction to hierarchial models&lt;/h2&gt;
-&lt;p&gt;Many statistical applications involve multiple parameters (say, &lt;span class=&#34;math inline&#34;&gt;\(\theta_1,\dots,\theta_J\)&lt;/span&gt;) that can be regarded as related or connected in some way by the structure of the problem.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;for the group &lt;span class=&#34;math inline&#34;&gt;\(j\in 1{:}J\)&lt;/span&gt;, we have the observed data &lt;span class=&#34;math inline&#34;&gt;\(y_{ij}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,n_j\)&lt;/span&gt; from the population distribution with unknown parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;we use a prior distribution in which the &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;’s are viewed as a sample from a common &lt;em&gt;population distribution&lt;/em&gt;, say &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|\phi)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; is known as &lt;em&gt;hyperparameters&lt;/em&gt;. Assume that &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt; are iid, i.e.,
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta|\phi)=\prod_{j=1}^Jp(\theta_j|\phi)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;hierarchical-model-for-rats-experiment&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Hierarchical model for Rats experiment&lt;/h2&gt;
-&lt;p&gt;The experiment is used to estimate the probability &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; of tumor in a population of female laboratory rats of type ‘F344’ that receive a zero dose of the drug. The data show that 4 out of 14 rats developed a kind of tumor.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;assume a binomial model for the number of tumors&lt;/li&gt;
-&lt;li&gt;select a prior from the conjugate family, i.e., &lt;span class=&#34;math inline&#34;&gt;\(\theta\sim Beta(\alpha,\beta)\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;the posterior is therefore &lt;span class=&#34;math inline&#34;&gt;\(Beta(\alpha+1,\beta+10)\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The question is how to determine the hyperparameters &lt;span class=&#34;math inline&#34;&gt;\(\phi=(\alpha,\beta)\)&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;historical data are available on previous experiments on similar groups of rats: in the jth historical experiments, let the number of rats with tumors be &lt;span class=&#34;math inline&#34;&gt;\(y_j\)&lt;/span&gt; and the total number of rats be &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt;, the parameters for the populations are &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(j=1,\dots,70\)&lt;/span&gt;.&lt;/li&gt;
-&lt;li&gt;for current experiment, let &lt;span class=&#34;math inline&#34;&gt;\(y_{71},n_{71},\theta_{71}\)&lt;/span&gt; be the associated notations.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;historical-data-for-the-70-historical-experiments&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Historical data for the 70 historical experiments&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;##  [1]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  1  2
-## [24]  2  2  2  2  2  2  2  2  1  5  2  5  3  2  7  7  3  3  2  9 10  4  4
-## [47]  4  4  4  4  4 10  4  4  4  5 11 12  5  5  6  5  6  6  6  6 16 15 15
-## [70]  9  4&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] 20 20 20 20 20 20 20 19 19 19 19 18 18 17 20 20 20 20 19 19 18 18 25
-## [24] 24 23 20 20 20 20 20 20 10 49 19 46 27 17 49 47 20 20 13 48 50 20 20
-## [47] 20 20 20 20 20 48 19 19 19 22 46 49 20 20 23 19 22 20 20 20 52 46 47
-## [70] 24 14&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;viewed-as-separate-models-using-uniform-priors&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Viewed as separate models using uniform priors&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;separate_model.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;viewed-as-a-pooled-model-using-uniform-prior&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Viewed as a pooled model using uniform prior&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;pool_model.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-the-historical-data-to-estimate-the-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Using the historical data to estimate the hyperparameters&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the sample mean and standard deviation of the 70 values &lt;span class=&#34;math inline&#34;&gt;\(y_i/n_i\)&lt;/span&gt; are 0.136 and 0.103&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;let &lt;span class=&#34;math inline&#34;&gt;\(E[\theta]=\frac{\alpha}{\alpha+\beta}=0.136\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var[\theta]=\frac{E[\theta](1-E[\theta])}{\alpha+\beta+1}=0.103\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\hat{\alpha}=1.4,\ \hat{\beta}=8.6\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;for the current exeriment, the posterior for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(Beta(5.4,18.6)\)&lt;/span&gt;, posterior mean is &lt;span class=&#34;math inline&#34;&gt;\(0.223\)&lt;/span&gt;, standard deviation is 0.083.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are several logical and practical problems with the approach of directly estimating a prior distribution from existing data:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the data will be used twice for inference about the first 70 experiments – overestimate our precision&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the point estimate for &lt;span class=&#34;math inline&#34;&gt;\(\alpha,\beta\)&lt;/span&gt; seems arbitrary that necessarily ignores some posterior uncertainty&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;this is not the logic of Bayesian inference&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-full-bayesian-treatment-of-the-hierarchical-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;The full Bayesian treatment of the hierarchical model&lt;/h2&gt;
-&lt;p&gt;Suppose the hyperparameters &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; has its own prior distribution &lt;span class=&#34;math inline&#34;&gt;\(p(\phi)\)&lt;/span&gt;, which is called &lt;em&gt;hyperprior distribution&lt;/em&gt;. The appropriate Bayesian posterior distribution is of the vector &lt;span class=&#34;math inline&#34;&gt;\((\phi,\theta)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the joint prior distribution is
-&lt;span class=&#34;math display&#34;&gt;\[p(\phi,\theta)=p(\phi)p(\theta|\phi)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the joint posterior distribution is
-&lt;span class=&#34;math display&#34;&gt;\[p(\phi,\theta|y)\propto p(\phi,\theta)p(y|\phi,\theta)=p(\phi)p(\theta|\phi)p(y|\theta)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Previously, we assumed &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; was known, which is unrealistic; now we include the uncertainty in &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; in the model.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;fully-bayesian-analysis-of-conjugate-hierarchical-models&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Fully Bayesian analysis of conjugate hierarchical models&lt;/h2&gt;
-&lt;p&gt;Consider the setting in which &lt;span class=&#34;math inline&#34;&gt;\(p(\theta|\phi)\)&lt;/span&gt; is conjugate to the likelihood &lt;span class=&#34;math inline&#34;&gt;\(p(y|\theta)\)&lt;/span&gt;. For this case, it is easy to determine analytically &lt;span class=&#34;math display&#34;&gt;\[p(\theta|\phi,y)\propto p(\theta|\phi)p(y|\theta)\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the joint posterior density:
-&lt;span class=&#34;math display&#34;&gt;\[p(\phi,\theta|y)\propto p(\phi)p(\theta|\phi)p(y|\theta)\]&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;the marginal posterior density &lt;span class=&#34;math inline&#34;&gt;\(p(\phi|y)\)&lt;/span&gt; can be computed via
-&lt;span class=&#34;math display&#34;&gt;\[p(\phi|y)=\int p(\phi,\theta|y)d \theta\]&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\text{or }p(\phi|y)=\frac{p(\phi,\theta|y)}{p(\theta|\phi,y)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;application-to-the-model-for-rat-tumors&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Application to the model for rat tumors&lt;/h2&gt;
-&lt;p&gt;The binomial model:
-&lt;span class=&#34;math display&#34;&gt;\[y_j\sim Bin(n_j,\theta_j),\ j=1,\dots,J=71\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The parameters &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt; are assumed to be independent samples from a beta distribution:
-&lt;span class=&#34;math display&#34;&gt;\[\theta_j\sim Beta(\alpha,\beta)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The joint posterior density is
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta,\alpha,\beta|y)\propto p(\alpha,\beta)p(\theta|\alpha,\beta)p(y|\theta)\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\propto p(\alpha,\beta)\prod_{j=1}^J\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\theta_j^{\alpha-1}(1-\theta_j)^{\beta-1}\prod_{j=1}^J\theta_j^{y_j}(1-\theta_j)^{n_j-y_j}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|\alpha,\beta,y)=\prod_{j=1}^J\frac{\Gamma(\alpha+\beta+n_j)}{\Gamma(\alpha+y_j)\Gamma(\beta+n_j-y_j)}\theta_j^{\alpha+y_i-1}(1-\theta_j)^{\beta+n_j-y_j-1}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;application-to-the-model-for-rat-tumors-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Application to the model for rat tumors&lt;/h2&gt;
-&lt;p&gt;The marginal posterior density:
-&lt;span class=&#34;math display&#34;&gt;\[p(\alpha,\beta|y)\propto p(\alpha,\beta)\prod_{j=1}^J\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\frac{\Gamma(\alpha+y_j)\Gamma(\beta+n_j-y_j)}{\Gamma(\alpha+\beta+n_j)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Choosing a noninformative hyperprior distribution:
-&lt;span class=&#34;math display&#34;&gt;\[p(\alpha,\beta)\propto (\alpha+\beta)^{-5/2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This implies that &lt;span class=&#34;math inline&#34;&gt;\((\alpha/(\alpha+\beta),(\alpha+\beta)^{-1/2})\)&lt;/span&gt; is uniformly distributed.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the prior mean is &lt;span class=&#34;math inline&#34;&gt;\(\alpha/(\alpha+\beta)\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;the prior variance is approximately &lt;span class=&#34;math inline&#34;&gt;\((\alpha+\beta)^{-1}\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;plot-of-the-marginal-posterior-density&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Plot of the marginal posterior density&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;alphabeta.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;compare-the-separate-model-and-hierarchical-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Compare the separate model and hierarchical model&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;hier_sep.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;hierarchical-model-based-on-normal-distribution&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Hierarchical model based on normal distribution&lt;/h2&gt;
-&lt;p&gt;Consider &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; independent experiments, with experiment &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; estimating &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt; form &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt; independent distributed data points &lt;span class=&#34;math inline&#34;&gt;\(y_{ij}\)&lt;/span&gt;, each with known error variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, that is
-&lt;span class=&#34;math display&#34;&gt;\[y_{ij}|\theta_j\stackrel{iid}{\sim} N(\theta_j,\sigma^2), \text{ for }i=1,\dots,n_j;\ j=1,\dots,J\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;denote the sample mean of each group &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; as
-&lt;span class=&#34;math display&#34;&gt;\[\bar{y}_{\cdot j}=\frac 1{n_j}\sum_{i=1}^{n_j}y_{ij}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;let &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_j=\sigma^2/n_j\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the likelihood for each &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[\bar{y}_{\cdot j}|\theta_j\sim N(\theta_j,\sigma_j^2)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;for the convenience of conjugacy, assume the paramerters &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt; are drawn from a normal distribution with hyperparameters &lt;span class=&#34;math inline&#34;&gt;\(\mu,\tau\)&lt;/span&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta_1,\dots,\theta_J|\mu,\tau)=\prod_{j=1}^J N(\theta_j|\mu,\tau^2)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;assign noninformative uniform hyperprior density to &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; given &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\mu,\tau)=p(\mu|\tau)p(\tau)\propto p(\tau)\]&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;prior distribution for &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt;: &lt;span class=&#34;math inline&#34;&gt;\(p(\tau)\propto 1\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the joint posterior density is
-&lt;span class=&#34;math display&#34;&gt;\[p(\theta,\mu,\tau|y)\propto p(\mu,\tau)p(\theta|\mu,\tau)p(y|\theta)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta,\mu,\tau|y)\propto p(\mu,\tau)\prod_{j=1}^J N(\theta_j|\mu,\tau^2)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\theta_j,\sigma_j^2)\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the conditional posterior distirbution:
-&lt;span class=&#34;math display&#34;&gt;\[\theta_j|\mu,\tau,y\sim N(\hat{\theta}_j,V_j)\]&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;where
-&lt;span class=&#34;math display&#34;&gt;\[\hat{\theta}_j=\frac{\frac 1{\sigma^2}\bar{y}_{\cdot j}+\frac 1{\tau^2}\mu}{\frac 1{\sigma^2}+\frac 1{\tau^2}},\ V_j=\frac{1}{\frac 1{\sigma^2}+\frac 1{\tau^2}}\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the marginal posterior density can be computed in a simple way
-&lt;span class=&#34;math display&#34;&gt;\[p(\mu,\tau|y)\propto p(\mu,\tau)p(y|\mu,\tau)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{y}_{\cdot j}|\mu,\tau\sim N(\mu,\sigma_j^2+\tau^2)\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\mu,\tau|y)\propto p(\mu,\tau)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\mu,\sigma_j^2+\tau^2)\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;posterior distribution of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; given &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\mu|\tau,y\sim N(\hat{\mu},V_{\mu})\]&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;where
-&lt;span class=&#34;math display&#34;&gt;\[\hat{\mu}=\frac{\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}\bar{y}_{\cdot j}}{\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}},\ V_{\mu}^{-1}=\sum_{j=1}^J \frac 1{\sigma_j^2+\tau^2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;posterior distribution of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[p(\tau|y)=\frac{p(\mu,\tau|y)}{p(\mu|\tau,y)}\propto \frac{p(\tau)\prod_{j=1}^JN(\bar{y}_{\cdot j}|\mu,\sigma_j^2+\tau^2)}{N(\mu|\hat{\mu},V_{\mu})}\]&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\tau|y)\propto p(\tau)V_{\mu}^{1/2}\prod_{j=1}^J(\sigma_j^2+\tau^2)^{-1/2}\exp\left(-\frac{(\bar{y}_{\cdot j}-\hat{\mu})^2}{2(\sigma_j^2+\tau^2)}\right)\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-parallel-experiments-in-eight-schools&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example: parallel experiments in eight schools&lt;/h2&gt;
-&lt;p&gt;A study was performanced for the Educational Testing Service to analyze the effects of special coaching programs on test scores. Seperate randomized experiments were performed to estimate the effects of coaching programs for the SAT-V (Verbal).&lt;/p&gt;
-&lt;table&gt;
-&lt;colgroup&gt;
-&lt;col width=&#34;33%&#34; /&gt;
-&lt;col width=&#34;33%&#34; /&gt;
-&lt;col width=&#34;33%&#34; /&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;School&lt;/th&gt;
-&lt;th&gt;Estiamted treatment effect &lt;span class=&#34;math inline&#34;&gt;\(y_j\)&lt;/span&gt;&lt;/th&gt;
-&lt;th&gt;Standard error of effect estimate &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j\)&lt;/span&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;A&lt;/td&gt;
-&lt;td&gt;28&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;B&lt;/td&gt;
-&lt;td&gt;8&lt;/td&gt;
-&lt;td&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;C&lt;/td&gt;
-&lt;td&gt;-3&lt;/td&gt;
-&lt;td&gt;16&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;D&lt;/td&gt;
-&lt;td&gt;7&lt;/td&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;E&lt;/td&gt;
-&lt;td&gt;-1&lt;/td&gt;
-&lt;td&gt;9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;F&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;G&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;td&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;H&lt;/td&gt;
-&lt;td&gt;12&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;comparisons&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Comparisons&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;8schools.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;plot-the-posterior-summaries&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Plot the posterior summaries&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;8schools2.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
 </description>
     </item>
     

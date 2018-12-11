@@ -3356,7 +3356,7 @@ Q(\beta)&amp;=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_{i1}-\dots-\beta_{p-1}x_{i,p-1})
 
 <p>If the design matrix \(X^\top X\) is <strong>nonsingular</strong>, the formal solution is \[\hat\beta = (X^\top X)^{-1}X^\top Y.\]</p>
 
-<p><code>Lemma 1</code>: The design matrix \(X^\top X\) is nonsingular if and only if \(\mathrm{rank}(X)=p\).</p>
+<p><code>Lemma 1</code>: The matrix \(X^\top X\) is nonsingular if and only if \(\mathrm{rank}(X)=p\).</p>
 
 <p>NOTE: In what follows, we assume that \(\mathrm{rank}(X)=p&lt;n\). If \(p&gt;n\), it belongs to the field of <a href='https://en.wikipedia.org/wiki/High-dimensional_statistic' title=''>high-dimensional statistics</a>.</p>
 
@@ -3508,7 +3508,7 @@ S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
 
 <p>For the simple linear model \(p=2\), we have</p>
 
-<p>\[S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.\] This gives \[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\] where the <strong>correlation coefficient</strong> between \(x_i\) and \(y_i\) is \[\rho = \frac{\ell_{xy}}{\sqrt{\ell_{xx}\ell_{yy}}}.\]</p>
+<p>\[S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.\] This gives \[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\] where the <strong>correlation coefficient</strong> between \(x_i\) and \(y_i\) is \[\rho = \frac{\ell_{xy}}{\sqrt{\ell_{xx}\ell_{yy}}}=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_{i=1}^n(x_i-\bar x)^2}\sqrt{\sum_{i=1}^n(y_i-\bar y)^2}}.\]</p>
 
 </article></slide><slide class=""><hgroup><h2>Case study 2</h2></hgroup><article  id="case-study-2">
 
@@ -3574,19 +3574,27 @@ S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>Prediction</h2></hgroup><article  id="prediction">
+</article></slide><slide class=""><hgroup><h2>Confidence interval for \(E[y_{n+1}]\)</h2></hgroup><article  id="confidence-interval-for-ey_n1">
 
-<p>Let \(v = (1,x_1,x_2,\dots,x_{p-1})^\top\) be a fixed vector. We are going to predict \(y=v^\top \beta+\epsilon\sim N(v^\top \beta,\sigma^2)\) under the Assumption B. An unbiased estimate of the expected value of \(E[y]=v^\top \beta\) is the fitted value</p>
+<p>Consider</p>
 
-<p>\[\hat y = v^\top \hat\beta \sim N(x^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).\]</p>
+<p>\[y_{n+1} = \beta_0+\beta_1x_{n+1,1}+\dots+\beta_{p-1}x_{n+1,p-1}+\epsilon_{n+1}.\] Under Assumption B, \(y_{n+1}=v^\top \beta+\epsilon\sim N(v^\top \beta,\sigma^2)\) , where \(v = (1,x_{n+1,1},x_{n+1,2},\dots,x_{n+1,p-1})^\top\). An unbiased estimate of the expected value of \(E[y_{n+1}]=v^\top \beta\) is the fitted value</p>
 
-<p>The \(100(1-\alpha)\%\) CI for \(E[y]\) is</p>
+<p>\[\hat y_{n+1} = v^\top \hat\beta \sim N(v^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).\]</p>
 
-<p>\[\hat y\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.\]</p>
+<p>The \(100(1-\alpha)\%\) CI for \(E[y_{n+1}]\) is</p>
+
+<p>\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.\]</p>
+
+</article></slide><slide class=""><hgroup><h2>Prediction interval for \(y_{n+1}\)</h2></hgroup><article  id="prediction-interval-for-y_n1">
+
+<p>Similarly,</p>
+
+<p>\[\frac{y_{n+1}-\hat y_{n+1}}{\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]</p>
 
 <p>The \(100(1-\alpha)\%\) prediction interval for \(y\) is</p>
 
-<p>\[\hat y\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.\]</p>
+<p>\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.\]</p>
 
 </article></slide><slide class=""><hgroup><h2>Case study 2</h2></hgroup><article  id="case-study-2-1">
 
@@ -3613,7 +3621,7 @@ f(y) &amp;= \beta_0+\beta_1 g_1(x_1,\dots,x_{p-1})+\dots\\&amp;+\beta_{k-1} g_{k
 <ul>
 <li><p>Polynomial models: \[y = \beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon\]</p></li>
 <li><p>Interaction models: \[y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon\]</p></li>
-<li><p>Multiplicative models: \[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma3}\epsilon^*\]</p></li>
+<li><p>Multiplicative models: \[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma_3}\epsilon^*\]</p></li>
 <li><p>Exponential models: \[y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*\]</p></li>
 </ul>
 

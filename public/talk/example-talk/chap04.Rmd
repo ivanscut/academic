@@ -532,7 +532,7 @@ $$S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x
 This gives
 $$R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,$$
 where the **correlation coefficient** between $x_i$ and $y_i$ is
-$$\rho = \frac{\ell_{xy}}{\sqrt{\ell_{xx}\ell_{yy}}}.$$
+$$\rho = \frac{\ell_{xy}}{\sqrt{\ell_{xx}\ell_{yy}}}=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_{i=1}^n(x_i-\bar x)^2}\sqrt{\sum_{i=1}^n(y_i-\bar y)^2}}.$$
 
 ## Case study 2
 
@@ -575,19 +575,28 @@ cov = SSE/(n-3)*C
 knitr::kable(cov,caption = "")
 ```
 
-## Prediction 
+## Confidence interval for $E[y_{n+1}]$ 
 
-Let $v = (1,x_1,x_2,\dots,x_{p-1})^\top$ be a fixed vector. We are going to predict $y=v^\top \beta+\epsilon\sim N(v^\top \beta,\sigma^2)$ under the Assumption B. An unbiased estimate of the expected value of $E[y]=v^\top \beta$ is the fitted value
+Consider
 
-$$\hat y = v^\top \hat\beta \sim N(x^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).$$
+$$y_{n+1} = \beta_0+\beta_1x_{n+1,1}+\dots+\beta_{p-1}x_{n+1,p-1}+\epsilon_{n+1}.$$
+Under Assumption B, $y_{n+1}=v^\top \beta+\epsilon\sim N(v^\top \beta,\sigma^2)$ , where $v = (1,x_{n+1,1},x_{n+1,2},\dots,x_{n+1,p-1})^\top$. An unbiased estimate of the expected value of $E[y_{n+1}]=v^\top \beta$ is the fitted value
 
-The $100(1-\alpha)\%$ CI for $E[y]$ is 
+$$\hat y_{n+1} = v^\top \hat\beta \sim N(v^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).$$
 
-$$\hat y\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.$$
+The $100(1-\alpha)\%$ CI for $E[y_{n+1}]$ is 
+
+$$\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.$$
+
+## Prediction interval for $y_{n+1}$
+
+Similarly,
+
+$$\frac{y_{n+1}-\hat y_{n+1}}{\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}}\sim t(n-p).$$
 
 The $100(1-\alpha)\%$ prediction interval for $y$ is 
 
-$$\hat y\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.$$
+$$\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.$$
 
 ## Case study 2
 
@@ -642,7 +651,7 @@ $$y^*=\beta_0+\beta_1 x_1^*+\dots+\beta_{k-1} x_{k-1}^{*}+\epsilon.$$
 
 - Interaction models: $$y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon$$
 
-- Multiplicative models: $$y = \gamma_1X_1^{\gamma_2}X_2^{\gamma3}\epsilon^*$$
+- Multiplicative models: $$y = \gamma_1X_1^{\gamma_2}X_2^{\gamma_3}\epsilon^*$$
 
 - Exponential models: $$y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*$$
 
