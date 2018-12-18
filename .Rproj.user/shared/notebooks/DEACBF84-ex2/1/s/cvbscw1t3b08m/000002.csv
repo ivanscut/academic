@@ -1,0 +1,5 @@
+"0","female_height = height[sex==""Female""]#提取女生数据"
+"0","male_height = height[sex==""Male""]#提取男生数据"
+"0","par(mar=c(2,2,1,1))"
+"0","#画男生数据"
+"0","plot(density(male_height,from = 50,to=85),col=""red"",lwd=2,ylim=c(0,.14),main=""Male vs. Female"")"

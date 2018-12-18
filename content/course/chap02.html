@@ -1,0 +1,700 @@
+---
+title: 第二章：估计
+
+date: 2018-12-18
+lastmod: 2018-12-18
+
+draft: false
+#toc: true
+type: docs
+
+linktitle: 第二章
+menu:
+  course: 
+    parent: 数理统计
+    weight: 3
+
+---
+
+
+
+<div class="section level2">
+<h2>目录</h2>
+<div class="section level3">
+<h3>1. 点估计</h3>
+<ul>
+<li>1.1 矩估计法</li>
+<li>1.2 极大似然估计法</li>
+<li>1.3 估计的优良性准则</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>2. 区间估计</h3>
+<ul>
+<li>2.1 单个正态总体的区间估计</li>
+<li>2.2 两个独立正态总体的区间估计</li>
+<li>2.3 非正态总体的区间估计</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>3. 分布估计</h3>
+<ul>
+<li>3.1 直方图法</li>
+<li>3.2 核估计法</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>参数估计</h2>
+<p>在实际问题中，对于一个总体<span class="math inline">\(X\)</span>往往是仅知其分布的类型<span class="math inline">\(f(x, \theta)\)</span>，而参数<span class="math inline">\(\theta=(\theta_1,\dots,\theta_m)\in \Theta \subset \mathbb{R}^m\)</span>是未知的。对任给的实值函数<span class="math display">\[g:\ \mathbb{R}^m\to \mathbb{R},\]</span>
+如何根据<span class="math inline">\(X\)</span>的样本<span class="math inline">\(x_1,\dots,x_n\)</span>估计<span class="math inline">\(g( \theta)\)</span>的值呢？这就是统计推断中的“<strong>参数估计</strong>”问题。</p>
+<p><strong>点估计</strong>：寻找一个统计量<span class="math inline">\(\hat{ \theta} = T(X_1,\dots,X_n)\)</span>作为$ $的点估计</p>
+<p><strong>区间估计</strong>：寻找两个统计量<span class="math inline">\(\hat{ \theta}_1 = T_1(X_1,\dots,X_n)\)</span>, <span class="math inline">\(\hat{ \theta}_2 = T_2(X_1,\dots,X_n)\)</span>，所构成的区间<span class="math inline">\([\hat{ \theta}_1,\hat{ \theta}_2]\)</span>作为$ $的区间估计</p>
+</div>
+<div class="section level2">
+<h2>1.1 矩估计法</h2>
+<p>矩估计的想法来源于大数定理。如果总体<span class="math inline">\(X\)</span>存在<span class="math inline">\(k\)</span>阶矩，对任意<span class="math inline">\(\epsilon&gt;0\)</span>,
+<span class="math display">\[
+\lim_{n\to \infty} P(|\frac 1 n\sum_{i=1}^n X_i^k-E[X^k]|\ge \epsilon )=0.
+\]</span></p>
+<p>这说明，当样本容量<span class="math inline">\(n\)</span>较大时，样本<span class="math inline">\(k\)</span>阶矩与总体<span class="math inline">\(k\)</span>阶矩差别很小。<strong>矩法估计就是用样本<span class="math inline">\(k\)</span>阶矩代替总体的<span class="math inline">\(k\)</span>阶矩。</strong>通常用<span class="math inline">\(\hat{\theta}_M\)</span>表示。一般步骤如下：</p>
+<ul>
+<li><p>列出估计式<span class="math inline">\(E[X^k]=g_k(\theta_1,\dots,\theta_m),\ k=1,\dots,m.\)</span></p></li>
+<li><p>求解关于估计量的方程组<span class="math inline">\(\theta_k = \theta_k(E[X^1],\dots,E[X^m])\)</span></p></li>
+<li><p>用<span class="math inline">\(M_k=\frac 1 n\sum_{i=1}^n X_i^k\)</span>替代<span class="math inline">\(E[X^k]\)</span>得到矩估计<span class="math inline">\(\hat\theta_k = \theta_k(M_1,\dots,M_m)\)</span></p></li>
+</ul>
+</div>
+<div id="1" class="section level2">
+<h2>例1</h2>
+<p><strong>例</strong>：求总体<span class="math inline">\(X\)</span>的期望<span class="math inline">\(\mu=E[X]\)</span>与方差<span class="math inline">\(\sigma^2=Var[X]\)</span>的矩估计。</p>
+<p><strong>解</strong>: (1)列出估计式</p>
+<p><span class="math display">\[
+\begin{cases}
+E[X] &amp;= \mu\\
+E[X^2] &amp;= \mu^2+\sigma^2
+\end{cases}
+\]</span></p>
+<p>(2)求解关于估计量的方程组
+<span class="math display">\[
+\begin{cases}
+\mu &amp;= E[X]\\
+\sigma^2 &amp;= E[X^2]-(E[X])^2
+\end{cases}
+\]</span></p>
+<p>所以，<span class="math inline">\(\hat{\mu}_M = \bar X\)</span>, <span class="math inline">\(\hat{\sigma}^2_M = \frac{1}{n}\sum_{i=1}^n X_i^2-(\bar X)^2 = S_n^2.\)</span></p>
+<p>注：不难证明，总体的各阶中心矩的矩估计就是样本各阶中心矩。</p>
+</div>
+<div id="2" class="section level2">
+<h2>例2</h2>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\sim U[a,b]\)</span>, 求<span class="math inline">\(a,b\)</span>的矩估计。</p>
+<p><strong>解</strong>: 易知，<span class="math inline">\(E[X]=(a+b)/2,\ Var[X]= (b-a)^2/12\)</span>.</p>
+<p>所以，
+<span class="math display">\[
+\begin{cases}
+a &amp;= E[X]-\sqrt{3Var[X]}\\
+b &amp;= E[X]+\sqrt{3Var[X]}
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\begin{cases}
+\hat a_M &amp;= \bar{X}-\sqrt{3}S_n\\
+\hat b_M &amp;= \bar{X}+\sqrt{3}S_n
+\end{cases}
+\]</span></p>
+</div>
+<div id="3" class="section level2">
+<h2>例3</h2>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\)</span>的分布密度为
+<span class="math display">\[
+f(x)=\frac{\theta}{2}e^{-\theta|x|},\ x\in\mathbb{R}, \theta&gt;0.
+\]</span>
+求<span class="math inline">\(\theta\)</span>的矩估计。</p>
+<p><strong>解</strong>:
+<span class="math display">\[
+E[X]= 0,\ E[X^2]=\int_{-\infty}^{\infty}x^2\frac{\theta}{2}e^{-\theta|x|}d x=\theta\int_{0}^{\infty}x^2e^{-\theta x}d x=\frac{2}{\theta^2}
+\]</span></p>
+<p><span class="math display">\[\hat{\theta}_M=\sqrt{\frac{2n}{\sum_{i=1}^n X_i^2}}.\]</span></p>
+<p>除外，还可以由<span class="math inline">\(E[|X|]=1/\theta\)</span>得到另一种矩估计。</p>
+</div>
+<div class="section level2">
+<h2>1.2 最大似然估计法</h2>
+<p>最大似然估计法最早由高斯(C.F.Gauss)提出，后来被 Fisher完善。最大似然估计这一名称也是Fisher给的。这是一个目前仍得到广泛应用的方法。它是建立在最大似然原理基础上的一个统计方法。</p>
+<blockquote>
+<p><strong>最大似然原理：最先出现的是概率最大的</strong></p>
+</blockquote>
+<p><strong>例</strong>：设有外形完全相同的两个箱子，甲箱中有99个白球和1个黑球，乙箱中有99个黑球和1个白球，今随机地抽取一箱并从中随机抽取一球，结果取得白球，问这球是从哪个箱子中取出？</p>
+</div>
+<div id="-1" class="section level2">
+<h2>最大似然估计法</h2>
+<p><strong>似然函数</strong>：
+<span class="math display">\[L(x_1,\dots,x_n;\theta)=L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)
+\]</span>
+给定样本观测值<span class="math inline">\((x_1,\dots,x_n)\)</span>, 记<span class="math inline">\(L(x_1,\dots,x_n;\theta)\)</span>的最大值点为<span class="math inline">\(\theta=T(x_1,\dots,x_n)\)</span>. 则<span class="math inline">\(\theta\)</span>的最大似然估计量(MLE, maximum likelihood estimator)为
+<span class="math display">\[\hat{\theta}_L=T(X_1,\dots,X_n).\]</span></p>
+</div>
+<div class="section level2">
+<h2>最大似然估计的一般步骤</h2>
+<p>第一步：写出似然函数<span class="math inline">\(L(x_1,\dots,x_n;\theta)\)</span></p>
+<p>第二步：若似然函数<span class="math inline">\(L\)</span>是<span class="math inline">\(\theta\)</span>的可微函数，则最大值必然满足<strong>似然方程</strong>
+<span class="math display">\[\frac{d L}{d \theta}=0\]</span>
+解出<span class="math inline">\(\theta\)</span>, 并验证其是否是极大值：<span class="math display">\[\frac{d^2 L}{d \theta^2}&lt;0.\]</span></p>
+<p>注1：为方便求导，一般求对数似然函数<span class="math inline">\(\ln L(x_1,\dots,x_n;\theta)\)</span>求极大值点</p>
+<p>注2：若有多个参数<span class="math inline">\(\theta_1,\dots,\theta_m\)</span>，对每个变量求偏导，联立<span class="math inline">\(m\)</span>个方程求解</p>
+</div>
+<div id="10-1" class="section level2">
+<h2>例1：0-1离散型</h2>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\sim B(1,p)\)</span>, 从中抽取样本<span class="math inline">\(X_1,\dots,X_n\)</span>的观测值为<span class="math inline">\(x_1,\dots,x_n\)</span>. 求参数<span class="math inline">\(p\)</span>的最大似然估计。</p>
+<p><strong>解</strong>: 似然函数为
+<span class="math display">\[ L(x_1,\dots,x_n;p)=\prod_{i=1}^{n}p^{x_i}(1-p)^{1-x_i}=p^{\sum_{i=1}^nx_i}(1-p)^{n-\sum_{i=1}^nx_i}\]</span></p>
+<p>令<span class="math inline">\(y=\sum_{i=1}^nx_i\)</span>, 对数似然函数为：
+<span class="math display">\[\ln L = y \ln p + (n-y)\ln (1-p).\]</span>
+对数似然方程为：
+<span class="math inline">\(\frac{d \ln L}{d p} = y/p - (n-y)/(1-p)=0.\)</span>
+解得<span class="math inline">\(p= y/n=\frac{1}{n}\sum_{i=1}^nx_i\)</span>. 因为<span class="math inline">\(\frac{d^2\ln L}{d p^2}&lt;0\)</span>, 所以<span class="math inline">\(p= y/n\)</span>是极大值。<span class="math inline">\(\hat{p}_L = \bar X.\)</span></p>
+</div>
+<div id="2" class="section level2">
+<h2>例2：正态分布</h2>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 从中抽取样本<span class="math inline">\(X_1,\dots,X_n\)</span>的观测值为<span class="math inline">\(x_1,\dots,x_n\)</span>. 求参数<span class="math inline">\(\mu,\sigma^2\)</span>的最大似然估计。</p>
+<p><strong>解</strong>: 似然函数为</p>
+<p><span class="math display">\[ L(x_1,\dots,x_n;\mu,\sigma^2)=\prod_{i=1}^{n}f(x_i)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\]</span>
+令<span class="math inline">\(\theta_1=\mu,\theta_2=\sigma^2\)</span>, 对数似然函数为：
+<span class="math display">\[\ln L = (n/2)\ln (2\pi)-(n/2)\ln\theta_2-\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2}\]</span></p>
+</div>
+<div id="2-1" class="section level2">
+<h2>例2：正态分布</h2>
+<p>对数似然方程组为：
+<span class="math display">\[
+\begin{cases}
+\frac{\partial \ln L}{\partial \theta_1} &amp;=\frac{\sum_{i=1}^n(x_i-\theta_1)}{\theta_2}=0\\
+\frac{\partial \ln L}{\partial \theta_2} &amp;=-\frac{n}{2\theta_2}+\frac{\sum_{i=1}^n(x_i-\theta_1)^2}{2\theta_2^2}=0
+\end{cases}
+\]</span>
+解得<span class="math inline">\(\hat{\mu}_L=\bar X,\ \hat{\sigma}^2_L = S_n^2\)</span>. (可以验证二阶导函数非正定，即取得极大值。)</p>
+</div>
+<div id="3-1" class="section level2">
+<h2>例3</h2>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\sim U[a,b]\)</span>, 从中抽取样本<span class="math inline">\(X_1,\dots,X_n\)</span>的观测值为<span class="math inline">\(x_1,\dots,x_n\)</span>. 求参数<span class="math inline">\(a,b\)</span>的最大似然估计。</p>
+<p><strong>解</strong>: 似然函数为
+<span class="math display">\[ L(x_1,\dots,x_n;a,b)=\frac{1}{(b-a)^n}\prod_{i=1}^{n} 1\{a\le x_i\le b\}\]</span>
+注意到<span class="math inline">\(L\)</span>关于<span class="math inline">\(a,b\)</span>不可微。容易观察到，当<span class="math inline">\(a=\min_{i=1,\dots,n}\{x_i\},\ b=\max_{i=1,\dots,n}\{x_i\}\)</span>时<span class="math inline">\(L\)</span>取得最大值。故<span class="math display">\[\hat{a}_L = X_{(1)},\ \hat{b}_L = X_{(n)}.\]</span></p>
+</div>
+<div class="section level2">
+<h2>关于最大似然估计的一些说明</h2>
+<p>最大似然估计的不变性：如果<span class="math inline">\(\hat{\theta}\)</span>是<span class="math inline">\(\theta\)</span>的最大似然估计，则对任一函数<span class="math inline">\(g(\theta)\)</span>, 其最大似然估计为<span class="math inline">\(g(\hat{\theta})\)</span>.</p>
+<p>当分布中有<em>多余的参数</em>或者<em>数据为截尾或缺失</em>时，似然函数的求极大值比较困难。针对这种问题，文献</p>
+<p>Dempster, A.P.; Laird, N.M.; Rubin, D.B. (1977). <a href="https://www.jianguoyun.com/p/DSfhflcQpvLJBhjv42s">Maximum Likelihood from Incomplete Data via the EM Algorithm</a>. <em>Journal of the Royal Statistical Society, Series B</em>. 39 (1): 1–38. (cited by 54539, 2018/8/18)</p>
+<p>提出了一种有效的<strong>Expectation–Maximization (EM)</strong>算法。</p>
+</div>
+<div class="section level2">
+<h2>矩估计与最大似然估计的对比</h2>
+<div class="section level3">
+<h3>矩估计法（也称数字特征法）</h3>
+<ul>
+<li>直观意义比较明显，但要求总体<span class="math inline">\(k\)</span>阶矩存在。</li>
+<li>缺点是不唯一，此时尽量使用样本低阶矩。</li>
+<li>观测值受异常值影响较大，不够稳健，实际中避免使用样本高阶矩。</li>
+</ul>
+</div>
+<div class="section level3">
+<h3>极大似然估计法</h3>
+<ul>
+<li>具有一些理论上的优点（不变性、渐近正态性）</li>
+<li>缺点是如果似然函数不可微，没有一般的求解法则。</li>
+</ul>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>矩估计与最大似然估计的对比</h2>
+<p><img src="estimations.png" /></p>
+</div>
+<div class="section level2">
+<h2>1.3 估计的优良性标准</h2>
+<ul>
+<li><p>估计量的无偏性</p></li>
+<li><p>估计量的有效性</p></li>
+<li><p>估计量的大样本性质：相合性与渐近正态性</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>无偏性</h2>
+<p><strong>定义</strong>：设总体<span class="math inline">\(X\sim F(x;\theta),\theta\in \Theta\)</span>, <span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的估计量。</p>
+<ul>
+<li>无偏估计量：</li>
+</ul>
+<p><span class="math display">\[E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]</span></p>
+<ul>
+<li>渐近无偏估计量：</li>
+</ul>
+<p><span class="math display">\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)]=g(\theta), \forall \theta\in \Theta\]</span></p>
+<p>无偏性意味着：虽然估计量<span class="math inline">\(T\)</span>由于随机可能偏离真值<span class="math inline">\(g(\theta)\)</span>, 但取其平均值（期望）却等于<span class="math inline">\(g(\theta)\)</span>. 即没有系统偏差。</p>
+</div>
+<div class="section level2">
+<h2>例</h2>
+<ul>
+<li><p>样本均值是总体的均值的无偏估计，即<span class="math inline">\(E[\bar X]=E[X]\)</span></p></li>
+<li><p>样本方差是总体方差的渐近无偏估计，即<span class="math inline">\(\lim_{n\to \infty}E[S_n^{2}]=Var[X]\)</span></p></li>
+<li><p>修正样本方差是总体方差的无偏估计，即<span class="math inline">\(E[S_n^{*2}]=Var[X]\)</span></p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>均方误差</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的估计量，其均方误差 (mean squared error, MSE)为
+<span class="math display">\[M_{\theta}(T):=E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2].\]</span>
+均方根误差 (root mean squared error, RMSE)为
+<span class="math display">\[R_{\theta}(T):=\sqrt{E_\theta[(T(X_1,\dots,X_n)-g(\theta))^2]}.\]</span></p>
+<p>注意到：</p>
+<p><span class="math display">\[M_{\theta}(T)=(E[T]-g(\theta))^2+Var(T)=偏差^2+方差\]</span></p>
+<p><strong>注</strong>：如果<span class="math inline">\(T\)</span>是<span class="math inline">\(g(\theta)\)</span>的无偏估计，则<span class="math inline">\(M_{\theta}(T)=Var(T)\)</span></p>
+</div>
+<div class="section level2">
+<h2>比较两个估计量的优劣</h2>
+<p><strong>定义</strong>：若<span class="math inline">\(T_1(X_1,\dots,X_n)\)</span>和<span class="math inline">\(T_2(X_1,\dots,X_n)\)</span>都为<span class="math inline">\(g(\theta)\)</span>的估计量，</p>
+<ul>
+<li>如果<span class="math inline">\(M_{\theta}(T_1)\le M_{\theta}(T_2),\forall \theta\in \Theta\)</span>, 则称<span class="math inline">\(T_1\)</span>不次于<span class="math inline">\(T_2\)</span>。</li>
+<li>在此基础上，如果存在一个<span class="math inline">\(\theta_0\in\Theta\)</span>使得<span class="math inline">\(M_{\theta_0}(T_1)&lt; M_{\theta_0}(T_2)\)</span>, 则称<span class="math inline">\(T_1\)</span>比<span class="math inline">\(T_2\)</span>有效。</li>
+</ul>
+<p><strong>例</strong>：设总体<span class="math inline">\(X\)</span>的期望<span class="math inline">\(\mu\)</span>方差为<span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(X_1,\dots,X_n\)</span>为其样本(<span class="math inline">\(n&gt;1\)</span>)，证明下列估计量<span class="math inline">\(\hat{\mu} = \sum_{i=1} C_iX_i\)</span>为<span class="math inline">\(\mu\)</span>的无偏估计的充要条件是<span class="math inline">\(\sum_{i=1}^nC_i = 1.\)</span> 在满足该条件前提下，<span class="math inline">\(C_i\)</span>取何值时，<span class="math inline">\(\hat{\mu}\)</span>的最有效。</p>
+<p><strong>解</strong>：<span class="math inline">\(E[\hat{\mu}]=\mu\Leftrightarrow \sum_{i=1}^nC_i = 1\)</span>
+<span class="math display">\[Var[\hat{\mu}]=\sigma^2\sum_{i=1}^nC_i^2\ge \sigma^2\frac{(C_1+\dots+C_n)^2}{n}=\frac{\sigma^2}{n}.\]</span></p>
+<p>而且唯一的最小值在<span class="math inline">\(C_i=1/n,i=1,\dots,n\)</span>处取得。</p>
+</div>
+<div class="section level2">
+<h2>一致最小方差无偏估计</h2>
+<p><strong>定义</strong>：如果<span class="math inline">\(T_0(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的无偏估计，如果对于<span class="math inline">\(g(\theta)\)</span>的任意无偏估计量<span class="math inline">\(T(X_1,\dots,X_n)\)</span>都有
+<span class="math display">\[Var[T_0]\le Var[T],\ \forall\theta\in\Theta\]</span>
+则称<span class="math inline">\(T_0\)</span>为<span class="math inline">\(g(\theta)\)</span>的<strong>一致最小方差无偏估计量</strong> (uniformly minimum-variance unbiased estimator, UMVUE)。</p>
+<div class="section level3">
+<h3>思考</h3>
+<ul>
+<li>无偏估计量是不是一定存在？（反例见课本例2.5, p27）</li>
+<li>如果存在多个无偏估计量，如何找到UMVUE？（Blackwell, Rao, Lehmann, Scheffe等统计学家获得了一系列寻求UMVUE的理论和方法）</li>
+</ul>
+</div>
+</div>
+<div id="black-lehmann-scheffe" class="section level2">
+<h2>Black-Lehmann-Scheffe定理</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为统计量。如果对任何(Borel可测)函数<span class="math inline">\(u(\cdot)\)</span>, 只要<span class="math inline">\(E[u(T)]=0\)</span>(对一切<span class="math inline">\(\theta\)</span>)就可以推出<span class="math inline">\(P(u(T)=0)=1\)</span>, 这次称统计量<span class="math inline">\(T\)</span>为<em>完全的统计量</em>。</p>
+<p><strong>B-L-S定理</strong>：如果<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<em>完全的充分统计量</em>，<span class="math inline">\(\psi(T)\)</span>为<span class="math inline">\(g(\theta)\)</span>的无偏估计，则<span class="math inline">\(\psi(T)\)</span>为<span class="math inline">\(g(\theta)\)</span>的最小方差无偏估计。</p>
+<div id="section" class="section level3">
+<h3></h3>
+<p><strong>说明</strong>：可以证明，如果参数<span class="math inline">\(\theta\)</span>的集合有内点，则指数型分布族的充分统计量
+<span class="math inline">\(\left(\sum_{i=1}^nT_1(x_i),\dots,\sum_{i=1}^nT_k(x_i)\right)\)</span>
+是完全的。</p>
+</div>
+</div>
+<div id="cramer-rao" class="section level2">
+<h2>Cramer-Rao不等式</h2>
+<p><strong>定理</strong>：设<span class="math inline">\(X\)</span>的密度为<span class="math inline">\(f(x;\theta)\)</span>, 参数<span class="math inline">\(\theta\in (a,b)\)</span>. <span class="math inline">\(X_1,\dots,X_n\)</span>为<span class="math inline">\(X\)</span>的样本，<span class="math inline">\(\psi(X_1,\dots,X_n)\)</span>是<span class="math inline">\(g(\theta)\)</span>的一个无偏估计，且满足下列正则性条件：</p>
+<ul>
+<li><span class="math inline">\(X\)</span>的支撑与<span class="math inline">\(\theta\)</span>无关；</li>
+<li><span class="math inline">\(g&#39;(\theta)\)</span>和<span class="math inline">\(\frac{df(x;\theta)}{d\theta}\)</span>都存在且对一切<span class="math inline">\(\theta\)</span>有</li>
+</ul>
+<p><span class="math display">\[\int_{-\infty}^\infty \frac{df(x;\theta)}{d\theta} d x = 0\]</span></p>
+<p><span class="math display">\[\int_{-\infty}^\infty\frac d{d\theta} L(\vec x;\theta) d \vec x=0\]</span></p>
+<p><span class="math display">\[\frac d{d\theta}\int_{-\infty}^\infty \psi(\vec x) L(\vec x;\theta) d \vec x=\int_{-\infty}^\infty \psi(\vec x) \frac d{d\theta}L(\vec x;\theta) d \vec x\]</span></p>
+</div>
+<div id="cramer-rao-1" class="section level2">
+<h2>Cramer-Rao不等式</h2>
+<ul>
+<li><span class="math inline">\(I(\theta):=E[(\frac {d\ln f(X;\theta)}{d\theta})^2]&gt;0\)</span></li>
+</ul>
+<p>则有
+<span class="math display">\[Var_\theta[\psi(X_1,\dots,X_n)]\ge \frac{[g&#39;(\theta)]^2}{nI(\theta)}.\]</span></p>
+<p><strong>说明</strong>:</p>
+<ul>
+<li>证明见p. 28</li>
+<li><span class="math inline">\(I(\theta)\)</span>叫做<strong>Fisher信息量</strong></li>
+<li>离散情形有类似的结论</li>
+<li>C-R不等式的下界不一定达到，见例2.9, p30.</li>
+</ul>
+</div>
+<div id="-1" class="section level2">
+<h2>例</h2>
+<p>设<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\mu\)</span>未知，<span class="math inline">\(\sigma\)</span>已知。
+Fisher信息量为
+<span class="math display">\[I(\mu) = E[(\frac {d\ln f(X;\mu)}{d\mu})^2]=\frac 1{\sigma^4}E[(X-\mu)^2]=\frac 1{\sigma^2}\]</span></p>
+<p><span class="math display">\[Var[\bar X] = \frac{\sigma^2}{n}=\frac{1}{nI(\mu)}\]</span></p>
+<p>可以证明：若<span class="math inline">\(\mu\)</span>已知，则<span class="math inline">\(\sigma^2\)</span>的估计量<span class="math inline">\(\frac 1n\sum_{i=1}^n(X_i-\mu)^2\)</span>的方差达到了C-R不等式的下界。</p>
+</div>
+<div class="section level2">
+<h2>统计量的大样本性质</h2>
+<ol style="list-style-type: decimal">
+<li><p>统计量的相合性</p></li>
+<li><p>统计量的渐近正态性</p></li>
+</ol>
+</div>
+<div class="section level2">
+<h2>统计量的相合性</h2>
+<p><strong>（弱）相合估计</strong>：称<span class="math inline">\(T_n(X_1,\dots,X_n)\)</span>是<span class="math inline">\(g(\theta)\)</span>的相合估计，如果对任何
+<span class="math inline">\(\epsilon&gt;0\)</span>, 有<span class="math display">\[\lim_{n\to\infty}P(|T_n-g(\theta)|\ge \epsilon)=0.\]</span> 等价于依概率收敛<span class="math inline">\(T_n\stackrel p\to g(\theta)\)</span>.</p>
+<p><strong>强相合估计</strong>：称<span class="math inline">\(T_n(X_1,\dots,X_n)\)</span>是<span class="math inline">\(g(\theta)\)</span>的强相合估计，如果<span class="math display">\[P(\lim_{n\to\infty}T_n=g(\theta))=1.\]</span> 等价于概率1收敛<span class="math inline">\(T_n\stackrel {w.p.1}\to g(\theta)\)</span>.</p>
+<p><strong>说明</strong></p>
+<ul>
+<li>由强大数定理知，矩估计一般是强估计的</li>
+<li>最大似然估计在十分广泛的条件下也是有强相合性（见p31)</li>
+</ul>
+</div>
+<div id="-2" class="section level2">
+<h2>例</h2>
+<p>设总体<span class="math inline">\(X\)</span>的期望<span class="math inline">\(\mu\)</span>方差为<span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(X_1,\dots,X_n\)</span>为其样本，证明</p>
+<ul>
+<li>样本均值<span class="math inline">\(\bar X\)</span>是<span class="math inline">\(\mu\)</span>的相合估计量；</li>
+<li>样本<span class="math inline">\(k\)</span>阶原点矩<span class="math inline">\(M_k\)</span>是总体<span class="math inline">\(k\)</span>阶原点矩<span class="math inline">\(E[X^k]\)</span>的相合估计量；</li>
+<li>样本方差<span class="math inline">\(S_n^2\)</span>和修正样本方差<span class="math inline">\(S_n^{2*}\)</span>都是<span class="math inline">\(\sigma^2\)</span>的相合估计量。</li>
+</ul>
+<p><strong>证明</strong>：由辛钦大数定律知，<span class="math inline">\(\bar X\stackrel p\to \mu\)</span>, <span class="math inline">\(M_k\stackrel p\to E[X^k]\)</span>.</p>
+<p><span class="math display">\[S_n^2 = \frac{1}{n}\sum_{i=1}^nX_i^2-\bar X^2\stackrel p\to E[X^2]-E[X]^2=\sigma^2\]</span>
+同理，<span class="math inline">\(S_n^{2*}=\frac{n-1}{n}S_n^2\stackrel p\to \sigma^2\)</span></p>
+<p><strong>注</strong>：这里用到依概率收敛的性质：假设<span class="math inline">\(X_n\stackrel p\to X,\ Y_n\stackrel p\to Y\)</span>. 则<span class="math inline">\(X_n+Y_n\stackrel p\to X+Y\)</span>. 如果<span class="math inline">\(g\)</span>连续，则<span class="math inline">\(g(X_n)\stackrel p\to g(X)\)</span>, <span class="math inline">\(g(X_n,Y_n)\stackrel p\to g(X,Y)\)</span>.</p>
+</div>
+<div class="section level2">
+<h2>相合估计的充分条件</h2>
+<p><strong>定理</strong>：设总体<span class="math inline">\(X\sim F(x;\theta),\ \theta\in \Theta\)</span>, 统计量<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的估计量。如果
+<span class="math display">\[\lim_{n\to \infty}E[T(X_1,\dots,X_n)] = g(\theta),\ \lim_{n\to \infty}Var[T(X_1,\dots,X_n)] =0,\]</span>
+则<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的相合估计量。</p>
+<p><strong>证明</strong>：令<span class="math inline">\(T_n=T(X_1,\dots,X_n)\)</span>.
+注意到<span class="math display">\[\{|T_n-g(\theta)|\ge \epsilon\}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\cup \{|E[T_n]-g(\theta)|\ge \epsilon/2\}.\]</span>
+对任意<span class="math inline">\(\epsilon&gt;0\)</span>, 存在<span class="math inline">\(N\)</span>, 当<span class="math inline">\(n\ge N\)</span>时，<span class="math inline">\(|E[T_n]-g(\theta)|&lt; \epsilon/2\)</span>.
+此时<span class="math display">\[\{|T_n-g(\theta)|\ge \epsilon \}\subset \{|T_n-E[T_n]|\ge \epsilon/2\}\]</span>
+所以，
+<span class="math display">\[P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR[T_n]}{\epsilon^2}\to 0.\]</span></p>
+</div>
+<div class="section level2">
+<h2>统计量的渐近正态性</h2>
+<p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的估计量。如果存在一个趋于零的正数列<span class="math inline">\(\sigma_n(\theta)\)</span>, 使得<span class="math inline">\([T-g(\theta)]/\sigma_n(\theta)\)</span>的分布收敛到标准正态分布，则称<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的<strong>渐近正态估计</strong>，或称<span class="math inline">\(T\)</span>具备<strong>渐近正态性</strong>，即<span class="math display">\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]</span></p>
+</div>
+<div class="section level2">
+<h2>最大似然估计的渐近正态性</h2>
+<p><strong>定理</strong>：设<span class="math inline">\(X\)</span>的密度为<span class="math inline">\(f(x;\theta)\)</span>, 其参数空间<span class="math inline">\(\Theta\)</span>是非退化区间，且满足下列正则性条件：</p>
+<ul>
+<li><p>对一切<span class="math inline">\(\theta\in\Theta\)</span>, <span class="math inline">\(\frac{\partial \ln f}{\partial\theta}, \frac{\partial^2 \ln f}{\partial\theta^2}, \frac{\partial^3 \ln f}{\partial\theta^3}\)</span> 都存在</p></li>
+<li><p>对一切<span class="math inline">\(\theta\in\Theta\)</span>, 有<span class="math inline">\(|\frac{\partial \ln f}{\partial\theta}|&lt;F_1(x),\ |\frac{\partial^2 \ln f}{\partial\theta^2}|&lt;F_2(x),\ |\frac{\partial^3 \ln f}{\partial\theta^3}|&lt;H(x),\)</span> 其中<span class="math inline">\(F_1(x),F_2(x)\)</span>在实数轴上可积，且<span class="math inline">\(\int_{-\infty}^\infty H(x)f(x;\theta)dx&lt;M\)</span>, <span class="math inline">\(M\)</span>与<span class="math inline">\(\theta\)</span>无关。</p></li>
+<li><p>对一切<span class="math inline">\(\theta\in\Theta\)</span>, 有<span class="math inline">\(0&lt;I(\theta)=E[(\frac{\partial \ln f}{\partial\theta})^2]&lt;\infty\)</span>.</p></li>
+</ul>
+<p>则在参数真值<span class="math inline">\(\theta\)</span>为<span class="math inline">\(\Theta\)</span>内点的情况下，其似然方程有一个解<span class="math inline">\(\hat{\theta}_L\)</span>存在，且<span class="math display">\[\hat{\theta}_L\stackrel{p}{\to}\theta,\ \hat{\theta}_L\stackrel{\cdot}{\sim} N(\theta,[nI(\theta)]^{-1}).\]</span></p>
+<div id=".-.--1992" class="section level3">
+<h3>证明参考：陈希孺. 概率论与数理统计. 中国科技大学出版社, 1992</h3>
+</div>
+</div>
+<div id="-1" class="section level2">
+<h2>2 区间估计</h2>
+<ul>
+<li><p>区间估计的定义</p></li>
+<li><p>单个正态总体的区间估计</p></li>
+<li><p>两个独立正态总体的区间估计</p></li>
+<li><p>非正态总体的区间估计</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>区间估计的定义</h2>
+<p><strong>定义</strong>：设总体<span class="math inline">\(X\sim F(x;\theta),\ \theta\in \Theta\)</span>. 如果统计量<span class="math inline">\(T_1(X_1,\dots,X_n),T_2(X_1,\dots,X_n)\)</span>使得对给定的<span class="math inline">\(\alpha\in(0,1)\)</span>有
+<span class="math display">\[P(T_1\le g(\theta)\le T_2)=1-\alpha,\ \forall \theta\in\Theta,\]</span>
+则称随机区间<span class="math inline">\([T_1,T_2]\)</span>为参数<span class="math inline">\(g(\theta)\)</span>的<strong>置信度（置信概率）</strong>为<span class="math inline">\(1-\alpha\)</span>的<strong>置信区间</strong>，<span class="math inline">\(T_1,T_2\)</span>分别称为<strong>置信下界</strong>和<strong>置信上界</strong>。</p>
+<div class="section level3">
+<h3>说明</h3>
+<p>在一些情况下，定义中的“等式”无解，此时考虑的置信区间<span class="math inline">\([T_1,T_2]\)</span>应满足
+<span class="math display">\[P(T_1\le g(\theta)\le T_2)\ge 1-\alpha,\ \forall \theta\in\Theta.\]</span></p>
+</div>
+</div>
+<div class="section level2">
+<h2>置信区间示意图</h2>
+<p><img src="CI.png" /></p>
+</div>
+<div class="section level2">
+<h2>区间估计基本步骤——枢轴量法</h2>
+<p><strong>目标</strong>：找到<span class="math inline">\(g(\theta)\)</span>的区间估计，置信度为<span class="math inline">\(1-\alpha\)</span>.</p>
+<p>Step 1: 选择恰当的<strong>枢轴量</strong><span class="math inline">\(G(X_1,\dots,X_n;g(\theta))\)</span></p>
+<ul>
+<li><span class="math inline">\(G\)</span>不含有其他未知参数</li>
+<li><span class="math inline">\(G\)</span>的分布确定，即不含未知参数<span class="math inline">\(\theta\)</span></li>
+<li>一般地，<span class="math inline">\(G\)</span>是关于参数<span class="math inline">\(g(\theta)\)</span>的单调函数</li>
+</ul>
+<p>Step 2: 求<span class="math inline">\(a,b\)</span>使得<span class="math inline">\(P(a\le G\le b)=1-\alpha\)</span></p>
+<p>Step 3: 转化不等式<span class="math inline">\(a\le G\le b\)</span>为如下形式：
+<span class="math display">\[T_1\le g(\theta)\le T_2.\]</span></p>
+</div>
+<div class="section level2">
+<h2>指数分布</h2>
+<p><strong>目标</strong>：若总体为指数分布<span class="math inline">\(Exp(\lambda)\)</span>，求未知参数<span class="math inline">\(\lambda\)</span>的置信区间。</p>
+<p>Step 1: 选择枢轴量
+<span class="math display">\[G(X_1,\dots,X_n;\lambda) = 2\lambda  n\bar X\sim Ga(n,1/2)=\chi^2(2n)\]</span></p>
+<p>Step 2: 求<span class="math inline">\(a,b\)</span>使得<span class="math inline">\(P(a\le G\le b)=1-\alpha\)</span>，即
+<span class="math display">\[P(a\le 2\lambda  n\bar X\le b)=1-\alpha\]</span></p>
+<p>Step 3: <span class="math inline">\(\lambda\)</span>的置信区间为<span class="math inline">\([a/(2n\bar X),b/(2n\bar X)]\)</span>.</p>
+<div id="ab" class="section level3">
+<h3>如何选择<span class="math inline">\(a,b\)</span>?</h3>
+<ul>
+<li><p>平分法：<span class="math inline">\(a=\chi^2_{\alpha/2}(2n), b=\chi^2_{1-\alpha/2}(2n)\)</span></p></li>
+<li><p>最优方案？参考书p35</p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>平分法示意图</h2>
+<p><img src="chiCI.png" /></p>
+</div>
+<div class="section level2">
+<h2>2.1 单个正态总体的区间估计</h2>
+<p>设总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, 如何找出未知参数<span class="math inline">\(\mu\)</span>和<span class="math inline">\(\sigma^2\)</span>的置信区间？</p>
+<ul>
+<li><p>已知<span class="math inline">\(\sigma^2\)</span>, 找出<span class="math inline">\(\mu\)</span>的置信区间</p></li>
+<li><p>未知<span class="math inline">\(\sigma^2\)</span>, 找出<span class="math inline">\(\mu\)</span>的置信区间</p></li>
+<li><p>已知<span class="math inline">\(\mu\)</span>, 找出<span class="math inline">\(\sigma^2\)</span>的置信区间</p></li>
+<li><p>未知<span class="math inline">\(\mu\)</span>, 找出<span class="math inline">\(\sigma^2\)</span>的置信区间</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>已知方差，求期望的置信区间</h2>
+<p>由抽样定理知，<span class="math inline">\(\bar{X}\sim N(\mu,\sigma^2/n)\)</span>. 因此
+<span class="math inline">\(U = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\)</span>
+<span class="math display">\[P\left(a\le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\le b\right) = 1-\alpha\]</span>
+<span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为<span class="math display">\[\left[\bar{X}-b\frac{\sigma}{\sqrt{n}},\  \bar{X}-a\frac{\sigma}{\sqrt{n}}\right]\]</span></p>
+<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=u_{1-\alpha/2}\)</span>, 此时置信区间为：</p>
+<p><span class="math display">\[\left[\bar{X}-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\  \bar{X}+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right]=\bar{X}\pm u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]</span></p>
+</div>
+<div class="section level2">
+<h2>方差未知，求期望的置信区间</h2>
+<p>由抽样定理知，
+<span class="math display">\[T = \frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}= \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]</span>
+<span class="math display">\[P\left(a\le \frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\le b\right) = 1-\alpha\]</span>
+<span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[\bar{X}-b\frac{S_n^*}{\sqrt{n}},\  \bar{X}-a\frac{S_n^*}{\sqrt{n}}\right]=\left[\bar{X}-b\frac{S_n}{\sqrt{n-1}},\  \bar{X}-a\frac{S_n}{\sqrt{n-1}}\right]\]</span></p>
+<p><strong>最优的选择</strong>：<span class="math inline">\(b=-a=t_{1-\alpha/2}(n-1)\)</span>, 此时置信区间为：
+<span class="math display">\[\left[\bar{X}-t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}},\  \bar{X}+t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\right]=\bar{X}\pm t_{1-\alpha/2}(n-1)\frac{S_n^*}{\sqrt{n}}\]</span></p>
+</div>
+<div id="-3" class="section level2">
+<h2>例</h2>
+<p><strong>例</strong>：假设OPPO手机充电五分钟通话时间<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>. 随机抽取6部手机测试通话时间（单位：小时）为
+<span class="math display">\[1.6,\ 2.1,\ 1.9,\ 1.8,\ 2.2,\ 2.1,\]</span></p>
+<ul>
+<li><p>已知<span class="math inline">\(\sigma^2=0.06\)</span>, 求<span class="math inline">\(\sigma^2\)</span>的置信度为<span class="math inline">\(95\%\)</span>的置信区间。</p></li>
+<li><p><span class="math inline">\(\sigma^2\)</span>未知, 求<span class="math inline">\(\sigma^2\)</span>的置信度为<span class="math inline">\(95\%\)</span>的置信区间。</p></li>
+</ul>
+<p><strong>解</strong>：</p>
+<p>查表知，<span class="math inline">\(u_{1-\alpha/2}=u_{0.975}=1.96,\ t_{1-\alpha/2}=t_{0.975}=2.5706\)</span>. 且<span class="math inline">\(\bar X = 1.95,\ S_n=0.206\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\left[1.95-1.96\frac{\sqrt{0.06}}{\sqrt{6}},\  1.95+1.96\frac{\sqrt{0.06}}{\sqrt{6}}\right]=[1.754,\ 2.146]\)</span></p></li>
+<li><p><span class="math inline">\(\left[1.95-2.5706\frac{0.206}{\sqrt{6-1}},\  1.95+2.5706\frac{0.206}{\sqrt{6-1}}\right]=[1.713,\ 2.187]\)</span></p></li>
+</ol>
+</div>
+<div class="section level2">
+<h2>一些思考</h2>
+<ul>
+<li><p>分析这两种的结果会发现，由同一组样本观察值，按同样的置信概率，对<span class="math inline">\(\mu\)</span>计算出的置信区间因为<span class="math inline">\(\sigma\)</span>的是否已知会不一样。这因为：当<span class="math inline">\(\sigma\)</span>为已知时，我们掌握的信息多一些，在其他条件相同的情况下，对<span class="math inline">\(\mu\)</span>的估计精度要高一些，即表现为<span class="math inline">\(\mu\)</span>的置信区间长度要小些。反之，当<span class="math inline">\(\sigma\)</span>为未知时，对<span class="math inline">\(\mu\)</span>的估计精度要低一些，即表现为<span class="math inline">\(\mu\)</span>的置信区间长度在大一些。这是因为当<span class="math inline">\(n\)</span>比较小时，<span class="math inline">\(t_{1-\alpha/2}(n-1)&gt;u_{1-\alpha/2}\)</span>.</p></li>
+<li><p>还可以发现，当样本量<span class="math inline">\(n\)</span>不断增大时，两种情况下的置信区间会慢慢接近。
+也就意味着大样本信息可以弥补<span class="math inline">\(\sigma\)</span>的缺失带来的偏差（<strong>大数定律</strong>）。</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>已知期望，求方差的置信区间</h2>
+<p>构造统计量
+<span class="math display">\[T =\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2(n)\]</span>
+<span class="math display">\[P\left(\chi^2_{\alpha/2}(n)\le\sum_{i=1}^n\frac{(X_i-\mu)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n)\right) = 1-\alpha\]</span>
+<span class="math inline">\(\sigma^2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{1-\alpha/2}(n)},\  \frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi^2_{\alpha/2}(n)}\right]\]</span></p>
+</div>
+<div class="section level2">
+<h2>期望未知，求方差的置信区间</h2>
+<p>构造统计量
+<span class="math display">\[T =\frac{nS_n^2}{\sigma^2}=\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)\]</span>
+<span class="math display">\[P\left(\chi^2_{\alpha/2}(n-1)\le\sum_{i=1}^n\frac{(X_i-\bar X)^2}{\sigma^2}\le \chi^2_{1-\alpha/2}(n-1)\right) = 1-\alpha\]</span>
+<span class="math inline">\(\sigma^2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[\frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{\sum_{i=1}^n(X_i-\bar X)^2}{\chi^2_{\alpha/2}(n-1)}\right]=\left[\frac{nS_n^2}{\chi^2_{1-\alpha/2}(n-1)},\  \frac{nS_n^2}{\chi^2_{\alpha/2}(n-1)}\right]\]</span></p>
+</div>
+<div class="section level2">
+<h2>2.2 两个独立正态总体的区间估计</h2>
+<p>设两个独立总体<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, <span class="math inline">\(Y\sim N(\mu_2,\sigma^2)\)</span>, 如何找出未知参数<span class="math inline">\(\mu\)</span>和<span class="math inline">\(\sigma^2\)</span>的置信区间？其中<span class="math inline">\(X\)</span>的样本为<span class="math inline">\(X_1,\dots,X_m\)</span>, 样本方差为<span class="math inline">\(S_{1m}^2\)</span>; <span class="math inline">\(Y\)</span>的样本为<span class="math inline">\(Y_1,\dots,Y_n\)</span>, 样本方差为<span class="math inline">\(S_{2n}^2\)</span></p>
+<ul>
+<li><p>已知<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>, 找出<span class="math inline">\(\mu_1-\mu_2\)</span>的置信区间</p></li>
+<li><p>以知<span class="math inline">\(\sigma_1^2=\sigma_2^2=\sigma^2\)</span>, 找出<span class="math inline">\(\mu_1-\mu_2\)</span>的置信区间</p></li>
+<li><p>已知<span class="math inline">\(\mu_1,\mu_2\)</span>, 找出<span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span>的置信区间</p></li>
+<li><p>未知<span class="math inline">\(\mu_1,\mu_2\)</span>, 找出<span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span>的置信区间</p></li>
+</ul>
+<div class="section level3">
+<h3>应用场景</h3>
+<ul>
+<li>比较男生、女生两个群体的身高/体重/成绩平均水平的差异</li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>已知方差，求均值差的置信区间</h2>
+<p>选择枢轴量：
+<span class="math display">\[U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\sim N(0,1).\]</span></p>
+<p><span class="math inline">\(\mu_1-\mu_2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[(\bar{X}-\bar{Y})-u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n},\  (\bar{X}-\bar{Y})+u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}m+\frac{\sigma_2^2}n}\right]\]</span></p>
+</div>
+<div class="section level2">
+<h2>已知方差相同，求均值差的置信区间</h2>
+<p>选择枢轴量：
+<span class="math display">\[T=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2).\]</span></p>
+<p>其中<span class="math inline">\(S_w =\sqrt{(mS_{1m}^2+nS_{2n}^2)/(m+n-2)}.\)</span></p>
+<p>令<span class="math inline">\(t_{1-\alpha/2}(m+n-2)=t_{1-\alpha/2}\)</span>，</p>
+<p><span class="math inline">\(\mu_1-\mu_2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[(\bar{X}-\bar{Y})-t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n},\  (\bar{X}-\bar{Y})+t_{1-\alpha/2}S_w\sqrt{\frac 1m+\frac 1n}\right]\]</span></p>
+</div>
+<div id="-4" class="section level2">
+<h2>例</h2>
+<p><strong>例</strong>：假设OPPO手机充电五分钟通话时间<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, VIVO手机充电五分钟通话时间<span class="math inline">\(Y\sim N(\mu_2,\sigma_2^2)\)</span>. 随机抽取6部手机测试通话时间（单位：小时）为</p>
+<p><span class="math display">\[\text{OPPO}:\ 1.6,\   2.1,\  1.9,\  1.8,\   2.2,\   2.1\]</span></p>
+<p><span class="math display">\[\text{VIVO}:\ 1.8,\   2.2,\ 1.5,\   1.4,\   2.0,\   1.7\]</span></p>
+<p>求<span class="math inline">\(\mu_1-\mu_2\)</span>的置信度为<span class="math inline">\(95\%\)</span>的置信区间:</p>
+<ul>
+<li>已知<span class="math inline">\(\sigma_1^2 = 0.06,\ \sigma_2^2 = 0.08\)</span>.</li>
+<li>已知<span class="math inline">\(\sigma_1^2 =\sigma_2^2\)</span>.</li>
+</ul>
+<p><strong>解</strong>：<span class="math inline">\(m=n=6\)</span>, <span class="math inline">\(\bar{X}=1.95,\ \bar{Y}=1.77\)</span>, <span class="math inline">\(S_{1m}^2=0.042, S_{2n}^2=0.064, S_w = 0.252.\)</span> 查表知，<span class="math inline">\(u_{0.975}=1.96\)</span>,
+<span class="math inline">\(t_{0.975}(10)=2.23\)</span>.</p>
+<ul>
+<li>第一种情况为<span class="math inline">\([-0.12,\ 0.48]\)</span></li>
+<li>第二种情况为<span class="math inline">\([-0.14,\ 0.50]\)</span></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>已知均值，求方差比的置信区间</h2>
+<p><span class="math display">\[T_1 =\sum_{i=1}^m\frac{(X_i-\mu_1)^2}{\sigma_1^2}\sim \chi^2(m),\ T_2 =\sum_{i=1}^n\frac{(Y_i-\mu_2)^2}{\sigma_2^2}\sim \chi^2(n)\]</span></p>
+<p><span class="math display">\[\frac{T_1/m}{T_2/n}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m,n)\]</span></p>
+<p><span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[\frac{1}{F_{1-\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2},\ \frac{1}{F_{\alpha/2}(m,n)}\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}  \right]\]</span></p>
+</div>
+<div class="section level2">
+<h2>均值未知，求方差比的置信区间</h2>
+<p><span class="math display">\[T_1=\frac{(m-1)S_{1m}^{*2}}{\sigma_1^2}=\sum_{i=1}^m\frac{(X_i-\bar X)^2}{\sigma_1^2}\sim \chi^2(m-1)\]</span> <span class="math display">\[T_2=\frac{(n-1)S_{2n}^{*2}}{\sigma_2^2}=\sum_{i=1}^n\frac{(Y_i-\bar Y)^2}{\sigma_2^2}\sim \chi^2(n-1)\]</span>
+<span class="math display">\[\frac{T_1/(m-1)}{T_2/(n-1)}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\frac{\sigma_2^2}{\sigma_1^2}\sim F(m-1,n-1)\]</span>
+<span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的置信区间为：
+<span class="math display">\[\left[\frac{1}{F_{1-\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}},\ \frac{1}{F_{\alpha/2}(m-1,n-1)}\frac{S_{1m}^{*2}}{S_{2n}^{*2}}  \right]\]</span></p>
+</div>
+<div class="section level2">
+<h2>一些说明</h2>
+<ul>
+<li><p>枢轴量法的难点在于寻找枢轴量，没有统一的方法。正态总体下的应用应当熟练掌握。</p></li>
+<li><p>另外一种求置信区间方法叫<strong>统计量方法</strong>，不作要求，感兴趣参考教材pp42-46.</p></li>
+<li><p>“最优的置信区间”是否存在？目前尚缺乏对置信区间的优良性讨论。</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>2.3 非正态总体参数的区间估计</h2>
+<p>令<span class="math inline">\(\mu=E[X],\sigma^2=Var[X]\)</span>分别为总体<span class="math inline">\(X\)</span>的期望和方差。
+由中心极限定理，
+<span class="math display">\[\frac{\bar X-\mu}{\sigma/\sqrt{n}}\stackrel{\cdot}\sim N(0,1).\]</span>
+当<span class="math inline">\(\sigma\)</span>已知时，总体期望<span class="math inline">\(\mu\)</span>的置信度为<span class="math inline">\(1-\alpha\)</span>的区间估计可以近似为
+<span class="math display">\[\left[\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right].\]</span>
+如果<span class="math inline">\(\sigma\)</span>未知，可以用样本标准差<span class="math inline">\(S_n\)</span>（或者修正样本差<span class="math inline">\(S_n^*\)</span>）替代<span class="math inline">\(\sigma\)</span>，
+<span class="math display">\[\left[\bar X-u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}, \bar X+u_{1-\alpha/2}\frac{S_n}{\sqrt{n}}\right].\]</span></p>
+</div>
+<div class="section level2">
+<h2>3 分布的估计</h2>
+<ul>
+<li>分布函数的估计</li>
+<li>密度函数的直方图估计</li>
+<li>密度函数的核估计</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>分布函数的估计</h2>
+<p>经验分布函数：</p>
+<p><span class="math display">\[
+F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
+0,&amp;\ x&lt;x_{(1)}\\
+1/n,&amp;\ x_{(1)}\le x&lt;x_{(2)}\\
+2/n,&amp;\ x_{(2)}\le x&lt;x_{(3)}\\
+&amp;\vdots\\
+k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
+&amp;\vdots\\
+1,&amp;\ x&gt;x_{(n)}\\
+\end{cases}
+\]</span></p>
+</div>
+<div class="section level2">
+<h2>3.1 密度函数的估计——直方图法</h2>
+<p>只考虑一维连续型总体<span class="math inline">\(X\sim f(x)\)</span>。设<span class="math inline">\(X_1,\dots,X_n\)</span>为样本，<span class="math inline">\(R_n(a,b)\)</span>表示落在区间<span class="math inline">\((a,b]\)</span>中的个数。由中值定理得，存在<span class="math inline">\(x_0\in(a,b]\)</span>使得
+<span class="math display">\[f(x_0)=\frac 1{b-a}\int_a^b f(x)dx\approx \frac {R_n(a,b)}{n(b-a)}\]</span></p>
+<p>设<span class="math inline">\(-\infty&lt;t_0&lt;t_1&lt;\dots&lt;t_m&lt;\infty\)</span>，<span class="math inline">\(t_{i+1}-t_i=h&gt;0\)</span>. 直方图法的密度估计为：</p>
+<p><span class="math display">\[
+f_n(x)=
+\begin{cases}
+\frac{R_n(t_i,t_{i+1})}{nh},\ x\in(t_i,t_{i+1}],i=0,\dots,m-1\\
+0, x\le t_0,x&gt;t_m
+\end{cases}
+\]</span></p>
+<p>实际上选取<span class="math inline">\(t_0\)</span>为比<span class="math inline">\(X_{(1)}\)</span>略小的数，选取<span class="math inline">\(t_m\)</span>为比<span class="math inline">\(X_{(n)}\)</span>略大的数。<strong>经验法则</strong>：<span class="math inline">\(m\approx 1+3.322\log_{10} n.\)</span></p>
+</div>
+<div class="section level2">
+<h2>案例：身高数据</h2>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>直方图法的相合性</h2>
+<p><strong>定理</strong>：设<span class="math inline">\(f(\cdot)\)</span>在点<span class="math inline">\(x\)</span>连续且<span class="math inline">\(\lim_n h_n=0,\lim_n nh_n=\infty\)</span>, 则对任何<span class="math inline">\(\epsilon&gt;0\)</span>有
+<span class="math display">\[\lim_{n\to\infty} P(|f_n(x)-f(x)|\ge \epsilon)=0.\]</span></p>
+<p><strong>定理</strong>：设<span class="math inline">\(f(\cdot)\)</span>在<span class="math inline">\(\mathbb{R}\)</span>上一致连续，<span class="math inline">\(\int_{-\infty}^\infty |x|^\delta d x&lt;\infty\)</span>(对某个<span class="math inline">\(\delta&gt;0\)</span>), 且<span class="math inline">\(\lim_n h_n=0,h_n\ge (\ln n)^2/n\)</span>, 则
+<span class="math display">\[P(\lim_{n\to\infty} \sup_x|f_n(x)-f(x)|=0)=1.\]</span></p>
+<p>证明见书pp54-55.</p>
+</div>
+<div class="section level2">
+<h2>3.2 核估计法</h2>
+<p><strong>中心差分</strong>：
+<span class="math display">\[f(x)\approx \frac{F(x+h)-F(x-h)}{2h}\approx \frac{F_n(x+h)-F_n(x-h)}{2h}\]</span></p>
+<p><span class="math display">\[\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n 1\{x-h&lt;X_i\le x+h\}=\frac{1}{2hn}\sum_{i=1}^n K_0\left(\frac{x-X_i}{h}\right)\]</span></p>
+<p>其中
+<span class="math display">\[K_0(x)= \frac 12 1\{-1\le x&lt;1\}\]</span></p>
+<p><strong>核函数</strong>：<span class="math inline">\(K(x)\)</span>是<span class="math inline">\(\mathbb{R}\)</span>上的非负函数且满足<span class="math inline">\(\int_{-\infty}^\infty K(x)=1\)</span>.</p>
+<p><strong>核估计</strong>：<span class="math inline">\(\hat{f}_n(x) = \frac{1}{2hn}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)\)</span></p>
+</div>
+<div class="section level2">
+<h2>常用的核函数</h2>
+<p>均匀核函数：
+<span class="math display">\[K_0(x)= \frac 12 1\{-1\le x\le1\}\]</span></p>
+<p><span class="math display">\[K_1(x)= 1\{-1/2\le x\le1/2\}\]</span></p>
+<p>正态核函数：
+<span class="math display">\[K_2(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\]</span></p>
+</div>
+<div class="section level2">
+<h2>核估计的相合性</h2>
+<p><strong>定理</strong>：设核函数<span class="math inline">\(K(x)\)</span>满足条件
+<span class="math display">\[\int_{-\infty}^\infty (K(x))^2 dx&lt;\infty,\ \lim_{|x|\to \infty} |x|K(x)=0,\]</span></p>
+<p>又密度函数<span class="math inline">\(f\)</span>在点<span class="math inline">\(x\)</span>处连续，且<span class="math inline">\(h_n\to 0\)</span>, <span class="math inline">\(nh_n\to\infty\)</span>, 则对一切<span class="math inline">\(\epsilon&gt;0\)</span>, 有
+<span class="math display">\[\lim_{n\to\infty} P(|\hat{f}_n(x)-f(x)|\ge \epsilon) = 0.\]</span></p>
+<p>证明见pp56-58.</p>
+</div>
+<div id="-1" class="section level2">
+<h2>案例：身高数据</h2>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="-2" class="section level2">
+<h2>案例：身高数据</h2>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="-1" class="section level2">
+<h2>一些说明</h2>
+<div class="section level3">
+<h3>收敛速度的比较</h3>
+<p>在满足一些正则性的条件（如，<span class="math inline">\(h_n\to 0\)</span>, <span class="math inline">\(nh_n\to\infty\)</span>）下，可以证明</p>
+<ul>
+<li>直方图法的均方误差为<span class="math inline">\(O(n^{-2/3})\)</span></li>
+<li>核估计的均方误差为<span class="math inline">\(O(n^{-4/5})\)</span></li>
+</ul>
+</div>
+<div id="bandwidth-h_n" class="section level3">
+<h3>核估计的带宽(bandwidth) <span class="math inline">\(h_n\)</span>如何选取?</h3>
+<ul>
+<li>如果选择正态核函数，<strong>经验法则</strong>：<span class="math inline">\(h_n\approx 1.06S_nn^{-1/5}\)</span></li>
+</ul>
+</div>
+<div class="section level3">
+<h3>延伸阅读</h3>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" class="uri">https://en.wikipedia.org/wiki/Kernel_density_estimation</a></p></li>
+<li><p>Kernel smoothing techniques used in finance</p></li>
+<li><p>used in Approximate Bayesian Computation (ABC)</p></li>
+</ul>
+</div>
+</div>
+<div class="section level2">
+<h2>一些参考文献</h2>
+<ol style="list-style-type: decimal">
+<li><p>Liu, Guangwu; Hong, L. Jeff. Kernel estimation of the greeks for options with discontinuous payoffs. <em>Operations Research</em>. Vol. 59, No. 1, pp. 96-108, 2011.</p></li>
+<li><p>Hong, L. Jeff; Juneja, Sandeep; Liu, Guangwu. Kernel smoothing for nested estimation with application to portfolio risk measurement. <em>Operations Research</em>. Vol. 65, No. 3, pp. 657-673, 2017.</p></li>
+<li><p>Amal B. Abdellah, Pierre L’Ecuyer, Art B. Owen, Florian Puchhammer. Density estimation by Randomized Quasi-Monte Carlo. <a href="https://arxiv.org/abs/1807.06133">arXiv:1807.06133</a>, 2018</p></li>
+</ol>
+</div>

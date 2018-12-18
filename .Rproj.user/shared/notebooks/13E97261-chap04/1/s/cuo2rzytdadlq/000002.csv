@@ -1,4 +1,0 @@
-"0","attach(rod)"
-"0","par(mar=c(4,4,1,0.5))"
-"0","plot(rough_weight,finished_weight,type=""p"",pch=16,"
-"0","     xlab = ""Rough Weight"",ylab = ""Finished Weight"")"

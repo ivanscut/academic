@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.48" />
+  <meta name="author" content="Zhijian He">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。答案：ABCE
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
+E. \(\frac{1}2 \bar X &#43; \frac 12 S_n^{*2}\)
+设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。答案：A
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+D. \(\frac{1}2 \bar X &#43; \frac 12 S_n^{*2}\)
+设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
+解: 1. \(\lambda^2\)的无偏估计有很多种答案：
+因为\(E[X]=Var[\lambda]=\lambda\), 所以\(E[X^2]=\lambda&#43;\lambda^2=E[X]&#43;\lambda^2\)，由矩法得到一种无偏估计量：\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]
+因为\(E[\bar X]=\lambda\), \[E(\bar X^2) = Var(\bar X)&#43;(E[\bar X])^2=\lambda/n&#43;\lambda^2=E[\bar X]/n&#43;\lambda^2,\]于是可以得到一种无偏估计量：\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/course/homework4/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/course/homework4/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Dr. Zhijian He">
+  <meta property="og:url" content="/course/homework4/">
+  <meta property="og:title" content="第四次作业 | Dr. Zhijian He">
+  <meta property="og:description" content="设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。答案：ABCE
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
+E. \(\frac{1}2 \bar X &#43; \frac 12 S_n^{*2}\)
+设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。答案：A
+A. \(\bar X\)
+B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
+C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
+D. \(\frac{1}2 \bar X &#43; \frac 12 S_n^{*2}\)
+设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
+解: 1. \(\lambda^2\)的无偏估计有很多种答案：
+因为\(E[X]=Var[\lambda]=\lambda\), 所以\(E[X^2]=\lambda&#43;\lambda^2=E[X]&#43;\lambda^2\)，由矩法得到一种无偏估计量：\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]
+因为\(E[\bar X]=\lambda\), \[E(\bar X^2) = Var(\bar X)&#43;(E[\bar X])^2=\lambda/n&#43;\lambda^2=E[\bar X]/n&#43;\lambda^2,\]于是可以得到一种无偏估计量：\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-12-18T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-12-18T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>第四次作业 | Dr. Zhijian He</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Dr. Zhijian He</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/talk">
+            
+            <span>Talks</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/course/">
+            
+            <span>Courses</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="Search..." autocomplete="off">
+</form>
+
+
+<nav class="docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/course/">Overview</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/course/chap00/">数理统计</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/course/chap00/">课程简介</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap01/">第一章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap02/">第二章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap03/">第三章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap04/">第四章</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework1/">第一次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework2/">第二次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework3/">第三次作业</a>
+      </li>
+      
+      <li class="active">
+        <a href="/course/homework4/">第四次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework5/">第五次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework6/">第六次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework7/">第七次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework8/">第八次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework9/">第九次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework10/">第十次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework11/">第十一次作业</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+      <div id="search-hits">
+        
+      </div>
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        
+
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">第四次作业</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            <p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为来自参数为<span class="math inline">\(\lambda\)</span>的Poisson分布的样本. 在下列选项中选出用于估计参数<span class="math inline">\(\lambda\)</span>的无偏估计量。<strong>答案：ABCE</strong></p>
+<p>A. <span class="math inline">\(\bar X\)</span></p>
+<p>B. <span class="math inline">\(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)</span></p>
+<p>C. <span class="math inline">\(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)</span></p>
+<p>D. <span class="math inline">\(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)</span></p>
+<p>E. <span class="math inline">\(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)</span></p>
+<hr />
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为来自参数为<span class="math inline">\(\lambda\)</span>的Poisson分布的样本, 已知<span class="math inline">\(\bar X\)</span>是未知参数<span class="math inline">\(\lambda\)</span>的完全统计量。在下列选项中选出用于估计参数<span class="math inline">\(\lambda\)</span>的最有效的估计量。<strong>答案：A</strong></p>
+<p>A. <span class="math inline">\(\bar X\)</span></p>
+<p>B. <span class="math inline">\(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)</span></p>
+<p>C. <span class="math inline">\(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)</span></p>
+<p>D. <span class="math inline">\(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)</span></p>
+<hr />
+<p>设<span class="math inline">\(X,\dots,X_n\)</span>为来自参数为<span class="math inline">\(\lambda\)</span>的Poisson分布的样本，求<span class="math inline">\(\lambda^2\)</span>的无偏估计。已知<span class="math inline">\(\bar X\)</span>是参数<span class="math inline">\(\lambda\)</span>的完全统计量，能否找到<span class="math inline">\(\lambda^2\)</span>的最小方差无偏估计量？</p>
+<p><code>解</code>: 1. <span class="math inline">\(\lambda^2\)</span>的无偏估计有很多种答案：</p>
+<ul>
+<li><p>因为<span class="math inline">\(E[X]=Var[\lambda]=\lambda\)</span>, 所以<span class="math inline">\(E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2\)</span>，由矩法得到一种无偏估计量：
+<span class="math display">\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]</span></p></li>
+<li><p>因为<span class="math inline">\(E[\bar X]=\lambda\)</span>, <span class="math display">\[E(\bar X^2) = Var(\bar X)+(E[\bar X])^2=\lambda/n+\lambda^2=E[\bar X]/n+\lambda^2,\]</span>
+于是可以得到一种无偏估计量：
+<span class="math display">\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]</span></p></li>
+<li><p>当然还可以构造无穷多种无偏估计量：
+<span class="math display">\[\hat{\lambda^2}_3 = \alpha \hat{\lambda^2}_1+(1-\alpha)\hat{\lambda^2}_2,\forall \alpha\in [0,1].\]</span></p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>虽然无偏统计量有很多，但是最小方差无偏估计量是唯一的（在概率意义下）。由于<span class="math inline">\(\bar X\)</span>是充分完全统计量，所以由B-L-S定理知，<span class="math inline">\(\hat{\lambda^2}_2\)</span>是最小方差无偏的。</li>
+</ol>
+<blockquote>
+<p>有一部分同学想通过<span class="math inline">\(\psi(\bar X)=E[\hat{\lambda^2}_1|\bar X]\)</span>的得到最小无偏估计量，思路是对的，但是如何计算<span class="math inline">\(\psi(\bar X)\)</span>就没那么容易了。</p>
+</blockquote>
+<p>为了解决这个问题，我们需要计算在给定<span class="math inline">\(\bar X= t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布。容易计算样本的联合分布为
+<span class="math display">\[P(X_1=x_1,\dots,X_n=x_n)=\prod_{i=1}^nP(X_i=x_i) = \prod_{i=1}^n \frac{e^{-\lambda}\lambda^{x_i}}{x_i!}=\frac{e^{-n\lambda}\lambda^{n\bar x}}{\prod_{i=1}^nx_i!}\]</span></p>
+<p>由于Possion分布的可加性，有<span class="math inline">\(\sum_{i=1}^n X_i\sim Possion(n\lambda)\)</span>, 所以
+<span class="math display">\[P(\bar X=t)=P(\sum_{i=1}^n X_i=nt)=\frac{e^{-n\lambda}(n\lambda)^{nt}}{(nt)!}\]</span></p>
+<p>于是，给定<span class="math inline">\(\bar X= t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布为：当<span class="math inline">\(\sum_{i=1}^nx_i=nt\)</span>时，
+<span class="math display">\[P(X_1=x_1,\dots,X_n=x_n|\bar X=t)=\frac{\frac{e^{-n\lambda}\lambda^{nt}}{\prod_{i=1}^nx_i!}}{\frac{e^{-n\lambda}(n\lambda)^{nt}}{(nt)!}}=\frac{(nt)!}{n^{nt}\prod_{i=1}^nx_i!}, \]</span>
+其他情况下，该条件概率为0. 我们发现
+<span class="math display">\[\psi(t)=E[\hat{\lambda^2}_1|\bar X=t]=E[\frac{1}{n}\sum_{i=1}^nX_i^2-\bar X|\bar X=t]=E[n(\bar X)^2-\frac{1}{n}\sum_{i\neq j}X_iX_j-\bar X|\bar X=t]=nt^2-t-\frac{1}{n}E[\sum_{i\neq j}X_iX_j|\bar X=t].\]</span></p>
+<p>由于对称性，<span class="math inline">\(E[\sum_{i\neq j}X_iX_j|\bar X=t]=n(n-1)E[X_1X_2|\bar X=t]\)</span>, 所以只需计算<span class="math inline">\(E[X_1X_2|\bar X=t]\)</span>即可：
+<span class="math display">\[E[X_1X_2|\bar X=t]=\sum_{\vec x:\sum_{i=1}^nx_i=nt}\frac{x_1x_2(nt)!}{n^{nt}\prod_{i=1}^nx_i!}=\frac{(nt)!}{n^{nt}}\sum_{\vec x:\sum_{i=1}^nx_i=nt}\frac{x_1x_2}{\prod_{i=1}^nx_i!}\]</span></p>
+<p>由于
+<span class="math display">\[\sum_{\vec x:\sum_{i=1}^nx_i=nt}\frac{x_1x_2}{\prod_{i=1}^nx_i!}=\sum_{\vec x:\sum_{i=1}^nx_i=nt,x_1\ge 1,x_2\ge 1}\frac{1}{(x_1-1)!(x_2-1)!\prod_{i=3}^nx_i!}=\sum_{\vec x:\sum_{i=1}^nx_i=nt-2}\frac{1}{\prod_{i=1}^nx_i!}=\frac{n^{nt-2}}{(nt-2)!}\]</span></p>
+<p>所以，
+<span class="math display">\[\psi(t)=nt^2-t-(n-1)E[X_1X_2|\bar X=t]=nt^2-t-(n-1)\frac{(nt)!}{n^{nt}}\frac{n^{nt-2}}{(nt-2)!}=t^2-\frac{t}{n}\]</span></p>
+<p>这表明，<span class="math inline">\(\psi(\bar X)=(\bar X)^2-\bar X/n\)</span>, 也就是<span class="math inline">\(\hat{\lambda^2}_2\)</span>. 两种方式得到的最小方差无偏估计量是一致的。这也印证了最小方差无偏估计量是唯一的。显然第一种方式比较简单，第二种方式需要求条件期望，这个比较复杂，一般情况下不容易求解。</p>
+<hr />
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布的样本，参数<span class="math inline">\(\mu,\sigma^2\)</span>未知。证明样本方差<span class="math inline">\(S_n^2\)</span>与修正样本方差<span class="math inline">\(S_n^{*2}\)</span>均为<span class="math inline">\(\sigma^2\)</span>的弱相合估计量。</p>
+<p><code>解</code>： 由抽样分布定理知，<span class="math inline">\(\frac{\sum_{i=1}^n (X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)\)</span>, 所以
+<span class="math display">\[Var[\sum_{i=1}^n (X_i-\bar X)^2]=2(n-1)\sigma^4\]</span></p>
+<p>于是，</p>
+<p><span class="math display">\[Var[S_n^2]=Var[\sum_{i=1}^n (X_i-\bar X)^2]/n^2=\frac{2(n-1)\sigma^4}{n^2}\to 0\text{ as }n\to \infty\]</span></p>
+<p><span class="math display">\[Var[S_n^{*2}]=Var[\sum_{i=1}^n (X_i-\bar X)^2]/(n-1)^2=\frac{2\sigma^4}{n-1}\to 0\text{ as }n\to \infty\]</span></p>
+<p>由于<span class="math inline">\(E[S_n^{*2}]=\sigma^2,\lim_{n\to\infty}E[S_n^2]=\sigma^2\)</span>, 由弱相合性判别条件知，它们都是弱相合的。</p>
+<hr />
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布的样本，参数<span class="math inline">\(\mu,\sigma^2\)</span>未知。样本方差<span class="math inline">\(S_n^2\)</span>与修正样本方差<span class="math inline">\(S_n^{*2}\)</span>作为<span class="math inline">\(\sigma^2\)</span>的两种估计量，哪个更有效？由B-L-S定理知，<span class="math inline">\(S_n^{*2}\)</span>是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？</p>
+<p><code>解</code>: 由于<span class="math inline">\(S_n^{*2}\)</span>是无偏的，所以均方误差
+<span class="math display">\[M(S_n^{*2}) = Var[S_n^{*2}]=\frac{2\sigma^4}{n-1}\]</span></p>
+<p>对<span class="math inline">\(S_n^{2}\)</span>, 其均方误差为
+<span class="math display">\[M(S_n^{*2}) = Var[S_n^{2}]+(E[S_n^2]-\sigma^2)^2=\frac{2(n-1)\sigma^4}{n^2}+(\frac{(n-1)\sigma^2}{n}-\sigma^2)^2=\frac{(2n-1)\sigma^4}{n^2}\]</span></p>
+<p>又
+<span class="math display">\[\frac{M(S_n^{*2})}{M(S_n^{2})}=\frac{2n^2}{(n-1)(2n-1)}&gt;1\]</span></p>
+<p>所以，<span class="math inline">\(S_n^{2}\)</span>比<span class="math inline">\(S_n^{*2}\)</span>有效。这与“<span class="math inline">\(S_n^{*2}\)</span>是最小方差无偏估计量”不矛盾，因为<span class="math inline">\(S_n^{2}\)</span>是有偏估计量。</p>
+<blockquote>
+<p>启发：无偏估计量不一定是最有效的。</p>
+</blockquote>
+<hr />
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为总体<span class="math inline">\(N(\mu,\sigma^2)\)</span>, 其中<span class="math inline">\(\mu\)</span>已知，<span class="math inline">\(\sigma^2\)</span>未知。证明<span class="math inline">\(\sigma^2\)</span>的估计量
+<span class="math display">\[T(X_1,\dots,X_n)=\frac 1n\sum_{i=1}^n(X_i-\mu)^2\]</span>
+的方差达到C-R不等式的下界。</p>
+<p><code>解</code>: 令<span class="math inline">\(\theta=\sigma^2,f(x;\theta)\)</span>为总体密度函数。于是，
+<span class="math display">\[\log f(x;\theta)= \log  \frac{1}{\sqrt{2\pi}\sqrt{\theta}}e^{-\frac{(x-\mu)^2}{2\theta}}=-(1/2)\log(2\pi\theta)-\frac{(x-\mu)^2}{2\theta}\]</span></p>
+<p><span class="math display">\[\frac{d\log f(x;\theta)}{d\theta}=-\frac{1}{2\theta}+\frac{(x-\mu)^2}{2\theta^2}\]</span></p>
+<p>所以，Fisher信息量为：
+<span class="math display">\[I(\theta)=E[(\frac{d\log f(X;\theta)}{d\theta})^2]=\frac{1}{4\theta^2}E[(\frac{(X-\mu)^2}{\theta}-1)^2]=\frac{1}{2\theta^2}\]</span></p>
+<p>所以，C-R不等式下界为:
+<span class="math display">\[\frac{1}{nI(\theta)}=\frac{2\sigma^4}{n}\]</span></p>
+<p>因为<span class="math inline">\(nT/\sigma^2\sim \chi^2(n)\)</span>, 所以
+<span class="math display">\[Var[nT/\sigma^2]=2n\]</span></p>
+<p>于是，<span class="math inline">\(Var[T]=2\sigma^4/n\)</span>达到C-R不等式下界。</p>
+
+          </div>
+
+          
+
+        </div>
+
+        <div class="body-footer">
+          Last updated on Dec 18, 2018
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    Zhijian He &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        CommonHTML: { linebreaks: { automatic: true } },
+        tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+        TeX: { noUndefined: { attributes: { mathcolor: 'red', mathbackground: '#FFEEEE', mathsize: '90%' } } },
+        messageStyle: 'none'
+      });
+    </script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+  </body>
+</html>
+
+

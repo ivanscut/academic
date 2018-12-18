@@ -13,7 +13,20 @@
     
     
     <item>
-      <title>Example Page</title>
+      <title>R Markdown Page</title>
+      <link>/tutorial/chap3/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tutorial/chap3/</guid>
+      <description>trueLet us consider fitting a straight line, \(y = \beta_0+\beta_1x\), to points \((x_i,y_i)\), where \(i=1,\dots,n\).
+Write down the normal equations for the simple linear model via the matrix formalism.
+Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
+Solution:
+Let \(Y=(y_1,\dots,y_n)^\top\), \(\beta=(\beta_0,\dots,\beta_{p-1})^\top\),\(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\), and let \(X\) be the \(n\times 2\) matrix\[X=\left[\begin{matrix}1 &amp;amp; x_1\\1 &amp;amp; x_2\\\vdots &amp;amp; \\1 &amp;amp; x_n\\\end{matrix}\right].</description>
+    </item>
+    
+    <item>
+      <title>Chapter 1</title>
       <link>/tutorial/example/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
       
@@ -21,6 +34,19 @@
       <description>In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:
 Tip 1 &amp;hellip;
 Tip 2 &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Chapter 2</title>
+      <link>/tutorial/chap2/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tutorial/chap2/</guid>
+      <description>Let us consider fitting a straight line, $y = \beta_0+\beta_1x$, to points $(x_i,y_i)$, where $i=1,\dots,n$.
+ Write down the normal equations for the simple linear model via the matrix formalism.
+ Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
+  Solution:
+ Let $Y=(y_1,\dots,y_n)^\top$, $\beta=(\beta0,\dots,\beta{p-1})^\top$, $\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top$, and let $X$ be the $n\times 2$ matrix $$ X= \left[ \begin{matrix} 1 &amp;amp; x_1</description>
     </item>
     
   </channel>

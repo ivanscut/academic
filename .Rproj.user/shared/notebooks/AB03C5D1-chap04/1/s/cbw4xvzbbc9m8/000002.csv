@@ -1,0 +1,6 @@
+"0","par(mfrow = c(1,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))"
+"0","plot(c(fitted(lm1),fitted(lm.xy)),c(rstandard(lm1),rstandard(lm.xy)),"
+"0","     ylim=c(-3,3),pch = c(rep(21,11),rep(22,12)),"
+"0","     bg = c(rep(""blue"",11),rep(""red"",12)),"
+"0","     xlab = ""fitted values"","
+"0","     ylab=""standardized residuals"")"

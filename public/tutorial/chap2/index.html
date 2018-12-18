@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.48" />
+  <meta name="author" content="Zhijian He">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="Let us consider fitting a straight line, $y = \beta_0&#43;\beta_1x$, to points $(x_i,y_i)$, where $i=1,\dots,n$.
+ Write down the normal equations for the simple linear model via the matrix formalism.
+ Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
+  Solution:
+ Let $Y=(y_1,\dots,y_n)^\top$, $\beta=(\beta0,\dots,\beta{p-1})^\top$, $\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top$, and let $X$ be the $n\times 2$ matrix $$ X= \left[ \begin{matrix} 1 &amp; x_1">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/tutorial/chap2/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/tutorial/chap2/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Dr. Zhijian He">
+  <meta property="og:url" content="/tutorial/chap2/">
+  <meta property="og:title" content="Chapter 2 | Dr. Zhijian He">
+  <meta property="og:description" content="Let us consider fitting a straight line, $y = \beta_0&#43;\beta_1x$, to points $(x_i,y_i)$, where $i=1,\dots,n$.
+ Write down the normal equations for the simple linear model via the matrix formalism.
+ Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
+  Solution:
+ Let $Y=(y_1,\dots,y_n)^\top$, $\beta=(\beta0,\dots,\beta{p-1})^\top$, $\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top$, and let $X$ be the $n\times 2$ matrix $$ X= \left[ \begin{matrix} 1 &amp; x_1">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-09-09T00:00:00&#43;08:00">
+  
+  <meta property="article:modified_time" content="2018-09-09T00:00:00&#43;08:00">
+  
+
+  
+
+  
+
+  <title>Chapter 2 | Dr. Zhijian He</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Dr. Zhijian He</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/post">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/talk">
+            
+            <span>Talks</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/course/">
+            
+            <span>Courses</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="Search..." autocomplete="off">
+</form>
+
+
+<nav class="docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/">Overview</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/example/">Mathematical Statistics</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/example/">Chapter 1</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/chap2/">Chapter 2</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/chap3/">R Markdown Example</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+      <div id="search-hits">
+        
+      </div>
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        
+
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">Chapter 2</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            <p>Let us consider fitting a straight line, $y = \beta_0+\beta_1x$, to points $(x_i,y_i)$, where $i=1,\dots,n$.</p>
+
+<ol>
+<li><p>Write down the normal equations for the simple linear model via the matrix formalism.</p></li>
+
+<li><p>Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.</p></li>
+</ol>
+
+<p><code>Solution</code>:</p>
+
+<ol>
+<li>Let $Y=(y_1,\dots,y_n)^\top$, $\beta=(\beta<em>0,\dots,\beta</em>{p-1})^\top$,
+$\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top$, and let $X$ be the $n\times 2$ matrix
+$$
+X=
+\left[
+\begin{matrix}
+1 &amp; x_1<br />
+1 &amp; x_2<br />
+\vdots &amp; <br />
+1 &amp; x_n<br />
+\end{matrix}
+\right].
+$$</li>
+</ol>
+
+<p>The model can be rewritten as $$Y=X\beta+\epsilon.$$</p>
+
+<p>The normal equations are $(X^\top X) \hat\beta = X^\top Y$. By simple algebra, we have</p>
+
+<p>$$X^\top X = \left[
+\begin{matrix}
+1 &amp; 1 &amp; \dots &amp; 1<br />
+x_1 &amp; x_2 &amp;\dots &amp; x_n<br />
+\end{matrix}
+\right]\left[
+\begin{matrix}
+1 &amp; x_1<br />
+1 &amp; x_2<br />
+\vdots &amp; <br />
+1 &amp; x<em>n<br />
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+n &amp; \sum</em>{i=1}^n x<em>i<br />
+\sum</em>{i=1}^n x<em>i &amp; \sum</em>{i=1}^n x_i^2
+\end{matrix}
+\right]$$</p>
+
+<p>$$X^\top Y=\left[\begin{matrix}
+1 &amp; 1 &amp; \dots &amp; 1<br />
+x_1 &amp; x_2 &amp;\dots &amp; x_n<br />
+\end{matrix}
+\right]\left[\begin{matrix}
+y_1<br />
+y_2<br />
+\vdots<br />
+y<em>n
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum</em>{i=1}^n y<em>i<br />
+\sum</em>{i=1}^n x_iy_i
+\end{matrix}
+\right].
+$$</p>
+
+<p>The normal equations turn out to be</p>
+
+<p>$$\left[
+\begin{matrix}
+n &amp; \sum_{i=1}^n x<em>i<br />
+\sum</em>{i=1}^n x<em>i &amp; \sum</em>{i=1}^n x_i^2
+\end{matrix}
+\right]\left[\begin{matrix}
+\hat\beta_0<br />
+\hat\beta<em>1
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum</em>{i=1}^n y<em>i<br />
+\sum</em>{i=1}^n x_iy_i
+\end{matrix}
+\right]$$</p>
+
+<p>As a result,</p>
+
+<p>$$
+\begin{align}
+\left[\begin{matrix}
+\hat\beta_0<br />
+\hat\beta<em>1
+\end{matrix}
+\right]&amp;=\left[\begin{matrix}
+n &amp; \sum</em>{i=1}^n x<em>i<br />
+\sum</em>{i=1}^n x<em>i &amp; \sum</em>{i=1}^n x<em>i^2
+\end{matrix}
+\right]^{-1}\left[\begin{matrix}
+\sum</em>{i=1}^n y<em>i<br />
+\sum</em>{i=1}^n x_iy<em>i
+\end{matrix}
+\right]<br />
+&amp;=\frac{1}{n\sum</em>{i=1}^n x<em>i^2-(\sum</em>{i=1}^n x<em>i)^2}\left[\begin{matrix}
+\sum</em>{i=1}^n x<em>i^2 &amp; -\sum</em>{i=1}^n x<em>i<br />
+-\sum</em>{i=1}^n x<em>i &amp; n
+\end{matrix}
+\right]\left[\begin{matrix}
+\sum</em>{i=1}^n y<em>i<br />
+\sum</em>{i=1}^n x_iy<em>i
+\end{matrix}
+\right]<br />
+&amp;=\frac{1}{n\sum</em>{i=1}^n x<em>i^2-(\sum</em>{i=1}^n x<em>i)^2}\left[\begin{matrix}
+\sum</em>{i=1}^n x<em>i^2\sum</em>{i=1}^n y<em>i-\sum</em>{i=1}^n x<em>i\sum</em>{i=1}^n x_iy<em>i<br />
+n\sum</em>{i=1}^n x_iy<em>i-\sum</em>{i=1}^n x<em>i\sum</em>{i=1}^n y<em>i
+\end{matrix}
+\right]<br />
+&amp;=\frac{1}{\ell</em>{xx}}\left[\begin{matrix}
+\bar y\sum_{i=1}^n x<em>i^2-\bar x\sum</em>{i=1}^n x_iy<em>i<br />
+\ell</em>{xy}
+\end{matrix}
+\right]<br />
+&amp;=\frac{1}{\ell<em>{xx}}\left[\begin{matrix}
+\bar y\ell</em>{xx}-\bar x\ell<em>{xy}<br />
+\ell</em>{xy}
+\end{matrix}
+\right]=\left[\begin{matrix}
+\bar y-\bar x\ell<em>{xy}/\ell</em>{xx}<br />
+\ell<em>{xy}/\ell</em>{xx}
+\end{matrix}
+\right],
+\end{align}
+$$</p>
+
+<p>where $\ell<em>{xx} = \sum</em>{i=1}^n(x<em>i-\bar x)^2,$ $\ell</em>{yy} = \sum_{i=1}^n(y<em>i-\bar y)^2,$ $\ell</em>{xy} = \sum_{i=1}^n(x_i-\bar x)(y_i-\bar y).$</p>
+
+<p>The solutions agree with the earlier calculation derived in the simple linear models.</p>
+
+<hr />
+
+<p>Prove that the projection matrix $P=X(X^\top X)^{-1} X^\top$ has an eigenvalue 1, and
+$(1,\dots,1)^\top$ is one of the associated eigenvectors.</p>
+
+<p><code>Proof</code>: Note that $PX = X(X^\top X)^{-1} X^\top X  = X$. The first column of $X$ is $\mathbf{1}:=(1,\dots,1)^\top$. This implies that $P \mathbf{1} = \mathbf{1}$, which completes the proof.</p>
+
+<hr />
+
+<p>(The QR Method) This problem outlines the basic ideas of an alternative method,
+the QR method, of finding the least squares estimate $\hat \beta$. An advantage of the
+method is that it does not include forming the matrix $X^\top X$, a process that tends
+to increase rounding error. The essential ingredient of the method is that if $X_{n\times p}$
+has $p$ linearly independent columns, it may be factored in the form</p>
+
+<p>$$
+\begin{align}
+X\quad &amp;=\quad Q\quad \quad R<br />
+n\times p &amp;\quad  n\times p\quad p\times p
+\end{align}
+$$</p>
+
+<p>where the columns of $Q$ are orthogonal ($Q^\top Q = I<em>p$) and $R$ is upper-triangular
+($r</em>{ij} = 0$, for $i &gt; j$) and nonsingular. For a discussion of this decomposition and
+its relationship to the Gram-Schmidt process, see <a href="https://en.wikipedia.org/wiki/QR_decomposition" target="_blank">https://en.wikipedia.org/wiki/QR_decomposition</a>.</p>
+
+<p>Show that $\hat \beta = (X^\top X)^{-1}X^\top Y$ may also be expressed as $\hat \beta = R^{-1}Q^\top Y$,
+or $R\hat \beta  = Q^\top Y$. Indicate how this last equation may be solved for $\hat \beta$ by back-substitution, using that $R$ is upper-triangular, and show that it is thus unnecessary
+to invert $R$.</p>
+
+<p><code>Solution</code>: Since $X=QR$, $$(X^\top X)^{-1}X^\top = (R^\top Q^\top  QR)^{-1} R^\top Q^\top =(R^\top R)^{-1} R^\top Q^\top =R^{-1}  Q^\top.$$</p>
+
+<p>Therefore, $\hat \beta = R^{-1}  Q^\top Y$, or equivalently, $R\hat\beta = Q^\top Y=:b=(b_1,\dots,b_p)^\top$. Since $R$ is upper-triangular, then the normal equations are</p>
+
+<p>$$
+\begin{align}
+r<em>{pp} \hat\beta</em>{p-1} &amp;= b<em>p<br />
+r</em>{p-1,p-1} \hat\beta<em>{p-2}+ r</em>{p-1,p}\hat\beta<em>{p-1} &amp;= b</em>{p-1}<br />
+\vdots&amp;<br />
+r<em>{11} \hat\beta</em>{0}+ r<em>{12}\hat\beta</em>{1} +\dots +r<em>{1p}\hat\beta</em>{p-1}&amp;= b_{1}
+\end{align}.
+$$</p>
+
+<p>This can be sloved by back-substitution:</p>
+
+<p>$$
+\begin{align}
+\hat\beta_{p-1} &amp;= \frac{b<em>p}{r</em>{pp}}<br />
+ \hat\beta<em>{i} &amp;=\frac{b</em>{i+1}}{r<em>{i+1,i+1}} - \frac{1}{r</em>{i+1,i+1}}\sum<em>{j=i+2}^p r</em>{i+1,j}\hat\beta_{j-1},\ i=p-2,\dots,0
+\end{align}.
+$$</p>
+
+<hr />
+
+<p>Consider fitting the curve $y = \beta_0x+\beta_1x^2$ to points ($x_i,y_i$), where $i = 1,\dots,n$.</p>
+
+<ol>
+<li><p>Use the matrix formalism to find expressions for the least squares estimates
+of $\beta_0$ and $\beta_1$.</p></li>
+
+<li><p>Find an expression for the covariance matrix of the estimates.</p></li>
+</ol>
+
+<p><code>Solution</code>: Let $Y=(y_1,\dots,y_n)^\top$, $\beta=(\beta<em>0,\dots,\beta</em>{p-1})^\top$, $\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top$, and let $X$ be the $n\times 2$ matrix
+$$
+X=
+\left[
+\begin{matrix}
+x_1 &amp; x_1^2<br />
+x_2 &amp; x_2^2<br />
+\vdots &amp; <br />
+x_n &amp; x_n^2<br />
+\end{matrix}
+\right].
+$$</p>
+
+<p>The model can be rewritten as $$Y=X\beta+\epsilon.$$</p>
+
+<p>The normal equations are $(X^\top X) \hat\beta = X^\top Y$. By simple algebra, we have</p>
+
+<p>$$X^\top X = \left[
+\begin{matrix}
+x_1 &amp; x_2 &amp; \dots &amp; x_n<br />
+x_1^2 &amp; x_2^2 &amp;\dots &amp; x_n^2<br />
+\end{matrix}
+\right]\left[
+\begin{matrix}
+x_1 &amp; x_1^2<br />
+x_2 &amp; x_2^2<br />
+\vdots &amp; <br />
+x_n &amp; x<em>n^2<br />
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+\sum</em>{i=1}^n x<em>i^2 &amp; \sum</em>{i=1}^n x<em>i^3<br />
+\sum</em>{i=1}^n x<em>i^3 &amp; \sum</em>{i=1}^n x_i^4
+\end{matrix}
+\right]$$</p>
+
+<p>$$X^\top Y=\left[\begin{matrix}
+x_1 &amp; x_2 &amp; \dots &amp; x_n<br />
+x_1^2 &amp; x_2^2 &amp;\dots &amp; x_n^2<br />
+\end{matrix}
+\right]\left[\begin{matrix}
+y_1<br />
+y_2<br />
+\vdots<br />
+y<em>n
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum</em>{i=1}^n x_iy<em>i<br />
+\sum</em>{i=1}^n x_i^2y_i
+\end{matrix}
+\right].
+$$</p>
+
+<p>The normal equations turn out to be</p>
+
+<p>$$\left[
+\begin{matrix}
+\sum_{i=1}^n x<em>i^2 &amp; \sum</em>{i=1}^n x<em>i^3<br />
+\sum</em>{i=1}^n x<em>i^3 &amp; \sum</em>{i=1}^n x_i^4
+\end{matrix}
+\right]\left[\begin{matrix}
+\hat\beta_0<br />
+\hat\beta<em>1
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum</em>{i=1}^n x_iy<em>i<br />
+\sum</em>{i=1}^n x_i^2y_i
+\end{matrix}
+\right]$$</p>
+
+<p>Let $s<em>x^k = \sum</em>{i=1}^n x_i^k$, $s<em>y^k = \sum</em>{i=1}^n y<em>i^k$, $s</em>{xy}^{jk}=\sum_{i=1}^n x_i^jy_i^k$.
+As a result,</p>
+
+<p>$$
+\begin{align}
+\left[\begin{matrix}
+\hat\beta_0<br />
+\hat\beta_1
+\end{matrix}
+\right]&amp;=\left[
+\begin{matrix}
+s_x^2 &amp; s_x^3<br />
+s_x^3 &amp; s<em>x^4
+\end{matrix}
+\right]^{-1}\left[\begin{matrix}
+s</em>{xy}^{11}<br />
+s_{xy}^{21}
+\end{matrix}
+\right]<br />
+&amp;=\frac{1}{s_x^2s_x^4-(s_x^3)^2}\left[\begin{matrix}
+s_x^4 &amp; -s_x^3<br />
+-s_x^3 &amp; s<em>x^2
+\end{matrix}
+\right]\left[\begin{matrix}
+s</em>{xy}^{11}<br />
+s_{xy}^{21}
+\end{matrix}
+\right]<br />
+&amp;=\left[\begin{matrix}
+\frac{s<em>x^4s</em>{xy}^{11}-s<em>x^3s</em>{xy}^{21}}{s_x^2s_x^4-(s_x^3)^2}<br />
+\frac{s<em>x^2s</em>{xy}^{21}-s<em>x^3s</em>{xy}^{11}}{s_x^2s_x^4-(s_x^3)^2}
+\end{matrix}
+\right].
+\end{align}
+$$</p>
+
+<p>Note that
+$$Var[\hat\beta] = Var[(X^\top X)^{-1} X^\top Y]=(X^\top X)^{-1} X^\top Var[\epsilon] X(X^\top X)^{-1}.$$</p>
+
+<p>For the usual assumption $Var[\epsilon] =\sigma^2 I_n$, then $$Var[\hat\beta]=\sigma^2 (X^\top X)^{-1} =\frac{\sigma^2}{s_x^2s_x^4-(s_x^3)^2}\left[\begin{matrix}
+s_x^4 &amp; -s_x^3<br />
+-s_x^3 &amp; s_x^2
+\end{matrix}
+\right].$$</p>
+
+          </div>
+
+          
+
+        </div>
+
+        <div class="body-footer">
+          Last updated on Sep 9, 2018
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    Zhijian He &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        CommonHTML: { linebreaks: { automatic: true } },
+        tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+        TeX: { noUndefined: { attributes: { mathcolor: 'red', mathbackground: '#FFEEEE', mathsize: '90%' } } },
+        messageStyle: 'none'
+      });
+    </script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+  </body>
+</html>
+
+

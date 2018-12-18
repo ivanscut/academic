@@ -1,0 +1,123 @@
+---
+title: 第三次作业
+
+date: 2018-12-18 
+lastmod: 2018-12-18 
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: 第三次作业
+menu:
+  course: 
+    parent: 数理统计
+    weight: 8
+    
+---
+
+
+
+<p>（课本p.59, 第2题）设<span class="math inline">\(X\)</span>的分布密度函数为
+<span class="math display">\[f(x)=\frac{1}{2\sigma} e^{-|x|/\sigma}\ (\sigma&gt;0),\]</span></p>
+<p><span class="math inline">\(X_1,\dots,X_n\)</span>是<span class="math inline">\(X\)</span>的样本，求<span class="math inline">\(\sigma\)</span>的最大似然估计。</p>
+<p><code>解</code>: 似然函数为</p>
+<p><span class="math display">\[L(\sigma)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n \left(\frac{1}{2\sigma} e^{-|x_i|/\sigma}\right)=(2\sigma)^{-n}e^{-\sum_{i=1}^n|x_i|/\sigma}\]</span></p>
+<p>对数似然函数为：
+<span class="math display">\[\ln L(\sigma) = -n \ln (2\sigma)-\left(\sum_{i=1}^n|x_i|\right)/\sigma.\]</span></p>
+<p>对数似然方程为：
+<span class="math display">\[\frac{d \ln L(\sigma)}{d\sigma}=-\frac{n}{\sigma}+\frac{\sum_{i=1}^n|x_i|}{\sigma^2}=0.\]</span></p>
+<p>其根是<span class="math inline">\(\sigma^* = \frac{\sum_{i=1}^n|x_i|}{n}\)</span>. 又
+<span class="math display">\[\frac{d^2 \ln L(\sigma)}{d\sigma^2}\Bigg|_{\sigma=\sigma^*}=\frac{n}{\sigma^{*2}}-\frac{2\sum_{i=1}^n|x_i|}{\sigma^{*3}}=-\frac{n}{\sigma^{*2}}&lt;0.\]</span></p>
+<p>所以，<span class="math inline">\(\ln L(\sigma)\)</span>在<span class="math inline">\(\sigma=\sigma^*\)</span>处取得最大值，故<span class="math inline">\(\sigma\)</span>的最大似然估计为<span class="math inline">\(\hat{\mu}= \frac{\sum_{i=1}^n|X_i|}{n}\)</span>.</p>
+<blockquote>
+<p>注意：最终的估计量要用大写字母<span class="math inline">\(X_i\)</span>表示，这样才是估计量。用小写字母<span class="math inline">\(x_i\)</span>表示的是估计值，是具体的数值，而不是估计量。</p>
+</blockquote>
+<hr />
+<p>（课本p.59, 第3题）设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自<span class="math inline">\([\theta,\theta+1]\)</span>上均匀分布的样本，其中<span class="math inline">\(\theta\in\mathbb{R}\)</span>, 证明<span class="math inline">\(\theta\)</span>的最大似然估计不止一个，并求出所有的最大似然估计。</p>
+<p><code>证明</code>：似然函数为</p>
+<p><span class="math display">\[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]</span></p>
+<p>观察得知，当<span class="math inline">\(\theta\in [x_{(n)}-1,x_{(1)}]\)</span>时，似然函数取得最大值<span class="math inline">\(1\)</span>. 所以，<span class="math inline">\(\theta\)</span>的最大似然估计不止一个，所有的最大似然估计为集合<span class="math inline">\([X_{(n)}-1,X_{(1)}]\)</span>.</p>
+<hr />
+<p>（课本p.59, 第4题）设随机变量<span class="math inline">\(X\)</span>以均等机会按<span class="math inline">\(N(0,1)\)</span>分布取值和按<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布取值，其中<span class="math inline">\(\mu\in \mathbb{R},\sigma^2&gt;0\)</span>. 这时<span class="math inline">\(X\)</span>的分布密度函数为这两个分布的密度的平均，即
+<span class="math display">\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]</span></p>
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为此混合分布的简单随机样本，证明<span class="math inline">\(\mu,\sigma^2\)</span>不存在最大似然估计。能否通过矩法估计<span class="math inline">\(\mu,\sigma^2\)</span>？</p>
+<ol style="list-style-type: decimal">
+<li><code>证明</code>：似然函数为
+<span class="math display">\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]</span></li>
+</ol>
+<p>取<span class="math inline">\(\mu=x_1\)</span>, 则有
+<span class="math display">\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</span></p>
+<p>因为<span class="math inline">\(\sigma\to 0\)</span>时，上式右端趋于无穷，所以似然函数<span class="math inline">\(L(\mu,\sigma^2)\)</span>在<span class="math inline">\(\mathbb{R}\times[0,\infty)\)</span>上无界，故最大似然估计不存在。</p>
+<ol start="2" style="list-style-type: decimal">
+<li><code>解</code>：</li>
+</ol>
+<p><span class="math display">\[E[X]=\int_{-\infty}^\infty xf(x;\mu,\sigma^2) dx= \frac \mu2\]</span></p>
+<p><span class="math display">\[E[X^2] = \int_{-\infty}^\infty x^2f(x;\mu,\sigma^2)dx = \frac{1+\sigma^2+\mu^2}{2} \]</span></p>
+<p>所以，
+<span class="math display">\[\begin{cases}
+\mu &amp;= 2E[X]\\
+\sigma^2 &amp;= 2E[X^2]-4(E[X])^2-1 = 2Var[X]-2(E[X])^2-1
+\end{cases}
+\]</span></p>
+<p>矩估计为：
+<span class="math display">\[\begin{cases}
+\hat{\mu} &amp;= 2\bar X\\
+\hat{\sigma^2} &amp;= 2S_n^2-2\bar X^2-1
+\end{cases}
+\text{ 或者 }\begin{cases}
+\hat{\mu} &amp;= \frac{2}{n}\sum_{i=1}^n X_i\\
+\hat{\sigma^2} &amp;= \frac 2n\sum_{i=1}^n X_i^2-\frac{4}{n^2}(\sum_{i=1}^nX_i)^2-1
+\end{cases}
+\]</span></p>
+<hr />
+<p>（附加题I，选做）考虑上题的模型。设<span class="math inline">\(Y\)</span>为一随机变量，<span class="math inline">\(Y=1\)</span>表示<span class="math inline">\(X\)</span>来自<span class="math inline">\(N(0,1)\)</span>分布，<span class="math inline">\(Y=0\)</span>表示<span class="math inline">\(X\)</span>来自<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布，即<span class="math inline">\(Y\sim b(1,0.5)\)</span>. 假设我们可以观测<span class="math inline">\(Y_i\)</span>的值，基于样本<span class="math inline">\((X_i,Y_i),i=1,\dots,n\)</span>，是否可以求出<span class="math inline">\(\mu,\sigma^2\)</span>的最大似然估计？事实上，<span class="math inline">\(Y_i\)</span>的值不可观测（通常称为潜变量），此时你有没有更好的办法估计<span class="math inline">\(\mu,\sigma^2\)</span>？</p>
+<p><code>解</code>：当<span class="math inline">\(Y_i\)</span>可观测时，似然函数为
+<span class="math display">\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac{y_i}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac{1-y_i}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]</span></p>
+<p>令<span class="math inline">\(I = \{i=1,\dots,n|y_i=0\}\)</span>, 则
+<span class="math display">\[L(\mu,\sigma^2)=\prod_{i\notin I}\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\prod_{i\in I}\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\]</span>
+因为<span class="math inline">\(\prod_{i\notin I}\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\)</span>与参数<span class="math inline">\(\mu,\sigma^2\)</span>无关, 则只需求出
+<span class="math display">\[\tilde{L}(\mu,\sigma^2):=\prod_{i\in I}\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\]</span>
+的最大值点即可。这就等价于求样本为<span class="math inline">\(\{X_i,i\in I\}\)</span>时，正态总体的最大似然估计，所以最大似然估计为</p>
+<p><span class="math display">\[\hat{\mu}=\frac{1}{|I|}\sum_{i\in I} X_i,\ \hat{\sigma^2} = \frac{1}{|I|} \sum_{i\in I}(X_i-\hat{\mu})^2 \]</span>
+考虑到<span class="math inline">\(I\)</span>中元素的个数<span class="math inline">\(|I|\)</span>可能为0。当<span class="math inline">\(I= \varnothing\)</span>时，似然函数不含未知参数，此时估计量可以为任意常数。故最终的估计量可以写成</p>
+<p><span class="math display">\[\hat{\mu}=
+\begin{cases}
+\frac{1}{n-\sum_{i=1}^n Y_i}\sum_{i=1}^n X_i(1-Y_i), &amp; \sum_{i=1}^n Y_i&lt;n\\
+c_1, &amp;\sum_{i=1}^n Y_i=n
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\hat{\sigma^2} = 
+\begin{cases}
+\frac{1}{n-\sum_{i=1}^n Y_i} \sum_{i=1}^n(X_i-\hat{\mu})^2(1-Y_i), &amp; \sum_{i=1}^n Y_i&lt;n\\
+c_2, &amp;\sum_{i=1}^n Y_i=n
+\end{cases}
+\]</span></p>
+<p>其中<span class="math inline">\(c_1\in \mathbb{R}\)</span>, <span class="math inline">\(c_2&gt;0\)</span>为常数。</p>
+<p>当<span class="math inline">\(Y_i\)</span>不可观测时，我们可以利用EM算法求出最大似然估计值。参考：</p>
+<p><a href="http://cs229.stanford.edu/notes/cs229-notes7b.pdf">Andrew Ng’s lecture notes 1</a></p>
+<p><a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf">Andrew Ng’s lecture notes 2</a></p>
+<hr />
+<p>（附加题II，选做）若考虑更一般的混合分布：</p>
+<p><span class="math display">\[f(x;\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2)=\frac{\lambda}{\sqrt{2\pi}\sigma_1}e^{-(x-\mu_1)^2/(2\sigma_1^2)}+\frac{1-\lambda}{\sqrt{2\pi}\sigma_2}e^{-(x-\mu_2)^2/(2\sigma_2^2)}\]</span>
+其中<span class="math inline">\(\lambda\in[0,1],\mu_1,\mu_2\in \mathbb{R},\sigma_1^2,\sigma_2^2&gt;0\)</span>, 你能求出未知参数<span class="math inline">\(\lambda,\mu_1,\sigma_1^2,\mu_2,\sigma_2^2\)</span>的矩估计吗？</p>
+<p><code>解</code>：参考文献: <a href="paper.pdf">Estimation in Mixtures of Two Normal Distributions</a></p>
+<hr />
+<p>（课本p.59, 第9题）设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自分布密度为
+<span class="math display">\[f(x;\theta)=\frac{\Gamma(\theta+1)}{\Gamma(\theta)\Gamma(1)}x^{\theta-1}1\{0\le x\le 1\}\]</span></p>
+<p>的总体的样本，其中<span class="math inline">\(\theta&gt;0\)</span>, 试用矩法估计<span class="math inline">\(\theta\)</span>.</p>
+<p><code>解</code>：</p>
+<p><span class="math display">\[E[X]=\int_0^1 x\theta x^{\theta-1}d x=\frac{\theta}{\theta+1}\]</span></p>
+<p><span class="math display">\[\theta = \frac{E[X]}{1-E[X]}\]</span></p>
+<p>所以，矩估计为
+<span class="math display">\[\hat\theta =\frac{\bar X}{1-\bar X}=\frac{\sum_{i=1}X_i}{n-\sum_{i=1}^nX_i}\]</span></p>
+<hr />
+<p>（课本p.60, 第10题）设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自分布密度为
+<span class="math display">\[f(x;c,\theta)=\frac{1}{2\theta}1\{c-\theta\le x\le c+\theta\}\]</span></p>
+<p>的总体的样本，其中<span class="math inline">\(\theta&gt;0,c\in\mathbb{R}\)</span>, 试用矩法估计<span class="math inline">\(c,\theta\)</span>.</p>
+<p><code>解</code>：已知总体<span class="math inline">\(X\sim U[c-\theta,c+\theta]\)</span>, 所以</p>
+<p><span class="math display">\[E[X]=\frac{(c+\theta)+(c-\theta)}{2}=c\]</span></p>
+<p><span class="math display">\[Var[X] = \frac{(2\theta)^2}{12}=\frac{\theta^2}{3}\]</span></p>
+<p>所以矩估计为：
+<span class="math display">\[\hat{c}=\bar X=\frac 1n\sum_{i=1}^nX_i,\ \hat{\theta} = \sqrt{3S_n^2}=\sqrt{\frac{3}{n}\sum_{i=1}^n(X_i-\bar X)^2}.\]</span></p>

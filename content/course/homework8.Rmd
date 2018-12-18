@@ -1,0 +1,320 @@
+---
+title: 第八次作业
+
+date: 2018-12-18 
+lastmod: 2018-12-18 
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: 第八次作业
+menu:
+  course: 
+    parent: 数理统计
+    weight: 13
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+True or false, and state why:
+
+1. The generalized likelihood ratio statistic $\lambda(\vec x)$ (see P.87 of our textbook) is always greater than or equal to 1.
+
+`True`. By the definition, we have
+
+$$\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,$$
+where $\Theta_0\subset\Theta$. 
+
+2. If the p-value is 0.03, the corresponding test will reject at the significance
+level 0.02.
+
+`False`. If $\alpha< p$-value, the null is accepted.
+
+3. If a test rejects at significance level 0.06, then the p-value is less than or equal
+to 0.06.
+
+`True`. If $\alpha> p$-value, the null is rejected. It is somewhat **unclear**  whether to reject the null for the case of $\alpha = p$-value. Let consider the simple null $H_0:\theta = \theta_0$. Suppose the rejection region is $W=\{T(\vec x)>C\}$, where $T(\vec X)$ is the test statistic. The p-value is
+$p(\vec x) = P_{\theta_0}(T(\vec X)>T(\vec x))$. Suppose that under $H_0$, $T(\vec X)$ has a positive density at $T(\vec x)$. If $\alpha=p(\vec x)$, the corresponding critical value is $C = T(\vec x)$. We thus accept the null because the rejection region does not include the special case $T(\vec x)=C$. On the other hand, if we choose the rejection region $W=\{T(\vec x)\ge C\}$ instead, the p-value is unchanged if the test statistic is continuous variable. If $\alpha=p(\vec x)$, the critical value is also $C = T(\vec x)$.
+However, for this case, the null is rejected beacause the rejection region includes the special case $T(\vec x)=C$. 
+
+{{% alert warning %}}
+More precisely, the p-value is the **infimum** of those significance levels that lead to a rejection of the null. BUT we do not know whether the infimum is attainable unless the form of rejection region was known.
+{{% /alert %}}
+
+
+4. The p-value of a test is the probability that the null hypothesis is correct.
+
+`False`. The p-value of a test is the smallest significance level at which the null is rejected.
+
+5. In testing a simple versus simple hypothesis via the likelihood ratio test, the
+p-value equals the inverse of the  likelihood ratio.
+
+`False`. Consider the simple test $H_0:\theta = \theta_0\ vs.\ H_1:\theta=\theta_1$. The rejection region is given by $W = \{\lambda(\vec x)>\lambda_0\}$, where the likelihood ratio is
+$$\lambda(\vec x) = \frac{L(\vec x;\theta_1)}{L(\vec x;\theta_0)}.$$
+
+The p-value is then given by
+
+$$p(\vec x)= P_{\theta_0}(\lambda(\vec X)>\lambda(\vec x))\le P_{\theta_0}(\lambda(\vec X)\ge\lambda(\vec x))\le \frac{E_{\theta_0}[\lambda(\vec X)]}{\lambda(\vec x)}  =  \frac{1}{\lambda(\vec x)},$$
+where we used the [Markov's inequality](https://en.wikipedia.org/wiki/Markov%27s_inequality). If the equality holds, then $P_{\theta_0}(\lambda(\vec X)\in\{0,\lambda(\vec x)\})=1$ that leads to a contradiction (because $E_{\theta_0}[\lambda(\vec X)]=1$). So the
+p-value is less than the inverse of the  likelihood ratio. This implies that if $\alpha\ge\frac{1}{\lambda(\vec x)}$ (the inverse of the  likelihood ratio), we should reject the null.
+
+Actually, it is easy to give a counter-example. Let $X\sim N(\mu,1)$. The test is 
+$$H_0: \mu=0\ vs.\ H_1:\mu = 1.$$
+The likelihood ratio is $\lambda(\vec x)= e^{n(\bar x-1/2)}$. The p-value is
+$$p(\vec x) = P_0(e^{n(\bar X-1/2)}>e^{n(\bar x-1/2)}) =P_0(\bar X>\bar x)=1-\Phi(\sqrt n \bar x)\neq \frac 1 {\lambda(\vec x)}.$$
+
+---
+
+`Case study 1`: Mutual funds are investment vehicles consisting of a portfolio of various types
+of investments. If such an investment is to meet annual spending needs, the
+owner of shares in the fund is interested in the average of the annual returns of
+the fund. Investors are also concerned with the volatility of the annual returns,
+measured by the variance or standard deviation. One common method of evaluating
+a mutual fund is to compare it to a benchmark, the Lipper Average being
+one of these. This index number is the average of returns from a universe of
+mutual funds.
+The Global Rock Fund is a typical mutual fund, with heavy investments in
+international funds. It claimed to best the Lipper Average in terms of volatility
+over the period from 1989 through 2007. Its returns are given in the table below.
+
+
+Year | Investment Return % | Year |  Investment Return %
+ - | - | - | - |
+1989  | 15.32 | 1999 | 27.43
+1990  | 1.62  | 2000  | 8.57
+1991  |  28.43 | 2001  | 1.88
+1992  | 11.91  | 2002  | −7.96
+1993  | 20.71  | 2003  | 35.98
+1994  | −2.15  | 2004  | 14.27
+1995  | 23.29  | 2005  | 10.33
+1996  | 15.96  | 2006  | 15.94
+1997  | 11.12  | 2007  | 16.71
+1998  | 0.37 | |
+
+The standard deviation for the Lipper Average is $11.67\%$. Let $\sigma^2$ denote the variance of the population represented by the return
+percentages shown in the table above. Consider the test
+$$H_0: \sigma^2=(11.67)^2\ vs.\ H_1:\sigma^2<(11.67)^2.$$
+ 
+
+- If the significance level $\alpha=0.05$, what's your decision?
+
+- Show up the p-value of your test.
+
+`Solution`: Assume that the return percentage $X$ for the Global Rock Fund is normally distributed, i.e., $X\sim N(\mu,\sigma^2)$, where $\mu,\sigma^2$ are unknown. Since $\mu$ is unknown, we choose the test statistic as
+
+$$T(\vec X) = \frac{nS_n^2}{\sigma^2_0},$$
+
+where $\sigma_0=11.67$. The rejection region is given by $W = \{T(\vec x)<C\}$, where the critical value $C=\chi^2_{\alpha}(n-1)$. Using the data gives $T(\vec x) = 16.81845$, $C=\chi^2_{0.05}(19) = 9.390455$. Since $T(\vec x)>C$, we accept the null.
+
+The p-value is $$p = P_{\sigma^2_0}(T(\vec X)<T(\vec x)) = P_{\sigma^2_0}(T(\vec X)<16.81845)=0.4643815.$$
+
+
+```{r}
+return <- c(15.32, 1.62, 28.43, 11.91, 20.71, -2.15, 23.29,	
+            15.96, 11.12, 0.37, 27.43, 8.57, 1.88, -7.96, 35.98,
+            14.27, 10.33, 15.94, 16.71)
+sig0 = 11.67
+n = length(return)
+sn2 = var(return)
+t = (n-1)*var(return)/sig0^2
+cat("the test statistic is", t)
+cat("the critical value C =",qchisq(0.05,n-1))
+cat("the p-value is", pchisq(t,n-1))
+```
+
+
+---
+
+`Case study 2`: Forensic scientists sometimes have difficulty identifying the sex of a murder
+victim whose body is discovered badly decomposed. Often, dental structure can
+provide useful clues because female teeth and male teeth have different physical and chemical characteristics. The extent to which X-rays can penetrate tooth
+enamel, for instance, is not the same for the two sexes.
+
+Table below lists the enamel spectropenetration gradients for eight male
+teeth and eight female teeth. These measurements have all the characteristics
+of the two-sample format: the data are quantitative, the units are similar,
+two factor levels (male and female) are involved, and the observations are
+independent.
+
+Male | Female |
+-|-|
+4.9 |  4.8 | 
+5.4  | 5.3 | 
+5.0  | 3.7 | 
+5.5  | 4.1 | 
+5.4  | 5.6 | 
+6.6  | 4.0 | 
+6.3  | 3.6 | 
+4.3  | 5.0 | 
+
+Assume that the enamel spectropenetration gradients for male teeth and female teeth are normally distributed. Based on the data above, conduct a test (the significance level $\alpha=0.05$) to judge whether female teeth and male teeth have different physical and chemical characteristics. 
+
+
+- Assume that their variances are the same, what's your decision?
+
+- If you were not able to have the prior information that their variances are the same, what would you do? This is the case of **Behrens-Fisher Problem**. 
+
+- The data are paired. Is it possible to do a paired test, without judging whether their variances are the same?
+
+`Solution`: Let $X\sim N(\mu_1,\sigma^2_1)$ and $Y\sim N(\mu_2,\sigma^2_2)$ be the enamel spectropenetration gradients for male teeth and female teeth, respectively. We are going to test
+$$H_0: \mu_1=\mu_2\ vs.\ H_1:\mu_1\neq\mu_2.$$
+
+1. If their variances are the same, we use the t-test. The test statistic is 
+$$T_1=\frac{\bar X-\bar Y}{S_w\sqrt{1/m+1/n}},$$
+where $S_w^2 = (mS_{1m}^2+nS_{2n}^2)/(m+n-2)$. The rejection region is $W=\{|T_1|>t_{1-\alpha/2}(m+n-2)\}$. Using the data gives $T_1=2.4258>t_{0.975}(14)=2.1448$. We therefore reject the null at the significance level $\alpha=0.05$. The R code is given blow. We get a p-value of $0.02938<0.05$.
+
+```{r}
+male = c(4.9,5.4,5,5.5,5.4,6.6,6.3,4.3)
+female = c(4.8,5.3,3.7,4.1,5.6,4,3.6,5)
+t.test(male,female,var.equal = TRUE)
+
+```
+
+2. For this case, we may use the [Welch's t test](https://en.wikipedia.org/wiki/Welch%27s_t-test), which  is designed for unequal variances. The test statistic is 
+
+$$T_2=\frac{\bar X-\bar Y}{\sqrt{S_{1m}^{*2}/m+S_{1n}^{*2}/n}}.$$
+Under the null $H_0$, $T_2$ is approximately distributed from $t(k)$, where the degree of freedom $k$ is the integer closest to $k^*$:
+
+$$k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2}/n)^2/(n-1)}.$$
+
+Using the data gives $k^*=13.993,\ T_2=2.4258>t_{0.975}(14)=2.1448$. We therefore reject the null at the significance level $\alpha=0.05$.  The R code is given below. We get a p-value of $0.02938<0.05$. The p-value and the test statistic are the same as those in the case of equal variances, respectively. (WHY?)
+
+{{% alert note %}}
+Try to prove that the two test statistics are the same. What happen to the degree of freedom k if the two sample variances are very close? What's difference between the two kinds of t-tests when the sample sizes are large? Can we use the [Welch's t test](https://en.wikipedia.org/wiki/Welch%27s_t-test) for the case of equal variances instead of the usual t test?
+{{% /alert %}}
+
+```{r}
+t.test(male,female)
+
+```
+
+3. The data are paried since $n=m=8$. Let $Z = X-Y$. Then $Z\sim N(\mu_1-\mu_2,\sigma_1^2+\sigma^2_2)$ since $X,Y$ are assumed to be independent.
+We now have the sample for $Z$, i.e., $Z_i = X_i-Y_i$. Based on the sample $Z_i$, we do the test for the mean of $Z$, i.e.,
+
+$$H_0: \mu_1-\mu_2=0\ vs.\ H_1:\mu_1-\mu_2\neq 0.$$
+
+The test statistic is 
+
+$$T_3= \frac{\bar Z}{S_z^*/\sqrt{n}}=\frac{\bar X-\bar Y}{S_z^*/\sqrt{n}},$$
+
+where the sample variance of $Z_i$ is
+
+$$S_z^{*2} = \frac{1}{n-1}\sum_{i=1}^n(Z_i-\bar Z)^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-Y_i-\bar X+\bar Y)^2.$$
+
+Using the data gives $T_3=2.0059<t_{0.975}(7)=2.3646$. We therefore **accept** the null at the significance level $\alpha=0.05$. The R code is given below. We get a p-value of $0.08488>0.05$.  The p-value and the test statistic here is quite different from the two sample t-tests. (WHY?)
+
+
+```{r}
+t.test(male,female,paired = TRUE)
+
+```
+
+For comparison, we present the following table.
+
+Methods | Test Statistics | Degrees of Freedom | Critical Values | p-values |
+-|-|-|-|-|
+Two-Sample t test | 2.4258 | 14 | 2.1448 |  0.02938 |
+Welch's t test | 2.4258 | 14 | 2.1448 |  0.02938 |
+Paired t test | 2.0059 | 7 | 2.3646 | 0.08488 |
+
+If we choose $\alpha = 0.1$, all the methods result in a rejection of the null. But if we choose a smaller significance level $\alpha=0.05$, the paired t test results in an acceptance while the null is rejected for the other two methods. Such a discrepancy is due to the assumption of independence on the two populations required for the two-sample tests. Actually, for the paired t test, we **do not** need the independence assumption, but the assumption of normality of $Z=X-Y$ is maintained. The sample covariance of $X$ and $Y$ is $-0.2617857$, which is far away from $0$ -- the assumption of independence of $X$ and $Y$. It had better to use paried t test because it does not require the independence on the $X$ and $Y$.
+
+---
+
+`Case study 3`: The National Center for Health Statistics (1970) gives the following data on
+distribution of suicides in the United States by month in 1970. Is there any
+evidence that the suicide rate varies seasonally, or are the data consistent with
+the hypothesis that the rate is constant (the significance level $\alpha=0.05$)? (Hint: Under the latter hypothesis, model
+the number of suicides in each month as a multinomial random variable with the
+appropriate probabilities and conduct a goodness-of-fit test.)
+
+Month | Number of Suicides | Days/Month |
+-|-|-|
+Jan.  | 1867  | 31
+Feb.  | 1789  | 28
+Mar.  | 1944  | 31
+Apr.  | 2094  | 30
+May  | 2097  | 31
+June  | 1981  | 30
+July  | 1887  | 31
+Aug.  | 2024  | 31
+Sept.  | 1928  | 30
+Oct.  | 2032  | 31
+Nov.  | 1978  | 30
+Dec.  | 1859  | 31
+
+---
+
+`Solution`: 
+
+Let $n_i$ be the number of days in the $i$th month, $i=1,\dots,12$, and let $N = \sum_{i=1}^{12} n_i$. Let $X$ be a discrete random variable with $p_i=P(X=i)$, $i=1,\dots,12$ and $\sum_{i=1}^{12} p_i = 1$. Consider the test
+
+$$H_0: p_i = n_i/N, i=1,\dots,12\ vs. H_1:p_{i^*} \neq n_{i^*}/N \text{ for some }i^*.$$
+
+We use the R code to do the goodness-of-fit test. The p-value is $1.852\times 10^{-6}<0.05$, we therefore reject the null at the significance level $\alpha=0.05$. The data do not support that the suicide rate is constant.
+
+```{r}
+suicide = data.frame(
+  days = c(31,28,31,30,31,30,31,31,30,31,30,31),
+  numbers = c(1867,1789,1944,2094,2097,1981,1887,2024,
+              1928,2032,1978,1859)
+)
+x = suicide$numbers
+p = suicide$days/sum(suicide$days)
+chisq.test(x,p=p)
+```
+
+We can also test seasonal suicide rate by splitting the data into four groups: 
+
+Spring = Mar. + Apr. + May = 6135
+
+Summer = June + July + Aug. = 5892
+
+Autumn = Sept.+ Oct. + Nov. = 5938
+
+Winter = Dec. + Jan. + Feb. = 5515
+
+```{r}
+x = c(6135,5892,5938,5515)
+chisq.test(x)
+```
+
+The p-value is $1.71\times 10^{-7}<0.05$, we therefore reject the null at the significance level $\alpha=0.05$.
+
+---
+
+`Case study 4`: Under (the assumption of) simple Mendelian inheritance, a cross
+between plants of two particular genotypes produces progeny 1/4 of
+which are "dwarf" and $3/4$ of which are "giant", respectively.
+In an experiment to determine if this assumption is reasonable, a
+cross results in progeny having 243 dwarf and 682 giant plants.
+If "giant" is taken as success, the null hypothesis is that $p =3/4$ and the alternative that $p \neq 3/4$. 
+
+- Let $X_i,i=1,\dots,n$ be the sample of the population $B(1,p)$. By central limit theorem (CLT), the distribution of $\bar X$ can be approximated by a normal distribution $N(p,p(1-p)/n)$. Please use this approximation to do the binominal test above.
+
+
+- Actually, we can do the exact binominal test according to the formula given in P.114 of our textbook.  Compare the results in the exact test and the approximate test for significance  levels $\alpha=0.05,0.01,0.001$.
+
+
+`Solution`: 
+
+1. Under the null, we have $\bar X \stackrel{\cdot}{\sim}N(3/4,3/(16n))$, where $n = 243+682=925$. The rejection region is
+
+$$W = \{|\bar x-3/4|\sqrt{16n/3}>u_{1-\alpha/2}\}.$$
+
+Using data give the test statistic  $T = |\bar x-3/4|\sqrt{16n/3}= 0.8922$. Since $u_{1-\alpha/2}= 1.96$ for $\alpha= 0.05$, we accept the null at significance  levels $\alpha=0.05,0.01,0.001$.
+
+2. We next use R code to do the exact binominal test. The p-value is $0.3825>0.05$, we therefore accept the null at significance  levels $\alpha=0.05,0.01,0.001$. Both methods lead to the same conclusions. From this point of view, it is reasonable to use the approximated normal distribution from the CLT in the binominal test because the sample size $n=925$ is large. 
+
+```{r}
+x = 682
+n = 243+682
+p = 3/4
+binom.test(x,n,p)
+```
+
+
+

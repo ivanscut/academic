@@ -1,0 +1,2 @@
+"0","legend(70,160,c(""Fitted"",""Confidence"",""Prediction""),"
+"0","       lty = c(1,5,2),col=c(""blue"",""red"",""brown""))"

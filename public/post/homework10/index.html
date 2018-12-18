@@ -15,7 +15,7 @@
   
     
   
-  <meta name="description" content="截止日期：2018-12-09 23:00">
+  <meta name="description" content="答案已上传！">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/homework10/">
@@ -89,7 +89,7 @@
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/post/homework10/">
   <meta property="og:title" content="第十次作业 | Dr. Zhijian He">
-  <meta property="og:description" content="截止日期：2018-12-09 23:00">
+  <meta property="og:description" content="答案已上传！">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-12-04T00:00:00&#43;00:00">
@@ -211,6 +211,25 @@
         
 
         <li class="nav-item">
+          <a class="nav-link" href="/course/">
+            
+            <span>Courses</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link" href="/#contact">
             
             <span>Contact</span>
@@ -263,7 +282,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    5 min read
   </span>
   
 
@@ -297,9 +316,124 @@
 <li><p>Write down the normal equations for the simple linear model via the matrix formalism.</p></li>
 <li><p>Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.</p></li>
 </ol>
+<p><code>Solution</code>:</p>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(Y=(y_1,\dots,y_n)^\top\)</span>, <span class="math inline">\(\beta=(\beta_0,\dots,\beta_{p-1})^\top\)</span>, <span class="math inline">\(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\)</span>, and let <span class="math inline">\(X\)</span> be the <span class="math inline">\(n\times 2\)</span> matrix
+<span class="math display">\[
+X=
+\left[
+\begin{matrix}
+1 &amp; x_1\\
+1 &amp; x_2\\
+\vdots &amp; \\
+1 &amp; x_n\\
+\end{matrix}
+\right].
+\]</span></li>
+</ol>
+<p>The model can be rewritten as <span class="math display">\[Y=X\beta+\epsilon.\]</span></p>
+<p>The normal equations are <span class="math inline">\((X^\top X) \hat\beta = X^\top Y\)</span>. By simple algebra, we have</p>
+<p><span class="math display">\[X^\top X = \left[
+\begin{matrix}
+1 &amp; 1 &amp; \dots &amp; 1\\
+x_1 &amp; x_2 &amp;\dots &amp; x_n\\
+\end{matrix}
+\right]\left[
+\begin{matrix}
+1 &amp; x_1\\
+1 &amp; x_2\\
+\vdots &amp; \\
+1 &amp; x_n\\
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+n &amp; \sum_{i=1}^n x_i\\
+\sum_{i=1}^n x_i &amp; \sum_{i=1}^n x_i^2
+\end{matrix}
+\right]\]</span></p>
+<p><span class="math display">\[X^\top Y=\left[\begin{matrix}
+1 &amp; 1 &amp; \dots &amp; 1\\
+x_1 &amp; x_2 &amp;\dots &amp; x_n\\
+\end{matrix}
+\right]\left[\begin{matrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum_{i=1}^n y_i\\
+\sum_{i=1}^n x_iy_i
+\end{matrix}
+\right].
+\]</span></p>
+<p>The normal equations turn out to be</p>
+<p><span class="math display">\[\left[
+\begin{matrix}
+n &amp; \sum_{i=1}^n x_i\\
+\sum_{i=1}^n x_i &amp; \sum_{i=1}^n x_i^2
+\end{matrix}
+\right]\left[\begin{matrix}
+\hat\beta_0\\
+\hat\beta_1
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum_{i=1}^n y_i\\
+\sum_{i=1}^n x_iy_i
+\end{matrix}
+\right]\]</span></p>
+<p>As a result,</p>
+<p><span class="math display">\[
+\begin{align}
+\left[\begin{matrix}
+\hat\beta_0\\
+\hat\beta_1
+\end{matrix}
+\right]&amp;=\left[\begin{matrix}
+n &amp; \sum_{i=1}^n x_i\\
+\sum_{i=1}^n x_i &amp; \sum_{i=1}^n x_i^2
+\end{matrix}
+\right]^{-1}\left[\begin{matrix}
+\sum_{i=1}^n y_i\\
+\sum_{i=1}^n x_iy_i
+\end{matrix}
+\right]\\
+&amp;=\frac{1}{n\sum_{i=1}^n x_i^2-(\sum_{i=1}^n x_i)^2}\left[\begin{matrix}
+\sum_{i=1}^n x_i^2 &amp; -\sum_{i=1}^n x_i\\
+-\sum_{i=1}^n x_i &amp; n
+\end{matrix}
+\right]\left[\begin{matrix}
+\sum_{i=1}^n y_i\\
+\sum_{i=1}^n x_iy_i
+\end{matrix}
+\right]\\
+&amp;=\frac{1}{n\sum_{i=1}^n x_i^2-(\sum_{i=1}^n x_i)^2}\left[\begin{matrix}
+\sum_{i=1}^n x_i^2\sum_{i=1}^n y_i-\sum_{i=1}^n x_i\sum_{i=1}^n x_iy_i\\
+n\sum_{i=1}^n x_iy_i-\sum_{i=1}^n x_i\sum_{i=1}^n y_i
+\end{matrix}
+\right]\\
+&amp;=\frac{1}{\ell_{xx}}\left[\begin{matrix}
+\bar y\sum_{i=1}^n x_i^2-\bar x\sum_{i=1}^n x_iy_i\\
+\ell_{xy}
+\end{matrix}
+\right]\\
+&amp;=\frac{1}{\ell_{xx}}\left[\begin{matrix}
+\bar y\ell_{xx}-\bar x\ell_{xy}\\
+\ell_{xy}
+\end{matrix}
+\right]=\left[\begin{matrix}
+\bar y-\bar x\ell_{xy}/\ell_{xx}\\
+\ell_{xy}/\ell_{xx}
+\end{matrix}
+\right],
+\end{align}
+\]</span></p>
+<p>where <span class="math inline">\(\ell_{xx} = \sum_{i=1}^n(x_i-\bar x)^2,\)</span> <span class="math inline">\(\ell_{yy} = \sum_{i=1}^n(y_i-\bar y)^2,\)</span> <span class="math inline">\(\ell_{xy} = \sum_{i=1}^n(x_i-\bar x)(y_i-\bar y).\)</span></p>
+<p>The solutions agree with the earlier calculation derived in the simple linear models.</p>
 <hr />
 <p>Prove that the projection matrix <span class="math inline">\(P=X(X^\top X)^{-1} X^\top\)</span> has an eigenvalue 1, and
 <span class="math inline">\((1,\dots,1)^\top\)</span> is one of the associated eigenvectors.</p>
+<p><code>Proof</code>: Note that <span class="math inline">\(PX = X(X^\top X)^{-1} X^\top X = X\)</span>. The first column of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mathbf{1}:=(1,\dots,1)^\top\)</span>. This implies that <span class="math inline">\(P \mathbf{1} = \mathbf{1}\)</span>, which completes the proof.</p>
 <hr />
 <p>(The QR Method) This problem outlines the basic ideas of an alternative method,
 the QR method, of finding the least squares estimate <span class="math inline">\(\hat \beta\)</span>. An advantage of the
@@ -318,6 +452,23 @@ its relationship to the Gram-Schmidt process, see <a href="https://en.wikipedia.
 <p>Show that <span class="math inline">\(\hat \beta = (X^\top X)^{-1}X^\top Y\)</span> may also be expressed as <span class="math inline">\(\hat \beta = R^{-1}Q^\top Y\)</span>,
 or <span class="math inline">\(R\hat \beta = Q^\top Y\)</span>. Indicate how this last equation may be solved for <span class="math inline">\(\hat \beta\)</span> by back-substitution, using that <span class="math inline">\(R\)</span> is upper-triangular, and show that it is thus unnecessary
 to invert <span class="math inline">\(R\)</span>.</p>
+<p><code>Solution</code>: Since <span class="math inline">\(X=QR\)</span>, <span class="math display">\[(X^\top X)^{-1}X^\top = (R^\top Q^\top  QR)^{-1} R^\top Q^\top =(R^\top R)^{-1} R^\top Q^\top =R^{-1}  Q^\top.\]</span></p>
+<p>Therefore, <span class="math inline">\(\hat \beta = R^{-1} Q^\top Y\)</span>, or equivalently, <span class="math inline">\(R\hat\beta = Q^\top Y=:b=(b_1,\dots,b_p)^\top\)</span>. Since <span class="math inline">\(R\)</span> is upper-triangular, then the normal equations are</p>
+<p><span class="math display">\[
+\begin{align}
+r_{pp} \hat\beta_{p-1} &amp;= b_p\\
+r_{p-1,p-1} \hat\beta_{p-2}+ r_{p-1,p}\hat\beta_{p-1} &amp;= b_{p-1}\\
+\vdots&amp;\\
+r_{11} \hat\beta_{0}+ r_{12}\hat\beta_{1} +\dots +r_{1p}\hat\beta_{p-1}&amp;= b_{1}
+\end{align}.
+\]</span></p>
+<p>This can be sloved by back-substitution:</p>
+<p><span class="math display">\[
+\begin{align}
+\hat\beta_{p-1} &amp;= \frac{b_p}{r_{pp}}\\
+ \hat\beta_{i} &amp;=\frac{b_{i+1}}{r_{i+1,i+1}} - \frac{1}{r_{i+1,i+1}}\sum_{j=i+2}^p r_{i+1,j}\hat\beta_{j-1},\ i=p-2,\dots,0
+\end{align}.
+\]</span></p>
 <hr />
 <p>Consider fitting the curve <span class="math inline">\(y = \beta_0x+\beta_1x^2\)</span> to points (<span class="math inline">\(x_i,y_i\)</span>), where <span class="math inline">\(i = 1,\dots,n\)</span>.</p>
 <ol style="list-style-type: decimal">
@@ -325,6 +476,110 @@ to invert <span class="math inline">\(R\)</span>.</p>
 of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p></li>
 <li><p>Find an expression for the covariance matrix of the estimates.</p></li>
 </ol>
+<p><code>Solution</code>: Let <span class="math inline">\(Y=(y_1,\dots,y_n)^\top\)</span>, <span class="math inline">\(\beta=(\beta_0,\dots,\beta_{p-1})^\top\)</span>, <span class="math inline">\(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\)</span>, and let <span class="math inline">\(X\)</span> be the <span class="math inline">\(n\times 2\)</span> matrix
+<span class="math display">\[
+X=
+\left[
+\begin{matrix}
+x_1 &amp; x_1^2\\
+x_2 &amp; x_2^2\\
+\vdots &amp; \\
+x_n &amp; x_n^2\\
+\end{matrix}
+\right].
+\]</span></p>
+<p>The model can be rewritten as <span class="math display">\[Y=X\beta+\epsilon.\]</span></p>
+<p>The normal equations are <span class="math inline">\((X^\top X) \hat\beta = X^\top Y\)</span>. By simple algebra, we have</p>
+<p><span class="math display">\[X^\top X = \left[
+\begin{matrix}
+x_1 &amp; x_2 &amp; \dots &amp; x_n\\
+x_1^2 &amp; x_2^2 &amp;\dots &amp; x_n^2\\
+\end{matrix}
+\right]\left[
+\begin{matrix}
+x_1 &amp; x_1^2\\
+x_2 &amp; x_2^2\\
+\vdots &amp; \\
+x_n &amp; x_n^2\\
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+\sum_{i=1}^n x_i^2 &amp; \sum_{i=1}^n x_i^3\\
+\sum_{i=1}^n x_i^3 &amp; \sum_{i=1}^n x_i^4
+\end{matrix}
+\right]\]</span></p>
+<p><span class="math display">\[X^\top Y=\left[\begin{matrix}
+x_1 &amp; x_2 &amp; \dots &amp; x_n\\
+x_1^2 &amp; x_2^2 &amp;\dots &amp; x_n^2\\
+\end{matrix}
+\right]\left[\begin{matrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum_{i=1}^n x_iy_i\\
+\sum_{i=1}^n x_i^2y_i
+\end{matrix}
+\right].
+\]</span></p>
+<p>The normal equations turn out to be</p>
+<p><span class="math display">\[\left[
+\begin{matrix}
+\sum_{i=1}^n x_i^2 &amp; \sum_{i=1}^n x_i^3\\
+\sum_{i=1}^n x_i^3 &amp; \sum_{i=1}^n x_i^4
+\end{matrix}
+\right]\left[\begin{matrix}
+\hat\beta_0\\
+\hat\beta_1
+\end{matrix}
+\right]=\left[\begin{matrix}
+\sum_{i=1}^n x_iy_i\\
+\sum_{i=1}^n x_i^2y_i
+\end{matrix}
+\right]\]</span></p>
+<p>Let <span class="math inline">\(s_x^k = \sum_{i=1}^n x_i^k\)</span>, <span class="math inline">\(s_y^k = \sum_{i=1}^n y_i^k\)</span>, <span class="math inline">\(s_{xy}^{jk}=\sum_{i=1}^n x_i^jy_i^k\)</span>.
+As a result,</p>
+<p><span class="math display">\[
+\begin{align}
+\left[\begin{matrix}
+\hat\beta_0\\
+\hat\beta_1
+\end{matrix}
+\right]&amp;=\left[
+\begin{matrix}
+s_x^2 &amp; s_x^3\\
+s_x^3 &amp; s_x^4
+\end{matrix}
+\right]^{-1}\left[\begin{matrix}
+s_{xy}^{11}\\
+s_{xy}^{21}
+\end{matrix}
+\right]\\
+&amp;=\frac{1}{s_x^2s_x^4-(s_x^3)^2}\left[\begin{matrix}
+s_x^4 &amp; -s_x^3\\
+-s_x^3 &amp; s_x^2
+\end{matrix}
+\right]\left[\begin{matrix}
+s_{xy}^{11}\\
+s_{xy}^{21}
+\end{matrix}
+\right]\\
+&amp;=\left[\begin{matrix}
+\frac{s_x^4s_{xy}^{11}-s_x^3s_{xy}^{21}}{s_x^2s_x^4-(s_x^3)^2}\\
+\frac{s_x^2s_{xy}^{21}-s_x^3s_{xy}^{11}}{s_x^2s_x^4-(s_x^3)^2}
+\end{matrix}
+\right].
+\end{align}
+\]</span></p>
+<p>Note that
+<span class="math display">\[Var[\hat\beta] = Var[(X^\top X)^{-1} X^\top Y]=(X^\top X)^{-1} X^\top Var[\epsilon] X(X^\top X)^{-1}.\]</span></p>
+<p>For the usual assumption <span class="math inline">\(Var[\epsilon] =\sigma^2 I_n\)</span>, then <span class="math display">\[Var[\hat\beta]=\sigma^2 (X^\top X)^{-1} =\frac{\sigma^2}{s_x^2s_x^4-(s_x^3)^2}\left[\begin{matrix}
+s_x^4 &amp; -s_x^3\\
+-s_x^3 &amp; s_x^2
+\end{matrix}
+\right].\]</span></p>
 
     </div>
 

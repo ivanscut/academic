@@ -33,7 +33,8 @@ The following table shows the monthly returns of stock in Disney, MacDonalds,Sc
       <description>Let us consider fitting a straight line, \(y = \beta_0+\beta_1x\), to points \((x_i,y_i)\), where \(i=1,\dots,n\).
 Write down the normal equations for the simple linear model via the matrix formalism.
 Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
-Prove that the projection matrix \(P=X(X^\top X)^{-1} X^\top\) has an eigenvalue 1, and\((1,\dots,1)^\top\) is one of the associated eigenvectors.</description>
+Solution:
+Let \(Y=(y_1,\dots,y_n)^\top\), \(\beta=(\beta_0,\dots,\beta_{p-1})^\top\), \(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\), and let \(X\) be the \(n\times 2\) matrix\[X=\left[\begin{matrix}1 &amp;amp; x_1\\1 &amp;amp; x_2\\\vdots &amp;amp; \\1 &amp;amp; x_n\\\end{matrix}\right].</description>
     </item>
     
     <item>

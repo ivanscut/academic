@@ -1,0 +1,258 @@
+---
+title: 第九次作业
+
+date: 2018-12-18 
+lastmod: 2018-12-18 
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: 第九次作业
+menu:
+  course: 
+    parent: 数理统计
+    weight: 14
+---
+
+
+
+<p>Consider the linear model
+<span class="math display">\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2), i=1,\dots,n.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Derive the maximum likelihood estimators (MLE) for <span class="math inline">\(\beta_0,\beta_1\)</span>. Are they consistent with the least square estimators (LSE)?</p></li>
+<li><p>Derive the MLE for <span class="math inline">\(\sigma^2\)</span> and look at its unbiasedness.</p></li>
+<li><p>A very slippery point is whether to treat the <span class="math inline">\(x_i\)</span> as fixed numbers or as random variables. In the class, we treated the predictors <span class="math inline">\(x_i\)</span> as fixed numbers for sake of convenience. Now suppose that the predictors <span class="math inline">\(x_i\)</span> are iid random variables (independent of <span class="math inline">\(\epsilon_i\)</span>) with density <span class="math inline">\(f_X(x;\theta)\)</span> for some parameter <span class="math inline">\(\theta\)</span>. Write down the likelihood function for all of our data <span class="math inline">\((x_i,y_i),i=1,\dots,n\)</span>. Derive the MLE for <span class="math inline">\(\beta_0,\beta_1\)</span> and see whether the MLE changes if we work with the setting of random predictors?</p></li>
+</ol>
+<p><code>Solution</code>: Note that <span class="math inline">\(y_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)\)</span> independently. The likelihood function is</p>
+<p><span class="math display">\[L(\beta_0,\beta_1,\sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}}=(2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\beta_0,\beta_1)}{2\sigma^2}},\]</span>
+where <span class="math inline">\(Q(\beta_0,\beta_1) = \sum_{i=1}^n (y_i-\beta_0-\beta_1x_i)^2\)</span>.
+For given <span class="math inline">\(\sigma^2\)</span>, to maximize <span class="math inline">\(L(\beta_0,\beta_1,\sigma^2)\)</span>, it suffices to minimize <span class="math inline">\(Q(\beta_0,\beta_1)\)</span>. So the MLEs for <span class="math inline">\(\beta_0,\beta_1\)</span> are consistent with the LSEs, i.e.,</p>
+<p><span class="math display">\[\hat\beta_1 = \frac{\ell_{xy}}{\ell_{xx}}=\frac{\sum_{i=1}^n (y_i-\bar y)(x_i-\bar x)}{\sum_{i=1}^n(x_i-\bar x)^2},\ \hat\beta_0 = \bar y -\hat\beta_1\bar x.\]</span></p>
+<p>We then choose <span class="math inline">\(\sigma^2\)</span> to maximize <span class="math inline">\(L(\hat\beta_0,\hat\beta_1,\sigma^2) = (2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\hat\beta_0,\hat\beta_1)}{2\sigma^2}}\)</span>.
+It is easy to see that the maximizer is
+<span class="math display">\[\hat\sigma^2_{MLE} = \frac{Q(\hat\beta_0,\hat\beta_1)}{n}=\frac{S_e^2}{n}.\]</span></p>
+<p>We have proved that <span class="math inline">\(E[S_e^2] = (n-2)\sigma^2\)</span>. So <span class="math inline">\(E[\hat\sigma^2_{MLE}] = \frac{n-2}{n}\sigma^2\)</span>, which is NOT an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>If <span class="math inline">\(x_i\)</span> are random variables with density <span class="math inline">\(f_X(x;\theta)\)</span>. The likelihood function for <span class="math inline">\((x_i,y_i)\)</span> is</p>
+<p><span class="math display">\[L(\beta_0,\beta_1,\sigma^2,\theta) =\prod_{i=1}^nf_X(x_i;\theta) f(y_i|x_i) = \prod_{i=1}^nf_X(x_i;\theta) e^{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}} =(2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\beta_0,\beta_1)}{2\sigma^2}}\prod_{i=1}^n f_X(x_i;\theta).\]</span></p>
+<p>For fixed <span class="math inline">\(\theta,\sigma^2\)</span>, to maximize <span class="math inline">\(L(\beta_0,\beta_1,\sigma^2,\theta)\)</span>, it suffices to minimize <span class="math inline">\(Q(\beta_0,\beta_1)\)</span>. So the MLE does not changes if we work with the setting of random predictors.</p>
+<p>You can imagine that <span class="math inline">\((x_i,y_i)\)</span> pairs are generated somewhere and on one day you’re given <span class="math inline">\(x_1,\dots,x_n\)</span> independent draws from <span class="math inline">\(f_X\)</span>. At that point the data have not told you anything about <span class="math inline">\(\beta_0\)</span> or <span class="math inline">\(\beta_1\)</span>. The next
+day <span class="math inline">\(y_i|x_i\)</span> are revealed to you. That is informative about <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> using <span class="math inline">\(f_{Y|X}(y_i|x_i;\beta_0,\beta_1,\sigma^2)\)</span>.
+The easier analysis is with <span class="math inline">\(x_i\)</span> fixed, so that is the one we’ll do.</p>
+<hr />
+<p>Consider the linear model without intercept</p>
+<p><span class="math display">\[y_i  = \beta x_i+\epsilon_i,\ i=1,\dots,n,\]</span></p>
+<p>where <span class="math inline">\(\epsilon_i\)</span> are independent with <span class="math inline">\(E[\epsilon_i]=0\)</span> and <span class="math inline">\(Var[\epsilon_i]=\sigma^2\)</span>.</p>
+<ul>
+<li><p>Write down the least square estimator <span class="math inline">\(\hat \beta\)</span> for <span class="math inline">\(\beta\)</span>, and derive an unbiased estiamtor for <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>For fixed <span class="math inline">\(x_0\)</span>, let <span class="math inline">\(\hat{y}_0=\hat\beta x_0\)</span>. Work out <span class="math inline">\(Var[\hat{y}_0]\)</span>.</p></li>
+</ul>
+<p><code>Solution</code>: Let <span class="math inline">\(Q(\beta)= \sum_{i=1}^n (y_i-\beta x_i)^2\)</span>. Then we have</p>
+<p><span class="math display">\[Q&#39;(\beta) = -\sum_{i=1}^n 2x_i(y_i-\beta x_i).\]</span></p>
+<p>Letting <span class="math inline">\(Q&#39;(\beta) = 0\)</span>, we work out the LSE for <span class="math inline">\(\beta\)</span>, i.e.,</p>
+<p><span class="math display">\[\hat\beta = \frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}.\]</span></p>
+<p>Note that</p>
+<p><span class="math display">\[\begin{align}
+E[Q(\hat\beta)]&amp;= E[\sum_{i=1}^n y_i^2+\hat\beta^2\sum_{i=1}^n x_i^2-2\hat\beta\sum_{i=1}^n x_iy_i]\\
+&amp;= \sum_{i=1}^n \lbrace Var[y_i]+(E[y_i])^2\rbrace-E[\hat\beta\sum_{i=1}^n x_iy_i]\\
+&amp;=\sum_{i=1}^n (\sigma^2+\beta^2 x_i^2)-\frac{E[(\sum_{i=1}^n x_iy_i)^2]}{\sum_{i=1}^n x_i^2}\\
+&amp;= n\sigma^2+\beta^2\sum_{i=1}^n x_i^2-\frac{Var[\sum_{i=1}^n x_iy_i]+\lbrace E[\sum_{i=1}^n x_iy_i]\rbrace^2}{\sum_{i=1}^n x_i^2}\\
+&amp;=(n-1)\sigma^2.
+\end{align}
+\]</span></p>
+<p>So <span class="math inline">\(\hat\sigma^2 = Q(\hat\beta)/(n-1)\)</span> is an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}
+Var[\hat y_0] &amp;= Var[x_0\hat\beta] = x_0^2Var[\hat\beta]\\
+&amp;=x_0^2Var\left[\frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}\right]\\&amp;=\frac{x_0^2}{(\sum_{i=1}^n x_i^2)^2}\sum_{i=1}^n Var[x_i y_i]\\
+&amp;=\frac{x_0^2}{(\sum_{i=1}^n x_i^2)^2}\sum_{i=1}^n x_i^2\sigma^2\\
+&amp;=\frac{x_0^2\sigma^2}{\sum_{i=1}^n x_i^2}
+\end{align}
+\]</span></p>
+<hr />
+<p><code>Case study</code>: Genetic variability is thought to be a key factor in the survival of a species, the idea
+being that “diverse” populations should have a better chance of coping with changing
+environments. Table below summarizes the results of a study designed to test
+that hypothesis experimentally. Two populations of fruit flies (Drosophila serrata)-one that was cross-bred (Strain A) and the other,
+in-bred (Strain B)-were put into sealed containers where food and space were kept
+to a minimum. Recorded every hundred days were the numbers of Drosophila alive
+in each population.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Day number</th>
+<th>Strain A</th>
+<th>Strain B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feb 2</td>
+<td>0</td>
+<td>100</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>May 13</td>
+<td>100</td>
+<td>250</td>
+<td>203</td>
+</tr>
+<tr class="odd">
+<td>Aug 21</td>
+<td>200</td>
+<td>304</td>
+<td>214</td>
+</tr>
+<tr class="even">
+<td>Nov 29</td>
+<td>300</td>
+<td>403</td>
+<td>295</td>
+</tr>
+<tr class="odd">
+<td>Mar 8</td>
+<td>400</td>
+<td>446</td>
+<td>330</td>
+</tr>
+<tr class="even">
+<td>Jun 16</td>
+<td>500</td>
+<td>482</td>
+<td>324</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Plot day numbers versus population sizes for Strain A and Strain B, respectively. Does the plot look linear? If so, please use least squares to figure out the coefficients and
+their standard errors, and plot the two regression lines.</p></li>
+<li><p>Let <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_1^*\)</span> be the true slopes (i.e., growth rates) for Strain A and Strain B, respectively. Assume the population sizes for the two strains are independent. Under the same assumptions of <span class="math inline">\(\epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2)\)</span> for both strains, do we have enough evidence here
+to reject the null hypothesis that <span class="math inline">\(\beta_1\le \beta_1^*\)</span> (significance level <span class="math inline">\(\alpha=0.05\)</span>)? Or equivalently, do these data support the theory that genetically mixed populations have a
+better chance of survival in hostile environments.</p></li>
+</ul>
+<p><code>Solution</code>:</p>
+<pre class="r"><code>day = seq(0,500,by=100)
+A = c(100,250,304,403,446,482)
+B = c(100,203,214,295,330,324)
+matplot(day,cbind(A,B),pch=1:2,ylab=&quot;population size&quot;,ylim = c(100,550))
+legend(0,550,c(&quot;Strain A&quot;, &quot;Strain B&quot;),pch = 1:2,col=c(&quot;black&quot;,&quot;red&quot;))
+lm.A = lm(A~day)
+lm.B = lm(B~day)
+abline(coef(lm.A),lty=2)
+abline(coef(lm.B),lty=2,col=&quot;red&quot;)
+text(120,300,expression(hat(y)[A] == 145.3 + 0.742 * x))
+text(300,200,expression(hat(y)[B] == 131.3 + 0.452 * x),col=&quot;red&quot;)</code></pre>
+<p><img src="/course/homework9_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>output = rbind(summary(lm.A)$coef,summary(lm.B)$coef)
+row.names(output) = c(&quot;A-Intercept&quot;,&quot;A-Slope&quot;,&quot;B-Intercept&quot;,&quot;B-Slope&quot;)
+knitr::kable(output,&quot;html&quot;,caption = &quot;The coefficients and their standard errors&quot;)</code></pre>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-1">Table 1: </span>The coefficients and their standard errors
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A-Intercept
+</td>
+<td style="text-align:right;">
+145.3333
+</td>
+<td style="text-align:right;">
+26.8668380
+</td>
+<td style="text-align:right;">
+5.409395
+</td>
+<td style="text-align:right;">
+0.0056567
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A-Slope
+</td>
+<td style="text-align:right;">
+0.7420
+</td>
+<td style="text-align:right;">
+0.0887382
+</td>
+<td style="text-align:right;">
+8.361671
+</td>
+<td style="text-align:right;">
+0.0011186
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B-Intercept
+</td>
+<td style="text-align:right;">
+131.3333
+</td>
+<td style="text-align:right;">
+22.7725468
+</td>
+<td style="text-align:right;">
+5.767178
+</td>
+<td style="text-align:right;">
+0.0044864
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B-Slope
+</td>
+<td style="text-align:right;">
+0.4520
+</td>
+<td style="text-align:right;">
+0.0752152
+</td>
+<td style="text-align:right;">
+6.009420
+</td>
+<td style="text-align:right;">
+0.0038603
+</td>
+</tr>
+</tbody>
+</table>
+<p>We now test</p>
+<p><span class="math display">\[H_0:\beta_1\le \beta_1^*,\ H_1:\beta_1&gt;\beta_1^*.\]</span></p>
+<p>Note that <span class="math inline">\(\hat\beta_1 \sim N(\beta_1,\sigma^2/\ell_{xx})\)</span> and <span class="math inline">\(S_{e}^2/\sigma^2\sim \chi^2(n-2)\)</span>, where <span class="math inline">\(S_2^2\)</span> is the sum of squared errors for Strain A. Similarly, <span class="math inline">\(\hat\beta_1^* \sim N(\beta_1^*,\sigma^2/\ell_{xx})\)</span> and <span class="math inline">\(\tilde{S}_{e}^2/\sigma^2\sim \chi^2(n-2)\)</span>, where <span class="math inline">\(\tilde{S}_{e}^2\)</span> is the sum of squared errors for Strain B. By independence of A and B, we have</p>
+<p><span class="math display">\[\hat\beta_1-\hat\beta_1^*\sim N(\beta_1-\beta_1^*,2\sigma^2/\ell_{xx}),\]</span></p>
+<p><span class="math display">\[\frac{S_{e}^2+\tilde{S}_{e}^2}{\sigma^2}\sim \chi^2(2n-4).\]</span></p>
+<p>As a result,</p>
+<p><span class="math display">\[\frac{\hat\beta_1-\hat\beta_1^*-(\beta_1-\beta_1^*)}{\sqrt{ \frac{S_{e}^2+\tilde{S}_{e}^2}{(n-2)\ell_{xx}} }}\sim t(2n-4).\]</span></p>
+<p>We thus choose the test statistic</p>
+<p><span class="math display">\[T = \frac{\hat\beta_1-\hat\beta_1^*}{\sqrt{ \frac{S_{e}^2+\tilde{S}_{e}^2}{(n-2)\ell_{xx}} }}.\]</span></p>
+<p>If <span class="math inline">\(\beta_1=\beta_1^*\)</span>, we have <span class="math inline">\(T\sim t(2n-4)\)</span>. The rejection region is <span class="math inline">\(W = \{T&gt;C\}\)</span>, where <span class="math inline">\(C\)</span> is satisfied</p>
+<p><span class="math display">\[\sup_{\beta_1\le\beta_1^*}P(T&gt;C|\beta_1,\beta_1^*)=P(T&gt;C|\beta_1=\beta_1^*)=\alpha.\]</span>
+We used the fact that the maximum is attainable at the boundary <span class="math inline">\(\beta_1=\beta_1^*\)</span> (WHY?), under which <span class="math inline">\(T\sim t(2n-4)\)</span>. So the critical value <span class="math inline">\(C=t_{1-\alpha}(2n-4)\)</span>. The observed test statistic is<br />
+<span class="math display">\[t = \frac{0.742   -0.452  }{\sqrt{ \frac{5512.14+3960.14}{(6-2)\times 175000} }}=2.50&gt;t_{0.95}(8)=1.8595.\]</span></p>
+<p>We therefore reject the null. These data, then, <strong>do</strong> support the theory that genetically mixed populations have a
+better chance of survival in hostile environments.</p>

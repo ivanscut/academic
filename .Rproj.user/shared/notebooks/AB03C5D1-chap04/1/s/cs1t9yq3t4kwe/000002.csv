@@ -1,0 +1,5 @@
+"0","lm1 = lm(y1~x1,data = anscombe)"
+"0","x = c(anscombe$x1, 18)"
+"0","y = c(anscombe$y1,30)"
+"0","lm.xy = lm(y~x)"
+"0","plot(x,y,pch = 21,bg=c(rep(""black"",11),""red""),ylim=c(0,50))"
