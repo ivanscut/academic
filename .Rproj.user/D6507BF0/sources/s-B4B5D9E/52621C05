@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1545627908193.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "52621C05",
+    "lastKnownWriteTime" : 2314885436531947831,
+    "last_content_update" : 1545627908193,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "A20A40B9",
+        "caption" : "Pred",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Pred&cache_key=A20A40B9",
+        "displayedObservations" : 100,
+        "environment" : "",
+        "expression" : "Pred",
+        "object" : "Pred",
+        "preview" : 0,
+        "totalObservations" : 100,
+        "variables" : 3
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

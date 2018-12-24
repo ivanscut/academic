@@ -21,7 +21,11 @@
       <description>Consider the simple linear model
 \[y_i= \beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2).\]
 Use the F-test method derived in the multiple linear model to test the hypothesis \(H_0:\beta_1=0\ vs.\ H_1:\beta_1\neq 0\), and see whether the F-test agrees with the earlier t-test derived in the simple linear models.
-The following table shows the monthly returns of stock in Disney, MacDonalds,Schlumberger, and Haliburton for January through May 1998. Fit a multiple regressionto predict Disney returns from those of the other stocks.</description>
+Solution: The F test statistic is given by
+\[F = \frac{S_R^2/(p-1)}{S_e^2/(n-p)}=\frac{S_R^2}{S_e^2/(n-p)},\]
+where
+\[S_R^2=\sum_{i=1}^n(\hat y_i-\bar y)^2=\sum_{i=1}^n(\hat\beta_0-\hat\beta_1x_i-\bar y) = \sum_{i=1}^n(\bar y-\hat\beta_1\bar x-\hat\beta_1x_i-\bar y)^2=\hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2=\hat\beta_1^2\ell_{xx}.\]
+The t test statistic is given by</description>
     </item>
     
     <item>

@@ -4025,6 +4025,13 @@ plot(p,power,type=&amp;quot;l&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
       <description>&lt;p&gt;Consider the simple linear model&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_i= \beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2).\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Use the F-test method derived in the multiple linear model to test the hypothesis &lt;span class=&#34;math inline&#34;&gt;\(H_0:\beta_1=0\ vs.\ H_1:\beta_1\neq 0\)&lt;/span&gt;, and see whether the F-test agrees with the earlier t-test derived in the simple linear models.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: The F test statistic is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[F = \frac{S_R^2/(p-1)}{S_e^2/(n-p)}=\frac{S_R^2}{S_e^2/(n-p)},\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_R^2=\sum_{i=1}^n(\hat y_i-\bar y)^2=\sum_{i=1}^n(\hat\beta_0-\hat\beta_1x_i-\bar y) = \sum_{i=1}^n(\bar y-\hat\beta_1\bar x-\hat\beta_1x_i-\bar y)^2=\hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2=\hat\beta_1^2\ell_{xx}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The t test statistic is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T=\frac{\hat\beta_1}{\sqrt{\frac{S_e^2}{(n-p)\ell_{xx}}}}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As a result, &lt;span class=&#34;math inline&#34;&gt;\(T^2=F\)&lt;/span&gt;. Under &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T\sim t(n-p)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(F\sim F(1,n-p)\)&lt;/span&gt;. The rejection region for F-test is &lt;span class=&#34;math inline&#34;&gt;\(W_1=\{F&amp;gt;F_{1-\alpha}(1,n-p)\}\)&lt;/span&gt;, and the rejection region for t-test is &lt;span class=&#34;math inline&#34;&gt;\(W_2=\{|T|&amp;gt;t_{1-\alpha/2}(n-p)\}\)&lt;/span&gt;. Note that &lt;span class=&#34;math inline&#34;&gt;\(P(|T|&amp;gt;t_{1-\alpha/2}(n-p)|H_0) = P(T^2&amp;gt;t_{1-\alpha/2}(n-p)^2|H_0) =1-\alpha\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(T^2\sim F(1,n-p)\)&lt;/span&gt; under &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt;, we have &lt;span class=&#34;math inline&#34;&gt;\(t_{1-\alpha/2}(n-p)^2=F_{1-\alpha}(1,n-p)\)&lt;/span&gt;. This implies &lt;span class=&#34;math inline&#34;&gt;\(W_1=W_2\)&lt;/span&gt;, i.e., the two tests are the same.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;The following table shows the monthly returns of stock in Disney, MacDonalds,
 Schlumberger, and Haliburton for January through May 1998. Fit a multiple regression
@@ -4119,6 +4126,337 @@ the fundamental nature of the relationships changed in the one year period? (最
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stock=data.frame(Mac=c(-0.01309,0.15958,0.09966,0.03125,0.06206),
+                 Sch=c(-0.08463,0.02884,0.00165,0.09571,-0.05723),
+                 Hali=c(-0.13373,0.03616,0.07919,0.09227,-0.13242),
+                Disney=c(0.08088,0.04737,-0.04634,0.16834,-0.09082))
+lm.stock = lm(Disney~Mac+Sch+Hali,data=stock)
+summary(lm.stock)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Disney ~ Mac + Sch + Hali, data = stock)
+## 
+## Residuals:
+##         1         2         3         4         5 
+##  0.063847  0.062459 -0.040909 -0.007962 -0.077435 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&amp;gt;|t|)
+## (Intercept)  0.09382    0.09814   0.956    0.514
+## Mac         -0.88124    1.10451  -0.798    0.571
+## Sch          1.31506    1.98773   0.662    0.628
+## Hali        -0.17174    1.34423  -0.128    0.919
+## 
+## Residual standard error: 0.1253 on 1 degrees of freedom
+## Multiple R-squared:  0.6298, Adjusted R-squared:  -0.4809 
+## F-statistic: 0.567 on 3 and 1 DF,  p-value: 0.7238&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::kable(summary(lm.stock)$coef,&amp;quot;html&amp;quot;,caption = &amp;quot;summary table&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-1&#34;&gt;Table 1: &lt;/span&gt;summary table
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Estimate
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Std. Error
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+t value
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Pr(&amp;gt;|t|)
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0938234
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0981405
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9560112
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5143146
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Mac
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.8812385
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.1045119
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.7978533
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5712808
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Sch
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.3150576
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.9877281
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6615883
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6279094
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Hali
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.1717441
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.3442288
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.1277641
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9191012
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The regression function is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Disney = 0.0938-0.8812\times MacDonalds   +1.3151\times Schlumberger-0.1717\times Haliburton\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(R^2= 0.6298\)&lt;/span&gt;, and the standard deviation of the residuals is &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma=0.1253\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;newdata = data.frame(
+  Mac=c(0.02604,0.07851,0.06732,-0.06483,-0.09029),
+ Sch=c(0.02695,0.02362,0.23938,0.06127,-0.05773),
+ Hali=c(0.00211,-0.04,0.35526,0.10714,-0.02933))
+truevalue = c(0.1,0.06629,-0.11545,0.02008,-0.08268)
+pre = predict(lm.stock,newdata,interval = &amp;quot;prediction&amp;quot;)
+knitr::kable(pre,&amp;quot;html&amp;quot;,caption = &amp;quot;predicted values and CI&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 2: &lt;/span&gt;predicted values and CI
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+fit
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+lwr
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+upr
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1059543
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-1.799303
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.011211
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0625688
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-2.042785
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.167922
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2882831
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-3.186227
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.762793
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2131270
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-2.823438
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.249692
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1025094
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-3.055481
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.260500
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pre_error = sd(pre[,1]-truevalue)
+cat(&amp;quot;The standard deviation of the prediction error is &amp;quot;, pre_error,&amp;quot;.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The standard deviation of the prediction error is  0.1670458 .&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;p&gt;对于这道题来讲，多元线性模型非常不显著，所以预测就没有太多意义了。这时，我们应该改进我们模型。比如，去掉不显著的项、添加高阶项或者交叉项。但注意，由于这个问题数据量为5，所以未知参数的个数不应该超过4，否则出现完全拟合的情况了。例如，下面的回归模型比之前的模型显著多了：&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm.stock2 = lm(Disney~Sch+Mac+I(Sch*Mac),data=stock)##添加交叉项用I(Sch*Mac)表示
+summary(lm.stock2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Call:
+## lm(formula = Disney ~ Sch + Mac + I(Sch * Mac), data = stock)
+## 
+## Residuals:
+##         1         2         3         4         5 
+## -0.001916  0.008816 -0.023597  0.003780  0.012917 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&amp;gt;|t|)
+## (Intercept)   0.07869    0.02097   3.753    0.166
+## Sch           0.44987    0.26008   1.730    0.334
+## Mac          -1.06723    0.23295  -4.581    0.137
+## I(Sch * Mac) 25.46566    5.92271   4.300    0.145
+## 
+## Residual standard error: 0.02862 on 1 degrees of freedom
+## Multiple R-squared:  0.9807, Adjusted R-squared:  0.9228 
+## F-statistic: 16.93 on 3 and 1 DF,  p-value: 0.1764&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::kable(summary(lm.stock2)$coef,&amp;quot;html&amp;quot;,caption = &amp;quot;improved model&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-3&#34;&gt;Table 3: &lt;/span&gt;improved model
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Estimate
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Std. Error
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+t value
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Pr(&amp;gt;|t|)
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0786874
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0209677
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.752788
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1657869
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Sch
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.4498716
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2600825
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.729726
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3337037
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Mac
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-1.0672273
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2329468
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-4.581420
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1368111
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+I(Sch * Mac)
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+25.4656586
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.9227145
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.299660
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1454766
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;p&gt;在实际使用多元线性回归过程中，如何确定自变量和因变量之前的关系尤为重要。因为不是所有的自变量都可能用得上，而且可能出现非线性项（高阶项、交叉项）。这属于变量选择问题，也是线性回归中非常重要的主题。感兴趣的同学可以查阅课本208页。&lt;/p&gt;
+
+&lt;/div&gt;
+
 </description>
     </item>
     

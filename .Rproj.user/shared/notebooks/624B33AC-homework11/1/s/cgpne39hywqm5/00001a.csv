@@ -1,0 +1,7 @@
+"0","newdata = data.frame("
+"0","  Mac=c(0.02604,0.07851,0.06732,-0.06483,-0.09029),"
+"0"," Sch=c(0.02695,0.02362,0.23938,0.06127,-0.05773),"
+"0"," Hali=c(0.00211,-0.04,0.35526,0.10714,-0.02933))"
+"0","truevalue = c(0.1,0.06629,-0.11545,0.02008,-0.08268)"
+"0","pre = predict(lm.stock,newdata,interval = ""prediction"")"
+"0","knitr::kable(pre,""html"",caption = ""predicted values and CI"")"

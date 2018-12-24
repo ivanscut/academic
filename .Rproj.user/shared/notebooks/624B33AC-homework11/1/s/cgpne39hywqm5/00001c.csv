@@ -1,0 +1,7 @@
+"0","pre_error = sd(pre[,1]-truevalue)"
+"0","cat(""The standard deviation of the prediction error is "", pre_error,""."")"
+"1","The standard deviation of the prediction error is "
+"1"," "
+"1","0.1670458"
+"1"," "
+"1","."
