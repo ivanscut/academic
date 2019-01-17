@@ -11,6 +11,216 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>《数理统计》试卷</title>
+      <link>/post/testa/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/testa/</guid>
+      <description>&lt;p&gt;Part I: Each problem is worth 3 points.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,X_2,\dots,X_6\)&lt;/span&gt; be a simple random sample taken from &lt;span class=&#34;math inline&#34;&gt;\(N(0,2^2)\)&lt;/span&gt;. Denote
+&lt;span class=&#34;math display&#34;&gt;\[Y = (X_1+X_2)^2+(X_3+X_4)^2+(X_5+X_6)^2.\]&lt;/span&gt;
+If &lt;span class=&#34;math inline&#34;&gt;\(kY\sim \chi^2(3)\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(k=1/8\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,X_2,X_3\)&lt;/span&gt; be a simple random sample taken from &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu = \frac{1}{2} X_1+cX_2+\frac{1}{6}X_3\)&lt;/span&gt; is an unibased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(c=1/3\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,X_2,X_3\)&lt;/span&gt; be a simple random sample taken from &lt;span class=&#34;math inline&#34;&gt;\(B(1,p)\)&lt;/span&gt;. For testing the hypothesis &lt;span class=&#34;math inline&#34;&gt;\(H_0:p=1/2\ vs.\ H_1:p=3/4\)&lt;/span&gt;, we use a rejection region:
+&lt;span class=&#34;math display&#34;&gt;\[W=\{(x_1,x_2,x_3):x_1+x_2+x_3\ge 2\}.\]&lt;/span&gt;
+The power of the test is 27/32?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a simple random sample taken from &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,1)\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(S_n^2=\frac 1n\sum_{i=1}^n(X_i-\bar X)^2\)&lt;/span&gt; be the sample variance. Then &lt;span class=&#34;math inline&#34;&gt;\(Var[S_n^2]=2(n-1)/n^2\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the usual &lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; confidence interval for the mean of normal population was &lt;span class=&#34;math inline&#34;&gt;\([0.12,0.22]\)&lt;/span&gt;, the method of moments estimate of the mean would be 0.17?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part II: Multiple Choice Problems (one or more than one items may be true). Each problem is worth 3 points.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The parameters &lt;span class=&#34;math inline&#34;&gt;\(\theta,\lambda,\alpha,\beta\)&lt;/span&gt; are unknown in the following densities. Which of the following probability distributions belong to the exponential family? ( BC )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta,\lambda) = \frac \theta\lambda\left(\frac{x}{\lambda}\right)^{\theta-1}e^{-(x/\lambda)^\theta}1\{x&amp;gt; 0\}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(f(x;\alpha,\beta) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}1\{0&amp;lt;x&amp;lt;1\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\Gamma(\cdot)\)&lt;/span&gt; is the gamma function.&lt;/p&gt;
+&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(f(x;\lambda) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}1\{x&amp;gt; 0\}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(f(x;\theta) = \frac{2}{\sqrt{2\pi}}e^{-\frac{(x-\theta)^2}{2}}1\{x\ge \theta\}\)&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be the simple random sample taken from the normal distribution &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,\sigma^2)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt; are unknown parameters. Which of the following are sufficient statistics for &lt;span class=&#34;math inline&#34;&gt;\(\theta=(\mu,\sigma^2)\)&lt;/span&gt;? ( AB )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(T_1 = (X_1,\dots,X_n)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(T_2 = (\sum_{i=1}^n X_i,\sum_{i=1}^n X_i^2)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(T_3 = (\sum_{i=1}^n |X_i|,\sum_{i=1}^n X_i^2)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(T_4 = \frac{1}{n}\sum_{i=1}^n X_i\)&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Which of the following statements are true? ( BC )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A. If the &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-value is 0.05, the corresponding test will be rejected at the significance level 0.03.&lt;/p&gt;
+&lt;p&gt;B. If a test rejects at significance level 0.05, then the &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-value is less than or equal to 0.05.&lt;/p&gt;
+&lt;p&gt;C. If the significance level of a test is decreased, the power of the test would be expected to decrease.&lt;/p&gt;
+&lt;p&gt;D. A type II error occurs when the test statistic falls in the rejection region of the test and the null is true.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; be the least squares etstimators for the simple linear model &lt;span class=&#34;math inline&#34;&gt;\(y_i = \beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2)\)&lt;/span&gt;. Which of the following statements are true? ( BCD )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1\)&lt;/span&gt; are independent.&lt;/p&gt;
+&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0-\hat\beta_1\)&lt;/span&gt; is normally distributed.&lt;/p&gt;
+&lt;p&gt;C. The more spread out the &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are the better we can estimate the slope &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(\bar y = \hat\beta_0+\hat\beta_1 \bar x\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bar x = \frac 1 n\sum_{i=1}^n x_i,\ \bar y = \frac 1 n\sum_{i=1}^n y_i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a simple random sample taken from &lt;span class=&#34;math inline&#34;&gt;\(N(2,3^2)\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt; be the sample mean. Which of the following are true? ( D )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(\frac{\bar X -2}{3/\sqrt{n}}\sim t(n)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(\frac 1 9\sum_{i=1}^n (X_i-2)^2\sim F(n,1)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(\frac{\bar X-2}{\sqrt{3}/\sqrt{n}}\sim N(0,1)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(\frac 1 9\sum_{i=1}^n(X_i-2)^2\sim \chi^2(n)\)&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part III. (12 points)&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a simple random sample taken from the density&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f(x;\theta)=\frac{2x}{\theta^2},\quad 0\le x\le \theta.\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Find an expression for &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_L\)&lt;/span&gt;, the maximum likelihood estimator (MLE) for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Find an expression for &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_M\)&lt;/span&gt;, the method of moments estimator for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;For the two estimators &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_L\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_M\)&lt;/span&gt;, which one is more efficient in terms of mean squared error (MSE)?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The likelihood function is&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[L(\theta) = \prod_{i=1}^n f(x_i;\theta) = \frac{2^n}{\theta^n}\left(\prod_{i=1}^n x_i\right) 1\{x_{(n)}\le \theta\}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To maximize &lt;span class=&#34;math inline&#34;&gt;\(L(\theta)\)&lt;/span&gt;, we need to choose &lt;span class=&#34;math inline&#34;&gt;\(\theta\ge x_{(n)}\)&lt;/span&gt; so that
+&lt;span class=&#34;math inline&#34;&gt;\(L(\theta) = A\theta^{-n}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(A=2^n\prod_{i=1}^n x_i\)&lt;/span&gt; does not depend on &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. So the MLE is &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_L = X_{(n)}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;First, compute the first order moment:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[X] = \int_0^\theta xf(x;\theta)dx = \int_0^\theta \frac{2x^2}{\theta^2}dx=\frac{2\theta}{3}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This implies that &lt;span class=&#34;math inline&#34;&gt;\(\theta = 3E[X]/2\)&lt;/span&gt;. The method of moments estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_M=3\bar X/2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The density for &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt; is given by&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f_{X_{(n)}}(x;\theta) = nF^{n-1}(x)f(x;\theta)=n\frac{x^{2(n-1)}}{\theta^{2(n-1)}}\frac{2x}{\theta^2}=\frac{2nx^{2n-1}}{\theta^{2n}},\quad 0\le x\le \theta.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The first and second order moments for &lt;span class=&#34;math inline&#34;&gt;\(X_{(n)}\)&lt;/span&gt; are&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[X_{(n)}] = \int_0^\theta \frac{2nx^{2n}}{\theta^{2n}}dx = \frac{2n\theta}{2n+1},\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[X_{(n)}^2] = \int_0^\theta \frac{2nx^{2n+1}}{\theta^{2n}}dx = \frac{n\theta^2}{n+1}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The MSE for &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_L\)&lt;/span&gt; is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+MSE(\hat\theta_L)&amp;amp;=E[(\hat\theta_L-\theta)^2]=E[X_{(n)}^2]-2\theta E[X_{(n)}]+\theta^2\\
+&amp;amp;=\frac{n\theta^2}{n+1}-\frac{4n\theta^2}{2n+1}+\theta^2\\
+&amp;amp;=\frac{\theta^2}{(n+1)(2n+1)}.
+\end{align}
+\]&lt;/span&gt;
+The second order moment for &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[X^2] = \int_{0}^\theta \frac{2x^3}{\theta^2}dx=\frac{\theta^2}{2}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The MSE for &lt;span class=&#34;math inline&#34;&gt;\(\hat\theta_M\)&lt;/span&gt; is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+MSE(\hat\theta_M)&amp;amp;=Var[\hat\theta_M]=\frac{9Var[X]}{4n}\\
+&amp;amp;=\frac{9}{4n}(E[X^2]-E[X]^2)\\
+&amp;amp;=\frac{9}{4n}\left(\frac{\theta^2}{2}-\frac{4\theta^2}{9}\right)= \frac{\theta^2}{8n}.
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It is easy to see that when &lt;span class=&#34;math inline&#34;&gt;\(n\ge 3\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(MSE(\hat\theta_L)&amp;lt;MSE(\hat\theta_M)\)&lt;/span&gt;; otherwise, &lt;span class=&#34;math inline&#34;&gt;\(MSE(\hat\theta_L)&amp;gt;MSE(\hat\theta_M)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part IV. (10 points)&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a simple random sample taken from an exponential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;, whose density is given by
+&lt;span class=&#34;math display&#34;&gt;\[f(x;\lambda) = \lambda e^{-\lambda x}1\{x\ge 0\},\ \lambda&amp;gt;0.\]&lt;/span&gt;
+Derive a likelihood ratio test of the hypothesis
+&lt;span class=&#34;math display&#34;&gt;\[H_0:\lambda=1\ vs.\ H_1:\lambda=2.\]&lt;/span&gt;
+What is the definition of uniformly most powerful (UMP)? Is the test UMP against the alternative &lt;span class=&#34;math inline&#34;&gt;\(H_1:\lambda&amp;gt;1\)&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: The likelihood function is
+&lt;span class=&#34;math display&#34;&gt;\[L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The likelihood ratio is given by
+&lt;span class=&#34;math display&#34;&gt;\[\lambda(\vec x)= \frac{L(2)}{L(1)}=\frac{2^ne^{-2 n\bar x}}{e^{- n\bar x}}=2^ne^{-n\bar x}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Choose the test statistic &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x) = 2n\bar x\)&lt;/span&gt;. When &lt;span class=&#34;math inline&#34;&gt;\(\lambda=1\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T(\vec X)\sim \chi^2(2n)\)&lt;/span&gt;. Also,
+&lt;span class=&#34;math inline&#34;&gt;\(\lambda(\vec x) = 2^ne^{-T(\vec x)/2}.\)&lt;/span&gt; The rejection region is of the form &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;lt;C\}\)&lt;/span&gt;. We thus have &lt;span class=&#34;math inline&#34;&gt;\(C=\chi_{\alpha}^2(2n)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;A rejection region &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; is said to be UMP if for any rejection region &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;\)&lt;/span&gt; with the type I error probability is no more than &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, the power of the test associated with &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;\)&lt;/span&gt; is no larger than that of the rejection region &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Consider the test of the hypothesis
+&lt;span class=&#34;math display&#34;&gt;\[H_0:\lambda=1\ vs.\ H_1:\lambda=\lambda_0&amp;gt;1.\]&lt;/span&gt;
+Following the same procedure above, the likelihood ratio test gives the same rejection region W. So the test derived before is also UMP for the alternative &lt;span class=&#34;math inline&#34;&gt;\(H_1:\lambda&amp;gt;1\)&lt;/span&gt; by using the N-P lemma.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part V.&lt;/p&gt;
+&lt;p&gt;A medical researcher believes that women typically
+have lower serum cholesterol (血清胆固醇) than men. To test this
+hypothesis, he took a sample of 476 men between the ages
+of nineteen and forty-four and found their mean serum
+cholesterol to be 189.0 mg/dl with a sample standard deviation
+of 34.2. A group of 592 women in the same age range
+averaged 177.2 mg/dl and had a sample standard deviation
+of 33.3. Is the lower average for the women statistically
+significant? Set the significant level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; =0.05. What assumptions are made when conducting the test? (&lt;span class=&#34;math inline&#34;&gt;\(u_{0.95}=1.644854\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(t_{0.95}(1066)=1.646284\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(t_{0.95}(1068)=1.646282\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(u_{0.975}=1.959964\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(t_{0.975}(1066)=1.962192\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(t_{0.975}(1068)=1.962188\)&lt;/span&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(X_i\)&lt;/span&gt; be the serum cholesterol for men, &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,n=476\)&lt;/span&gt;, let &lt;span class=&#34;math inline&#34;&gt;\(Y_j\)&lt;/span&gt; be be the serum cholesterol for women, &lt;span class=&#34;math inline&#34;&gt;\(j=1,\dots,m=592\)&lt;/span&gt;. We now have &lt;span class=&#34;math inline&#34;&gt;\(\bar x = 189.0\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(s_{1n}=34.2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bar y = 177.2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(s_{2m}=33.3\)&lt;/span&gt;. Suppose that &lt;span class=&#34;math inline&#34;&gt;\(X_i\stackrel{iid}{\sim} N(\mu_1,\sigma^2)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y_i\stackrel{iid}{\sim} N(\mu_2,\sigma^2)\)&lt;/span&gt;. We are testing&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\mu_1\le \mu_2,\ vs.\ H_1:\mu_1&amp;gt;\mu_2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We use the t-test. The test statistic is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[T = \frac{\bar X-\bar Y}{S_w\sqrt{\frac 1 n+\frac 1 m}},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(S_w^2 = (nS_{1n}^2+mS_{2m}^2)/(n+m-2)\)&lt;/span&gt;. The rejection region is given by &lt;span class=&#34;math inline&#34;&gt;\(W = \{T&amp;gt;t_{1-\alpha}(n+m-2)\}\)&lt;/span&gt;.
+The observed test statistic is &lt;span class=&#34;math display&#34;&gt;\[t=\frac{189.0-177.2}{33.74\sqrt{\frac 1 {476}+\frac 1 {592}}}=5.68&amp;gt;t_{0.95}(1066)=1.65.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We therefore reject the null. The lower average for the women is statistically significant.&lt;/p&gt;
+&lt;p&gt;The assumptions are&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;normally distributed for both groups&lt;/li&gt;
+&lt;li&gt;the two grouds are independent&lt;/li&gt;
+&lt;li&gt;their variances are the same&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part VI:&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a simple random sample taken from the uniform distribution &lt;span class=&#34;math inline&#34;&gt;\(U(\theta,0)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\theta&amp;lt;0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(a). Derive a &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(b). There is a duality between confidence intervals and
+hypothesis tests. Use the result in part (a) to derive a test at significant level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; of the hypothesis
+&lt;span class=&#34;math display&#34;&gt;\[H_0: \theta = \theta_0\ vs.\ H_1:\theta \neq \theta_0,\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\theta_0&amp;lt;0\)&lt;/span&gt; is fixed.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(G = X_{(1)}/\theta\)&lt;/span&gt;. The CDF for &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt;
+is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[F_G(x) = P(G\le x) = P(X_{(1)}/\theta\le x) = P(X_{(1)}\ge \theta x) = \prod_{i=1}^nP(X_i\ge \theta x) = x^n,\ 0&amp;lt; x&amp;lt; 1.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let&lt;span class=&#34;math inline&#34;&gt;\(a,b\in \mathbb{R}\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(P(a\le G\le b)=1-\alpha\)&lt;/span&gt;. Then the CI for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[CI=\left[\frac{X_{(1)}}{a},\frac{X_{(1)}}{b}\right].\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For simplicity, we take &lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(P(G\le a) = P(G\ge b) = \alpha/2\)&lt;/span&gt;. This implies &lt;span class=&#34;math inline&#34;&gt;\(a = (\alpha/2)^{1/n},\ b= (1-\alpha/2)^{1/n}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Or you can take &lt;span class=&#34;math inline&#34;&gt;\(P(G\le a) = \alpha,P(G\le b)=1\)&lt;/span&gt; so that &lt;span class=&#34;math inline&#34;&gt;\(a=\alpha^{1/n}, b=1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;You can also use other statistics, such as &lt;span class=&#34;math inline&#34;&gt;\(G=X_{n}/\theta\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(G=-2\log(\sum_{i=1}^n X_i/\theta)\)&lt;/span&gt;. The answer is not unique.&lt;/p&gt;
+&lt;p&gt;Form part (a), we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P_{\theta}\left(\theta\in CI\right) = 1-\alpha\ \forall\theta&amp;lt;0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We therefore choose the rejection region&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[W = \{\theta_0\notin CI\}.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It is easy to see that &lt;span class=&#34;math inline&#34;&gt;\(P_{\theta_0}(\theta_0\notin CI) = \alpha\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Part VII:&lt;/p&gt;
+&lt;p&gt;Consider the linear model
+&lt;span class=&#34;math display&#34;&gt;\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2),\ i=1,\dots,n.\]&lt;/span&gt;
+Suppose that all the fixed &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are not equal and &lt;span class=&#34;math inline&#34;&gt;\(n\ge 3\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(a). Derive a maximum likelihood estimator (MLE) &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma_L^2\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(b). Let &lt;span class=&#34;math inline&#34;&gt;\(T_k=k\hat\sigma_L^2\)&lt;/span&gt; be an estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;. Find a &lt;span class=&#34;math inline&#34;&gt;\(k\in \mathbb{R}\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(T_k\)&lt;/span&gt; is an unbiased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.
+Show that the unbiased estimate is not the optimal choice by taking account of mean squared error (MSE), and
+the most efficient &lt;span class=&#34;math inline&#34;&gt;\(T_k\)&lt;/span&gt; takes place at &lt;span class=&#34;math inline&#34;&gt;\(k=1\)&lt;/span&gt;, i.e., the MLE &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma_L^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: It is easy to see that &lt;span class=&#34;math display&#34;&gt;\[\hat\sigma_L^2=\frac{S_e^2}{n},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(S_e^2 = \frac 1n\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; are the LSE for &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\beta_1\)&lt;/span&gt;.
+It is known that &lt;span class=&#34;math inline&#34;&gt;\(S_e^2/\sigma^2\sim \chi^2(n-2)\)&lt;/span&gt;. This gives
+&lt;span class=&#34;math inline&#34;&gt;\(E[S_e^2]=(n-2)\sigma^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var[S_e^2] = 2(n-2)\sigma^4\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;As a result, &lt;span class=&#34;math inline&#34;&gt;\(E[T_k] = kE[S_e^2/n]=\frac{k(n-2)}{n}\sigma^2\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(T_k\)&lt;/span&gt; is unbiased, then &lt;span class=&#34;math inline&#34;&gt;\(k = n/(n-2)\)&lt;/span&gt;.
+On the other hand, &lt;span class=&#34;math display&#34;&gt;\[Var[T_k] = \frac{k^2}{n^2}Var[S_e^2] = \frac{2(n-2)k^2}{n^2}\sigma^4.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The MSE of &lt;span class=&#34;math inline&#34;&gt;\(T_k\)&lt;/span&gt; is given by&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[M(k) = E[(T_k-\sigma^2)^2] = (E[T_k]-\sigma^2)^2+Var[T_k]=\frac{(n-2)(k-1)^2+2}{n}\sigma^4\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;whose minimum takes place at &lt;span class=&#34;math inline&#34;&gt;\(k=1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Part VIII:&lt;/p&gt;
+&lt;p&gt;Consider the multiple linear regression model
+&lt;span class=&#34;math display&#34;&gt;\[y_i = \beta_0+\beta_1 x_{i1}+\beta_2x_{i2}+\dots+\beta_{p-1}x_{i,p-1} +\epsilon_i,\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,n\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n&amp;gt;p\ge 2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(a). Find the least squares estimates (LSE) of &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\dots,\beta_{p-1}\)&lt;/span&gt; via the matrix formalism. What assumptions are required for ensuring a unique solution of the LSE?&lt;/p&gt;
+&lt;p&gt;(b). Show that the the residuals sum to zero. Are the standard assumptions of &lt;span class=&#34;math inline&#34;&gt;\(E[\epsilon_i]=0\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i=1,\dots,n\)&lt;/span&gt; required to establish the statement?&lt;/p&gt;
+&lt;p&gt;(c). Suppose that &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\sigma&amp;gt;0\)&lt;/span&gt; is an unknown parameter. Define &lt;span class=&#34;math inline&#34;&gt;\(\alpha = \sum_{i=1}^{p-1} \beta_i^2\)&lt;/span&gt;. Use the generalized likelihood ratio method to test the hypothesis&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0: \alpha = 0\ vs.\ H_1:\alpha&amp;gt;0.\]&lt;/span&gt;
+If the coefficient of determination &lt;span class=&#34;math inline&#34;&gt;\(R^2=0.95\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(p = 3\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n=13\)&lt;/span&gt;, is the null rejected at the significant level &lt;span class=&#34;math inline&#34;&gt;\(\alpha =0.05\)&lt;/span&gt;? (&lt;span class=&#34;math inline&#34;&gt;\(F_{0.95}(2,10)=4.10,F_{0.95}(3,10)=3.71,t_{0.95}(10)=1.81\)&lt;/span&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;(a). The model is &lt;span class=&#34;math inline&#34;&gt;\(Y=X\beta+\epsilon\)&lt;/span&gt;, and the LSE is &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta = (X^\top X)^{-1} X^\top Y\)&lt;/span&gt;. It is requried that
+that &lt;span class=&#34;math inline&#34;&gt;\(\text{rank} (X) = p\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(b). &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon = Y-X\hat \beta = Y-X(X^\top X)^{-1} X^\top Y=(I_n-P)Y\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon^\top X = Y^\top (I_n-P)X = 0.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As a result, we have &lt;span class=&#34;math inline&#34;&gt;\(\hat \epsilon^\top 1 = \sum_{i=1}^n \hat\epsilon_i=0\)&lt;/span&gt;. We do not require any assumption on &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;(C). The test statistic is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[F =\frac{S_R^2/(p-1)}{S_e^2/(n-p)}=\frac{R^2/(p-1)}{(1-R^2)/(n-p)}=\frac{0.95/2}{(1-0.95)/10}=95&amp;gt;F_{0.95}(2,10)=4.1.\]&lt;/span&gt;
+We therefore reject the null.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>第一次作业</title>
       <link>/course/homework1/</link>
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
@@ -4824,1711 +5034,6 @@ s_x^4 &amp;amp; -s_x^3\\
 &lt;p&gt;因为&lt;span class=&#34;math inline&#34;&gt;\(nT/\sigma^2\sim \chi^2(n)\)&lt;/span&gt;, 所以
 &lt;span class=&#34;math display&#34;&gt;\[Var[nT/\sigma^2]=2n\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;于是，&lt;span class=&#34;math inline&#34;&gt;\(Var[T]=2\sigma^4/n\)&lt;/span&gt;达到C-R不等式下界。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>第四章：线性回归</title>
-      <link>/course/chap04/</link>
-      <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/course/chap04/</guid>
-      <description>&lt;div id=&#34;simple-linear-models&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Simple linear models&lt;/h2&gt;
-&lt;p&gt;The linear model is given by
-&lt;span class=&#34;math display&#34;&gt;\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\)&lt;/span&gt; are random (need some assumptions)&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are &lt;strong&gt;fixed&lt;/strong&gt; (&lt;em&gt;independent/predictor&lt;/em&gt; variable)&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; are random (&lt;em&gt;dependent/response&lt;/em&gt; variable)&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt; is the &lt;em&gt;intercept&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; is the &lt;em&gt;slope&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div id=&#34;least-square-estimators&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Least square estimators&lt;/h3&gt;
-&lt;p&gt;Choose &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\beta_1\)&lt;/span&gt; to minimize
-&lt;span class=&#34;math display&#34;&gt;\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The minimizers &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; satisfy
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{cases}
-\frac{\partial Q}{\partial \beta_0} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)=0\\
-\frac{\partial Q}{\partial \beta_1} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)x_i=0
-\end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This gives
-&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)x_i}{\sum_{i=1}^n(x_i-\bar x)x_i},\ \hat\beta_0=\bar y-\hat\beta_1\bar x.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Define &lt;span class=&#34;math display&#34;&gt;\[\ell_{xx} = \sum_{i=1}^n(x_i-\bar x)^2,\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[\ell_{yy} = \sum_{i=1}^n(y_i-\bar y)^2,\]&lt;/span&gt; &lt;span class=&#34;math display&#34;&gt;\[\ell_{xy} = \sum_{i=1}^n(x_i-\bar x)(y_i-\bar y).\]&lt;/span&gt;
-We thus have
-&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)(x_i-\bar x)}{\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)}=\frac{\ell_{xy}}{\ell_{xx}}=\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)y_i.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Regression function&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\hat y=\hat\beta_0+\hat\beta_1x\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;expected-values&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Expected values&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Assumption A1&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(E[\epsilon_i]=0,i=1,\dots,n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 1&lt;/code&gt;: Under Assumption A1, &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; are unbiased estimators for &lt;span class=&#34;math inline&#34;&gt;\(\beta_0,\beta_1\)&lt;/span&gt;, respectively.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-E[\hat \beta_1] &amp;amp;= \frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)E[y_i]\\
-&amp;amp;=\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)(\beta_0+\beta_1x_i)\\
-&amp;amp;=\frac{\beta_0}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)+\frac{\beta_1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)x_i\\
-&amp;amp;=\frac{\beta_1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)\\
-&amp;amp;=\beta_1
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-E[\hat \beta_0] &amp;amp;= E[\bar y-\hat\beta_1\bar x]=E[\bar y]-\beta_1\bar x=\beta_0+\beta_1\bar x-\beta_1\bar x=\beta_0.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;variances&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Variances&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Assumption A2&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(Cov(\epsilon_i,\epsilon_j)=\sigma^21\{i=j\}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 2&lt;/code&gt;: Under Assumption A2, we have
-&lt;span class=&#34;math display&#34;&gt;\[Var[\hat\beta_0] = \left(\frac 1n+\frac{\bar x^2}{\ell_{xx}}\right)\sigma^2,\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[\hat\beta_1] =\frac{\sigma^2}{\ell_{xx}},\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Cov(\hat\beta_0,\hat\beta_1) = \frac{-\bar x}{\ell_{xx}}\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: Since &lt;span class=&#34;math inline&#34;&gt;\(Cov(\epsilon_i,\epsilon_j)=0\)&lt;/span&gt; for any &lt;span class=&#34;math inline&#34;&gt;\(i\neq j\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Cov(y_i,y_j)=0\)&lt;/span&gt;. We thus have
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-Var[\hat\beta_1] &amp;amp;= \frac{1}{\ell_{xx}^2}\sum_{i=1}^n(x_i-\bar x)^2Var[y_i]\\
-&amp;amp;= \frac{\sigma^2}{\ell_{xx}^2}\sum_{i=1}^n(x_i-\bar x)^2=\frac{\sigma^2}{\ell_{xx}}.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We next show that &lt;span class=&#34;math inline&#34;&gt;\(Cov(\bar y,\hat \beta_1)=0\)&lt;/span&gt;.
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-Cov(\bar y,\hat \beta_1) &amp;amp;= Cov\left(\frac{1}{n}\sum_{i=1}^n y_i,\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)y_i\right)\\
-&amp;amp;=\frac{1}{n\ell_{xx}}Cov\left(\sum_{i=1}^n y_i,\sum_{i=1}^n(x_i-\bar x)y_i\right)\\
-&amp;amp;=\frac{1}{n\ell_{xx}}\sum_{i=1}^nCov(y_i,(x_i-\bar x)y_i)\\
-&amp;amp;=\frac{1}{n\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)\sigma^2 = 0.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Var[\hat\beta_0] = Var[\bar y-\hat\beta_1\bar x]=Var[\bar y]+Var[\hat \beta_1\bar x]=\frac{\sigma^2}{n}+\frac{\bar x^2\sigma^2}{\ell_{xx}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Cov(\hat\beta_0,\hat\beta_1) = Cov(\bar y-\hat\beta_1\bar x,\hat\beta_1) = -\bar x Var[\hat\beta_1]=\frac{-\bar x}{\ell_{xx}}\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;So bigger &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is better. Get a bigger sample size if you can. Smaller &lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt; is better. The most interesting one is that bigger &lt;span class=&#34;math inline&#34;&gt;\(\ell_{xx}\)&lt;/span&gt; is better. The more spread out the &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; are the better we can
-estimate the slope &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;. When you’re picking the &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt;, if you can spread them out more, then it is more informative.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div id=&#34;estimation-of-sigma2&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Estimation of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;For Assumption A2, it is common that the variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; is unknown.
-The next theorem gives an unbiased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Definition&lt;/code&gt;: The sum of squared errors (SSE) is defined by
-&lt;span class=&#34;math display&#34;&gt;\[S_e^2 = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 3&lt;/code&gt;: Let
-&lt;span class=&#34;math display&#34;&gt;\[\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{S_e^2}{n-2}.\]&lt;/span&gt;
-Under Assumptions A1 and A2, we have &lt;span class=&#34;math inline&#34;&gt;\(E[\hat\sigma^2]=\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(\hat y_i = \hat\beta_0+\hat\beta_1x_i=\bar y+\hat\beta_1(x_i-\bar x)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-E[Q(\hat \beta_0,\hat\beta_1)] &amp;amp;= \sum_{i=1}^nE[(y_i-\hat y_i)^2]=\sum_{i=1}^nVar[y_i-\hat y_i]+(E[y_i]-E[\hat y_i])^2\\
-&amp;amp;=\sum_{i=1}^n[Var[y_i]+Var[\hat y_i]-2Cov(y_i,\hat y_i)].
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-Var[\hat y_i]&amp;amp;= Var[\hat\beta_0+\hat\beta_1x_i]=Var[\bar y+\hat\beta_1(x_i-\bar x)]\\
-&amp;amp;=Var[\bar y]+(x_i-\bar x)^2Var[\hat\beta_1]\\
-&amp;amp;=\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}.
-\end{align}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-Cov(y_i,\hat y_i)  &amp;amp;= Cov(\beta_0+\beta_1x_i+\epsilon_i, \bar y+\hat\beta_1(x_i-\bar x))\\
-&amp;amp;=Cov(\epsilon_i,\bar y)+(x_i-\bar x)Cov(\epsilon_i,\hat\beta_1)\\
-&amp;amp;=\frac{\sigma^2}{n}+\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;As a result, we have
-&lt;span class=&#34;math display&#34;&gt;\[E[Q(\hat \beta_0,\hat\beta_1)] = \sum_{i=1}^n \left[\sigma^2-\frac{\sigma^2}{n}-\frac{(x_i-\bar x)^2\sigma^2}{\ell_{xx}}\right]=(n-2)\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;normal-distributions&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Normal distributions&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Assumption B&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2),i=1,\dots,n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Assumption B includes Assumptions A1 and A2.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;Theorem 4&lt;/code&gt;: Under Assumption B, we have&lt;/p&gt;
-&lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(3). &lt;span class=&#34;math inline&#34;&gt;\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-2)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(4). &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\((\hat\beta_0,\hat\beta_1)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: Under Assumption B, &lt;span class=&#34;math inline&#34;&gt;\(y_i=\beta_0+\beta_1x_i+\epsilon_i\sim N(\beta_0+\beta_1x_i,\sigma^2)\)&lt;/span&gt; independently. Both &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\hat\beta_1\)&lt;/span&gt; are linear combinations of &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;s. Consequently, they are normally distributed. We have known their expected values and variances from Theorems 1 and 2. The claims (1) and (2) are thus verified. The proofs of claims (3) and (4) are deferred to the general case.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It is &lt;span class=&#34;math inline&#34;&gt;\(n-2\)&lt;/span&gt; degrees of freedom because we have fit two parameters to the &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; data points.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div id=&#34;confidence-intervals-and-hypothesis-tests&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Confidence intervals and hypothesis tests&lt;/h3&gt;
-&lt;p&gt;For known &lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt; we can make tests and confidence
-intervals using
-&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{\ell_{xx}}}\sim N(0,1).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; is given by &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1\pm u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)&lt;/span&gt;. For testing
-&lt;span class=&#34;math display&#34;&gt;\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]&lt;/span&gt;
-we reject &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt; if &lt;span class=&#34;math inline&#34;&gt;\(|\hat\beta_1-\beta_1^*|&amp;gt;u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)&lt;/span&gt; with the most popular hypothesized value being &lt;span class=&#34;math inline&#34;&gt;\(\beta_1^*=0\)&lt;/span&gt; (i.e., the regession function is &lt;strong&gt;significant&lt;/strong&gt; or not at significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;.)&lt;/p&gt;
-&lt;p&gt;In the more realistic setting of unknown &lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;, so long as &lt;span class=&#34;math inline&#34;&gt;\(n \ge 3\)&lt;/span&gt;, using claims (2-4) gives
-&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\beta_1-\beta_1}{\hat{\sigma}/\sqrt{\ell_{xx}}}\sim t(n-2).\]&lt;/span&gt;
-The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_1\pm t_{1-\alpha/2}(n-2)\hat{\sigma}/\sqrt{\ell_{xx}}\)&lt;/span&gt;. For testing
-&lt;span class=&#34;math display&#34;&gt;\[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\]&lt;/span&gt;
-we reject &lt;span class=&#34;math inline&#34;&gt;\(H_0\)&lt;/span&gt; if &lt;span class=&#34;math inline&#34;&gt;\(|\hat\beta_1-\beta_1^*|&amp;gt;t_{1-\alpha/2}(n-2)\hat\sigma/\sqrt{\ell_{xx}}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;For drawing inferences about &lt;span class=&#34;math inline&#34;&gt;\(\beta_0\)&lt;/span&gt;, we can use &lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim N(0,1),\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim t(n-2).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; is
-&lt;span class=&#34;math display&#34;&gt;\[\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-2)}\right].\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;case-study-1&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Case study 1&lt;/h3&gt;
-&lt;p&gt;A manufacturer of air conditioning units is having assembly problems due to
-the failure of a connecting rod (连接杆) to meet finished-weight specifications. Too many
-rods are being completely tooled, then rejected as overweight. To reduce that
-cost, the company’s quality-control department wants to quantify the relationship
-between the weight of the &lt;strong&gt;finished rod&lt;/strong&gt;, &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, and that of the &lt;strong&gt;rough casting&lt;/strong&gt; (毛坯铸件), &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;. Castings likely to produce rods that are too heavy can then be discarded
-before undergoing the final (and costly) tooling process. The data are displayed below.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rod = data.frame(
-        id = seq(1:25),
-        rough_weight = c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 
-                         2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635,
-                         2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 
-                         2.610, 2.590, 2.590, 2.565),
-     finished_weight = c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 
-                         2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 
-                         1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 
-                         1.990, 1.975, 1.995, 1.955)
-)
-knitr::kable(rod,&amp;quot;html&amp;quot;,caption = &amp;quot;rough weight vs. finished weight&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-1&#34;&gt;Table 1: &lt;/span&gt;rough weight vs. finished weight
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-id
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-rough_weight
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-finished_weight
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.745
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.080
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.700
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.045
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.690
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.050
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.680
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.005
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.675
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.035
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.670
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.035
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.665
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.020
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.660
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.005
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.655
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.010
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.655
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.000
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-11
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.650
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.000
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.650
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.005
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.645
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.015
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.635
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.990
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-15
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.630
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.990
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-16
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.625
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.995
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.625
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.985
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-18
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.620
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.970
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.615
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.985
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.615
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.990
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-21
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.615
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.995
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-22
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.610
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.990
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-23
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.590
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.975
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-24
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.590
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.995
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-25
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.565
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.955
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Consider the linear model
-&lt;span class=&#34;math display&#34;&gt;\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The observed data gives &lt;span class=&#34;math inline&#34;&gt;\(\bar x = 2.643\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bar y=2.0048\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\ell_{xx}=0.0367\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\ell_{xy}=0.023565\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma = 0.0113\)&lt;/span&gt;.
-The least square estimates are
-&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_1=\frac{\ell_{xy}}{\ell_{xx}}=\frac{0.023565}{0.0367}=0.642,\ \hat\beta_0=\bar y-\hat\beta_1\bar x=0.308.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The regession function &lt;span class=&#34;math inline&#34;&gt;\(\hat y = 0.308+0.642 x\)&lt;/span&gt;; see the blue line given below.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;attach(rod)
-par(mar=c(4,4,1,0.5))
-plot(rough_weight,finished_weight,type=&amp;quot;p&amp;quot;,pch=16,
-     xlab = &amp;quot;Rough Weight&amp;quot;,ylab = &amp;quot;Finished Weight&amp;quot;)
-lm.rod = lm(finished_weight~rough_weight)
-abline(coef(lm.rod),col=&amp;quot;blue&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(lm.rod) #output the results&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Call:
-## lm(formula = finished_weight ~ rough_weight)
-## 
-## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.023558 -0.008242  0.001074  0.008179  0.024231 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)   0.30773    0.15608   1.972   0.0608 .  
-## rough_weight  0.64210    0.05905  10.874 1.54e-10 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 0.01131 on 23 degrees of freedom
-## Multiple R-squared:  0.8372, Adjusted R-squared:  0.8301 
-## F-statistic: 118.3 on 1 and 23 DF,  p-value: 1.536e-10&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;assessing-the-fit&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Assessing the Fit&lt;/h3&gt;
-&lt;p&gt;As an aid in assessing the quality of the fit, we will make extensive use of the residuals,
-which are the differences between the observed and fitted values:
-&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;It is most useful to examine the residuals graphically. Plots of the residuals versus the
-&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; values may reveal systematic misfit or ways in which the data do not conform to
-the fitted model. Ideally, the residuals should show no relation to the &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; values, and the plot should look like a horizontal blur. The residuals for case study 1 are plotted below.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar=c(4,4,2,1))
-plot(lm.rod$fitted.values,lm.rod$residuals,&amp;quot;p&amp;quot;,
-     xlab=&amp;quot;Fitted values&amp;quot;,ylab = &amp;quot;Residuals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
-Standardized Residuals are graphed below. The key command is &lt;code&gt;rstandard&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar=c(4,4,2,1))
-plot(lm.rod$fitted.values,rstandard(lm.rod),&amp;quot;p&amp;quot;,
-     xlab=&amp;quot;Fitted values&amp;quot;,ylab = &amp;quot;Standardized Residuals&amp;quot;)
-abline(h=c(-2,2),lty=c(5,5))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;drawing-inferences-about-ey&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Drawing Inferences about &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;For given &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, we want to estimate the expected value of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, i.e., &lt;span class=&#34;math inline&#34;&gt;\(E[y]=\beta_0+\beta_1x.\)&lt;/span&gt; A natural unbiased estimate is &lt;span class=&#34;math inline&#34;&gt;\(\hat y = \hat\beta_0+\hat\beta_1x\)&lt;/span&gt;. From the proof of Theorem 3, we have the variance
-&lt;span class=&#34;math display&#34;&gt;\[Var[\hat y] = \left(\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]&lt;/span&gt;
-Under Assumption B, by Theorem 4, we have
-&lt;span class=&#34;math display&#34;&gt;\[\hat y\sim N(\beta_0+\beta_1x,(1/n+(x-\bar x)^2/\ell_{xx})\sigma^2),\]&lt;/span&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat y-E[\hat y]}{\hat{\sigma}\sqrt{1/n+(x-\bar x)/\ell_{xx}}}\sim t(n-2)\]&lt;/span&gt;
-We thus have the following results.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 5&lt;/code&gt;: Suppose Assumption B is satisfied. Then we have
-&lt;span class=&#34;math display&#34;&gt;\[\hat y = \hat\beta_0+\hat\beta_1x \sim N(\beta_0+\beta_1x,[1/n+(x-\bar x)^2/\ell_{xx}]\sigma^2).\]&lt;/span&gt;
-A &lt;span class=&#34;math inline&#34;&gt;\(100(1−\alpha)\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(E[y]=\beta_0+\beta_1x\)&lt;/span&gt; is
-given by
-&lt;span class=&#34;math display&#34;&gt;\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Notice from the formula in Theorem 5 that the width of a confidence
-interval for &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt; increases as the value of &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; becomes more extreme. That
-is, we are better able to predict the location of the regression line for an &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;-value
-close to &lt;span class=&#34;math inline&#34;&gt;\(\bar x\)&lt;/span&gt; than we are for &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;-values that are either very small or very large.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;For case study 1, we plot the lower and upper limits for the &lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = seq(2.5,2.8,by=0.001)
-newdata = data.frame(rough_weight= x)
-pred_x = predict(lm.rod,newdata,interval = &amp;quot;confidence&amp;quot;)
-par(mar=c(4,4,2,1))
-matplot(x,pred_x,type=&amp;quot;l&amp;quot;,lty = c(1,5,5),
-        col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;),lwd=2,
-        xlab=&amp;quot;Rough Weight&amp;quot;,ylab=&amp;quot;Finished Weight&amp;quot;)
-abline(v=mean(rough_weight),lty=5)
-points(rough_weight,finished_weight,pch=16)
-legend(2.5,2.1,c(&amp;quot;Fitted&amp;quot;,&amp;quot;Lower limit&amp;quot;,&amp;quot;Upper limit&amp;quot;),
-       lty = c(1,5,5),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;drawing-inferences-about-future-observations&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Drawing Inferences about Future Observations&lt;/h3&gt;
-&lt;p&gt;We now give a &lt;strong&gt;prediction interval&lt;/strong&gt; for the future observation &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; rather than its expected value &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt;. Note that here &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; is no longer a fixed parameter, which is assumed to be independent of &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;’s. A prediction interval is a range of numbers that
-contains &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; with a specified probability. Consider &lt;span class=&#34;math inline&#34;&gt;\(y-\hat y\)&lt;/span&gt;. If Assumption A1 is satisfied, then
-&lt;span class=&#34;math display&#34;&gt;\[E[y-\hat y] = E[y]-E[\hat y]= 0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;If Assumption A2 is satisfied, then
-&lt;span class=&#34;math display&#34;&gt;\[Var[y-\hat y] = Var[y]+Var[\hat y]=\left(1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}\right)\sigma^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;If Assumption B is satisfied, &lt;span class=&#34;math inline&#34;&gt;\(y-\hat y\)&lt;/span&gt; is then normally distributed.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 6&lt;/code&gt;: Suppose Assumption B is satisfied. Let &lt;span class=&#34;math inline&#34;&gt;\(y=\beta_0+\beta_1x+\epsilon\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\sim N(0,\sigma^2)\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i\)&lt;/span&gt;’s. A &lt;span class=&#34;math inline&#34;&gt;\(100(1−\alpha)\%\)&lt;/span&gt; prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; is
-given by
-&lt;span class=&#34;math display&#34;&gt;\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;For case study 1, we plot the lower and upper limits for the &lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt; prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x = seq(2.5,2.8,by=0.001)
-newdata = data.frame(rough_weight= x)
-pred_x = predict(lm.rod,newdata,interval = &amp;quot;prediction&amp;quot;)
-par(mar=c(4,4,2,1))
-matplot(x,pred_x,type=&amp;quot;l&amp;quot;,lty = c(1,5,5),
-        col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;),lwd=2,
-        xlab=&amp;quot;Rough Weight&amp;quot;,ylab=&amp;quot;Finished Weight&amp;quot;)
-abline(v=mean(rough_weight),lty=5)
-points(rough_weight,finished_weight,pch=16)
-legend(2.5,2.1,c(&amp;quot;Fitted&amp;quot;,&amp;quot;Lower limit&amp;quot;,&amp;quot;Upper limit&amp;quot;),
-       lty = c(1,5,5),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-control-y&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;How to control y?&lt;/h3&gt;
-&lt;p&gt;Consider case study 1 again. Castings likely to produce rods that are too heavy can then be discarded before undergoing the final (and costly) tooling process. The company’s quality-control department wants to produce the rod &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; with weights no large than 2.05 with probablity no less than 0.95. How to choose the rough casting?&lt;/p&gt;
-&lt;p&gt;Now we want &lt;span class=&#34;math inline&#34;&gt;\(y\le y_0=2.05\)&lt;/span&gt; with probability &lt;span class=&#34;math inline&#34;&gt;\(1-\alpha\)&lt;/span&gt;. Similarly to Theorem 6, we can construct one-side confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, that is
-&lt;span class=&#34;math display&#34;&gt;\[\bigg(-\infty,\hat y+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\bigg].\]&lt;/span&gt;
-This implies &lt;span class=&#34;math display&#34;&gt;\[\hat\beta_0+\hat\beta_1x+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\le y_0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;multiple-linear-regression&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Multiple linear regression&lt;/h2&gt;
-&lt;p&gt;With problems more complex than fitting a straight line, it is very useful to approach the linear least squares analysis via linear algebra.
-Consider a model of the form
-&lt;span class=&#34;math display&#34;&gt;\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\dots+\beta_{p-1}x_{i,p-1}+\epsilon_i,\ i=1,\dots,n.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(Y=(y_1,\dots,y_n)^\top\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\beta=(\beta_0,\dots,\beta_{p-1})^\top\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be the &lt;span class=&#34;math inline&#34;&gt;\(n\times p\)&lt;/span&gt; matrix
-&lt;span class=&#34;math display&#34;&gt;\[
-X=
-\left[
-\begin{matrix}
-1 &amp;amp; x_{11} &amp;amp; x_{12} &amp;amp; \cdots &amp;amp; x_{1,p-1}\\
-1 &amp;amp; x_{21} &amp;amp; x_{22} &amp;amp; \cdots &amp;amp; x_{2,p-1}\\
-\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \\
-1 &amp;amp; x_{n1} &amp;amp; x_{n2} &amp;amp; \cdots &amp;amp; x_{n,p-1}\\
-\end{matrix}
-\right].
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The model can be rewritten as &lt;span class=&#34;math display&#34;&gt;\[Y=X\beta+\epsilon,\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;the matrix &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is called the &lt;strong&gt;design matrix&lt;/strong&gt;,&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;assume that &lt;span class=&#34;math inline&#34;&gt;\(p&amp;lt;n\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The
-least squares problem can then be phrased as follows: Find &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt; to minimize&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q(\beta)=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_{i1}-\dots-\beta_{p-1}x_{i,p-1})^2:=||Y-X\beta||^2,\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(||\cdot||\)&lt;/span&gt; is the Euclidean norm.&lt;/p&gt;
-&lt;p&gt;Note that &lt;span class=&#34;math display&#34;&gt;\[Q=(Y-X\beta)^\top(Y-X\beta) = Y^\top Y-2Y^\top X\beta+\beta^\top X^\top X\beta.\]&lt;/span&gt;
-If we differentiate &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; with respect to each &lt;span class=&#34;math inline&#34;&gt;\(\beta_i\)&lt;/span&gt; and set the derivatives equal to zero, we see that the minimizers &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta_0,\dots,\hat\beta_{p-1}\)&lt;/span&gt; satisfy&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial Q}{\partial \beta_i}=-2(Y^\top X)_i+2(X^{\top}X)_{i\cdot}\hat\beta=0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We thus arrive at the so-called &lt;strong&gt;normal equations&lt;/strong&gt;: &lt;span class=&#34;math display&#34;&gt;\[X^\top X\hat\beta = X^\top Y.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;If the design matrix &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is &lt;strong&gt;nonsingular&lt;/strong&gt;, the formal solution is
-&lt;span class=&#34;math display&#34;&gt;\[\hat\beta = (X^\top X)^{-1}X^\top Y.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The following lemma gives a criterion for the existence and uniqueness of solutions
-of the normal equations.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Lemma 1&lt;/code&gt;: The matrix &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is nonsingular if and only if &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: First suppose that &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is singular. There exists a nonzero vector &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; such that
-&lt;span class=&#34;math inline&#34;&gt;\(X^\top Xu = 0\)&lt;/span&gt;. Multiplying the left-hand side of this equation by &lt;span class=&#34;math inline&#34;&gt;\(u^\top\)&lt;/span&gt;, we have &lt;span class=&#34;math inline&#34;&gt;\(0=u^\top X^\top Xu=(Xu)^\top (Xu)\)&lt;/span&gt;
-So &lt;span class=&#34;math inline&#34;&gt;\(Xu=0\)&lt;/span&gt;, the columns of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; are linearly dependent, and the rank of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is less
-than &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Next, suppose that the rank of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is less than &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; so that there exists a nonzero
-vector &lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt; such that &lt;span class=&#34;math inline&#34;&gt;\(Xu = 0\)&lt;/span&gt;. Then &lt;span class=&#34;math inline&#34;&gt;\(X^\top Xu = 0\)&lt;/span&gt;, and hence &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; is singular.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In what follows, we assume that &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div id=&#34;expected-values-and-variances&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Expected values and variances&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Assumption A&lt;/code&gt;: Assume that &lt;span class=&#34;math inline&#34;&gt;\(E[\epsilon]=0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var[\epsilon]=\sigma^2I_n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 7&lt;/code&gt;: Suppose that Assumption A is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;, we have&lt;/p&gt;
-&lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(E[\hat\beta]=\beta,\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-E[\hat\beta]&amp;amp;= E[(X^\top X)^{-1}X^{\top}Y] \\
-&amp;amp;= (X^\top X)^{-1}X^{\top}E[Y]\\
-&amp;amp;=(X^\top X)^{-1}X^{\top}(X\beta)=\beta.
-\end{align}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-Var[\hat\beta] &amp;amp;= Var[(X^\top X)^{-1}X^{\top}Y]\\
-&amp;amp;=(X^\top X)^{-1}X^{\top}Var(Y)X(X^\top X)^{-1}\\
-&amp;amp;=\sigma^2(X^\top X)^{-1}.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We used the fact that &lt;span class=&#34;math inline&#34;&gt;\(Var(AY) = AVar(Y)A^\top\)&lt;/span&gt; for any fixed matrix &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(X^\top X\)&lt;/span&gt; and therefore &lt;span class=&#34;math inline&#34;&gt;\((X^\top X)^{-1}\)&lt;/span&gt; are symmetric.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;estimation-of-sigma2-1&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Estimation of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Definition&lt;/code&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The fitted values&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\hat Y = X\hat\beta\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The vector of residuals&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon = Y-\hat Y\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The sum of squared errors (SSE)&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(S_e^2=Q(\hat\beta)=||Y-\hat Y||^2=||\hat\epsilon||^2\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note that&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat Y = X\hat\beta=X(X^\top X)^{-1}X^\top Y=:PY\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The projection matrix&lt;/strong&gt;: &lt;span class=&#34;math inline&#34;&gt;\(P = X(X^\top X)^{-1}X^\top\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The vector of residuals is then &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon=(I_n-P)Y\)&lt;/span&gt;. Two useful properties of &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; are given in the following lemma.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Lemma 2&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; be defined as before. Then
-&lt;span class=&#34;math display&#34;&gt;\[P = P^\top=P^2\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[I_n-P = (I_n-P)^\top=(I_n-P)^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Note&lt;/code&gt;: We may think
-geometrically of the fitted values, &lt;span class=&#34;math inline&#34;&gt;\(\hat Y=X\hat\beta=PY\)&lt;/span&gt;, as being the projection of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; onto the subspace
-spanned by the columns of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The sum of squared residuals is then
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Definition&lt;/code&gt;: Let &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; be an &lt;span class=&#34;math inline&#34;&gt;\(n\times n\)&lt;/span&gt; matrix. The trace of the matrix &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; is defined as &lt;span class=&#34;math inline&#34;&gt;\(tr(A) = \sum_{i=1}^n a_{ii}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(a_{ii}\)&lt;/span&gt; are the elements on the main diagonal.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Lemma 3&lt;/code&gt;: If &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(m \times n\)&lt;/span&gt; matrix and &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n \times m\)&lt;/span&gt; matrix, then &lt;span class=&#34;math display&#34;&gt;\[tr(AB)=tr(BA).\]&lt;/span&gt; This is the cyclic property of the trace.&lt;/p&gt;
-&lt;p&gt;Using Lemma 3, we have&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-E[S_e^2]&amp;amp;= E[Y^\top(I_n-P)Y]=E[tr(Y^\top(I_n-P)Y)] \\&amp;amp;= E[tr((I_n-P)YY^\top)]=tr((I_n-P)E[YY^\top])\\
-&amp;amp;=tr((I_n-P)(Var[Y]+E[Y]E[Y^\top]))\\
-&amp;amp;=tr((I_n-P)(\sigma^2 I_n))+tr((I_n-P)X\beta\beta^\top X^\top)\\
-&amp;amp;=\sigma^2(n-tr(P))
-\end{align}
-\]&lt;/span&gt;
-where we used &lt;span class=&#34;math inline&#34;&gt;\((I_n-P)X=X-X(X^\top X)^{-1}X^\top X=0\)&lt;/span&gt;. Using the cyclic property of the trace again gives&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-tr(P)&amp;amp;= tr(X(X^\top X)^{-1}X^\top)\\
-&amp;amp;=tr(X^\top X(X^\top X)^{-1})=tr(I_p)=p.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We therefore have &lt;span class=&#34;math inline&#34;&gt;\(E[S_e^2]=(n-p)\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 8&lt;/code&gt;: Suppose that Assumption A is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;,
-&lt;span class=&#34;math display&#34;&gt;\[\hat\sigma^2 = \frac{S_e^2}{n-p}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;is an unbiased estimate of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;normal-distribution&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Normal distribution&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Assumption B&lt;/code&gt;: Assume that &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\sim N(0,\sigma^2I_n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 9&lt;/code&gt;: Suppose that Assumption B is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;, we have&lt;/p&gt;
-&lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta \sim N(\beta, \sigma^2(X^\top X)^{-1})\)&lt;/span&gt;,&lt;/p&gt;
-&lt;p&gt;(2). &lt;span class=&#34;math inline&#34;&gt;\(\frac{(n-p)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-p)\)&lt;/span&gt;,&lt;/p&gt;
-&lt;p&gt;(3). &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\hat Y\)&lt;/span&gt;,&lt;/p&gt;
-&lt;p&gt;(4). &lt;span class=&#34;math inline&#34;&gt;\(S_e^2\)&lt;/span&gt; (or equivalently &lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2\)&lt;/span&gt;) is independent of &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: If Assumption B is satisfied, then &lt;span class=&#34;math inline&#34;&gt;\(Y = X\beta+\epsilon\sim N(X\beta,\sigma^2_n)\)&lt;/span&gt;. Recall that &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta = (X^\top X)^{-1}X^\top Y\)&lt;/span&gt; is normally distributed. The mean and covariance are given in Theorem 7 since Assumption A is satisfied.&lt;/p&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\xi_1,\dots,\xi_p\)&lt;/span&gt; be the orthonormal basis (标准正交基) of the subspace &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(\mathbb{R}^n\)&lt;/span&gt; generated by the &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; columns of the matrix &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\xi_{p+1},\dots,\xi_n\)&lt;/span&gt; be the orthonormal basis of the orthogonal complement &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{span}(X)^\perp\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(\hat Y = X\hat\beta\in \mathrm{span}(X)\)&lt;/span&gt;, there exists &lt;span class=&#34;math inline&#34;&gt;\(z_1,\dots,z_p\)&lt;/span&gt; such that
-&lt;span class=&#34;math display&#34;&gt;\[\hat Y = \sum_{i=1}^p z_i\xi_i.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;On the other hand, by Lemma 2, we have
-&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon^\top X  = Y^\top(I_n-P)^\top X= Y^\top (X-P X) = 0.\]&lt;/span&gt;
-As a result, &lt;span class=&#34;math inline&#34;&gt;\(\hat \epsilon\in \mathrm{span}(X)^\perp\)&lt;/span&gt;. So there exsits &lt;span class=&#34;math inline&#34;&gt;\(z_{p+1},\dots,z_n\)&lt;/span&gt; such that
-&lt;span class=&#34;math display&#34;&gt;\[\hat \epsilon = \sum_{i=p+1}^n z_i\xi_i.\]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(U = (\xi_1,\dots,\xi_n)\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; is an orthogonal matrix, and let &lt;span class=&#34;math inline&#34;&gt;\(z=(z_1,\dots,z_n)^\top\)&lt;/span&gt;. We thus have
-&lt;span class=&#34;math display&#34;&gt;\[Y = \hat Y+\hat\epsilon =\sum_{i=1}^nz_i\xi_i=Uz.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Therefore, &lt;span class=&#34;math display&#34;&gt;\[z=U^{-1}Y=U^\top Y\sim N(U^\top X\beta,U^\top(\sigma^2 I_n)U)=N(U^\top X\beta,\sigma^2 I_n).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This implies that &lt;span class=&#34;math inline&#34;&gt;\(z_i\)&lt;/span&gt; are independently normally distributed. So &lt;span class=&#34;math inline&#34;&gt;\(\hat Y\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon\)&lt;/span&gt; are independent. We next prove that &lt;span class=&#34;math inline&#34;&gt;\(E[z_i]=0\)&lt;/span&gt; for all &lt;span class=&#34;math inline&#34;&gt;\(i&amp;gt;p\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(A=(\xi_{p+1},\dots,\xi_{n})\)&lt;/span&gt;, then&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[A(z_{p+1},\dots,z_{n})^\top = \hat\epsilon=(I_n-P)Y.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This gives
-&lt;span class=&#34;math display&#34;&gt;\[E[(z_{p+1},\dots,z_{n})^\top] = E[A^\top (I_n-P)Y]=A^\top (I_n-P)E[Y]=A^\top (I_n-P)X\beta=0.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Consequently, &lt;span class=&#34;math inline&#34;&gt;\(z_i\stackrel{iid}{\sim} N(0,\sigma^2),i=p+1,\dots,n\)&lt;/span&gt;, implying &lt;span class=&#34;math display&#34;&gt;\[S_e^2/\sigma^2 = \hat\epsilon^\top\hat\epsilon/\sigma^2 = \sum_{i=p+1}^n (z_i/\sigma)^2\sim \chi^2(n-p).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Note that &lt;span class=&#34;math inline&#34;&gt;\(S_e^2\)&lt;/span&gt; is a function of &lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\hat \beta = (X^\top X)^{-1}X^\top Y =(X^\top X)^{-1} X^\top \hat Y\)&lt;/span&gt; are linear conbinations of &lt;span class=&#34;math inline&#34;&gt;\(\hat y_i\)&lt;/span&gt;. So &lt;span class=&#34;math inline&#34;&gt;\(S_e^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta\)&lt;/span&gt; are independent.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;confidence-intervals-and-hypothesis-tests-1&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Confidence intervals and hypothesis tests&lt;/h3&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(C=(X^\top X)^{-1}\)&lt;/span&gt; with entries &lt;span class=&#34;math inline&#34;&gt;\(c_{ij}\)&lt;/span&gt;. Suppose that Assumption B is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; is known, for each &lt;span class=&#34;math inline&#34;&gt;\(\beta_i\)&lt;/span&gt;, the &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; CI is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_i \pm u_{1-\alpha/2}\sigma\sqrt{c_{ii}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; is unknown, for each &lt;span class=&#34;math inline&#34;&gt;\(\beta_i\)&lt;/span&gt;, the &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; CI is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta_i \pm t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}.\]&lt;/span&gt;
-For testing hypothesis &lt;span class=&#34;math inline&#34;&gt;\(H_0:\beta_i= 0\ vs.\ H_1:\beta_i\neq 0\)&lt;/span&gt;, the rejection region is
-&lt;span class=&#34;math display&#34;&gt;\[W = \{|\beta_i|&amp;gt;t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}\}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; CI for &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; is &lt;span class=&#34;math display&#34;&gt;\[\left[\frac{(n-p)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{(n-p)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]=\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-p)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-p)}\right].\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;significance-tests&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Significance tests&lt;/h3&gt;
-&lt;p&gt;Consider the hypothesis test:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\beta_1=\dots=\beta_{p-1}=0\ vs.\ H_1: \beta_{i^*}\neq 0\text{ for some }i^*\ge 1.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Definition&lt;/code&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The total sum of squares (SST)&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_T^2 = \sum_{i=1}^n(y_i-\bar Y)^2\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The sum of squares due to regression (SSR)&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_R^2  = \sum_{i=1}^n(\hat y_i-\bar Y)^2\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;The sum of squared errors (SSE)&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_e^2 = \sum_{i=1}^n(y_i-\hat y_i)^2\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The relationship is
-&lt;span class=&#34;math display&#34;&gt;\[S_T^2=S_R^2+S_e^2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;It is easy to see that&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-S_T^2&amp;amp;=\sum_{i=1}^n (y_i-\bar Y)^2 = \sum_{i=1}^n (y_i-\hat y_i+\hat y_i-\bar Y)^2\\
-&amp;amp;=\sum_{i=1}^n [(y_i-\hat y_i)^2+(\hat y_i-\bar Y)^2+2(y_i-\hat y_i)(\hat y_i-\bar Y)]\\
-&amp;amp;=S_R^2+S_e^2 +2\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y)
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Using Lemma 2, we have
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{align}
-\sum_{i=1}^n (y_i-\hat y_i)(\hat y_i-\bar Y) &amp;amp;= \hat\epsilon^\top\hat Y-\bar Y\sum_{i=1}^n \hat\epsilon_i\\
-&amp;amp;= [(I_n-P)Y]^\top PY-\bar Y(1,1,\dots,1) (I_n-P)Y\\
-&amp;amp;=Y^\top (I_n-P)PY - \bar Y[(1,1,\dots,1)-(1,1,\dots,1)P]Y\\
-&amp;amp;= 0.
-\end{align}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This is because &lt;span class=&#34;math inline&#34;&gt;\(PX = X\)&lt;/span&gt; and the first column of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\((1,1,\dots,1)^\top\)&lt;/span&gt;. This implies that &lt;span class=&#34;math inline&#34;&gt;\(P(1,1,\dots,1)^\top = (1,1,\dots,1)^\top\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Theorem 10&lt;/code&gt;: Suppose that Assumption B is satisfied and &lt;span class=&#34;math inline&#34;&gt;\(\mathrm{rank}(X)=p&amp;lt;n\)&lt;/span&gt;, we have&lt;/p&gt;
-&lt;p&gt;(1). &lt;span class=&#34;math inline&#34;&gt;\(S_R^2,S_e^2,\bar Y\)&lt;/span&gt; are independent, and&lt;/p&gt;
-&lt;p&gt;(2). if the null &lt;span class=&#34;math inline&#34;&gt;\(H_0:\beta_1=\dots=\beta_{p-1}=0\)&lt;/span&gt; is true, &lt;span class=&#34;math inline&#34;&gt;\(S_R^2/\sigma^2\sim\chi^2(p-1)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Proof&lt;/code&gt;: Using the same notations in Theorem 9. Since &lt;span class=&#34;math inline&#34;&gt;\((1,\dots,1)^\top\in \mathrm{span}(X)\)&lt;/span&gt;, we set &lt;span class=&#34;math inline&#34;&gt;\(\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top\)&lt;/span&gt;. Recall that
-&lt;span class=&#34;math display&#34;&gt;\[Y = \sum_{i=1}^n z_i\xi_i = Uz.\]&lt;/span&gt;
-The average &lt;span class=&#34;math inline&#34;&gt;\(\bar Y = (1/n,\dots,1/n)Y = (1/n,\dots,1/n)Uz=z_1/\sqrt{n},\)&lt;/span&gt; where we used the fact that &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; is orthogonal matrix and the first colum of &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(\xi_1 = (1/\sqrt{n},1/\sqrt{n},\dots,1/\sqrt{n})^\top\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Recall that &lt;span class=&#34;math inline&#34;&gt;\(\hat Y = \sum_{i=1}^p z_i\xi_i = (z_1/\sqrt{n},z_1/\sqrt{n},\dots,z_1/\sqrt{n})^\top+\sum_{i=2}^p z_i\xi_i\)&lt;/span&gt;.
-This implies that
-&lt;span class=&#34;math display&#34;&gt;\[(\hat y_1-\bar Y,\dots,\hat y_n-\bar Y)^\top = \sum_{i=2}^p z_i\xi_i.\]&lt;/span&gt;
-As a result, &lt;span class=&#34;math inline&#34;&gt;\(S_R^2 = \sum_{i=2}^p z_i^2\)&lt;/span&gt;. Recall that &lt;span class=&#34;math inline&#34;&gt;\(S_e^2=\sum_{i=p+1}^n z_i^2\)&lt;/span&gt;. Since &lt;span class=&#34;math inline&#34;&gt;\(z_i\)&lt;/span&gt; are independent, &lt;span class=&#34;math inline&#34;&gt;\(S_R^2,S_e^2,\bar Y\)&lt;/span&gt; are independent.&lt;/p&gt;
-&lt;p&gt;If &lt;span class=&#34;math inline&#34;&gt;\(\beta_1=\dots=\beta_{p-1}=0\)&lt;/span&gt;, we have&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[z] = U^\top X\beta = U^\top (\beta_0,\dots,\beta_0)^\top.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[E[z^\top]=\beta_0(1,1,\dots,1) U = \beta_0(\sqrt{n},0,\dots,0).\]&lt;/span&gt;
-We therefore have &lt;span class=&#34;math inline&#34;&gt;\(z_i\sim N(0,\sigma^2)\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i=2,\dots,n\)&lt;/span&gt;. So &lt;span class=&#34;math display&#34;&gt;\[S_R^2/\sigma^2 = \sum_{i=2}^p (z_i/\sigma)^2\sim \chi^2(p-1).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;We now use generalized likelihood ratio (GLR) test. The likelihood function for &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; is given by&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[L(\beta,\sigma^2) = (2\pi \sigma^2)^{-n/2} e^{-\frac{||Y-X\beta||^2}{2\sigma^2}}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The maximizers for &lt;span class=&#34;math inline&#34;&gt;\(L(\beta,\sigma^2)\)&lt;/span&gt; over the parameter space &lt;span class=&#34;math inline&#34;&gt;\(\Theta=\{(\beta,\sigma^2)|\beta\in \mathbb{R}^p,\sigma^2&amp;gt;0\}\)&lt;/span&gt; are&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta = (X^\top X)^{-1}X^\top Y,\ \hat\sigma^2 = \frac{||Y-X\hat \beta||}{n}=\frac{S_e^2}{n}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The maximizers for &lt;span class=&#34;math inline&#34;&gt;\(L(\beta,\sigma^2)\)&lt;/span&gt; over the sub-space &lt;span class=&#34;math inline&#34;&gt;\(\Theta_0=\{(\beta,\sigma^2)|\beta_i=0,i\ge 1,\sigma^2&amp;gt;0\}\)&lt;/span&gt; are&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat\beta^* = (\bar Y,0,\dots,0)^\top,\ \hat\sigma^{*2} = \frac{||Y-X\hat \beta^*||}{n}=\frac{S_T^2}{n}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The likelihood ratio is then given by&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\lambda = \frac{\sup_{\theta\in\Theta}L(\beta,\sigma^2)}{\sup_{\theta\in\Theta_0}L(\beta,\sigma^2)} = \frac{L(\hat\beta,\hat\sigma^2)}{L(\hat\beta^*,\hat\sigma^{*2})}= \left(\frac{S_T^2}{S_e^2}\right)^{n/2}= \left(1+\frac{S_R^2}{S_e^2}\right)^{n/2}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;By Theorems 9 and 10, if the null is true we have
-&lt;span class=&#34;math display&#34;&gt;\[F=\frac{S_R^2/(p-1)}{S_e^2/(n-p)}\sim F(p-1,n-p).\]&lt;/span&gt;
-We take &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; as the test statistic. The rejection region is &lt;span class=&#34;math inline&#34;&gt;\(W=\{F&amp;gt;C\}\)&lt;/span&gt;, where the critical value &lt;span class=&#34;math inline&#34;&gt;\(C = F_{1-\alpha}(p-1,n-p)\)&lt;/span&gt; so that &lt;span class=&#34;math inline&#34;&gt;\(\sup_{\theta\in\Theta_0}P_\theta(F&amp;gt;C)=\alpha\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Definition&lt;/code&gt;: The &lt;strong&gt;coefficient of determination&lt;/strong&gt; is sometimes used as a crude measure of the strength of a relationship that has been
-fit by least squares. This coefficient is defined as&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[R^2 =\frac{S_R^2}{S_T^2}=\frac{\sum_{i=1}^n(\hat y_i-\bar y)^2}{\sum_{i=1}^n(y_i-\bar y)^2}.\]&lt;/span&gt;
-It can be interpreted as the proportion of the variability of the dependent variable that
-can be explained by the independent variables.&lt;/p&gt;
-&lt;p&gt;It is easy to see that&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[F = \frac{S_T^2 R^2/(p-1)}{S_T^2(1-R^2)/(n-p)}=\frac{ R^2/(p-1)}{(1-R^2)/(n-p)}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;For the simple linear model &lt;span class=&#34;math inline&#34;&gt;\(p=2\)&lt;/span&gt;, we have&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.\]&lt;/span&gt;
-This gives
-&lt;span class=&#34;math display&#34;&gt;\[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\]&lt;/span&gt;
-where &lt;span class=&#34;math inline&#34;&gt;\(\rho = \ell_{xy}/\sqrt{\ell_{xx}\ell_{yy}}\)&lt;/span&gt; is the &lt;strong&gt;correlation coefficient&lt;/strong&gt; between &lt;span class=&#34;math inline&#34;&gt;\(x_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;confidence-interval-for-ey_n1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Confidence interval for &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]\)&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;Consider&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_{n+1} = \beta_0+\beta_1x_{n+1,1}+\dots+\beta_{p-1}x_{n+1,p-1}+\epsilon_{n+1}.\]&lt;/span&gt;
-Under Assumption B, &lt;span class=&#34;math inline&#34;&gt;\(y_{n+1}=v^\top \beta+\epsilon_{n+1}\sim N(v^\top \beta,\sigma^2)\)&lt;/span&gt; , where &lt;span class=&#34;math inline&#34;&gt;\(v = (1,x_{n+1,1},x_{n+1,2},\dots,x_{n+1,p-1})^\top\)&lt;/span&gt;. An unbiased estimate of the expected value of &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]=v^\top \beta\)&lt;/span&gt; is the fitted value&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1} = v^\top \hat\beta \sim N(v^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).\]&lt;/span&gt;
-By Theorem 9, we have&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat y_{n+1}-v^\top \beta}{\hat\sigma\sqrt{v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; CI for &lt;span class=&#34;math inline&#34;&gt;\(E[y_{n+1}]\)&lt;/span&gt; is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;prediction-interval-for-y_n1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y_{n+1}\)&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;Similarly,&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{y_{n+1}-\hat y_{n+1}}{\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(100(1-\alpha)\%\)&lt;/span&gt; prediction interval for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;case-study-2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Case study 2&lt;/h2&gt;
-&lt;p&gt;It is found that the systolic pressure is linked to the weight and the age. We now have the following data.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blood=data.frame(
-weight=c(76.0,91.5,85.5,82.5,79.0,80.5,74.5,79.0,85.0,76.5,82.0,95.0,92.5),
-age=c(50,20,20,30,30,50,60,50,40,55,40,40,20),
-pressure=c(120,141,124,126,117,125,123,125,132,123,132,155,147))
-knitr::kable(blood,format=&amp;quot;html&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-weight
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-age
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-pressure
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-76.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-50
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-120
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-91.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-141
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-85.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-124
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-82.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-30
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-126
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-79.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-30
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-117
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-80.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-50
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-125
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-74.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-60
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-123
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-79.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-50
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-125
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-85.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-40
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-132
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-76.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-55
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-123
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-82.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-40
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-132
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-95.0
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-40
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-155
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-92.5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-147
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(blood)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm.blood=lm(pressure~weight+age,data=blood)
-summary(lm.blood)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Call:
-## lm(formula = pressure ~ weight + age, data = blood)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.0404 -1.0183  0.4640  0.6908  4.3274 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept) -62.96336   16.99976  -3.704 0.004083 ** 
-## weight        2.13656    0.17534  12.185 2.53e-07 ***
-## age           0.40022    0.08321   4.810 0.000713 ***
-## ---
-## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-## 
-## Residual standard error: 2.854 on 10 degrees of freedom
-## Multiple R-squared:  0.9461, Adjusted R-squared:  0.9354 
-## F-statistic: 87.84 on 2 and 10 DF,  p-value: 4.531e-07&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The regression function is&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat y = -62.96336 + 2.13656 x_1+ 0.40022 x_2.\]&lt;/span&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n = length(blood$weight)
-X = cbind(intercept=rep(1,n),weight=blood$weight,age=blood$age)
-C = solve(t(X)%*%X)
-SSE = sum(lm.blood$residuals^2) # sum of squared errors
-# SST = var(blood$pressure)*(n-1)
-# SSR = SST-SSE
-# Fstat = SSR/(3-1)/(SSE/(n-3))
-cov = SSE/(n-3)*C
-knitr::kable(cov,format=&amp;quot;html&amp;quot;,caption = &amp;quot;Estimated Covariance Matrix&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-9&#34;&gt;Table 2: &lt;/span&gt;Estimated Covariance Matrix
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-intercept
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-weight
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-age
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-intercept
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-288.991861
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--2.9499280
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--1.1174334
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-weight
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--2.949928
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0307450
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0102176
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-age
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--1.117433
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0102176
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0069243
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Similarly to the simple linear model, we can construct the confidence intervals and prediction intervals for &lt;span class=&#34;math inline&#34;&gt;\(E[y]\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;, respectively.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;newdata = data.frame(
-        age = rep(31,100),
-        weight = seq(70,100,length.out = 100)
-)
-CI = predict(lm.blood,newdata,interval = &amp;quot;confidence&amp;quot;)
-Pred = predict(lm.blood,newdata,interval = &amp;quot;prediction&amp;quot;)
-par(mar=c(4,4,2,1))
-matplot(newdata$weight,cbind(CI,Pred[,-1]),type=&amp;quot;l&amp;quot;,lty = c(1,5,5,2,2),
-        col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;brown&amp;quot;,&amp;quot;brown&amp;quot;),lwd=2,
-        xlab=&amp;quot;Weight&amp;quot;,ylab=&amp;quot;Pressure&amp;quot;,main = &amp;quot;Age = 31&amp;quot;)
-legend(70,160,c(&amp;quot;Fitted&amp;quot;,&amp;quot;Confidence&amp;quot;,&amp;quot;Prediction&amp;quot;),
-       lty = c(1,5,2),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;brown&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;newdata = data.frame(
-        weight = rep(85,41),
-        age = seq(20,60)
-)
-CI = predict(lm.blood,newdata,interval = &amp;quot;confidence&amp;quot;)
-Pred = predict(lm.blood,newdata,interval = &amp;quot;prediction&amp;quot;)
-par(mar=c(4,4,2,1))
-matplot(newdata$age,cbind(CI,Pred[,-1]),type=&amp;quot;l&amp;quot;,lty = c(1,5,5,2,2),
-        col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;brown&amp;quot;,&amp;quot;brown&amp;quot;),lwd=2,
-        xlab=&amp;quot;Age&amp;quot;,ylab=&amp;quot;Pressure&amp;quot;,main = &amp;quot;Weight = 85&amp;quot;)
-legend(20,150,c(&amp;quot;Fitted&amp;quot;,&amp;quot;Confidence&amp;quot;,&amp;quot;Prediction&amp;quot;),
-       lty = c(1,5,2),col=c(&amp;quot;blue&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;brown&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;extension-to-general-models&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Extension to general models&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Inherently Linear models&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
-f(y) &amp;amp;= \beta_0+\beta_1 g_1(x_1,\dots,x_{p-1})+\dots\\&amp;amp;+\beta_{k-1} g_{k-1}(x_1,\dots,x_{p-1})+\epsilon
-\end{align}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(y^*=f(y),\ x_i^*=g_i(x_1,\dots,x_{p-1})\)&lt;/span&gt;. The transformed model is linear&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y^*=\beta_0+\beta_1 x_1^*+\dots+\beta_{k-1} x_{k-1}^{*}+\epsilon.\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;examples&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Examples&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Polynomial models: &lt;span class=&#34;math display&#34;&gt;\[y = \beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Interaction models: &lt;span class=&#34;math display&#34;&gt;\[y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Multiplicative models: &lt;span class=&#34;math display&#34;&gt;\[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma_3}\epsilon^*\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Exponential models: &lt;span class=&#34;math display&#34;&gt;\[y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;examples-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Examples&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Reciprocal models: &lt;span class=&#34;math display&#34;&gt;\[y=\frac{1}{\beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon}\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Semilog models: &lt;span class=&#34;math display&#34;&gt;\[y = \beta_0+\beta_1\log(x)+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Logit models: &lt;span class=&#34;math display&#34;&gt;\[\log\left(\frac{y}{1-y}\right) = \beta_0+\beta_1 x+\epsilon\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Probit models: &lt;span class=&#34;math inline&#34;&gt;\(\Phi^{-1}(y) = \beta_0+\beta_1 x+\epsilon\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\Phi\)&lt;/span&gt; is the CDF of &lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;回归诊断&lt;/h2&gt;
-&lt;p&gt;回归分析都是基于误差项的假定进行的，最常见的假设&lt;span class=&#34;math display&#34;&gt;\[\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如何考察数据基本上满足这些假设？自然从残差的角度来解决问题，这种方法叫&lt;strong&gt;残差分析&lt;/strong&gt;。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;研究那些数据对统计推断（估计、检验、预测和控制）有较大影响的点，这样的点叫做&lt;strong&gt;影响点&lt;/strong&gt;。剔除那些有较强影响的异常/离群(outlier)数据，这就是所谓的影响分析(influence analysis).&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;残差的定义为
-&lt;span class=&#34;math display&#34;&gt;\[\hat\epsilon = Y-\hat Y\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差的性质&lt;/h2&gt;
-&lt;p&gt;在假设&lt;span class=&#34;math inline&#34;&gt;\(\epsilon\sim N(0,\sigma^2I_n)\)&lt;/span&gt;下，&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon \sim N(0,\sigma^2(I_n-P))\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(Cov(\hat Y,\hat\epsilon) = 0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1^\top\hat\epsilon = 0\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从中可以看出，&lt;span class=&#34;math inline&#34;&gt;\(Var[\hat\epsilon_i] = \sigma^2(1-p_{ii})\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(p_{ij}\)&lt;/span&gt;为投影矩阵的元素。该方差与&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;以及&lt;span class=&#34;math inline&#34;&gt;\(p_{ii}\)&lt;/span&gt;有关，因此直接比较残差&lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon_i\)&lt;/span&gt;是不恰当的。&lt;/p&gt;
-&lt;p&gt;为此，将残差标准化：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\hat\epsilon_i-E[\hat\epsilon_i]}{\sqrt{Var[\hat\epsilon_i}]}= \frac{\hat\epsilon_i}{\sigma\sqrt{1-p_{ii}}},\ i=1,\dots,n\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;学生化残差&lt;/h2&gt;
-&lt;p&gt;由于&lt;span class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;是未知的，所以用&lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma\)&lt;/span&gt;来代替，其中&lt;span class=&#34;math inline&#34;&gt;\(\hat\sigma^2 = S_e^2/(n-p)\)&lt;/span&gt;. 于是得到学生化(studentized residuals)&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[t_i = \frac{\hat\epsilon_i}{\hat{\sigma}\sqrt{1-p_{ii}}}\]&lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(t_i\)&lt;/span&gt;虽然是&lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon_i\)&lt;/span&gt;的学生化，但它的分布并不服从&lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;分布，它的分布通常比较复杂&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(t_1,\dots,t_n\)&lt;/span&gt;通常是不独立的&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在实际应用中，可以近似认为：&lt;span class=&#34;math inline&#34;&gt;\(t_1,\dots,t_n\)&lt;/span&gt;是相互独立，服从&lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;分布&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在实际应用中使用的残差图就是根据上述假定来对模型合理性进行诊断的。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图&lt;/h2&gt;
-&lt;p&gt;残差图：以残差为纵坐标，其他的量（一般为拟合值&lt;span class=&#34;math inline&#34;&gt;\(\hat y_i\)&lt;/span&gt;）为横坐标的散点图。&lt;/p&gt;
-&lt;p&gt;由于可以近似认为：&lt;span class=&#34;math inline&#34;&gt;\(t_1,\dots,t_n\)&lt;/span&gt;是相互独立，服从&lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;分布，所以可以把它们看作来自&lt;span class=&#34;math inline&#34;&gt;\(N(0,1)\)&lt;/span&gt;的iid样本&lt;/p&gt;
-&lt;p&gt;根据标准正态的性质，大概有&lt;span class=&#34;math inline&#34;&gt;\(95\%\)&lt;/span&gt;的&lt;span class=&#34;math inline&#34;&gt;\(t_i\)&lt;/span&gt;落入区间&lt;span class=&#34;math inline&#34;&gt;\([-2,2]\)&lt;/span&gt;中。由于&lt;span class=&#34;math inline&#34;&gt;\(\hat Y\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(\hat\epsilon\)&lt;/span&gt;不相关，所以&lt;span class=&#34;math inline&#34;&gt;\(\hat y_i\)&lt;/span&gt;与学生化残差&lt;span class=&#34;math inline&#34;&gt;\(t_i\)&lt;/span&gt;的相关性也很小。&lt;/p&gt;
-&lt;p&gt;这样在残差图中，点&lt;span class=&#34;math inline&#34;&gt;\((\hat y_i,t_i),i=1,\dots,n\)&lt;/span&gt;大致应该落在宽度为4的水平带&lt;span class=&#34;math inline&#34;&gt;\(|t_i|\le 2\)&lt;/span&gt;的区域内，且&lt;strong&gt;不呈现任何趋势&lt;/strong&gt;。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（1）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-12&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error1.png&#34; alt=&#34;正常的残差图&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: 正常的残差图
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（2）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-13&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error2.png&#34; alt=&#34;误差随着横坐标的增加而增加&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 2: 误差随着横坐标的增加而增加
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;3&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（3）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-14&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error3.png&#34; alt=&#34;误差随着横坐标的增加而减少&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 3: 误差随着横坐标的增加而减少
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;4&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（4）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-15&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error4.png&#34; alt=&#34;误差中间大，两端小&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 4: 误差中间大，两端小
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;5&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（5）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-16&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error5.png&#34; alt=&#34;回归函数可能非线性，或者误差相关或者漏掉重要的自变量&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5: 回归函数可能非线性，或者误差相关或者漏掉重要的自变量
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;6&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图（6）&lt;/h2&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-17&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;error6.png&#34; alt=&#34;回归函数可能非线性&#34; width=&#34;90%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 6: 回归函数可能非线性
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图诊断的思路&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;如果残差图中显示误差方差不相等(heterogeneity, 方差非齐性)，可以对变量做适当的变换，使得变换后的相应变量具有近似相等的方差(homogeneity, 方差齐性)。最著名的方法是&lt;strong&gt;Box-Cox变换&lt;/strong&gt;，见综述论文：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;R. M. Sakia. The Box-Cox Transformation Technique: A Review. The Statistician, 41: 169-178, 1992.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如果残差图中显示非线性，可适当增加自变量的二次项或者交叉项。具体问题具体分析。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;outlier&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;离群值(outlier)&lt;/h2&gt;
-&lt;p&gt;产生离群值的原因：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;主观原因：收集和记录数据时出现错误&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;客观原因：重尾分布（比如，&lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;分布）和混合分布&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;离群值的简单判断：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;数据散点图&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;学生化残差图，如果&lt;span class=&#34;math inline&#34;&gt;\(|t_i|&amp;gt;3\)&lt;/span&gt; (或者2.5,2)，则对应的数据判定为离群值。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;离群值的统计检验方法，M-估计(Maximum likelihood type estimators)&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;案例&lt;/h2&gt;
-&lt;p&gt;Anscombe在1973年构造了4组数据，每组数据都是由11对点&lt;span class=&#34;math inline&#34;&gt;\((x_i,y_i)\)&lt;/span&gt;组成，试分析4组数据是否通过回归方程的检验。&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(&amp;quot;anscombe&amp;quot;)
-knitr::kable(anscombe,format = &amp;quot;html&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-x1
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-x2
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-x3
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-x4
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-y1
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-y2
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-y3
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-y4
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.04
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.46
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.95
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.77
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.76
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.58
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.74
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12.74
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.71
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.81
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.77
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.11
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.84
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-11
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-11
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-11
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.33
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.26
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.81
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.47
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-14
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.96
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.84
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.04
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.24
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.08
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.25
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.26
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.10
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.39
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12.50
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-12
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10.84
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.13
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.15
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.56
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.82
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.26
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.42
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.91
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.68
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.74
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.73
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.89
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;回归结果&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;coef.list = list()
-for(i in 1:4)
-{
-  ff = as.formula(paste0(&amp;quot;y&amp;quot;,i,&amp;quot;~&amp;quot;,&amp;quot;x&amp;quot;,i))
-  lmi = lm(ff,data = anscombe)
-  coef.list = c(coef.list, list(summary(lmi)$coef))
-}
-
-print(coef.list)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [[1]]
-##              Estimate Std. Error  t value    Pr(&amp;gt;|t|)
-## (Intercept) 3.0000909  1.1247468 2.667348 0.025734051
-## x1          0.5000909  0.1179055 4.241455 0.002169629
-## 
-## [[2]]
-##             Estimate Std. Error  t value    Pr(&amp;gt;|t|)
-## (Intercept) 3.000909  1.1253024 2.666758 0.025758941
-## x2          0.500000  0.1179637 4.238590 0.002178816
-## 
-## [[3]]
-##              Estimate Std. Error  t value    Pr(&amp;gt;|t|)
-## (Intercept) 3.0024545  1.1244812 2.670080 0.025619109
-## x3          0.4997273  0.1178777 4.239372 0.002176305
-## 
-## [[4]]
-##              Estimate Std. Error  t value    Pr(&amp;gt;|t|)
-## (Intercept) 3.0017273  1.1239211 2.670763 0.025590425
-## x4          0.4999091  0.1178189 4.243028 0.002164602&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;回归直线&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mfrow = c(2,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
-for(i in 1:4)
-{
-  ff = as.formula(paste0(&amp;quot;y&amp;quot;,i,&amp;quot;~&amp;quot;,&amp;quot;x&amp;quot;,i))
-  lmi = lm(ff,data = anscombe)
-  plot(ff,data = anscombe,col=&amp;quot;red&amp;quot;,pch = 21,bg=&amp;quot;orange&amp;quot;,
-       cex = 1.2,xlim=c(3,19),ylim=c(3,13))
-  abline(coef(lmi),col=&amp;quot;blue&amp;quot;)
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mfrow = c(2,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
-for(i in 1:4)
-{
-  ff = as.formula(paste0(&amp;quot;y&amp;quot;,i,&amp;quot;~&amp;quot;,&amp;quot;x&amp;quot;,i))
-  lmi = lm(ff,data = anscombe)
-  plot(lmi$fitted.values,rstandard(lmi),pch = 21,bg=&amp;quot;orange&amp;quot;,
-       cex = 1.2,xlim=c(3,15),ylim=c(-4,4),xlab = &amp;quot;fitted values&amp;quot;,
-       ylab = &amp;quot;standardized residuals&amp;quot;)
-  abline(h=c(-3,3),lty=2)
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-21-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;异常值&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm1 = lm(y1~x1,data = anscombe)
-x = c(anscombe$x1, 18) # 人为添加异常数据
-y = c(anscombe$y1,30) # 人为添加异常数据
-lm.xy = lm(y~x)
-plot(x,y,pch = 21,bg=c(rep(&amp;quot;black&amp;quot;,11),&amp;quot;red&amp;quot;),ylim=c(0,50))
-abline(coef(lm.xy),lty=2,col=&amp;quot;red&amp;quot;)
-abline(coef(lm1),lty=2,col=&amp;quot;blue&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;残差图&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mfrow = c(1,2),mar=c(4,4,1,1)+.1,oma=c(0,0,2,0))
-plot(c(fitted(lm1),fitted(lm.xy)),c(rstandard(lm1),rstandard(lm.xy)),
-     ylim=c(-3,3),pch = c(rep(21,11),rep(22,12)),
-     bg = c(rep(&amp;quot;blue&amp;quot;,11),rep(&amp;quot;red&amp;quot;,12)),
-     xlab = &amp;quot;fitted values&amp;quot;,
-     ylab=&amp;quot;standardized residuals&amp;quot;)
-abline(h=c(-2,2),lty=2)
-plot(lm.xy,3) #画出残差图&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap04_files/figure-html/unnamed-chunk-23-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;回归分析的其他内容&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;共线性(collinear)分析，岭回归(ridge regression)方法&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;变量选择方法：向前/后回归法、逐步回归法、完全子集法、交叉核实(cross validation)法，见课本P208-214&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;现代变量选择方法：LASSO (Least Absolute Shrinkage &amp;amp; Selection Operator)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lasso&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;LASSO&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;rob.jpg&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Professor Rob Tibshirani: &lt;a href=&#34;https://statweb.stanford.edu/~tibs/&#34; class=&#34;uri&#34;&gt;https://statweb.stanford.edu/~tibs/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;LASSO是斯坦福大学统计系Tibshirani于1996年发表的著名论文“&lt;a href=&#34;http://statweb.stanford.edu/~tibs/lasso/lasso.pdf&#34;&gt;Regreesion shrinkage and selection via the LASSO&lt;/a&gt;” (Journal of Royal Statistical Society, Seriers B, 58, 267-288)中所提出的一种变量选择方法。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;回归分析与因果分析&lt;/h2&gt;
-&lt;p&gt;即使建立了回归关系式并且统计检验证明相关关系成立，也只能说明研究的变量是统计相关的，而&lt;strong&gt;不能就此断定变量之间有因果关系&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;案例(Ice Cream Causes Polio)：小儿麻痹症疫苗发明前，美国北卡罗来纳州卫生部研究人员通过分析冰淇淋消费量和小儿麻痹症的关系发现当冰淇淋消费量增加时，小儿麻痹疾病也增加。州卫生部发生警告反对吃冰淇淋来试图阻止这种疾病的传播。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;没有观察的混杂因素——温度&lt;/h2&gt;
-&lt;p&gt;Polio and ice cream consumption both increase in the summertime. Summer is when the polio virus thrived.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-24&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;ice.jpg&#34; alt=&#34;The danger of mixing up causality and correlation&#34; width=&#34;60%&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 7: The danger of mixing up causality and correlation
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     

@@ -1,8 +1,8 @@
 {
-    "path" : "D:/Dropbox/courses/academic/content/course",
+    "path" : "D:/Dropbox/courses/academic/content/post",
     "sortOrder" : [
         {
-            "ascending" : false,
+            "ascending" : true,
             "columnIndex" : 2
         }
     ]

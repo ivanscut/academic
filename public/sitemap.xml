@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/post/testa/</loc>
+      <lastmod>2019-01-17T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/course/homework1/</loc>
       <lastmod>2018-12-18T00:00:00+00:00</lastmod>
     </url>
@@ -634,7 +642,7 @@
     
     <url>
     
-      <loc>/tags/slides/</loc>
+      <loc>/categories/slides/</loc>
       <lastmod>2018-11-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -643,7 +651,7 @@
     
     <url>
     
-      <loc>/categories/slides/</loc>
+      <loc>/tags/slides/</loc>
       <lastmod>2018-11-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -677,15 +685,6 @@
     
     <url>
     
-      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
-      <lastmod>2018-12-11T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/categories/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-12-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -695,7 +694,7 @@
     
     <url>
     
-      <loc>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</loc>
+      <loc>/tags/%E4%BD%9C%E4%B8%9A/</loc>
       <lastmod>2018-12-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -704,8 +703,8 @@
     
     <url>
     
-      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
+      <loc>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</loc>
+      <lastmod>2019-01-17T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -714,7 +713,16 @@
     <url>
     
       <loc>/categories/%E8%AF%BE%E4%BB%B6/</loc>
-      <lastmod>2018-11-15T00:00:00+00:00</lastmod>
+      <lastmod>2019-01-17T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/%E8%AF%BE%E4%BB%B6/</loc>
+      <lastmod>2019-01-17T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
