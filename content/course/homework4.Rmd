@@ -19,7 +19,7 @@ menu:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本. 在下列选项中选出用于估计参数$\lambda$的无偏估计量。**答案：ABCE**
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本. 在下列选项中选出用于估计参数$\lambda$的无偏估计量。<!-- **答案：ABCE**-->
 
 A. $\bar X$
 
@@ -33,7 +33,7 @@ E. $\frac{1}2 \bar X + \frac 12 S_n^{*2}$
 
 ---
 
-设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本, 已知$\bar X$是未知参数$\lambda$的完全统计量。在下列选项中选出用于估计参数$\lambda$的最有效的估计量。**答案：A**
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本, 已知$\bar X$是未知参数$\lambda$的完全统计量。在下列选项中选出用于估计参数$\lambda$的最有效的估计量。<!-- **答案：A**-->
 
 A. $\bar X$
 
@@ -47,6 +47,7 @@ D. $\frac{1}2 \bar X + \frac 12 S_n^{*2}$
 
 设$X,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本，求$\lambda^2$的无偏估计。已知$\bar X$是参数$\lambda$的完全统计量，能否找到$\lambda^2$的最小方差无偏估计量？
 
+<!-- 
 `解`: 1. $\lambda^2$的无偏估计有很多种答案：
 
 - 因为$E[X]=Var[\lambda]=\lambda$, 所以$E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2$，由矩法得到一种无偏估计量：
@@ -86,11 +87,13 @@ $$\sum_{\vec x:\sum_{i=1}^nx_i=nt}\frac{x_1x_2}{\prod_{i=1}^nx_i!}=\sum_{\vec x:
 $$\psi(t)=nt^2-t-(n-1)E[X_1X_2|\bar X=t]=nt^2-t-(n-1)\frac{(nt)!}{n^{nt}}\frac{n^{nt-2}}{(nt-2)!}=t^2-\frac{t}{n}$$
 
 这表明，$\psi(\bar X)=(\bar X)^2-\bar X/n$, 也就是$\hat{\lambda^2}_2$. 两种方式得到的最小方差无偏估计量是一致的。这也印证了最小方差无偏估计量是唯一的。显然第一种方式比较简单，第二种方式需要求条件期望，这个比较复杂，一般情况下不容易求解。
-
+-->
 
 ---
 
 设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。证明样本方差$S_n^2$与修正样本方差$S_n^{*2}$均为$\sigma^2$的弱相合估计量。
+
+<!-- 
 
 `解`： 由抽样分布定理知，$\frac{\sum_{i=1}^n (X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)$, 所以
 $$Var[\sum_{i=1}^n (X_i-\bar X)^2]=2(n-1)\sigma^4$$
@@ -103,9 +106,13 @@ $$Var[S_n^{*2}]=Var[\sum_{i=1}^n (X_i-\bar X)^2]/(n-1)^2=\frac{2\sigma^4}{n-1}\t
 
 由于$E[S_n^{*2}]=\sigma^2,\lim_{n\to\infty}E[S_n^2]=\sigma^2$, 由弱相合性判别条件知，它们都是弱相合的。
 
+-->
+
 ---
 
 设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。样本方差$S_n^2$与修正样本方差$S_n^{*2}$作为$\sigma^2$的两种估计量，哪个更有效？由B-L-S定理知，$S_n^{*2}$是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？
+
+<!-- 
 
 `解`: 由于$S_n^{*2}$是无偏的，所以均方误差
 $$M(S_n^{*2}) = Var[S_n^{*2}]=\frac{2\sigma^4}{n-1}$$
@@ -120,12 +127,16 @@ $$\frac{M(S_n^{*2})}{M(S_n^{2})}=\frac{2n^2}{(n-1)(2n-1)}>1$$
 
 > 启发：无偏估计量不一定是最有效的。
 
+-->
+
 ---
 
 
 设$X_1,\dots,X_n$为总体$N(\mu,\sigma^2)$, 其中$\mu$已知，$\sigma^2$未知。证明$\sigma^2$的估计量
 $$T(X_1,\dots,X_n)=\frac 1n\sum_{i=1}^n(X_i-\mu)^2$$
 的方差达到C-R不等式的下界。
+
+<!-- 
 
 `解`: 令$\theta=\sigma^2,f(x;\theta)$为总体密度函数。于是， 
 $$\log f(x;\theta)= \log  \frac{1}{\sqrt{2\pi}\sqrt{\theta}}e^{-\frac{(x-\mu)^2}{2\theta}}=-(1/2)\log(2\pi\theta)-\frac{(x-\mu)^2}{2\theta}$$
@@ -143,4 +154,4 @@ $$Var[nT/\sigma^2]=2n$$
 
 于是，$Var[T]=2\sigma^4/n$达到C-R不等式下界。
 
-
+-->

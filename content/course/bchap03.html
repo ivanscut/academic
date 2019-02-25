@@ -1,0 +1,143 @@
+---
+title: 'Chapter 3: Introduction to multiparameter models'
+
+date: 2018-12-18
+lastmod: 2018-12-18
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: Chapter 3
+menu:
+  course: 
+    parent: Bayesian Statistics
+    weight: 3
+---
+
+
+
+<div id="nuisance-parameters" class="section level2">
+<h2>Nuisance parameters</h2>
+<ul>
+<li>there are more than one unknown or unobservable parameters</li>
+<li>conclusions will often be drawn about one, or only a few parameters at a time</li>
+<li><p>there is no interest in making inferences about many of the unknown parameters – <em>nuisance parameters</em></p></li>
+<li>suppose <span class="math inline">\(\theta=(\theta_1,\theta_2)\)</span></li>
+<li>interest centers only on <span class="math inline">\(\theta_1\)</span>; <span class="math inline">\(\theta_2\)</span> is a ‘nuisance’ parameter.</li>
+<li><p>the joint posterior density:
+<span class="math display">\[p(\theta_1,\theta_2|y)\propto p(y|\theta_1,\theta_2)p(\theta_1,\theta_2)\]</span></p></li>
+<li><p>the marginal posterior density:
+<span class="math display">\[p(\theta_1|y)=\int p(\theta_1,\theta_2|y)d\theta_2=\int p(\theta_1|\theta_2,y)p(\theta_2|y)d\theta_2\]</span></p></li>
+</ul>
+</div>
+<div id="normal-data-with-a-noninformative-prior-distribution" class="section level2">
+<h2>Normal data with a noninformative prior distribution</h2>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y|\mu,\sigma^2)=\prod_{i=1}^n \frac 1{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\mu)^2}{2\sigma^2}}\]</span></p>
+<p><strong>Noninformative prior distribution</strong>:
+<span class="math display">\[p(\mu,\sigma^2)\propto (\sigma^2)^{-1}\]</span></p>
+<p><strong>Posterior distribution</strong>:
+<span class="math display">\[p(\mu,\sigma^2|y)\propto \sigma^{-n-2}e^{-\frac{\sum_{i=1}^n(y_i-\mu)^2}{2\sigma^2}}=\sigma^{-n-2}e^{-\frac{(n-1)s^2+n(\bar y-\mu)^2}{2\sigma^2}}\]</span></p>
+<ul>
+<li><span class="math inline">\(s^2=\frac 1{n-1}\sum_{i=1}^n(y_i-\bar y)^2\)</span> is the sample variance</li>
+</ul>
+</div>
+<div id="normal-data-with-a-noninformative-prior-distribution-1" class="section level2">
+<h2>Normal data with a noninformative prior distribution</h2>
+<p><strong>Conditional posterior distribution</strong>:
+<span class="math display">\[p(\mu|\sigma^2,y)\sim N(\bar y,\sigma^2/n)\]</span></p>
+<p><strong>Marginal posterior distribution <span class="math inline">\(p(\sigma^2|y)\)</span></strong>:
+<span class="math display">\[p(\sigma^2|y)\propto \int \sigma^{-n-2}e^{-\frac{(n-1)s^2+n(\bar y-\mu)^2}{2\sigma^2}} d\mu=(\sigma^2)^{-\frac{n+1}2}e^{-\frac{(n-1)s^2}{2\sigma^2}}\]</span></p>
+<p><span class="math display">\[\sigma^2|y\sim \text{Inv-}\chi^2(n-1,s^2)\]</span></p>
+</div>
+<div id="normal-data-with-a-noninformative-prior-distribution-2" class="section level2">
+<h2>Normal data with a noninformative prior distribution</h2>
+<p><strong>Marginal posterior distribution <span class="math inline">\(p(\mu|y)\)</span></strong>:</p>
+<p><span class="math display">\[p(\mu|y)\propto \int_0^\infty \sigma^{-n-2}e^{-\frac{(n-1)s^2+n(\bar y-\mu)^2}{2\sigma^2}} d\sigma^2\propto \left[1+\frac{n(\mu-\bar y)^2}{(n-1)s^2}\right]^{-\frac n2}\]</span></p>
+<p><span class="math display">\[\mu|y\sim t_{n-1}(\bar y,s^2/n),\ \frac{\mu-\bar y}{s/\sqrt{n}}\Big|y\sim t_{n-1}\]</span></p>
+<p><strong>Posterior predictive distribution for a future observation</strong></p>
+<p><span class="math display">\[\tilde y|y \sim t_{n-1}(\bar y,(1+1/n)s^2)\]</span></p>
+</div>
+<div id="example-estimating-the-speed-of-light" class="section level2">
+<h2>Example: Estimating the speed of light</h2>
+<p>Simon Newcomb set up an experiment in 1882 to measure the speed of light. Newcom measured the amount of time rquired for light to travel a distance of 7442 meters (66 measurements, from Stigler (1977), the data are recorded as deviations from 24800 nanoseconds).</p>
+<ul>
+<li><span class="math inline">\(n=66,\ \bar y = 26.2,\ s = 10.8\)</span></li>
+<li><span class="math inline">\((\mu-26.2)/(10.8/\sqrt{66})|y\sim t_{65}\)</span></li>
+<li><span class="math inline">\(95\%\)</span> central posterior interval for <span class="math inline">\(\mu\)</span> is <span class="math inline">\(26.2\pm 10.8t_{65,0.975}/\sqrt{66}=[23.6,28.8]\)</span></li>
+<li>the speed of light is 299792458 m/s, so the true value for <span class="math inline">\(\mu\)</span> is <span class="math inline">\(23.8\)</span> nanoseconds</li>
+</ul>
+</div>
+<div id="example-estimating-the-speed-of-light-1" class="section level2">
+<h2>Example: Estimating the speed of light</h2>
+<p><img src="newcomb.png" /></p>
+</div>
+<div id="normal-data-with-a-conjugate-prior-distribution" class="section level2">
+<h2>Normal data with a conjugate prior distribution</h2>
+<p><strong>Prior distribution</strong>:
+<span class="math display">\[\mu|\sigma^2\sim N(\mu_0,\sigma^2/\kappa_0),\]</span></p>
+<p><span class="math display">\[\sigma^2\sim \text{Inv-}\chi^2(\nu_0,\sigma^2).\]</span></p>
+<p><span class="math display">\[p(\mu,\sigma^2)\propto \sigma^{-1}(\sigma^2)^{-(\nu_0/2+1)}\exp\left(-\frac 1{2\sigma^2}[\nu_0\sigma^2+\kappa_0(\mu_0-\mu)^2]\right)\]</span></p>
+<ul>
+<li>denoted by <span class="math inline">\(\text{N-Inv-}\chi^2(\mu_0,\sigma^2_0/\kappa_0;\nu_0,\sigma_0^2)\)</span></li>
+</ul>
+</div>
+<div id="normal-data-with-a-conjugate-prior-distribution-1" class="section level2">
+<h2>Normal data with a conjugate prior distribution</h2>
+<p><strong>Posterior distribution</strong>:</p>
+<p><span class="math display">\[\mu,\sigma^2|y\sim \text{N-Inv-}\chi^2(\mu_n,\sigma^2_n/\kappa_n;\nu_n,\sigma_n^2)\]</span></p>
+<p><span class="math display">\[
+\begin{cases}
+\mu_n &amp;= \frac{\kappa_0}{\kappa_0+n}\mu_0+\frac{n}{\kappa_0+n}\bar y\\
+\kappa_n &amp;= \kappa_0+n\\
+\nu_n&amp;=\nu_0+n\\
+\nu_n\sigma_n^2 &amp;= \nu_0\sigma_0^2+(n-1)s^2+\frac{\kappa_0n}{\kappa_0+n}(\bar y-\mu_0)^2
+\end{cases}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mu|\sigma^2,y\sim N(\mu_n,\sigma^2/\kappa_n)\)</span></li>
+<li><span class="math inline">\(\sigma^2|y\sim \text{Inv-}\chi^2(\nu_n,\sigma_n^2)\)</span></li>
+<li><span class="math inline">\(\mu|y\sim t_{\nu_n}(\mu_n,\sigma_n^2/\kappa_n)\)</span></li>
+</ul>
+</div>
+<div id="multinormal-model-for-categorical-data" class="section level2">
+<h2>Multinormal model for categorical data</h2>
+<p>The multinomial sampling distribution is used to describe data for which each observation is one of <span class="math inline">\(k\)</span> possible outcomes. If <span class="math inline">\(y\)</span> is the vector of counts of the number of observations of each outcome, then
+<span class="math display">\[p(y|\theta)\propto \prod_{j=1}^k\theta_j^{y_j},\]</span>
+where <span class="math inline">\(\sum_{j=1}^k\theta_j=1\)</span>.</p>
+<p><strong>Conjugate prior</strong>:
+<span class="math display">\[p(\theta|\alpha)\propto \prod_{j=1}^k\theta_j^{\alpha_j-1}\]</span></p>
+<ul>
+<li>Dirichlet distribution</li>
+</ul>
+<p><strong>Posterior distribution</strong>:
+<span class="math display">\[p(\alpha|\theta)\propto \prod_{j=1}^k\theta_j^{y_j+\alpha_j-1}\]</span></p>
+</div>
+<div id="multivariate-normal-model-with-known-variance" class="section level2">
+<h2>Multivariate normal model with known variance</h2>
+<p><strong>Likelihood function</strong>:
+<span class="math display">\[p(y_1,\dots,y_n|\mu,\Sigma)\propto |\Sigma|^{-n/2}\exp\left(-\frac 12\sum_{i=1}^n(y_i-\mu)^\top\Sigma^{-1}(y_i-\mu)\right)\]</span></p>
+<p><strong>Conjuate prior</strong>: <span class="math inline">\(\mu\sim N(\mu_0,\Lambda_0)\)</span></p>
+<p><strong>Posterior distribution</strong>: <span class="math inline">\(\mu|y\sim N(\mu_n,\Lambda_n)\)</span></p>
+<ul>
+<li><span class="math inline">\(\mu_n=(\Lambda_n^{-1}+n\Sigma^{-1})^{-1}(\Lambda_0^{-1}\mu_0+n\Sigma^{-1}\bar y)\)</span></li>
+<li><span class="math inline">\(\Lambda_n^{-1} = \Lambda_n^{-1}+n\Sigma^{-1}\)</span></li>
+</ul>
+</div>
+<div id="multivariate-normal-model-with-unknown-mean-and-variance" class="section level2">
+<h2>Multivariate normal model with unknown mean and variance</h2>
+<p><strong>Prior distribution</strong>: the normal-inverse-Wishart <span class="math inline">\((\mu_0,\Lambda_0/\kappa_0;\nu_0,\Lambda_0)\)</span></p>
+<p><span class="math display">\[\Sigma\sim \text{Inv-Wishart}_{\nu_0}(\Lambda_0^{-1})\]</span>
+<span class="math display">\[\mu|\Sigma\sim N(\mu_0,\Sigma/\kappa_0)\]</span>
+<span class="math display">\[p(\mu,\Sigma)\propto |\Sigma|^{-\frac{\nu_0+d}{2}-1}\exp\left(-\frac{1}{2}tr(\Lambda_0\Sigma^{-1})-\frac {\kappa_0}2(\mu-\mu_0)^\top\Sigma^{-1}(\mu-\mu_0)\right)\]</span></p>
+<p><strong>Posterior distribution</strong>: the normal-inverse-Wishart <span class="math inline">\((\mu_n,\Lambda_n/\kappa_n;\nu_0,\Lambda_n)\)</span></p>
+<p><span class="math display">\[
+\begin{cases}
+\mu_n &amp;= \frac{\kappa_0}{\kappa_0+n}\mu_0+\frac{n}{\kappa_0+n}\bar y\\
+\kappa_n &amp;= \kappa_0+n\\
+\nu_n&amp;=\nu_0+n\\
+\Lambda_n &amp;= \Lambda_0+\sum_{i=1}^n(y_i-\bar y)(y_i-\bar y)^\top+\frac{\kappa_0n}{\kappa_0+n}(\bar y-\mu_0)(\bar y-\mu_0)^\top
+\end{cases}
+\]</span></p>
+</div>

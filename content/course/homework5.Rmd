@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 课本P61第23题：设$X_1,\dots,X_n$是$U(0,\theta)$的样本，求$\theta$的置信水平为$1-\alpha$的置信区间。设得到了$5$个样本值$0.08,0.28,0.53,0.91,0.89$, 求$\theta$的置信水平为$0.95$的置信区间。
 
+<!-- 
+
 `解`：因为$X_i\stackrel{iid}{\sim} U(0,\theta)$, 所以$Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)$. 由此可以构造很多种枢轴量。由于$X_{(n)}$为$\theta$的最大似然估计，所以很自然想到通过$X_{(n)}$来构造枢轴量。
 
 $$G_1= \frac{X_{(n)}}{\theta}=Y_{(n)}$$
@@ -48,7 +50,7 @@ $$g'(a) = -\frac 1{a^2}+\frac{a^{n-1}}{(1-\alpha+a^n)^{1+1/n}}< -\frac{1}{a^2}+\
 此外，我们还可以构造其他的枢轴量，比如
 $$G_2 = -2\sum_{i=1}^n\log Y_i = -2\sum_{i=1}^n\log X_i+2n\log \theta\sim\chi^2(2n)$$
 
-为什么是卡方分布？请查看[第一次作业第五题](https://hezhijian.netlify.com/post/homework1/)
+为什么是卡方分布？请查看[第一次作业第五题](https://hezhijian.netlify.com/course/homework1/)
 
 假设存在$0\le c<d$满足$P(c\le G_2\le d)=1-\alpha$, 则有可以得到另一个
 置信水平为$1-\alpha$的置信区间
@@ -144,6 +146,7 @@ CI2 = meanCI(data2,alpha)
 ```{r}
 
 ```
+-->
 
 ---
 
@@ -157,6 +160,9 @@ CI2 = meanCI(data2,alpha)
 3. 假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？
 
 4. 为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？
+
+
+<!-- 
 
 `解`：第一问只需调用前面的两个函数求解即可。
 
@@ -241,5 +247,5 @@ CI6 = vardiffCI(M_height,F_height,alpha)
 
 从中可以看出，方差比的置信区间包含1，可以认为男女两个总体的方差相同。
 
-
+-->
 

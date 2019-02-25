@@ -27,6 +27,7 @@ $$y_i= \beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma
 
 Use the F-test method derived in the multiple linear model to test the hypothesis $H_0:\beta_1=0\ vs.\ H_1:\beta_1\neq 0$, and see whether the F-test agrees with the earlier t-test derived in the simple linear models.
 
+<!-- 
 `Solution`: The F test statistic is given by
 
 $$F = \frac{S_R^2/(p-1)}{S_e^2/(n-p)}=\frac{S_R^2}{S_e^2/(n-p)},$$
@@ -40,7 +41,7 @@ The t test statistic is given by
 $$T=\frac{\hat\beta_1}{\sqrt{\frac{S_e^2}{(n-p)\ell_{xx}}}}.$$
 
 As a result, $T^2=F$. Under $H_0$, $T\sim t(n-p)$ and $F\sim F(1,n-p)$. The rejection region for F-test is $W_1=\{F>F_{1-\alpha}(1,n-p)\}$, and the rejection region for t-test is $W_2=\{|T|>t_{1-\alpha/2}(n-p)\}$. Note that $P(|T|>t_{1-\alpha/2}(n-p)|H_0) = P(T^2>t_{1-\alpha/2}(n-p)^2|H_0) =1-\alpha$. Since $T^2\sim F(1,n-p)$ under $H_0$, we have $t_{1-\alpha/2}(n-p)^2=F_{1-\alpha}(1,n-p)$. This implies $W_1=W_2$, i.e., the two tests are the same.
-
+-->
 
 
 ---
@@ -73,6 +74,7 @@ Disney | MacDonalds | Schlumberger | Haliburton |
 0.02008  | -0.06483  | 0.06127  | 0.10714 | 
 -0.08268  | -0.09029 |  -0.05773 |  -0.02933 | 
 
+<!-- 
 `Solution`: 
 
 
@@ -85,6 +87,7 @@ lm.stock = lm(Disney~Mac+Sch+Hali,data=stock)
 summary(lm.stock)
 knitr::kable(summary(lm.stock)$coef,"html",caption = "summary table")
 ```
+
 
 
 The regression function is 
@@ -119,6 +122,9 @@ summary(lm.stock2)
 knitr::kable(summary(lm.stock2)$coef,"html",caption = "improved model")
 ```
 
+
 {{% alert warning %}}
 在实际使用多元线性回归过程中，如何确定自变量和因变量之前的关系尤为重要。因为不是所有的自变量都可能用得上，而且可能出现非线性项（高阶项、交叉项）。这属于变量选择问题，也是线性回归中非常重要的主题。感兴趣的同学可以查阅课本208页。
 {{% /alert %}}
+
+-->

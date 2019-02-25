@@ -13,414 +13,6 @@
     
     
     <item>
-      <title>《数理统计》试卷</title>
-      <link>/post/testa/</link>
-      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/testa/</guid>
-      <description>Part I: Each problem is worth 3 points.
-Let \(X_1,X_2,\dots,X_6\) be a simple random sample taken from \(N(0,2^2)\). Denote\[Y = (X_1+X_2)^2+(X_3+X_4)^2+(X_5+X_6)^2.\]If \(kY\sim \chi^2(3)\), then \(k=1/8\).Let \(X_1,X_2,X_3\) be a simple random sample taken from \(N(\mu,\sigma^2)\). If \(\hat\mu = \frac{1}{2} X_1+cX_2+\frac{1}{6}X_3\) is an unibased estimate of \(\mu\), then \(c=1/3\).
-Let \(X_1,X_2,X_3\) be a simple random sample taken from \(B(1,p)\). For testing the hypothesis \(H_0:p=1/2\ vs.\ H_1:p=3/4\), we use a rejection region:\[W=\{(x_1,x_2,x_3):x_1+x_2+x_3\ge 2\}.</description>
-    </item>
-    
-    <item>
-      <title>第十一次作业</title>
-      <link>/post/homework11/</link>
-      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework11/</guid>
-      <description>Consider the simple linear model
-\[y_i= \beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2).\]
-Use the F-test method derived in the multiple linear model to test the hypothesis \(H_0:\beta_1=0\ vs.\ H_1:\beta_1\neq 0\), and see whether the F-test agrees with the earlier t-test derived in the simple linear models.
-Solution: The F test statistic is given by
-\[F = \frac{S_R^2/(p-1)}{S_e^2/(n-p)}=\frac{S_R^2}{S_e^2/(n-p)},\]
-where
-\[S_R^2=\sum_{i=1}^n(\hat y_i-\bar y)^2=\sum_{i=1}^n(\hat\beta_0-\hat\beta_1x_i-\bar y) = \sum_{i=1}^n(\bar y-\hat\beta_1\bar x-\hat\beta_1x_i-\bar y)^2=\hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2=\hat\beta_1^2\ell_{xx}.\]
-The t test statistic is given by</description>
-    </item>
-    
-    <item>
-      <title>第十次作业</title>
-      <link>/post/homework10/</link>
-      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework10/</guid>
-      <description>Let us consider fitting a straight line, \(y = \beta_0+\beta_1x\), to points \((x_i,y_i)\), where \(i=1,\dots,n\).
-Write down the normal equations for the simple linear model via the matrix formalism.
-Solve the normal equations by tha matrix approach and see whether the solutions agree with the earlier calculation derived in the simple linear models.
-Solution:
-Let \(Y=(y_1,\dots,y_n)^\top\), \(\beta=(\beta_0,\dots,\beta_{p-1})^\top\), \(\epsilon=(\epsilon_1,\dots,\epsilon_n)^\top\), and let \(X\) be the \(n\times 2\) matrix\[X=\left[\begin{matrix}1 &amp;amp; x_1\\1 &amp;amp; x_2\\\vdots &amp;amp; \\1 &amp;amp; x_n\\\end{matrix}\right].</description>
-    </item>
-    
-    <item>
-      <title>第九次作业</title>
-      <link>/post/homework9/</link>
-      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework9/</guid>
-      <description>Consider the linear model\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^2), i=1,\dots,n.\]
-Derive the maximum likelihood estimators (MLE) for \(\beta_0,\beta_1\). Are they consistent with the least square estimators (LSE)?
-Derive the MLE for \(\sigma^2\) and look at its unbiasedness.
-A very slippery point is whether to treat the \(x_i\) as fixed numbers or as random variables. In the class, we treated the predictors \(x_i\) as fixed numbers for sake of convenience. Now suppose that the predictors \(x_i\) are iid random variables (independent of \(\epsilon_i\)) with density \(f_X(x;\theta)\) for some parameter \(\theta\).</description>
-    </item>
-    
-    <item>
-      <title>Approximate Bayesian Computation</title>
-      <link>/post/abc/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/abc/</guid>
-      <description>Bayesian inferenceOur goal is to estimate an expectation of \(a(\theta)\) under the posterior distribution
-\[\pi(\theta|y_{obs})=\frac{\pi(\theta)p(y_{obs}|\theta)}{p(y_{obs})}\propto \pi(\theta)p(y_{obs}|\theta)\]
-\(\pi(\theta)\) is the prior distribution
-\(p(y|\theta)\) is the likelihood function
-the constant \(p(y_{obs})\) is intractable
-Suppose that one can generate samples \(\theta^{(1)},\dots,\theta^{(N)}\sim \pi(\theta|y_{obs})\), then
-\[E[a(\theta)|y_{obs}]\approx \frac 1 N\sum_{i=1}^N a(\theta^{(i)})\]
-This is the basic idea of Monte Carlo (MC).
-Acceptance rejection (AR) methodsthe target density \(f(\theta)\)</description>
-    </item>
-    
-    <item>
-      <title>Quasi-Monte Carlo in ABC</title>
-      <link>/post/qmc_abc/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/qmc_abc/</guid>
-      <description>Ingredients for ABCsummary statistic \(S(y):\mathbb{R}^n\to \mathbb{R}^d\)
-kernel function \(k(u_1,\dots,u_d)\)
-bandwidth \(h&amp;gt;0\)
-proposal density \(g(\theta)\)
-ABC approximation
-\[\pi_{ABC}(\theta|s_{obs})\propto \pi(\theta)\int \pi(s|\theta)K((s-s_{obs})/h) d s\to \pi(\theta|s_{obs})\]
-If \(\pi(\theta|s_{obs})\approx \pi(\theta|y)\), then ABC density is a proper approximation of the posterior \(\pi(\theta|y)\).
-ABC convergence ratesConsider the estimation of \(\mu=E[a(\theta)|s_{obs}]\). The acceptance-rejection (AR) based ABC estimate is given by\[\hat\mu=\frac{1}{N}\sum_{i=1}^Na(\theta^{(i)}).\]
-Under regular conditions, ABC bias is
-\[\mathrm{bias}=|E_{ABC}[a(\theta)|s_{obs}]-\mu|=O(h^2),\]
-and the acceptance probability is \(R = O(h^{d}),\)</description>
-    </item>
-    
-    <item>
-      <title>第四章：线性回归</title>
-      <link>/post/chap04/</link>
-      <pubDate>Thu, 15 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap04/</guid>
-      <description>Simple linear modelsThe linear model is given by\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]
-\(\epsilon_i\) are random (need some assumptions)\(x_i\) are fixed (independent/predictor variable)\(y_i\) are random (dependent/response variable)\(\beta_0\) is the intercept\(\beta_1\) is the slopeLeast square estimatorsChoose \(\beta_0,\beta_1\) to minimize\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]
-The minimizers \(\hat\beta_0,\hat\beta_1\) satisfy\[\begin{cases}\frac{\partial Q}{\partial \beta_0} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)=0\\\frac{\partial Q}{\partial \beta_1} = -2\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)x_i=0\end{cases}\]
-This gives\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)x_i}{\sum_{i=1}^n(x_i-\bar x)x_i},\ \hat\beta_0=\bar y-\hat\beta_1\bar x.</description>
-    </item>
-    
-    <item>
-      <title>第三章：假设检验</title>
-      <link>/post/chap03/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap03/</guid>
-      <description>Contents1. 假设检验基本概念1.1 检验问题的提出1.2 检验法则与两类错误1.3 检验水平与功效2. 似然比检验2.1 似然比检验法原理2.2 Neyman-Pearson引理2.3 单参数指数型的假设检验3. 广义似然比检验3.1 广义似然比检验法原理3.2 单个正态总体的假设检验3.3 两个独立正态总体的假设检验4. 拟合优度检验4.1 卡方检验法4.2 独立性检验4.3 柯尔莫哥洛夫检验法4.4 正态性检验Case study奶茶是由牛奶与茶按一定比例混合而成，可以先倒茶后加奶，也可以先倒奶再倒茶。某女士声称她可以鉴别这两种混合方式，周围品茶的人对此产生了议论，都觉得不可思议。在场的费希尔也在思考这个问题，他提议做一项试验来检验如下命题是否可以接受：
-假设H: 该女士无此种鉴别能力
-他准备了10杯调好的奶茶（两种顺序的都有）给该女士鉴别，结果那位女士竟然能够正确地分辨出10杯奶茶中的每一杯的调制顺序。
-如何做出你的判断？
-假如该女士只猜对了9杯（或者8杯），又该如何判断？
-Some examples产品的次品率是否不超过\(3\%\)
-男生群体平均身高是否大于女生群体平均身高？
-身高是否服从正态分布？
-抽烟与慢性支气管炎是否有关？
-1.</description>
-    </item>
-    
-    <item>
-      <title>第八次作业</title>
-      <link>/post/homework8/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework8/</guid>
-      <description>True or false, and state why:
-The generalized likelihood ratio statistic \(\lambda(\vec x)\) (see P.87 of our textbook) is always greater than or equal to 1.True. By the definition, we have
-\[\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,\]where \(\Theta_0\subset\Theta\).
-If the p-value is 0.03, the corresponding test will reject at the significancelevel 0.02.False. If \(\alpha&amp;lt; p\)-value, the null is accepted.
-If a test rejects at significance level 0.</description>
-    </item>
-    
-    <item>
-      <title>第七次作业</title>
-      <link>/post/homework7/</link>
-      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework7/</guid>
-      <description>Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
-\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
-where \(\lambda_1\neq\lambda_2\).
-Solution: The likelihood function is\[L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.\]
-The likelihood ratio is given by\[\lambda(\vec x)= \frac{L(\lambda_2)}{L(\lambda_1)}=\frac{\lambda_2^ne^{-\lambda_2 n\bar x}}{\lambda_1^ne^{-\lambda_1 n\bar x}}=(\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)n\bar x}.\]
-Choose the test statistic \(T(\vec x) = 2\lambda_1n\bar x\). When \(\lambda=\lambda_1\), \(T(\vec X)\sim \chi^2(2n)\). Also,\[\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\lambda_1)}.</description>
-    </item>
-    
-    <item>
-      <title>第六次作业</title>
-      <link>/post/homework6/</link>
-      <pubDate>Fri, 26 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework6/</guid>
-      <description>True or false, and state why:
-The significance level of a statistical test is equal to the probability that thenull hypothesis is true.If the significance level of a test is decreased, the power of the test would be expected toincrease.The probability that the null hypothesis is falsely rejected is equal to the powerof the test.A type I error occurs when the test statistic falls in the rejection region of thetest.</description>
-    </item>
-    
-    <item>
-      <title>Chapter 10: Bayesian computation</title>
-      <link>/post/bayes_chap10/</link>
-      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap10/</guid>
-      <description>Introduction to Bayesian computationThe goals are to estimate
-the posterior distribution \(p(\theta|y)\propto p(\theta)p(y|\theta)\)
-the posterior predictive distribution\[p(\tilde y|y) = \int p(\tilde y|\theta)p(\theta|y)d \theta =E[p(\tilde y|\theta)|y]\]
-We are therefore insterested in estimating the posterior expectation\[\mu=E[h(\theta)|y]=\int h(\theta)p(\theta|y)d \theta\]
-moments: \(h(\theta)=\theta^k\)probability: \(h(\theta)=1_A(\theta)\), \(A\subseteq \Theta\)predictive density: \(h(\theta)=p(\tilde y|\theta)\) for fixed \(\tilde y\)Monte Carlo methodsSuppose we can simulate \(\theta^{(i)},\dots,\theta^{(N)}\sim p(\theta|y)\) independently. Monte Carlo (MC) esimate is then the sample average:\[\hat{\mu}_N = \frac1N\sum_{i=1}^N h(\theta^{(i)})\]</description>
-    </item>
-    
-    <item>
-      <title>第五次作业</title>
-      <link>/post/homework5/</link>
-      <pubDate>Mon, 22 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework5/</guid>
-      <description>课本P61第23题：设\(X_1,\dots,X_n\)是\(U(0,\theta)\)的样本，求\(\theta\)的置信水平为\(1-\alpha\)的置信区间。设得到了\(5\)个样本值\(0.08,0.28,0.53,0.91,0.89\), 求\(\theta\)的置信水平为\(0.95\)的置信区间。
-解：因为\(X_i\stackrel{iid}{\sim} U(0,\theta)\), 所以\(Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)\). 由此可以构造很多种枢轴量。由于\(X_{(n)}\)为\(\theta\)的最大似然估计，所以很自然想到通过\(X_{(n)}\)来构造枢轴量。
-\[G_1= \frac{X_{(n)}}{\theta}=Y_{(n)}\]
-因为\(Y_i\stackrel{iid}{\sim} U(0,1)\), 不难计算\(Y_{(n)}\)(也就是\(G_1\))的分布函数为：\[F_1(x) = P(Y_{(n)}\le x ) = \prod_{i=1}^n P(Y_i\le x) = x^n,x\in (0,1) \]
-假设存在\(0\le a&amp;lt;b\le 1\)满足\(P(a\le G_1\le b)=b^n-a^n=1-\alpha\), 则有可以得到一个置信水平为\(1-\alpha\)的置信区间\[\left[\frac{X_{(n)}}{b},\frac{X_{(n)}}{a}\right].\]
-显然满足方程\(b^n-a^n=1-\alpha\)的解有无穷多种，最好的选择方案是使得\(1/a-1/b\)最短，即\[a_{opt} = \arg \min_{a\in[0,\alpha^{1/n}]} \left[\frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}}\right]= \arg \min_{a\in[0,\alpha^{1/n}]}g(a)\]
-其中\(g(a) = \frac{1}{a}-\frac{1}{(1-\alpha+a^n)^{1/n}},a\in[0,\alpha^{1/n}]\)。因为\[g&amp;#39;(a) = -\frac 1{a^2}+\frac{a^{n-1}}{(1-\alpha+a^n)^{1+1/n}}&amp;lt; -\frac{1}{a^2}+\frac{a^{n-1}}{(a^n)^{1+1/n}}=0\]
-所以\(g(a)\)为单调递减函数，于是\(a_{opt}=\alpha^{1/n},b_{opt}=1\). 所以最优的置信区间为\(\left[X_{(n)},\frac{X_{(n)}}{\alpha^{1/n}}\right]\)，把具体数据代进去可得置信区间为\([0.91,1.66]\).
-当然你可以用平分法得到\(a=(\alpha/2)^{1/n},b=(1-\alpha/2)^{1/n}\), 把具体数据代进去可得置信区间为\([0.9146,1.9031]\), 显然这样的区间长度比最优的情况长些。
-此外，我们还可以构造其他的枢轴量，比如\[G_2 = -2\sum_{i=1}^n\log Y_i = -2\sum_{i=1}^n\log X_i+2n\log \theta\sim\chi^2(2n)\]
-为什么是卡方分布？请查看第一次作业第五题
-假设存在\(0\le c&amp;lt;d\)满足\(P(c\le G_2\le d)=1-\alpha\), 则有可以得到另一个置信水平为\(1-\alpha\)的置信区间\[\left[e^{(c+2\sum_{i=1}^n\log X_i)/2n},e^{(d+2\sum_{i=1}^n\log X_i)/2n}\right].</description>
-    </item>
-    
-    <item>
-      <title>密度估计：直方图与核估计</title>
-      <link>/post/ex2/</link>
-      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ex2/</guid>
-      <description>案例：身高数据数据来源于R的包dslabs，第一次使用时需要安装该包，命令为install.packages(&amp;quot;dslabs&amp;quot;)
-参考资料： Some datasets for teaching data science
-直方图直方图的R命令为：hist(...), 查看帮助?hist看具体参数含义
-核估计核估计的R命令为：density(...), 查看帮助?density看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如plot(...).
-以下代码展示所有身高数据的直方图与和核估计。
-if(!require(dslabs))install.packages(&amp;quot;dslabs&amp;quot;)attach(heights) #此命令用于使用该包里面的身高数据heightspar(mar=c(2,2,1,1)) #调整图形边距#直方图hist(height,breaks=10,ylim=c(0,.115),col = &amp;quot;lightblue&amp;quot;, border = &amp;quot;pink&amp;quot;,freq=FALSE,main=&amp;quot;Histogram vs. Kernel density&amp;quot;)#添加核估计数据lines(density(height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2)下面代码比较男生和女生数据的核估计
-female_height = height[sex==&amp;quot;Female&amp;quot;]#提取女生数据male_height = height[sex==&amp;quot;Male&amp;quot;]#提取男生数据par(mar=c(2,2,1,1))#画男生数据plot(density(male_height,from = 50,to=85),col=&amp;quot;red&amp;quot;,lwd=2,ylim=c(0,.14),main=&amp;quot;Male vs. Female&amp;quot;)#添加女生数据lines(density(female_height,from = 50,to=85),col=&amp;quot;blue&amp;quot;,lwd=2)#画出图例说明legend(74,0.12,legend = c(&amp;quot;Male&amp;quot;,&amp;quot;Female&amp;quot;),lty = c(1,1),col=c(&amp;quot;red&amp;quot;,&amp;quot;blue&amp;quot;),lwd=c(2,2))结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
-</description>
-    </item>
-    
-    <item>
-      <title>第四次作业</title>
-      <link>/post/homework4/</link>
-      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework4/</guid>
-      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。答案：ABCE
-A. \(\bar X\)
-B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
-C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
-D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
-E. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
-设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。答案：A
-A. \(\bar X\)
-B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
-C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
-D. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
-设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
-解: 1. \(\lambda^2\)的无偏估计有很多种答案：
-因为\(E[X]=Var[\lambda]=\lambda\), 所以\(E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2\)，由矩法得到一种无偏估计量：\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]
-因为\(E[\bar X]=\lambda\), \[E(\bar X^2) = Var(\bar X)+(E[\bar X])^2=\lambda/n+\lambda^2=E[\bar X]/n+\lambda^2,\]于是可以得到一种无偏估计量：\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]</description>
-    </item>
-    
-    <item>
-      <title>Chapter 5: Hierarchial models</title>
-      <link>/post/bayes_chap05/</link>
-      <pubDate>Sun, 07 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap05/</guid>
-      <description>Introduction to hierarchial modelsMany statistical applications involve multiple parameters (say, \(\theta_1,\dots,\theta_J\)) that can be regarded as related or connected in some way by the structure of the problem.
-for the group \(j\in 1{:}J\), we have the observed data \(y_{ij}\), \(i=1,\dots,n_j\) from the population distribution with unknown parameter \(\theta_j\)
-we use a prior distribution in which the \(\theta_j\)’s are viewed as a sample from a common population distribution, say \(p(\theta|\phi)\), where \(\phi\) is known as hyperparameters.</description>
-    </item>
-    
-    <item>
-      <title>Chapter 4: Asymptotics and connections to non-Bayesian approaches</title>
-      <link>/post/bayes_chap04/</link>
-      <pubDate>Sat, 06 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap04/</guid>
-      <description>Large-sample theoryAssumptions and notations:
-true distribution: \(y_i\stackrel {iid}{\sim} f(\cdot)\)\(\theta\in\Theta\)prior distribution: \(p(\theta)\)model distribution: \(p(y_i|\theta)\)Kullback-Leibler divergence: a measure of ‘discrepancy’ between the model and the true distribution\[KL(\theta)= E\left[\log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)\right]=\int \log\left(\frac{f(y_i)}{p(y_i|\theta)}\right)f(y_i)dy_i\]
-\(\theta_0\): the unique minimizer of \(KL(\theta)\)if \(f(y_i) = p(y_i|\theta)\) then \(\theta=\theta_0\)
-Convergence of the posterior distributionDiscrete parmeter space: If the parameter space \(\Theta\) is finite and \(P(\theta=\theta_0)&amp;gt;0\), then\[P(\theta=\theta_0|y)\to 1\text{ as }n\to \infty,\]where \(\theta_0=\arg_{\theta\in\Theta} KL(\theta)\).</description>
-    </item>
-    
-    <item>
-      <title>Chapter 3: Introduction to multiparameter models</title>
-      <link>/post/bayes_chap03/</link>
-      <pubDate>Fri, 05 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap03/</guid>
-      <description>Nuisance parametersthere are more than one unknown or unobservable parametersconclusions will often be drawn about one, or only a few parameters at a timethere is no interest in making inferences about many of the unknown parameters – nuisance parameters
-suppose \(\theta=(\theta_1,\theta_2)\)interest centers only on \(\theta_1\); \(\theta_2\) is a ‘nuisance’ parameter.the joint posterior density:\[p(\theta_1,\theta_2|y)\propto p(y|\theta_1,\theta_2)p(\theta_1,\theta_2)\]
-the marginal posterior density:\[p(\theta_1|y)=\int p(\theta_1,\theta_2|y)d\theta_2=\int p(\theta_1|\theta_2,y)p(\theta_2|y)d\theta_2\]</description>
-    </item>
-    
-    <item>
-      <title>第三次作业</title>
-      <link>/post/homework3/</link>
-      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework3/</guid>
-      <description>（课本p.59, 第2题）设\(X\)的分布密度函数为\[f(x)=\frac{1}{2\sigma} e^{-|x|/\sigma}\ (\sigma&amp;gt;0),\]
-\(X_1,\dots,X_n\)是\(X\)的样本，求\(\sigma\)的最大似然估计。
-解: 似然函数为
-\[L(\sigma)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n \left(\frac{1}{2\sigma} e^{-|x_i|/\sigma}\right)=(2\sigma)^{-n}e^{-\sum_{i=1}^n|x_i|/\sigma}\]
-对数似然函数为：\[\ln L(\sigma) = -n \ln (2\sigma)-\left(\sum_{i=1}^n|x_i|\right)/\sigma.\]
-对数似然方程为：\[\frac{d \ln L(\sigma)}{d\sigma}=-\frac{n}{\sigma}+\frac{\sum_{i=1}^n|x_i|}{\sigma^2}=0.\]
-其根是\(\sigma^* = \frac{\sum_{i=1}^n|x_i|}{n}\). 又\[\frac{d^2 \ln L(\sigma)}{d\sigma^2}\Bigg|_{\sigma=\sigma^*}=\frac{n}{\sigma^{*2}}-\frac{2\sum_{i=1}^n|x_i|}{\sigma^{*3}}=-\frac{n}{\sigma^{*2}}&amp;lt;0.\]
-所以，\(\ln L(\sigma)\)在\(\sigma=\sigma^*\)处取得最大值，故\(\sigma\)的最大似然估计为\(\hat{\mu}= \frac{\sum_{i=1}^n|X_i|}{n}\).
-注意：最终的估计量要用大写字母\(X_i\)表示，这样才是估计量。用小写字母\(x_i\)表示的是估计值，是具体的数值，而不是估计量。
-（课本p.59, 第3题）设\(X_1,\dots,X_n\)是来自\([\theta,\theta+1]\)上均匀分布的样本，其中\(\theta\in\mathbb{R}\), 证明\(\theta\)的最大似然估计不止一个，并求出所有的最大似然估计。
-证明：似然函数为
-\[L(\theta)=\prod_{i=1}^n f(x_i)=\prod_{i=1}^n 1\{\theta\le x_i\le \theta+1\}=1\{x_{(n)}-1\le\theta\le x_{(1)}\}\]
-观察得知，当\(\theta\in [x_{(n)}-1,x_{(1)}]\)时，似然函数取得最大值\(1\). 所以，\(\theta\)的最大似然估计不止一个，所有的最大似然估计为集合\([X_{(n)}-1,X_{(1)}]\).
-（课本p.59, 第4题）设随机变量\(X\)以均等机会按\(N(0,1)\)分布取值和按\(N(\mu,\sigma^2)\)分布取值，其中\(\mu\in \mathbb{R},\sigma^2&amp;gt;0\). 这时\(X\)的分布密度函数为这两个分布的密度的平均，即\[f(x;\mu,\sigma^2) = \frac 12\frac{1}{\sqrt{2\pi}}e^{-x^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/(2\sigma^2)},\]
-设\(X_1,\dots,X_n\)为此混合分布的简单随机样本，证明\(\mu,\sigma^2\)不存在最大似然估计。能否通过矩法估计\(\mu,\sigma^2\)？
-证明：似然函数为\[L(\mu,\sigma^2)=\prod_{i=1}^n \left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}+\frac 12\frac{1}{\sqrt{2\pi}\sigma}e^{-(x_i-\mu)^2/(2\sigma^2)}\right)\]取\(\mu=x_1\), 则有\[L(x_1,\sigma^2)\ge \frac{1}{2\sqrt{2\pi}\sigma}\prod_{i=2}^n\left(\frac 12\frac{1}{\sqrt{2\pi}}e^{-x_i^2/2}\right)\]</description>
-    </item>
-    
-    <item>
-      <title>第二章：估计</title>
-      <link>/post/chap02/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap02/</guid>
-      <description>目录1. 点估计1.1 矩估计法1.2 极大似然估计法1.3 估计的优良性准则2. 区间估计2.1 单个正态总体的区间估计2.2 两个独立正态总体的区间估计2.3 非正态总体的区间估计3. 分布估计3.1 直方图法3.2 核估计法参数估计在实际问题中，对于一个总体\(X\)往往是仅知其分布的类型\(f(x, \theta)\)，而参数\(\theta=(\theta_1,\dots,\theta_m)\in \Theta \subset \mathbb{R}^m\)是未知的。对任给的实值函数\[g:\ \mathbb{R}^m\to \mathbb{R},\]如何根据\(X\)的样本\(x_1,\dots,x_n\)估计\(g( \theta)\)的值呢？这就是统计推断中的“参数估计”问题。
-点估计：寻找一个统计量\(\hat{ \theta} = T(X_1,\dots,X_n)\)作为$ $的点估计
-区间估计：寻找两个统计量\(\hat{ \theta}_1 = T_1(X_1,\dots,X_n)\), \(\hat{ \theta}_2 = T_2(X_1,\dots,X_n)\)，所构成的区间\([\hat{ \theta}_1,\hat{ \theta}_2]\)作为$ $的区间估计
-1.1 矩估计法矩估计的想法来源于大数定理。如果总体\(X\)存在\(k\)阶矩，对任意\(\epsilon&amp;gt;0\),\[\lim_{n\to \infty} P(|\frac 1 n\sum_{i=1}^n X_i^k-E[X^k]|\ge \epsilon )=0.</description>
-    </item>
-    
-    <item>
-      <title>第二次作业</title>
-      <link>/post/homework2/</link>
-      <pubDate>Thu, 13 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework2/</guid>
-      <description>设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&amp;gt;u_\alpha)=\alpha\). 若\(P(|X|&amp;lt;x)=\alpha\), 则\(x\)等于（ ）。答案：C
-A. \(u_{\alpha/2}\)
-B. \(u_{1-\alpha/2}\)
-C. \(u_{(1-\alpha)/2}\)
-D. \(u_{1-\alpha}\)
-设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。答案：D
-A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
-B. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)
-C. \(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)
-D. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim \chi^2(n)\)
-设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2+\dots+X_{10}^2}{2(X_{11}^2+\dots+X_{15}^2)}\]的分布为（ ）。答案：A
-A. \(F(10,5)\)
-B. \(F(11,4)\)
-C. \(\chi^2(10)\)
-D. 以上都不是
-设\(X_1,\dots,X_n\)是来自双参数指数分布\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&amp;gt;\mu,\theta&amp;gt;0\]的一个样本，证明\((\bar X,X_{(1)})\)是该分布的充分统计量。
-证明：样本的联合密度函数为\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&amp;gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&amp;gt;\mu\}\]
-由此得知，样本的联合密度函数可以表示为形如\(h(\bar X,X_{(1)};\mu,\theta)\)的函数。由因子分解定理可得\((\bar X,X_{(1)})\)为该分布的充分统计量。
-设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&amp;lt;\theta&amp;lt;x&amp;lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
-解：样本的联合密度函数为\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&amp;gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&amp;gt;\theta\}\]</description>
-    </item>
-    
-    <item>
-      <title>第一次作业</title>
-      <link>/post/homework1/</link>
-      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/homework1/</guid>
-      <description>韦布尔分布(Weibull distribution)族\[p(x)=\frac k\lambda\left(\frac{x}{\lambda}\right)^{k-1}e^{-(x/\lambda)^k}1\{x\ge 0\},k&amp;gt;0,\lambda&amp;gt;0\]是不是指数型分布族？答案：B
-A. 是
-B. 不是
-注意：这里的未知参数有两个，分别是\(k,\lambda\)
-从均值为\(\mu\), 方差为\(\sigma^2\)的总体中随机抽取样本量为\(n\)的样本\(x_1,\dots,x_n\), 其中\(\mu,\sigma^2\)均未知，指出下列样本函数中哪些为统计量（ ）。答案：ADE
-A. \(T_1=x_1+x_2\)
-B. \(T_2=x_1+x_2-2\mu\)
-C. \(T_3=(x_1-\mu)/\sigma\)
-D. \(T_4=(\bar x-10)/5\)
-E. \(T_5=\frac 1 n\sum_{i=1}^n(x_i-S_n)^2\)
-设\(\bar x_n,s_n^2\)表示样本\(x_1,\dots,x_n\)的样本均值与样本方差。已知\[n=15,\bar x_{n}=168, s_n=11.43, x_{n+1}=170.\] 求\(\bar x_{n+1},s_{n+1}^2\)，以及修正样本方差\(s_{n+1}^{*2}\).
-答案来自：张华@16统计
-注意：有同学把已知条件\(s_n=11.43\)看成\(s_n^2=11.43\)
-设\(X_1\sim Ga(\alpha_1,\lambda)\), \(X_2\sim Ga(\alpha_2,\lambda)\), 且\(X_1\)与\(X_2\)独立。证明
-\(Y_1=X_1+X_2\sim Ga(\alpha_1+\alpha_2,\lambda)\)\(Y_2=X_1/(X_1+X_2)\sim Beta(\alpha_1,\alpha_2)\)\(Y_1\)与\(Y_2\)独立答案来自：王博@16统计
-注意：大部分同学每一问都分别给出证明；实际上只需在求第三问时算出他们的联合密度函数即可，容易观察出联合密度函数是“可分离”的。
-设\(X_1,\dots,X_n\)是来自某连续总体的一个样本，总体的分布函数\(F(x)\)是连续严增函数，证明：统计量\(T=-2\sum_{i=1}^n \ln F(X_i)\sim \chi^2(2n)\).
-答案来自：刘霏@16信管
-从正态总体\(N(52,6.3^2)\)中随机抽取容量为36的样本。
-求样本均值\(\bar X\)的分布；求\(\bar X\)落在区间\((50.</description>
-    </item>
-    
-    <item>
-      <title>R的基本画图技巧</title>
-      <link>/post/ex1-1/</link>
-      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ex1-1/</guid>
-      <description>预备工作R软件下载: https://www.r-project.org/
-RStudio编辑器下载: https://www.rstudio.com/
-例1：密度函数画图画图的主要命令1为plot(x,y,...)，里面各种参数的含义可查看帮助文档help(plot)或者? plot. 下面以画伽马分布的密度为例。
-所有的图像都是离散点拼接起来，首先要确定横坐标，可用seq(from = a, to = b, length=n)生成\([a,b]\)间的\(n\)个等分点。
-接着根据横坐标的值计算相应的密度函数值，常用分布的密度函数在R种有现成的函数（使用命令? distribution查看常用的分布），直接调用即可。比如伽马分布的密度为dgamma(x,shape=alpha,rate = lambda), 详情查看帮助文档? dgamma下面为三组参数下的画图代码（可复制到一个空白的R文件中保存运行）
-x = seq(0.001,10,length = 10000) #生成横坐标值lambda = 0.5alpha = 1y = dgamma(x,shape=alpha,rate = lambda) #计算相应的密度值par(mai=c(0.9,0.9,0.3,0.1),cex=1.1) #调整图像边缘空白处大小，初学者可不用设置plot(x,y,type=&amp;quot;l&amp;quot;,ylab = &amp;quot;f(x)&amp;quot;,col=&amp;quot;blue&amp;quot;,cex.lab=1.2)#画第二组参数的图像alpha = 2y = dgamma(x,shape=alpha,rate = lambda)lines(x,y,col=&amp;quot;red&amp;quot;) #此次通过lines命令画第二组参数的图，若用plot命令则输出一副新的图像，而不是在上一幅图基础上叠加#画第三组参数的图像alpha = 3y = dgamma(x,shape=alpha,rate = lambda)lines(x,y,col=&amp;quot;green&amp;quot;)#画出相应的标注，即图中的小矩形expr1 = expression(alpha==1) #此命令用于希腊字母的转化expr2 = expression(alpha==2)expr3 = expression(alpha==3)legend(6,0.</description>
-    </item>
-    
-    <item>
-      <title>第一章：绪论</title>
-      <link>/post/chap01/</link>
-      <pubDate>Mon, 10 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap01/</guid>
-      <description>目录1.1 数理统计是一门什么样的学科？1.2 统计学的发展简史1.3 基本概念1.4 抽样分布1.5 充分统计量1.1 数理统计是一门什么样的学科？它使用概率论和其它数学方法，研究怎样收集（通过试验和观察）带有随机误差的数据，并在设定的模型（称为统计模型）之下，对这种数据进行分析（称为统计分析），以对所研究的问题作出推断（称为统计推断）。由于所收集的统计数据（资料）只能反映事物的局部特征，数理统计的任务就在于从统计资料所反映的局部特征以概率论作为理论基础去推断事物的整体特征。
-本质：由局部（有限样本）推断整体（总体）数据模型推断数据是什么？模型是什么？刻画实际问题能够进行统计分析Essentially, all models are wrong, but some are useful. —— George Box什么样的推断？由样本到总体的推理称为统计推断，有两种基本形式：
-参数估计模型中未知参数与“业务相关”的未知量假设检验判断命题的真假案例案例问题1：OPPO手机充电五分钟通话时间为多少？（参数估计）
-问题2：“OPPO手机充电五分钟通话2小时”是否可信？（假设检验）
-一般步骤数据收集：用\(n\)部手机进行测试，记录通话时间\(X_1,\dots,X_n\)模型假定：假设通话时间\(X\)服从正态分布\(N(\mu,\sigma^2)\)数据分析：通过观测数据\(x_1,\dots,x_n\)作出统计推断1.</description>
-    </item>
-    
-    <item>
-      <title>Chapter 2: Single-parameter models</title>
-      <link>/post/bayes_chap02/</link>
-      <pubDate>Thu, 30 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap02/</guid>
-      <description>2.1 Binomial modelsEstimating a probability from binomial datalet \(\theta\) be the proportion of successes in the populationthe data \((y_1,\dots,y_n)\in \{0,1\}^n\)the total number of successes in the \(n\) trials is denoted by \(y\)the binomial model is\[p(y|\theta) = C_n^y\theta^y(1-\theta)^{n-y}\]
-the posterior distribution is\[p(\theta|y) \propto p(\theta)p(y|\theta)\propto p(\theta)\theta^y(1-\theta)^{n-y}\]
-Example: estimating the probability of a female birth
-A total of 241,945 girls and 251,527 boys were born in Paris from 1745 to 1770.</description>
-    </item>
-    
-    <item>
-      <title>Chapter 1: Probability and Inference</title>
-      <link>/post/bayes_chap01/</link>
-      <pubDate>Wed, 29 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayes_chap01/</guid>
-      <description>3 steps in BDAset up the statistical model
-compute the posterior distribution
-model checking and model improvement
-Statistical inferenceGoal: draw conclusions about unobserved quantities from the data (observed)
-potentially observable quantities, e.g., future observations of a process
-not directly observable quantities, e.g., unobservable population parameters
-Notations and assumptionsunobservable population parameters of interest: \(\theta=(\theta_1,\dots,\theta_m)\)
-the observed data: \(y=(y_1,\dots,y_n)\)</description>
-    </item>
-    
-    <item>
       <title>Academic: the website designer for Hugo</title>
       <link>/post/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
@@ -442,15 +34,6 @@ Key features:
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
-    <item>
-      <title>《数理统计》课程简介</title>
-      <link>/post/chap00/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/chap00/</guid>
-      <description>教师简介姓名何志坚职称数学学院副教授研究兴趣统计模拟与计算、随机算法、金融工程办公地址五山校区四号楼4301个人主页主页链接邮箱hezhijian@scut.edu.cn教材主要教材数理统计学讲义（第3版），陈家鼎、孙山泽、李东风、刘力平编著，高等教育出版社。参考教材数理统计学（第2版），茆诗松、吕晓玲编著，中国人民大学出版社。高等数理统计学，陈希孺编著，中国科技大学出版社。Introduction to Mathematical Statistics (Fifth Edition), R. V. Hogg, A. T. Craig. （高等教育出版社，影印版）Mathematical Statistics (Second Edition), Jun Shao. （世界图书出版公司，影印版）教学安排上课时间1-16周，周一第三、四节，周三第一、二节，共64学时上课地点博学101教学内容《数理统计学讲义》第1-5章《数理统计学》第1章教学日历内容学时要求第一章 绪论6了解统计学的发展以及基本概念第二章 估计12熟练掌握各种估计方法第三章 假设检验16熟练掌握各种假设检验方法第四章 回归分析16熟练掌握线性模型的建立与分析的技巧第五章 方差分析12掌握方差分析的技巧复习2考试重点复习统计软件本课程使用R软件: https://www.</description>
     </item>
     
   </channel>

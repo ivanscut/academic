@@ -32,7 +32,7 @@ $$y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim} N(0,\sigma^
 
 3. A very slippery point is whether to treat the $x_i$ as fixed numbers or as random variables. In the class, we treated the predictors $x_i$ as fixed numbers for sake of convenience. Now suppose that the predictors $x_i$ are iid  random variables (independent of $\epsilon_i$) with density $f_X(x;\theta)$ for some parameter $\theta$. Write down the likelihood function for all of our data $(x_i,y_i),i=1,\dots,n$. Derive the MLE for $\beta_0,\beta_1$ and see whether the MLE changes if we work with the setting of random predictors?
 
-
+<!-- 
 `Solution`: Note that $y_i\sim N(\beta_0+\beta_1 x_i,\sigma^2)$ independently. The likelihood function is
 
 $$L(\beta_0,\beta_1,\sigma^2) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}}=(2\pi\sigma^2)^{-n/2}e^{-\frac{Q(\beta_0,\beta_1)}{2\sigma^2}},$$
@@ -57,6 +57,8 @@ You can imagine that $(x_i,y_i)$ pairs are generated somewhere and on one day yo
 day $y_i|x_i$ are revealed to you. That is informative about $\beta_0$ and $\beta_1$ using $f_{Y|X}(y_i|x_i;\beta_0,\beta_1,\sigma^2)$.
 The easier analysis is with $x_i$ fixed, so that is the one we'll do.
 
+-->
+
 ---
 
 
@@ -71,6 +73,8 @@ where $\epsilon_i$ are independent with $E[\epsilon_i]=0$ and $Var[\epsilon_i]=\
 
 - For fixed $x_0$, let $\hat{y}_0=\hat\beta x_0$. Work out $Var[\hat{y}_0]$.
 
+
+<!-- 
 `Solution`: Let $Q(\beta)= \sum_{i=1}^n (y_i-\beta x_i)^2$. Then we have
 
 $$Q'(\beta) = -\sum_{i=1}^n 2x_i(y_i-\beta x_i).$$
@@ -101,6 +105,8 @@ Var[\hat y_0] &= Var[x_0\hat\beta] = x_0^2Var[\hat\beta]\\
 \end{align}
 $$
 
+-->
+
 ---
 
 
@@ -130,6 +136,8 @@ their standard errors, and plot the two regression lines.
 to reject the null hypothesis that $\beta_1\le \beta_1^*$ (significance level $\alpha=0.05$)? Or equivalently, do these data support the theory that genetically mixed populations have a
 better chance of survival in hostile environments.
 
+
+<!-- 
 `Solution`: 
 
 ```{r}
@@ -177,3 +185,5 @@ $$t = \frac{0.742	-0.452	}{\sqrt{ \frac{5512.14+3960.14}{(6-2)\times 175000} }}=
 
 We therefore reject the null. These data, then, **do** support the theory that genetically mixed populations have a
 better chance of survival in hostile environments.
+
+-->

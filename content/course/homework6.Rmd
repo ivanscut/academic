@@ -32,6 +32,8 @@ of the test.
 4. A type I error occurs when the test statistic falls in the rejection region of the
 test.
 
+<!-- 
+
 `Solution`: 
 
 1. `FALSE`. The significance level is the (tight) upper bound of the probability of type I error. It has nothing to do with the conclusion "the null hypothesis is true".
@@ -43,6 +45,8 @@ test.
 
 4. `FALSE`. A type I error occurs when the test statistic falls in the rejection region of the test and **the null is true**.
 
+-->
+
 ---
 
 
@@ -52,7 +56,7 @@ if either 0 or 10 heads are observed.
 1. What is the significance level of the test?
 2. If in fact the probability of heads is $0.1$, what is the power of the test?
 
-
+<!-- 
 `Solution`: Let $\theta$ be the probability of heads. We are testing 
 $$H_0:\theta=1/2\ vs.\ H_1:\theta\neq 1/2.$$
 Denote $S$ as the number of heads. The rejection region is 
@@ -64,7 +68,7 @@ $$\alpha = P(W|\theta=0.5) = P(S=0|\theta=0.5)+P(S=10|\theta=0.5)=2^{-10}+2^{-10
 2. The power of the test is
 $$\rho_W(0.1) = P(W|\theta=0.1) = 0.1^{10}+0.9^{10}=0.349.$$
 
-
+-->
 
 ---
 
@@ -74,7 +78,7 @@ $$W=\{(x_1,x_2,x_3):x_1+x_2+x_3\ge 2\}.$$
 1. What are the probabilities of the two types of errors for $W$?
 2. What is the power of the test? Graph the power as a function of $p$.
 
-
+<!-- 
 `Solution`: Let $S=X_1+X_2+X_3$. 
 
 1. Under $H_0$, $S\sim B(3,1/2)$. The probability of type I error is 
@@ -91,9 +95,9 @@ par(mar=c(4,4,1,1))
 plot(p,power,type="l")
 ```
 
+-->
 
 
---- 
 
 
 

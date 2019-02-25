@@ -1,0 +1,459 @@
+---
+title: 'Approximate Bayesian Computation'
+
+date: 2018-12-18
+lastmod: 2018-12-18
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: ABC-Review
+menu:
+  course: 
+    parent: Bayesian Statistics
+    weight: 11
+---
+
+
+
+<div id="bayesian-inference" class="section level2">
+<h2>Bayesian inference</h2>
+<p>Our goal is to estimate an expectation of <span class="math inline">\(a(\theta)\)</span> under the posterior distribution</p>
+<p><span class="math display">\[\pi(\theta|y_{obs})=\frac{\pi(\theta)p(y_{obs}|\theta)}{p(y_{obs})}\propto \pi(\theta)p(y_{obs}|\theta)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\pi(\theta)\)</span> is the prior distribution</p></li>
+<li><p><span class="math inline">\(p(y|\theta)\)</span> is the likelihood function</p></li>
+<li><p>the constant <span class="math inline">\(p(y_{obs})\)</span> is intractable</p></li>
+</ul>
+<p>Suppose that one can generate samples <span class="math inline">\(\theta^{(1)},\dots,\theta^{(N)}\sim \pi(\theta|y_{obs})\)</span>, then</p>
+<p><span class="math display">\[E[a(\theta)|y_{obs}]\approx \frac 1 N\sum_{i=1}^N a(\theta^{(i)})\]</span></p>
+<p>This is the basic idea of Monte Carlo (MC).</p>
+</div>
+<div id="acceptance-rejection-ar-methods" class="section level2">
+<h2>Acceptance rejection (AR) methods</h2>
+<ul>
+<li><p>the target density <span class="math inline">\(f(\theta)\)</span></p></li>
+<li><p>the proposal <span class="math inline">\(g(\theta)\)</span>, with <span class="math inline">\(g(\theta)&gt;0\)</span> if <span class="math inline">\(f(\theta)&gt;0\)</span></p></li>
+<li><p><span class="math inline">\(K\ge \sup_{\theta}\frac{f(\theta)}{g(\theta)}\)</span></p></li>
+</ul>
+<p>The algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{f(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>. Else go to Step 1.</p></li>
+</ul>
+<p>To fit into Bayesian inference, let <span class="math inline">\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)</span></p>
+<ul>
+<li><p>the proposal <span class="math inline">\(g(\theta)=\pi(\theta)\)</span>, the acceptance probability is the likelihood <span class="math inline">\(r(\theta)=p(y_{obs}|\theta)\)</span></p></li>
+<li><p>generally, the acceptance probablity is
+<span class="math display">\[r(\theta)=\frac{\pi(\theta)}{Kg(\theta)}p(y_{obs}|\theta),\ K=\sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\]</span></p></li>
+</ul>
+</div>
+<div id="importance-sampling-is" class="section level2">
+<h2>Importance sampling (IS)</h2>
+<ul>
+<li><p>the target density <span class="math inline">\(f(\theta)\)</span></p></li>
+<li><p>the proposal <span class="math inline">\(g(\theta)\)</span>, with <span class="math inline">\(g(\theta)&gt;0\)</span> if <span class="math inline">\(f(\theta)&gt;0\)</span></p></li>
+</ul>
+<p>The algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: compute the weight <span class="math inline">\(w(\theta^{(i)})=\frac{f(\theta^{(i)})}{g(\theta^{(i)})}\)</span>.</p></li>
+</ul>
+<p>Return the weight samples <span class="math inline">\((w(\theta^{(i)}),\theta^{(i)}), i=1,\dots,N\)</span></p>
+<p>To fit into Bayesian inference, let <span class="math inline">\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)</span>, then the self-normalized IS estimator is</p>
+<p><span class="math display">\[E[a(\theta)|y_{obs}]\approx \frac{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})a(\theta^{(i)})}{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})}\]</span></p>
+</div>
+<div id="mcmc" class="section level2">
+<h2>MCMC</h2>
+<ul>
+<li><p>the target density <span class="math inline">\(f(\theta)\)</span></p></li>
+<li><p>the proposal distribution: <span class="math inline">\(q(\theta&#39;|\theta)\)</span></p></li>
+</ul>
+<p>The algorithm goes below:</p>
+<ol style="list-style-type: decimal">
+<li>for <span class="math inline">\(i=0\)</span>, draw a starting poing <span class="math inline">\(\theta^{(0)}\sim f_0(x)\)</span></li>
+<li>for <span class="math inline">\(i=1,\dots,N\)</span>, sample <span class="math inline">\(\theta^{(i)}\sim q(\theta&#39;|\theta^{(i-1)})\)</span>, accept <span class="math inline">\(\theta^{(i)}\)</span> with probability
+<span class="math display">\[r(\theta^{(i-1)},\theta^{(i)})=\min\left(\frac{f(\theta^{(i)})q(\theta^{(i-1)}|\theta^{(i)})}{f(\theta^{(i-1)})q(\theta^{(i)}|\theta^{(i-1)})},1\right)\]</span>
+Otherwise, taking <span class="math inline">\(\theta^{(i)}=\theta^{(i-1)}\)</span></li>
+</ol>
+<p>To fit into Bayesian inference, let <span class="math inline">\(f(\theta)=\pi(\theta)p(y_{obs}|\theta)\)</span></p>
+<ul>
+<li>the acceptance probablity is
+<span class="math display">\[r(\theta,\theta&#39;)=\min\left(\frac{p(y_{obs}|\theta&#39;)q(\theta|\theta&#39;)}{p(y_{obs}|\theta)q(\theta&#39;|\theta)},1\right)\]</span></li>
+</ul>
+</div>
+<div id="motivation-for-abc" class="section level2">
+<h2>Motivation for ABC</h2>
+<ul>
+<li><p>Both the AR and MCMC require the evaluation of likelihood function.</p></li>
+<li><p>However, for an increasing range of scientific problems, numerical evaluation of the likelihood function is
+either <strong>computationally prohibitive</strong>, or simply <strong>not possible</strong></p></li>
+<li><p>Instances when the complete likelihood function is
+unavailable can occur when the model density function is only implicitly
+defined, for example, through quantile or characteristic functions</p></li>
+</ul>
+</div>
+<div id="a-g-and-k-distribution" class="section level2">
+<h2>A g-and-k distribution</h2>
+<p>The univariate g-and-k distribution is a flexible unimodal distribution that
+is able to describe data with significant amounts of skewness and kurtosis. Its density function has no closed form, but
+is alternatively defined through its quantile function as:</p>
+<p><span class="math display">\[Q(q|A,B,g,k)=A+B\left[1+c\frac{1-\exp\{-gz(q)\}}{1+\exp\{-gz(q)\}}\right](1+z(q)^2)^kz(q)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(c=0.8,\ B&gt;0, k&gt;-1/2\)</span>, <span class="math inline">\(z(q)=\Phi^{-1}(q)\)</span></p></li>
+<li><p>if <span class="math inline">\(g=k=0\)</span>, it is the normal density</p></li>
+</ul>
+</div>
+<div id="likelihood-free-rejection-sampling-i" class="section level2">
+<h2>Likelihood-free rejection sampling I</h2>
+<p>While direct evaluation of the
+acceptance probability is not available if the likelihood is computationally intractable,
+it is possible to stochastically determine whether or not to accept
+or reject a draw from the sampling density, <em>without</em> numerical evaluation of
+the acceptance probability.</p>
+<p>Assume that the data <span class="math inline">\(y\)</span> are discrete. The algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span> from the likelihood</p></li>
+<li><p>Step 3: if <span class="math inline">\(y=y_{obs}\)</span>, then accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>. Else go to Step 1.</p></li>
+</ul>
+</div>
+<div id="stereological-extremes" class="section level2">
+<h2>Stereological extremes</h2>
+<p>Interest is in the distribution of the size of inclusions, microscopically small
+particles introduced during the production of steel. The steel strength is
+thought to be directly related to the size of the largest inclusion. Commonly,
+the sampling of inclusions involves measuring the maximum cross-sectional diameter
+of each observed inclusion, <span class="math inline">\(y_{obs}=(y_{obs,1},\dots,y_{obs,n})\)</span>, obtained from a
+two-dimensional planar slice through the steel block.</p>
+<ul>
+<li><p>unobserved true inclusion diameter <span class="math inline">\(V_i\)</span> with <span class="math inline">\(y_{obs,i}\le V_i\)</span></p></li>
+<li><p>inclusions were <strong>spherical</strong> with diameters <span class="math inline">\(V\)</span> follows a generalised Pareto distribution
+<span class="math display">\[P(V\le v|V&gt;v_0)=1-\max\{1+\xi(v-v_0)/\sigma,0\}^{-1/\xi}\]</span></p></li>
+<li><p>the centres followed a homogeneous Poisson process
+with rate <span class="math inline">\(\lambda&gt;0\)</span> in the volume of steel</p></li>
+<li><p>the parameter is <span class="math inline">\(\theta=(\lambda,\sigma,\xi)\)</span></p></li>
+</ul>
+</div>
+<div id="stereological-extremes-1" class="section level2">
+<h2>Stereological extremes</h2>
+<ul>
+<li><p>Anderson and Coles (2002) were able to construct a tractable likelihood
+function for this model. However, while their model assumptions of a Poisson
+process are not unreasonable, the assumption that the inclusions are spherical
+is not plausible in practice.</p></li>
+<li><p>Bortot et al. (2007) generalised this model to a family of <strong>ellipsoidal
+inclusions</strong>. While this model is more realistic than the spherical inclusion
+model, there are <strong>analytic and computational difficulties</strong>.</p></li>
+</ul>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<p>Consider the simple case <span class="math inline">\(\sigma=1.5,\xi = 0.1\)</span> with <span class="math inline">\(\lambda\)</span> unknown. Let <span class="math inline">\(n_{obs}\)</span> be the observed
+number of inclusions, so that <span class="math inline">\(p(\theta|y_{obs})=p(\lambda|n_{obs})\)</span>.</p>
+<ul>
+<li><p>prior density <span class="math inline">\(\pi(\lambda)\sim U(0,100)\)</span></p></li>
+<li><p>the data <span class="math inline">\(n_{obs}\in \{92,102,112,122,132\}\)</span></p></li>
+<li><p>Acceptance rates for the right panel are <span class="math inline">\(0.5\%,10.5\%,20.5\%\)</span></p></li>
+</ul>
+<p><img src="extremes.png" /></p>
+</div>
+<div id="likelihood-free-rejection-sampling-ii" class="section level2">
+<h2>Likelihood-free rejection sampling II</h2>
+<p>For a given <span class="math inline">\(h&gt;0\)</span>, the algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span> from the likelihood</p></li>
+<li><p>Step 3: if <span class="math inline">\(||y- y_{obs}||\le h\)</span>, then accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>. Else go to Step 1.</p></li>
+</ul>
+</div>
+<div id="the-g-and-k-distribution" class="section level2">
+<h2>The g-and-k distribution</h2>
+<ul>
+<li><p><span class="math inline">\(y_{obs}\)</span> of length <span class="math inline">\(1000\)</span> is generated from the <span class="math inline">\(g\)</span>-and-<span class="math inline">\(k\)</span> distribution with parameter <span class="math inline">\(\theta_0=(3,1,2,0.5)\)</span></p></li>
+<li><p>prior density</p></li>
+</ul>
+<p><span class="math display">\[\pi(\theta) = \pi(A)\pi(B)\pi(g)\pi(k) = N(1,5)\times N(0.25,2) \times U(0,10) \times U(0,1)\]</span></p>
+</div>
+<div id="the-results" class="section level2">
+<h2>The results</h2>
+<p><img src="gandk.png" /></p>
+<ul>
+<li><p>grey dots: for the AR rule <span class="math inline">\(||y-y_{obs}||\le h\)</span></p></li>
+<li><p>black dots: for the AR rule <span class="math inline">\(||S(y)-S(y_{obs})||\le h\)</span></p></li>
+</ul>
+</div>
+<div id="the-use-of-summary-statistic" class="section level2">
+<h2>The use of summary statistic</h2>
+<p>Summary statistic (Drovandi and Pettitt, 2011): <span class="math inline">\(S(y) = (S_A,S_B,S_g,S_k)\)</span></p>
+<ul>
+<li><span class="math inline">\(S_A=E_4\)</span></li>
+<li><span class="math inline">\(S_B=E_6-E_2\)</span></li>
+<li><span class="math inline">\(S_g=(E_6+E_2-2E_4)/S_B\)</span></li>
+<li><span class="math inline">\(S_k = (E_7-E_5+E_3-E_1)/S_B\)</span></li>
+<li><span class="math inline">\(E_1\le E_2 \le \cdots \le E_8\)</span> are the octiles of <span class="math inline">\(y\)</span></li>
+</ul>
+</div>
+<div id="likelihood-free-rejection-sampling-iii" class="section level2">
+<h2>Likelihood-free rejection sampling III</h2>
+<p>For a given <span class="math inline">\(h&gt;0\)</span>, the algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span> from the likelihood</p></li>
+<li><p>Step 3: if <span class="math inline">\(||S(y)- S(y_{obs})||\le h\)</span>, then accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>. Else go to Step 1.</p></li>
+</ul>
+<p>NOTE: usually <span class="math inline">\(\text{dim}(S(y))\ll\text{dim}(y)\)</span></p>
+</div>
+<div id="approximate-bayesian-computation" class="section level2">
+<h2>Approximate Bayesian Computation</h2>
+<p>ABC is a kind of likelihood-free methods developed
+for when the likelihood function is computationally intractable or otherwise unavailable.</p>
+<ul>
+<li><p>The likelihood-free rejection algorithm with <span class="math inline">\(h=0\)</span> which is exact (work for discrete cases), is not an ABC algorithm</p></li>
+<li><p>For <span class="math inline">\(h&gt;0\)</span>, it is an ABC algorithm as the samples will be drawn from an approximation to the posterior distribution.</p></li>
+<li><p>The aim of any ABC analysis is to find a practical way of
+performing the Bayesian analysis, while keeping the approximation and the
+computation to a minimum.</p></li>
+</ul>
+</div>
+<div id="abc-with-general-kernels" class="section level2">
+<h2>ABC with general kernels</h2>
+<p>The approximate joint distribution:</p>
+<p><span class="math display">\[\pi_{ABC}(\theta,y|y_{obs})\propto I\{||y-y_{obs}||\le h\}p(y|\theta)\pi(\theta)\]</span></p>
+<ul>
+<li>generalize the AR rule <span class="math inline">\(I\{||y-y_{obs}||\le h\}\)</span> to smoothing kernel function <span class="math inline">\(K_h(||y-y_{obs}||)\)</span></li>
+</ul>
+<p><span class="math display">\[\pi_{ABC}(\theta,y|y_{obs})\propto K_h(||y-y_{obs}||)p(y|\theta)\pi(\theta)\]</span></p>
+<p>The kernel: <span class="math inline">\(K_h(u)=\frac 1 h K(u/h)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(K(u)\)</span> is a symmetric function</p></li>
+<li><p><span class="math inline">\(K(u)\ge 0\)</span> for all <span class="math inline">\(u\)</span></p></li>
+<li><p><span class="math inline">\(\int K(u) d u=1,\ \int uK(u)du=0,\ \int u^2K(u)du&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(h\)</span> is the bandwidth</p></li>
+</ul>
+</div>
+<div id="common-kernels" class="section level2">
+<h2>Common kernels</h2>
+<ul>
+<li>Uniform <span class="math inline">\(\frac 1 2 I\{|u|\le 1\}\)</span></li>
+<li>Tringular <span class="math inline">\((1-|u|)I\{|u|\le 1\}\)</span></li>
+<li>Epanechnikov <span class="math inline">\(\frac 3 4(1-u^2)I\{|u|\le 1\}\)</span></li>
+<li>Biweight <span class="math inline">\(\frac{15}{16}(1-u^2)^3I\{|u|\le 1\}\)</span></li>
+<li>Gaussian <span class="math inline">\(\frac{1}{\sqrt{2\pi}}e^{-u^2/2}\)</span></li>
+</ul>
+<p><img src="kernels.png" width="60%" /></p>
+</div>
+<div id="abc-rejection-sampling-algorithm-i" class="section level2">
+<h2>ABC Rejection Sampling Algorithm I</h2>
+<p>For a given <span class="math inline">\(h&gt;0\)</span>, the algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span> from the likelihood</p></li>
+<li><p>Step 3: accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{K_h(||y-y_{obs}||)\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>, where <span class="math inline">\(K\ge \sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\sup_uK(u)\)</span>. Else go to Step 1.</p></li>
+</ul>
+</div>
+<div id="approximate-posterior-distribution" class="section level2">
+<h2>Approximate Posterior Distribution</h2>
+<p><span class="math display">\[\pi_{ABC}(\theta,y|y_{obs})\propto K_h(||y-y_{obs}||)p(y|\theta)\pi(\theta)\]</span></p>
+<p>The approximate posterior:</p>
+<p><span class="math display">\[\pi_{ABC}(\theta|y_{obs})=\int \pi_{ABC}(\theta,y|y_{obs}) d y\propto \pi(\theta)\int K_h(||y-y_{obs}||)p(y|\theta)dy\]</span></p>
+<p>ABC approximation to the true likelihood:</p>
+<p><span class="math display">\[p_{ABC}(y_{obs}|\theta) = \int K_h(||y-y_{obs}||)p(y|\theta)dy.\]</span></p>
+<p><span class="math display">\[\pi_{ABC}(\theta|y_{obs})\to \pi(\theta|y_{obs}) \text{ as }h\to 0.\]</span></p>
+</div>
+<div id="example-1" class="section level2">
+<h2>Example 1</h2>
+<ul>
+<li><p>likelihood function <span class="math inline">\(p(y|\theta)=\theta e^{-\theta y}\)</span>, i.e., <span class="math inline">\(Exp(\theta)\)</span></p></li>
+<li><p>prior <span class="math inline">\(\pi(\theta) \propto \theta^{\alpha-1}e^{-\beta\theta}\)</span>, i.e., <span class="math inline">\(Gamma(\alpha,\beta)\)</span></p></li>
+<li><p>posterior density <span class="math inline">\(Gamma(\alpha+1,\beta+y_{obs})\)</span></p></li>
+<li><p>uniform kernel <span class="math inline">\(K_h(u) = \frac 1{2h}1\{|u|\le h\}\)</span></p></li>
+</ul>
+<p><span class="math display">\[p_{ABC}(y_{obs}|\theta) = \int K_h(||y-y_{obs}||)p(y|\theta)dy=\frac 1{2h}e^{-\theta y_{obs}}(e^{\theta h}-e^{-\theta h})\]</span></p>
+<p><span class="math display">\[p_{ABC}(y_{obs}|\theta)-p(y_{obs}|\theta)=p(y_{obs}|\theta)\left(\frac{e^{\theta h}-e^{-\theta h}}{2\theta h}-1\right)\approx \frac{h^2\theta^3e^{-\theta y_{obs}}}{6}\]</span></p>
+<p><span class="math display">\[\pi_{ABC}(\theta|y_{obs}) = \frac{\theta^{\alpha-1}e^{-\theta (y_{obs}+\beta)}(e^{\theta h}-e^{-\theta h})}{\frac{\Gamma(\alpha)}{(y_{obs}+\beta-h)^\alpha}-\frac{\Gamma(\alpha)}{(y_{obs}+\beta+h)^\alpha}}\]</span></p>
+</div>
+<div id="plots" class="section level2">
+<h2>Plots</h2>
+<p><img src="ex1.png" width="80%" /></p>
+</div>
+<div id="example-2" class="section level2">
+<h2>Example 2</h2>
+<ul>
+<li><p>likelihood <span class="math inline">\(N(\theta,\sigma_0^2)\)</span> with known <span class="math inline">\(\sigma_0\)</span></p></li>
+<li><p>prior <span class="math inline">\(N(m_0,s_0^2)\)</span></p></li>
+<li><p>Guassian kernel <span class="math inline">\(K_h(u)=N(0,h^2)\)</span></p></li>
+<li><p><span class="math inline">\(p_{ABC}(\bar y_{obs}|\theta)=N(\theta,\sigma^2/n+h^2)\)</span></p></li>
+<li><p><span class="math inline">\(\pi_{ABC}(\theta|y_{obs})=N(\mu_{ABC},\sigma_{ABC}^2)\)</span></p></li>
+</ul>
+<p><span class="math display">\[\mu_{ABC} = \frac{\frac{m_0}{s_0^2}+\frac{\bar y_{obs}}{\sigma_0^2/n+h^2}}{\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n+h^2}}\]</span></p>
+<p><span class="math display">\[\frac{1}{\sigma_{ABC}^2}=\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n+h^2}\]</span></p>
+</div>
+<div id="plots-1" class="section level2">
+<h2>Plots</h2>
+<p><img src="ex2.png" /></p>
+<ul>
+<li><p>Gaussian kernel vs. uniform kernel</p></li>
+<li><p>The ABC posterior approximation may
+be improved simply by rescaling the posterior variance to remove the term <span class="math inline">\(h^2\)</span> (Drovandi 2012).</p></li>
+</ul>
+</div>
+<div id="the-use-of-summary-statistics" class="section level2">
+<h2>The Use of Summary Statistics</h2>
+<p>For a given <span class="math inline">\(h&gt;0\)</span>, the algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span> from the likelihood</p></li>
+<li><p>Step 3: accept <span class="math inline">\(\theta^{(i)}\)</span> with probability <span class="math inline">\(r(\theta^{(i)})=\frac{K_h(||S(y)-S(y_{obs})||)\pi(\theta^{(i)})}{Kg(\theta^{(i)})}\)</span>, where <span class="math inline">\(K\ge \sup_{\theta}\frac{\pi(\theta)}{g(\theta)}\sup_uK(u)\)</span>. Else go to Step 1.</p></li>
+</ul>
+</div>
+<div id="example-3" class="section level2">
+<h2>Example 3</h2>
+<ul>
+<li><p>the model <span class="math inline">\(y=(y_1,y_2), y_i\sim B(n,\theta)\)</span></p></li>
+<li><p>prior <span class="math inline">\(\theta\sim U(0,1)\)</span></p></li>
+<li><p>three sufficient statistics: <span class="math inline">\(s^1=(y_1,y_2)\)</span>, <span class="math inline">\(s^2 =(y_{(1)},y_{(2)})\)</span>, <span class="math inline">\(s^3=y_1+y_2\)</span></p></li>
+</ul>
+<p>Acceptance rates (<span class="math inline">\(h=0\)</span>) are:</p>
+<ul>
+<li><p><span class="math inline">\(r_1=C_n^{y_1}C_n^{y_2} B(y_1+y_2+1,2n-y_1-y_2+1)\)</span></p></li>
+<li><p><span class="math inline">\(r_2 = [2-1\{y_{(1)}=y_{(2)}\}]r_1\)</span></p></li>
+<li><p><span class="math inline">\(r_3 = 1/(2n+1)\)</span></p></li>
+</ul>
+<p>E.g., <span class="math inline">\(y_{obs}=(1,2)\)</span> from <span class="math inline">\(n=5\)</span>, <span class="math inline">\(p_1\approx 0.038,\ p_2\approx 0.076,\ p_3\approx 0.091\)</span></p>
+<ul>
+<li><p>The most efficient choice is the <strong>minimal sufficient statistic</strong>.</p></li>
+<li><p>This may still be non-viable in practice; low-dimensional sufficient statistic may not exist – Weibull distribution</p></li>
+</ul>
+</div>
+<div id="example-2-continued" class="section level2">
+<h2>Example 2 (continued)</h2>
+<ul>
+<li><p>likelihood <span class="math inline">\(N(\theta,\sigma_0^2)\)</span> with known <span class="math inline">\(\sigma_0\)</span></p></li>
+<li><p>prior <span class="math inline">\(N(m_0,s_0^2)\)</span></p></li>
+<li><p>Guassian kernel <span class="math inline">\(K_h(u)=N(0,h^2)\)</span></p></li>
+<li><p>summary statistic <span class="math inline">\(s=\bar{y}_{1{:}n&#39;}=\frac{1}{n&#39;}\sum_{i=1}^{n&#39;}y_i\)</span> with <span class="math inline">\(n&#39;&lt;n\)</span></p></li>
+<li><p><span class="math inline">\(p_{ABC}(s_{obs}|\theta)=N(\theta,\sigma^2/n&#39;+h^2)\)</span></p></li>
+<li><p><span class="math inline">\(\pi_{ABC}(\theta|y_{obs})=N(\mu_{ABC},\sigma_{ABC}^2)\)</span></p></li>
+</ul>
+<p><span class="math display">\[\mu_{ABC} = \frac{\frac{m_0}{s_0^2}+\frac{s_{obs}}{\sigma_0^2/n&#39;+h^2}}{\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n&#39;+h^2}},\ \frac{1}{\sigma_{ABC}^2}=\frac{1}{s_0^2}+\frac{1}{\sigma_0^2/n&#39;+h^2}\]</span></p>
+<ul>
+<li>two sources of error: the degree
+of inefficiency of replacing <span class="math inline">\(y\)</span> by <span class="math inline">\(s=S(y)\)</span> and the matching of the
+simulated and observed data through the Gaussian kernel</li>
+</ul>
+</div>
+<div id="the-choice-of-summary-statistics-for-abc" class="section level2">
+<h2>The choice of summary statistics for ABC</h2>
+<p>The choice of summary statistics for an ABC analysis is a critical decision
+that directly affects the quality of the posterior approximation.</p>
+<p>Many
+approaches for determining these statistics are available, and these are reviewed
+in Blum et al. (2013) and Prangle (2019). These methods seek to trade off two aspects of the ABC posterior
+approximation that directly result from the choice of summary statistics.</p>
+<p>The dimension of the summary statistic should be large enough so
+that it contains as much information about the observed data as possible, but
+also low enough so that the curse-of-dimensionality of matching <span class="math inline">\(s\)</span> and <span class="math inline">\(s_{obs}\)</span>
+is avoided.</p>
+</div>
+<div id="some-practical-issues-with-summary-statistics" class="section level2">
+<h2>Some practical issues with summary statistics</h2>
+<p>It is NOT always viable to continue to add summary statistics to s until the
+resulting ABC posterior approximation does not change for the worse.</p>
+<ul>
+<li><p>the model <span class="math inline">\(y=(y_1,\dots,y_n), y_i\sim Poission(\lambda)\)</span></p></li>
+<li><p>prior <span class="math inline">\(\lambda \sim Gamma(\alpha,\beta)\)</span></p></li>
+<li><p>posterior <span class="math inline">\(\lambda|y\sim Gamma(\alpha+n\bar y,\beta+n)\)</span></p></li>
+<li><p>data <span class="math inline">\(y_{obs}=(0,0,0,0,5)\)</span></p></li>
+<li><p>summary statistics: <span class="math inline">\(s^1=\bar y,\ s^2= v=\sqrt{\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar y)^2}, s^3=(\bar y,v)\)</span></p></li>
+<li><p>using uniform kernel with <span class="math inline">\(h=0\)</span> and <span class="math inline">\(h=0.3\)</span>, <span class="math inline">\(\alpha=\beta=1\)</span></p></li>
+</ul>
+</div>
+<div id="comparison" class="section level2">
+<h2>Comparison</h2>
+<p><img src="ss.png" /></p>
+<ul>
+<li>top (<span class="math inline">\(h=0\)</span>), bottom (<span class="math inline">\(h=0.3\)</span>)</li>
+<li>prior <span class="math inline">\(Gamma(\alpha,\beta)\)</span> (dashed lines), target distribution <span class="math inline">\(Gamma(\alpha+n\bar y,\beta+n)\)</span> (solid line)</li>
+</ul>
+</div>
+<div id="the-choice-of-distance-measure" class="section level2">
+<h2>The choice of distance measure</h2>
+<p>The distance measure <span class="math inline">\(||s-s_{obs}||\)</span> can also have a substantial impact on ABC algorithm efficiency, and therefore the quality of the posterior approximation.</p>
+<ul>
+<li><p>the most common one is the Euclidean distance</p></li>
+<li><p>the Mahalanobis distance (Peters
+et al. 2012; Erhardt and Sisson 2016):</p></li>
+</ul>
+<p><span class="math display">\[||s-s_{obs}||=(s-s_{obs})^\top\Sigma^{-1}(s-s_{obs})\]</span></p>
+<ul>
+<li><span class="math inline">\(\Sigma\)</span> is the covariance matrix of <span class="math inline">\(s\)</span></li>
+</ul>
+</div>
+<div id="comparison-1" class="section level2">
+<h2>Comparison</h2>
+<p><img src="distance.png" width="60%" /></p>
+<ul>
+<li><p>the entries of <span class="math inline">\(s\)</span> may dependent</p></li>
+<li><p>implementing a circular acceptance region (implying independence
+and identical scales) induces both type I and type II errors.</p></li>
+</ul>
+</div>
+<div id="example-4" class="section level2">
+<h2>Example 4</h2>
+<ul>
+<li><p>the model <span class="math inline">\(y_1,\dots,y_{50}\sim N(\theta,1)\)</span></p></li>
+<li><p>prior <span class="math inline">\(\theta\sim U(-5,5)\)</span></p></li>
+<li><p>summary statistics: <span class="math inline">\(s^1=(\bar y_{1{:}40},\bar y_{41{:}50})\)</span>, <span class="math inline">\(s^2=(\bar y_{1{:}25}-\bar y_{26{:}50},\bar y_{26{:}50})\)</span></p></li>
+</ul>
+<p><span class="math display">\[\Sigma^1 = Cov(s^1|\theta) = \left(
+\begin{matrix}
+1/40 &amp; 0\\
+0 &amp; 1/10
+\end{matrix}
+\right)\]</span></p>
+<p><span class="math display">\[\Sigma^2 = Cov(s^2|\theta) = \left(
+\begin{matrix}
+2/25 &amp; -1/25\\
+-1/25 &amp; 1/25
+\end{matrix}
+\right)
+\]</span></p>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>Mean Number of Summary StatisticGenerations per Final Accepted Particle (with Standard Errors inParentheses)</p>
+<p><img src="tabdistance.png" /></p>
+</div>
+<div id="pilot-analysis-on-the-covariance-matrix" class="section level2">
+<h2>Pilot analysis on the covariance matrix</h2>
+<p>To estimate the covariance matrix <span class="math inline">\(\Sigma\)</span>, Luciani
+et al. (2009) and Erhardt and Sisson (2016) identify some value of <span class="math inline">\(\theta=\theta^*\)</span> in a high posterior density region via a pilot analysis and then estimate
+<span class="math inline">\(Cov(s|\theta^*)\)</span> based on repeated draws from <span class="math inline">\(p(s|\theta^*)\)</span>.</p>
+</div>
+<div id="abc-is-algorithm" class="section level2">
+<h2>ABC-IS algorithm</h2>
+<ul>
+<li><p>the target density <span class="math inline">\(\pi_{ABC}(\theta|s_{obs})\)</span></p></li>
+<li><p>the proposal <span class="math inline">\(g(\theta)\)</span>, with <span class="math inline">\(g(\theta)&gt;0\)</span> if <span class="math inline">\(f(\theta)&gt;0\)</span></p></li>
+</ul>
+<p>For a given <span class="math inline">\(h&gt;0\)</span>, the algorithm goes below, for <span class="math inline">\(i=1,\dots,N\)</span>:</p>
+<ul>
+<li><p>Step 1: generate <span class="math inline">\(\theta^{(i)}\sim g(\theta)\)</span></p></li>
+<li><p>Step 2: generate <span class="math inline">\(y\sim p(y|\theta^{(i)})\)</span></p></li>
+<li><p>Step 3: compute the weight <span class="math display">\[w(\theta^{(i)})=\frac{K_h(||S(y)-S(y_{obs})||)\pi(\theta^{(i)})}{g(\theta^{(i)})}\]</span></p></li>
+</ul>
+<p>Return the weight samples <span class="math inline">\((w(\theta^{(i)}),\theta^{(i)}), i=1,\dots,N\)</span>. The self-normalized IS estimator is</p>
+<p><span class="math display">\[E[a(\theta)|y_{obs}]\approx \frac{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})a(\theta^{(i)})}{\frac 1 N\sum_{i=1}^N w(\theta^{(i)})}\]</span></p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>All models are approximations to the real data-generation process.</p>
+<ul>
+<li><p>use of summary statistics <span class="math inline">\(s\)</span>, the effect of <span class="math inline">\(\text{dim}(s)\)</span></p></li>
+<li><p>use of kernel appriximation <span class="math inline">\(K_h\)</span>, the effect of bandwidth <span class="math inline">\(h\)</span></p></li>
+<li><p>use of distance measure, the effect of covariance matrix <span class="math inline">\(\Sigma\)</span> of <span class="math inline">\(s\)</span></p></li>
+<li><p>Monte Carlo error, the effect of the sample size <span class="math inline">\(N\)</span></p></li>
+</ul>
+</div>

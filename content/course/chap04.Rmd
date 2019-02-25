@@ -12,7 +12,7 @@ linktitle: 第四章
 menu:
   course: 
     parent: 数理统计
-    weight: 4
+    weight: 5
     
 ---
 

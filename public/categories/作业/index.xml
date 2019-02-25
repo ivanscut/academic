@@ -61,7 +61,7 @@ Derive the maximum likelihood estimators (MLE) for \(\beta_0,\beta_1\). Are they
       <guid>/post/homework8/</guid>
       <description>True or false, and state why:
 The generalized likelihood ratio statistic \(\lambda(\vec x)\) (see P.87 of our textbook) is always greater than or equal to 1.True. By the definition, we have
-\[\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,\]where \(\Theta_0\subset\Theta\).
+\[\lambda(\vec x):=\frac{\sup_{\theta\in \Theta}L(\vec x;\theta)}{\sup_{\theta\in \Theta_0}L(\vec x;\theta)}\ge 1,\]where \(\Theta_0\subset\Theta\).```
 If the p-value is 0.03, the corresponding test will reject at the significancelevel 0.02.False. If \(\alpha&amp;lt; p\)-value, the null is accepted.
 If a test rejects at significance level 0.</description>
     </item>

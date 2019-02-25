@@ -1,0 +1,336 @@
+---
+title: 'Quasi-Monte Carlo in ABC'
+
+date: 2018-12-18
+lastmod: 2018-12-18
+
+draft: false
+# toc: true
+type: docs
+
+linktitle: QMC-ABC
+menu:
+  course: 
+    parent: Bayesian Statistics
+    weight: 11
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Ingredients for ABC
+
+- summary statistic $S(y):\mathbb{R}^n\to \mathbb{R}^d$
+
+- kernel function $k(u_1,\dots,u_d)$
+
+- bandwidth $h>0$
+
+- proposal density $g(\theta)$
+
+ABC approximation
+
+$$\pi_{ABC}(\theta|s_{obs})\propto \pi(\theta)\int \pi(s|\theta)K((s-s_{obs})/h) d s\to \pi(\theta|s_{obs})$$
+
+If $\pi(\theta|s_{obs})\approx \pi(\theta|y)$, then ABC density is a proper approximation of the posterior $\pi(\theta|y)$.
+
+## ABC convergence rates
+
+Consider the estimation of $\mu=E[a(\theta)|s_{obs}]$. The acceptance-rejection (AR) based ABC estimate is given by
+$$\hat\mu=\frac{1}{N}\sum_{i=1}^Na(\theta^{(i)}).$$
+
+Under regular conditions, ABC bias is 
+
+$$\mathrm{bias}=|E_{ABC}[a(\theta)|s_{obs}]-\mu|=O(h^2),$$
+
+and the acceptance probability is $R = O(h^{d}),$
+
+and Monte Carlo variance is
+
+$$\mathrm{variance}=\frac{\sigma^2_{ABC}}{N}=O\left(\frac{1}{C h^d}\right),$$
+
+where $C$ is the complexity. Overall, the MSE is
+
+$$\mathrm{MSE} = \mathrm{bias}^2+\mathrm{variance} = O(h^4)+O\left(\frac{1}{Ch^d}\right).$$
+
+For a given $C>0$,
+
+- the optimal $h^*=O(C^{-1/(4+d)})$
+
+- the optimal $\mathrm{MSE}^*=O(C^{-4/(d+4)})$
+
+This reveals that ABC suffers from the **curse of dimensionality**.
+
+## Improving the sampling efficiency
+
+A possible way to improve ABC efficiency is to accelerate the Monte Carlo. Monte Carlo error is
+
+$$\text{MC error}=\frac{\sigma}{\sqrt{N}}$$
+
+Some variance reduction techniques are proposed to reduce $\sigma$, such as
+
+- importance sampling
+- antithetic variates
+- control variates
+- hybrid strategies
+
+On the other hand, quasi-Monte Carlo is used to **improve the rate of convergence** ($1/\sqrt{N}$) rather than the constant $\sigma$.
+
+## Quasi-Monte Carlo: A review
+
+As a start-up setting, let's consider an intergal over the unit cube $[0,1]^d$:
+
+$$\mu=\int_{[0,1]^d} f(u_1,\dots,u_d)du_1\cdots du_d.$$
+
+MC estimate is the average of $N$ iid samples:
+
+$$\hat\mu_N = \frac 1 N\sum_{i=1}^N f(u^{(i)}),\ u^{(i)}\stackrel{iid}{\sim} U[0,1]^d.$$
+
+QMC estimate has the same form but uses deterministic sequences 
+
+$$\hat\mu_N = \frac 1 N\sum_{i=1}^N f(u^{(i)}),\ u^{(i)}\in[0,1]^d.$$
+
+The sequences are clearly constructed with better uniformness, which are known as **low discrepancy sequences (LDSs)**:
+
+- Halton (1960) 
+- Sobol' (1967) 
+- Faure (1982) 
+- Niderreiter (1992)
+- Lattice rules
+
+**Koksma-Hlawka inequality** gives
+
+$$
+|\hat\mu_N-\mu|\le V_{\mathrm{HK}}(f)D^*(u^{(1)},...,u^{(N)})
+$$
+
+- $V_{\mathrm{HK}}(f)$ is the variation in the sense of Hardy and Krause
+
+- $D^*$ is the star discrepancy of the points
+		
+		
+If $V_{\mathrm{HK}}(f)<\infty$ and $\{u^{(1)},...,u^{(N)}\}$ is a LDS, then
+
+$$\text{QMC error}=O(N^{-1}(\log N)^d)$$
+
+QMC can achieve higher-order rate of convergence, but needs higher smoothness conditions; see Dick (Ann. Stat., 2011).
+
+Some mathematical softwares such as `Matlab`, `R` include some common generators of LDSs.
+
+```{r,fig.width=10,fig.height=10}
+#  install.packages("randtoolbox")
+set.seed(7)
+library("randtoolbox")
+par(mfrow=c(2,2))
+qmc = sobol(1024,2)
+plot(qmc[1:256,],pch=19,xlab="x",ylab="y",main="Sobol' points: N = 256")
+plot(qmc,pch=19,xlab="x",ylab="y",main="Sobol' points: N = 1024")
+mc = matrix(runif(2048),ncol = 2)
+plot(mc[1:256,],pch=19,xlab="x",ylab="y",main="MC points: N = 256")
+plot(mc,pch=19,xlab="x",ylab="y",main="MC points: N = 1024")
+
+```
+
+
+## Example 1
+
+Consider the integral:
+
+$$\mu = \int_{[0,1]^d} \sum_{i=1}^d x_i^2 dx =\frac{d}{3}.$$
+
+```{r,fig.height=10}
+myfun = function(x){
+  #rowSums(x^2)
+  apply(x-0.5,1,prod)
+}
+
+m = 16
+N = 2^m
+d = 8
+#trueval = d/3
+trueval = 0
+qmc = as.matrix(sobol(n=N,dim=d),ncol=d)
+fsum = cumsum(myfun(qmc))
+ns = 1:N
+fmean = fsum[ns]/ns
+par(mar=c(4,4,2,1),mfrow=c(2,1))
+tt = paste0("QMC: d = ",d)
+plot(ns,fmean,xlab="N",ylab="Mean",typ="l",main=tt)
+abline(h=trueval,lty=5,col="red")
+ns = 2^(0:m)
+fmean = fsum[ns]/ns
+err = abs(fmean-trueval)
+plot(ns,err,xlab="N",ylab="Error",typ="b",log="xy",main=tt)
+r = 1
+lines(ns[c(3,m)], c(err[3],err[3]*(ns[3]/ns[m])^r),col="red",lty=5)
+legend(500,err[2],legend = c("QMC errors",paste0("N^{",-r,"}")),lty = c(1,5),
+       col=c("black","red"),pch=c(1,NA),cex=1.2)
+
+```
+
+
+## Randomized QMC
+
+In practice, we use randomized QMC (RQMC), which yields an unbiased estimate. 
+
+- random-shift, see Cranley and Patterson (1976)
+
+- scrambled nets, see Owen  (1995,1997,1998)
+
+- Survey in L'Ecuyer and Lemieux (2005)
+
+
+```{r,fig.width=10,fig.height=10}
+set.seed(7)
+library("randtoolbox")
+par(mfrow=c(2,2))
+qmc = sobol(1024,2)
+rqmc = sobol(1024,2,scrambling=1)
+plot(qmc[1:256,],pch=19,xlab="x",ylab="y",main="Sobol' points: N = 256")
+plot(qmc,pch=19,xlab="x",ylab="y",main="Sobol' points: N = 1024")
+mc = matrix(runif(2048),ncol = 2)
+plot(rqmc[1:256,],pch=19,xlab="x",ylab="y",main="RQMC points: N = 256")
+plot(rqmc,pch=19,xlab="x",ylab="y",main="RQMC points: N = 1024")
+
+```
+
+```{r,fig.height=10}
+myfun = function(x){
+  d = ncol(x)
+  #(rowSums(x)>d/2)-0.5
+  rowSums(qnorm(x))
+  #apply(x-0.5,1,prod)
+  
+}
+
+m = 16
+N = 2^m
+d = 8
+trueval = 0
+R = 100
+ns = 2^(0:m)
+fmean = matrix(0,m+1,R)
+tmp = sobol(N,d)##initialization
+for(i in 1:R)
+{
+  rqmc = as.matrix(sobol(N,d,scrambling=1,init=FALSE),ncol=d)
+  fsum = cumsum(myfun(rqmc))
+  fmean[,i] = fsum[ns]/ns
+}
+
+par(mar=c(4,4,2,1),mfrow=c(2,1))
+tt = paste0("RQMC: d = ",d)
+plot(ns,rowMeans(fmean),xlab="N",ylab="Mean",typ="b",main=tt)
+abline(h=trueval,lty=5,col="red")
+
+rmse = apply(fmean,1,sd)
+
+plot(ns,rmse,xlab="N",ylab="rmse",typ="b",log="xy",main=tt)
+r = 1
+lines(ns[c(3,m)], c(rmse[3],rmse[3]*(ns[3]/ns[m])^r),col="red",lty=5)
+legend(500,rmse[2],legend = c("RQMC errors",paste0("N^{",-r,"}")),lty = c(1,5),
+       col=c("black","red"),pch=c(1,NA),cex=1.2)
+
+```
+
+
+## Using QMC in ABC
+
+The univariate g-and-k distribution is a flexible unimodal distribution that
+is able to describe data with significant amounts of skewness and kurtosis. Its density function has no closed form, but
+is alternatively defined through its quantile function as:
+
+$$Q(q|A,B,g,k)=A+B\left[1+c\frac{1-\exp\{-gz(q)\}}{1+\exp\{-gz(q)\}}\right](1+z(q)^2)^kz(q)$$
+
+
+- $c=0.8,\ B>0, k>-1/2$, $z(q)=\Phi^{-1}(q)$
+
+- if $g=k=0$, it is the normal density
+
+- $y_{obs}$ of length $1000$ is generated from the $g$-and-$k$ distribution with parameter $\theta_0=(3,1,2,0.5)$
+
+- prior density 
+
+$$\pi(\theta) = \pi(A)\pi(B)\pi(g)\pi(k) = N(1,5)\times N(0.25,2) \times U(0,10) \times U(0,1)$$
+
+Summary statistic (Drovandi and Pettitt, 2011): $S(y) = (S_A,S_B,S_g,S_k)$
+
+- $S_A=E_4$
+- $S_B=E_6-E_2$
+- $S_g=(E_6+E_2-2E_4)/S_B$
+- $S_k = (E_7-E_5+E_3-E_1)/S_B$
+- $E_1\le E_2 \le \cdots \le E_8$ are the octiles of $y$
+
+
+```{r,eval=FALSE}
+set.seed(100)
+theta0 = c(3,1,2,0.5)
+
+gkmodel <- function(theta,n,z=NA){
+  if(is.na(z)[1]){
+    z = rnorm(n)
+  }
+  y = theta[1] + theta[2]*(1+0.8*(1-exp(-theta[3]*z))/
+        (1+exp(-theta[3]*z)))*(1+z^2)^theta[4]*z
+  return(matrix(y,n,1))
+}
+n = 1e3
+yobs = gkmodel(theta0,n)
+## prior density
+gkprior <- function(n,u=NA){
+  if(is.na(u)[1]){
+    u = matrix(runif(n*4),n,4)
+  }
+  A = qnorm(u[,1])*sqrt(5)+1
+  B = qnorm(u[,2])*sqrt(2)+.25
+  g = u[,3]*10
+  k = u[,4]
+  return(cbind(A,B,g,k))
+}
+gksummary <- function(y){
+  sorty = sort(y)
+  n = length(y)
+  q = sorty[ceiling(n/8*(1:8))]
+  s = c(q[4],
+        q[6]-q[2],
+        (q[6]+q[2]-2*q[4])/(q[6]-q[2]),
+        (q[7]-q[5]+q[3]-q[1])/(q[6]-q[2]))
+  return(s)
+}
+ytmp1 = matrix(0,2000,4)
+for(i in 1:2000){
+  ytmp1[i,] = gksummary(gkmodel(gkprior(1),n))
+}
+Sigma = var(ytmp1)
+invsig = solve(Sigma)
+N = 1e5
+ytmp = rep(0,N)
+theta = matrix(0,N,4)
+stmp = rep(0,N)
+sobs = gksummary(yobs)
+#qmc = sobol(N+1,n+4)
+#qmc = qmc[-1,]##initialization
+for(i in 1:N){
+  theta[i,] = gkprior(1) # matrix(qmc[i,1:4],1,4)
+  ypro = gkmodel(theta[i,],n) # qnorm(matrix(qmc[i,-(1:4)],1,n))
+  spro = gksummary(ypro)
+  diff = matrix(spro-sobs,1,4)
+  ytmp[i] = sqrt(sum((ypro-yobs)^2))
+  stmp[i] = sqrt(diff%*%invsig%*%t(diff))
+}
+ysort = sort(ytmp)
+ssort = sort(stmp)
+effN = N*5e-3
+hy = ysort[effN]
+hs = ssort[effN]
+## draw pairwise scatterplots
+theta1 = theta[ytmp<=hy,]
+theta2 = theta[stmp<=hs,]
+theta = rbind(theta1,theta2,theta0)
+colnames(theta) = c("A","B","g","k")
+pairs(theta,pch=c(rep(20,effN*2),24),
+      col=c(rep("grey",effN),rep("black",effN),"red"),cex=1)
+```
+
+

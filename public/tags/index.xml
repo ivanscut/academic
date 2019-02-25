@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>BDA</title>
-      <link>/tags/bda/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/bda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Deep Learning</title>
       <link>/tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
@@ -90,51 +81,6 @@
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0800</pubDate>
       
       <guid>/tags/simulation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Slides</title>
-      <link>/tags/slides/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/slides/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>上机练习</title>
-      <link>/tags/%E4%B8%8A%E6%9C%BA%E7%BB%83%E4%B9%A0/</link>
-      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E4%B8%8A%E6%9C%BA%E7%BB%83%E4%B9%A0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>作业</title>
-      <link>/tags/%E4%BD%9C%E4%B8%9A/</link>
-      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E4%BD%9C%E4%B8%9A/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数理统计</title>
-      <link>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</link>
-      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>课件</title>
-      <link>/tags/%E8%AF%BE%E4%BB%B6/</link>
-      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E8%AF%BE%E4%BB%B6/</guid>
       <description></description>
     </item>
     

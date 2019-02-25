@@ -1,3 +1,0 @@
-"0","lm.A = lm(A~day)"
-"0","lm.B = lm(B~day)"
-"0","abline(coef(lm.A),lty=2)"

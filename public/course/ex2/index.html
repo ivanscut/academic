@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.48" />
+  <meta name="author" content="Zhijian He">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="案例：身高数据数据来源于R的包dslabs，第一次使用时需要安装该包，命令为install.packages(&quot;dslabs&quot;)
+参考资料： Some datasets for teaching data science
+直方图直方图的R命令为：hist(...), 查看帮助?hist看具体参数含义
+核估计核估计的R命令为：density(...), 查看帮助?density看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如plot(...).
+以下代码展示所有身高数据的直方图与和核估计。
+if(!require(dslabs))install.packages(&quot;dslabs&quot;)attach(heights) #此命令用于使用该包里面的身高数据heightspar(mar=c(2,2,1,1)) #调整图形边距#直方图hist(height,breaks=10,ylim=c(0,.115),col = &quot;lightblue&quot;, border = &quot;pink&quot;,freq=FALSE,main=&quot;Histogram vs. Kernel density&quot;)#添加核估计数据lines(density(height,from = 50,to=85),col=&quot;red&quot;,lwd=2)下面代码比较男生和女生数据的核估计
+female_height = height[sex==&quot;Female&quot;]#提取女生数据male_height = height[sex==&quot;Male&quot;]#提取男生数据par(mar=c(2,2,1,1))#画男生数据plot(density(male_height,from = 50,to=85),col=&quot;red&quot;,lwd=2,ylim=c(0,.14),main=&quot;Male vs. Female&quot;)#添加女生数据lines(density(female_height,from = 50,to=85),col=&quot;blue&quot;,lwd=2)#画出图例说明legend(74,0.12,legend = c(&quot;Male&quot;,&quot;Female&quot;),lty = c(1,1),col=c(&quot;red&quot;,&quot;blue&quot;),lwd=c(2,2))结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
+">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/course/ex2/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Dr. Zhijian He">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/course/ex2/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Dr. Zhijian He">
+  <meta property="og:url" content="/course/ex2/">
+  <meta property="og:title" content="R密度估计 | Dr. Zhijian He">
+  <meta property="og:description" content="案例：身高数据数据来源于R的包dslabs，第一次使用时需要安装该包，命令为install.packages(&quot;dslabs&quot;)
+参考资料： Some datasets for teaching data science
+直方图直方图的R命令为：hist(...), 查看帮助?hist看具体参数含义
+核估计核估计的R命令为：density(...), 查看帮助?density看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如plot(...).
+以下代码展示所有身高数据的直方图与和核估计。
+if(!require(dslabs))install.packages(&quot;dslabs&quot;)attach(heights) #此命令用于使用该包里面的身高数据heightspar(mar=c(2,2,1,1)) #调整图形边距#直方图hist(height,breaks=10,ylim=c(0,.115),col = &quot;lightblue&quot;, border = &quot;pink&quot;,freq=FALSE,main=&quot;Histogram vs. Kernel density&quot;)#添加核估计数据lines(density(height,from = 50,to=85),col=&quot;red&quot;,lwd=2)下面代码比较男生和女生数据的核估计
+female_height = height[sex==&quot;Female&quot;]#提取女生数据male_height = height[sex==&quot;Male&quot;]#提取男生数据par(mar=c(2,2,1,1))#画男生数据plot(density(male_height,from = 50,to=85),col=&quot;red&quot;,lwd=2,ylim=c(0,.14),main=&quot;Male vs. Female&quot;)#添加女生数据lines(density(female_height,from = 50,to=85),col=&quot;blue&quot;,lwd=2)#画出图例说明legend(74,0.12,legend = c(&quot;Male&quot;,&quot;Female&quot;),lty = c(1,1),col=c(&quot;red&quot;,&quot;blue&quot;),lwd=c(2,2))结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。
+">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-12-18T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-12-18T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>R密度估计 | Dr. Zhijian He</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Dr. Zhijian He</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/talk">
+            
+            <span>Talks</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/course/">
+            
+            <span>Courses</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="Search..." autocomplete="off">
+</form>
+
+
+<nav class="docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/course/">Overview</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/course/bchap01/">Bayesian Statistics</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/course/bchap01/">Chapter 1</a>
+      </li>
+      
+      <li >
+        <a href="/course/bchap02/">Chapter 2</a>
+      </li>
+      
+      <li >
+        <a href="/course/bchap03/">Chapter 3</a>
+      </li>
+      
+      <li >
+        <a href="/course/bchap04/">Chapter 4</a>
+      </li>
+      
+      <li >
+        <a href="/course/bchap05/">Chapter 5</a>
+      </li>
+      
+      <li >
+        <a href="/course/bchap10/">Chapter 10</a>
+      </li>
+      
+      <li >
+        <a href="/course/abc/">ABC-Review</a>
+      </li>
+      
+      <li >
+        <a href="/course/qmc-abc/">QMC-ABC</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/course/chap00/">数理统计</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/course/chap00/">课程简介</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap01/">第一章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap02/">第二章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap03/">第三章</a>
+      </li>
+      
+      <li >
+        <a href="/course/chap04/">第四章</a>
+      </li>
+      
+      <li class="active">
+        <a href="/course/ex2/">R密度估计</a>
+      </li>
+      
+      <li >
+        <a href="/course/ex1/">R画图技巧</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework1/">第一次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework2/">第二次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework3/">第三次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework4/">第四次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework5/">第五次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework6/">第六次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework7/">第七次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework8/">第八次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework9/">第九次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework10/">第十次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/homework11/">第十一次作业</a>
+      </li>
+      
+      <li >
+        <a href="/course/testa/">期末试卷</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+      <div id="search-hits">
+        
+      </div>
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        
+
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">R密度估计</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            <div class="section level2">
+<h2>案例：身高数据</h2>
+<p>数据来源于R的包<code>dslabs</code>，第一次使用时需要安装该包，命令为<code>install.packages(&quot;dslabs&quot;)</code></p>
+<p>参考资料： <a href="https://simplystatistics.org/2018/01/22/the-dslabs-package-provides-datasets-for-teaching-data-science/">Some datasets for teaching data science</a></p>
+<div class="section level3">
+<h3>直方图</h3>
+<p>直方图的R命令为：<code>hist(...)</code>, 查看帮助<code>?hist</code>看具体参数含义</p>
+</div>
+<div class="section level3">
+<h3>核估计</h3>
+<p>核估计的R命令为：<code>density(...)</code>, 查看帮助<code>?density</code>看具体参数含义。注意该命令只是给出估计值的数据，不能直接画图，如果要画图则需要调用画图函数，如<code>plot(...)</code>.</p>
+<p>以下代码展示所有身高数据的直方图与和核估计。</p>
+<pre class="r"><code>if(!require(dslabs))
+  install.packages(&quot;dslabs&quot;)
+attach(heights) #此命令用于使用该包里面的身高数据heights
+par(mar=c(2,2,1,1)) #调整图形边距
+#直方图
+hist(height,breaks=10,ylim=c(0,.115),col = &quot;lightblue&quot;, border = &quot;pink&quot;,freq=FALSE,main=&quot;Histogram vs. Kernel density&quot;)
+#添加核估计数据
+lines(density(height,from = 50,to=85),col=&quot;red&quot;,lwd=2)</code></pre>
+<p><img src="/course/ex2_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>下面代码比较男生和女生数据的核估计</p>
+<pre class="r"><code>female_height = height[sex==&quot;Female&quot;]#提取女生数据
+male_height = height[sex==&quot;Male&quot;]#提取男生数据
+par(mar=c(2,2,1,1))
+#画男生数据
+plot(density(male_height,from = 50,to=85),col=&quot;red&quot;,lwd=2,ylim=c(0,.14),main=&quot;Male vs. Female&quot;)
+#添加女生数据
+lines(density(female_height,from = 50,to=85),col=&quot;blue&quot;,lwd=2)
+#画出图例说明
+legend(74,0.12,legend = c(&quot;Male&quot;,&quot;Female&quot;),lty = c(1,1),col=c(&quot;red&quot;,&quot;blue&quot;),lwd=c(2,2))</code></pre>
+<p><img src="/course/ex2_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>结论：身高数据可以近似看成正态分布，而且男生、女生两个总体的均值有差异，男生身高平均水平大于女生身高的平均水平。</p>
+</blockquote>
+</div>
+</div>
+
+          </div>
+
+          
+
+        </div>
+
+        <div class="body-footer">
+          Last updated on Dec 18, 2018
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    Zhijian He &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        CommonHTML: { linebreaks: { automatic: true } },
+        tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+        TeX: { noUndefined: { attributes: { mathcolor: 'red', mathbackground: '#FFEEEE', mathsize: '90%' } } },
+        messageStyle: 'none'
+      });
+    </script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+  </body>
+</html>
+
+
