@@ -2992,29 +2992,22 @@ We therefore reject the null.
 &lt;ul&gt;
 &lt;li&gt;如何在一个陌生的地方找餐馆吃饭？&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;贝叶斯统计课程(研究生课程)&lt;/h2&gt;
-&lt;p&gt;本课程不涉及贝叶斯统计内容，欢迎对贝叶斯统计感兴趣的同学参加以下课程。&lt;/p&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;教材&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;贝叶斯数据分析（第三版）&lt;/strong&gt;, A. Gelman等，机械工业出版社
-&lt;a href=&#34;https://item.jd.com/11886268.html&#34; class=&#34;uri&#34;&gt;https://item.jd.com/11886268.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;上课时间&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;1-12周，周一下午第5—8节，共48学时&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;上课地点&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;四号楼4135&lt;/li&gt;
-&lt;/ul&gt;
+&lt;!--
+## 贝叶斯统计课程(研究生课程)
+
+本课程不涉及贝叶斯统计内容，欢迎对贝叶斯统计感兴趣的同学参加以下课程。
+
+### 教材
+
+- **贝叶斯数据分析（第三版）**, A. Gelman等，机械工业出版社
+[https://item.jd.com/11886268.html](https://item.jd.com/11886268.html)
+
+### 上课时间
+- 1-12周，周一下午第5—8节，共48学时
+
+### 上课地点
+- 四号楼4135
+--&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;section level2&#34;&gt;

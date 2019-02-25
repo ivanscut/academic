@@ -1,6 +1,0 @@
-"0","if(!require(dslabs))"
-"0","  install.packages(""dslabs"")"
-"0","attach(heights) #此命令用于使用该包里面的身高数据heights"
-"0","par(mar=c(2,2,1,1)) #调整图形边距"
-"0","#直方图"
-"0","hist(height,breaks=10,ylim=c(0,.115),col = ""lightblue"", border = ""pink"",freq=FALSE,main=""Histogram vs. Kernel density"")"
