@@ -615,8 +615,44 @@ k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
 <li><p><span class="math display">\[\frac{nS_n^2}{\sigma^2}=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}\sim \chi^2(n-1)\]</span></p></li>
 <li><p>样本均值<span class="math inline">\(\bar{X}\)</span>与样本方差<span class="math inline">\(S_n^2\)</span>相互独立</p></li>
 </ul>
-<p>详细证明见书P39.</p>
-<p>研究发现，只有正态总体才有“样本均值与方差独立”这一性质。</p>
+<p>为证明这个定理，我们需要用到多元正态分布的性质。</p>
+<p><code>引理</code>：假设<span class="math inline">\(X_{1:n}=(X_1,\dots,X_n)^\top \sim N(\mu,\Sigma)\)</span>，其中<span class="math inline">\(\mu=(\mu_1,\dots,\mu_n)^\top\)</span>为均值向量, <span class="math inline">\(\Sigma\)</span>为（非奇异）协方差矩阵。对任意可逆矩阵<span class="math inline">\(A\in \mathbb{R}^{n\times n}\)</span>，有<span class="math display">\[AX_{1:n}\sim N(A\mu,A\Sigma A^\top).\]</span></p>
+<p><code>证明</code>：令<span class="math inline">\(Y_{1:n}=(Y_1,\dots,Y_n)^\top=AX_{1:n}\)</span>，则其CDF为：
+<span class="math display">\[
+\begin{align}
+F_Y(y) &amp;= P(Y_{1:n}\le y) = P(AX_{1:n}\le y)\\
+&amp;=\int_{Ax\le y}\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(x-\mu)^\top \Sigma^{-1}(x-\mu)}d x\\
+&amp;=\int_{z\le y}|A^{-1}|\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(A^{-1}z-\mu)^\top \Sigma^{-1}(A^{-1}z-\mu)}d z\\
+&amp;=\int_{z\le y}\frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(z-A\mu)^\top (A\Sigma A^\top)^{-1}(z-A\mu)}d z.
+\end{align}
+\]</span>
+这表明<span class="math inline">\(Y_{1:n}\)</span>的pdf为：
+<span class="math display">\[f_Y(y) = \frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(y-A\mu)^\top (A\Sigma A^\top)^{-1}(y-A\mu)},\]</span>
+即<span class="math inline">\(Y_{1:n}\sim N(A\mu,A\Sigma A^\top)\)</span>. 证毕。</p>
+<p><code>定理的证明</code>：易知<span class="math inline">\(X_{1:n}\sim N((\mu,\dots,\mu)^\top,\sigma^2 I_n)\)</span>. 假设<span class="math inline">\(A\)</span>为如下正交矩阵：</p>
+<p><span class="math display">\[
+A=\left[
+\begin{matrix}
+\frac 1{\sqrt{n}} &amp; \frac 1{\sqrt{n}} &amp; \frac 1{\sqrt{n}} &amp; \cdots &amp; \frac1{\sqrt{n}}\\
+\frac 1{\sqrt{2\times 1}} &amp; -\frac 1{\sqrt{2\times1}} &amp; 0 &amp; \cdots &amp; 0\\
+\frac 1{\sqrt{3\times 2}} &amp; \frac 1{\sqrt{3\times2}} &amp; -\frac 2{\sqrt{3\times2}} &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+\frac 1{\sqrt{n\times (n-1)}} &amp; \frac 1{\sqrt{n\times (n-1)}} &amp; \frac {1}{\sqrt{n\times (n-1)}} &amp; \cdots &amp; -\frac {n-1}{\sqrt{n\times (n-1)}}\\
+\end{matrix}
+\right].
+\]</span></p>
+<p>令<span class="math inline">\(Y_{1:n}=AX_{1:n}\)</span>. 由上面引理得，<span class="math inline">\(Y_{1:n}\sim N((\sqrt{n} \mu,0,\dots,0)^\top,\sigma^2 I_n)\)</span>. 注意到，<span class="math inline">\(Y_1 = \sqrt{n}\bar X\)</span>, 所以<span class="math inline">\(\bar X=Y_1/\sqrt{n}\sim N(\mu,\sigma^2/n)\)</span>. 又<span class="math display">\[\sum_{i=1}^n Y_i^2 = Y_{1:n}^\top Y_{1:n} = (A X_{1:n})^\top  A X_{1:n}=X_{1:n}^\top X_{1:n}=\sum_{i=1}^n X_i^2.\]</span></p>
+<p>所以，
+<span class="math display">\[
+\begin{align}
+\frac{nS_n^2}{\sigma^2}&amp;=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}=\frac{\sum_{i=1}^nX_i^2-n(\bar X)^2}{\sigma^2}\\
+&amp;=\frac{\sum_{i=1}^nY_i^2-Y_1^2}{\sigma^2}=\sum_{i=2}^n(Y_i/\sigma)^2\sim \chi^2(n-1),
+\end{align}
+\]</span>
+这是因为<span class="math inline">\(Y_i\sim N(0,\sigma^2),i=2,\dots,n\)</span>. 由于<span class="math inline">\(Y_i\)</span>相互独立，<span class="math inline">\(\bar X\)</span>可以用<span class="math inline">\(Y_1\)</span>表示，<span class="math inline">\(S_n^2\)</span>可以用<span class="math inline">\(Y_2,\dots,Y_n\)</span>表示，所以它们独立。证毕。</p>
+<p>{{% alert warning %}}
+研究发现，只有正态总体才有“样本均值与方差独立”这一性质。
+{{% /alert %}}</p>
 </div>
 <div id="t" class="section level2">
 <h2>t分布</h2>
@@ -650,9 +686,9 @@ f(x)=
 <div class="section level2">
 <h2>样本均值与标准差之比的抽样分布</h2>
 <p><strong>定理</strong>：设<span class="math inline">\((X_1,\dots,X_n)\)</span>为来自总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>的样本，则</p>
-<p><span class="math display">\[\frac{\sqrt{n-1}(\bar{X}-\mu)}{S_n}=\frac{\sqrt{n}(\bar{X}-\mu)}{S_n^*}\sim t(n-1)\]</span></p>
+<p><span class="math display">\[\frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}=\frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]</span></p>
 <p>比较：</p>
-<p><span class="math display">\[\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}\sim N(0,1)\]</span></p>
+<p><span class="math display">\[\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\]</span></p>
 </div>
 <div id="pxc" class="section level2">
 <h2>尾部概率P(|X|&gt;c)的比较</h2>

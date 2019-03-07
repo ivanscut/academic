@@ -2777,7 +2777,7 @@ We therefore reject the null.
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/course/homework1/</guid>
-      <description>&lt;p&gt;韦布尔分布(Weibull distribution)族
+      <description>&lt;p&gt;（1）韦布尔分布(Weibull distribution)族
 &lt;span class=&#34;math display&#34;&gt;\[p(x)=\frac k\lambda\left(\frac{x}{\lambda}\right)^{k-1}e^{-(x/\lambda)^k}1\{x\ge 0\},k&amp;gt;0,\lambda&amp;gt;0\]&lt;/span&gt;
 是不是指数型分布族？&lt;!-- **答案：B** --&gt;&lt;/p&gt;
 &lt;p&gt;A. 是&lt;/p&gt;
@@ -2786,14 +2786,14 @@ We therefore reject the null.
 &lt;p&gt;注意：这里的未知参数有两个，分别是&lt;span class=&#34;math inline&#34;&gt;\(k,\lambda\)&lt;/span&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;p&gt;从均值为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的总体中随机抽取样本量为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;均未知，指出下列样本函数中哪些为统计量（ ）。&lt;!-- **答案：ADE** --&gt;&lt;/p&gt;
+&lt;p&gt;（2）从均值为&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;, 方差为&lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;的总体中随机抽取样本量为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;, 其中&lt;span class=&#34;math inline&#34;&gt;\(\mu,\sigma^2\)&lt;/span&gt;均未知，指出下列样本函数中哪些为统计量（ ）。&lt;!-- **答案：ADE** --&gt;&lt;/p&gt;
 &lt;p&gt;A. &lt;span class=&#34;math inline&#34;&gt;\(T_1=x_1+x_2\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;B. &lt;span class=&#34;math inline&#34;&gt;\(T_2=x_1+x_2-2\mu\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;C. &lt;span class=&#34;math inline&#34;&gt;\(T_3=(x_1-\mu)/\sigma\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;D. &lt;span class=&#34;math inline&#34;&gt;\(T_4=(\bar x-10)/5\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;E. &lt;span class=&#34;math inline&#34;&gt;\(T_5=\frac 1 n\sum_{i=1}^n(x_i-S_n)^2\)&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(\bar x_n,s_n^2\)&lt;/span&gt;表示样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;的样本均值与样本方差。已知&lt;span class=&#34;math display&#34;&gt;\[n=15,\bar x_{n}=168, s_n=11.43, x_{n+1}=170.\]&lt;/span&gt; 求&lt;span class=&#34;math inline&#34;&gt;\(\bar x_{n+1},s_{n+1}^2\)&lt;/span&gt;，以及修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(s_{n+1}^{*2}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;（3）设&lt;span class=&#34;math inline&#34;&gt;\(\bar x_n,s_n^2\)&lt;/span&gt;表示样本&lt;span class=&#34;math inline&#34;&gt;\(x_1,\dots,x_n\)&lt;/span&gt;的样本均值与样本方差。已知&lt;span class=&#34;math display&#34;&gt;\[n=15,\bar x_{n}=168, s_n=11.43, x_{n+1}=170.\]&lt;/span&gt; 求&lt;span class=&#34;math inline&#34;&gt;\(\bar x_{n+1},s_{n+1}^2\)&lt;/span&gt;，以及修正样本方差&lt;span class=&#34;math inline&#34;&gt;\(s_{n+1}^{*2}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;!-- &gt; 答案来自：张华@16统计 
 
 ![](1张华-16统计.jpeg)
@@ -2802,7 +2802,7 @@ We therefore reject the null.
 &gt; 注意：有同学把已知条件$s_n=11.43$看成$s_n^2=11.43$
 --&gt;
 &lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1\sim Ga(\alpha_1,\lambda)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_2\sim Ga(\alpha_2,\lambda)\)&lt;/span&gt;, 且&lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;独立。证明&lt;/p&gt;
+&lt;p&gt;（4）设&lt;span class=&#34;math inline&#34;&gt;\(X_1\sim Ga(\alpha_1,\lambda)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_2\sim Ga(\alpha_2,\lambda)\)&lt;/span&gt;, 且&lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;独立。证明&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(Y_1=X_1+X_2\sim Ga(\alpha_1+\alpha_2,\lambda)\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(Y_2=X_1/(X_1+X_2)\sim Beta(\alpha_1,\alpha_2)\)&lt;/span&gt;&lt;/li&gt;
@@ -2816,13 +2816,13 @@ We therefore reject the null.
 
 --&gt;
 &lt;hr /&gt;
-&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自某连续总体的一个样本，总体的分布函数&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;是连续严增函数，证明：统计量&lt;span class=&#34;math inline&#34;&gt;\(T=-2\sum_{i=1}^n \ln F(X_i)\sim \chi^2(2n)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;（5）设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是来自某连续总体的一个样本，总体的分布函数&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;是连续严增函数，证明：统计量&lt;span class=&#34;math inline&#34;&gt;\(T=-2\sum_{i=1}^n \ln F(X_i)\sim \chi^2(2n)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;!-- &gt; 答案来自：刘霏@16信管 
 
 ![](3刘霏-16信管.jpeg)
 --&gt;
 &lt;hr /&gt;
-&lt;p&gt;从正态总体&lt;span class=&#34;math inline&#34;&gt;\(N(52,6.3^2)\)&lt;/span&gt;中随机抽取容量为36的样本。&lt;/p&gt;
+&lt;p&gt;（6）从正态总体&lt;span class=&#34;math inline&#34;&gt;\(N(52,6.3^2)\)&lt;/span&gt;中随机抽取容量为36的样本。&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;求样本均值&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;的分布；&lt;/li&gt;
 &lt;li&gt;求&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;落在区间&lt;span class=&#34;math inline&#34;&gt;\((50.8,53.8)\)&lt;/span&gt;内的概率；&lt;/li&gt;
@@ -3439,8 +3439,46 @@ k/n,&amp;amp;\ x_{(k)}\le x&amp;lt;x_{(k+1)}\\
 &lt;li&gt;&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{nS_n^2}{\sigma^2}=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}\sim \chi^2(n-1)\]&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;样本均值&lt;span class=&#34;math inline&#34;&gt;\(\bar{X}\)&lt;/span&gt;与样本方差&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;相互独立&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;详细证明见书P39.&lt;/p&gt;
-&lt;p&gt;研究发现，只有正态总体才有“样本均值与方差独立”这一性质。&lt;/p&gt;
+&lt;p&gt;为证明这个定理，我们需要用到多元正态分布的性质。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;引理&lt;/code&gt;：假设&lt;span class=&#34;math inline&#34;&gt;\(X_{1:n}=(X_1,\dots,X_n)^\top \sim N(\mu,\Sigma)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(\mu=(\mu_1,\dots,\mu_n)^\top\)&lt;/span&gt;为均值向量, &lt;span class=&#34;math inline&#34;&gt;\(\Sigma\)&lt;/span&gt;为（非奇异）协方差矩阵。对任意可逆矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\in \mathbb{R}^{n\times n}\)&lt;/span&gt;，有&lt;span class=&#34;math display&#34;&gt;\[AX_{1:n}\sim N(A\mu,A\Sigma A^\top).\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：令&lt;span class=&#34;math inline&#34;&gt;\(Y_{1:n}=(Y_1,\dots,Y_n)^\top=AX_{1:n}\)&lt;/span&gt;，则其CDF为：
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+F_Y(y) &amp;amp;= P(Y_{1:n}\le y) = P(AX_{1:n}\le y)\\
+&amp;amp;=\int_{Ax\le y}\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(x-\mu)^\top \Sigma^{-1}(x-\mu)}d x\\
+&amp;amp;=\int_{z\le y}|A^{-1}|\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(A^{-1}z-\mu)^\top \Sigma^{-1}(A^{-1}z-\mu)}d z\\
+&amp;amp;=\int_{z\le y}\frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(z-A\mu)^\top (A\Sigma A^\top)^{-1}(z-A\mu)}d z.
+\end{align}
+\]&lt;/span&gt;
+这表明&lt;span class=&#34;math inline&#34;&gt;\(Y_{1:n}\)&lt;/span&gt;的pdf为：
+&lt;span class=&#34;math display&#34;&gt;\[f_Y(y) = \frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(y-A\mu)^\top (A\Sigma A^\top)^{-1}(y-A\mu)},\]&lt;/span&gt;
+即&lt;span class=&#34;math inline&#34;&gt;\(Y_{1:n}\sim N(A\mu,A\Sigma A^\top)\)&lt;/span&gt;. 证毕。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;定理的证明&lt;/code&gt;：易知&lt;span class=&#34;math inline&#34;&gt;\(X_{1:n}\sim N((\mu,\dots,\mu)^\top,\sigma^2 I_n)\)&lt;/span&gt;. 假设&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;为如下正交矩阵：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+A=\left[
+\begin{matrix}
+\frac 1{\sqrt{n}} &amp;amp; \frac 1{\sqrt{n}} &amp;amp; \frac 1{\sqrt{n}} &amp;amp; \cdots &amp;amp; \frac1{\sqrt{n}}\\
+\frac 1{\sqrt{2\times 1}} &amp;amp; -\frac 1{\sqrt{2\times1}} &amp;amp; 0 &amp;amp; \cdots &amp;amp; 0\\
+\frac 1{\sqrt{3\times 2}} &amp;amp; \frac 1{\sqrt{3\times2}} &amp;amp; -\frac 2{\sqrt{3\times2}} &amp;amp; \cdots &amp;amp; 0\\
+\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \\
+\frac 1{\sqrt{n\times (n-1)}} &amp;amp; \frac 1{\sqrt{n\times (n-1)}} &amp;amp; \frac {1}{\sqrt{n\times (n-1)}} &amp;amp; \cdots &amp;amp; -\frac {n-1}{\sqrt{n\times (n-1)}}\\
+\end{matrix}
+\right].
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(Y_{1:n}=AX_{1:n}\)&lt;/span&gt;. 由上面引理得，&lt;span class=&#34;math inline&#34;&gt;\(Y_{1:n}\sim N((\sqrt{n} \mu,0,\dots,0)^\top,\sigma^2 I_n)\)&lt;/span&gt;. 注意到，&lt;span class=&#34;math inline&#34;&gt;\(Y_1 = \sqrt{n}\bar X\)&lt;/span&gt;, 所以&lt;span class=&#34;math inline&#34;&gt;\(\bar X=Y_1/\sqrt{n}\sim N(\mu,\sigma^2/n)\)&lt;/span&gt;. 又&lt;span class=&#34;math display&#34;&gt;\[\sum_{i=1}^n Y_i^2 = Y_{1:n}^\top Y_{1:n} = (A X_{1:n})^\top  A X_{1:n}=X_{1:n}^\top X_{1:n}=\sum_{i=1}^n X_i^2.\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;所以，
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+\frac{nS_n^2}{\sigma^2}&amp;amp;=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}=\frac{\sum_{i=1}^nX_i^2-n(\bar X)^2}{\sigma^2}\\
+&amp;amp;=\frac{\sum_{i=1}^nY_i^2-Y_1^2}{\sigma^2}=\sum_{i=2}^n(Y_i/\sigma)^2\sim \chi^2(n-1),
+\end{align}
+\]&lt;/span&gt;
+这是因为&lt;span class=&#34;math inline&#34;&gt;\(Y_i\sim N(0,\sigma^2),i=2,\dots,n\)&lt;/span&gt;. 由于&lt;span class=&#34;math inline&#34;&gt;\(Y_i\)&lt;/span&gt;相互独立，&lt;span class=&#34;math inline&#34;&gt;\(\bar X\)&lt;/span&gt;可以用&lt;span class=&#34;math inline&#34;&gt;\(Y_1\)&lt;/span&gt;表示，&lt;span class=&#34;math inline&#34;&gt;\(S_n^2\)&lt;/span&gt;可以用&lt;span class=&#34;math inline&#34;&gt;\(Y_2,\dots,Y_n\)&lt;/span&gt;表示，所以它们独立。证毕。&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;p&gt;研究发现，只有正态总体才有“样本均值与方差独立”这一性质。&lt;/p&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div id=&#34;t&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;t分布&lt;/h2&gt;
@@ -3474,9 +3512,9 @@ f(x)=
 &lt;div class=&#34;section level2&#34;&gt;
 &lt;h2&gt;样本均值与标准差之比的抽样分布&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\((X_1,\dots,X_n)\)&lt;/span&gt;为来自总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim N(\mu,\sigma^2)\)&lt;/span&gt;的样本，则&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\sqrt{n-1}(\bar{X}-\mu)}{S_n}=\frac{\sqrt{n}(\bar{X}-\mu)}{S_n^*}\sim t(n-1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}=\frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;比较：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}\sim N(0,1)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;pxc&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;尾部概率P(|X|&amp;gt;c)的比较&lt;/h2&gt;

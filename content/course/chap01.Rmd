@@ -619,11 +619,52 @@ $$\frac{X-n}{\sqrt{2n}}\stackrel{d}\to N(0,1).$$
 
 - 样本均值$\bar{X}$与样本方差$S_n^2$相互独立
 
+为证明这个定理，我们需要用到多元正态分布的性质。
 
-详细证明见书P39.
+``引理``：假设$X_{1:n}=(X_1,\dots,X_n)^\top \sim N(\mu,\Sigma)$，其中$\mu=(\mu_1,\dots,\mu_n)^\top$为均值向量, $\Sigma$为（非奇异）协方差矩阵。对任意可逆矩阵$A\in \mathbb{R}^{n\times n}$，有$$AX_{1:n}\sim N(A\mu,A\Sigma A^\top).$$
 
+``证明``：令$Y_{1:n}=(Y_1,\dots,Y_n)^\top=AX_{1:n}$，则其CDF为：
+$$
+\begin{align}
+F_Y(y) &= P(Y_{1:n}\le y) = P(AX_{1:n}\le y)\\
+&=\int_{Ax\le y}\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(x-\mu)^\top \Sigma^{-1}(x-\mu)}d x\\
+&=\int_{z\le y}|A^{-1}|\frac 1{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(1/2)(A^{-1}z-\mu)^\top \Sigma^{-1}(A^{-1}z-\mu)}d z\\
+&=\int_{z\le y}\frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(z-A\mu)^\top (A\Sigma A^\top)^{-1}(z-A\mu)}d z.
+\end{align}
+$$
+这表明$Y_{1:n}$的pdf为：
+$$f_Y(y) = \frac 1{(2\pi)^{n/2}|A\Sigma A^\top|^{1/2}}e^{-(1/2)(y-A\mu)^\top (A\Sigma A^\top)^{-1}(y-A\mu)},$$
+即$Y_{1:n}\sim N(A\mu,A\Sigma A^\top)$. 证毕。
 
+``定理的证明``：易知$X_{1:n}\sim N((\mu,\dots,\mu)^\top,\sigma^2 I_n)$. 假设$A$为如下正交矩阵：
+
+$$
+A=\left[
+\begin{matrix}
+\frac 1{\sqrt{n}} & \frac 1{\sqrt{n}} & \frac 1{\sqrt{n}} & \cdots & \frac1{\sqrt{n}}\\
+\frac 1{\sqrt{2\times 1}} & -\frac 1{\sqrt{2\times1}} & 0 & \cdots & 0\\
+\frac 1{\sqrt{3\times 2}} & \frac 1{\sqrt{3\times2}} & -\frac 2{\sqrt{3\times2}} & \cdots & 0\\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+\frac 1{\sqrt{n\times (n-1)}} & \frac 1{\sqrt{n\times (n-1)}} & \frac {1}{\sqrt{n\times (n-1)}} & \cdots & -\frac {n-1}{\sqrt{n\times (n-1)}}\\
+\end{matrix}
+\right].
+$$
+
+令$Y_{1:n}=AX_{1:n}$. 由上面引理得，$Y_{1:n}\sim N((\sqrt{n} \mu,0,\dots,0)^\top,\sigma^2 I_n)$. 注意到，$Y_1 = \sqrt{n}\bar X$, 所以$\bar X=Y_1/\sqrt{n}\sim N(\mu,\sigma^2/n)$. 又$$\sum_{i=1}^n Y_i^2 = Y_{1:n}^\top Y_{1:n} = (A X_{1:n})^\top  A X_{1:n}=X_{1:n}^\top X_{1:n}=\sum_{i=1}^n X_i^2.$$
+
+所以，
+$$
+\begin{align}
+\frac{nS_n^2}{\sigma^2}&=\frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2}=\frac{\sum_{i=1}^nX_i^2-n(\bar X)^2}{\sigma^2}\\
+&=\frac{\sum_{i=1}^nY_i^2-Y_1^2}{\sigma^2}=\sum_{i=2}^n(Y_i/\sigma)^2\sim \chi^2(n-1),
+\end{align}
+$$
+这是因为$Y_i\sim N(0,\sigma^2),i=2,\dots,n$. 由于$Y_i$相互独立，$\bar X$可以用$Y_1$表示，$S_n^2$可以用$Y_2,\dots,Y_n$表示，所以它们独立。证毕。
+
+{{% alert warning %}}
 研究发现，只有正态总体才有“样本均值与方差独立”这一性质。
+{{% /alert %}}
+
 
 ## t分布
 
@@ -662,13 +703,13 @@ $$
 **定理**：设$(X_1,\dots,X_n)$为来自总体$X\sim N(\mu,\sigma^2)$的样本，则
 
 
-$$\frac{\sqrt{n-1}(\bar{X}-\mu)}{S_n}=\frac{\sqrt{n}(\bar{X}-\mu)}{S_n^*}\sim t(n-1)$$
+$$\frac{\bar{X}-\mu}{S_n/\sqrt{n-1}}=\frac{\bar{X}-\mu}{S_n^*/\sqrt{n}}\sim t(n-1)$$
 
 
 比较：
 
 
-$$\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma}\sim N(0,1)$$
+$$\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$$
 
 
 
@@ -719,8 +760,6 @@ $$\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_w\sqrt{1/m+1/n}}\sim t(m+n-2),$$
 
 
 其中$S_w =\sqrt{(mS_{1m}^2+nS_{2n}^2)/(m+n-2)}$.
-
-
 
 
 ## 顺序统计量
