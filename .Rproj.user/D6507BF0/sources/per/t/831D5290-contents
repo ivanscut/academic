@@ -1,0 +1,8 @@
+
+curve(dnorm,-4,4,col='red',lwd = 4)
+
+for(i in 1:25){
+  curve(dt(x,i),-4,4,add = TRUE,col = "gray")
+  Sys.sleep(.5)
+}
+
