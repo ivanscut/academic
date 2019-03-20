@@ -951,12 +951,12 @@ f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\t
 \]</span></p>
 <p><code>证明</code>：由于数学工具的限制，仅考虑离散情形。</p>
 <p>（1）必要性</p>
-<p>不妨设<span class="math inline">\(P(X_{1:n}=x_{1:n}|T=t) = h(t)\)</span>. 考虑到<span class="math display">\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]</span> 因此,</p>
+<p>由于<span class="math inline">\(T\)</span>是充分的，不妨设<span class="math inline">\(P(X_{1:n}=x_{1:n}|T=t) = h(t,x_{1:n})\)</span>. 考虑到<span class="math display">\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]</span> 因此,</p>
 <p><span class="math display">\[
 \begin{align}
 P(X_{1:n}=x_{1:n})&amp;= P(X_{1:n}=x_{1:n}, T(X_{1:n})=T(x_{1:n}))\\
 &amp;=P(X_{1:n}=x_{1:n}|T(X_{1:n})=T(x_{1:n}))P(T(X_{1:n})=T(x_{1:n}))\\
-&amp;=h(T(x_{1:n}))g_\theta(T(x_{1:n})),
+&amp;=h(T(x_{1:n}),x_{1:n})g_\theta(T(x_{1:n})),
 \end{align}
 \]</span>
 其中<span class="math inline">\(g_\theta\)</span>为<span class="math inline">\(T\)</span>的分布函数。</p>

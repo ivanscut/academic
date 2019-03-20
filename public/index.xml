@@ -3763,12 +3763,12 @@ f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\t
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：由于数学工具的限制，仅考虑离散情形。&lt;/p&gt;
 &lt;p&gt;（1）必要性&lt;/p&gt;
-&lt;p&gt;不妨设&lt;span class=&#34;math inline&#34;&gt;\(P(X_{1:n}=x_{1:n}|T=t) = h(t)\)&lt;/span&gt;. 考虑到&lt;span class=&#34;math display&#34;&gt;\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]&lt;/span&gt; 因此,&lt;/p&gt;
+&lt;p&gt;由于&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;是充分的，不妨设&lt;span class=&#34;math inline&#34;&gt;\(P(X_{1:n}=x_{1:n}|T=t) = h(t,x_{1:n})\)&lt;/span&gt;. 考虑到&lt;span class=&#34;math display&#34;&gt;\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]&lt;/span&gt; 因此,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \begin{align}
 P(X_{1:n}=x_{1:n})&amp;amp;= P(X_{1:n}=x_{1:n}, T(X_{1:n})=T(x_{1:n}))\\
 &amp;amp;=P(X_{1:n}=x_{1:n}|T(X_{1:n})=T(x_{1:n}))P(T(X_{1:n})=T(x_{1:n}))\\
-&amp;amp;=h(T(x_{1:n}))g_\theta(T(x_{1:n})),
+&amp;amp;=h(T(x_{1:n}),x_{1:n})g_\theta(T(x_{1:n})),
 \end{align}
 \]&lt;/span&gt;
 其中&lt;span class=&#34;math inline&#34;&gt;\(g_\theta\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;的分布函数。&lt;/p&gt;
