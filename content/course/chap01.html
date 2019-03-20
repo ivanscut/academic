@@ -506,36 +506,6 @@ Data Mining</li>
 </div>
 </div>
 <div id="-1" class="section level2">
-<h2>经验分布函数</h2>
-<p>通过样本的观测值构造一种函数来近似总体的分布函数</p>
-<p><strong>定义</strong>：设总体<span class="math inline">\(X\)</span>的样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的一次观测值<span class="math inline">\((x_1,\dots,x_n)\)</span>, 并将它们由小到大排列<span class="math inline">\(x_{(1)}\le x_{(2)}\le \dots\le x_{(n)}\)</span>, 经验分布函数(或称样本分布函数)定义为</p>
-<p><span class="math display">\[
-F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
-0,&amp;\ x&lt;x_{(1)}\\
-1/n,&amp;\ x_{(1)}\le x&lt;x_{(2)}\\
-2/n,&amp;\ x_{(2)}\le x&lt;x_{(3)}\\
-&amp;\vdots\\
-k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
-&amp;\vdots\\
-1,&amp;\ x&gt;x_{(n)}\\
-\end{cases}.
-\]</span></p>
-</div>
-<div class="section level2">
-<h2>经验分布函数示意图</h2>
-<p><img src="/course/chap01_files/figure-html/ecdf-1.png" width="672" /></p>
-</div>
-<div class="section level2">
-<h2>经验分布函数的性质</h2>
-<p>固定的<span class="math inline">\(x\)</span>和<span class="math inline">\(n\)</span>，<span class="math inline">\(F_n(x)\)</span>表示事件<span class="math inline">\(\{X\le x\}\)</span>的频率，由强大数定律知，
-<span class="math display">\[F_n(x)\to P(X\le x)=F(x),\]</span>
-即
-<span class="math display">\[P\left(\lim_{n\to\infty}F_n(x)=F(x)\right)=1.\]</span></p>
-<p><strong>格里汶科定理</strong>(定理4.1, p48)给出更强的结果（几乎处处一致收敛）:</p>
-<p><span class="math display">\[P\left(\lim_{n\to\infty}\sup_{x\in \mathbb{R}}|F_n(x)-F(x)|=0\right)=1.\]</span></p>
-<p><strong>注</strong>：由此可见，当<span class="math inline">\(n\)</span>相当大时，经验分布函数<span class="math inline">\(F_n(x)\)</span>是母体分布函数<span class="math inline">\(F(x)\)</span>的一个良好近似。数理统计学中一切都以样本为依据，其理由就在于此。</p>
-</div>
-<div id="-1" class="section level2">
 <h2>1.4 抽样分布</h2>
 <div class="section level3">
 <h3>(1) 样本均值的分布</h3>
@@ -545,9 +515,6 @@ k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
 </div>
 <div class="section level3">
 <h3>(3) 顺序统计量的分布</h3>
-</div>
-<div class="section level3">
-<h3>(4) 样本分位数的分布</h3>
 </div>
 </div>
 <div id="-2" class="section level2">
@@ -788,7 +755,8 @@ n!\prod_{i=1}^nf(y_i),&amp;y_1&lt;y_2&lt;\dots&lt;y_n\\
 </div>
 <div class="section level2">
 <h2>分位数</h2>
-<p><strong>定义</strong>：设<span class="math inline">\(X\)</span>的分布函数为<span class="math inline">\(F(x)\)</span>. 对于任意<span class="math inline">\(\alpha\in(0,1)\)</span>, <span class="math inline">\(\alpha\)</span>分位数<span class="math inline">\(x_\alpha\)</span>满足<span class="math inline">\(F(x_\alpha)=\alpha\)</span>.</p>
+<p><strong>定义</strong>：设<span class="math inline">\(X\)</span>的分布函数为<span class="math inline">\(F(x)\)</span>. 对于任意<span class="math inline">\(\alpha\in(0,1)\)</span>, <span class="math inline">\(\alpha\)</span>分位数定义为</p>
+<p><span class="math display">\[x_\alpha=F^{-1}(p)=\{t\in\mathbb{R}|F(t)\ge p\}.\]</span></p>
 <ul>
 <li>标准正态分布分位数记为<span class="math inline">\(u_{\alpha}\)</span></li>
 <li><span class="math inline">\(t\)</span>分布分位数记为<span class="math inline">\(t_{\alpha}(n)\)</span></li>
@@ -810,221 +778,58 @@ n!\prod_{i=1}^nf(y_i),&amp;y_1&lt;y_2&lt;\dots&lt;y_n\\
 <div class="section level2">
 <h2>分位数示意图</h2>
 <p><img src="quantile.png" /></p>
-</div>
-<div class="section level2">
-<h2>样本分位数</h2>
-<p><strong>定义</strong>：设<span class="math inline">\(X_1,\dots,X_n\)</span>为样本，其顺序统计量为<span class="math inline">\(X_{(1)},\dots,X_{(n)}\)</span>.
-对给定的<span class="math inline">\(0&lt;\alpha&lt;1\)</span>, 该样本的<span class="math inline">\(\alpha\)</span>分位数定义为：</p>
-<p><span class="math display">\[
+<!--
+## 样本分位数
+
+**定义**：设$X_1,\dots,X_n$为样本，其顺序统计量为$X_{(1)},\dots,X_{(n)}$.
+对给定的$0<\alpha<1$, 该样本的$\alpha$分位数定义为：
+
+
+$$
 m_\alpha = \begin{cases}
-\frac{1}2[X_{([n\alpha])}+X_{([n\alpha]+1)}],&amp;np\text{是整数}\\
-X_{([n\alpha]+1)},&amp;np\text{不是整数}
+\frac{1}2[X_{([n\alpha])}+X_{([n\alpha]+1)}],&np\text{是整数}\\
+X_{([n\alpha]+1)},&np\text{不是整数}
 \end{cases}
-\]</span></p>
-<p>其中<span class="math inline">\([a]\)</span>表示<span class="math inline">\(a\)</span>的整数部分。</p>
-<div class="section level3">
-<h3>样本分位数的渐近分布</h3>
-<p><strong>定理</strong>：设总体的密度为<span class="math inline">\(f(x)\)</span>,<span class="math inline">\(x_\alpha\)</span>为其<span class="math inline">\(\alpha\)</span>分位数，如果<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_\alpha\)</span>处连续，且<span class="math inline">\(f(x_\alpha)&gt;0\)</span>, 则当<span class="math inline">\(n\to \infty\)</span>时，样本的分位数<span class="math inline">\(m_\alpha\)</span>的渐近分布为：</p>
-<p><span class="math display">\[
+$$
+
+其中$[a]$表示$a$的整数部分。
+
+
+### 样本分位数的渐近分布
+**定理**：设总体的密度为$f(x)$,$x_\alpha$为其$\alpha$分位数，如果$f(x)$在$x_\alpha$处连续，且$f(x_\alpha)>0$, 则当$n\to \infty$时，样本的分位数$m_\alpha$的渐近分布为：
+
+
+$$
 m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\alpha)}\right).
-\]</span></p>
-</div>
-</div>
-<div class="section level2">
-<h2>6种杀虫剂的数据</h2>
-<table>
-<caption><span id="tab:insectsprays">Table 1: </span></caption>
-<thead>
-<tr class="header">
-<th align="left">spray</th>
-<th align="right">count</th>
-<th align="left">spray</th>
-<th align="right">count</th>
-<th align="left">spray</th>
-<th align="right">count</th>
-<th align="left">spray</th>
-<th align="right">count</th>
-<th align="left">spray</th>
-<th align="right">count</th>
-<th align="left">spray</th>
-<th align="right">count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">10</td>
-<td align="left">B</td>
-<td align="right">11</td>
-<td align="left">C</td>
-<td align="right">0</td>
-<td align="left">D</td>
-<td align="right">3</td>
-<td align="left">E</td>
-<td align="right">3</td>
-<td align="left">F</td>
-<td align="right">11</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">7</td>
-<td align="left">B</td>
-<td align="right">17</td>
-<td align="left">C</td>
-<td align="right">1</td>
-<td align="left">D</td>
-<td align="right">5</td>
-<td align="left">E</td>
-<td align="right">5</td>
-<td align="left">F</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">20</td>
-<td align="left">B</td>
-<td align="right">21</td>
-<td align="left">C</td>
-<td align="right">7</td>
-<td align="left">D</td>
-<td align="right">12</td>
-<td align="left">E</td>
-<td align="right">3</td>
-<td align="left">F</td>
-<td align="right">15</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">14</td>
-<td align="left">B</td>
-<td align="right">11</td>
-<td align="left">C</td>
-<td align="right">2</td>
-<td align="left">D</td>
-<td align="right">6</td>
-<td align="left">E</td>
-<td align="right">5</td>
-<td align="left">F</td>
-<td align="right">22</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">14</td>
-<td align="left">B</td>
-<td align="right">16</td>
-<td align="left">C</td>
-<td align="right">3</td>
-<td align="left">D</td>
-<td align="right">4</td>
-<td align="left">E</td>
-<td align="right">3</td>
-<td align="left">F</td>
-<td align="right">15</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">12</td>
-<td align="left">B</td>
-<td align="right">14</td>
-<td align="left">C</td>
-<td align="right">1</td>
-<td align="left">D</td>
-<td align="right">3</td>
-<td align="left">E</td>
-<td align="right">6</td>
-<td align="left">F</td>
-<td align="right">16</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">10</td>
-<td align="left">B</td>
-<td align="right">17</td>
-<td align="left">C</td>
-<td align="right">2</td>
-<td align="left">D</td>
-<td align="right">5</td>
-<td align="left">E</td>
-<td align="right">1</td>
-<td align="left">F</td>
-<td align="right">13</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">23</td>
-<td align="left">B</td>
-<td align="right">17</td>
-<td align="left">C</td>
-<td align="right">1</td>
-<td align="left">D</td>
-<td align="right">5</td>
-<td align="left">E</td>
-<td align="right">1</td>
-<td align="left">F</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">17</td>
-<td align="left">B</td>
-<td align="right">19</td>
-<td align="left">C</td>
-<td align="right">3</td>
-<td align="left">D</td>
-<td align="right">5</td>
-<td align="left">E</td>
-<td align="right">3</td>
-<td align="left">F</td>
-<td align="right">26</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">20</td>
-<td align="left">B</td>
-<td align="right">21</td>
-<td align="left">C</td>
-<td align="right">0</td>
-<td align="left">D</td>
-<td align="right">5</td>
-<td align="left">E</td>
-<td align="right">2</td>
-<td align="left">F</td>
-<td align="right">26</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">14</td>
-<td align="left">B</td>
-<td align="right">7</td>
-<td align="left">C</td>
-<td align="right">1</td>
-<td align="left">D</td>
-<td align="right">2</td>
-<td align="left">E</td>
-<td align="right">6</td>
-<td align="left">F</td>
-<td align="right">24</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">13</td>
-<td align="left">B</td>
-<td align="right">13</td>
-<td align="left">C</td>
-<td align="right">4</td>
-<td align="left">D</td>
-<td align="right">4</td>
-<td align="left">E</td>
-<td align="right">4</td>
-<td align="left">F</td>
-<td align="right">13</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level2">
-<h2>箱线图</h2>
-<p><img src="/course/chap01_files/figure-html/boxplot-1.png" width="672" /></p>
+$$
+
+## 6种杀虫剂的数据
+
+Table: (\#tab:insectsprays)
+
+spray    count  spray    count  spray    count  spray    count  spray    count  spray    count
+------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------
+A           10  B           11  C            0  D            3  E            3  F           11
+A            7  B           17  C            1  D            5  E            5  F            9
+A           20  B           21  C            7  D           12  E            3  F           15
+A           14  B           11  C            2  D            6  E            5  F           22
+A           14  B           16  C            3  D            4  E            3  F           15
+A           12  B           14  C            1  D            3  E            6  F           16
+A           10  B           17  C            2  D            5  E            1  F           13
+A           23  B           17  C            1  D            5  E            1  F           10
+A           17  B           19  C            3  D            5  E            3  F           26
+A           20  B           21  C            0  D            5  E            2  F           26
+A           14  B            7  C            1  D            2  E            6  F           24
+A           13  B           13  C            4  D            4  E            4  F           13
+
+## 箱线图
+
+---```{r boxplot, echo=FALSE}
+par(mar=c(3,3,2,1))
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray",main="6种杀虫剂的比较",horizontal=TRUE)
+```
+
+-->
 </div>
 <div id="-1" class="section level2">
 <h2>1.5 充分统计量</h2>
@@ -1043,6 +848,9 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 <li>不损失重要信息</li>
 </ul>
 <p><strong>定义</strong>：设有一个分布族<span class="math inline">\(\mathcal{F}\)</span>, <span class="math inline">\(X_1,\dots,X_n\)</span>是从某分布<span class="math inline">\(F\in\mathcal{F}\)</span>中抽取的一个样本。<span class="math inline">\(T=T(X_1,\dots,X_n)\)</span>是一个（向量）统计量。若在给定<span class="math inline">\(T=t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布与总体分布<span class="math inline">\(F\)</span>无关，则称<span class="math inline">\(T\)</span>为此分布族<span class="math inline">\(\mathcal{F}\)</span>的充分统计量。如果<span class="math inline">\(\mathcal{F}=\{F_\theta;\theta\in\Theta\}\)</span>是参数分布族，在给定<span class="math inline">\(T=t\)</span>下，样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的条件分布与参数<span class="math inline">\(\theta\)</span>无关，则称<span class="math inline">\(T\)</span>为参数<span class="math inline">\(\theta\)</span>的充分统计量。</p>
+<blockquote>
+<p>条件分布的定义见：英文参考书Text3第201-205页</p>
+</blockquote>
 </div>
 <div id="1" class="section level2">
 <h2>例1：两点分布</h2>
@@ -1051,10 +859,53 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 <li><span class="math inline">\(T_1=\sum_{i=1}^nX_i\)</span></li>
 <li><span class="math inline">\(T_2=X_1+X_2\)</span></li>
 </ul>
+<p><code>解</code>:</p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T_1=t) &amp;= \frac{P(X_1=x_1,\dots,X_n=x_n,T_1=t)}{P(T_1=t)}\\
+&amp;=\begin{cases}
+\frac{P(X_1=x_1,\dots,X_n=x_n)}{P(T_1=t)},\ &amp;\sum_{i=1}^n x_i = t\\
+0, &amp; else
+\end{cases}\\
+&amp;=\begin{cases}
+\frac{p^{\sum_{i=1}^n x_i}(1-p)^{n-\sum_{i=1}^n x_i}}{C_n^t p^t(1-p)^{n-t}},\ &amp;\sum_{i=1}^n x_i = t\\
+0, &amp; else
+\end{cases}
+\\
+&amp;=\begin{cases}
+\frac 1{C_n^t},\ &amp;\sum_{i=1}^n x_i = t\\
+0, &amp; else
+\end{cases}
+\end{align}
+\]</span>
+该分布与<span class="math inline">\(p\)</span>无关，所以<span class="math inline">\(T_1\)</span>是<span class="math inline">\(p\)</span>的充分统计量。</p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p><span class="math display">\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T_2=t) &amp;= \frac{P(X_1=x_1,\dots,X_n=x_n,T_2=t)}{P(T_2=t)}\\
+&amp;=\frac{P(X_1=x_1,X_2=t-x_1,\dots,X_n=x_n)}{P(T_2=t)}\\
+&amp;=\frac{p^{t+\sum_{i=3}^n x_i}(1-p)^{n-t-\sum_{i=3}^n x_i}}{C_2^t p^t(1-p)^{2-t}}\\
+&amp;=\frac 1{C_2^t}p^{\sum_{i=3}^n x_i}(1-p)^{n-2-\sum_{i=3}^n x_i}
+\end{align}
+\]</span></p>
+<p>该分布与<span class="math inline">\(p\)</span>相关，所以<span class="math inline">\(T_2\)</span>不是<span class="math inline">\(p\)</span>的充分统计量。</p>
 </div>
 <div id="2" class="section level2">
 <h2>例2：几何分布</h2>
 <p><strong>例</strong>：总体<span class="math inline">\(X\sim Ge(p),0&lt;p&lt;1\)</span>, 证明<span class="math inline">\(T=\sum_{i=1}^nX_i\)</span>是参数<span class="math inline">\(p\)</span>的充分统计量。</p>
+<p><code>解</code>: 考虑<span class="math inline">\(\sum_{i=1}^n x_i = t\)</span>, 则有</p>
+<p><span class="math display">\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T=t) &amp;=\frac{P(X_1=x_1,\dots,X_n=x_n,T=t)}{P(T=t)}\\
+&amp;=\frac{\prod_{i=1}^n[p(1-p)^{x_i-1}]}{C_{t-1}^{n-1} p^n (1-p)^{t-n}}=\frac{1}{C_{t-1}^{n-1}}
+\end{align}
+\]</span>
+该分布与<span class="math inline">\(p\)</span>无关，所以<span class="math inline">\(T\)</span>是<span class="math inline">\(p\)</span>的充分统计量。</p>
 </div>
 <div id="3" class="section level2">
 <h2>例3：正态分布</h2>
@@ -1066,6 +917,14 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 f_\theta(x_1,\dots,x_n|T=t)=\frac{\prod_{i=1}^nf_\theta(x_i) 1\{T(x_1,\dots,x_n)=t\}}{f^T_\theta(t)},
 \]</span></p>
 <p>其中<span class="math inline">\(f^T_\theta(t)\)</span>为<span class="math inline">\(T\)</span>的密度函数。</p>
+<p><code>证明</code>：由条件密度定义知，</p>
+<p><span class="math display">\[
+\begin{align}
+f_\theta(x_1,\dots,x_n|T(x_{1:n})=t)&amp;=\frac{f_\theta(x_1,\dots,x_n,t)}{f^T_\theta(t)}\\
+&amp;=\frac{f_\theta(t|x_1,\dots,x_n)f_\theta(x_1,\dots,x_n)}{f^T_\theta(t)}\\
+&amp;= \frac{\prod_{i=1}^nf_\theta(x_i)1\{T(x_1,\dots,x_n)=t\}}{f^T_\theta(t)}.
+\end{align}
+\]</span></p>
 </div>
 </div>
 <div class="section level2">
@@ -1090,6 +949,29 @@ f_\theta(x_1,\dots,x_n|T=t)=\frac{\prod_{i=1}^nf_\theta(x_i) 1\{T(x_1,\dots,x_n)
 <p><span class="math display">\[
 f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\theta\in\Theta, \forall x_i
 \]</span></p>
+<p><code>证明</code>：由于数学工具的限制，仅考虑离散情形。</p>
+<p>（1）必要性</p>
+<p>不妨设<span class="math inline">\(P(X_{1:n}=x_{1:n}|T=t) = h(t)\)</span>. 考虑到<span class="math display">\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]</span> 因此,</p>
+<p><span class="math display">\[
+\begin{align}
+P(X_{1:n}=x_{1:n})&amp;= P(X_{1:n}=x_{1:n}, T(X_{1:n})=T(x_{1:n}))\\
+&amp;=P(X_{1:n}=x_{1:n}|T(X_{1:n})=T(x_{1:n}))P(T(X_{1:n})=T(x_{1:n}))\\
+&amp;=h(T(x_{1:n}))g_\theta(T(x_{1:n})),
+\end{align}
+\]</span>
+其中<span class="math inline">\(g_\theta\)</span>为<span class="math inline">\(T\)</span>的分布函数。</p>
+<p>（2）充分性</p>
+<p>令<span class="math inline">\(A(t) = \{x_{1:n}|T(x_{1:n})=t\}\)</span>.
+<span class="math display">\[
+\begin{align}
+P(X_{1:n}=x_{1:n}|T(X_{1:n})=t))&amp;= \frac{P(X_{1:n}=x_{1:n},X_{1:n}\in A(t))}{P(X_{1:n}\in A(t))}\\
+&amp;= \frac{P(X_{1:n}=x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}P(X_{1:n}=y_{1:n})}\\
+&amp;= \frac{g_\theta(T(x_{1:n}))h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}g_\theta(T(y_{1:n}))h(y_{1:n})}\\
+&amp;= \frac{g_\theta(t)h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}g_\theta(t)h(y_{1:n})}\\
+&amp;= \frac{h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}h(y_{1:n})}
+\end{align}
+\]</span>
+与<span class="math inline">\(\theta\)</span>无关，所以是充分的。</p>
 </div>
 <div class="section level2">
 <h2>因子分解定理的应用</h2>

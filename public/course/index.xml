@@ -272,22 +272,26 @@ Derive the maximum likelihood estimators (MLE) for \(\beta_0,\beta_1\). Are they
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/course/homework2/</guid>
-      <description>设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&amp;gt;u_\alpha)=\alpha\). 若\(P(|X|&amp;lt;x)=\alpha\), 则\(x\)等于（ ）。A. \(u_{\alpha/2}\)
+      <description>设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&amp;gt;u_\alpha)=\alpha\). 若\(P(|X|&amp;lt;x)=\alpha\), 则\(x\)等于（ ）。答案：C
+A. \(u_{\alpha/2}\)
 B. \(u_{1-\alpha/2}\)
 C. \(u_{(1-\alpha)/2}\)
 D. \(u_{1-\alpha}\)
-设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
+设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。答案：D
+A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
 B. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)
 C. \(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)
 D. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim \chi^2(n)\)
-设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2+\dots+X_{10}^2}{2(X_{11}^2+\dots+X_{15}^2)}\]的分布为（ ）。A. \(F(10,5)\)
+设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2+\dots+X_{10}^2}{2(X_{11}^2+\dots+X_{15}^2)}\]的分布为（ ）。答案：A
+A. \(F(10,5)\)
 B. \(F(11,4)\)
 C. \(\chi^2(10)\)
 D. 以上都不是
 设\(X_1,\dots,X_n\)是来自双参数指数分布\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&amp;gt;\mu,\theta&amp;gt;0\]的一个样本，证明\((\bar X,X_{(1)})\)是该分布的充分统计量。
-\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}\mu\}$$由此得知，样本的联合密度函数可以表示为形如$h(\bar X,X_{(1)};\mu,\theta)$的函数。由因子分解定理可得$(\bar X,X_{(1)})$为该分布的充分统计量。--设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&amp;lt;\theta&amp;lt;x&amp;lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
-\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}\theta\}$$由因子分解定理可得$X_{(1)}$为参数$\theta$的充分统计量。 注意：当然充分统计量不是唯一，比如一部分同学认为$(X_{(1)},\prod_{i=1}^nx_i^{-2})$是充分统计量。这也是正确的，不过这个充分统计量`不是最优的`。--在R中使用命令boxplot分析数据OrchardSprays, 上传相应的箱线图并基于实验背景分析结果。
-关于数据OrchardSprays的背景介绍查看帮助文档：? OrchardSpraysR语言的代码供参考（请把“你的名字”替换成你真实的名字)：boxplot(decrease ~ treatment, data = OrchardSprays, main=“你的名字”)`数据分析`：由于蜜蜂是喜欢蔗糖溶液的，所以在正常情况下将100只蜜蜂放至密室两小时，蜂巢中蔗糖溶液体积是会变少的。实验中的“蔗糖溶液”的作用类比果园中的“花粉”。果园种植要除去害虫，但使用含石灰硫磺合剂的喷雾剂在消灭害虫的同时也会驱赶蜜蜂。本实验的目的是研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果。因此，实验中溶液的减少量（即纵坐标）越小说明蜜蜂越排斥该溶液，这样驱赶效果越明显，也就意味着不利于花粉的传播。1.</description>
+证明：样本的联合密度函数为\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&amp;gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&amp;gt;\mu\}\]
+由此得知，样本的联合密度函数可以表示为形如\(h(\bar X,X_{(1)};\mu,\theta)\)的函数。由因子分解定理可得\((\bar X,X_{(1)})\)为该分布的充分统计量。
+设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&amp;lt;\theta&amp;lt;x&amp;lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
+解：样本的联合密度函数为\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&amp;gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&amp;gt;\theta\}\]</description>
     </item>
     
     <item>

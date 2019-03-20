@@ -15,22 +15,26 @@
   
     
   
-  <meta name="description" content="设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&gt;u_\alpha)=\alpha\). 若\(P(|X|&lt;x)=\alpha\), 则\(x\)等于（ ）。A. \(u_{\alpha/2}\)
+  <meta name="description" content="设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&gt;u_\alpha)=\alpha\). 若\(P(|X|&lt;x)=\alpha\), 则\(x\)等于（ ）。答案：C
+A. \(u_{\alpha/2}\)
 B. \(u_{1-\alpha/2}\)
 C. \(u_{(1-\alpha)/2}\)
 D. \(u_{1-\alpha}\)
-设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
+设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。答案：D
+A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
 B. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)
 C. \(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)
 D. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim \chi^2(n)\)
-设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2&#43;\dots&#43;X_{10}^2}{2(X_{11}^2&#43;\dots&#43;X_{15}^2)}\]的分布为（ ）。A. \(F(10,5)\)
+设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2&#43;\dots&#43;X_{10}^2}{2(X_{11}^2&#43;\dots&#43;X_{15}^2)}\]的分布为（ ）。答案：A
+A. \(F(10,5)\)
 B. \(F(11,4)\)
 C. \(\chi^2(10)\)
 D. 以上都不是
 设\(X_1,\dots,X_n\)是来自双参数指数分布\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&gt;\mu,\theta&gt;0\]的一个样本，证明\((\bar X,X_{(1)})\)是该分布的充分统计量。
-\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}\mu\}$$由此得知，样本的联合密度函数可以表示为形如$h(\bar X,X_{(1)};\mu,\theta)$的函数。由因子分解定理可得$(\bar X,X_{(1)})$为该分布的充分统计量。--设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&lt;\theta&lt;x&lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
-\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}\theta\}$$由因子分解定理可得$X_{(1)}$为参数$\theta$的充分统计量。 注意：当然充分统计量不是唯一，比如一部分同学认为$(X_{(1)},\prod_{i=1}^nx_i^{-2})$是充分统计量。这也是正确的，不过这个充分统计量`不是最优的`。--在R中使用命令boxplot分析数据OrchardSprays, 上传相应的箱线图并基于实验背景分析结果。
-关于数据OrchardSprays的背景介绍查看帮助文档：? OrchardSpraysR语言的代码供参考（请把“你的名字”替换成你真实的名字)：boxplot(decrease ~ treatment, data = OrchardSprays, main=“你的名字”)`数据分析`：由于蜜蜂是喜欢蔗糖溶液的，所以在正常情况下将100只蜜蜂放至密室两小时，蜂巢中蔗糖溶液体积是会变少的。实验中的“蔗糖溶液”的作用类比果园中的“花粉”。果园种植要除去害虫，但使用含石灰硫磺合剂的喷雾剂在消灭害虫的同时也会驱赶蜜蜂。本实验的目的是研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果。因此，实验中溶液的减少量（即纵坐标）越小说明蜜蜂越排斥该溶液，这样驱赶效果越明显，也就意味着不利于花粉的传播。1.">
+证明：样本的联合密度函数为\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&gt;\mu\}\]
+由此得知，样本的联合密度函数可以表示为形如\(h(\bar X,X_{(1)};\mu,\theta)\)的函数。由因子分解定理可得\((\bar X,X_{(1)})\)为该分布的充分统计量。
+设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&lt;\theta&lt;x&lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
+解：样本的联合密度函数为\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&gt;\theta\}\]">
 
   
   <link rel="alternate" hreflang="en-us" href="/course/homework2/">
@@ -104,27 +108,31 @@ D. 以上都不是
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/course/homework2/">
   <meta property="og:title" content="第二次作业 | Dr. Zhijian He">
-  <meta property="og:description" content="设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&gt;u_\alpha)=\alpha\). 若\(P(|X|&lt;x)=\alpha\), 则\(x\)等于（ ）。A. \(u_{\alpha/2}\)
+  <meta property="og:description" content="设随机变量\(X\sim N(0,1)\), 对给定的\(\alpha\in(0,1)\), 数\(u_{\alpha}\) 满足\(P(X&gt;u_\alpha)=\alpha\). 若\(P(|X|&lt;x)=\alpha\), 则\(x\)等于（ ）。答案：C
+A. \(u_{\alpha/2}\)
 B. \(u_{1-\alpha/2}\)
 C. \(u_{(1-\alpha)/2}\)
 D. \(u_{1-\alpha}\)
-设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
+设\(X_1,\dots,X_n\)为总体\(N(1,2^2)\)的样本，下面正确的是（ ）。答案：D
+A. \(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)
 B. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)
 C. \(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)
 D. \(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim \chi^2(n)\)
-设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2&#43;\dots&#43;X_{10}^2}{2(X_{11}^2&#43;\dots&#43;X_{15}^2)}\]的分布为（ ）。A. \(F(10,5)\)
+设\(X_1,\dots,X_{15}\)为总体\(N(0,2^2)\)的样本，则统计量\[Y=\frac{X_1^2&#43;\dots&#43;X_{10}^2}{2(X_{11}^2&#43;\dots&#43;X_{15}^2)}\]的分布为（ ）。答案：A
+A. \(F(10,5)\)
 B. \(F(11,4)\)
 C. \(\chi^2(10)\)
 D. 以上都不是
 设\(X_1,\dots,X_n\)是来自双参数指数分布\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&gt;\mu,\theta&gt;0\]的一个样本，证明\((\bar X,X_{(1)})\)是该分布的充分统计量。
-\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}\mu\}$$由此得知，样本的联合密度函数可以表示为形如$h(\bar X,X_{(1)};\mu,\theta)$的函数。由因子分解定理可得$(\bar X,X_{(1)})$为该分布的充分统计量。--设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&lt;\theta&lt;x&lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
-\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}\theta\}$$由因子分解定理可得$X_{(1)}$为参数$\theta$的充分统计量。 注意：当然充分统计量不是唯一，比如一部分同学认为$(X_{(1)},\prod_{i=1}^nx_i^{-2})$是充分统计量。这也是正确的，不过这个充分统计量`不是最优的`。--在R中使用命令boxplot分析数据OrchardSprays, 上传相应的箱线图并基于实验背景分析结果。
-关于数据OrchardSprays的背景介绍查看帮助文档：? OrchardSpraysR语言的代码供参考（请把“你的名字”替换成你真实的名字)：boxplot(decrease ~ treatment, data = OrchardSprays, main=“你的名字”)`数据分析`：由于蜜蜂是喜欢蔗糖溶液的，所以在正常情况下将100只蜜蜂放至密室两小时，蜂巢中蔗糖溶液体积是会变少的。实验中的“蔗糖溶液”的作用类比果园中的“花粉”。果园种植要除去害虫，但使用含石灰硫磺合剂的喷雾剂在消灭害虫的同时也会驱赶蜜蜂。本实验的目的是研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果。因此，实验中溶液的减少量（即纵坐标）越小说明蜜蜂越排斥该溶液，这样驱赶效果越明显，也就意味着不利于花粉的传播。1.">
+证明：样本的联合密度函数为\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&gt;\mu\}\]
+由此得知，样本的联合密度函数可以表示为形如\(h(\bar X,X_{(1)};\mu,\theta)\)的函数。由因子分解定理可得\((\bar X,X_{(1)})\)为该分布的充分统计量。
+设\(X_1,\dots,X_n\)是来自密度函数\[p_\theta(x)=\theta/x^2,\ 0&lt;\theta&lt;x&lt;\infty\]的一个样本，求参数\(\theta\)的充分统计量。
+解：样本的联合密度函数为\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&gt;\theta\}\]">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-12-18T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-12-18T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2019-03-20T00:00:00&#43;00:00">
   
 
   
@@ -429,13 +437,13 @@ D. 以上都不是
           <h1 itemprop="name">第二次作业</h1>
 
           <div class="article-style" itemprop="articleBody">
-            <p>设随机变量<span class="math inline">\(X\sim N(0,1)\)</span>, 对给定的<span class="math inline">\(\alpha\in(0,1)\)</span>, 数<span class="math inline">\(u_{\alpha}\)</span> 满足<span class="math inline">\(P(X&gt;u_\alpha)=\alpha\)</span>. 若<span class="math inline">\(P(|X|&lt;x)=\alpha\)</span>, 则<span class="math inline">\(x\)</span>等于（ ）。<!-- **答案：C** --></p>
+            <p>设随机变量<span class="math inline">\(X\sim N(0,1)\)</span>, 对给定的<span class="math inline">\(\alpha\in(0,1)\)</span>, 数<span class="math inline">\(u_{\alpha}\)</span> 满足<span class="math inline">\(P(X&gt;u_\alpha)=\alpha\)</span>. 若<span class="math inline">\(P(|X|&lt;x)=\alpha\)</span>, 则<span class="math inline">\(x\)</span>等于（ ）。<strong>答案：C</strong></p>
 <p>A. <span class="math inline">\(u_{\alpha/2}\)</span></p>
 <p>B. <span class="math inline">\(u_{1-\alpha/2}\)</span></p>
 <p>C. <span class="math inline">\(u_{(1-\alpha)/2}\)</span></p>
 <p>D. <span class="math inline">\(u_{1-\alpha}\)</span></p>
 <hr />
-<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为总体<span class="math inline">\(N(1,2^2)\)</span>的样本，下面正确的是（ ）。<!-- **答案：D**--></p>
+<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为总体<span class="math inline">\(N(1,2^2)\)</span>的样本，下面正确的是（ ）。<strong>答案：D</strong></p>
 <p>A. <span class="math inline">\(\frac{\bar X-1}{2/\sqrt{n}}\sim t(n)\)</span></p>
 <p>B. <span class="math inline">\(\frac{1}{4}\sum_{i=1}^n(X_i-1)^2\sim F(n,1)\)</span></p>
 <p>C. <span class="math inline">\(\frac{\bar X-1}{\sqrt{2}/\sqrt{n}}\sim N(0,1)\)</span></p>
@@ -443,7 +451,7 @@ D. 以上都不是
 <hr />
 <p>设<span class="math inline">\(X_1,\dots,X_{15}\)</span>为总体<span class="math inline">\(N(0,2^2)\)</span>的样本，则统计量
 <span class="math display">\[Y=\frac{X_1^2+\dots+X_{10}^2}{2(X_{11}^2+\dots+X_{15}^2)}\]</span>
-的分布为（ ）。<!-- **答案：A**--></p>
+的分布为（ ）。<strong>答案：A</strong></p>
 <p>A. <span class="math inline">\(F(10,5)\)</span></p>
 <p>B. <span class="math inline">\(F(11,4)\)</span></p>
 <p>C. <span class="math inline">\(\chi^2(10)\)</span></p>
@@ -452,32 +460,36 @@ D. 以上都不是
 <p>设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自双参数指数分布
 <span class="math display">\[p(x;\mu,\theta)=\frac 1\theta \exp\{-(x-\mu)/\theta\}, x&gt;\mu,\theta&gt;0\]</span>
 的一个样本，证明<span class="math inline">\((\bar X,X_{(1)})\)</span>是该分布的充分统计量。</p>
-<!-- `证明`：样本的联合密度函数为
-$$f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i>\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}>\mu\}$$
-
-由此得知，样本的联合密度函数可以表示为形如$h(\bar X,X_{(1)};\mu,\theta)$的函数。由因子分解定理可得$(\bar X,X_{(1)})$为该分布的充分统计量。
--->
+<p><code>证明</code>：样本的联合密度函数为
+<span class="math display">\[f(x_1,\dots,x_n) =\prod_{i=1}^n\frac 1\theta e^{-(x_i-\mu)/\theta}1\{x_i&gt;\mu\}=\theta^{-n}e^{-(n\bar X-n\mu)/\theta}1\{x_{(1)}&gt;\mu\}\]</span></p>
+<p>由此得知，样本的联合密度函数可以表示为形如<span class="math inline">\(h(\bar X,X_{(1)};\mu,\theta)\)</span>的函数。由因子分解定理可得<span class="math inline">\((\bar X,X_{(1)})\)</span>为该分布的充分统计量。</p>
 <hr />
 <p>设<span class="math inline">\(X_1,\dots,X_n\)</span>是来自密度函数
 <span class="math display">\[p_\theta(x)=\theta/x^2,\ 0&lt;\theta&lt;x&lt;\infty\]</span>
 的一个样本，求参数<span class="math inline">\(\theta\)</span>的充分统计量。</p>
-<!-- 
-`解`：样本的联合密度函数为
-$$f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i>\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}>\theta\}$$
-
-由因子分解定理可得$X_{(1)}$为参数$\theta$的充分统计量。
-
-
-> 注意：当然充分统计量不是唯一，比如一部分同学认为$(X_{(1)},\prod_{i=1}^nx_i^{-2})$是充分统计量。这也是正确的，不过这个充分统计量`不是最优的`。
-
--->
+<p><code>解</code>：样本的联合密度函数为
+<span class="math display">\[f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i&gt;\theta\}=\left(\prod_{i=1}^nx_i^{-2}\right)\theta^n 1\{x_{(1)}&gt;\theta\}\]</span></p>
+<p>由因子分解定理可得<span class="math inline">\(X_{(1)}\)</span>为参数<span class="math inline">\(\theta\)</span>的充分统计量。</p>
+<blockquote>
+<p>注意：当然充分统计量不是唯一，比如一部分同学认为<span class="math inline">\((X_{(1)},\prod_{i=1}^nx_i^{-2})\)</span>是充分统计量。这也是正确的，不过这个充分统计量<code>不是最优的</code>。</p>
+</blockquote>
 <hr />
-<p>在R中使用命令<code>boxplot</code>分析数据<code>OrchardSprays</code>, 上传相应的箱线图并<strong>基于实验背景</strong>分析结果。</p>
-<ul>
-<li>关于数据<code>OrchardSprays</code>的背景介绍查看帮助文档：<code>? OrchardSprays</code></li>
-<li>R语言的代码供参考（<strong>请把“你的名字”替换成你真实的名字</strong>)：boxplot(decrease ~ treatment, data = OrchardSprays, main=“你的名字”)</li>
-</ul>
+<p>Let <span class="math inline">\(X_1,X_2,\dots,X_6\)</span> be a simple random sample taken from <span class="math inline">\(N(0,2^2)\)</span>. Denote
+<span class="math display">\[Y = (X_1+X_2)^2+(X_3+X_4)^2+(X_5+X_6)^2.\]</span>
+If <span class="math inline">\(kY\sim \chi^2(3)\)</span>, then <span class="math inline">\(k=1/8\)</span>.</p>
+<p><code>Solution</code>: Let <span class="math inline">\(Y_1=X_1+X_2\)</span>, <span class="math inline">\(Y_2=X_3+X_4\)</span>, <span class="math inline">\(Y_3=X_5+X_6\)</span>. Using <span class="math inline">\(Y_i \stackrel{iid}\sim N(0,8)\)</span> gets the result.</p>
+<hr />
+<p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a simple random sample taken from <span class="math inline">\(N(\mu,1)\)</span>, and let <span class="math inline">\(S_n^2=\frac 1n\sum_{i=1}^n(X_i-\bar X)^2\)</span> be the sample variance. Then <span class="math inline">\(Var[S_n^2]=2(n-1)/n^2\)</span>.</p>
+<p><code>Solution</code>: Note that <span class="math inline">\(nS_n^2/\sigma^2=nS_n^2\sim \chi^2(n-1)\)</span>. We have known that the variance of the chi-squared distribution <span class="math inline">\(\chi^2(n)\)</span> is <span class="math inline">\(2n\)</span>. So <span class="math display">\[Var[nS_n^2]=n^2Var[S_n^2] = 2(n-1),\]</span> leading to <span class="math inline">\(Var[S_n^2] = 2(n-1)/n^2\)</span>.</p>
 <!-- 
+
+---
+
+在R中使用命令`boxplot`分析数据`OrchardSprays`, 上传相应的箱线图并**基于实验背景**分析结果。
+
+- 关于数据`OrchardSprays`的背景介绍查看帮助文档：`? OrchardSprays` 
+- R语言的代码供参考（**请把“你的名字”替换成你真实的名字**)：boxplot(decrease ~ treatment, data = OrchardSprays, main="你的名字")
+
 
 `实验背景`：在蔗糖溶液中用[石灰硫磺合剂](https://baike.baidu.com/item/%E7%9F%B3%E7%A1%AB%E5%90%88%E5%89%82/2228879?fr=aladdin)填充蜂巢的每个蜂房,一共使用了七个不同浓度的石灰硫磺合剂，浓度分别为$0.01\times 5^{-i+1},i=1,\dots,7$,  以及一个不含石灰硫磺合剂的溶液。
 通过将100只蜜蜂放在密室中两小时，测量不同浓度下蜂巢中蔗糖溶液体积的减少量。
@@ -486,12 +498,9 @@ $$f(x_1,\dots,x_n) = \prod_{i=1}^n \theta/x_i^2 1\{x_i>\theta\}=\left(\prod_{i=1
 
 `R代码`：
 
-
-```r
+---```{r}
 boxplot(decrease ~ treatment, data = OrchardSprays,xlab="石灰硫磺合剂浓度",ylab="溶液减少量",main="不同浓度的驱蜂效果比较")
 ```
-
-<img src="/course/homework2_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
 `数据分析`：由于蜜蜂是喜欢蔗糖溶液的，所以在正常情况下将100只蜜蜂放至密室两小时，蜂巢中蔗糖溶液体积是会变少的。实验中的“蔗糖溶液”的作用类比果园中的“花粉”。果园种植要除去害虫，但使用含石灰硫磺合剂的喷雾剂在消灭害虫的同时也会驱赶蜜蜂。本实验的目的是研究不同浓度的石灰硫磺合剂对蜜蜂的驱赶效果。因此，实验中溶液的减少量（即纵坐标）越小说明蜜蜂越排斥该溶液，这样驱赶效果越明显，也就意味着不利于花粉的传播。
 
@@ -512,7 +521,7 @@ boxplot(decrease ~ treatment, data = OrchardSprays,xlab="石灰硫磺合剂浓�
         </div>
 
         <div class="body-footer">
-          Last updated on Dec 18, 2018
+          Last updated on Mar 20, 2019
         </div>
 
       </article>

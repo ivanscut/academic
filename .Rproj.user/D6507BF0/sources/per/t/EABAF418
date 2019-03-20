@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553050642729.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4001171103",
+    "id" : "EABAF418",
+    "lastKnownWriteTime" : 1553050692,
+    "last_content_update" : 1553050692762,
+    "path" : "D:/Dropbox/courses/academic/content/course/chap02.Rmd",
+    "project_path" : "content/course/chap02.Rmd",
+    "properties" : {
+        "cursorPosition" : "718,0",
+        "scrollLine" : "712"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

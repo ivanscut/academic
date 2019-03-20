@@ -979,7 +979,8 @@ Fisher信息量为
 </div>
 <div class="section level2">
 <h2>分布函数的估计</h2>
-<p>经验分布函数：</p>
+<p>通过样本的观测值构造一种函数来近似总体的分布函数</p>
+<p><strong>定义</strong>：设总体<span class="math inline">\(X\)</span>的样本<span class="math inline">\((X_1,\dots,X_n)\)</span>的一次观测值<span class="math inline">\((x_1,\dots,x_n)\)</span>, 并将它们由小到大排列<span class="math inline">\(x_{(1)}\le x_{(2)}\le \dots\le x_{(n)}\)</span>, 经验分布函数(或称样本分布函数)定义为</p>
 <p><span class="math display">\[
 F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
 0,&amp;\ x&lt;x_{(1)}\\
@@ -989,8 +990,22 @@ F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
 k/n,&amp;\ x_{(k)}\le x&lt;x_{(k+1)}\\
 &amp;\vdots\\
 1,&amp;\ x&gt;x_{(n)}\\
-\end{cases}
+\end{cases}.
 \]</span></p>
+</div>
+<div class="section level2">
+<h2>经验分布函数示意图</h2>
+<p><img src="/course/chap02_files/figure-html/ecdf-1.png" width="672" /></p>
+</div>
+<div class="section level2">
+<h2>经验分布函数的性质</h2>
+<p>固定的<span class="math inline">\(x\)</span>和<span class="math inline">\(n\)</span>，<span class="math inline">\(F_n(x)\)</span>表示事件<span class="math inline">\(\{X\le x\}\)</span>的频率，由强大数定律知，
+<span class="math display">\[F_n(x)\to P(X\le x)=F(x),\]</span>
+即
+<span class="math display">\[P\left(\lim_{n\to\infty}F_n(x)=F(x)\right)=1.\]</span></p>
+<p><strong>格里汶科定理</strong>(定理4.1, p48)给出更强的结果（几乎处处一致收敛）:</p>
+<p><span class="math display">\[P\left(\lim_{n\to\infty}\sup_{x\in \mathbb{R}}|F_n(x)-F(x)|=0\right)=1.\]</span></p>
+<p><strong>注</strong>：由此可见，当<span class="math inline">\(n\)</span>相当大时，经验分布函数<span class="math inline">\(F_n(x)\)</span>是母体分布函数<span class="math inline">\(F(x)\)</span>的一个良好近似。数理统计学中一切都以样本为依据，其理由就在于此。</p>
 </div>
 <div class="section level2">
 <h2>3.1 密度函数的估计——直方图法</h2>

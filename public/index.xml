@@ -3316,36 +3316,6 @@ Data Mining&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;经验分布函数&lt;/h2&gt;
-&lt;p&gt;通过样本的观测值构造一种函数来近似总体的分布函数&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设总体&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的样本&lt;span class=&#34;math inline&#34;&gt;\((X_1,\dots,X_n)\)&lt;/span&gt;的一次观测值&lt;span class=&#34;math inline&#34;&gt;\((x_1,\dots,x_n)\)&lt;/span&gt;, 并将它们由小到大排列&lt;span class=&#34;math inline&#34;&gt;\(x_{(1)}\le x_{(2)}\le \dots\le x_{(n)}\)&lt;/span&gt;, 经验分布函数(或称样本分布函数)定义为&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-F_n(x) =\frac{1}{n}\sum_{i=1}^n 1\{x_i\le x\} = \begin{cases}
-0,&amp;amp;\ x&amp;lt;x_{(1)}\\
-1/n,&amp;amp;\ x_{(1)}\le x&amp;lt;x_{(2)}\\
-2/n,&amp;amp;\ x_{(2)}\le x&amp;lt;x_{(3)}\\
-&amp;amp;\vdots\\
-k/n,&amp;amp;\ x_{(k)}\le x&amp;lt;x_{(k+1)}\\
-&amp;amp;\vdots\\
-1,&amp;amp;\ x&amp;gt;x_{(n)}\\
-\end{cases}.
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;经验分布函数示意图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap01_files/figure-html/ecdf-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;经验分布函数的性质&lt;/h2&gt;
-&lt;p&gt;固定的&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(F_n(x)\)&lt;/span&gt;表示事件&lt;span class=&#34;math inline&#34;&gt;\(\{X\le x\}\)&lt;/span&gt;的频率，由强大数定律知，
-&lt;span class=&#34;math display&#34;&gt;\[F_n(x)\to P(X\le x)=F(x),\]&lt;/span&gt;
-即
-&lt;span class=&#34;math display&#34;&gt;\[P\left(\lim_{n\to\infty}F_n(x)=F(x)\right)=1.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;格里汶科定理&lt;/strong&gt;(定理4.1, p48)给出更强的结果（几乎处处一致收敛）:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[P\left(\lim_{n\to\infty}\sup_{x\in \mathbb{R}}|F_n(x)-F(x)|=0\right)=1.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：由此可见，当&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;相当大时，经验分布函数&lt;span class=&#34;math inline&#34;&gt;\(F_n(x)\)&lt;/span&gt;是母体分布函数&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;的一个良好近似。数理统计学中一切都以样本为依据，其理由就在于此。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1.4 抽样分布&lt;/h2&gt;
 &lt;div class=&#34;section level3&#34;&gt;
 &lt;h3&gt;(1) 样本均值的分布&lt;/h3&gt;
@@ -3355,9 +3325,6 @@ k/n,&amp;amp;\ x_{(k)}\le x&amp;lt;x_{(k+1)}\\
 &lt;/div&gt;
 &lt;div class=&#34;section level3&#34;&gt;
 &lt;h3&gt;(3) 顺序统计量的分布&lt;/h3&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;(4) 样本分位数的分布&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-2&#34; class=&#34;section level2&#34;&gt;
@@ -3600,7 +3567,8 @@ n!\prod_{i=1}^nf(y_i),&amp;amp;y_1&amp;lt;y_2&amp;lt;\dots&amp;lt;y_n\\
 &lt;/div&gt;
 &lt;div class=&#34;section level2&#34;&gt;
 &lt;h2&gt;分位数&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的分布函数为&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;. 对于任意&lt;span class=&#34;math inline&#34;&gt;\(\alpha\in(0,1)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;分位数&lt;span class=&#34;math inline&#34;&gt;\(x_\alpha\)&lt;/span&gt;满足&lt;span class=&#34;math inline&#34;&gt;\(F(x_\alpha)=\alpha\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;的分布函数为&lt;span class=&#34;math inline&#34;&gt;\(F(x)\)&lt;/span&gt;. 对于任意&lt;span class=&#34;math inline&#34;&gt;\(\alpha\in(0,1)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;分位数定义为&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[x_\alpha=F^{-1}(p)=\{t\in\mathbb{R}|F(t)\ge p\}.\]&lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;标准正态分布分位数记为&lt;span class=&#34;math inline&#34;&gt;\(u_{\alpha}\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;分布分位数记为&lt;span class=&#34;math inline&#34;&gt;\(t_{\alpha}(n)\)&lt;/span&gt;&lt;/li&gt;
@@ -3622,221 +3590,58 @@ n!\prod_{i=1}^nf(y_i),&amp;amp;y_1&amp;lt;y_2&amp;lt;\dots&amp;lt;y_n\\
 &lt;div class=&#34;section level2&#34;&gt;
 &lt;h2&gt;分位数示意图&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;quantile.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;样本分位数&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设&lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;为样本，其顺序统计量为&lt;span class=&#34;math inline&#34;&gt;\(X_{(1)},\dots,X_{(n)}\)&lt;/span&gt;.
-对给定的&lt;span class=&#34;math inline&#34;&gt;\(0&amp;lt;\alpha&amp;lt;1\)&lt;/span&gt;, 该样本的&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;分位数定义为：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+&lt;!--
+## 样本分位数
+
+**定义**：设$X_1,\dots,X_n$为样本，其顺序统计量为$X_{(1)},\dots,X_{(n)}$.
+对给定的$0&lt;\alpha&lt;1$, 该样本的$\alpha$分位数定义为：
+
+
+$$
 m_\alpha = \begin{cases}
-\frac{1}2[X_{([n\alpha])}+X_{([n\alpha]+1)}],&amp;amp;np\text{是整数}\\
-X_{([n\alpha]+1)},&amp;amp;np\text{不是整数}
+\frac{1}2[X_{([n\alpha])}+X_{([n\alpha]+1)}],&amp;np\text{是整数}\\
+X_{([n\alpha]+1)},&amp;np\text{不是整数}
 \end{cases}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;其中&lt;span class=&#34;math inline&#34;&gt;\([a]\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;的整数部分。&lt;/p&gt;
-&lt;div class=&#34;section level3&#34;&gt;
-&lt;h3&gt;样本分位数的渐近分布&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;定理&lt;/strong&gt;：设总体的密度为&lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt;,&lt;span class=&#34;math inline&#34;&gt;\(x_\alpha\)&lt;/span&gt;为其&lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;分位数，如果&lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(x_\alpha\)&lt;/span&gt;处连续，且&lt;span class=&#34;math inline&#34;&gt;\(f(x_\alpha)&amp;gt;0\)&lt;/span&gt;, 则当&lt;span class=&#34;math inline&#34;&gt;\(n\to \infty\)&lt;/span&gt;时，样本的分位数&lt;span class=&#34;math inline&#34;&gt;\(m_\alpha\)&lt;/span&gt;的渐近分布为：&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+$$
+
+其中$[a]$表示$a$的整数部分。
+
+
+### 样本分位数的渐近分布
+**定理**：设总体的密度为$f(x)$,$x_\alpha$为其$\alpha$分位数，如果$f(x)$在$x_\alpha$处连续，且$f(x_\alpha)&gt;0$, 则当$n\to \infty$时，样本的分位数$m_\alpha$的渐近分布为：
+
+
+$$
 m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\alpha)}\right).
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;6种杀虫剂的数据&lt;/h2&gt;
-&lt;table&gt;
-&lt;caption&gt;&lt;span id=&#34;tab:insectsprays&#34;&gt;Table 1: &lt;/span&gt;&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;spray&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;count&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;21&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;16&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;16&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;23&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;26&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;21&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;26&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;24&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;B&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;D&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;E&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;F&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;箱线图&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/course/chap01_files/figure-html/boxplot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+$$
+
+## 6种杀虫剂的数据
+
+Table: (\#tab:insectsprays)
+
+spray    count  spray    count  spray    count  spray    count  spray    count  spray    count
+------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------
+A           10  B           11  C            0  D            3  E            3  F           11
+A            7  B           17  C            1  D            5  E            5  F            9
+A           20  B           21  C            7  D           12  E            3  F           15
+A           14  B           11  C            2  D            6  E            5  F           22
+A           14  B           16  C            3  D            4  E            3  F           15
+A           12  B           14  C            1  D            3  E            6  F           16
+A           10  B           17  C            2  D            5  E            1  F           13
+A           23  B           17  C            1  D            5  E            1  F           10
+A           17  B           19  C            3  D            5  E            3  F           26
+A           20  B           21  C            0  D            5  E            2  F           26
+A           14  B            7  C            1  D            2  E            6  F           24
+A           13  B           13  C            4  D            4  E            4  F           13
+
+## 箱线图
+
+---```{r boxplot, echo=FALSE}
+par(mar=c(3,3,2,1))
+boxplot(count ~ spray, data = InsectSprays, col = &#34;lightgray&#34;,main=&#34;6种杀虫剂的比较&#34;,horizontal=TRUE)
+```
+
+--&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1.5 充分统计量&lt;/h2&gt;
@@ -3855,6 +3660,9 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 &lt;li&gt;不损失重要信息&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：设有一个分布族&lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt;是从某分布&lt;span class=&#34;math inline&#34;&gt;\(F\in\mathcal{F}\)&lt;/span&gt;中抽取的一个样本。&lt;span class=&#34;math inline&#34;&gt;\(T=T(X_1,\dots,X_n)\)&lt;/span&gt;是一个（向量）统计量。若在给定&lt;span class=&#34;math inline&#34;&gt;\(T=t\)&lt;/span&gt;下，样本&lt;span class=&#34;math inline&#34;&gt;\((X_1,\dots,X_n)\)&lt;/span&gt;的条件分布与总体分布&lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt;无关，则称&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;为此分布族&lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}\)&lt;/span&gt;的充分统计量。如果&lt;span class=&#34;math inline&#34;&gt;\(\mathcal{F}=\{F_\theta;\theta\in\Theta\}\)&lt;/span&gt;是参数分布族，在给定&lt;span class=&#34;math inline&#34;&gt;\(T=t\)&lt;/span&gt;下，样本&lt;span class=&#34;math inline&#34;&gt;\((X_1,\dots,X_n)\)&lt;/span&gt;的条件分布与参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关，则称&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;为参数&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;条件分布的定义见：英文参考书Text3第201-205页&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;div id=&#34;1&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;例1：两点分布&lt;/h2&gt;
@@ -3863,10 +3671,53 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(T_1=\sum_{i=1}^nX_i\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(T_2=X_1+X_2\)&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;解&lt;/code&gt;:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T_1=t) &amp;amp;= \frac{P(X_1=x_1,\dots,X_n=x_n,T_1=t)}{P(T_1=t)}\\
+&amp;amp;=\begin{cases}
+\frac{P(X_1=x_1,\dots,X_n=x_n)}{P(T_1=t)},\ &amp;amp;\sum_{i=1}^n x_i = t\\
+0, &amp;amp; else
+\end{cases}\\
+&amp;amp;=\begin{cases}
+\frac{p^{\sum_{i=1}^n x_i}(1-p)^{n-\sum_{i=1}^n x_i}}{C_n^t p^t(1-p)^{n-t}},\ &amp;amp;\sum_{i=1}^n x_i = t\\
+0, &amp;amp; else
+\end{cases}
+\\
+&amp;amp;=\begin{cases}
+\frac 1{C_n^t},\ &amp;amp;\sum_{i=1}^n x_i = t\\
+0, &amp;amp; else
+\end{cases}
+\end{align}
+\]&lt;/span&gt;
+该分布与&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;无关，所以&lt;span class=&#34;math inline&#34;&gt;\(T_1\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T_2=t) &amp;amp;= \frac{P(X_1=x_1,\dots,X_n=x_n,T_2=t)}{P(T_2=t)}\\
+&amp;amp;=\frac{P(X_1=x_1,X_2=t-x_1,\dots,X_n=x_n)}{P(T_2=t)}\\
+&amp;amp;=\frac{p^{t+\sum_{i=3}^n x_i}(1-p)^{n-t-\sum_{i=3}^n x_i}}{C_2^t p^t(1-p)^{2-t}}\\
+&amp;amp;=\frac 1{C_2^t}p^{\sum_{i=3}^n x_i}(1-p)^{n-2-\sum_{i=3}^n x_i}
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;该分布与&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;相关，所以&lt;span class=&#34;math inline&#34;&gt;\(T_2\)&lt;/span&gt;不是&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;2&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;例2：几何分布&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;：总体&lt;span class=&#34;math inline&#34;&gt;\(X\sim Ge(p),0&amp;lt;p&amp;lt;1\)&lt;/span&gt;, 证明&lt;span class=&#34;math inline&#34;&gt;\(T=\sum_{i=1}^nX_i\)&lt;/span&gt;是参数&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;解&lt;/code&gt;: 考虑&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^n x_i = t\)&lt;/span&gt;, 则有&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P(X_1=x_1,\dots,X_n=x_n|T=t) &amp;amp;=\frac{P(X_1=x_1,\dots,X_n=x_n,T=t)}{P(T=t)}\\
+&amp;amp;=\frac{\prod_{i=1}^n[p(1-p)^{x_i-1}]}{C_{t-1}^{n-1} p^n (1-p)^{t-n}}=\frac{1}{C_{t-1}^{n-1}}
+\end{align}
+\]&lt;/span&gt;
+该分布与&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;无关，所以&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;的充分统计量。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;3&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;例3：正态分布&lt;/h2&gt;
@@ -3878,6 +3729,14 @@ m_\alpha \stackrel{\cdot}\sim N\left(x_\alpha,\frac{\alpha(1-\alpha)}{nf^2(x_\al
 f_\theta(x_1,\dots,x_n|T=t)=\frac{\prod_{i=1}^nf_\theta(x_i) 1\{T(x_1,\dots,x_n)=t\}}{f^T_\theta(t)},
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;其中&lt;span class=&#34;math inline&#34;&gt;\(f^T_\theta(t)\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;的密度函数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：由条件密度定义知，&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+f_\theta(x_1,\dots,x_n|T(x_{1:n})=t)&amp;amp;=\frac{f_\theta(x_1,\dots,x_n,t)}{f^T_\theta(t)}\\
+&amp;amp;=\frac{f_\theta(t|x_1,\dots,x_n)f_\theta(x_1,\dots,x_n)}{f^T_\theta(t)}\\
+&amp;amp;= \frac{\prod_{i=1}^nf_\theta(x_i)1\{T(x_1,\dots,x_n)=t\}}{f^T_\theta(t)}.
+\end{align}
+\]&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;section level2&#34;&gt;
@@ -3902,6 +3761,29 @@ f_\theta(x_1,\dots,x_n|T=t)=\frac{\prod_{i=1}^nf_\theta(x_i) 1\{T(x_1,\dots,x_n)
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 f_\theta(x_1,\dots,x_n) = g_\theta(T(x_1,\dots,x_n))h(x_1,\dots,x_n),\ \forall\theta\in\Theta, \forall x_i
 \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;证明&lt;/code&gt;：由于数学工具的限制，仅考虑离散情形。&lt;/p&gt;
+&lt;p&gt;（1）必要性&lt;/p&gt;
+&lt;p&gt;不妨设&lt;span class=&#34;math inline&#34;&gt;\(P(X_{1:n}=x_{1:n}|T=t) = h(t)\)&lt;/span&gt;. 考虑到&lt;span class=&#34;math display&#34;&gt;\[\{X_{1:n}=x_{1:n}\}\subset \{T(X_{1:n})=T(x_{1:n})\}.\]&lt;/span&gt; 因此,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P(X_{1:n}=x_{1:n})&amp;amp;= P(X_{1:n}=x_{1:n}, T(X_{1:n})=T(x_{1:n}))\\
+&amp;amp;=P(X_{1:n}=x_{1:n}|T(X_{1:n})=T(x_{1:n}))P(T(X_{1:n})=T(x_{1:n}))\\
+&amp;amp;=h(T(x_{1:n}))g_\theta(T(x_{1:n})),
+\end{align}
+\]&lt;/span&gt;
+其中&lt;span class=&#34;math inline&#34;&gt;\(g_\theta\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;的分布函数。&lt;/p&gt;
+&lt;p&gt;（2）充分性&lt;/p&gt;
+&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(A(t) = \{x_{1:n}|T(x_{1:n})=t\}\)&lt;/span&gt;.
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+P(X_{1:n}=x_{1:n}|T(X_{1:n})=t))&amp;amp;= \frac{P(X_{1:n}=x_{1:n},X_{1:n}\in A(t))}{P(X_{1:n}\in A(t))}\\
+&amp;amp;= \frac{P(X_{1:n}=x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}P(X_{1:n}=y_{1:n})}\\
+&amp;amp;= \frac{g_\theta(T(x_{1:n}))h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}g_\theta(T(y_{1:n}))h(y_{1:n})}\\
+&amp;amp;= \frac{g_\theta(t)h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}g_\theta(t)h(y_{1:n})}\\
+&amp;amp;= \frac{h(x_{1:n})1\{x_{1:n}\in A(t)\}}{\sum_{y_{1:n}\in A(t)}h(y_{1:n})}
+\end{align}
+\]&lt;/span&gt;
+与&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;无关，所以是充分的。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;section level2&#34;&gt;
 &lt;h2&gt;因子分解定理的应用&lt;/h2&gt;
