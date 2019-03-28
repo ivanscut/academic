@@ -311,6 +311,12 @@ $$Var[T_0]\le Var[T],\ \forall\theta\in\Theta$$
 
 **B-L-S定理**：如果$T(X_1,\dots,X_n)$为*完全的充分统计量*，$\psi(T)$为$g(\theta)$的无偏估计，则$\psi(T)$为$g(\theta)$的最小方差无偏估计。
 
+`证明`：设$T_1$为$g(\theta)$的任意无偏估计量，记$\psi_1(t) = E[T_1|T=t]$. 由于$T$是充分统计量，所以$\psi_1(t)$与参数$\theta$无关，即$\psi_1(T)=E[T_1|T]$为一统计量。由[全期望公式](https://en.wikipedia.org/wiki/Law_of_total_expectation)知，$E[\psi_1(T)]=E[E[T_1|T]]=E[T_1]=g(\theta)$. 所以$\psi_1(T)$为$g(\theta)$的无偏估计量。
+由[全方差公式](https://en.wikipedia.org/wiki/Law_of_total_variance)知，
+$$Var[T_1] = E[Var[T_1|T]]+Var[E[T_1|T]]\ge Var[\psi_1(T)].$$
+
+令$u(x) = \psi(x)-\psi_1(x)$. 则$E[u(T)]=E[\psi(T)]-E[\psi_1(T)]=0$. 由于$T$是完全统计量，所以$P(\psi(X)=\psi_1(X))=1$, 这表明$$Var[\psi(T)]=Var[\psi_1(T)]\le Var[T_1].$$
+
 ###  
 
 **说明**：可以证明，如果参数$\theta$的集合有内点，则指数型分布族的充分统计量
@@ -330,13 +336,38 @@ $$\int_{-\infty}^\infty\frac d{d\theta} L(\vec x;\theta) d \vec x=0$$
 
 $$\frac d{d\theta}\int_{-\infty}^\infty \psi(\vec x) L(\vec x;\theta) d \vec x=\int_{-\infty}^\infty \psi(\vec x) \frac d{d\theta}L(\vec x;\theta) d \vec x$$
 
-## Cramer-Rao不等式
 
 - $I(\theta):=E[(\frac {d\ln f(X;\theta)}{d\theta})^2]>0$
 
 则有
 $$Var_\theta[\psi(X_1,\dots,X_n)]\ge \frac{[g'(\theta)]^2}{nI(\theta)}.$$
 
+`证明`：
+
+$$
+\begin{align}
+g'(\theta) & = dE[\psi(X_1,\dots,X_n)]/d\theta \\
+&=\frac{d}{d\theta}\int \psi(\vec x)L(\vec x;\theta)d \vec x\\
+&=\int \psi(\vec x)\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
+&=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
+&=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}\ln L(\vec x;\theta) L(\vec x;\theta)d \vec x\\
+&=E\left[[\psi(\vec X)-g(\theta)]\frac{d}{d\theta}\ln L(\vec X;\theta)\right]
+\end{align}
+$$
+
+由[Cauchy–Schwarz不等式](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality)得，
+
+$$
+\begin{align}
+[g'(\theta)]^2 & \le E[[\psi(\vec X)-g(\theta)]^2] E[(\frac{d}{d\theta}\ln L(\vec X;\theta))^2]\\
+&=Var[\psi(\vec X)]E[(\sum_{i=1}^n \frac{d\ln f(X_i;\theta)}{d\theta})^2]\\
+&=Var[\psi(\vec X)] n I(\theta).
+\end{align}
+$$
+
+其中用到
+
+$$E[\frac{d\ln f(X_i;\theta)}{d\theta}]=\int \frac{\frac{df(x;\theta)}{d\theta}}{f(x;\theta)}f(x;\theta)dx=\int \frac{df(x;\theta)}{d\theta}dx=0.$$
 
 **说明**:
 

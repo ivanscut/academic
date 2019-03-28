@@ -275,6 +275,10 @@ E[X]= 0,\ E[X^2]=\int_{-\infty}^{\infty}x^2\frac{\theta}{2}e^{-\theta|x|}d x=\th
 <h2>Black-Lehmann-Scheffe定理</h2>
 <p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为统计量。如果对任何(Borel可测)函数<span class="math inline">\(u(\cdot)\)</span>, 只要<span class="math inline">\(E[u(T)]=0\)</span>(对一切<span class="math inline">\(\theta\)</span>)就可以推出<span class="math inline">\(P(u(T)=0)=1\)</span>, 这次称统计量<span class="math inline">\(T\)</span>为<em>完全的统计量</em>。</p>
 <p><strong>B-L-S定理</strong>：如果<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<em>完全的充分统计量</em>，<span class="math inline">\(\psi(T)\)</span>为<span class="math inline">\(g(\theta)\)</span>的无偏估计，则<span class="math inline">\(\psi(T)\)</span>为<span class="math inline">\(g(\theta)\)</span>的最小方差无偏估计。</p>
+<p><code>证明</code>：设<span class="math inline">\(T_1\)</span>为<span class="math inline">\(g(\theta)\)</span>的任意无偏估计量，记<span class="math inline">\(\psi_1(t) = E[T_1|T=t]\)</span>. 由于<span class="math inline">\(T\)</span>是充分统计量，所以<span class="math inline">\(\psi_1(t)\)</span>与参数<span class="math inline">\(\theta\)</span>无关，即<span class="math inline">\(\psi_1(T)=E[T_1|T]\)</span>为一统计量。由<a href="https://en.wikipedia.org/wiki/Law_of_total_expectation">全期望公式</a>知，<span class="math inline">\(E[\psi_1(T)]=E[E[T_1|T]]=E[T_1]=g(\theta)\)</span>. 所以<span class="math inline">\(\psi_1(T)\)</span>为<span class="math inline">\(g(\theta)\)</span>的无偏估计量。
+由<a href="https://en.wikipedia.org/wiki/Law_of_total_variance">全方差公式</a>知，
+<span class="math display">\[Var[T_1] = E[Var[T_1|T]]+Var[E[T_1|T]]\ge Var[\psi_1(T)].\]</span></p>
+<p>令<span class="math inline">\(u(x) = \psi(x)-\psi_1(x)\)</span>. 则<span class="math inline">\(E[u(T)]=E[\psi(T)]-E[\psi_1(T)]=0\)</span>. 由于<span class="math inline">\(T\)</span>是完全统计量，所以<span class="math inline">\(P(\psi(X)=\psi_1(X))=1\)</span>, 这表明<span class="math display">\[Var[\psi(T)]=Var[\psi_1(T)]\le Var[T_1].\]</span></p>
 <div id="section" class="section level3">
 <h3></h3>
 <p><strong>说明</strong>：可以证明，如果参数<span class="math inline">\(\theta\)</span>的集合有内点，则指数型分布族的充分统计量
@@ -292,14 +296,32 @@ E[X]= 0,\ E[X^2]=\int_{-\infty}^{\infty}x^2\frac{\theta}{2}e^{-\theta|x|}d x=\th
 <p><span class="math display">\[\int_{-\infty}^\infty \frac{df(x;\theta)}{d\theta} d x = 0\]</span></p>
 <p><span class="math display">\[\int_{-\infty}^\infty\frac d{d\theta} L(\vec x;\theta) d \vec x=0\]</span></p>
 <p><span class="math display">\[\frac d{d\theta}\int_{-\infty}^\infty \psi(\vec x) L(\vec x;\theta) d \vec x=\int_{-\infty}^\infty \psi(\vec x) \frac d{d\theta}L(\vec x;\theta) d \vec x\]</span></p>
-</div>
-<div id="cramer-rao-1" class="section level2">
-<h2>Cramer-Rao不等式</h2>
 <ul>
 <li><span class="math inline">\(I(\theta):=E[(\frac {d\ln f(X;\theta)}{d\theta})^2]&gt;0\)</span></li>
 </ul>
 <p>则有
 <span class="math display">\[Var_\theta[\psi(X_1,\dots,X_n)]\ge \frac{[g&#39;(\theta)]^2}{nI(\theta)}.\]</span></p>
+<p><code>证明</code>：</p>
+<p><span class="math display">\[
+\begin{align}
+g&#39;(\theta) &amp; = dE[\psi(X_1,\dots,X_n)]/d\theta \\
+&amp;=\frac{d}{d\theta}\int \psi(\vec x)L(\vec x;\theta)d \vec x\\
+&amp;=\int \psi(\vec x)\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
+&amp;=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
+&amp;=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}\ln L(\vec x;\theta) L(\vec x;\theta)d \vec x\\
+&amp;=E\left[[\psi(\vec X)-g(\theta)]\frac{d}{d\theta}\ln L(\vec X;\theta)\right]
+\end{align}
+\]</span></p>
+<p>由<a href="https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality">Cauchy–Schwarz不等式</a>得，</p>
+<p><span class="math display">\[
+\begin{align}
+[g&#39;(\theta)]^2 &amp; \le E[[\psi(\vec X)-g(\theta)]^2] E[(\frac{d}{d\theta}\ln L(\vec X;\theta))^2]\\
+&amp;=Var[\psi(\vec X)]E[(\sum_{i=1}^n \frac{d\ln f(X_i;\theta)}{d\theta})^2]\\
+&amp;=Var[\psi(\vec X)] n I(\theta).
+\end{align}
+\]</span></p>
+<p>其中用到</p>
+<p><span class="math display">\[E[\frac{d\ln f(X_i;\theta)}{d\theta}]=\int \frac{\frac{df(x;\theta)}{d\theta}}{f(x;\theta)}f(x;\theta)dx=\int \frac{df(x;\theta)}{d\theta}dx=0.\]</span></p>
 <p><strong>说明</strong>:</p>
 <ul>
 <li>证明见p. 28</li>

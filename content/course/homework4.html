@@ -73,8 +73,9 @@ $$\psi(t)=nt^2-t-(n-1)E[X_1X_2|\bar X=t]=nt^2-t-(n-1)\frac{(nt)!}{n^{nt}}\frac{n
 这表明，$\psi(\bar X)=(\bar X)^2-\bar X/n$, 也就是$\hat{\lambda^2}_2$. 两种方式得到的最小方差无偏估计量是一致的。这也印证了最小方差无偏估计量是唯一的。显然第一种方式比较简单，第二种方式需要求条件期望，这个比较复杂，一般情况下不容易求解。
 -->
 <hr />
-<p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布的样本，参数<span class="math inline">\(\mu,\sigma^2\)</span>未知。证明样本方差<span class="math inline">\(S_n^2\)</span>与修正样本方差<span class="math inline">\(S_n^{*2}\)</span>均为<span class="math inline">\(\sigma^2\)</span>的弱相合估计量。</p>
 <!-- 
+设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。证明样本方差$S_n^2$与修正样本方差$S_n^{*2}$均为$\sigma^2$的弱相合估计量。
+
 
 `解`： 由抽样分布定理知，$\frac{\sum_{i=1}^n (X_i-\bar X)^2}{\sigma^2}\sim \chi^2(n-1)$, 所以
 $$Var[\sum_{i=1}^n (X_i-\bar X)^2]=2(n-1)\sigma^4$$
@@ -88,7 +89,6 @@ $$Var[S_n^{*2}]=Var[\sum_{i=1}^n (X_i-\bar X)^2]/(n-1)^2=\frac{2\sigma^4}{n-1}\t
 由于$E[S_n^{*2}]=\sigma^2,\lim_{n\to\infty}E[S_n^2]=\sigma^2$, 由弱相合性判别条件知，它们都是弱相合的。
 
 -->
-<hr />
 <p>设<span class="math inline">\(X_1,\dots,X_n\)</span>为<span class="math inline">\(N(\mu,\sigma^2)\)</span>分布的样本，参数<span class="math inline">\(\mu,\sigma^2\)</span>未知。样本方差<span class="math inline">\(S_n^2\)</span>与修正样本方差<span class="math inline">\(S_n^{*2}\)</span>作为<span class="math inline">\(\sigma^2\)</span>的两种估计量，哪个更有效？由B-L-S定理知，<span class="math inline">\(S_n^{*2}\)</span>是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？</p>
 <!-- 
 
@@ -129,3 +129,11 @@ $$Var[nT/\sigma^2]=2n$$
 于是，$Var[T]=2\sigma^4/n$达到C-R不等式下界。
 
 -->
+<hr />
+<p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a simple random sample taken from the density</p>
+<p><span class="math display">\[f(x;\theta)=\frac{2x}{\theta^2},\quad 0\le x\le \theta.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find an expression for <span class="math inline">\(\hat\theta_L\)</span>, the maximum likelihood estimator (MLE) for <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Find an expression for <span class="math inline">\(\hat\theta_M\)</span>, the method of moments estimator for <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>For the two estimators <span class="math inline">\(\hat\theta_L\)</span> and <span class="math inline">\(\hat\theta_M\)</span>, which one is more efficient in terms of mean squared error (MSE)?</p></li>
+</ol>
