@@ -350,8 +350,8 @@ g'(\theta) & = dE[\psi(X_1,\dots,X_n)]/d\theta \\
 &=\frac{d}{d\theta}\int \psi(\vec x)L(\vec x;\theta)d \vec x\\
 &=\int \psi(\vec x)\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
 &=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
-&=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}\ln L(\vec x;\theta) L(\vec x;\theta)d \vec x\\
-&=E\left[[\psi(\vec X)-g(\theta)]\frac{d}{d\theta}\ln L(\vec X;\theta)\right]
+&=\int [\psi(\vec x)-g(\theta)]\frac{d \ln L(\vec x;\theta)}{d\theta} L(\vec x;\theta)d \vec x\\
+&=E\left[[\psi(\vec X)-g(\theta)]\frac{d \ln L(\vec X;\theta)}{d\theta}\right]
 \end{align}
 $$
 

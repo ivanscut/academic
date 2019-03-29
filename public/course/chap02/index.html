@@ -695,8 +695,8 @@ g&#39;(\theta) &amp; = dE[\psi(X_1,\dots,X_n)]/d\theta \\
 &amp;=\frac{d}{d\theta}\int \psi(\vec x)L(\vec x;\theta)d \vec x\\
 &amp;=\int \psi(\vec x)\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
 &amp;=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}L(\vec x;\theta)d \vec x\\
-&amp;=\int [\psi(\vec x)-g(\theta)]\frac{d}{d\theta}\ln L(\vec x;\theta) L(\vec x;\theta)d \vec x\\
-&amp;=E\left[[\psi(\vec X)-g(\theta)]\frac{d}{d\theta}\ln L(\vec X;\theta)\right]
+&amp;=\int [\psi(\vec x)-g(\theta)]\frac{d \ln L(\vec x;\theta)}{d\theta} L(\vec x;\theta)d \vec x\\
+&amp;=E\left[[\psi(\vec X)-g(\theta)]\frac{d \ln L(\vec X;\theta)}{d\theta}\right]
 \end{align}
 \]</span></p>
 <p>由<a href="https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality">Cauchy–Schwarz不等式</a>得，</p>
