@@ -370,17 +370,21 @@ Write down the normal equations for the simple linear model via the matrix forma
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/course/homework4/</guid>
-      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。A. \(\bar X\)
+      <description>设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本. 在下列选项中选出用于估计参数\(\lambda\)的无偏估计量。 答案：ABCE
+A. \(\bar X\)
 B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2\)
 C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
 D. \(S_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2\)
 E. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
-设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。A. \(\bar X\)
+设\(X_1,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本, 已知\(\bar X\)是未知参数\(\lambda\)的完全统计量。在下列选项中选出用于估计参数\(\lambda\)的最有效的估计量。 答案：A
+A. \(\bar X\)
 B. \(S_n^{*2}=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\)
 C. \(\frac 1 {n-1}\sum_{i=1}^{n-1}X_i\)
 D. \(\frac{1}2 \bar X + \frac 12 S_n^{*2}\)
 设\(X,\dots,X_n\)为来自参数为\(\lambda\)的Poisson分布的样本，求\(\lambda^2\)的无偏估计。已知\(\bar X\)是参数\(\lambda\)的完全统计量，能否找到\(\lambda^2\)的最小方差无偏估计量？
-有一部分同学想通过$\psi(\bar X)=E[\hat{\lambda^2}_1|\bar X]$的得到最小无偏估计量，思路是对的，但是如何计算$\psi(\bar X)$就没那么容易了。为了解决这个问题，我们需要计算在给定$\bar X= t$下，样本$(X_1,\dots,X_n)$的条件分布。容易计算样本的联合分布为$$P(X_1=x_1,\dots,X_n=x_n)=\prod_{i=1}^nP(X_i=x_i) = \prod_{i=1}^n \frac{e^{-\lambda}\lambda^{x_i}}{x_i!}=\frac{e^{-n\lambda}\lambda^{n\bar x}}{\prod_{i=1}^nx_i!}$$由于Possion分布的可加性，有$\sum_{i=1}^n X_i\sim Possion(n\lambda)$, 所以$$P(\bar X=t)=P(\sum_{i=1}^n X_i=nt)=\frac{e^{-n\lambda}(n\lambda)^{nt}}{(nt)!}$$于是，给定$\bar X= t$下，样本$(X_1,\dots,X_n)$的条件分布为：当$\sum_{i=1}^nx_i=nt$时，$$P(X_1=x_1,\dots,X_n=x_n|\bar X=t)=\frac{\frac{e^{-n\lambda}\lambda^{nt}}{\prod_{i=1}^nx_i!}}{\frac{e^{-n\lambda}(n\lambda)^{nt}}{(nt)!}}=\frac{(nt)!}{n^{nt}\prod_{i=1}^nx_i!}, $$其他情况下，该条件概率为0. 我们发现$$\psi(t)=E[\hat{\lambda^2}_1|\bar X=t]=E[\frac{1}{n}\sum_{i=1}^nX_i^2-\bar X|\bar X=t]=E[n(\bar X)^2-\frac{1}{n}\sum_{i\neq j}X_iX_j-\bar X|\bar X=t]=nt^2-t-\frac{1}{n}E[\sum_{i\neq j}X_iX_j|\bar X=t].</description>
+解: 1. \(\lambda^2\)的无偏估计有很多种答案：
+因为\(E[X]=Var[\lambda]=\lambda\), 所以\(E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2\)，由矩法得到一种无偏估计量：\[\hat{\lambda^2}_1 = \frac{1}{n}\sum_{i=1}^n(X_i^2-X_i)\]
+因为\(E[\bar X]=\lambda\), \[E(\bar X^2) = Var(\bar X)+(E[\bar X])^2=\lambda/n+\lambda^2=E[\bar X]/n+\lambda^2,\]于是可以得到一种无偏估计量：\[\hat{\lambda^2}_2 = (\bar X)^2-\bar X/n\]</description>
     </item>
     
     <item>

@@ -19,7 +19,7 @@ menu:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本. 在下列选项中选出用于估计参数$\lambda$的无偏估计量。<!-- **答案：ABCE**-->
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本. 在下列选项中选出用于估计参数$\lambda$的无偏估计量。 **答案：ABCE**
 
 A. $\bar X$
 
@@ -33,7 +33,7 @@ E. $\frac{1}2 \bar X + \frac 12 S_n^{*2}$
 
 ---
 
-设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本, 已知$\bar X$是未知参数$\lambda$的完全统计量。在下列选项中选出用于估计参数$\lambda$的最有效的估计量。<!-- **答案：A**-->
+设$X_1,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本, 已知$\bar X$是未知参数$\lambda$的完全统计量。在下列选项中选出用于估计参数$\lambda$的最有效的估计量。 **答案：A**
 
 A. $\bar X$
 
@@ -47,7 +47,7 @@ D. $\frac{1}2 \bar X + \frac 12 S_n^{*2}$
 
 设$X,\dots,X_n$为来自参数为$\lambda$的Poisson分布的样本，求$\lambda^2$的无偏估计。已知$\bar X$是参数$\lambda$的完全统计量，能否找到$\lambda^2$的最小方差无偏估计量？
 
-<!-- 
+
 `解`: 1. $\lambda^2$的无偏估计有很多种答案：
 
 - 因为$E[X]=Var[\lambda]=\lambda$, 所以$E[X^2]=\lambda+\lambda^2=E[X]+\lambda^2$，由矩法得到一种无偏估计量：
@@ -87,7 +87,7 @@ $$\sum_{\vec x:\sum_{i=1}^nx_i=nt}\frac{x_1x_2}{\prod_{i=1}^nx_i!}=\sum_{\vec x:
 $$\psi(t)=nt^2-t-(n-1)E[X_1X_2|\bar X=t]=nt^2-t-(n-1)\frac{(nt)!}{n^{nt}}\frac{n^{nt-2}}{(nt-2)!}=t^2-\frac{t}{n}$$
 
 这表明，$\psi(\bar X)=(\bar X)^2-\bar X/n$, 也就是$\hat{\lambda^2}_2$. 两种方式得到的最小方差无偏估计量是一致的。这也印证了最小方差无偏估计量是唯一的。显然第一种方式比较简单，第二种方式需要求条件期望，这个比较复杂，一般情况下不容易求解。
--->
+
 
 ---
 
@@ -111,7 +111,7 @@ $$Var[S_n^{*2}]=Var[\sum_{i=1}^n (X_i-\bar X)^2]/(n-1)^2=\frac{2\sigma^4}{n-1}\t
 
 设$X_1,\dots,X_n$为$N(\mu,\sigma^2)$分布的样本，参数$\mu,\sigma^2$未知。样本方差$S_n^2$与修正样本方差$S_n^{*2}$作为$\sigma^2$的两种估计量，哪个更有效？由B-L-S定理知，$S_n^{*2}$是最小方差无偏估计量，这是否与你所得的结论矛盾？由此你能得到什么启发？
 
-<!-- 
+
 
 `解`: 由于$S_n^{*2}$是无偏的，所以均方误差
 $$M(S_n^{*2}) = Var[S_n^{*2}]=\frac{2\sigma^4}{n-1}$$
@@ -126,7 +126,7 @@ $$\frac{M(S_n^{*2})}{M(S_n^{2})}=\frac{2n^2}{(n-1)(2n-1)}>1$$
 
 > 启发：无偏估计量不一定是最有效的。
 
--->
+
 
 ---
 
@@ -135,7 +135,7 @@ $$\frac{M(S_n^{*2})}{M(S_n^{2})}=\frac{2n^2}{(n-1)(2n-1)}>1$$
 $$T(X_1,\dots,X_n)=\frac 1n\sum_{i=1}^n(X_i-\mu)^2$$
 的方差达到C-R不等式的下界。
 
-<!-- 
+
 
 `解`: 令$\theta=\sigma^2,f(x;\theta)$为总体密度函数。于是， 
 $$\log f(x;\theta)= \log  \frac{1}{\sqrt{2\pi}\sqrt{\theta}}e^{-\frac{(x-\mu)^2}{2\theta}}=-(1/2)\log(2\pi\theta)-\frac{(x-\mu)^2}{2\theta}$$
@@ -153,7 +153,7 @@ $$Var[nT/\sigma^2]=2n$$
 
 于是，$Var[T]=2\sigma^4/n$达到C-R不等式下界。
 
--->
+
 
 ---
 
@@ -167,3 +167,54 @@ $$f(x;\theta)=\frac{2x}{\theta^2},\quad 0\le x\le \theta.$$
 2. Find an expression for $\hat\theta_M$, the method of moments estimator for $\theta$.
 
 3. For the two estimators $\hat\theta_L$ and $\hat\theta_M$, which one is more efficient in terms of mean squared error (MSE)?
+
+
+`Solution`:
+
+1. The likelihood function is
+
+$$L(\theta) = \prod_{i=1}^n f(x_i;\theta) = \frac{2^n}{\theta^n}\left(\prod_{i=1}^n x_i\right) 1\{x_{(n)}\le \theta\}.$$
+
+To maximize $L(\theta)$, we need to choose $\theta\ge x_{(n)}$ so that
+$L(\theta) = A\theta^{-n}$, where $A=2^n\prod_{i=1}^n x_i$ does not depend on $\theta$. So the MLE is $\hat\theta_L = X_{(n)}$.
+
+2. First, compute the first order moment:
+
+$$E[X] = \int_0^\theta xf(x;\theta)dx = \int_0^\theta \frac{2x^2}{\theta^2}dx=\frac{2\theta}{3}.$$
+
+This implies that $\theta = 3E[X]/2$. The method of moments estimator $\hat\theta_M=3\bar X/2$.
+
+3. The density for $X_{(n)}$ is given by
+
+$$f_{X_{(n)}}(x;\theta) = nF^{n-1}(x)f(x;\theta)=n\frac{x^{2(n-1)}}{\theta^{2(n-1)}}\frac{2x}{\theta^2}=\frac{2nx^{2n-1}}{\theta^{2n}},\quad 0\le x\le \theta.$$
+
+The first and second order moments for $X_{(n)}$ are
+
+$$E[X_{(n)}] = \int_0^\theta \frac{2nx^{2n}}{\theta^{2n}}dx = \frac{2n\theta}{2n+1},$$
+
+$$E[X_{(n)}^2] = \int_0^\theta \frac{2nx^{2n+1}}{\theta^{2n}}dx = \frac{n\theta^2}{n+1}.$$
+
+The MSE for $\hat\theta_L$ is given by
+
+$$
+\begin{align}
+MSE(\hat\theta_L)&=E[(\hat\theta_L-\theta)^2]=E[X_{(n)}^2]-2\theta E[X_{(n)}]+\theta^2\\
+&=\frac{n\theta^2}{n+1}-\frac{4n\theta^2}{2n+1}+\theta^2\\
+&=\frac{\theta^2}{(n+1)(2n+1)}.
+\end{align}
+$$
+The second  order moment for $X$ is
+
+$$E[X^2] = \int_{0}^\theta \frac{2x^3}{\theta^2}dx=\frac{\theta^2}{2}.$$
+
+The MSE for $\hat\theta_M$ is given by
+
+$$
+\begin{align}
+MSE(\hat\theta_M)&=Var[\hat\theta_M]=\frac{9Var[X]}{4n}\\
+&=\frac{9}{4n}(E[X^2]-E[X]^2)\\
+&=\frac{9}{4n}\left(\frac{\theta^2}{2}-\frac{4\theta^2}{9}\right)= \frac{\theta^2}{8n}.
+\end{align}
+$$
+
+It is easy to see that when $n\ge 3$, $MSE(\hat\theta_L)<MSE(\hat\theta_M)$, i.e., the MLE is more efficient; otherwise,  $\hat\theta_M$ is more efficient.
