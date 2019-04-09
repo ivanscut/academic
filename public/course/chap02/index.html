@@ -770,7 +770,7 @@ Fisher信息量为
 </div>
 <div class="section level2">
 <h2>统计量的渐近正态性</h2>
-<p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的估计量。如果存在一个趋于零的正数列<span class="math inline">\(\sigma_n(\theta)\)</span>, 使得<span class="math inline">\([T-g(\theta)]/\sigma_n(\theta)\)</span>的分布收敛到标准正态分布，则称<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(g(\theta)\)</span>的<strong>渐近正态估计</strong>，或称<span class="math inline">\(T\)</span>具备<strong>渐近正态性</strong>，即<span class="math display">\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]</span></p>
+<p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(\theta\)</span>的估计量。如果存在一个趋于零的正数列<span class="math inline">\(\sigma_n(\theta)\)</span>, 使得<span class="math inline">\((T-\theta)/\sigma_n(\theta)\)</span>的分布收敛到标准正态分布，则称<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(\theta\)</span>的<strong>渐近正态估计</strong>，或称<span class="math inline">\(T\)</span>具备<strong>渐近正态性</strong>，即<span class="math display">\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]</span></p>
 </div>
 <div class="section level2">
 <h2>最大似然估计的渐近正态性</h2>
@@ -781,6 +781,9 @@ Fisher信息量为
 <li><p>对一切<span class="math inline">\(\theta\in\Theta\)</span>, 有<span class="math inline">\(0&lt;I(\theta)=E[(\frac{\partial \ln f}{\partial\theta})^2]&lt;\infty\)</span>.</p></li>
 </ul>
 <p>则在参数真值<span class="math inline">\(\theta\)</span>为<span class="math inline">\(\Theta\)</span>内点的情况下，其似然方程有一个解<span class="math inline">\(\hat{\theta}_L\)</span>存在，且<span class="math display">\[\hat{\theta}_L\stackrel{p}{\to}\theta,\ \hat{\theta}_L\stackrel{\cdot}{\sim} N(\theta,[nI(\theta)]^{-1}).\]</span></p>
+<blockquote>
+<p>值得注意的是，最大似然估计的渐近方差为C-R不等式的下界，从这个角度可以说明最大似然估计具有良好性质。</p>
+</blockquote>
 <div id=".-.--1992" class="section level3">
 <h3>证明参考：陈希孺. 概率论与数理统计. 中国科技大学出版社, 1992</h3>
 </div>
@@ -841,6 +844,52 @@ Fisher信息量为
 <div class="section level2">
 <h2>平分法示意图</h2>
 <p><img src="chiCI.png" /></p>
+</div>
+<div id="r" class="section level2">
+<h2>R模拟</h2>
+<pre class="r"><code>set.seed(0)
+# generate data from exponential distribution
+lambda &lt;- 2
+n &lt;- 1000
+X &lt;- rexp(n,lambda)
+
+# find out the confidence interval (CI)
+alpha &lt;- 0.05
+a &lt;- qchisq(p=alpha/2,df=2*n)
+b &lt;- qchisq(p=1-alpha/2,df=2*n)
+CI &lt;- c(a/2/sum(X),b/2/sum(X))
+cat((1-alpha)*100,&quot;% CI is [&quot;,CI[1],&quot;, &quot;, CI[2],&quot;]&quot;,sep=&quot;&quot;)</code></pre>
+<pre><code>## 95% CI is [1.823821, 2.064573]</code></pre>
+<pre class="r"><code># generate R batches of the data
+
+R &lt;- 100
+CIs &lt;- matrix(0,R,3)
+
+for(i in 1:R){
+  X &lt;- rexp(n,lambda)
+  CIs[i,] = c(a/2/sum(X),1/mean(X),b/2/sum(X))
+}
+## plot the CIs
+plot(0, xlim=c(0, R), ylim=c(min(CIs)-0.02,
+      max(CIs)+0.02), type=&quot;n&quot;,xlab=&quot;Sample ID&quot;,ylab=&quot;&quot;)
+
+count &lt;- 0
+for (i in 1:nrow(CIs)) {
+  if (CIs[i, 1]&gt;lambda | CIs[i, 3]&lt;lambda){
+    color = &quot;red&quot;
+    count = count +1
+    if(CIs[i, 1]&gt;lambda)
+      text(i,CIs[i, 3]+0.02,count)
+    else
+      text(i,CIs[i, 1]-0.02,count)
+  }else{
+    color = &quot;blue&quot;
+  }
+  lines(x=rep(i, 2), y=c(CIs[i, 1], CIs[i, 3]))
+  points(x=i, y=CIs[i,2], pch=16, col=color)
+}
+abline(h=lambda,lty = 3,col=&quot;red&quot;)</code></pre>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div class="section level2">
 <h2>2.1 单个正态总体的区间估计</h2>
@@ -1045,7 +1094,7 @@ f_n(x)=
 </div>
 <div class="section level2">
 <h2>案例：身高数据</h2>
-<p><img src="/course/chap02_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div class="section level2">
 <h2>直方图法的相合性</h2>
@@ -1083,11 +1132,11 @@ f_n(x)=
 </div>
 <div id="-1" class="section level2">
 <h2>案例：身高数据</h2>
-<p><img src="/course/chap02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="-2" class="section level2">
 <h2>案例：身高数据</h2>
-<p><img src="/course/chap02_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/course/chap02_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="-1" class="section level2">
 <h2>一些说明</h2>

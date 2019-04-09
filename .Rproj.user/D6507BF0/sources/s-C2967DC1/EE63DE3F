@@ -1,24 +1,24 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1552548293961.000,
+    "created" : 1553839772096.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "C80874F0",
-    "lastKnownWriteTime" : 1553057299,
-    "last_content_update" : 1553057299889,
-    "path" : "D:/Dropbox/courses/academic/content/course/chap01.Rmd",
-    "project_path" : "content/course/chap01.Rmd",
+    "id" : "EE63DE3F",
+    "lastKnownWriteTime" : 1553839842,
+    "last_content_update" : 1553839842624,
+    "path" : "D:/Dropbox/courses/academic/content/course/homework3.Rmd",
+    "project_path" : "content/course/homework3.Rmd",
     "properties" : {
-        "cursorPosition" : "966,2",
+        "cursorPosition" : "196,0",
         "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 8,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"

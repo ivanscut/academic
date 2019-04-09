@@ -438,7 +438,7 @@ $$P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR
 
 ## 统计量的渐近正态性
 
-**定义**：设$T(X_1,\dots,X_n)$为$g(\theta)$的估计量。如果存在一个趋于零的正数列$\sigma_n(\theta)$, 使得$[T-g(\theta)]/\sigma_n(\theta)$的分布收敛到标准正态分布，则称$T(X_1,\dots,X_n)$为$g(\theta)$的**渐近正态估计**，或称$T$具备**渐近正态性**，即$$T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).$$
+**定义**：设$T(X_1,\dots,X_n)$为$\theta$的估计量。如果存在一个趋于零的正数列$\sigma_n(\theta)$, 使得$(T-\theta)/\sigma_n(\theta)$的分布收敛到标准正态分布，则称$T(X_1,\dots,X_n)$为$\theta$的**渐近正态估计**，或称$T$具备**渐近正态性**，即$$T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).$$
 
 ## 最大似然估计的渐近正态性
 
@@ -452,6 +452,7 @@ $$P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR
 
 则在参数真值$\theta$为$\Theta$内点的情况下，其似然方程有一个解$\hat{\theta}_L$存在，且$$\hat{\theta}_L\stackrel{p}{\to}\theta,\ \hat{\theta}_L\stackrel{\cdot}{\sim} N(\theta,[nI(\theta)]^{-1}).$$
 
+>  值得注意的是，最大似然估计的渐近方差为C-R不等式的下界，从这个角度可以说明最大似然估计具有良好性质。
 
 ### 证明参考：陈希孺. 概率论与数理统计. 中国科技大学出版社, 1992
 
@@ -518,6 +519,54 @@ Step 3: $\lambda$的置信区间为$[a/(2n\bar X),b/(2n\bar X)]$.
 ## 平分法示意图
 
 ![](chiCI.png)
+
+## R模拟
+
+```{r,echo=TRUE}
+set.seed(0)
+# generate data from exponential distribution
+lambda <- 2
+n <- 1000
+X <- rexp(n,lambda)
+
+# find out the confidence interval (CI)
+alpha <- 0.05
+a <- qchisq(p=alpha/2,df=2*n)
+b <- qchisq(p=1-alpha/2,df=2*n)
+CI <- c(a/2/sum(X),b/2/sum(X))
+cat((1-alpha)*100,"% CI is [",CI[1],", ", CI[2],"]",sep="")
+
+# generate R batches of the data
+
+R <- 100
+CIs <- matrix(0,R,3)
+
+for(i in 1:R){
+  X <- rexp(n,lambda)
+  CIs[i,] = c(a/2/sum(X),1/mean(X),b/2/sum(X))
+}
+## plot the CIs
+plot(0, xlim=c(0, R), ylim=c(min(CIs)-0.02,
+      max(CIs)+0.02), type="n",xlab="Sample ID",ylab="")
+
+count <- 0
+for (i in 1:nrow(CIs)) {
+  if (CIs[i, 1]>lambda | CIs[i, 3]<lambda){
+    color = "red"
+    count = count +1
+    if(CIs[i, 1]>lambda)
+      text(i,CIs[i, 3]+0.02,count)
+    else
+      text(i,CIs[i, 1]-0.02,count)
+  }else{
+    color = "blue"
+  }
+  lines(x=rep(i, 2), y=c(CIs[i, 1], CIs[i, 3]))
+  points(x=i, y=CIs[i,2], pch=16, col=color)
+}
+abline(h=lambda,lty = 3,col="red")
+```
+
 
 ## 2.1 单个正态总体的区间估计
 
