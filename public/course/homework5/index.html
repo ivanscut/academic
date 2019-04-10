@@ -16,6 +16,8 @@
     
   
   <meta name="description" content="课本P61第23题：设\(X_1,\dots,X_n\)是\(U(0,\theta)\)的样本，求\(\theta\)的置信水平为\(1-\alpha\)的置信区间。设得到了\(5\)个样本值\(0.08,0.28,0.53,0.91,0.89\), 求\(\theta\)的置信水平为\(0.95\)的置信区间。
+课本P62第27题
+课本P62第28题
 总结：从这例子看出，置信区间的选择有很多种，选取不同的枢轴量，所得的区间往往差别很大。如何选择恰当的枢轴量？一个很好的启发就是与点估计量联系起来。比如这道题第一种方式用到了最大值统计量，这个是未知参数的极大似然估计量，所以“好的”置信区间可能与它存在某种联系，比如包含它。然而，遗憾的是，对区间估计问题没有一个准则来得到所谓“好的”置信区间。 有部分同学使用中心极限定理来得到近似置信区间，这种做法对$n=5$的小样本问题不合适。---下面通过R语言来求解具体的区间估计问题，最方便的方法是用函数来实现。```r## 单个总体期望的区间估计# x为数据# 1-alpha为置信水平# sigma为总体标准差，默认sigma=NA为未知标准差的情形# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果meanCI 0){#输出结果，保留k位有效数字print(paste0(&#34;期望的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(CI[1],k),&#34;, &#34;,signif(CI[2],k),&#34;]&#34;))}return(CI)}## 单个总体方差的区间估计# x为数据# 1-alpha为置信水平# mu为总体期望，默认mu=NA为未知期望的情形# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果varCI 0){#输出结果，保留k位有效数字print(paste0(&#34;方差的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(CI[1],k),&#34;, &#34;,signif(CI[2],k),&#34;]&#34;))}return(CI)}```---为了解决课本P62第27题，只需要调用`varCI`函数就可以，操作如下```r# 第27题数据导入data1 = c(249,254,243,268,253,269,287,241,273,306,303,280,260,256,278,344,304,283,310)alpha = 0.05CI1 = varCI(data1,alpha)``````## [1] &#34;方差的95%置信区间为[418.754, 1603.96]&#34;``````rprint(paste0(&#34;标准差的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(sqrt(CI1[1]),6),&#34;, &#34;,signif(sqrt(CI1[2]),6),&#34;]&#34;))``````## [1] &#34;">
 
   
@@ -91,12 +93,14 @@
   <meta property="og:url" content="/course/homework5/">
   <meta property="og:title" content="第五次作业 | Dr. Zhijian He">
   <meta property="og:description" content="课本P61第23题：设\(X_1,\dots,X_n\)是\(U(0,\theta)\)的样本，求\(\theta\)的置信水平为\(1-\alpha\)的置信区间。设得到了\(5\)个样本值\(0.08,0.28,0.53,0.91,0.89\), 求\(\theta\)的置信水平为\(0.95\)的置信区间。
+课本P62第27题
+课本P62第28题
 总结：从这例子看出，置信区间的选择有很多种，选取不同的枢轴量，所得的区间往往差别很大。如何选择恰当的枢轴量？一个很好的启发就是与点估计量联系起来。比如这道题第一种方式用到了最大值统计量，这个是未知参数的极大似然估计量，所以“好的”置信区间可能与它存在某种联系，比如包含它。然而，遗憾的是，对区间估计问题没有一个准则来得到所谓“好的”置信区间。 有部分同学使用中心极限定理来得到近似置信区间，这种做法对$n=5$的小样本问题不合适。---下面通过R语言来求解具体的区间估计问题，最方便的方法是用函数来实现。```r## 单个总体期望的区间估计# x为数据# 1-alpha为置信水平# sigma为总体标准差，默认sigma=NA为未知标准差的情形# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果meanCI 0){#输出结果，保留k位有效数字print(paste0(&#34;期望的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(CI[1],k),&#34;, &#34;,signif(CI[2],k),&#34;]&#34;))}return(CI)}## 单个总体方差的区间估计# x为数据# 1-alpha为置信水平# mu为总体期望，默认mu=NA为未知期望的情形# k为输出结果的有效数字，如果k=0意味着不输出结果，默认输出k=6位有效数字的结果varCI 0){#输出结果，保留k位有效数字print(paste0(&#34;方差的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(CI[1],k),&#34;, &#34;,signif(CI[2],k),&#34;]&#34;))}return(CI)}```---为了解决课本P62第27题，只需要调用`varCI`函数就可以，操作如下```r# 第27题数据导入data1 = c(249,254,243,268,253,269,287,241,273,306,303,280,260,256,278,344,304,283,310)alpha = 0.05CI1 = varCI(data1,alpha)``````## [1] &#34;方差的95%置信区间为[418.754, 1603.96]&#34;``````rprint(paste0(&#34;标准差的&#34;,(1-alpha)*100,&#34;%置信区间为[&#34;,signif(sqrt(CI1[1]),6),&#34;, &#34;,signif(sqrt(CI1[2]),6),&#34;]&#34;))``````## [1] &#34;">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-12-18T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-12-18T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2019-04-10T00:00:00&#43;00:00">
   
 
   
@@ -402,6 +406,10 @@
 
           <div class="article-style" itemprop="articleBody">
             <p>课本P61第23题：设<span class="math inline">\(X_1,\dots,X_n\)</span>是<span class="math inline">\(U(0,\theta)\)</span>的样本，求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间。设得到了<span class="math inline">\(5\)</span>个样本值<span class="math inline">\(0.08,0.28,0.53,0.91,0.89\)</span>, 求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(0.95\)</span>的置信区间。</p>
+<hr />
+<p>课本P62第27题</p>
+<hr />
+<p>课本P62第28题</p>
 <!-- 
 
 `解`：因为$X_i\stackrel{iid}{\sim} U(0,\theta)$, 所以$Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)$. 由此可以构造很多种枢轴量。由于$X_{(n)}$为$\theta$的最大似然估计，所以很自然想到通过$X_{(n)}$来构造枢轴量。
@@ -540,13 +548,21 @@ CI2 = meanCI(data2,alpha)
 
 -->
 <hr />
-<p>分析R软件的<code>dslabs</code>包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 <a href="https://hezhijian.netlify.com/post/ex2/" class="uri">https://hezhijian.netlify.com/post/ex2/</a></p>
+<p>分析R软件的<code>dslabs</code>包中的身高数据heights, 利用R软件完成以下问题。</p>
 <ol style="list-style-type: decimal">
 <li><p>假设整个总体服从正态分布，求期望和方差的95%置信区间。</p></li>
 <li><p>为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？</p></li>
 <li><p>假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？</p></li>
 <li><p>为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？</p></li>
 </ol>
+<blockquote>
+<p>相关的R语言操作见
+<a href="https://hezhijian.netlify.com/course/ex1/">【R画图技巧】</a>
+<a href="https://hezhijian.netlify.com/course/ex2/">【R密度估计】</a></p>
+</blockquote>
+<blockquote>
+<p>出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据<a href="data.RData" class="uri">data.RData</a>即可，具体的使用方法见<a href="readme.txt" class="uri">readme.txt</a>.</p>
+</blockquote>
 <!-- 
 
 `解`：第一问只需调用前面的两个函数求解即可。
@@ -660,7 +676,7 @@ CI6 = vardiffCI(M_height,F_height,alpha)
         </div>
 
         <div class="body-footer">
-          Last updated on Dec 18, 2018
+          Last updated on Apr 10, 2019
         </div>
 
       </article>

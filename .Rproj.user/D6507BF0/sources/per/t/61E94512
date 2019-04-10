@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1552382737571.000,
+    "created" : 1554802537563.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
-    "id" : "831D5290",
-    "lastKnownWriteTime" : 1552384328,
-    "last_content_update" : 1552384328,
-    "path" : "D:/Dropbox/courses/2018-2019-2Stat/R/t.R",
+    "hash" : "763537309",
+    "id" : "61E94512",
+    "lastKnownWriteTime" : 1554864210,
+    "last_content_update" : 1554864210779,
+    "path" : "D:/Dropbox/courses/2018-2019-2Stat/R/CI.R",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "4,20",
+        "cursorPosition" : "4,9",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 1,
+    "relative_order" : 7,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

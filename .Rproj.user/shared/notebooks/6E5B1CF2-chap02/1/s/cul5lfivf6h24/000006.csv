@@ -1,0 +1,4 @@
+"0","#hist(male_height)"
+"0","#hist(female_height)"
+"0",""
+"0","detach(heights)"

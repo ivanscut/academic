@@ -2,7 +2,7 @@
 title: 第五次作业
 
 date: 2018-12-18 
-lastmod: 2018-12-18 
+lastmod: 2019-04-10 
 
 draft: false
 # toc: true
@@ -18,6 +18,10 @@ menu:
 
 
 <p>课本P61第23题：设<span class="math inline">\(X_1,\dots,X_n\)</span>是<span class="math inline">\(U(0,\theta)\)</span>的样本，求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间。设得到了<span class="math inline">\(5\)</span>个样本值<span class="math inline">\(0.08,0.28,0.53,0.91,0.89\)</span>, 求<span class="math inline">\(\theta\)</span>的置信水平为<span class="math inline">\(0.95\)</span>的置信区间。</p>
+<hr />
+<p>课本P62第27题</p>
+<hr />
+<p>课本P62第28题</p>
 <!-- 
 
 `解`：因为$X_i\stackrel{iid}{\sim} U(0,\theta)$, 所以$Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)$. 由此可以构造很多种枢轴量。由于$X_{(n)}$为$\theta$的最大似然估计，所以很自然想到通过$X_{(n)}$来构造枢轴量。
@@ -156,13 +160,21 @@ CI2 = meanCI(data2,alpha)
 
 -->
 <hr />
-<p>分析R软件的<code>dslabs</code>包中的身高数据heights, 利用R软件完成以下问题。相关的R语言操作见 <a href="https://hezhijian.netlify.com/post/ex2/" class="uri">https://hezhijian.netlify.com/post/ex2/</a></p>
+<p>分析R软件的<code>dslabs</code>包中的身高数据heights, 利用R软件完成以下问题。</p>
 <ol style="list-style-type: decimal">
 <li><p>假设整个总体服从正态分布，求期望和方差的95%置信区间。</p></li>
 <li><p>为了判断“正态总体”的假设的合理性，画图比较核估计密度与正态分布密度的差异？</p></li>
 <li><p>假设男生总体与女生总体均服从正态分布（方差相同）且独立，求这两个总体平均水平的差的95%置信区间。可否认为男生总体的平均身高大于女生总体的平均身高？你的理由是什么？</p></li>
 <li><p>为了考察第3问中“男女总体的方差相同”的假设是否合理，不妨求这两个总体的方差比的95%置信区间。并观察该置信区间是否包含1？</p></li>
 </ol>
+<blockquote>
+<p>相关的R语言操作见
+<a href="https://hezhijian.netlify.com/course/ex1/">【R画图技巧】</a>
+<a href="https://hezhijian.netlify.com/course/ex2/">【R密度估计】</a></p>
+</blockquote>
+<blockquote>
+<p>出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据<a href="data.RData" class="uri">data.RData</a>即可，具体的使用方法见<a href="readme.txt" class="uri">readme.txt</a>.</p>
+</blockquote>
 <!-- 
 
 `解`：第一问只需调用前面的两个函数求解即可。

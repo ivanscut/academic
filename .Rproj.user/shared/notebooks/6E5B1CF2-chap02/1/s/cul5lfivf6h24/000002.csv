@@ -1,0 +1,8 @@
+"0","if(!require(dslabs))"
+"0","  install.packages(""dslabs"")"
+"0","attach(heights)"
+"0","female_height = height[sex==""Female""]"
+"0","male_height = height[sex==""Male""]"
+"0","# par(mfrow = c(3,1))"
+"0","par(mar=c(2,2,1,1))"
+"0","r=hist(height,breaks=10,ylim=c(0,600),col = ""lightblue"", border = ""pink"")"

@@ -732,8 +732,8 @@ Fisher信息量为
 <li><p>统计量的渐近正态性</p></li>
 </ol>
 </div>
-<div class="section level2">
-<h2>统计量的相合性</h2>
+<div id="consistency" class="section level2">
+<h2>统计量的相合性(consistency)</h2>
 <p><strong>（弱）相合估计</strong>：称<span class="math inline">\(T_n(X_1,\dots,X_n)\)</span>是<span class="math inline">\(g(\theta)\)</span>的相合估计，如果对任何
 <span class="math inline">\(\epsilon&gt;0\)</span>, 有<span class="math display">\[\lim_{n\to\infty}P(|T_n-g(\theta)|\ge \epsilon)=0.\]</span> 等价于依概率收敛<span class="math inline">\(T_n\stackrel p\to g(\theta)\)</span>.</p>
 <p><strong>强相合估计</strong>：称<span class="math inline">\(T_n(X_1,\dots,X_n)\)</span>是<span class="math inline">\(g(\theta)\)</span>的强相合估计，如果<span class="math display">\[P(\lim_{n\to\infty}T_n=g(\theta))=1.\]</span> 等价于概率1收敛<span class="math inline">\(T_n\stackrel {w.p.1}\to g(\theta)\)</span>.</p>
@@ -768,8 +768,8 @@ Fisher信息量为
 所以，
 <span class="math display">\[P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR[T_n]}{\epsilon^2}\to 0.\]</span></p>
 </div>
-<div class="section level2">
-<h2>统计量的渐近正态性</h2>
+<div id="asymptotic-normality" class="section level2">
+<h2>统计量的渐近正态性(asymptotic normality)</h2>
 <p><strong>定义</strong>：设<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(\theta\)</span>的估计量。如果存在一个趋于零的正数列<span class="math inline">\(\sigma_n(\theta)\)</span>, 使得<span class="math inline">\((T-\theta)/\sigma_n(\theta)\)</span>的分布收敛到标准正态分布，则称<span class="math inline">\(T(X_1,\dots,X_n)\)</span>为<span class="math inline">\(\theta\)</span>的<strong>渐近正态估计</strong>，或称<span class="math inline">\(T\)</span>具备<strong>渐近正态性</strong>，即<span class="math display">\[T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).\]</span></p>
 </div>
 <div class="section level2">
@@ -801,7 +801,7 @@ Fisher信息量为
 <h2>区间估计的定义</h2>
 <p><strong>定义</strong>：设总体<span class="math inline">\(X\sim F(x;\theta),\ \theta\in \Theta\)</span>. 如果统计量<span class="math inline">\(T_1(X_1,\dots,X_n),T_2(X_1,\dots,X_n)\)</span>使得对给定的<span class="math inline">\(\alpha\in(0,1)\)</span>有
 <span class="math display">\[P(T_1\le g(\theta)\le T_2)=1-\alpha,\ \forall \theta\in\Theta,\]</span>
-则称随机区间<span class="math inline">\([T_1,T_2]\)</span>为参数<span class="math inline">\(g(\theta)\)</span>的<strong>置信度（置信概率）</strong>为<span class="math inline">\(1-\alpha\)</span>的<strong>置信区间</strong>，<span class="math inline">\(T_1,T_2\)</span>分别称为<strong>置信下界</strong>和<strong>置信上界</strong>。</p>
+则称随机区间<span class="math inline">\([T_1,T_2]\)</span>为参数<span class="math inline">\(g(\theta)\)</span>的<strong>置信度（置信概率）</strong>为<span class="math inline">\(1-\alpha\)</span>的<strong>置信区间(Confident Interval)</strong>，<span class="math inline">\(T_1,T_2\)</span>分别称为<strong>置信下界</strong>和<strong>置信上界</strong>。</p>
 <div class="section level3">
 <h3>说明</h3>
 <p>在一些情况下，定义中的“等式”无解，此时考虑的置信区间<span class="math inline">\([T_1,T_2]\)</span>应满足
@@ -815,7 +815,7 @@ Fisher信息量为
 <div class="section level2">
 <h2>区间估计基本步骤——枢轴量法</h2>
 <p><strong>目标</strong>：找到<span class="math inline">\(g(\theta)\)</span>的区间估计，置信度为<span class="math inline">\(1-\alpha\)</span>.</p>
-<p>Step 1: 选择恰当的<strong>枢轴量</strong><span class="math inline">\(G(X_1,\dots,X_n;g(\theta))\)</span></p>
+<p>Step 1: 选择恰当的<strong>枢轴量(Pivot quantity)</strong><span class="math inline">\(G(X_1,\dots,X_n;g(\theta))\)</span></p>
 <ul>
 <li><span class="math inline">\(G\)</span>不含有其他未知参数</li>
 <li><span class="math inline">\(G\)</span>的分布确定，即不含未知参数<span class="math inline">\(\theta\)</span></li>

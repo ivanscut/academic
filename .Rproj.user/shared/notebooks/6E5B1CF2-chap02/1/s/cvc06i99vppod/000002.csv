@@ -1,0 +1,6 @@
+"0","t = seq(-3,3,by=0.01)"
+"0","y = pnorm(t)"
+"0","x = rnorm(100)"
+"0","par(mfrow=c(2,1),mgp=c(1.5,0.8,0),mar=.1+c(3,3,2,1))"
+"0","Fn = ecdf(x[1:10])"
+"0","plot(Fn,verticals=TRUE,do.points=FALSE,main=""n=10"",xlim=c(-3,3))"

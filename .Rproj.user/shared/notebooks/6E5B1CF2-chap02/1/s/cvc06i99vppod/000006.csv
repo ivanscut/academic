@@ -1,0 +1,2 @@
+"0","Fn = ecdf(x[1:100])"
+"0","plot(Fn,verticals=TRUE,do.points=FALSE,main=""n=100"",xlim=c(-3,3))"

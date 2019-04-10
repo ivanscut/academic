@@ -392,7 +392,7 @@ $$Var[\bar X] = \frac{\sigma^2}{n}=\frac{1}{nI(\mu)}$$
 
 2. 统计量的渐近正态性
 
-## 统计量的相合性
+## 统计量的相合性(consistency)
 
 **（弱）相合估计**：称$T_n(X_1,\dots,X_n)$是$g(\theta)$的相合估计，如果对任何
 $\epsilon>0$, 有$$\lim_{n\to\infty}P(|T_n-g(\theta)|\ge \epsilon)=0.$$  等价于依概率收敛$T_n\stackrel p\to g(\theta)$.
@@ -436,7 +436,7 @@ $$\lim_{n\to \infty}E[T(X_1,\dots,X_n)] = g(\theta),\ \lim_{n\to \infty}Var[T(X_
 所以，
 $$P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR[T_n]}{\epsilon^2}\to 0.$$
 
-## 统计量的渐近正态性
+## 统计量的渐近正态性(asymptotic normality)
 
 **定义**：设$T(X_1,\dots,X_n)$为$\theta$的估计量。如果存在一个趋于零的正数列$\sigma_n(\theta)$, 使得$(T-\theta)/\sigma_n(\theta)$的分布收敛到标准正态分布，则称$T(X_1,\dots,X_n)$为$\theta$的**渐近正态估计**，或称$T$具备**渐近正态性**，即$$T\stackrel{\cdot}{\sim} N(\theta, \sigma_n(\theta)^2).$$
 
@@ -470,7 +470,7 @@ $$P(|T_n-g(\theta)|\ge \epsilon)\le P(|T_n-E[T_n]|\ge \epsilon/2)\le \frac{4 VaR
 
 **定义**：设总体$X\sim F(x;\theta),\ \theta\in \Theta$. 如果统计量$T_1(X_1,\dots,X_n),T_2(X_1,\dots,X_n)$使得对给定的$\alpha\in(0,1)$有
 $$P(T_1\le g(\theta)\le T_2)=1-\alpha,\ \forall \theta\in\Theta,$$
-则称随机区间$[T_1,T_2]$为参数$g(\theta)$的**置信度（置信概率）**为$1-\alpha$的**置信区间**，$T_1,T_2$分别称为**置信下界**和**置信上界**。
+则称随机区间$[T_1,T_2]$为参数$g(\theta)$的**置信度（置信概率）**为$1-\alpha$的**置信区间(Confident Interval)**，$T_1,T_2$分别称为**置信下界**和**置信上界**。
 
 ### 说明
 在一些情况下，定义中的“等式”无解，此时考虑的置信区间$[T_1,T_2]$应满足
@@ -485,7 +485,7 @@ $$P(T_1\le g(\theta)\le T_2)\ge 1-\alpha,\ \forall \theta\in\Theta.$$
 
 **目标**：找到$g(\theta)$的区间估计，置信度为$1-\alpha$.
 
-Step 1: 选择恰当的**枢轴量**$G(X_1,\dots,X_n;g(\theta))$
+Step 1: 选择恰当的**枢轴量(Pivot quantity)**$G(X_1,\dots,X_n;g(\theta))$
 
 - $G$不含有其他未知参数
 - $G$的分布确定，即不含未知参数$\theta$
