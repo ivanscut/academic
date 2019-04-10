@@ -5,15 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3950328154",
+    "hash" : "1083960946",
     "id" : "2E0F7759",
-    "lastKnownWriteTime" : 1554870512,
-    "last_content_update" : 1554870512592,
+    "lastKnownWriteTime" : 1554871774,
+    "last_content_update" : 1554871774794,
     "path" : "D:/Dropbox/courses/academic/content/course/homework5.Rmd",
     "project_path" : "content/course/homework5.Rmd",
     "properties" : {
-        "cursorPosition" : "31,0",
-        "scrollLine" : "13"
+        "cursorPosition" : "180,39",
+        "last_setup_crc32" : "FFFD6A7Abb338d19",
+        "scrollLine" : "172"
     },
     "read_only" : false,
     "read_only_alternatives" : [

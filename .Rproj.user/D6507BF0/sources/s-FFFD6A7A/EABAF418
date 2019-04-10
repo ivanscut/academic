@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2224261570",
+    "hash" : "0",
     "id" : "EABAF418",
     "lastKnownWriteTime" : 1554864494,
     "last_content_update" : 1554868833831,
@@ -13,8 +13,8 @@
     "project_path" : "content/course/chap02.Rmd",
     "properties" : {
         "cursorPosition" : "834,3",
-        "last_setup_crc32" : "C2967DC1c4e2d899",
-        "scrollLine" : "816"
+        "last_setup_crc32" : "",
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [

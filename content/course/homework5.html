@@ -173,8 +173,12 @@ CI2 = meanCI(data2,alpha)
 <a href="https://hezhijian.netlify.com/course/ex2/">【R密度估计】</a></p>
 </blockquote>
 <blockquote>
-<p>出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据<a href="data.RData" class="uri">data.RData</a>即可，具体的使用方法见<a href="readme.txt" class="uri">readme.txt</a>.</p>
+<p>出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据<a href="data.RData" class="uri">data.RData</a>即可，具体的使用方法如下</p>
 </blockquote>
+<pre class="r"><code># 加载数据
+load(url(&quot;https://hezhijian.netlify.com/course/homework5/data.RData&quot;))
+# 便于直接使用该数据集的两个变量height和sex用attach命令
+attach(heights) </code></pre>
 <!-- 
 
 `解`：第一问只需调用前面的两个函数求解即可。
@@ -183,6 +187,15 @@ CI2 = meanCI(data2,alpha)
 ```r
 library("dslabs") #事先需要安装该package
 attach(heights) #这样可以直接使用height和sex
+```
+
+```
+## The following objects are masked from heights (pos = 4):
+## 
+##     height, sex
+```
+
+```r
 alpha = 0.05
 CI3 = meanCI(height,alpha)
 ```
@@ -211,7 +224,7 @@ lines(x,y,col="red")
 legend(x=50,y=.1,legend=c("Kernel","Normal"),lty=c(1,1),col=c("blue","red"),lwd=c(2,2))
 ```
 
-<img src="/course/homework5_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="/course/homework5_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 
 

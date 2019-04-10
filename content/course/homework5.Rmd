@@ -174,7 +174,15 @@ CI2 = meanCI(data2,alpha)
 [【R画图技巧】](https://hezhijian.netlify.com/course/ex1/)
 [【R密度估计】](https://hezhijian.netlify.com/course/ex2/)
 
-> 出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据[data.RData](data.RData)即可，具体的使用方法见[readme.txt](readme.txt).
+> 出现无法安装R的包“dslabs”情况：为了方便大家使用数据我把里面的数据集导出来。这样就不需要安装那个包，直接导入数据[data.RData](data.RData)即可，具体的使用方法如下
+
+```{r}
+# 加载数据
+load(url("https://hezhijian.netlify.com/course/homework5/data.RData"))
+# 便于直接使用该数据集的两个变量height和sex用attach命令
+attach(heights) 
+```
+
 
 <!-- 
 

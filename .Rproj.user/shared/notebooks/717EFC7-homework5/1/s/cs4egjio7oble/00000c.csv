@@ -1,0 +1,4 @@
+"0","# 加载数据"
+"0","load(url(""https://hezhijian.netlify.com/course/homework5/data.RData""))"
+"0","# 便于直接使用该数据集的两个变量height和sex用attach命令"
+"0","attach(heights) "
