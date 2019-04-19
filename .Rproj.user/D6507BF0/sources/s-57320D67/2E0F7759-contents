@@ -22,15 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 课本P61第23题：设$X_1,\dots,X_n$是$U(0,\theta)$的样本，求$\theta$的置信水平为$1-\alpha$的置信区间。设得到了$5$个样本值$0.08,0.28,0.53,0.91,0.89$, 求$\theta$的置信水平为$0.95$的置信区间。
 
----
 
-课本P62第27题
-
----
-
-课本P62第28题
-
-<!-- 
 
 `解`：因为$X_i\stackrel{iid}{\sim} U(0,\theta)$, 所以$Y_i:=X_i/\theta\stackrel{iid}{\sim} U(0,1)$. 由此可以构造很多种枢轴量。由于$X_{(n)}$为$\theta$的最大似然估计，所以很自然想到通过$X_{(n)}$来构造枢轴量。
 
@@ -95,7 +87,8 @@ meanCI <- function(x,alpha,sigma=NA,k=6){
     CI = c(mu-len,mu+len)
   }
   if(k>0){#输出结果，保留k位有效数字
-    print(paste0("期望的",(1-alpha)*100,"%置信区间为[",signif(CI[1],k),", ",signif(CI[2],k),"]"))
+    print(paste0("期望的",(1-alpha)*100,"%置信区间为[",
+                 signif(CI[1],k),", ",signif(CI[2],k),"]"))
   }
   return(CI)
 }
@@ -115,7 +108,8 @@ varCI <- function(x,alpha,mu=NA,k=6){
     CI = sum((x-mu)^2)*c(1/qchisq(1-alpha/2,df=n),1/qchisq(alpha/2,df=n))
   }
   if(k>0){#输出结果，保留k位有效数字
-    print(paste0("方差的",(1-alpha)*100,"%置信区间为[",signif(CI[1],k),", ",signif(CI[2],k),"]"))
+    print(paste0("方差的",(1-alpha)*100,"%置信区间为[",
+                 signif(CI[1],k),", ",signif(CI[2],k),"]"))
   }
   return(CI)
 }
@@ -133,7 +127,8 @@ data1 = c(249,254,243,268,253,269,287,241,273,
           306,303,280,260,256,278,344,304,283,310)
 alpha = 0.05
 CI1 = varCI(data1,alpha)
-print(paste0("标准差的",(1-alpha)*100,"%置信区间为[",signif(sqrt(CI1[1]),6),", ",signif(sqrt(CI1[2]),6),"]"))
+print(paste0("标准差的",(1-alpha)*100,"%置信区间为[",
+             signif(sqrt(CI1[1]),6),",",signif(sqrt(CI1[2]),6),"]"))
 ```
 
 
@@ -154,7 +149,7 @@ CI2 = meanCI(data2,alpha)
 ```{r}
 
 ```
--->
+
 
 ---
 
@@ -184,7 +179,7 @@ attach(heights)
 ```
 
 
-<!-- 
+
 
 `解`：第一问只需调用前面的两个函数求解即可。
 
@@ -201,7 +196,8 @@ CI4 = varCI(height,alpha)
 
 ```{r}
 par(lwd = 2,mar=c(4,4,4,2))
-plot(density(height,from = 50,to=85),type="l",col="blue",xlab="x",main="Kernel vs. Normal")
+plot(density(height,from = 50,to=85),type="l",col="blue",xlab="x",
+     main="Kernel vs. Normal")
 x = seq(50,85,by=0.001)
 y = dnorm(x,mean(height),sd(height))
 lines(x,y,col="red")
@@ -229,7 +225,8 @@ meandiffCI <- function(x,y,alpha,k=6){
   sw = sqrt(((n-1)*var(x)+(m-1)*var(y))/(n+m-2))
   CI = mu1-mu2+qt(1-alpha/2,m+n-2)*sw*sqrt(1/n+1/m)*c(-1,1)
   if(k>0){#输出结果，保留k位有效数字
-    print(paste0("期望差的",(1-alpha)*100,"%置信区间为[",signif(CI[1],k),", ",signif(CI[2],k),"]"))
+    print(paste0("期望差的",(1-alpha)*100,"%置信区间为[",
+                 signif(CI[1],k),", ",signif(CI[2],k),"]"))
   }
   return(CI)
 }
@@ -257,7 +254,8 @@ vardiffCI <- function(x,y,alpha,k=6){
   m = length(y)
   CI = var(x)/var(y)*c(1/qf(1-alpha/2,n-1,m-1),1/qf(alpha/2,n-1,m-1))
   if(k>0){#输出结果，保留k位有效数字
-    print(paste0("方差比的",(1-alpha)*100,"%置信区间为[",signif(CI[1],k),", ",signif(CI[2],k),"]"))
+    print(paste0("方差比的",(1-alpha)*100,"%置信区间为[",
+                 signif(CI[1],k),", ",signif(CI[2],k),"]"))
   }
   return(CI)
 }
@@ -269,5 +267,5 @@ CI6 = vardiffCI(M_height,F_height,alpha)
 
 从中可以看出，方差比的置信区间包含1，可以认为男女两个总体的方差相同。
 
--->
+
 

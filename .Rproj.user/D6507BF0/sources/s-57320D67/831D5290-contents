@@ -1,0 +1,15 @@
+# test the performance of ecdf
+t = seq(-3,3,by=0.01)
+y = pnorm(t)
+n = 100
+for(i in 1:30){
+  x = rnorm(n)
+  plot(ecdf(x),verticals=TRUE,
+       do.points=FALS?E,main=paste("n =",n),
+       xlim=c(-3,3))
+  lines(t,y,col="red")
+  text(-2,0.8,paste("i =",i),cex = 2,
+       col = "red")
+  Sys.sleep(.5)
+}
+
