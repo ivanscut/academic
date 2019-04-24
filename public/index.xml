@@ -3826,7 +3826,25 @@ P(X_{1:n}=x_{1:n}|T(X_{1:n})=t))&amp;amp;= \frac{P(X_{1:n}=x_{1:n},X_{1:n}\in A(
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/course/homework7/</guid>
-      <description>&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an exponential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a likelihood ratio test of&lt;/p&gt;
+      <description>&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_{100}\)&lt;/span&gt; be a sample from &lt;span class=&#34;math inline&#34;&gt;\(N(\mu,1)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.05\)&lt;/span&gt;, derive a UMP rejection region &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; of&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\mu=0\ vs.\ H_1:\mu&amp;gt;0.\]&lt;/span&gt;
+Let &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;=\{\vec x:|\bar x| &amp;gt; u_{0.975}/10\}\)&lt;/span&gt; be another rejection region. Show that the significance level for &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(0.05\)&lt;/span&gt;, and graph the power functions for &lt;span class=&#34;math inline&#34;&gt;\(W\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(W&amp;#39;\)&lt;/span&gt;. Try to explain that you observed.&lt;/p&gt;
+&lt;!--
+`Solution`: The UMP rejection region $W=\{\vec x:\bar x &gt; u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W&#39;|\mu=0)=0.05$.
+
+
+```r
+curve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab=&#34;power functions&#34;)
+curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,
+      add = TRUE, col = &#34;red&#34;)
+legend(0.6,0.6,legend=c(&#34;W&#34;,&#34;W&#39;&#34;),col=c(&#34;black&#34;,&#34;red&#34;),lty = c(1,1))
+```
+
+&lt;img src=&#34;/course/homework7_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+
+--&gt;
+&lt;hr /&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,\dots,X_n\)&lt;/span&gt; be a sample from an exponential distribution &lt;span class=&#34;math inline&#34;&gt;\(Exp(\lambda)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt;, derive a likelihood ratio test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\lambda_1\neq\lambda_2\)&lt;/span&gt;.&lt;/p&gt;
 &lt;!-- 
@@ -3867,7 +3885,7 @@ $$\int_{C_1}^{C_2} \frac{x}{2n} f(x;2n)dx=\int_{C_1}^{C_2} \frac{x}{2n} \frac{1}
 It is hard to solve the equations (1) and (2). In practice, we may take
 $C_1=\chi_{\alpha/2}^2(2n)$ and $C_2=\chi_{1-\alpha/2}^2(2n)$ so that the significance level of the test is $\alpha$. BUT, it is not the exact UMPU test since (2) is not satisfied. If $n$ is large enough, $f(x;2n+2)\approx f(x;2n)$ (see figure below). This implies the resulting rejection region is almost UMPU when $n$ is large.
 
-&lt;img src=&#34;/course/homework7_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/course/homework7_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 
 Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton&#39;s methods. Let $F(x;n)$ be the CDF of $\chi^2(n)$ and $F^{-1}$ denote its inverse. By (1), we have $C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)$. Substituting  it into (2), we arrive at an equation:
 $$F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.$$
@@ -3902,7 +3920,7 @@ knitr::kable(output,&#34;html&#34;,caption = &#34;n=10, alpha=0.05&#34;)
 ```
 
 &lt;table&gt;
-&lt;caption&gt;(\#tab:unnamed-chunk-2)n=10, alpha=0.05&lt;/caption&gt;
+&lt;caption&gt;(\#tab:unnamed-chunk-3)n=10, alpha=0.05&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt;   &lt;/th&gt;
@@ -3939,7 +3957,7 @@ knitr::kable(output,&#34;html&#34;,caption = &#34;n=100, alpha=0.05&#34;)
 ```
 
 &lt;table&gt;
-&lt;caption&gt;(\#tab:unnamed-chunk-3)n=100, alpha=0.05&lt;/caption&gt;
+&lt;caption&gt;(\#tab:unnamed-chunk-4)n=100, alpha=0.05&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style=&#34;text-align:left;&#34;&gt;   &lt;/th&gt;
@@ -4020,11 +4038,15 @@ set $W_0\subset A$ with $\mu(W_0)=\alpha\theta_0^n$, $W=W_0\cup \bar A$ is UMP.
 &lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(X_1,X_2,X_3,X_4\)&lt;/span&gt; be a sample from &lt;span class=&#34;math inline&#34;&gt;\(N(\theta,1)\)&lt;/span&gt;. Given a significance level &lt;span class=&#34;math inline&#34;&gt;\(\alpha=0.1\)&lt;/span&gt;, derive a UMP test of&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[H_0:\theta\ge 10\ vs.\ H_1:\theta&amp;lt;10.\]&lt;/span&gt;
 Calculate the power of the test when &lt;span class=&#34;math inline&#34;&gt;\(\theta=9\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Solution&lt;/code&gt;: The test statistics is &lt;span class=&#34;math inline&#34;&gt;\(T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(n=4\)&lt;/span&gt;. The UMP rejection region has the form &lt;span class=&#34;math inline&#34;&gt;\(W=\{T(\vec x)&amp;lt;C\}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; satisfies
-&lt;span class=&#34;math display&#34;&gt;\[P(T(\vec X)&amp;lt;C|\theta=10)=\alpha=0.1\]&lt;/span&gt;
-This gives &lt;span class=&#34;math inline&#34;&gt;\(C= u_{0.1}=-u_{0.9}=-1.28\)&lt;/span&gt;. So &lt;span class=&#34;math display&#34;&gt;\[W=\{\vec x|2(\bar x-10)&amp;lt;-1.28\}=\{\vec x|\bar x&amp;lt;9.36\}.\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The power of the test is
-&lt;span class=&#34;math display&#34;&gt;\[P(\bar X&amp;lt;9.36|\theta=9)=P(2(\bar X-9)&amp;lt;0.72|\theta=9)=\Phi(0.72)=0.76.\]&lt;/span&gt;&lt;/p&gt;
+&lt;!--
+`Solution`: The test statistics is $T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)$, where $n=4$. The UMP rejection region has the form $W=\{T(\vec x)&lt;C\}$, where $C$ satisfies
+$$P(T(\vec X)&lt;C|\theta=10)=\alpha=0.1$$
+This gives $C= u_{0.1}=-u_{0.9}=-1.28$. So $$W=\{\vec x|2(\bar x-10)&lt;-1.28\}=\{\vec x|\bar x&lt;9.36\}.$$
+
+The power of the test is 
+$$P(\bar X&lt;9.36|\theta=9)=P(2(\bar X-9)&lt;0.72|\theta=9)=\Phi(0.72)=0.76.$$
+
+--&gt;
 </description>
     </item>
     

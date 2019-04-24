@@ -208,12 +208,9 @@ D. \(T_4=\frac 1 n\sum_{i=1}^n(x_i-S_n)^2\)
       <pubDate>Tue, 18 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/course/homework7/</guid>
-      <description>Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
-\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
-where \(\lambda_1\neq\lambda_2\).
-0$. If $\lambda_1\lambda_2$, the rejection region is of the form $W=\{T(\vec x)C\}$. We thus have $C=\chi_{1-\alpha}^2(2n)$.2. If $\lambda_1Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a UMPU test of
-\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]
-C_2\},$$where $C_1,C_2$ satisfy $$P_{\lambda_0}(\bar X\in W)=\alpha$$and$$E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].</description>
+      <description>Let \(X_1,\dots,X_{100}\) be a sample from \(N(\mu,1)\). Given a significance level \(\alpha=0.05\), derive a UMP rejection region \(W\) of
+\[H_0:\mu=0\ vs.\ H_1:\mu&amp;gt;0.\]Let \(W&amp;#39;=\{\vec x:|\bar x| &amp;gt; u_{0.975}/10\}\) be another rejection region. Show that the significance level for \(W&amp;#39;\) is \(0.05\), and graph the power functions for \(W\) and \(W&amp;#39;\). Try to explain that you observed.
+u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W&#39;|\mu=0)=0.05$.```rcurve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab=&#34;power functions&#34;)curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,add = TRUE, col = &#34;</description>
     </item>
     
     <item>

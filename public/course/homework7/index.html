@@ -15,12 +15,9 @@
   
     
   
-  <meta name="description" content="Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
-\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
-where \(\lambda_1\neq\lambda_2\).
-0$. If $\lambda_1\lambda_2$, the rejection region is of the form $W=\{T(\vec x)C\}$. We thus have $C=\chi_{1-\alpha}^2(2n)$.2. If $\lambda_1Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a UMPU test of
-\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]
-C_2\},$$where $C_1,C_2$ satisfy $$P_{\lambda_0}(\bar X\in W)=\alpha$$and$$E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].">
+  <meta name="description" content="Let \(X_1,\dots,X_{100}\) be a sample from \(N(\mu,1)\). Given a significance level \(\alpha=0.05\), derive a UMP rejection region \(W\) of
+\[H_0:\mu=0\ vs.\ H_1:\mu&gt;0.\]Let \(W&#39;=\{\vec x:|\bar x| &gt; u_{0.975}/10\}\) be another rejection region. Show that the significance level for \(W&#39;\) is \(0.05\), and graph the power functions for \(W\) and \(W&#39;\). Try to explain that you observed.
+u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W&#39;|\mu=0)=0.05$.```rcurve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab=&#34;power functions&#34;)curve(1-pnorm(qnorm(0.975)-10*x)&#43;pnorm(qnorm(0.025)-10*x),0,1,add = TRUE, col = &#34;">
 
   
   <link rel="alternate" hreflang="en-us" href="/course/homework7/">
@@ -94,12 +91,9 @@ C_2\},$$where $C_1,C_2$ satisfy $$P_{\lambda_0}(\bar X\in W)=\alpha$$and$$E_{
   <meta property="og:site_name" content="Dr. Zhijian He">
   <meta property="og:url" content="/course/homework7/">
   <meta property="og:title" content="第七次作业 | Dr. Zhijian He">
-  <meta property="og:description" content="Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a likelihood ratio test of
-\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]
-where \(\lambda_1\neq\lambda_2\).
-0$. If $\lambda_1\lambda_2$, the rejection region is of the form $W=\{T(\vec x)C\}$. We thus have $C=\chi_{1-\alpha}^2(2n)$.2. If $\lambda_1Let \(X_1,\dots,X_n\) be a sample from an exponential distribution \(Exp(\lambda)\). Given a significance level \(\alpha\), derive a UMPU test of
-\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]
-C_2\},$$where $C_1,C_2$ satisfy $$P_{\lambda_0}(\bar X\in W)=\alpha$$and$$E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].">
+  <meta property="og:description" content="Let \(X_1,\dots,X_{100}\) be a sample from \(N(\mu,1)\). Given a significance level \(\alpha=0.05\), derive a UMP rejection region \(W\) of
+\[H_0:\mu=0\ vs.\ H_1:\mu&gt;0.\]Let \(W&#39;=\{\vec x:|\bar x| &gt; u_{0.975}/10\}\) be another rejection region. Show that the significance level for \(W&#39;\) is \(0.05\), and graph the power functions for \(W\) and \(W&#39;\). Try to explain that you observed.
+u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W&#39;|\mu=0)=0.05$.```rcurve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab=&#34;power functions&#34;)curve(1-pnorm(qnorm(0.975)-10*x)&#43;pnorm(qnorm(0.025)-10*x),0,1,add = TRUE, col = &#34;">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-12-18T00:00:00&#43;00:00">
@@ -409,7 +403,25 @@ C_2\},$$where $C_1,C_2$ satisfy $$P_{\lambda_0}(\bar X\in W)=\alpha$$and$$E_{
           <h1 itemprop="name">第七次作业</h1>
 
           <div class="article-style" itemprop="articleBody">
-            <p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a sample from an exponential distribution <span class="math inline">\(Exp(\lambda)\)</span>. Given a significance level <span class="math inline">\(\alpha\)</span>, derive a likelihood ratio test of</p>
+            <p>Let <span class="math inline">\(X_1,\dots,X_{100}\)</span> be a sample from <span class="math inline">\(N(\mu,1)\)</span>. Given a significance level <span class="math inline">\(\alpha=0.05\)</span>, derive a UMP rejection region <span class="math inline">\(W\)</span> of</p>
+<p><span class="math display">\[H_0:\mu=0\ vs.\ H_1:\mu&gt;0.\]</span>
+Let <span class="math inline">\(W&#39;=\{\vec x:|\bar x| &gt; u_{0.975}/10\}\)</span> be another rejection region. Show that the significance level for <span class="math inline">\(W&#39;\)</span> is <span class="math inline">\(0.05\)</span>, and graph the power functions for <span class="math inline">\(W\)</span> and <span class="math inline">\(W&#39;\)</span>. Try to explain that you observed.</p>
+<!--
+`Solution`: The UMP rejection region $W=\{\vec x:\bar x > u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W'|\mu=0)=0.05$.
+
+
+```r
+curve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab="power functions")
+curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,
+      add = TRUE, col = "red")
+legend(0.6,0.6,legend=c("W","W'"),col=c("black","red"),lty = c(1,1))
+```
+
+<img src="/course/homework7_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
+-->
+<hr />
+<p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a sample from an exponential distribution <span class="math inline">\(Exp(\lambda)\)</span>. Given a significance level <span class="math inline">\(\alpha\)</span>, derive a likelihood ratio test of</p>
 <p><span class="math display">\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]</span></p>
 <p>where <span class="math inline">\(\lambda_1\neq\lambda_2\)</span>.</p>
 <!-- 
@@ -450,7 +462,7 @@ $$\int_{C_1}^{C_2} \frac{x}{2n} f(x;2n)dx=\int_{C_1}^{C_2} \frac{x}{2n} \frac{1}
 It is hard to solve the equations (1) and (2). In practice, we may take
 $C_1=\chi_{\alpha/2}^2(2n)$ and $C_2=\chi_{1-\alpha/2}^2(2n)$ so that the significance level of the test is $\alpha$. BUT, it is not the exact UMPU test since (2) is not satisfied. If $n$ is large enough, $f(x;2n+2)\approx f(x;2n)$ (see figure below). This implies the resulting rejection region is almost UMPU when $n$ is large.
 
-<img src="/course/homework7_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="/course/homework7_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton's methods. Let $F(x;n)$ be the CDF of $\chi^2(n)$ and $F^{-1}$ denote its inverse. By (1), we have $C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)$. Substituting  it into (2), we arrive at an equation:
 $$F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.$$
@@ -485,7 +497,7 @@ knitr::kable(output,"html",caption = "n=10, alpha=0.05")
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-2)n=10, alpha=0.05</caption>
+<caption>(\#tab:unnamed-chunk-3)n=10, alpha=0.05</caption>
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -522,7 +534,7 @@ knitr::kable(output,"html",caption = "n=100, alpha=0.05")
 ```
 
 <table>
-<caption>(\#tab:unnamed-chunk-3)n=100, alpha=0.05</caption>
+<caption>(\#tab:unnamed-chunk-4)n=100, alpha=0.05</caption>
  <thead>
   <tr>
    <th style="text-align:left;">   </th>
@@ -603,11 +615,15 @@ set $W_0\subset A$ with $\mu(W_0)=\alpha\theta_0^n$, $W=W_0\cup \bar A$ is UMP.
 <p>Let <span class="math inline">\(X_1,X_2,X_3,X_4\)</span> be a sample from <span class="math inline">\(N(\theta,1)\)</span>. Given a significance level <span class="math inline">\(\alpha=0.1\)</span>, derive a UMP test of</p>
 <p><span class="math display">\[H_0:\theta\ge 10\ vs.\ H_1:\theta&lt;10.\]</span>
 Calculate the power of the test when <span class="math inline">\(\theta=9\)</span>.</p>
-<p><code>Solution</code>: The test statistics is <span class="math inline">\(T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)\)</span>, where <span class="math inline">\(n=4\)</span>. The UMP rejection region has the form <span class="math inline">\(W=\{T(\vec x)&lt;C\}\)</span>, where <span class="math inline">\(C\)</span> satisfies
-<span class="math display">\[P(T(\vec X)&lt;C|\theta=10)=\alpha=0.1\]</span>
-This gives <span class="math inline">\(C= u_{0.1}=-u_{0.9}=-1.28\)</span>. So <span class="math display">\[W=\{\vec x|2(\bar x-10)&lt;-1.28\}=\{\vec x|\bar x&lt;9.36\}.\]</span></p>
-<p>The power of the test is
-<span class="math display">\[P(\bar X&lt;9.36|\theta=9)=P(2(\bar X-9)&lt;0.72|\theta=9)=\Phi(0.72)=0.76.\]</span></p>
+<!--
+`Solution`: The test statistics is $T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)$, where $n=4$. The UMP rejection region has the form $W=\{T(\vec x)<C\}$, where $C$ satisfies
+$$P(T(\vec X)<C|\theta=10)=\alpha=0.1$$
+This gives $C= u_{0.1}=-u_{0.9}=-1.28$. So $$W=\{\vec x|2(\bar x-10)<-1.28\}=\{\vec x|\bar x<9.36\}.$$
+
+The power of the test is 
+$$P(\bar X<9.36|\theta=9)=P(2(\bar X-9)<0.72|\theta=9)=\Phi(0.72)=0.76.$$
+
+-->
 
           </div>
 
