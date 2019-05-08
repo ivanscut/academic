@@ -24,19 +24,25 @@ Let $X_1,\dots,X_{100}$ be a sample from $N(\mu,1)$. Given a  significance level
 $$H_0:\mu=0\ vs.\ H_1:\mu>0.$$
 Let $W'=\{\vec x:|\bar x| > u_{0.975}/10\}$ be another rejection region. Show that the significance level for $W'$ is $0.05$, and graph the power functions for $W$ and $W'$. Try to explain that you observed.
 
-<!--
-`Solution`: The UMP rejection region $W=\{\vec x:\bar x > u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W'|\mu=0)=0.05$.
+
+`Solution`: The UMP rejection region $W=\{\vec x:\bar x > u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W'|\mu=0)=0.05$. The power function for $W$ is $$\rho_W(\mu) = P_\mu(\bar X> u_{0.95}/10)=1-\Phi(u_{0.95}-10\mu),$$
+where $\Phi(\cdot)$ is the CDF of the standard normaml distribution.
+The power function for $W'$ is $$\rho_{W'}(\mu) = P_\mu(|\bar X| > u_{0.975}/10)=1-\Phi(u_{0.975}-10\mu)+\Phi(-u_{0.975}-10\mu).$$
+
 
 ```{r}
-curve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab="power functions")
-curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,
+curve(1-pnorm(qnorm(0.95)-10*x),0,0.6,ylab="power functions",xlab=expression(mu))
+curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(-qnorm(0.975)-10*x),0,0.6,
       add = TRUE, col = "red")
-legend(0.6,0.6,legend=c("W","W'"),col=c("black","red"),lty = c(1,1))
+legend(0.3,0.6,legend=c("W","W'"),col=c("black","red"),lty = c(1,1))
 
 ```
 
--->
 
+We observe from the figure that
+
+- $\rho_W(\mu)>\rho_{W'}(\mu)$ for any $\mu>0$, which is consistent with the UMP property of $W$.
+- Both the two power functions go to $1$ as $\mu\to \infty$. This implies that if the true value of $\mu$ is far away from $0$, then two tests gain larger powers. 
 
 ---
 
@@ -47,7 +53,6 @@ $$H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,$$
 where $\lambda_1\neq\lambda_2$.
 
 
-<!-- 
 `Solution`: The likelihood function is 
 $$L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.$$
 
@@ -63,7 +68,7 @@ $$\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\
 
 2. If $\lambda_1<\lambda_2$, the rejection region is of the form $W=\{T(\vec x)<C\}$. We thus have $C=\chi_{\alpha}^2(2n)$.
 
--->
+
 
 ---
 
@@ -71,7 +76,7 @@ Let $X_1,\dots,X_n$ be a sample from an exponential distribution $Exp(\lambda)$.
 
 $$H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.$$
 
-<!-- 
+
 `Solution`: Exponential distribution belongs to exponential family of the form $S(\lambda)h(x)e^{Q(\lambda)V(x)}$ with $V(x) = -x$ and $Q(\lambda)=\lambda$. Choose the ``test statistic`` $T(\vec x)=2\lambda_0 n\bar x$.  As a result, the UMPU rejection region has the form
 $$W = \{T(\vec x)<C_1 \text{ or } >C_2\},$$
 where $C_1,C_2$ satisfy 
@@ -148,7 +153,6 @@ knitr::kable(output,"html",caption = "n=100, alpha=0.05")
 
 As expected, the error for the rough estimates $C_1=\chi_{\alpha/2}^2(2n)$ and $C_2=\chi_{1-\alpha/2}^2(2n)$ decreases as $n$ goes up. 
 
--->
 
 ---
 
@@ -156,7 +160,7 @@ Let $X_1,\dots,X_n$ be a sample from $U[0,\theta]$. Given a  significance level 
 
 $$H_0:\theta=\theta_0\ vs.\ H_1:\theta>\theta_0.$$
 
-<!-- 
+
 `Solution`: Firstly, consider the simple alternative:
 $$H_0:\theta=\theta_0\ vs.\ H_1:\theta=\theta_1>\theta_0.$$
 
@@ -172,7 +176,7 @@ We therefore cannot find a $\lambda_0$ such that $P_{\theta_0}(\lambda(\vec X)>\
 $W = \{x_{(n)}>C\}$, where $C$ satisfies
 $$P_{\theta_0}(X_{(n)}>C)=\alpha.$$
 
-When $\theta=\theta_0$, the order statistic $X_{(n)}/\theta_0$ has a CDF $F(x)=x^n$ (see [Exercise 1](https://hezhijian.netlify.com/post/homework5/)). So we have $C=(1-\alpha)^{1/n}\theta_0$. The rejection region is
+When $\theta=\theta_0$, the order statistic $X_{(n)}/\theta_0$ has a CDF $F(x)=x^n$ (see [Exercise 1](https://hezhijian.netlify.com/course/homework5/)). So we have $C=(1-\alpha)^{1/n}\theta_0$. The rejection region is
 $$W = \{\vec x:x_{(n)}>(1-\alpha)^{1/n}\theta_0\}.$$
 
 
@@ -199,7 +203,7 @@ Therefore, $W$ is UMP rejection region. Since $W$ does not depend on $\theta_1$,
 For this example, the UMP rejection region is not unique. Following the same procedure above, one can  easily prove that for any
 set $W_0\subset A$ with $\mu(W_0)=\alpha\theta_0^n$, $W=W_0\cup \bar A$ is UMP.
 
--->
+
 
 ---
 
@@ -209,7 +213,7 @@ $$H_0:\theta\ge 10\ vs.\ H_1:\theta<10.$$
 Calculate the power of the test when $\theta=9$.
 
 
-<!--
+
 `Solution`: The test statistics is $T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)$, where $n=4$. The UMP rejection region has the form $W=\{T(\vec x)<C\}$, where $C$ satisfies
 $$P(T(\vec X)<C|\theta=10)=\alpha=0.1$$
 This gives $C= u_{0.1}=-u_{0.9}=-1.28$. So $$W=\{\vec x|2(\bar x-10)<-1.28\}=\{\vec x|\bar x<9.36\}.$$
@@ -217,4 +221,3 @@ This gives $C= u_{0.1}=-u_{0.9}=-1.28$. So $$W=\{\vec x|2(\bar x-10)<-1.28\}=\{\
 The power of the test is 
 $$P(\bar X<9.36|\theta=9)=P(2(\bar X-9)<0.72|\theta=9)=\Phi(0.72)=0.76.$$
 
--->

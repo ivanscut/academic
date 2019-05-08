@@ -20,75 +20,59 @@ menu:
 <p>Let <span class="math inline">\(X_1,\dots,X_{100}\)</span> be a sample from <span class="math inline">\(N(\mu,1)\)</span>. Given a significance level <span class="math inline">\(\alpha=0.05\)</span>, derive a UMP rejection region <span class="math inline">\(W\)</span> of</p>
 <p><span class="math display">\[H_0:\mu=0\ vs.\ H_1:\mu&gt;0.\]</span>
 Let <span class="math inline">\(W&#39;=\{\vec x:|\bar x| &gt; u_{0.975}/10\}\)</span> be another rejection region. Show that the significance level for <span class="math inline">\(W&#39;\)</span> is <span class="math inline">\(0.05\)</span>, and graph the power functions for <span class="math inline">\(W\)</span> and <span class="math inline">\(W&#39;\)</span>. Try to explain that you observed.</p>
-<!--
-`Solution`: The UMP rejection region $W=\{\vec x:\bar x > u_{0.95}/10\}$. It is easy to see that $P(\vec X\in W'|\mu=0)=0.05$.
-
-
-```r
-curve(1-pnorm(qnorm(0.95)-10*x),0,1,ylab="power functions")
-curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,
-      add = TRUE, col = "red")
-legend(0.6,0.6,legend=c("W","W'"),col=c("black","red"),lty = c(1,1))
-```
-
-<img src="/course/homework7_files/figure-html/unnamed-chunk-1-1.png" width="672" />
-
--->
+<p><code>Solution</code>: The UMP rejection region <span class="math inline">\(W=\{\vec x:\bar x &gt; u_{0.95}/10\}\)</span>. It is easy to see that <span class="math inline">\(P(\vec X\in W&#39;|\mu=0)=0.05\)</span>. The power function for <span class="math inline">\(W\)</span> is <span class="math display">\[\rho_W(\mu) = P_\mu(\bar X&gt; u_{0.95}/10)=1-\Phi(u_{0.95}-10\mu),\]</span>
+where <span class="math inline">\(\Phi(\cdot)\)</span> is the CDF of the standard normaml distribution.
+The power function for <span class="math inline">\(W&#39;\)</span> is <span class="math display">\[\rho_{W&#39;}(\mu) = P_\mu(|\bar X| &gt; u_{0.975}/10)=1-\Phi(u_{0.975}-10\mu)+\Phi(-u_{0.975}-10\mu).\]</span></p>
+<pre class="r"><code>curve(1-pnorm(qnorm(0.95)-10*x),0,0.6,ylab=&quot;power functions&quot;,xlab=expression(mu))
+curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(-qnorm(0.975)-10*x),0,0.6,
+      add = TRUE, col = &quot;red&quot;)
+legend(0.3,0.6,legend=c(&quot;W&quot;,&quot;W&#39;&quot;),col=c(&quot;black&quot;,&quot;red&quot;),lty = c(1,1))</code></pre>
+<p><img src="/course/homework7_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>We observe from the figure that</p>
+<ul>
+<li><span class="math inline">\(\rho_W(\mu)&gt;\rho_{W&#39;}(\mu)\)</span> for any <span class="math inline">\(\mu&gt;0\)</span>, which is consistent with the UMP property of <span class="math inline">\(W\)</span>.</li>
+<li>Both the two power functions go to <span class="math inline">\(1\)</span> as <span class="math inline">\(\mu\to \infty\)</span>. This implies that if the true value of <span class="math inline">\(\mu\)</span> is far away from <span class="math inline">\(0\)</span>, then two tests gain larger powers.</li>
+</ul>
 <hr />
 <p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a sample from an exponential distribution <span class="math inline">\(Exp(\lambda)\)</span>. Given a significance level <span class="math inline">\(\alpha\)</span>, derive a likelihood ratio test of</p>
 <p><span class="math display">\[H_0:\lambda=\lambda_1\ vs.\ H_1:\lambda=\lambda_2,\]</span></p>
 <p>where <span class="math inline">\(\lambda_1\neq\lambda_2\)</span>.</p>
-<!-- 
-`Solution`: The likelihood function is 
-$$L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.$$
-
-
-The likelihood ratio is given by
-$$\lambda(\vec x)= \frac{L(\lambda_2)}{L(\lambda_1)}=\frac{\lambda_2^ne^{-\lambda_2 n\bar x}}{\lambda_1^ne^{-\lambda_1 n\bar x}}=(\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)n\bar x}.$$
-
-Choose the ``test statistic`` $T(\vec x) = 2\lambda_1n\bar x$. When $\lambda=\lambda_1$, $T(\vec X)\sim \chi^2(2n)$. Also, 
-$$\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\lambda_1)}.$$
-
-
-1. Note that $\lambda_1,\lambda_2>0$. If $\lambda_1>\lambda_2$, the rejection region is of the form $W=\{T(\vec x)>C\}$. We thus have $C=\chi_{1-\alpha}^2(2n)$.
-
-2. If $\lambda_1<\lambda_2$, the rejection region is of the form $W=\{T(\vec x)<C\}$. We thus have $C=\chi_{\alpha}^2(2n)$.
-
--->
+<p><code>Solution</code>: The likelihood function is
+<span class="math display">\[L(\lambda)=\prod_{i=1}^n (\lambda e^{-\lambda x_i}) = \lambda^ne^{-\lambda n\bar x}.\]</span></p>
+<p>The likelihood ratio is given by
+<span class="math display">\[\lambda(\vec x)= \frac{L(\lambda_2)}{L(\lambda_1)}=\frac{\lambda_2^ne^{-\lambda_2 n\bar x}}{\lambda_1^ne^{-\lambda_1 n\bar x}}=(\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)n\bar x}.\]</span></p>
+<p>Choose the <code>test statistic</code> <span class="math inline">\(T(\vec x) = 2\lambda_1n\bar x\)</span>. When <span class="math inline">\(\lambda=\lambda_1\)</span>, <span class="math inline">\(T(\vec X)\sim \chi^2(2n)\)</span>. Also,
+<span class="math display">\[\lambda(\vec x) = (\lambda_2/\lambda_1)^ne^{(\lambda_1-\lambda_2)T(\vec x)/(2\lambda_1)}.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Note that <span class="math inline">\(\lambda_1,\lambda_2&gt;0\)</span>. If <span class="math inline">\(\lambda_1&gt;\lambda_2\)</span>, the rejection region is of the form <span class="math inline">\(W=\{T(\vec x)&gt;C\}\)</span>. We thus have <span class="math inline">\(C=\chi_{1-\alpha}^2(2n)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\lambda_1&lt;\lambda_2\)</span>, the rejection region is of the form <span class="math inline">\(W=\{T(\vec x)&lt;C\}\)</span>. We thus have <span class="math inline">\(C=\chi_{\alpha}^2(2n)\)</span>.</p></li>
+</ol>
 <hr />
 <p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a sample from an exponential distribution <span class="math inline">\(Exp(\lambda)\)</span>. Given a significance level <span class="math inline">\(\alpha\)</span>, derive a UMPU test of</p>
 <p><span class="math display">\[H_0:\lambda=\lambda_0\ vs.\ H_1:\lambda\neq\lambda_0.\]</span></p>
-<!-- 
-`Solution`: Exponential distribution belongs to exponential family of the form $S(\lambda)h(x)e^{Q(\lambda)V(x)}$ with $V(x) = -x$ and $Q(\lambda)=\lambda$. Choose the ``test statistic`` $T(\vec x)=2\lambda_0 n\bar x$.  As a result, the UMPU rejection region has the form
-$$W = \{T(\vec x)<C_1 \text{ or } >C_2\},$$
-where $C_1,C_2$ satisfy 
-$$P_{\lambda_0}(\bar X\in W)=\alpha$$
+<p><code>Solution</code>: Exponential distribution belongs to exponential family of the form <span class="math inline">\(S(\lambda)h(x)e^{Q(\lambda)V(x)}\)</span> with <span class="math inline">\(V(x) = -x\)</span> and <span class="math inline">\(Q(\lambda)=\lambda\)</span>. Choose the <code>test statistic</code> <span class="math inline">\(T(\vec x)=2\lambda_0 n\bar x\)</span>. As a result, the UMPU rejection region has the form
+<span class="math display">\[W = \{T(\vec x)&lt;C_1 \text{ or } &gt;C_2\},\]</span>
+where <span class="math inline">\(C_1,C_2\)</span> satisfy
+<span class="math display">\[P_{\lambda_0}(\bar X\in W)=\alpha\]</span>
 and
-$$E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].$$
-Let $f(x;n)$ be the density of $\chi^2(n)$, that is 
-$$f(x;n)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}1\{x>0\}.$$
-If $\lambda=\lambda_0$, $T(\vec X)\sim \chi^2(2n)$. We thus have
-$$\int_{C_1}^{C_2}f(x;2n) d x=1-\alpha,\quad(1)$$
-$$\int_{C_1}^{C_2} x f(x;2n)dx = 2n(1-\alpha).$$
+<span class="math display">\[E_{\lambda_0}[1\{\vec X\in W\}T(\vec X)]=\alpha E_{\lambda_0}[T(\vec X)].\]</span>
+Let <span class="math inline">\(f(x;n)\)</span> be the density of <span class="math inline">\(\chi^2(n)\)</span>, that is
+<span class="math display">\[f(x;n)=\frac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}1\{x&gt;0\}.\]</span>
+If <span class="math inline">\(\lambda=\lambda_0\)</span>, <span class="math inline">\(T(\vec X)\sim \chi^2(2n)\)</span>. We thus have
+<span class="math display">\[\int_{C_1}^{C_2}f(x;2n) d x=1-\alpha,\quad(1)\]</span>
+<span class="math display">\[\int_{C_1}^{C_2} x f(x;2n)dx = 2n(1-\alpha).\]</span>
 The later equality can be expressed as
-$$\int_{C_1}^{C_2} \frac{x}{2n} f(x;2n)dx=\int_{C_1}^{C_2} \frac{x}{2n} \frac{1}{2^{n}\Gamma(n)}x^{n-1}e^{-x/2}dx=\int_{C_1}^{C_2} f(x;2n+2)dx=1-\alpha.\quad(2)$$
-
-It is hard to solve the equations (1) and (2). In practice, we may take
-$C_1=\chi_{\alpha/2}^2(2n)$ and $C_2=\chi_{1-\alpha/2}^2(2n)$ so that the significance level of the test is $\alpha$. BUT, it is not the exact UMPU test since (2) is not satisfied. If $n$ is large enough, $f(x;2n+2)\approx f(x;2n)$ (see figure below). This implies the resulting rejection region is almost UMPU when $n$ is large.
-
-<img src="/course/homework7_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-
-Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton's methods. Let $F(x;n)$ be the CDF of $\chi^2(n)$ and $F^{-1}$ denote its inverse. By (1), we have $C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)$. Substituting  it into (2), we arrive at an equation:
-$$F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.$$
-
-We can slove the equation using R function `uniroot`. The code is given below.
-
-
-```r
-myfun <- function(c,n,alpha)
+<span class="math display">\[\int_{C_1}^{C_2} \frac{x}{2n} f(x;2n)dx=\int_{C_1}^{C_2} \frac{x}{2n} \frac{1}{2^{n}\Gamma(n)}x^{n-1}e^{-x/2}dx=\int_{C_1}^{C_2} f(x;2n+2)dx=1-\alpha.\quad(2)\]</span></p>
+<p>It is hard to solve the equations (1) and (2). In practice, we may take
+<span class="math inline">\(C_1=\chi_{\alpha/2}^2(2n)\)</span> and <span class="math inline">\(C_2=\chi_{1-\alpha/2}^2(2n)\)</span> so that the significance level of the test is <span class="math inline">\(\alpha\)</span>. BUT, it is not the exact UMPU test since (2) is not satisfied. If <span class="math inline">\(n\)</span> is large enough, <span class="math inline">\(f(x;2n+2)\approx f(x;2n)\)</span> (see figure below). This implies the resulting rejection region is almost UMPU when <span class="math inline">\(n\)</span> is large.</p>
+<p><img src="/course/homework7_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Of course, you can solve the equations (1) and (2) by numerical algorithms, such as bisection and Newton’s methods. Let <span class="math inline">\(F(x;n)\)</span> be the CDF of <span class="math inline">\(\chi^2(n)\)</span> and <span class="math inline">\(F^{-1}\)</span> denote its inverse. By (1), we have <span class="math inline">\(C_2=F^{-1}(F(C_1;2n)+1-\alpha;2n)\)</span>. Substituting it into (2), we arrive at an equation:
+<span class="math display">\[F(F^{-1}(F(C_1;2n)+1-\alpha;2n);2n+2)-F(C_1;2n+2)=1-\alpha.\]</span></p>
+<p>We can slove the equation using R function <code>uniroot</code>. The code is given below.</p>
+<pre class="r"><code>myfun &lt;- function(c,n,alpha)
   pchisq(qchisq(pchisq(c,2*n)+1-alpha,2*n),2*n+2)-pchisq(c,2*n+2)-1+alpha
 
-mysolver <- function(n,alpha){
+mysolver &lt;- function(n,alpha){
   a = qchisq(alpha/2,2*n)
   b = qchisq(alpha/2,2*n+2)
   ## solve the equation by using the root finding algorithm
@@ -101,140 +85,162 @@ mysolver <- function(n,alpha){
   c22 = qchisq(1-alpha/2,2*n)
   err2 = pchisq(c22,2*n+2)-pchisq(c11,2*n+2)-1+alpha #check the error for eq. (2)
   output = data.frame(exact=c(c1,c2,abs(err1)),rough=c(c11,c22,abs(err2)),
-                      row.names = c("C1","C2","error"))
+                      row.names = c(&quot;C1&quot;,&quot;C2&quot;,&quot;error&quot;))
   return(output)
 }
 alpha = 0.5
 n = 10
 output = mysolver(n,alpha)
-knitr::kable(output,"html",caption = "n=10, alpha=0.05")
-```
-
+knitr::kable(output,&quot;html&quot;,caption = &quot;n=10, alpha=0.05&quot;)</code></pre>
 <table>
-<caption>(\#tab:unnamed-chunk-3)n=10, alpha=0.05</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> exact </th>
-   <th style="text-align:right;"> rough </th>
-  </tr>
- </thead>
+<caption>
+<span id="tab:unnamed-chunk-3">Table 1: </span>n=10, alpha=0.05
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+exact
+</th>
+<th style="text-align:right;">
+rough
+</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> C1 </td>
-   <td style="text-align:right;"> 16.00121 </td>
-   <td style="text-align:right;"> 15.451773 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> C2 </td>
-   <td style="text-align:right;"> 24.61524 </td>
-   <td style="text-align:right;"> 23.827692 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> error </td>
-   <td style="text-align:right;"> 0.00000 </td>
-   <td style="text-align:right;"> 0.014194 </td>
-  </tr>
+<tr>
+<td style="text-align:left;">
+C1
+</td>
+<td style="text-align:right;">
+16.00121
+</td>
+<td style="text-align:right;">
+15.451773
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C2
+</td>
+<td style="text-align:right;">
+24.61524
+</td>
+<td style="text-align:right;">
+23.827692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+error
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.014194
+</td>
+</tr>
 </tbody>
 </table>
-
-For large $n=100$, we have the following results.
-
-
-```r
-n = 100
+<p>For large <span class="math inline">\(n=100\)</span>, we have the following results.</p>
+<pre class="r"><code>n = 100
 output = mysolver(n,alpha)
-knitr::kable(output,"html",caption = "n=100, alpha=0.05")
-```
-
+knitr::kable(output,&quot;html&quot;,caption = &quot;n=100, alpha=0.05&quot;)</code></pre>
 <table>
-<caption>(\#tab:unnamed-chunk-4)n=100, alpha=0.05</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> exact </th>
-   <th style="text-align:right;"> rough </th>
-  </tr>
- </thead>
+<caption>
+<span id="tab:unnamed-chunk-4">Table 2: </span>n=100, alpha=0.05
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+exact
+</th>
+<th style="text-align:right;">
+rough
+</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> C1 </td>
-   <td style="text-align:right;"> 186.8010 </td>
-   <td style="text-align:right;"> 186.171668 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> C2 </td>
-   <td style="text-align:right;"> 213.8065 </td>
-   <td style="text-align:right;"> 213.102185 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> error </td>
-   <td style="text-align:right;"> 0.0000 </td>
-   <td style="text-align:right;"> 0.001428 </td>
-  </tr>
+<tr>
+<td style="text-align:left;">
+C1
+</td>
+<td style="text-align:right;">
+186.8010
+</td>
+<td style="text-align:right;">
+186.171668
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C2
+</td>
+<td style="text-align:right;">
+213.8065
+</td>
+<td style="text-align:right;">
+213.102185
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+error
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.001428
+</td>
+</tr>
 </tbody>
 </table>
-
-As expected, the error for the rough estimates $C_1=\chi_{\alpha/2}^2(2n)$ and $C_2=\chi_{1-\alpha/2}^2(2n)$ decreases as $n$ goes up. 
-
--->
+<p>As expected, the error for the rough estimates <span class="math inline">\(C_1=\chi_{\alpha/2}^2(2n)\)</span> and <span class="math inline">\(C_2=\chi_{1-\alpha/2}^2(2n)\)</span> decreases as <span class="math inline">\(n\)</span> goes up.</p>
 <hr />
 <p>Let <span class="math inline">\(X_1,\dots,X_n\)</span> be a sample from <span class="math inline">\(U[0,\theta]\)</span>. Given a significance level <span class="math inline">\(\alpha\)</span>, derive a UMP test of</p>
 <p><span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta&gt;\theta_0.\]</span></p>
-<!-- 
-`Solution`: Firstly, consider the simple alternative:
-$$H_0:\theta=\theta_0\ vs.\ H_1:\theta=\theta_1>\theta_0.$$
-
-The likelihood function is $L(\theta)=\theta^{-n}1\{x_{(n)}\le \theta\}$.
-The likelihood ratio for the simple test is 
-$$\lambda(\vec x) = \frac{\theta_1^{-n}1\{x_{(n)}\le \theta_1\}}{\theta_0^{-n}1\{x_{(n)}\le \theta_0\}}
+<p><code>Solution</code>: Firstly, consider the simple alternative:
+<span class="math display">\[H_0:\theta=\theta_0\ vs.\ H_1:\theta=\theta_1&gt;\theta_0.\]</span></p>
+<p>The likelihood function is <span class="math inline">\(L(\theta)=\theta^{-n}1\{x_{(n)}\le \theta\}\)</span>.
+The likelihood ratio for the simple test is
+<span class="math display">\[\lambda(\vec x) = \frac{\theta_1^{-n}1\{x_{(n)}\le \theta_1\}}{\theta_0^{-n}1\{x_{(n)}\le \theta_0\}}
 =\begin{cases}
-(\theta_0/\theta_1)^n,\ &x_{(n)}\le \theta_0\\
-\infty,\ &x_{(n)}> \theta_0
-\end{cases}$$
-
-We therefore cannot find a $\lambda_0$ such that $P_{\theta_0}(\lambda(\vec X)>\lambda_0)=\alpha$. This implies that the N-P lemma cannot be applied. As we can see, the likelihood ratio is a function of $x_{(n)}$. We thus can use $X_{(n)}$ as the test statistic. A resonable rejection region would be
-$W = \{x_{(n)}>C\}$, where $C$ satisfies
-$$P_{\theta_0}(X_{(n)}>C)=\alpha.$$
-
-When $\theta=\theta_0$, the order statistic $X_{(n)}/\theta_0$ has a CDF $F(x)=x^n$ (see [Exercise 1](https://hezhijian.netlify.com/post/homework5/)). So we have $C=(1-\alpha)^{1/n}\theta_0$. The rejection region is
-$$W = \{\vec x:x_{(n)}>(1-\alpha)^{1/n}\theta_0\}.$$
-
-
-We next prove that $W$ is UMP. Suppose that there exists a rejection region $W'$ satisfying $P_{\theta_0}(\vec X\in W')\le \alpha$. Let $A=[0,\theta_0]^n$ be the sample space when $\theta=\theta_0$, and let $B=[0,\theta_1]^n$ be the sample space  when $\theta=\theta_1$. It is clear that $A\subseteq B$ since $\theta_1>\theta_0$. This implies 
-$$P_{\theta_0}(\vec X\in W') = P_{\theta_0}(\vec X\in W'\cap A)=\frac{1}{\theta_0^n}\int_{W'\cap A} 1 d x_1\dots d x_n\le \alpha.$$
-Similarly, 
-$$P_{\theta_0}(\vec X\in W) = P_{\theta_0}(\vec X\in W\cap A)=\frac{1}{\theta_0^n}\int_{W\cap A} 1 d x_1\dots d x_n= \alpha.$$
-Define $\mu(E) = \int_E 1 d x_1\dots d x_n$. So we have $\mu(W\cap A)\ge \mu(W'\cap A)$. 
-
-
-On the other hand, noticing that $W\cap B=W\cap A+\bar A\cap B$, we thus have
-
-$$
+(\theta_0/\theta_1)^n,\ &amp;x_{(n)}\le \theta_0\\
+\infty,\ &amp;x_{(n)}&gt; \theta_0
+\end{cases}\]</span></p>
+<p>We therefore cannot find a <span class="math inline">\(\lambda_0\)</span> such that <span class="math inline">\(P_{\theta_0}(\lambda(\vec X)&gt;\lambda_0)=\alpha\)</span>. This implies that the N-P lemma cannot be applied. As we can see, the likelihood ratio is a function of <span class="math inline">\(x_{(n)}\)</span>. We thus can use <span class="math inline">\(X_{(n)}\)</span> as the test statistic. A resonable rejection region would be
+<span class="math inline">\(W = \{x_{(n)}&gt;C\}\)</span>, where <span class="math inline">\(C\)</span> satisfies
+<span class="math display">\[P_{\theta_0}(X_{(n)}&gt;C)=\alpha.\]</span></p>
+<p>When <span class="math inline">\(\theta=\theta_0\)</span>, the order statistic <span class="math inline">\(X_{(n)}/\theta_0\)</span> has a CDF <span class="math inline">\(F(x)=x^n\)</span> (see <a href="https://hezhijian.netlify.com/course/homework5/">Exercise 1</a>). So we have <span class="math inline">\(C=(1-\alpha)^{1/n}\theta_0\)</span>. The rejection region is
+<span class="math display">\[W = \{\vec x:x_{(n)}&gt;(1-\alpha)^{1/n}\theta_0\}.\]</span></p>
+<p>We next prove that <span class="math inline">\(W\)</span> is UMP. Suppose that there exists a rejection region <span class="math inline">\(W&#39;\)</span> satisfying <span class="math inline">\(P_{\theta_0}(\vec X\in W&#39;)\le \alpha\)</span>. Let <span class="math inline">\(A=[0,\theta_0]^n\)</span> be the sample space when <span class="math inline">\(\theta=\theta_0\)</span>, and let <span class="math inline">\(B=[0,\theta_1]^n\)</span> be the sample space when <span class="math inline">\(\theta=\theta_1\)</span>. It is clear that <span class="math inline">\(A\subseteq B\)</span> since <span class="math inline">\(\theta_1&gt;\theta_0\)</span>. This implies
+<span class="math display">\[P_{\theta_0}(\vec X\in W&#39;) = P_{\theta_0}(\vec X\in W&#39;\cap A)=\frac{1}{\theta_0^n}\int_{W&#39;\cap A} 1 d x_1\dots d x_n\le \alpha.\]</span>
+Similarly,
+<span class="math display">\[P_{\theta_0}(\vec X\in W) = P_{\theta_0}(\vec X\in W\cap A)=\frac{1}{\theta_0^n}\int_{W\cap A} 1 d x_1\dots d x_n= \alpha.\]</span>
+Define <span class="math inline">\(\mu(E) = \int_E 1 d x_1\dots d x_n\)</span>. So we have <span class="math inline">\(\mu(W\cap A)\ge \mu(W&#39;\cap A)\)</span>.</p>
+<p>On the other hand, noticing that <span class="math inline">\(W\cap B=W\cap A+\bar A\cap B\)</span>, we thus have</p>
+<p><span class="math display">\[
 \begin{align}
-P_{\theta_1}(\vec X\in W) &=\frac{1}{\theta_1^n}\int_{W\cap B} 1 d x_1\dots d x_n\\&=\frac{1}{\theta_1^n}\int_{W\cap A}1 d x_1\dots d x_n+\frac{1}{\theta_1^n}\int_{\bar A\cap B}1 d x_1\dots d x_n\\
-&=\theta_1^{-n}[\mu(W\cap A)+\mu(\bar A\cap B)]\\
-&\ge \theta_1^{-n}[\mu(W'\cap A)+\mu(W'\cap\bar A\cap B)\\
-&=\theta_1^{-n}\mu(W'\cap B)=P_{\theta_1}(\bar X\in W').
+P_{\theta_1}(\vec X\in W) &amp;=\frac{1}{\theta_1^n}\int_{W\cap B} 1 d x_1\dots d x_n\\&amp;=\frac{1}{\theta_1^n}\int_{W\cap A}1 d x_1\dots d x_n+\frac{1}{\theta_1^n}\int_{\bar A\cap B}1 d x_1\dots d x_n\\
+&amp;=\theta_1^{-n}[\mu(W\cap A)+\mu(\bar A\cap B)]\\
+&amp;\ge \theta_1^{-n}[\mu(W&#39;\cap A)+\mu(W&#39;\cap\bar A\cap B)\\
+&amp;=\theta_1^{-n}\mu(W&#39;\cap B)=P_{\theta_1}(\bar X\in W&#39;).
 \end{align}
-$$
-
-Therefore, $W$ is UMP rejection region. Since $W$ does not depend on $\theta_1$, it is also the UMP rejection region for the alternative $H_1:\theta>\theta_0$.
-
-For this example, the UMP rejection region is not unique. Following the same procedure above, one can  easily prove that for any
-set $W_0\subset A$ with $\mu(W_0)=\alpha\theta_0^n$, $W=W_0\cup \bar A$ is UMP.
-
--->
+\]</span></p>
+<p>Therefore, <span class="math inline">\(W\)</span> is UMP rejection region. Since <span class="math inline">\(W\)</span> does not depend on <span class="math inline">\(\theta_1\)</span>, it is also the UMP rejection region for the alternative <span class="math inline">\(H_1:\theta&gt;\theta_0\)</span>.</p>
+<p>For this example, the UMP rejection region is not unique. Following the same procedure above, one can easily prove that for any
+set <span class="math inline">\(W_0\subset A\)</span> with <span class="math inline">\(\mu(W_0)=\alpha\theta_0^n\)</span>, <span class="math inline">\(W=W_0\cup \bar A\)</span> is UMP.</p>
 <hr />
 <p>Let <span class="math inline">\(X_1,X_2,X_3,X_4\)</span> be a sample from <span class="math inline">\(N(\theta,1)\)</span>. Given a significance level <span class="math inline">\(\alpha=0.1\)</span>, derive a UMP test of</p>
 <p><span class="math display">\[H_0:\theta\ge 10\ vs.\ H_1:\theta&lt;10.\]</span>
 Calculate the power of the test when <span class="math inline">\(\theta=9\)</span>.</p>
-<!--
-`Solution`: The test statistics is $T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)$, where $n=4$. The UMP rejection region has the form $W=\{T(\vec x)<C\}$, where $C$ satisfies
-$$P(T(\vec X)<C|\theta=10)=\alpha=0.1$$
-This gives $C= u_{0.1}=-u_{0.9}=-1.28$. So $$W=\{\vec x|2(\bar x-10)<-1.28\}=\{\vec x|\bar x<9.36\}.$$
-
-The power of the test is 
-$$P(\bar X<9.36|\theta=9)=P(2(\bar X-9)<0.72|\theta=9)=\Phi(0.72)=0.76.$$
-
--->
+<p><code>Solution</code>: The test statistics is <span class="math inline">\(T(\vec x)=\frac{\bar x-10}{1/\sqrt{n}}=\sqrt{n}(\bar x-10)=2(\bar x-10)\)</span>, where <span class="math inline">\(n=4\)</span>. The UMP rejection region has the form <span class="math inline">\(W=\{T(\vec x)&lt;C\}\)</span>, where <span class="math inline">\(C\)</span> satisfies
+<span class="math display">\[P(T(\vec X)&lt;C|\theta=10)=\alpha=0.1\]</span>
+This gives <span class="math inline">\(C= u_{0.1}=-u_{0.9}=-1.28\)</span>. So <span class="math display">\[W=\{\vec x|2(\bar x-10)&lt;-1.28\}=\{\vec x|\bar x&lt;9.36\}.\]</span></p>
+<p>The power of the test is
+<span class="math display">\[P(\bar X&lt;9.36|\theta=9)=P(2(\bar X-9)&lt;0.72|\theta=9)=\Phi(0.72)=0.76.\]</span></p>

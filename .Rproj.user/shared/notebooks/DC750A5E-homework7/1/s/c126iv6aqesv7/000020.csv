@@ -1,2 +1,0 @@
-"0","curve(1-pnorm(qnorm(0.975)-10*x)+pnorm(qnorm(0.025)-10*x),0,1,"
-"0","      add = TRUE, col = ""red"")"
