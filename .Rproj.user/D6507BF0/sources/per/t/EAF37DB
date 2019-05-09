@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1557288289134.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "884629235",
+    "id" : "EAF37DB",
+    "lastKnownWriteTime" : 1557288363,
+    "last_content_update" : 1557288363994,
+    "path" : "D:/Dropbox/courses/academic/content/course/homework8.Rmd",
+    "project_path" : "content/course/homework8.Rmd",
+    "properties" : {
+        "cursorPosition" : "269,88",
+        "scrollLine" : "249"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

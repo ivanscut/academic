@@ -480,7 +480,7 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <p><span class="math display">\[\sigma^2=\sigma^2_0\ vs.\ \sigma^2\neq \sigma^2_0\]</span></p>
 <p>利用广义似然比检验法可以得到拒绝域为</p>
 <p><span class="math display">\[W=\{\vec x: \chi^2&gt;C_2, \chi^2&lt;C_1\}\]</span></p>
-<p>其中<span class="math inline">\(\chi^2 = \frac{1}{\sigma^2_0}\sum_{i=1}^n(x_i-\bar x)^2=ns_n^2/\sigma_0^2\)</span>, <span class="math inline">\(C_1,C_2\)</span>满足</p>
+<p>其中<strong>检验统计量</strong><span class="math inline">\(\chi^2 = \frac{1}{\sigma^2_0}\sum_{i=1}^n(x_i-\bar x)^2=ns_n^2/\sigma_0^2\)</span>, <span class="math inline">\(C_1,C_2\)</span>满足</p>
 <p><span class="math display">\[\int_{C_1}^{C_2} g_{n-1}(x) dx = 1-\alpha\]</span></p>
 <p>其中<span class="math inline">\(g_n(x)\)</span>表示<span class="math inline">\(\chi^2(n)\)</span>的密度函数。可以证明当<span class="math inline">\(C_1,C_2\)</span>再满足<span class="math inline">\(\int_{C_1}^{C_2} g_{n+1}(x) dx = 1-\alpha\)</span>时，拒绝域<span class="math inline">\(W\)</span>为UMPU.</p>
 <p>为方便起见，取<span class="math inline">\(C_1=\chi^2_{\alpha/2}(n-1),\ C_2=\chi^2_{1-\alpha/2}(n-1)\)</span></p>
@@ -506,7 +506,7 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <ul>
 <li>如果<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>已知, 选择<strong>U检验统计量</strong>：</li>
 </ul>
-<p><span class="math display">\[U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}=\frac{\bar X-\bar Y-\delta}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\]</span></p>
+<p><span class="math display">\[U=\frac{\bar X-\bar Y-\delta}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}\]</span></p>
 <p>若<span class="math inline">\(|U|&gt; u_{1-\alpha/2}\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
 <ul>
 <li>如果<span class="math inline">\(\sigma_1^2,\sigma_2^2\)</span>未知，已知<span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span>，选择<strong>t检验统计量</strong>：</li>
@@ -527,13 +527,11 @@ L(\vec x;\mu_0,q_n^2),\ &amp;\bar x&gt; \mu_0
 <p>设总体<span class="math inline">\(X\sim N(\mu_1,\sigma_1^2)\)</span>, 另有与<span class="math inline">\(X\)</span>独立的总体<span class="math inline">\(Y\sim N(\mu_2,\sigma_2^2)\)</span>.</p>
 <p><span class="math display">\[H_0: \sigma_1^2=\sigma_2^2,\ H_1: \sigma_1^2\neq \sigma_2^2\]</span></p>
 <ul>
-<li>如果<span class="math inline">\(\mu_1,\mu_2\)</span>已知，选择<strong>F检验统计量</strong>：
-<span class="math display">\[F=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\sim F(m,n)\]</span></li>
-</ul>
-<p>若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m,n)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m,n)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
-<ul>
-<li>如果<span class="math inline">\(\mu_1,\mu_2\)</span>未知，选择<strong>F检验统计量</strong>：
-<span class="math display">\[F=\frac{\frac 1 {m-1}\sum_{i=1}^m(X_i-\bar X)^2}{\frac 1 {n-1}\sum_{i=1}^n(Y_i-\bar Y)^2}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\sim F(m-1,n-1)\]</span></li>
+<li><p>如果<span class="math inline">\(\mu_1,\mu_2\)</span>已知，选择<strong>F检验统计量</strong>：
+<span class="math display">\[F=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\sim F(m,n)\quad (在H_0下).\]</span>
+若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m,n)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m,n)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>如果<span class="math inline">\(\mu_1,\mu_2\)</span>未知，选择<strong>F检验统计量</strong>：
+<span class="math display">\[F=\frac{\frac 1 {m-1}\sum_{i=1}^m(X_i-\bar X)^2}{\frac 1 {n-1}\sum_{i=1}^n(Y_i-\bar Y)^2}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\sim F(m-1,n-1)\quad (在H_0下).\]</span></p></li>
 </ul>
 <p>若<span class="math inline">\(F&gt; F_{1-\alpha/2}(m-1,n-1)\)</span>或者<span class="math inline">\(F&lt;F_{\alpha/2}(m-1,n-1)\)</span>拒绝<span class="math inline">\(H_0\)</span>，否则接受<span class="math inline">\(H_0\)</span>.</p>
 </div>
@@ -644,8 +642,65 @@ t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
 <span class="math display">\[P(\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\le \mu\le \bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}})=1-\alpha\]</span></p>
 <p>于是得到一个置信区间：<span class="math inline">\([\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]\)</span></p>
 <p>由此可以构造拒绝域：<span class="math display">\[W=\{\mu_0\notin [\bar x-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar x+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]\}\]</span>
-<span class="math display">\[W=\{\vec x:|\vec x-\mu_0|&gt;u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}\]</span></p>
+<span class="math display">\[W=\{\vec x:|\bar x-\mu_0|&gt;u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}\]</span></p>
 <p>此拒绝域和我们之前得到的一样的。</p>
+</div>
+<div id="example-blood-alcohol-determinations" class="section level2">
+<h2>Example: blood alcohol determinations</h2>
+<p>The following are thirty blood alcohol determinations （血液酒精浓度测试） made by Analyzer GTE-10, a three-year-old unit that may be in need of recalibration. All thirty measurements were made using a test sample on which a properly adjusted machine would give a reading of 12.6%.</p>
+<table>
+<thead>
+<tr class="header">
+<th>12.3</th>
+<th>12.7</th>
+<th>13.6</th>
+<th>12.7</th>
+<th>12.9</th>
+<th>12.6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12.6</td>
+<td>13.1</td>
+<td>12.6</td>
+<td>13.1</td>
+<td>12.7</td>
+<td>12.5</td>
+</tr>
+<tr class="even">
+<td>13.2</td>
+<td>12.8</td>
+<td>12.4</td>
+<td>12.6</td>
+<td>12.4</td>
+<td>12.4</td>
+</tr>
+<tr class="odd">
+<td>13.1</td>
+<td>12.9</td>
+<td>13.3</td>
+<td>12.6</td>
+<td>12.6</td>
+<td>12.7</td>
+</tr>
+<tr class="even">
+<td>13.1</td>
+<td>12.4</td>
+<td>12.4</td>
+<td>13.1</td>
+<td>12.4</td>
+<td>12.9</td>
+</tr>
+</tbody>
+</table>
+<p>Assume that <span class="math inline">\(\sigma=0.4\)</span>. Would you recommend that the machine be readjusted at the level of significance <span class="math inline">\(\alpha=0.05\)</span>? Would you change your decision if <span class="math inline">\(\alpha=0.01\)</span>?</p>
+<p><code>Solution</code>: If <span class="math inline">\(\mu\)</span> denotes the true average reading that Analyzer
+GTE-10 would give for a person whose blood
+alcohol concentration is 12.6%, test
+<span class="math inline">\(H_0:\,mu=12.6 v.s. H_1:\mu\neq 12.6\)</span>.</p>
+<p>Note that <span class="math inline">\(\bar x=12.757.\)</span> The rection region is <span class="math inline">\(W=\{\bar x-\mu_0|&gt;u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}\)</span>.
+If <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(W=\{\bar x-\mu_0|&gt;0.143\}\)</span>. So I recommend that the machine be readjusted. On the other hand, if <span class="math inline">\(\alpha\)</span> goes down to <span class="math inline">\(0.01\)</span>, the rejection region is <span class="math inline">\(W=\{\bar x-\mu_0|&gt;0.188\}\)</span>. For this case, I do NOT recommend that the machine be readjusted.</p>
 </div>
 <div id="p-values" class="section level2">
 <h2>p-values</h2>
@@ -653,7 +708,7 @@ t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
 <p><span class="math display">\[W=\{\vec x:T(\vec x)&gt;\lambda\}\]</span></p>
 <ul>
 <li><p><span class="math inline">\(T\)</span>为检验统计量</p></li>
-<li><p><span class="math inline">\(\lambda\)</span>满足<span class="math inline">\(\sup_{\theta\in\Theta_0}P_{\theta}(T(\vec X)&gt;\lambda)=\alpha\)</span></p></li>
+<li><p><span class="math inline">\(\lambda_\alpha\)</span>满足<span class="math inline">\(\sup_{\theta\in\Theta_0}P_{\theta}(T(\vec X)&gt;\lambda_\alpha)=\alpha\)</span></p></li>
 </ul>
 <p>由此可得：</p>
 <ul>
@@ -661,7 +716,7 @@ t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
 <li><p>对于固定的样本，是否存在一个临界值<span class="math inline">\(p\)</span>, 使得当<span class="math inline">\(p&lt;\alpha\)</span>时拒绝原假设，当<span class="math inline">\(p\ge \alpha\)</span>时接受原假设？这个临界值称为<span class="math inline">\(p\)</span>值(p-value)</p></li>
 </ul>
 <p><span class="math display">\[p=p(\vec x)=\sup_{\theta\in\Theta_0}P_\theta(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))\]</span></p>
-<p>如果给定<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda\)</span>存在且唯一，则可以证明：<span class="math inline">\(T(\vec x)&gt;\lambda\)</span>当且仅当<span class="math inline">\(p(\vec x)&lt;\alpha\)</span></p>
+<p>如果给定<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\lambda_\alpha\)</span>存在且唯一，则可以证明：<span class="math inline">\(T(\vec x)&gt;\lambda_\alpha\)</span>当且仅当<span class="math inline">\(p(\vec x)&lt;\alpha\)</span></p>
 </div>
 <div id="p-values-for-simple-null" class="section level2">
 <h2>p-values for simple null</h2>
@@ -669,6 +724,9 @@ t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
 <p><span class="math display">\[p = P_{\theta_0}(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))\]</span></p>
 <p><strong>例</strong>：总体<span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>，其中<span class="math inline">\(\mu\)</span>未知，方差<span class="math inline">\(\sigma^2\)</span>已知，考虑检验<span class="math display">\[H_0:\mu=\mu_0\ vs.\ H_1:\mu\neq\mu_0.\]</span> 拒绝域为<span class="math inline">\(W=\{\vec x:\sqrt{n}|\bar x-\mu_0|/\sigma&gt;u_{1-\alpha/2}\}\)</span>, 其中检验统计量为<span class="math inline">\(T = \sqrt{n}|\bar X-\mu_0|/\sigma\)</span>. 故p值为</p>
 <p><span class="math display">\[p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\bar x-\mu_0|}{\sigma/\sqrt{n}}\right)\]</span></p>
+<p>For blood alcohol determinations example,</p>
+<p><span class="math display">\[p = 2-2\Phi\left(\frac{|12.757-12.6|}{0.4/\sqrt{30}}\right)=0.032.\]</span>
+As a result, if <span class="math inline">\(\alpha&gt; 0.032\)</span>, reject <span class="math inline">\(H_0\)</span> (recommend); otherwise, accpete <span class="math inline">\(H_0\)</span> (NOT recommend).</p>
 </div>
 <div id="comments" class="section level2">
 <h2>Comments</h2>
@@ -687,6 +745,7 @@ t.test(male_height,female_height,alternative = &quot;less&quot;)</code></pre>
 </ul>
 <p>例子：吃果冻与长青春痘的联系：<a href="https://xkcd.com/882/" class="uri">https://xkcd.com/882/</a></p>
 <p><img src="https://imgs.xkcd.com/comics/significant.png" /></p>
+<p>How to annoy a statistician: <a href="https://xkcd.com/2118/" class="uri">https://xkcd.com/2118/</a></p>
 </div>
 <div id="binomial-tests" class="section level2">
 <h2>Binomial tests</h2>
@@ -788,8 +847,36 @@ text(3,0.55,lb)</code></pre>
 拒绝域为<span class="math inline">\(\{s\le c_1\}\cup\{s\ge c_2\}\)</span>，其中临界值<span class="math inline">\(c_1\)</span>为满足<span class="math inline">\(P_{p_0}(S\le c_1)=\alpha/2\)</span><strong>最大的整数</strong>，临界值<span class="math inline">\(c_1\)</span>为满足<span class="math inline">\(P_{p_0}(S\ge c_2)=\alpha/2\)</span><strong>最小的整数</strong>。由前面分析，该拒绝域等价于</p>
 <p><span class="math display">\[\{p_0\le p_{\alpha/2}(s)\}\cup\{p_0\ge \tilde{p}_{\alpha/2}(s)\}\]</span></p>
 </div>
-<div id="goodness-of-fit-tests" class="section level2">
-<h2>4. Goodness-of-fit tests</h2>
+<div id="example-mendels-data" class="section level2">
+<h2>Example: Mendel’s Data</h2>
+<p>In one of his famous experiments, Mendel crossed 556 smooth, yellow male peas
+with wrinkled, green female peas. The counts that Mendel recorded are</p>
+<table>
+<thead>
+<tr class="header">
+<th>smooth yellow</th>
+<th>smooth green</th>
+<th>wrinkled yellow</th>
+<th>wrinkled green</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>315</td>
+<td>108</td>
+<td>102</td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+<p>According to now established genetic theory, the
+relative frequencies of the progeny should be as given below.</p>
+<p><span class="math display">\[P(\text{smooth yellow}) = 9/16, P(\text{smooth green}) = 3/16\]</span></p>
+<p><span class="math display">\[P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16\]</span></p>
+<p>Would you conclude that Mendal’s experiment is correct at the level of significance <span class="math inline">\(\alpha=0.05\)</span>?</p>
+</div>
+<div id="goodness-of-fit-tests-" class="section level2">
+<h2>4. Goodness-of-fit tests (拟合优度检验)</h2>
 <p>考虑离散型分布的假设检验，<span class="math inline">\(X\in \{t_1,\dots,t_m\}\)</span>.</p>
 <p><span class="math display">\[H_0: P(X=t_i)=p_i,\ i=1,\dots,m,\ vs.\ H_1: P(X=t_i)\neq p_i\]</span></p>
 <p>其中<span class="math inline">\(\sum_{i=1}^m p_i=1\)</span>.</p>
@@ -798,18 +885,46 @@ text(3,0.55,lb)</code></pre>
 <p>其中<span class="math inline">\(v_i\)</span>表示<span class="math inline">\(X_1,\dots,X_n\)</span>中包含<span class="math inline">\(t_i\)</span>的个数，即<span class="math inline">\(v_i=\sum_{j=1}^m 1\{X_j=t_i\}\)</span>.</p>
 <p>拒绝域<span class="math inline">\(W=\{V&gt;\lambda\}\)</span>. 可以证明在<span class="math inline">\(H_0\)</span>下，<span class="math inline">\(V\stackrel{\cdot}{\sim} \chi^2(m-1)\)</span>, 故<span class="math inline">\(\lambda=\chi^2_{1-\alpha}(m-1)\)</span></p>
 </div>
-<div id="example-mendels-data" class="section level2">
+<div id="example-mendels-data-1" class="section level2">
 <h2>Example: Mendel’s Data</h2>
-<p>In one of his famous experiments, Mendel crossed 556 smooth, yellow male peas
-with wrinkled, green female peas. According to now established genetic theory, the
-relative frequencies of the progeny should be as given below.</p>
-<p><span class="math display">\[P(\text{smooth yellow}) = 9/16, P(\text{smooth green}) = 3/16\]</span></p>
-<p><span class="math display">\[P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16\]</span></p>
-<p>The counts that Mendel recorded are 315, 108, 102, 31, respectively.</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(t_i\)</span></th>
+<th>smooth yellow</th>
+<th>smooth green</th>
+<th>wrinkled yellow</th>
+<th>wrinkled green</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(v_i\)</span></td>
+<td>315</td>
+<td>108</td>
+<td>102</td>
+<td>31</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p_i\)</span></td>
+<td>9/16</td>
+<td>3/16</td>
+<td>3/16</td>
+<td>1/16</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(np_i\)</span></td>
+<td>312.75</td>
+<td>104.25</td>
+<td>104.25</td>
+<td>34.75</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><p>the <span class="math inline">\(\chi^2\)</span> test statistic is <span class="math inline">\(V=0.604\)</span>, <span class="math inline">\(\chi^2_{1-0.1}(3)=6.25\)</span></p></li>
+<li><p>the <span class="math inline">\(\chi^2\)</span> test statistic is <span class="math inline">\(V=0.604\)</span>, <span class="math inline">\(\chi^2_{1-0.05}(3)=7.81\)</span>, accept the null.</p></li>
 <li><p>p-value is <span class="math inline">\(0.90\)</span></p></li>
-<li><p>R code:</p></li>
+<li><p>Key R code:</p></li>
 </ul>
 <p><strong>chisq.test</strong>(x, y = NULL, correct = TRUE,
 p = rep(1/length(x), length(x)), rescale.p = FALSE,
@@ -826,7 +941,7 @@ chisq.test(x,p=p)</code></pre>
 ## data:  x
 ## X-squared = 0.60432, df = 3, p-value = 0.8954</code></pre>
 </div>
-<div id="goodness-of-fit-tests-1" class="section level2">
+<div id="goodness-of-fit-tests" class="section level2">
 <h2>Goodness-of-fit tests</h2>
 <p>考虑连续型分布：</p>
 <p><span class="math display">\[H_0:F(x)=F_0(x)\ vs. \ F(x)\neq F_0(x)\]</span></p>

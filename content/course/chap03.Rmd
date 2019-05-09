@@ -607,7 +607,7 @@ $$\sigma^2=\sigma^2_0\ vs.\ \sigma^2\neq \sigma^2_0$$
 
 $$W=\{\vec x: \chi^2>C_2, \chi^2<C_1\}$$
 
-其中$\chi^2 = \frac{1}{\sigma^2_0}\sum_{i=1}^n(x_i-\bar x)^2=ns_n^2/\sigma_0^2$, $C_1,C_2$满足
+其中**检验统计量**$\chi^2 = \frac{1}{\sigma^2_0}\sum_{i=1}^n(x_i-\bar x)^2=ns_n^2/\sigma_0^2$, $C_1,C_2$满足
 
 $$\int_{C_1}^{C_2} g_{n-1}(x) dx = 1-\alpha$$
 
@@ -649,7 +649,7 @@ $$H_0: \mu_1-\mu_2=\delta,\ H_1: \mu_1-\mu_2\neq \delta$$
 
 - 如果$\sigma_1^2,\sigma_2^2$已知, 选择**U检验统计量**：
 
-$$U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}=\frac{\bar X-\bar Y-\delta}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}$$
+$$U=\frac{\bar X-\bar Y-\delta}{\sqrt{\sigma_1^2/m+\sigma_2^2/n}}$$
 
 若$|U|> u_{1-\alpha/2}$拒绝$H_0$，否则接受$H_0$.
 
@@ -682,12 +682,11 @@ $$k^*=\frac{(S_{1m}^{*2}/m+S_{2n}^{*2}/n)^2}{(S_{1m}^{*2}/m)^2/(m-1)+(S_{2n}^{*2
 $$H_0: \sigma_1^2=\sigma_2^2,\ H_1: \sigma_1^2\neq \sigma_2^2$$
 	
 - 如果$\mu_1,\mu_2$已知，选择**F检验统计量**：
-$$F=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\frac{\sigma_2^2}{\sigma_1^2}=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\sim F(m,n)$$
-	
+$$F=\frac{\frac 1 m\sum_{i=1}^m(X_i-\mu_1)^2}{\frac 1 n\sum_{i=1}^n(Y_i-\mu_2)^2}\sim F(m,n)\quad (在H_0下).$$
 若$F> F_{1-\alpha/2}(m,n)$或者$F<F_{\alpha/2}(m,n)$拒绝$H_0$，否则接受$H_0$.
 	
 - 如果$\mu_1,\mu_2$未知，选择**F检验统计量**：
-$$F=\frac{\frac 1 {m-1}\sum_{i=1}^m(X_i-\bar X)^2}{\frac 1 {n-1}\sum_{i=1}^n(Y_i-\bar Y)^2}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\sim F(m-1,n-1)$$
+$$F=\frac{\frac 1 {m-1}\sum_{i=1}^m(X_i-\bar X)^2}{\frac 1 {n-1}\sum_{i=1}^n(Y_i-\bar Y)^2}=\frac{S_{1m}^{*2}}{S_{2n}^{*2}}\sim F(m-1,n-1)\quad (在H_0下).$$
 	
 若$F> F_{1-\alpha/2}(m-1,n-1)$或者$F<F_{\alpha/2}(m-1,n-1)$拒绝$H_0$，否则接受$H_0$.
 
@@ -781,9 +780,32 @@ $$P(\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\le \mu\le \bar X+u_{1-\alpha/2}
 于是得到一个置信区间：$[\bar X-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar X+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]$
 
 由此可以构造拒绝域：$$W=\{\mu_0\notin [\bar x-u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}},\bar x+u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}]\}$$
-$$W=\{\vec x:|\vec x-\mu_0|>u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}$$
+$$W=\{\vec x:|\bar x-\mu_0|>u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}$$
 
 此拒绝域和我们之前得到的一样的。
+
+## Example: blood alcohol determinations 
+
+The following are thirty blood alcohol determinations （血液酒精浓度测试） made by Analyzer GTE-10, a three-year-old unit that may be in need of recalibration. All thirty measurements were made using a test sample on which a properly adjusted machine would give a reading of 12.6%.
+
+
+| 12.3 | 12.7 | 13.6 | 12.7 | 12.9 | 12.6| 
+|-|-|-|-|-|-|
+| 12.6 | 13.1 | 12.6 | 13.1 | 12.7 | 12.5| 
+| 13.2 | 12.8 | 12.4 | 12.6 | 12.4 | 12.4| 
+| 13.1 | 12.9 | 13.3 | 12.6 | 12.6 | 12.7| 
+| 13.1 | 12.4 | 12.4 | 13.1 | 12.4 | 12.9| 
+
+Assume that $\sigma=0.4$. Would you recommend that the machine be readjusted at the level of significance $\alpha=0.05$? Would you change your decision if $\alpha=0.01$?
+
+
+`Solution`: If $\mu$ denotes the true average reading that Analyzer
+GTE-10 would give for a person whose blood
+alcohol concentration is 12.6%, test
+$H_0:\,mu=12.6 v.s. H_1:\mu\neq 12.6$.
+
+Note that $\bar x=12.757.$ The rection region is $W=\{\bar x-\mu_0|>u_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\}$.
+If $\alpha=0.05$, $W=\{\bar x-\mu_0|>0.143\}$. So I recommend that the machine be readjusted. On the other hand, if $\alpha$ goes down to $0.01$, the rejection region is $W=\{\bar x-\mu_0|>0.188\}$. For this case, I do NOT recommend that the machine be readjusted. 
 
 ## p-values
 
@@ -793,7 +815,7 @@ $$W=\{\vec x:T(\vec x)>\lambda\}$$
 
 - $T$为检验统计量
 
-- $\lambda$满足$\sup_{\theta\in\Theta_0}P_{\theta}(T(\vec X)>\lambda)=\alpha$
+- $\lambda_\alpha$满足$\sup_{\theta\in\Theta_0}P_{\theta}(T(\vec X)>\lambda_\alpha)=\alpha$
 
 
 由此可得：
@@ -804,7 +826,7 @@ $$W=\{\vec x:T(\vec x)>\lambda\}$$
 
 $$p=p(\vec x)=\sup_{\theta\in\Theta_0}P_\theta(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))$$
 
-如果给定$\alpha$, $\lambda$存在且唯一，则可以证明：$T(\vec x)>\lambda$当且仅当$p(\vec x)<\alpha$
+如果给定$\alpha$, $\lambda_\alpha$存在且唯一，则可以证明：$T(\vec x)>\lambda_\alpha$当且仅当$p(\vec x)<\alpha$
 
 ## p-values for simple null
 
@@ -817,6 +839,10 @@ $$p = P_{\theta_0}(T(X_1,\dots,X_n)\ge T(x_1,\dots,x_n))$$
 
 $$p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\bar x-\mu_0|}{\sigma/\sqrt{n}}\right)$$
 
+For blood alcohol determinations example,   
+
+$$p = 2-2\Phi\left(\frac{|12.757-12.6|}{0.4/\sqrt{30}}\right)=0.032.$$
+As a result, if $\alpha> 0.032$, reject $H_0$ (recommend); otherwise, accpete $H_0$ (NOT recommend).
 
 ## Comments
 
@@ -840,7 +866,7 @@ $$p = P_{\mu_0}(T(\vec X)\ge T(\vec x))=2-2\Phi(T(\vec x))=2-2\Phi\left(\frac{|\
 ![](https://imgs.xkcd.com/comics/significant.png)
 
 
-
+How to annoy a statistician: [https://xkcd.com/2118/](https://xkcd.com/2118/)
 
 
 ## Binomial tests
@@ -969,9 +995,26 @@ $$\tilde p_\alpha(s)=(1+\frac{n-s}{(s+1)F_{1-\alpha}(2(s+1),2(n-s))})^{-1}$$
 
 $$\{p_0\le p_{\alpha/2}(s)\}\cup\{p_0\ge \tilde{p}_{\alpha/2}(s)\}$$
 
+## Example:  Mendel’s Data
+
+In one of his famous experiments, Mendel crossed 556 smooth, yellow male peas
+with wrinkled, green female peas. The counts that Mendel recorded are 
+
+| smooth yellow | smooth green | wrinkled yellow | wrinkled green |
+|-|-|-|-|
+|315 | 108 | 102 | 31|
+
+According to now established genetic theory, the
+relative frequencies of the progeny should be as given below.
+
+$$P(\text{smooth yellow}) = 9/16, P(\text{smooth green}) = 3/16$$
+
+$$P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16$$
+
+Would you conclude that Mendal’s experiment is correct at the level of significance $\alpha=0.05$?
 
 
-## 4. Goodness-of-fit tests
+## 4. Goodness-of-fit tests (拟合优度检验)
 
 
 考虑离散型分布的假设检验，$X\in \{t_1,\dots,t_m\}$.
@@ -991,21 +1034,18 @@ $$V=\sum_{i=1}^{m} \frac{(v_i-np_i)^2}{np_i}$$
 
 ## Example:  Mendel’s Data
 
-In one of his famous experiments, Mendel crossed 556 smooth, yellow male peas
-with wrinkled, green female peas. According to now established genetic theory, the
-relative frequencies of the progeny should be as given below.
+| $t_i$ | smooth yellow | smooth green | wrinkled yellow | wrinkled green |
+|- |-|-|-|-|
+| $v_i$ |315 | 108 | 102 | 31|
+| $p_i$ | 9/16| 3/16 | 3/16| 1/16| 
+| $np_i$ | 312.75 | 104.25 | 104.25 | 34.75 |
 
-$$P(\text{smooth yellow}) = 9/16, P(\text{smooth green}) = 3/16$$
 
-$$P(\text{wrinkled yellow}) = 3/16, P(\text{wrinkled green}) = 1/16$$
-
-The counts that Mendel recorded are 315, 108, 102, 31, respectively.
-
-- the $\chi^2$ test statistic is $V=0.604$, $\chi^2_{1-0.1}(3)=6.25$
+- the $\chi^2$ test statistic is $V=0.604$, $\chi^2_{1-0.05}(3)=7.81$, accept the null.
 
 - p-value is $0.90$
 
-- R code: 
+- Key R code: 
 
 **chisq.test**(x, y = NULL, correct = TRUE,
            p = rep(1/length(x), length(x)), rescale.p = FALSE,
