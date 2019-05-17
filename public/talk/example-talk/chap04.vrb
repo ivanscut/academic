@@ -1,0 +1,13 @@
+\frametitle{Drawing Inferences about \(E[y]\)}
+\protect\hypertarget{drawing-inferences-about-ey}{}
+
+For given \(x\), we want to estimate the expected value of \(y\), i.e.,
+\(E[y]=\beta_0+\beta_1x.\) A natural unbiased estimate is
+\(\hat y = \hat\beta_0+\hat\beta_1x\).
+
+\texttt{Theorem\ 5}: Suppose Assumption B is satisfied. Then we have
+\[\hat y = \hat\beta_0+\hat\beta_1x \sim N(\beta_0+\beta_1x,[1/n+(x-\bar x)^2/\ell_{xx}]\sigma^2).\]
+A \(100(1−\alpha)\%\) confidence interval for \(E[y]=\beta_0+\beta_1x\)
+is given by
+\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]
+

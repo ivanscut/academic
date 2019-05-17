@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1557828112632.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "380E3D1F",
+    "lastKnownWriteTime" : 1557828236,
+    "last_content_update" : 1557828236202,
+    "path" : "D:/Dropbox/courses/academic/public/talk/example-talk/chap04.Rmd",
+    "project_path" : "public/talk/example-talk/chap04.Rmd",
+    "properties" : {
+        "cursorPosition" : "14,28",
+        "last_setup_crc32" : "",
+        "scrollLine" : "4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

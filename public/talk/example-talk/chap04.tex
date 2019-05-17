@@ -1,0 +1,1209 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Chapter 4: Linear Regression},
+            pdfauthor={Zhijian He},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Chapter 4: Linear Regression}
+\author{Zhijian He}
+\date{2018-11-28}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Simple Linear Models}
+\protect\hypertarget{simple-linear-models}{}
+
+The linear model is given by
+\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ i=1,\dots,n.\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\epsilon_i\) are random (need some assumptions)
+\item
+  \(x_i\) are \textbf{fixed} (\emph{independent/predictor} variable)
+\item
+  \(y_i\) are random (\emph{dependent/response} variable)
+\item
+  \(\beta_0\) is the \emph{intercept}
+\item
+  \(\beta_1\) is the \emph{slope}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Least square estimators}
+\protect\hypertarget{least-square-estimators}{}
+
+Choose \(\beta_0,\beta_1\) to minimize
+\[Q(\beta_0,\beta_1) = \sum_{i=1}^n(y_i-\beta_0-\beta_1x_i)^2.\]
+
+The minimizers \(\hat\beta_0,\hat\beta_1\) are given by
+
+\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)x_i}{\sum_{i=1}^n(x_i-\bar x)x_i},\ \hat\beta_0=\bar y-\hat\beta_1\bar x.\]
+
+\texttt{Regression\ function}: \(\hat y=\hat\beta_0+\hat\beta_1x\).
+
+\end{frame}
+
+\begin{frame}{Some useful notations}
+\protect\hypertarget{some-useful-notations}{}
+
+\[\ell_{xx} = \sum_{i=1}^n(x_i-\bar x)^2\]
+\[\ell_{yy} = \sum_{i=1}^n(y_i-\bar y)^2\]
+\[\ell_{xy} = \sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)\]
+
+\[\hat\beta_1 = \frac{\sum_{i=1}^n(y_i-\bar y)(x_i-\bar x)}{\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)}=\frac{\ell_{xy}}{\ell_{xx}}=\frac{1}{\ell_{xx}}\sum_{i=1}^n(x_i-\bar x)y_i\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Expected values and variances}
+\protect\hypertarget{expected-values-and-variances}{}
+
+\texttt{Assumption\ A1}: \(E[\epsilon_i]=0,i=1,\dots,n\).
+
+\texttt{Theorem\ 1}: Under Assumption A1, \(\hat\beta_0,\hat\beta_1\)
+are unbiased estimators for \(\beta_0,\beta_1\), respectively.
+
+\texttt{Assumption\ A2}:
+\(Cov(\epsilon_i,\epsilon_j)=\sigma^21\{i=j\}\).
+
+\texttt{Theorem\ 2}: Under Assumption A2, we have
+\[Var[\hat\beta_0] = \left(\frac 1n+\frac{\bar x^2}{\ell_{xx}}\right)\sigma^2,\ Var[\hat\beta_1] =\frac{\sigma^2}{\ell_{xx}}\]
+
+\[Cov(\hat\beta_0,\hat\beta_1) = \frac{-\bar x}{\ell_{xx}}\sigma^2.\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Estimation of \(\sigma^2\)}
+\protect\hypertarget{estimation-of-sigma2}{}
+
+\texttt{Definition}: The sum of squared errors (SSE) is defined by
+\[S_e^2 = \sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2.\]
+
+\texttt{Theorem\ 3}: Let
+\[\hat{\sigma}^2 := \frac{Q(\hat \beta_0,\hat\beta_1)}{n-2}=\frac{\sum_{i=1}^n(y_i-\hat\beta_0-\hat\beta_1x_i)^2}{n-2}=\frac{S_e^2}{n-2}.\]
+Under Assumptions A1 and A2, we have \(E[\hat\sigma^2]=\sigma^2\).
+
+\end{frame}
+
+\begin{frame}[fragile]{Normal distributions}
+\protect\hypertarget{normal-distributions}{}
+
+\texttt{Assumption\ B}:
+\(\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2),i=1,\dots,n\).
+
+\begin{quote}
+Assumption B includes Assumptions A1 and A2.
+\end{quote}
+
+\texttt{Theorem\ 4}: Under Assumption B, we have
+
+(1).
+\(\hat\beta_0\sim N(\beta_0,(\frac 1n+\frac{\bar x^2}{\ell_{xx}})\sigma^2)\)
+
+(2). \(\hat\beta_1\sim N(\beta_1,\frac{\sigma^2}{\ell_{xx}})\)
+
+(3).
+\(\frac{(n-2)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-2)\)
+
+(4). \(\hat\sigma^2\) is independent of \((\hat\beta_0,\hat\beta_1)\).
+
+\end{frame}
+
+\begin{frame}{Inferences about \(\beta_1\)}
+\protect\hypertarget{inferences-about-beta_1}{}
+
+For known \(\sigma\) we can make tests and confidence intervals using
+\[\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{\ell_{xx}}}\sim N(0,1).\]
+
+The \(100(1-\alpha)\%\) confidence interval for \(\beta_1\) is given by
+\[\hat\beta_1\pm u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}.\]
+
+For testing \[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\] we
+reject \(H_0\) if
+\(|\hat\beta_1-\beta_1^*|>u_{1-\alpha/2}\sigma/\sqrt{\ell_{xx}}\)
+
+\end{frame}
+
+\begin{frame}{Inferences about \(\beta_1\)}
+\protect\hypertarget{inferences-about-beta_1-1}{}
+
+In the more realistic setting of unknown \(\sigma\), using claims (2-4)
+gives
+\[\frac{\hat\beta_1-\beta_1}{\hat{\sigma}/\sqrt{\ell_{xx}}}\sim t(n-2).\]
+The \(100(1-\alpha)\%\) confidence interval for \(\beta_1\) is
+\[\hat\beta_1\pm t_{1-\alpha/2}(n-2)\hat{\sigma}/\sqrt{\ell_{xx}}.\]
+
+For testing \[H_0:\beta_1=\beta_1^*\ vs.\ H_1:\beta_1\neq\beta_1^*,\] we
+reject \(H_0\) if
+\(|\hat\beta_1-\beta_1^*|>t_{1-\alpha/2}(n-2)\hat\sigma/\sqrt{\ell_{xx}}\).
+
+\end{frame}
+
+\begin{frame}{Inferences about \(\beta_0\)}
+\protect\hypertarget{inferences-about-beta_0}{}
+
+Similarly, for drawing inferences about \(\beta_0\), we can use
+\[\frac{\hat\beta_0-\beta_0}{\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim N(0,1),\]
+\[\frac{\hat\beta_0-\beta_0}{\hat\sigma\sqrt{1/n+\bar x^2/\ell_{xx}}}\sim t(n-2).\]
+
+\end{frame}
+
+\begin{frame}{Inferences about \(\sigma^2\)}
+\protect\hypertarget{inferences-about-sigma2}{}
+
+The \(100(1-\alpha)\%\) confidence interval for \(\sigma^2\) is
+\[\left[\frac{(n-2)\hat\sigma^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{(n-2)\hat\sigma^2}{\chi_{\alpha/2}^2(n-2)}\right]\]
+or,
+\[\left[\frac{S_e^2}{\chi_{1-\alpha/2}^2(n-2)},\frac{S_e^2}{\chi_{\alpha/2}^2(n-2)}\right].\]
+
+\end{frame}
+
+\begin{frame}{Case study 1}
+\protect\hypertarget{case-study-1}{}
+
+A manufacturer of air conditioning units is having assembly problems due
+to the failure of a connecting rod to meet finished-weight
+specifications. Too many rods are being completely tooled, then rejected
+as overweight. To reduce that cost, the company's quality-control
+department wants to quantify the relationship between the weight of the
+\textbf{finished rod}, \(y\), and that of the \textbf{rough casting},
+\(x\). Castings likely to produce rods that are too heavy can then be
+discarded before undergoing the final (and costly) tooling process.
+
+\end{frame}
+
+\begin{frame}{Graphed data}
+\protect\hypertarget{graphed-data}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-1-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Model setting}
+\protect\hypertarget{model-setting}{}
+
+Consider the linear model
+\[y_i=\beta_0+\beta_1x_i+\epsilon_i,\ \epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]
+
+\begin{itemize}
+\item
+  The observed data gives
+  \[\bar x = 2.643,\ \bar y=2.0048,\ell_{xx}=0.0367,\ \ell_{xy}=0.023565.\]
+\item
+  The least square estimates are
+  \[\hat\beta_1=\frac{\ell_{xy}}{\ell_{xx}}=\frac{0.023565}{0.0367}=0.642,\ \hat\beta_0=\bar y-\hat\beta_1\bar x=0.308.\]
+\item
+  variance estimator: \(\hat\sigma = 0.0113\)
+\item
+  The regession function \(\hat y = 0.308+0.642 x\)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The results}
+\protect\hypertarget{the-results}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-2-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Summary report}
+\protect\hypertarget{summary-report}{}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = finished_weight ~ rough_weight)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.023558 -0.008242  0.001074  0.008179  0.024231 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   0.30773    0.15608   1.972   0.0608 .  
+## rough_weight  0.64210    0.05905  10.874 1.54e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.01131 on 23 degrees of freedom
+## Multiple R-squared:  0.8372, Adjusted R-squared:  0.8301 
+## F-statistic: 118.3 on 1 and 23 DF,  p-value: 1.536e-10
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Assessing the Fit}
+\protect\hypertarget{assessing-the-fit}{}
+
+As an aid in assessing the quality of the fit, we will make extensive
+use of the residuals, which are the differences between the observed and
+fitted values:
+\[\hat \epsilon_i = y_i-\hat\beta_0-\hat\beta_1x_i,\ i=1,\dots,n.\]
+
+It is most useful to examine the residuals graphically. Plots of the
+residuals versus the \(x\) values may reveal systematic misfit or ways
+in which the data do not conform to the fitted model. Ideally, the
+residuals should show no relation to the \(x\) values, and the plot
+should look like a horizontal blur.
+
+\end{frame}
+
+\begin{frame}{The graphed residuals}
+\protect\hypertarget{the-graphed-residuals}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-4-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Standardized residuals}
+\protect\hypertarget{standardized-residuals}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-5-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Drawing Inferences about \(E[y]\)}
+\protect\hypertarget{drawing-inferences-about-ey}{}
+
+For given \(x\), we want to estimate the expected value of \(y\), i.e.,
+\(E[y]=\beta_0+\beta_1x.\) A natural unbiased estimate is
+\(\hat y = \hat\beta_0+\hat\beta_1x\).
+
+\texttt{Theorem\ 5}: Suppose Assumption B is satisfied. Then we have
+\[\hat y = \hat\beta_0+\hat\beta_1x \sim N(\beta_0+\beta_1x,[1/n+(x-\bar x)^2/\ell_{xx}]\sigma^2).\]
+A \(100(1−\alpha)\%\) confidence interval for \(E[y]=\beta_0+\beta_1x\)
+is given by
+\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]
+
+\end{frame}
+
+\begin{frame}{Case study 1: Confidence interval}
+\protect\hypertarget{case-study-1-confidence-interval}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-6-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Drawing Inferences about \(y\)}
+\protect\hypertarget{drawing-inferences-about-y}{}
+
+We now give a \textbf{prediction interval} for the future observation
+\(y\) rather than its expected value \(E[y]\). Note that here \(y\) is
+no longer a fixed parameter, which is assumed to be independent of
+\(y_i\)'s.
+
+\texttt{Definition}: A prediction interval is a range of numbers that
+contains \(y\) with a specified probability.
+
+\texttt{Theorem\ 6}: Suppose Assumption B is satisfied. Let
+\(y=\beta_0+\beta_1x+\epsilon\), where \(\epsilon\sim N(0,\sigma^2)\) is
+independent of \(\epsilon_i\)'s. A \(100(1−\alpha)\%\) prediction
+interval for \(y\) is given by
+\[\hat y\pm t_{1-\alpha/2}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}.\]
+
+\end{frame}
+
+\begin{frame}{Case study 1: Prediction interval}
+\protect\hypertarget{case-study-1-prediction-interval}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-7-1.pdf}
+
+\end{frame}
+
+\begin{frame}{How to control y?}
+\protect\hypertarget{how-to-control-y}{}
+
+Consider case study 1 again. Castings likely to produce rods that are
+too heavy can then be discarded before undergoing the final (and costly)
+tooling process. The company's quality-control department wants to
+produce the rod \(y\) with weights no large than 2.05 with probablity no
+less than 0.95. How to choose the rough casting?
+
+Now we want \(y\le y_0=2.05\) with probability \(1-\alpha\). Similarly
+to Theorem 6, we can construct one-side confidence interval for \(y\),
+that is
+\[\bigg(-\infty,\hat y+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\bigg].\]
+
+\end{frame}
+
+\begin{frame}{How to control y?}
+\protect\hypertarget{how-to-control-y-1}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-8-1.pdf}
+\[\hat\beta_0+\hat\beta_1x+t_{1-\alpha}(n-2)\hat{\sigma}\sqrt{1+\frac{1}{n}+\frac{(x-\bar x)^2}{\ell_{xx}}}\le y_0\]
+
+\end{frame}
+
+\begin{frame}{Multiple linear regression}
+\protect\hypertarget{multiple-linear-regression}{}
+
+Consider a model of the form
+\[y_i=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+\dots+\beta_{p-1}x_{i,p-1}+\epsilon_i,\ i=1,\dots,n.\]
+
+In the matrix form:
+
+\[
+\left[
+\begin{matrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+1 & x_{11} & x_{12} & \cdots & x_{1,p-1}\\
+1 & x_{21} & x_{22} & \cdots & x_{2,p-1}\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \\
+1 & x_{n1} & x_{n2} & \cdots & x_{n,p-1}\\
+\end{matrix}
+\right]\left[
+\begin{matrix}
+\beta_0\\
+\beta_1\\
+\vdots\\
+\beta_{p-1}
+\end{matrix}
+\right]+\left[
+\begin{matrix}
+\epsilon_1\\
+\epsilon_2\\
+\vdots\\
+\epsilon_n
+\end{matrix}
+\right].
+\]
+
+\[Y=X\beta+\epsilon\]
+
+\begin{itemize}
+\tightlist
+\item
+  the matrix \(X\) is called the \textbf{design matrix}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Least squares estimation (LSE)}
+\protect\hypertarget{least-squares-estimation-lse}{}
+
+Find \(\beta\) to minimize
+
+\[
+\begin{align}
+Q(\beta)&=\sum_{i=1}^n(y_i-\beta_0-\beta_1x_{i1}-\dots-\beta_{p-1}x_{i,p-1})^2\\&=||Y-X\beta||^2=(Y-X\beta)^\top (Y-X\beta)\\
+&=Y^\top Y-2Y^\top X\beta+\beta^\top X^\top X\beta.
+\end{align}
+\]
+
+If we differentiate \(Q\) with respect to each \(\beta_i\) and set the
+derivatives equal to zero, we see that the minimizers
+\(\hat\beta_0,\dots,\hat\beta_{p-1}\) satisfy
+
+\[\frac{\partial Q}{\partial \beta_i}=-2(Y^\top X)_i+2(X^{\top}X)_{i\cdot}\hat\beta=0.\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Normal equations}
+\protect\hypertarget{normal-equations}{}
+
+We thus arrive at the so-called \textbf{normal equations}:
+
+\[X^\top X\hat\beta = X^\top Y\]
+
+If the design matrix \(X^\top X\) is \textbf{nonsingular}, the formal
+solution is \[\hat\beta = (X^\top X)^{-1}X^\top Y.\]
+
+\texttt{Lemma\ 1}: The matrix \(X^\top X\) is nonsingular if and only if
+\(\mathrm{rank}(X)=p\).
+
+NOTE: In what follows, we assume that \(\mathrm{rank}(X)=p<n\). If
+\(p>n\), it belongs to the field of
+\href{https://en.wikipedia.org/wiki/High-dimensional_statistic}{high-dimensional
+statistics}.
+
+\end{frame}
+
+\begin{frame}[fragile]{Expected values and variances}
+\protect\hypertarget{expected-values-and-variances-1}{}
+
+\texttt{Assumption\ A}: Assume that \(E[\epsilon]=0\) and
+\(Var[\epsilon]=\sigma^2I_n\).
+
+\texttt{Theorem\ 7}: Suppose that Assumption A is satisfied and
+\(\mathrm{rank}(X)=p<n\), we have
+
+(1). \(E[\hat\beta]=\beta,\)
+
+(2). \(Var[\hat\beta]=\sigma^2(X^\top X)^{-1}\).
+
+\end{frame}
+
+\begin{frame}[fragile]{Estimation of \(\sigma^2\)}
+\protect\hypertarget{estimation-of-sigma2-1}{}
+
+\texttt{Definition}:
+
+\begin{itemize}
+\item
+  \textbf{The fitted values}: \(\hat Y = X\hat\beta\)
+\item
+  \textbf{The vector of residuals}: \(\hat\epsilon = Y-\hat Y\)
+\item
+  \textbf{The sum of squared errors (SSE)}:
+  \(S_e^2=Q(\hat\beta)=||Y-\hat Y||^2=||\hat\epsilon||^2\)
+\end{itemize}
+
+Note that
+
+\[\hat Y = X\hat\beta=X(X^\top X)^{-1}X^\top Y=:PY\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The projection matrix}: \(P = X(X^\top X)^{-1}X^\top\)
+\end{itemize}
+
+The vector of residuals is then \(\hat\epsilon=(I_n-P)Y\).
+
+\end{frame}
+
+\begin{frame}[fragile]{The projection matrix}
+\protect\hypertarget{the-projection-matrix}{}
+
+Two useful properties of \(P\) are given in the following lemma.
+
+\textbf{The projection matrix}: \[P = X(X^\top X)^{-1}X^\top\]
+
+\texttt{Lemma\ 2}: Let \(P\) be defined as before. Then
+\[P = P^\top=P^2\]
+
+\[I_n-P = (I_n-P)^\top=(I_n-P)^2.\]
+
+The sum of squared residuals is then \[
+\begin{align}
+S_e^2 := ||\hat \epsilon||^2 = Y^\top(I_n-P)^\top(I_n-P)Y=Y^\top(I_n-P)Y.
+\end{align}
+\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Estimation of \(\sigma^2\)}
+\protect\hypertarget{estimation-of-sigma2-2}{}
+
+\texttt{Theorem\ 8}: Suppose that Assumption A is satisfied and
+\(\mathrm{rank}(X)=p<n\), \[\hat\sigma^2 = \frac{S_e^2}{n-p}\]
+
+is an unbiased estimate of \(\sigma^2\).
+
+\end{frame}
+
+\begin{frame}[fragile]{Normal distribution}
+\protect\hypertarget{normal-distribution}{}
+
+\texttt{Assumption\ B}: Assume that \(\epsilon\sim N(0,\sigma^2I_n)\).
+
+\texttt{Theorem\ 9}: Suppose that Assumption B is satisfied and
+\(\mathrm{rank}(X)=p<n\), we have
+
+(1). \(\hat\beta \sim N(\beta, \sigma^2(X^\top X)^{-1})\),
+
+(2).
+\(\frac{(n-p)\hat\sigma^2}{\sigma^2}=\frac{S_e^2}{\sigma^2}\sim \chi^2(n-p)\),
+
+(3). \(\hat\epsilon\) is independent of \(\hat Y\),
+
+(4). \(S_e^2\) (or equivalently \(\hat\sigma^2\)) is independent of
+\(\hat\beta\).
+
+\end{frame}
+
+\begin{frame}{Confidence intervals for \(\beta_i\)}
+\protect\hypertarget{confidence-intervals-for-beta_i}{}
+
+Let \(C=(X^\top X)^{-1}\) with entries \(c_{ij}\). By Theorem 9, we have
+
+\[\frac{\hat\beta_i-\beta_i}{\sigma\sqrt{c_{ii}}}\sim N(0,1),\]
+
+\[\frac{\hat\beta_i-\beta_i}{\hat\sigma\sqrt{c_{ii}}}\sim t(n-p).\]
+
+If \(\sigma^2\) is known, the \(100(1-\alpha)\%\) CI is
+
+\[\hat\beta_i \pm u_{1-\alpha/2}\sigma\sqrt{c_{ii}}.\]
+
+If \(\sigma^2\) is unknown, for each \(\beta_i\), the
+\(100(1-\alpha)\%\) CI is
+
+\[\hat\beta_i \pm t_{1-\alpha/2}(n-p)\hat\sigma\sqrt{c_{ii}}.\]
+
+\end{frame}
+
+\begin{frame}{Hypothesis tests on \(\beta_i\)}
+\protect\hypertarget{hypothesis-tests-on-beta_i}{}
+
+Consider the test
+
+\[H_0:\beta_i= \beta_i^*\ vs.\ H_1:\beta_i\neq \beta_i^*.\]
+
+The test statistic is
+
+\[T = \frac{\hat\beta_i-\beta_i^*}{\hat\sigma\sqrt{c_{ii}}}.\]
+
+The rejection region is \[W = \{|T|>t_{1-\alpha/2}(n-p)\}.\]
+
+NOTE: We are particularly interested in the case of \(\beta^*_i=0\).
+
+\end{frame}
+
+\begin{frame}[fragile]{Significance tests}
+\protect\hypertarget{significance-tests}{}
+
+Consider the hypothesis test:
+
+\[H_0:\beta_1=\dots=\beta_{p-1}=0\ vs.\ H_1: \beta_{i^*}\neq 0\text{ for some }i^*\ge 1.\]
+
+\texttt{Definition}:
+
+\begin{itemize}
+\item
+  \textbf{The total sum of squares (SST)}:
+  \(S_T^2 = \sum_{i=1}^n(y_i-\bar Y)^2\)
+\item
+  \textbf{The sum of squares due to regression (SSR)}:
+  \(S_R^2 = \sum_{i=1}^n(\hat y_i-\bar Y)^2\)
+\item
+  \textbf{The sum of squared errors (SSE)}:
+  \(S_e^2 = \sum_{i=1}^n(y_i-\hat y_i)^2\)
+\end{itemize}
+
+The relationship is \[S_T^2=S_R^2+S_e^2.\]
+
+\end{frame}
+
+\begin{frame}{The GLR test}
+\protect\hypertarget{the-glr-test}{}
+
+The likelihood function for \(Y\) is given by
+
+\[L(\beta,\sigma^2) = (2\pi \sigma^2)^{-n/2} e^{-\frac{||Y-X\beta||^2}{2\sigma^2}}.\]
+
+The likelihood ratio is then given by
+
+\[\lambda = \frac{\sup_{\theta\in\Theta}L(\beta,\sigma^2)}{\sup_{\theta\in\Theta_0}L(\beta,\sigma^2)} = \left(\frac{S_T^2}{S_e^2}\right)^{n/2}= \left(1+\frac{S_R^2}{S_e^2}\right)^{n/2}.\]
+
+\end{frame}
+
+\begin{frame}[fragile]{F-tests}
+\protect\hypertarget{f-tests}{}
+
+\texttt{Theorem\ 10}: Suppose that Assumption B is satisfied and
+\(\mathrm{rank}(X)=p<n\), we have
+
+(1). \(S_R^2,S_e^2,\bar Y\) are independent, and
+
+(2). if the null \(H_0:\beta_1=\dots=\beta_{p-1}=0\) is true,
+\[S_R^2/\sigma^2\sim\chi^2(p-1),\]
+
+\[F=\frac{S_R^2/(p-1)}{S_e^2/(n-p)}\sim F(p-1,n-p).\]
+
+We take \(F\) as the test statistic. The rejection region is
+\(W=\{F>F_{1-\alpha}(p-1,n-p)\}\).
+
+\end{frame}
+
+\begin{frame}[fragile]{Coefficient of determination}
+\protect\hypertarget{coefficient-of-determination}{}
+
+\texttt{Definition}: The \textbf{coefficient of determination} is
+sometimes used as a crude measure of the strength of a relationship that
+has been fit by least squares. This coefficient is defined as
+
+\[R^2 =\frac{S_R^2}{S_T^2}=\frac{\sum_{i=1}^n(\hat y_i-\bar y)^2}{\sum_{i=1}^n(y_i-\bar y)^2}.\]
+It can be interpreted as the proportion of the variability of the
+dependent variable that can be explained by the independent variables.
+
+It is easy to see that
+
+\[F = \frac{S_T^2 R^2/(p-1)}{S_T^2(1-R^2)/(n-p)}=\frac{ R^2/(p-1)}{(1-R^2)/(n-p)}.\]
+
+\end{frame}
+
+\begin{frame}{Correlation coefficient}
+\protect\hypertarget{correlation-coefficient}{}
+
+For the simple linear model \(p=2\), we have
+
+\[S_R^2 = \sum_{i=1}^n(\hat y_i-\bar y)^2 = \hat\beta_1^2\sum_{i=1}^n(x_i-\bar x)^2 = \frac{\ell_{xy}^2}{\ell_{xx}}.\]
+This gives \[R^2 = \frac{\ell_{xy}^2}{\ell_{xx}\ell_{yy}} = \rho^2,\]
+where the \textbf{correlation coefficient} between \(x_i\) and \(y_i\)
+is
+\[\rho = \frac{\ell_{xy}}{\sqrt{\ell_{xx}\ell_{yy}}}=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_{i=1}^n(x_i-\bar x)^2}\sqrt{\sum_{i=1}^n(y_i-\bar y)^2}}.\]
+
+\end{frame}
+
+\begin{frame}{Case study 2}
+\protect\hypertarget{case-study-2}{}
+
+It is found that the systolic pressure is linked to the weight and the
+age. We now have the following data.
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-9-1.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Summary report}
+\protect\hypertarget{summary-report-1}{}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pressure ~ weight + age, data = blood)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.0404 -1.0183  0.4640  0.6908  4.3274 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -62.96336   16.99976  -3.704 0.004083 ** 
+## weight        2.13656    0.17534  12.185 2.53e-07 ***
+## age           0.40022    0.08321   4.810 0.000713 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.854 on 10 degrees of freedom
+## Multiple R-squared:  0.9461, Adjusted R-squared:  0.9354 
+## F-statistic: 87.84 on 2 and 10 DF,  p-value: 4.531e-07
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{The regression function}
+\protect\hypertarget{the-regression-function}{}
+
+\[\hat y = -62.96336 + 2.13656 x_1+ 0.40022 x_2\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(R^2=0.9461\)
+\item
+  the estimated covariance matrix \(\hat{\sigma}^2(X^\top X)^{-1}\) is
+\end{itemize}
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule
+& intercept & weight & age\tabularnewline
+\midrule
+\endhead
+intercept & 288.991861 & -2.9499280 & -1.1174334\tabularnewline
+weight & -2.949928 & 0.0307450 & 0.0102176\tabularnewline
+age & -1.117433 & 0.0102176 & 0.0069243\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\begin{frame}{Confidence interval for \(E[y_{n+1}]\)}
+\protect\hypertarget{confidence-interval-for-ey_n1}{}
+
+Consider
+
+\[y_{n+1} = \beta_0+\beta_1x_{n+1,1}+\dots+\beta_{p-1}x_{n+1,p-1}+\epsilon_{n+1}.\]
+Under Assumption B,
+\(y_{n+1}=v^\top \beta+\epsilon_{n+1}\sim N(v^\top \beta,\sigma^2)\) ,
+where \(v = (1,x_{n+1,1},x_{n+1,2},\dots,x_{n+1,p-1})^\top\). An
+unbiased estimate of the expected value of \(E[y_{n+1}]=v^\top \beta\)
+is the fitted value
+
+\[\hat y_{n+1} = v^\top \hat\beta \sim N(v^\top \beta, \sigma^2 v^\top(X^\top X)^{-1}v).\]
+
+The \(100(1-\alpha)\%\) CI for \(E[y_{n+1}]\) is
+
+\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{v^\top(X^\top X)^{-1}v}.\]
+
+\end{frame}
+
+\begin{frame}{Prediction interval for \(y_{n+1}\)}
+\protect\hypertarget{prediction-interval-for-y_n1}{}
+
+Similarly,
+
+\[\frac{y_{n+1}-\hat y_{n+1}}{\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}}\sim t(n-p).\]
+
+The \(100(1-\alpha)\%\) prediction interval for \(y\) is
+
+\[\hat y_{n+1}\pm t_{1-\alpha/2}(n-p)\hat{\sigma}\sqrt{1+v^\top(X^\top X)^{-1}v}.\]
+
+\end{frame}
+
+\begin{frame}{Case study 2}
+\protect\hypertarget{case-study-2-1}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-12-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Case study 2}
+\protect\hypertarget{case-study-2-2}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-13-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Extension to general models}
+\protect\hypertarget{extension-to-general-models}{}
+
+\textbf{Inherently Linear models}:
+
+\[\begin{align}
+f(y) &= \beta_0+\beta_1 g_1(x_1,\dots,x_{p-1})+\dots\\&+\beta_{k-1} g_{k-1}(x_1,\dots,x_{p-1})+\epsilon
+\end{align}\]
+
+Let \(y^*=f(y),\ x_i^*=g_i(x_1,\dots,x_{p-1})\). The transformed model
+is linear
+
+\[y^*=\beta_0+\beta_1 x_1^*+\dots+\beta_{k-1} x_{k-1}^{*}+\epsilon.\]
+
+\end{frame}
+
+\begin{frame}{Examples}
+\protect\hypertarget{examples}{}
+
+\begin{itemize}
+\item
+  Polynomial models:
+  \[y = \beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon\]
+\item
+  Interaction models:
+  \[y = \beta_0+\beta_1x_1+\beta_2x_2^2+\beta_{3}x_1x_2+\epsilon\]
+\item
+  Multiplicative models:
+  \[y = \gamma_1X_1^{\gamma_2}X_2^{\gamma_3}\epsilon^*\]
+\item
+  Exponential models:
+  \[y = \exp\{\beta_0+\beta_1x_1+\beta_2x_2\}+\epsilon^*\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Examples}
+\protect\hypertarget{examples-1}{}
+
+\begin{itemize}
+\item
+  Reciprocal models:
+  \[y=\frac{1}{\beta_0+\beta_1x+\beta_2x^2+\beta_{p-1}x^p+\epsilon}\]
+\item
+  Semilog models: \[y = \beta_0+\beta_1\log(x)+\epsilon\]
+\item
+  Logit models:
+  \[\log\left(\frac{y}{1-y}\right) = \beta_0+\beta_1 x+\epsilon\]
+\item
+  Probit models: \(\Phi^{-1}(y) = \beta_0+\beta_1 x+\epsilon\), where
+  \(\Phi\) is the CDF of \(N(0,1)\).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{回归诊断}
+
+回归分析都是基于误差项的假定进行的，最常见的假设\[\epsilon_i\stackrel{iid}{\sim}N(0,\sigma^2).\]
+
+\begin{itemize}
+\item
+  如何考察数据基本上满足这些假设？自然从残差的角度来解决问题，这种方法叫\textbf{残差分析}。
+\item
+  研究那些数据对统计推断（估计、检验、预测和控制）有较大影响的点，这样的点叫做\textbf{影响点}。剔除那些有较强影响的异常/离群(outlier)数据，这就是所谓的影响分析(influence
+  analysis).
+\end{itemize}
+
+残差的定义为 \[\hat\epsilon = Y-\hat Y\]
+
+\end{frame}
+
+\begin{frame}{残差的性质}
+
+在假设\(\epsilon\sim N(0,\sigma^2I_n)\)下，
+
+\begin{enumerate}
+\item
+  \(\hat\epsilon \sim N(0,\sigma^2(I_n-P))\)
+\item
+  \(Cov(\hat Y,\hat\epsilon) = 0\)
+\item
+  \(1^\top\hat\epsilon = 0\)
+\end{enumerate}
+
+从中可以看出，\(Var[\hat\epsilon_i] = \sigma^2(1-p_{ii})\),
+其中\(p_{ij}\)为投影矩阵的元素。该方差与\(\sigma^2\)以及\(p_{ii}\)有关，因此直接比较残差\(\hat\epsilon_i\)是不恰当的。
+
+为此，将残差标准化：
+
+\[\frac{\hat\epsilon_i-E[\hat\epsilon_i]}{\sqrt{Var[\hat\epsilon_i}]}= \frac{\hat\epsilon_i}{\sigma\sqrt{1-p_{ii}}},\ i=1,\dots,n\]
+
+\end{frame}
+
+\begin{frame}{学生化残差}
+
+由于\(\sigma\)是未知的，所以用\(\hat\sigma\)来代替，其中\(\hat\sigma^2 = S_e^2/(n-p)\).
+于是得到学生化(studentized residuals)
+
+\[t_i = \frac{\hat\epsilon_i}{\hat{\sigma}\sqrt{1-p_{ii}}}\]
+
+\begin{itemize}
+\item
+  \(t_i\)虽然是\(\hat\epsilon_i\)的学生化，但它的分布并不服从\(t\)分布，它的分布通常比较复杂
+\item
+  \(t_1,\dots,t_n\)通常是不独立的
+\item
+  在实际应用中，可以近似认为：\(t_1,\dots,t_n\)是相互独立，服从\(N(0,1)\)分布
+\item
+  在实际应用中使用的残差图就是根据上述假定来对模型合理性进行诊断的。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{残差图}
+
+残差图：以残差为纵坐标，其他的量（一般为拟合值\(\hat y_i\)）为横坐标的散点图。
+
+由于可以近似认为：\(t_1,\dots,t_n\)是相互独立，服从\(N(0,1)\)分布，所以可以把它们看作来自\(N(0,1)\)的iid样本
+
+根据标准正态的性质，大概有\(95\%\)的\(t_i\)落入区间\([-2,2]\)中。由于\(\hat Y\)与\(\hat\epsilon\)不相关，所以\(\hat y_i\)与学生化残差\(t_i\)的相关性也很小。
+
+这样在残差图中，点\((\hat y_i,t_i),i=1,\dots,n\)大致应该落在宽度为4的水平带\(|t_i|\le 2\)的区域内，且\textbf{不呈现任何趋势}。
+
+\end{frame}
+
+\begin{frame}{残差图（1）}
+\protect\hypertarget{1}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error1} \caption{正常的残差图}\label{fig:unnamed-chunk-14}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图（2）}
+\protect\hypertarget{2}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error2} \caption{误差随着横坐标的增加而增加}\label{fig:unnamed-chunk-15}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图（3）}
+\protect\hypertarget{3}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error3} \caption{误差随着横坐标的增加而减少}\label{fig:unnamed-chunk-16}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图（4）}
+\protect\hypertarget{4}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error4} \caption{误差中间大，两端小}\label{fig:unnamed-chunk-17}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图（5）}
+\protect\hypertarget{5}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error5} \caption{回归函数可能非线性，或者误差相关或者漏掉重要的自变量}\label{fig:unnamed-chunk-18}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图（6）}
+\protect\hypertarget{6}{}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{error6} \caption{回归函数可能非线性}\label{fig:unnamed-chunk-19}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{残差图诊断的思路}
+
+\begin{itemize}
+\tightlist
+\item
+  如果残差图中显示误差方差不相等(heterogeneity,
+  方差非齐性)，可以对变量做适当的变换，使得变换后的相应变量具有近似相等的方差(homogeneity,
+  方差齐性)。最著名的方法是\textbf{Box-Cox变换}，见综述论文：
+\end{itemize}
+
+R. M. Sakia. The Box-Cox Transformation Technique: A Review. The
+Statistician, 41: 169-178, 1992.
+
+\begin{itemize}
+\tightlist
+\item
+  如果残差图中显示非线性，可适当增加自变量的二次项或者交叉项。具体问题具体分析。
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{离群值(outlier)}
+\protect\hypertarget{outlier}{}
+
+产生离群值的原因：
+
+\begin{enumerate}
+\item
+  主观原因：收集和记录数据时出现错误
+\item
+  客观原因：重尾分布（比如，\(t\)分布）和混合分布
+\end{enumerate}
+
+离群值的简单判断：
+
+\begin{enumerate}
+\item
+  数据散点图
+\item
+  学生化残差图，如果\(|t_i|>3\) (或者2.5,2)，则对应的数据判定为离群值。
+\item
+  离群值的统计检验方法，M-估计(Maximum likelihood type estimators)
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{案例}
+
+Anscombe在1973年构造了4组数据，每组数据都是由11对点\((x_i,y_i)\)组成，试分析4组数据是否通过回归方程的检验。
+
+\begin{longtable}[]{@{}lrrrrrrrrrrr@{}}
+\toprule
+\endhead
+x1 & 10.00 & 8.00 & 13.00 & 9.00 & 11.00 & 14.00 & 6.00 & 4.00 & 12.00 &
+7.00 & 5.00\tabularnewline
+x2 & 10.00 & 8.00 & 13.00 & 9.00 & 11.00 & 14.00 & 6.00 & 4.00 & 12.00 &
+7.00 & 5.00\tabularnewline
+x3 & 10.00 & 8.00 & 13.00 & 9.00 & 11.00 & 14.00 & 6.00 & 4.00 & 12.00 &
+7.00 & 5.00\tabularnewline
+x4 & 8.00 & 8.00 & 8.00 & 8.00 & 8.00 & 8.00 & 8.00 & 19.00 & 8.00 &
+8.00 & 8.00\tabularnewline
+y1 & 8.04 & 6.95 & 7.58 & 8.81 & 8.33 & 9.96 & 7.24 & 4.26 & 10.84 &
+4.82 & 5.68\tabularnewline
+y2 & 9.14 & 8.14 & 8.74 & 8.77 & 9.26 & 8.10 & 6.13 & 3.10 & 9.13 & 7.26
+& 4.74\tabularnewline
+y3 & 7.46 & 6.77 & 12.74 & 7.11 & 7.81 & 8.84 & 6.08 & 5.39 & 8.15 &
+6.42 & 5.73\tabularnewline
+y4 & 6.58 & 5.76 & 7.71 & 8.84 & 8.47 & 7.04 & 5.25 & 12.50 & 5.56 &
+7.91 & 6.89\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\begin{frame}[fragile]{回归结果}
+
+\begin{verbatim}
+## [[1]]
+##              Estimate Std. Error  t value    Pr(>|t|)
+## (Intercept) 3.0000909  1.1247468 2.667348 0.025734051
+## x1          0.5000909  0.1179055 4.241455 0.002169629
+## 
+## [[2]]
+##             Estimate Std. Error  t value    Pr(>|t|)
+## (Intercept) 3.000909  1.1253024 2.666758 0.025758941
+## x2          0.500000  0.1179637 4.238590 0.002178816
+## 
+## [[3]]
+##              Estimate Std. Error  t value    Pr(>|t|)
+## (Intercept) 3.0024545  1.1244812 2.670080 0.025619109
+## x3          0.4997273  0.1178777 4.239372 0.002176305
+## 
+## [[4]]
+##              Estimate Std. Error  t value    Pr(>|t|)
+## (Intercept) 3.0017273  1.1239211 2.670763 0.025590425
+## x4          0.4999091  0.1178189 4.243028 0.002164602
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{回归直线}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-22-1.pdf}
+
+\end{frame}
+
+\begin{frame}{残差}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-23-1.pdf}
+
+\end{frame}
+
+\begin{frame}{异常值}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-24-1.pdf}
+
+\end{frame}
+
+\begin{frame}{残差图}
+\protect\hypertarget{-1}{}
+
+\includegraphics{chap04_files/figure-beamer/unnamed-chunk-25-1.pdf}
+
+\end{frame}
+
+\begin{frame}{回归分析的其他内容}
+
+\begin{itemize}
+\item
+  共线性(collinear)分析，岭回归(ridge regression)方法
+\item
+  变量选择方法：向前/后回归法、逐步回归法、完全子集法、交叉核实(cross
+  validation)法，见课本P208-214
+\item
+  现代变量选择方法：LASSO (Least Absolute Shrinkage \& Selection
+  Operator)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{LASSO}
+\protect\hypertarget{lasso}{}
+
+\begin{figure}
+\includegraphics[width=0.25\linewidth]{rob} \caption{Rob Tibshirani}\label{fig:unnamed-chunk-26}
+\end{figure}
+
+\url{https://statweb.stanford.edu/~tibs/}
+
+LASSO是斯坦福大学统计系Tibshirani于1996年发表的著名论文``\href{http://statweb.stanford.edu/~tibs/lasso/lasso.pdf}{Regreesion
+shrinkage and selection via the LASSO}'' (Journal of Royal Statistical
+Society, Seriers B, 58, 267-288)中所提出的一种变量选择方法。
+
+\end{frame}
+
+\begin{frame}{回归分析与因果分析}
+
+即使建立了回归关系式并且统计检验证明相关关系成立，也只能说明研究的变量是统计相关的，而\textbf{不能就此断定变量之间有因果关系}。
+
+案例(Ice Cream Causes
+Polio)：小儿麻痹症疫苗发明前，美国北卡罗来纳州卫生部研究人员通过分析冰淇淋消费量和小儿麻痹症的关系发现当冰淇淋消费量增加时，小儿麻痹疾病也增加。州卫生部发生警告反对吃冰淇淋来试图阻止这种疾病的传播。
+
+\end{frame}
+
+\begin{frame}{没有观察的混杂因素------温度}
+
+Polio and ice cream consumption both increase in the summertime. Summer
+is when the polio virus thrived.
+
+\begin{figure}
+\includegraphics[width=0.65\linewidth]{ice} \caption{The danger of mixing up causality and correlation}\label{fig:unnamed-chunk-27}
+\end{figure}
+
+\end{frame}
+
+\end{document}

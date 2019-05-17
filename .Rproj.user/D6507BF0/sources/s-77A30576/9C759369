@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1557223994591.000,
+    "created" : 1557445780769.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3729473203",
-    "id" : "792F90E4",
+    "hash" : "0",
+    "id" : "9C759369",
     "lastKnownWriteTime" : 1557393278,
-    "last_content_update" : 1557393278929,
+    "last_content_update" : 1557455006982,
     "path" : "D:/Dropbox/courses/academic/content/course/chap03.Rmd",
     "project_path" : "content/course/chap03.Rmd",
     "properties" : {
-        "cursorPosition" : "1016,36",
+        "cursorPosition" : "713,15",
         "last_setup_crc32" : "",
-        "scrollLine" : "1010"
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 8,
+    "relative_order" : 7,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
